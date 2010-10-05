@@ -1,0 +1,792 @@
+TTopDish
+v7
+r0
+t307940751.297973
+cCheck dependencies
+cProcessInfoPlistFile /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/Info.plist TopDish-Info.plist
+cCompileXIB /Users/roderic/dev/TopDish/MainWindow.xib
+cCompileXIB /Users/roderic/dev/TopDish/RootViewController.xib
+cCompileXIB /Users/roderic/dev/TopDish/RootControllerTableViewCell.xib
+cCpResource build/Debug-iphonesimulator/TopDish.app/greenup.gif greenup.gif
+cCpResource build/Debug-iphonesimulator/TopDish.app/reddown.gif reddown.gif
+cCpResource build/Debug-iphonesimulator/TopDish.app/noPicWares.png noPicWares.png
+cCpResource build/Debug-iphonesimulator/TopDish.app/tdlogo.png tdlogo.png
+cCpResource build/Debug-iphonesimulator/TopDish.app/map.png map.png
+cProcessPCH /var/folders/jh/jhEFYscqHQ4GlqEL4Y01e++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/TopDish_Prefix-bxpxdctgoeqpgvasorbmgnmedxds/TopDish_Prefix.pch.gch TopDish_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+cDataModelVersionCompile /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/TopDish.momd /Users/roderic/dev/TopDish/TopDish.xcdatamodeld
+cCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/main.o /Users/roderic/dev/TopDish/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/TopDishAppDelegate.o /Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/RootViewController.o /Users/roderic/dev/TopDish/Classes/RootViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/NSObject+SBJSON.o /Users/roderic/dev/TopDish/Classes/NSObject+SBJSON.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/NSString+SBJSON.o /Users/roderic/dev/TopDish/Classes/NSString+SBJSON.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/SBJSON.o /Users/roderic/dev/TopDish/Classes/SBJSON.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/SBJsonBase.o /Users/roderic/dev/TopDish/Classes/SBJsonBase.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/SBJsonParser.o /Users/roderic/dev/TopDish/Classes/SBJsonParser.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/SBJsonWriter.o /Users/roderic/dev/TopDish/Classes/SBJsonWriter.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/Dish.o /Users/roderic/dev/TopDish/TopDish.xcdatamodeld/Dish.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/Restaurant.o /Users/roderic/dev/TopDish/TopDish.xcdatamodeld/Restaurant.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/asyncimageview.o /Users/roderic/dev/TopDish/Classes/asyncimageview.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/DishDetailTableView.o /Users/roderic/dev/TopDish/Classes/../DishDetailTableView.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cLd /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/TopDish normal i386
+cGenerateDSYMFile /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app.dSYM /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/TopDish
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk
+c000000004C3BDF5B0000000000000132
+t1278992219
+s306
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/CoreData.framework/CoreData
+c000000004BFDFEB400000000001CFA90
+t1274937012
+s1899152
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/CoreData.framework/Headers/CoreData.h
+c000000004BFDFEA8000000000000046B
+t1274937000
+s1131
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004BFDFE39000000000027C7D0
+t1274936889
+s2607056
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004BFDFE7C000000000029D5D0
+t1274936956
+s2741712
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004BFDFE6E0000000000001466
+t1274936942
+s5222
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004C0470BB00000000000009CD
+t1275359419
+s2509
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004C0471620000000001D47210
+t1275359586
+s30700048
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/usr/include/Availability.h
+c000000004BF4CBF90000000000001A3B
+t1274334201
+s6715
+
+N/Users/roderic/dev/TopDish/Classes/../DishDetailTableView.m
+c000000004CA96C6800000000000000D6
+t1286171752
+s214
+i"DishDetailTableView.h"
+
+N/Users/roderic/dev/TopDish/Classes/DishDetailTableView.xib
+c000000004CA96B8C0000000000004898
+t1286171532
+s18584
+
+N/Users/roderic/dev/TopDish/Classes/DishDetailView.xib
+c000000004CA9686C0000000000001643
+t1286170732
+s5699
+
+N/Users/roderic/dev/TopDish/Classes/JSON.h
+c000000004B93BE5E00000000000008F9
+t1267973726
+s2297
+i"SBJSON.h"
+i"NSObject+SBJSON.h"
+i"NSString+SBJSON.h"
+
+N/Users/roderic/dev/TopDish/Classes/NSObject+SBJSON.h
+c000000004B93BE5E0000000000000A01
+t1267973726
+s2561
+i<Foundation/Foundation.h>
+
+N/Users/roderic/dev/TopDish/Classes/NSObject+SBJSON.m
+c000000004B93BE5E000000000000089E
+t1267973726
+s2206
+i"NSObject+SBJSON.h"
+i"SBJsonWriter.h"
+
+N/Users/roderic/dev/TopDish/Classes/NSString+SBJSON.h
+c000000004B93BE5E0000000000000916
+t1267973726
+s2326
+i<Foundation/Foundation.h>
+
+N/Users/roderic/dev/TopDish/Classes/NSString+SBJSON.m
+c000000004B93BE5E000000000000087D
+t1267973726
+s2173
+i"NSString+SBJSON.h"
+i"SBJsonParser.h"
+
+N/Users/roderic/dev/TopDish/Classes/RootViewController.h
+c000000004CA94B19000000000000040F
+t1286163225
+s1039
+i<UIKit/UIKit.h>
+i<CoreData/CoreData.h>
+
+N/Users/roderic/dev/TopDish/Classes/RootViewController.m
+c000000004CAA95DF00000000000036EA
+t1286247903
+s14058
+i"RootViewController.h"
+i"Dish.h"
+i"asyncimageview.h"
+
+N/Users/roderic/dev/TopDish/Classes/SBJSON.h
+c000000004B93BE5E0000000000000AED
+t1267973726
+s2797
+i<Foundation/Foundation.h>
+i"SBJsonParser.h"
+i"SBJsonWriter.h"
+
+N/Users/roderic/dev/TopDish/Classes/SBJSON.m
+c000000004B93BE5E0000000000001ABC
+t1267973726
+s6844
+i"SBJSON.h"
+
+N/Users/roderic/dev/TopDish/Classes/SBJsonBase.h
+c000000004B93BE5E0000000000000B82
+t1267973726
+s2946
+i<Foundation/Foundation.h>
+
+N/Users/roderic/dev/TopDish/Classes/SBJsonBase.m
+c000000004B93BE5E0000000000000AC1
+t1267973726
+s2753
+i"SBJsonBase.h"
+
+N/Users/roderic/dev/TopDish/Classes/SBJsonParser.h
+c000000004B93BE5E0000000000000C0B
+t1267973726
+s3083
+i<Foundation/Foundation.h>
+i"SBJsonBase.h"
+
+N/Users/roderic/dev/TopDish/Classes/SBJsonParser.m
+c000000004CA944E300000000000036D0
+t1286161635
+s14032
+i"SBJsonParser.h"
+
+N/Users/roderic/dev/TopDish/Classes/SBJsonWriter.h
+c000000004B93BE5E0000000000001140
+t1267973726
+s4416
+i<Foundation/Foundation.h>
+i"SBJsonBase.h"
+
+N/Users/roderic/dev/TopDish/Classes/SBJsonWriter.m
+c000000004B93BE5E0000000000001F26
+t1267973726
+s7974
+i"SBJsonWriter.h"
+
+N/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.h
+c000000004CA8B7C200000000000003D9
+t1286125506
+s985
+i<UIKit/UIKit.h>
+i<CoreData/CoreData.h>
+
+N/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m
+c000000004CAA95A70000000000002BAF
+t1286247847
+s11183
+i"TopDishAppDelegate.h"
+i"RootViewController.h"
+i"JSON.h"
+i"Dish.h"
+
+N/Users/roderic/dev/TopDish/Classes/asyncimageview.h
+c000000004BB2B5F00000000000000358
+t1270003184
+s856
+i<UIKit/UIKit.h>
+
+N/Users/roderic/dev/TopDish/Classes/asyncimageview.m
+c000000004CAA8A260000000000000B16
+t1286244902
+s2838
+i"AsyncImageView.h"
+
+N/Users/roderic/dev/TopDish/DishDetailTableView.h
+c000000004CA96C680000000000000108
+t1286171752
+s264
+i<UIKit/UIKit.h>
+i<Foundation/Foundation.h>
+
+N/Users/roderic/dev/TopDish/DishDetailTableView.m
+c000000004CA96B9500000000000000D6
+t1286171541
+s214
+i"DishDetailTableView.h"
+
+N/Users/roderic/dev/TopDish/MainWindow.xib
+c000000004CA8B7C20000000000005FF4
+t1286125506
+s24564
+
+N/Users/roderic/dev/TopDish/RootControllerTableViewCell.xib
+c000000004CA960D7000000000000775D
+t1286168791
+s30557
+
+N/Users/roderic/dev/TopDish/RootViewController.xib
+c000000004CA957BB0000000000005083
+t1286166459
+s20611
+
+N/Users/roderic/dev/TopDish/TopDish.xcdatamodeld
+c000000004CAA960C0000000000000110
+t1286247948
+s272
+
+N/Users/roderic/dev/TopDish/TopDish.xcdatamodeld/Dish.h
+c000000004CA95BA50000000000000265
+t1286167461
+s613
+i<CoreData/CoreData.h>
+i"Restaurant.h"
+
+N/Users/roderic/dev/TopDish/TopDish.xcdatamodeld/Dish.m
+c000000004CA900C80000000000000150
+t1286144200
+s336
+i"Dish.h"
+
+N/Users/roderic/dev/TopDish/TopDish.xcdatamodeld/Restaurant.h
+c000000004CA900C80000000000000234
+t1286144200
+s564
+i<CoreData/CoreData.h>
+
+N/Users/roderic/dev/TopDish/TopDish.xcdatamodeld/Restaurant.m
+c000000004CA900C80000000000000158
+t1286144200
+s344
+i"Restaurant.h"
+
+N/Users/roderic/dev/TopDish/TopDish.xcdatamodeld/RootControllerTableViewCell.xib
+c000000004CA94DAE0000000000007898
+t1286163886
+s30872
+
+N/Users/roderic/dev/TopDish/TopDish_Prefix.pch
+c000000004CA8B7C20000000000000163
+t1286125506
+s355
+i<Availability.h>
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+i<CoreData/CoreData.h>
+
+N/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app
+t1286247904
+s510
+
+N/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app.dSYM
+t1286247904
+s102
+
+N/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/DishDetailTableView.nib
+t2
+s0
+
+N/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/DishDetailView.nib
+t1286242190
+s663
+
+N/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/Info.plist
+t1286137998
+s591
+
+N/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/MainWindow.nib
+t1286138003
+s1509
+
+N/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/PkgInfo
+t1286137998
+s8
+
+N/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/RootControllerTableViewCell.nib
+t1286168798
+s2601
+
+N/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/RootViewController.nib
+t1286166464
+s1005
+
+N/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/TopDish
+t1286247904
+s79752
+
+N/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/TopDish.momd
+t2
+s0
+
+N/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/greenup.gif
+t1286151277
+s578
+
+N/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/map.png
+t1286247562
+s7722
+
+N/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/noPicWares.png
+t1286162213
+s10053
+
+N/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/reddown.gif
+t1286151277
+s578
+
+N/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/tdlogo.png
+t1286164814
+s40456
+
+N/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/Dish.o
+t1286167462
+s5424
+
+N/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/DishDetailTableView.o
+t1286242191
+s5176
+
+N/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/NSObject+SBJSON.o
+t1286142271
+s8268
+
+N/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/NSString+SBJSON.o
+t1286142271
+s8188
+
+N/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/Restaurant.o
+t1286144357
+s5436
+
+N/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/RootViewController.o
+t1286247904
+s70804
+
+N/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/SBJSON.o
+t1286142271
+s20052
+
+N/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/SBJsonBase.o
+t1286142271
+s13184
+
+N/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/SBJsonParser.o
+t1286161635
+s35840
+
+N/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/SBJsonWriter.o
+t1286142271
+s25524
+
+N/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/TopDish.LinkFileList
+c000000004CAA7F8D00000000000005FF
+t1286242189
+s1535
+
+N/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/TopDishAppDelegate.o
+t1286247847
+s71340
+
+N/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/asyncimageview.o
+t1286244902
+s42072
+
+N/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/main.o
+t1286138007
+s6280
+
+N/Users/roderic/dev/TopDish/greenup.gif
+c000000004CA91A530000000000000242
+t1286150739
+s578
+
+N/Users/roderic/dev/TopDish/main.m
+c000000004CA8B7C2000000000000016D
+t1286125506
+s365
+i<UIKit/UIKit.h>
+
+N/Users/roderic/dev/TopDish/map.png
+c000000004CAA94520000000000001E2A
+t1286247506
+s7722
+
+N/Users/roderic/dev/TopDish/noPicWares.png
+c000000004CA946F10000000000002745
+t1286162161
+s10053
+
+N/Users/roderic/dev/TopDish/reddown.gif
+c000000004CA91A490000000000000242
+t1286150729
+s578
+
+N/Users/roderic/dev/TopDish/tdlogo.png
+c000000004CA951270000000000009E08
+t1286164775
+s40456
+
+N/var/folders/jh/jhEFYscqHQ4GlqEL4Y01e++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/TopDish_Prefix-bxpxdctgoeqpgvasorbmgnmedxds/TopDish_Prefix.pch.gch
+t1286138006
+s10778860
+
+NTopDish-Info.plist
+c000000004CA8B7C2000000000000038D
+t1286125506
+s909
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies307940751#307940751#0(0"0(0#1#0"2506375104#0"0#
+
+CCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/Dish.o /Users/roderic/dev/TopDish/TopDish.xcdatamodeld/Dish.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s307860261.984901
+e307860262.075242
+r1
+xCompileC
+xbuild/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/Dish.o
+x/Users/roderic/dev/TopDish/TopDish.xcdatamodeld/Dish.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@62"Compile /Users/roderic/dev/TopDish/TopDish.xcdatamodeld/Dish.m307860261#307860262#0(0"0(0#0#54"/Users/roderic/dev/TopDish/TopDish.xcdatamodeld/Dish.m2506375104#1790"    cd /Users/roderic/dev/TopDish    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-generated-files.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-own-target-headers.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-all-target-headers.hmap -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-project-headers.hmap -F/Users/roderic/dev/TopDish/build/Debug-iphonesimulator -I/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/include -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources/i386 -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources -include /var/folders/jh/jhEFYscqHQ4GlqEL4Y01e++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/TopDish_Prefix-bxpxdctgoeqpgvasorbmgnmedxds/TopDish_Prefix.pch -c /Users/roderic/dev/TopDish/TopDish.xcdatamodeld/Dish.m -o /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/Dish.o0#
+
+CCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/DishDetailTableView.o /Users/roderic/dev/TopDish/Classes/../DishDetailTableView.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s307934990.798562
+e307934991.509620
+r1
+xCompileC
+xbuild/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/DishDetailTableView.o
+x/Users/roderic/dev/TopDish/Classes/../DishDetailTableView.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@67"Compile /Users/roderic/dev/TopDish/Classes/../DishDetailTableView.m307934990#307934991#0(0"0(0#0#59"/Users/roderic/dev/TopDish/Classes/../DishDetailTableView.m2506375104#1810"    cd /Users/roderic/dev/TopDish    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-generated-files.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-own-target-headers.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-all-target-headers.hmap -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-project-headers.hmap -F/Users/roderic/dev/TopDish/build/Debug-iphonesimulator -I/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/include -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources/i386 -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources -include /var/folders/jh/jhEFYscqHQ4GlqEL4Y01e++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/TopDish_Prefix-bxpxdctgoeqpgvasorbmgnmedxds/TopDish_Prefix.pch -c /Users/roderic/dev/TopDish/Classes/../DishDetailTableView.m -o /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/DishDetailTableView.o0#
+
+CCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/DishDetailTableView.o /Users/roderic/dev/TopDish/DishDetailTableView.m normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/NSObject+SBJSON.o /Users/roderic/dev/TopDish/Classes/NSObject+SBJSON.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s307835071.039825
+e307835071.130168
+r1
+xCompileC
+xbuild/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/NSObject+SBJSON.o
+x/Users/roderic/dev/TopDish/Classes/NSObject+SBJSON.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@60"Compile /Users/roderic/dev/TopDish/Classes/NSObject+SBJSON.m307835071#307835071#0(0"0(0#0#52"/Users/roderic/dev/TopDish/Classes/NSObject+SBJSON.m2506375104#1799"    cd /Users/roderic/dev/TopDish    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-generated-files.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-own-target-headers.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-all-target-headers.hmap -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-project-headers.hmap -F/Users/roderic/dev/TopDish/build/Debug-iphonesimulator -I/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/include -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources/i386 -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources -include /var/folders/jh/jhEFYscqHQ4GlqEL4Y01e++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/TopDish_Prefix-bxpxdctgoeqpgvasorbmgnmedxds/TopDish_Prefix.pch -c /Users/roderic/dev/TopDish/Classes/NSObject+SBJSON.m -o /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/NSObject+SBJSON.o0#
+
+CCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/NSString+SBJSON.o /Users/roderic/dev/TopDish/Classes/NSString+SBJSON.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s307835071.130312
+e307835071.245280
+r1
+xCompileC
+xbuild/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/NSString+SBJSON.o
+x/Users/roderic/dev/TopDish/Classes/NSString+SBJSON.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@60"Compile /Users/roderic/dev/TopDish/Classes/NSString+SBJSON.m307835071#307835071#0(0"0(0#0#52"/Users/roderic/dev/TopDish/Classes/NSString+SBJSON.m2506375104#1799"    cd /Users/roderic/dev/TopDish    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-generated-files.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-own-target-headers.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-all-target-headers.hmap -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-project-headers.hmap -F/Users/roderic/dev/TopDish/build/Debug-iphonesimulator -I/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/include -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources/i386 -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources -include /var/folders/jh/jhEFYscqHQ4GlqEL4Y01e++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/TopDish_Prefix-bxpxdctgoeqpgvasorbmgnmedxds/TopDish_Prefix.pch -c /Users/roderic/dev/TopDish/Classes/NSString+SBJSON.m -o /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/NSString+SBJSON.o0#
+
+CCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/Restaurant.o /Users/roderic/dev/TopDish/TopDish.xcdatamodeld/Restaurant.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s307837157.871078
+e307837157.939839
+r1
+xCompileC
+xbuild/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/Restaurant.o
+x/Users/roderic/dev/TopDish/TopDish.xcdatamodeld/Restaurant.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@68"Compile /Users/roderic/dev/TopDish/TopDish.xcdatamodeld/Restaurant.m307837157#307837157#0(0"0(0#0#60"/Users/roderic/dev/TopDish/TopDish.xcdatamodeld/Restaurant.m2506375104#1802"    cd /Users/roderic/dev/TopDish    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-generated-files.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-own-target-headers.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-all-target-headers.hmap -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-project-headers.hmap -F/Users/roderic/dev/TopDish/build/Debug-iphonesimulator -I/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/include -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources/i386 -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources -include /var/folders/jh/jhEFYscqHQ4GlqEL4Y01e++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/TopDish_Prefix-bxpxdctgoeqpgvasorbmgnmedxds/TopDish_Prefix.pch -c /Users/roderic/dev/TopDish/TopDish.xcdatamodeld/Restaurant.m -o /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/Restaurant.o0#
+
+CCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/RootViewController.o /Users/roderic/dev/TopDish/Classes/RootViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s307940704.159880
+e307940704.551930
+r1
+xCompileC
+xbuild/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/RootViewController.o
+x/Users/roderic/dev/TopDish/Classes/RootViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Users/roderic/dev/TopDish/Classes/RootViewController.m: In function '-[RootViewController configureCell:atIndexPath:]':
+o/Users/roderic/dev/TopDish/Classes/RootViewController.m:79: warning: unused variable 'managedObject'
+o/Users/roderic/dev/TopDish/Classes/RootViewController.m: At top level:
+o/Users/roderic/dev/TopDish/Classes/RootViewController.m:387: warning: property 'tableData' requires method '-tableData' to be defined - use @synthesize, @dynamic or provide a method implementation
+o/Users/roderic/dev/TopDish/Classes/RootViewController.m:387: warning: property 'tableData' requires the method 'setTableData:' to be defined - use @synthesize, @dynamic or provide a method implementation
+o/Users/roderic/dev/TopDish/Classes/RootViewController.m:387: warning: property 'theTableView' requires method '-theTableView' to be defined - use @synthesize, @dynamic or provide a method implementation
+o/Users/roderic/dev/TopDish/Classes/RootViewController.m:387: warning: property 'theTableView' requires the method 'setTheTableView:' to be defined - use @synthesize, @dynamic or provide a method implementation
+o/Users/roderic/dev/TopDish/Classes/RootViewController.m:387: warning: property 'theSearchBar' requires method '-theSearchBar' to be defined - use @synthesize, @dynamic or provide a method implementation
+o/Users/roderic/dev/TopDish/Classes/RootViewController.m:387: warning: property 'theSearchBar' requires the method 'setTheSearchBar:' to be defined - use @synthesize, @dynamic or provide a method implementation
+lSLF07#2@63"Compile /Users/roderic/dev/TopDish/Classes/RootViewController.m307940704#307940704#0(1520"/Users/roderic/dev/TopDish/Classes/RootViewController.m: In function '-[RootViewController configureCell:atIndexPath:]':/Users/roderic/dev/TopDish/Classes/RootViewController.m:79: warning: unused variable 'managedObject'/Users/roderic/dev/TopDish/Classes/RootViewController.m: At top level:/Users/roderic/dev/TopDish/Classes/RootViewController.m:387: warning: property 'tableData' requires method '-tableData' to be defined - use @synthesize, @dynamic or provide a method implementation/Users/roderic/dev/TopDish/Classes/RootViewController.m:387: warning: property 'tableData' requires the method 'setTableData:' to be defined - use @synthesize, @dynamic or provide a method implementation/Users/roderic/dev/TopDish/Classes/RootViewController.m:387: warning: property 'theTableView' requires method '-theTableView' to be defined - use @synthesize, @dynamic or provide a method implementation/Users/roderic/dev/TopDish/Classes/RootViewController.m:387: warning: property 'theTableView' requires the method 'setTheTableView:' to be defined - use @synthesize, @dynamic or provide a method implementation/Users/roderic/dev/TopDish/Classes/RootViewController.m:387: warning: property 'theSearchBar' requires method '-theSearchBar' to be defined - use @synthesize, @dynamic or provide a method implementation/Users/roderic/dev/TopDish/Classes/RootViewController.m:387: warning: property 'theSearchBar' requires the method 'setTheSearchBar:' to be defined - use @synthesize, @dynamic or provide a method implementation8(22@31"Unused variable 'managedObject'307940704#121#101#0(6@55"/Users/roderic/dev/TopDish/Classes/RootViewController.m307940703#79#0#79#0#19"unused variable '*'0(23@13"At top level:307940704#222#71#0(6@55"/Users/roderic/dev/TopDish/Classes/RootViewController.m307940703#0#0#0#0#0"0(22@126"Property 'tableData' requires method '-tableData' to be defined - use @synthesize, @dynamic or provide a method implementation307940704#293#197#0(6@55"/Users/roderic/dev/TopDish/Classes/RootViewController.m307940703#387#0#387#0#0"0(22@133"Property 'tableData' requires the method 'setTableData:' to be defined - use @synthesize, @dynamic or provide a method implementation307940704#490#204#0(6@55"/Users/roderic/dev/TopDish/Classes/RootViewController.m307940703#387#0#387#0#0"0(22@132"Property 'theTableView' requires method '-theTableView' to be defined - use @synthesize, @dynamic or provide a method implementation307940704#694#203#0(6@55"/Users/roderic/dev/TopDish/Classes/RootViewController.m307940703#387#0#387#0#0"0(22@139"Property 'theTableView' requires the method 'setTheTableView:' to be defined - use @synthesize, @dynamic or provide a method implementation307940704#897#210#0(6@55"/Users/roderic/dev/TopDish/Classes/RootViewController.m307940703#387#0#387#0#0"0(22@132"Property 'theSearchBar' requires method '-theSearchBar' to be defined - use @synthesize, @dynamic or provide a method implementation307940704#1107#203#0(6@55"/Users/roderic/dev/TopDish/Classes/RootViewController.m307940703#387#0#387#0#0"0(22@139"Property 'theSearchBar' requires the method 'setTheSearchBar:' to be defined - use @synthesize, @dynamic or provide a method implementation307940704#1310#210#0(6@55"/Users/roderic/dev/TopDish/Classes/RootViewController.m307940703#387#0#387#0#0"0(0#0#55"/Users/roderic/dev/TopDish/Classes/RootViewController.m2506375104#1805"    cd /Users/roderic/dev/TopDish    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-generated-files.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-own-target-headers.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-all-target-headers.hmap -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-project-headers.hmap -F/Users/roderic/dev/TopDish/build/Debug-iphonesimulator -I/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/include -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources/i386 -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources -include /var/folders/jh/jhEFYscqHQ4GlqEL4Y01e++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/TopDish_Prefix-bxpxdctgoeqpgvasorbmgnmedxds/TopDish_Prefix.pch -c /Users/roderic/dev/TopDish/Classes/RootViewController.m -o /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/RootViewController.o0#
+
+CCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/SBJSON.o /Users/roderic/dev/TopDish/Classes/SBJSON.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s307835071.212657
+e307835071.372991
+r1
+xCompileC
+xbuild/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/SBJSON.o
+x/Users/roderic/dev/TopDish/Classes/SBJSON.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@51"Compile /Users/roderic/dev/TopDish/Classes/SBJSON.m307835071#307835071#0(0"0(0#0#43"/Users/roderic/dev/TopDish/Classes/SBJSON.m2506375104#1781"    cd /Users/roderic/dev/TopDish    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-generated-files.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-own-target-headers.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-all-target-headers.hmap -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-project-headers.hmap -F/Users/roderic/dev/TopDish/build/Debug-iphonesimulator -I/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/include -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources/i386 -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources -include /var/folders/jh/jhEFYscqHQ4GlqEL4Y01e++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/TopDish_Prefix-bxpxdctgoeqpgvasorbmgnmedxds/TopDish_Prefix.pch -c /Users/roderic/dev/TopDish/Classes/SBJSON.m -o /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/SBJSON.o0#
+
+CCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/SBJsonBase.o /Users/roderic/dev/TopDish/Classes/SBJsonBase.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s307835071.245418
+e307835071.374686
+r1
+xCompileC
+xbuild/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/SBJsonBase.o
+x/Users/roderic/dev/TopDish/Classes/SBJsonBase.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@55"Compile /Users/roderic/dev/TopDish/Classes/SBJsonBase.m307835071#307835071#0(0"0(0#0#47"/Users/roderic/dev/TopDish/Classes/SBJsonBase.m2506375104#1789"    cd /Users/roderic/dev/TopDish    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-generated-files.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-own-target-headers.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-all-target-headers.hmap -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-project-headers.hmap -F/Users/roderic/dev/TopDish/build/Debug-iphonesimulator -I/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/include -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources/i386 -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources -include /var/folders/jh/jhEFYscqHQ4GlqEL4Y01e++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/TopDish_Prefix-bxpxdctgoeqpgvasorbmgnmedxds/TopDish_Prefix.pch -c /Users/roderic/dev/TopDish/Classes/SBJsonBase.m -o /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/SBJsonBase.o0#
+
+CCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/SBJsonParser.o /Users/roderic/dev/TopDish/Classes/SBJsonParser.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s307854435.483405
+e307854435.666167
+r1
+xCompileC
+xbuild/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/SBJsonParser.o
+x/Users/roderic/dev/TopDish/Classes/SBJsonParser.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@57"Compile /Users/roderic/dev/TopDish/Classes/SBJsonParser.m307854435#307854435#0(0"0(0#0#49"/Users/roderic/dev/TopDish/Classes/SBJsonParser.m2506375104#1793"    cd /Users/roderic/dev/TopDish    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-generated-files.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-own-target-headers.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-all-target-headers.hmap -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-project-headers.hmap -F/Users/roderic/dev/TopDish/build/Debug-iphonesimulator -I/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/include -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources/i386 -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources -include /var/folders/jh/jhEFYscqHQ4GlqEL4Y01e++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/TopDish_Prefix-bxpxdctgoeqpgvasorbmgnmedxds/TopDish_Prefix.pch -c /Users/roderic/dev/TopDish/Classes/SBJsonParser.m -o /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/SBJsonParser.o0#
+
+CCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/SBJsonWriter.o /Users/roderic/dev/TopDish/Classes/SBJsonWriter.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s307835071.374794
+e307835071.542000
+r1
+xCompileC
+xbuild/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/SBJsonWriter.o
+x/Users/roderic/dev/TopDish/Classes/SBJsonWriter.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@57"Compile /Users/roderic/dev/TopDish/Classes/SBJsonWriter.m307835071#307835071#0(0"0(0#0#49"/Users/roderic/dev/TopDish/Classes/SBJsonWriter.m2506375104#1793"    cd /Users/roderic/dev/TopDish    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-generated-files.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-own-target-headers.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-all-target-headers.hmap -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-project-headers.hmap -F/Users/roderic/dev/TopDish/build/Debug-iphonesimulator -I/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/include -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources/i386 -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources -include /var/folders/jh/jhEFYscqHQ4GlqEL4Y01e++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/TopDish_Prefix-bxpxdctgoeqpgvasorbmgnmedxds/TopDish_Prefix.pch -c /Users/roderic/dev/TopDish/Classes/SBJsonWriter.m -o /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/SBJsonWriter.o0#
+
+CCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/TopDishAppDelegate.o /Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s307940647.396685
+e307940647.640179
+r1
+xCompileC
+xbuild/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/TopDishAppDelegate.o
+x/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m: In function '-[TopDishAppDelegate application:didFinishLaunchingWithOptions:]':
+o/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m:39: warning: 'TopDishAppDelegate' may not respond to '-initializedatabase'
+o/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m:39: warning: (Messages without a matching method signature
+o/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m:39: warning: will be assumed to return 'id' and accept
+o/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m:39: warning: '...' as arguments.)
+o/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m: In function '-[TopDishAppDelegate initializedatabase]':
+o/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m:253: warning: 'Dish' may not respond to '-setLatitude:'
+o/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m:254: warning: 'Dish' may not respond to '-setLongitude:'
+o/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m:266: warning: unused variable 'items'
+lSLF07#2@63"Compile /Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m307940647#307940647#0(1016"/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m: In function '-[TopDishAppDelegate application:didFinishLaunchingWithOptions:]':/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m:39: warning: 'TopDishAppDelegate' may not respond to '-initializedatabase'/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m:39: warning: (Messages without a matching method signature/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m:39: warning: will be assumed to return 'id' and accept/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m:39: warning: '...' as arguments.)/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m: In function '-[TopDishAppDelegate initializedatabase]':/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m:253: warning: 'Dish' may not respond to '-setLatitude:'/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m:254: warning: 'Dish' may not respond to '-setLongitude:'/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m:266: warning: unused variable 'items'5(22@61"'TopDishAppDelegate' may not respond to '-initializedatabase'307940647#137#131#0(6@55"/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m307940647#39#0#39#0#26"'*' may not respond to '*'0(13@108"(Messages without a matching method signature will be assumed to return 'id' and accept '...' as arguments.)307940647#268#115#0(6@55"/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m307940647#39#0#39#0#0"0(22@41"'Dish' may not respond to '-setLatitude:'307940647#697#112#0(6@55"/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m307940647#253#0#253#0#26"'*' may not respond to '*'0(22@42"'Dish' may not respond to '-setLongitude:'307940647#809#113#0(6@55"/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m307940647#254#0#254#0#26"'*' may not respond to '*'0(22@23"Unused variable 'items'307940647#922#94#0(6@55"/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m307940647#266#0#266#0#19"unused variable '*'0(0#0#55"/Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m2506375104#1805"    cd /Users/roderic/dev/TopDish    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-generated-files.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-own-target-headers.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-all-target-headers.hmap -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-project-headers.hmap -F/Users/roderic/dev/TopDish/build/Debug-iphonesimulator -I/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/include -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources/i386 -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources -include /var/folders/jh/jhEFYscqHQ4GlqEL4Y01e++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/TopDish_Prefix-bxpxdctgoeqpgvasorbmgnmedxds/TopDish_Prefix.pch -c /Users/roderic/dev/TopDish/Classes/TopDishAppDelegate.m -o /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/TopDishAppDelegate.o0#
+
+CCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/asyncimageview.o /Users/roderic/dev/TopDish/Classes/asyncimageview.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s307937702.208705
+e307937702.532918
+r1
+xCompileC
+xbuild/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/asyncimageview.o
+x/Users/roderic/dev/TopDish/Classes/asyncimageview.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@59"Compile /Users/roderic/dev/TopDish/Classes/asyncimageview.m307937702#307937702#0(0"0(0#0#51"/Users/roderic/dev/TopDish/Classes/asyncimageview.m2506375104#1797"    cd /Users/roderic/dev/TopDish    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-generated-files.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-own-target-headers.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-all-target-headers.hmap -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-project-headers.hmap -F/Users/roderic/dev/TopDish/build/Debug-iphonesimulator -I/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/include -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources/i386 -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources -include /var/folders/jh/jhEFYscqHQ4GlqEL4Y01e++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/TopDish_Prefix-bxpxdctgoeqpgvasorbmgnmedxds/TopDish_Prefix.pch -c /Users/roderic/dev/TopDish/Classes/asyncimageview.m -o /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/asyncimageview.o0#
+
+CCompileC build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/main.o /Users/roderic/dev/TopDish/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s307830806.921457
+e307830807.268016
+r1
+xCompileC
+xbuild/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/main.o
+x/Users/roderic/dev/TopDish/main.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@41"Compile /Users/roderic/dev/TopDish/main.m307830806#307830807#0(0"0(0#0#33"/Users/roderic/dev/TopDish/main.m2506375104#1769"    cd /Users/roderic/dev/TopDish    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-generated-files.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-own-target-headers.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-all-target-headers.hmap -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-project-headers.hmap -F/Users/roderic/dev/TopDish/build/Debug-iphonesimulator -I/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/include -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources/i386 -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources -include /var/folders/jh/jhEFYscqHQ4GlqEL4Y01e++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/TopDish_Prefix-bxpxdctgoeqpgvasorbmgnmedxds/TopDish_Prefix.pch -c /Users/roderic/dev/TopDish/main.m -o /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/main.o0#
+
+CCompileXIB /Users/roderic/dev/TopDish/Classes/DishDetailTableView.xib
+r0
+
+CCompileXIB /Users/roderic/dev/TopDish/Classes/DishDetailView.xib
+s307934989.772120
+e307934990.485359
+r1
+xCompileXIB
+x/Users/roderic/dev/TopDish/Classes/DishDetailView.xib
+lSLF07#2@37"CompileXIB Classes/DishDetailView.xib307934989#307934990#0(0"0(0#0#53"/Users/roderic/dev/TopDish/Classes/DishDetailView.xib2506375104#550"    cd /Users/roderic/dev/TopDish    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/DishDetailView.nib /Users/roderic/dev/TopDish/Classes/DishDetailView.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
+
+CCompileXIB /Users/roderic/dev/TopDish/MainWindow.xib
+s307830798.322551
+e307830803.567513
+r1
+xCompileXIB
+x/Users/roderic/dev/TopDish/MainWindow.xib
+lSLF07#2@25"CompileXIB MainWindow.xib307830798#307830803#0(0"0(0#0#41"/Users/roderic/dev/TopDish/MainWindow.xib2506375104#534"    cd /Users/roderic/dev/TopDish    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/MainWindow.nib /Users/roderic/dev/TopDish/MainWindow.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
+
+CCompileXIB /Users/roderic/dev/TopDish/RootControllerTableViewCell.xib
+s307861596.808094
+e307861598.184277
+r1
+xCompileXIB
+x/Users/roderic/dev/TopDish/RootControllerTableViewCell.xib
+lSLF07#2@42"CompileXIB RootControllerTableViewCell.xib307861596#307861598#0(0"0(0#0#58"/Users/roderic/dev/TopDish/RootControllerTableViewCell.xib2506375104#568"    cd /Users/roderic/dev/TopDish    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/RootControllerTableViewCell.nib /Users/roderic/dev/TopDish/RootControllerTableViewCell.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
+
+CCompileXIB /Users/roderic/dev/TopDish/RootViewController.xib
+s307859263.239261
+e307859264.259621
+r1
+xCompileXIB
+x/Users/roderic/dev/TopDish/RootViewController.xib
+lSLF07#2@33"CompileXIB RootViewController.xib307859263#307859264#0(0"0(0#0#49"/Users/roderic/dev/TopDish/RootViewController.xib2506375104#550"    cd /Users/roderic/dev/TopDish    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/RootViewController.nib /Users/roderic/dev/TopDish/RootViewController.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
+
+CCompileXIB /Users/roderic/dev/TopDish/TopDish.xcdatamodeld/RootControllerTableViewCell.xib
+r0
+
+CCpResource build/Debug-iphonesimulator/TopDish.app/greenup.gif greenup.gif
+s307844077.271294
+e307844077.342735
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/TopDish.app/greenup.gif
+xgreenup.gif
+lSLF07#2@16"Copy greenup.gif307844077#307844077#0(0"0(0#0#38"/Users/roderic/dev/TopDish/greenup.gif2506375104#419"    cd /Users/roderic/dev/TopDish    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/roderic/dev/TopDish/greenup.gif /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app0#
+
+CCpResource build/Debug-iphonesimulator/TopDish.app/map.png map.png
+s307940362.038021
+e307940362.169095
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/TopDish.app/map.png
+xmap.png
+lSLF07#2@12"Copy map.png307940362#307940362#0(0"0(0#0#34"/Users/roderic/dev/TopDish/map.png2506375104#415"    cd /Users/roderic/dev/TopDish    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/roderic/dev/TopDish/map.png /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app0#
+
+CCpResource build/Debug-iphonesimulator/TopDish.app/noPicWares.png noPicWares.png
+s307855013.571510
+e307855013.738715
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/TopDish.app/noPicWares.png
+xnoPicWares.png
+lSLF07#2@19"Copy noPicWares.png307855013#307855013#0(0"0(0#0#41"/Users/roderic/dev/TopDish/noPicWares.png2506375104#422"    cd /Users/roderic/dev/TopDish    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/roderic/dev/TopDish/noPicWares.png /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app0#
+
+CCpResource build/Debug-iphonesimulator/TopDish.app/reddown.gif reddown.gif
+s307844077.272397
+e307844077.342383
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/TopDish.app/reddown.gif
+xreddown.gif
+lSLF07#2@16"Copy reddown.gif307844077#307844077#0(0"0(0#0#38"/Users/roderic/dev/TopDish/reddown.gif2506375104#419"    cd /Users/roderic/dev/TopDish    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/roderic/dev/TopDish/reddown.gif /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app0#
+
+CCpResource build/Debug-iphonesimulator/TopDish.app/tdlogo.png tdlogo.png
+s307857614.046543
+e307857614.148979
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/TopDish.app/tdlogo.png
+xtdlogo.png
+lSLF07#2@15"Copy tdlogo.png307857614#307857614#0(0"0(0#0#37"/Users/roderic/dev/TopDish/tdlogo.png2506375104#418"    cd /Users/roderic/dev/TopDish    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/roderic/dev/TopDish/tdlogo.png /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app0#
+
+CDataModelVersionCompile /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/TopDish.momd /Users/roderic/dev/TopDish/TopDish.xcdatamodeld
+s307940751.094085
+e307940751.297880
+r0
+xDataModelVersionCompile
+x/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/TopDish.momd
+x/Users/roderic/dev/TopDish/TopDish.xcdatamodeld
+o/Users/roderic/dev/TopDish/TopDish.xcdatamodeld/TopDish.xcdatamodel:Dish.dish_name_new: error: Dish.dish_name_new -- attribute must have a defined type 
+o/Users/roderic/dev/TopDish/TopDish.xcdatamodeld:0: error: Compilation failed for data model at path '/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/TopDish.momd/TopDish.mom'
+lSLF07#2@97"DataModelVersionCompile build/Debug-iphonesimulator/TopDish.app/TopDish.momd TopDish.xcdatamodeld307940751#307940751#0(347"/Users/roderic/dev/TopDish/TopDish.xcdatamodeld/TopDish.xcdatamodel:Dish.dish_name_new: error: Dish.dish_name_new -- attribute must have a defined type /Users/roderic/dev/TopDish/TopDish.xcdatamodeld:0: error: Compilation failed for data model at path '/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/TopDish.momd/TopDish.mom'2(4@57"Dish.dish_name_new -- attribute must have a defined type 307940751#4294967295#0#0(6@67"/Users/roderic/dev/TopDish/TopDish.xcdatamodeld/TopDish.xcdatamodel307940748#0#0#0#0#0"0(4@135"Compilation failed for data model at path '/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/TopDish.momd/TopDish.mom'307940751#4294967295#0#0(6@47"/Users/roderic/dev/TopDish/TopDish.xcdatamodeld307940748#0#0#0#0#0"0(0#0#47"/Users/roderic/dev/TopDish/TopDish.xcdatamodeld2506375104#350"    cd /Users/roderic/dev/TopDish    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/momc -XD_MOMC_TARGET_VERSION=10.6 /Users/roderic/dev/TopDish/TopDish.xcdatamodeld /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/TopDish.momd1#
+
+CGenerateDSYMFile /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app.dSYM /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/TopDish
+s307940704.618956
+e307940704.678050
+r1
+xGenerateDSYMFile
+x/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app.dSYM
+x/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/TopDish
+lSLF07#2@109"GenerateDSYMFile build/Debug-iphonesimulator/TopDish.app.dSYM build/Debug-iphonesimulator/TopDish.app/TopDish307940704#307940704#0(0"0(0#0#74"/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/TopDish2506375104#347"    cd /Users/roderic/dev/TopDish    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/dsymutil /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/TopDish -o /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app.dSYM0#
+
+CLd /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/TopDish normal i386
+s307940704.552046
+e307940704.618726
+r1
+xLd
+x/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/TopDish
+xnormal
+xi386
+lSLF07#2@79"Link /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/TopDish307940704#307940704#0(0"0(0#0#0"2506375104#860"    cd /Users/roderic/dev/TopDish    setenv MACOSX_DEPLOYMENT_TARGET 10.6    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -L/Users/roderic/dev/TopDish/build/Debug-iphonesimulator -F/Users/roderic/dev/TopDish/build/Debug-iphonesimulator -filelist /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/Objects-normal/i386/TopDish.LinkFileList -mmacosx-version-min=10.6 -Xlinker -objc_abi_version -Xlinker 2 -framework Foundation -framework UIKit -framework CoreGraphics -framework CoreData -o /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/TopDish0#
+
+CProcessInfoPlistFile /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/Info.plist TopDish-Info.plist
+s307830798.211519
+e307830798.322407
+r1
+xProcessInfoPlistFile
+x/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/Info.plist
+xTopDish-Info.plist
+lSLF07#2@26"Process TopDish-Info.plist307830798#307830798#0(0"0(0#0#45"/Users/roderic/dev/TopDish/TopDish-Info.plist2506375104#443"    cd /Users/roderic/dev/TopDish    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility TopDish-Info.plist -genpkginfo /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app/Info.plist0#
+
+CProcessPCH /var/folders/jh/jhEFYscqHQ4GlqEL4Y01e++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/TopDish_Prefix-bxpxdctgoeqpgvasorbmgnmedxds/TopDish_Prefix.pch.gch TopDish_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s307830803.568351
+e307830806.919338
+r1
+xProcessPCH
+x/var/folders/jh/jhEFYscqHQ4GlqEL4Y01e++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/TopDish_Prefix-bxpxdctgoeqpgvasorbmgnmedxds/TopDish_Prefix.pch.gch
+xTopDish_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@29"Precompile TopDish_Prefix.pch307830803#307830806#0(0"0(0#0#45"/Users/roderic/dev/TopDish/TopDish_Prefix.pch2506375104#1673"    cd /Users/roderic/dev/TopDish    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-generated-files.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-own-target-headers.hmap -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-all-target-headers.hmap -iquote /Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/TopDish-project-headers.hmap -F/Users/roderic/dev/TopDish/build/Debug-iphonesimulator -I/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/include -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources/i386 -I/Users/roderic/dev/TopDish/build/TopDish.build/Debug-iphonesimulator/TopDish.build/DerivedSources -c /Users/roderic/dev/TopDish/TopDish_Prefix.pch -o /var/folders/jh/jhEFYscqHQ4GlqEL4Y01e++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/TopDish_Prefix-bxpxdctgoeqpgvasorbmgnmedxds/TopDish_Prefix.pch.gch0#
+
+CTouch /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app
+s307940704.678187
+e307940704.683118
+r1
+xTouch
+x/Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app
+lSLF07#2@72"Touch /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app307940704#307940704#0(0"0(0#0#0"2506375104#254"    cd /Users/roderic/dev/TopDish    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /Users/roderic/dev/TopDish/build/Debug-iphonesimulator/TopDish.app0#
+
