@@ -25,8 +25,12 @@
     
     RootViewController *rootViewController = (RootViewController *)[navigationController topViewController];
     rootViewController.managedObjectContext = self.managedObjectContext;
+	
 }
 
+- (void)switchViewControllers {
+	NSLog(@"switch view controllers");
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     

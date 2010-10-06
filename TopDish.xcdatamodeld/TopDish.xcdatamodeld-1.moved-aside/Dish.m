@@ -2,7 +2,7 @@
 //  Dish.m
 //  TopDish
 //
-//  Created by Roderic Campbell on 10/4/10.
+//  Created by Roderic Campbell on 10/3/10.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
@@ -16,8 +16,6 @@
 @dynamic negReviews;
 @dynamic posReviews;
 @dynamic dish_id;
-@dynamic latitude;
-@dynamic longitude;
 @dynamic timeStamp;
 @dynamic dish_photoURL;
 

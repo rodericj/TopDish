@@ -4,7 +4,7 @@ iPhoneSDKCertificates/*
 
 #xcode noise
 *.pbxuser
-*/*/build
+build
 *.mode1v3
 
 # osx noise

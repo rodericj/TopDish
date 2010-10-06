@@ -14,6 +14,7 @@
 }
 
 @property (nonatomic, retain) NSString * dish_name;
+@property (nonatomic, retain) UNKNOWN_TYPE dish_super_name;
 @property (nonatomic, retain) NSString * dish_description;
 @property (nonatomic, retain) NSNumber * negReviews;
 @property (nonatomic, retain) NSNumber * posReviews;

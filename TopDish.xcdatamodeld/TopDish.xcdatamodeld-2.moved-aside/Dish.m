@@ -12,6 +12,7 @@
 @implementation Dish 
 
 @dynamic dish_name;
+@dynamic dish_super_name;
 @dynamic dish_description;
 @dynamic negReviews;
 @dynamic posReviews;
