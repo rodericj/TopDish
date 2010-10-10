@@ -15,6 +15,7 @@
 @synthesize upVotes;
 @synthesize scrollView;
 @synthesize dishImage;
+@synthesize description;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,21 +24,17 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
 	
-	
-	NSLog(@"the dish %@", [dish dish_name]);
 	[dishName setText:[dish dish_name]];
 	[upVotes setText:[NSString stringWithFormat:@"%@", [dish posReviews]]];
 	[downVotes setText:[NSString stringWithFormat:@"%@", [dish negReviews]]];
-	
+	[description setText:[NSString stringWithFormat:@"\"%@\"", [dish dish_description]]];
+
 	NSURL *photoUrl = [NSURL URLWithString:[dish dish_photoURL]];
 
 	AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[dishImage frame]];
-	//NSData *photoData = [NSData dataWithContentsOfURL:photoUrl];
-	[asyncImage loadImageFromURL:photoUrl withImageView:dishImage];
+	[asyncImage loadImageFromURL:photoUrl withImageView:dishImage showActivityIndicator:FALSE];
 	
-	//TODO Very bad, need to thread this. The issue is that it's not going to khttphost
-	//[dishImage setImage:[UIImage imageWithData:photoData]];
-    [super viewWillAppear:animated];
+	[super viewWillAppear:animated];
 }
 
 @end

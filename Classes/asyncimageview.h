@@ -15,6 +15,7 @@
 	//could instead be a subclass of UIImageView instead of UIView, depending on what other features you want to 
 	// to build into this class?
 
+	Boolean showThisIndicator;
 	UIActivityIndicatorView *spinner;
 	UIImageView *thisImageView; 
 	NSURLConnection* connection; //keep a reference to the connection so we can cancel download in dealloc
@@ -23,7 +24,7 @@
 	
 }
 
-- (void)loadImageFromURL:(NSURL*)url withImageView:(UIImageView *)imageView;
+- (void)loadImageFromURL:(NSURL*)url withImageView:(UIImageView *)imageView showActivityIndicator:(Boolean)showIndicator;
 - (UIImage*) image;
 
 @end

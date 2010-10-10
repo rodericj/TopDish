@@ -103,6 +103,10 @@
 								<int key="IBUITag">8</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">tdlogo.png</string>
+								</object>
 							</object>
 							<object class="IBUIImageView" id="1068088225">
 								<reference key="NSNextResponder" ref="648130166"/>
@@ -658,11 +662,13 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>greenup.gif</string>
 				<string>reddown.gif</string>
+				<string>tdlogo.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{16, 16}</string>
 				<string>{16, 16}</string>
+				<string>{320, 460}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">117</string>

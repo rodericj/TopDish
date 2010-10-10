@@ -185,7 +185,7 @@
 	{\
 	\"id\":38,\
 	\"name\":\"Bacon Burger\",\
-	\"description\":\"Just bacon and bun\",\
+	\"description\":\"7 lbs of raw beef, covered in a package of bacon. Seriously, the bacon isn't even unwrapped. There's even a pricetag on some of them. Get it while it's raw.\",\
 	\"restaurantID\":37,\
 	\"restaurantName\":\"The Burger Joint\",\
 	\"latitude\":37.33215,\
@@ -197,7 +197,7 @@
 	{\
 	\"id\":139,\
 	\"name\":\"Carne Asada Tacos\",\
-	\"description\":\"Our famous fries served with ketchup and mayonnaise\",\
+	\"description\":\"Like Meat? Try these Carne Asada Tacos. Rumor has it that there is actual human meat in there to add some 'urban' flavor.\",\
 	\"restaurantID\":63,\
 	\"restaurantName\":\"The Fry Shop\",\
 	\"latitude\":37.33216,\
@@ -209,7 +209,7 @@
 	{\
 	\"id\":1,\
 	\"name\":\"Tuna Tartar\",\
-	\"description\":\"Hello bobby whistlecast\",\
+	\"description\":\"Tartare is a preparation of finely chopped raw meat or fish optionally with seasonings and sauces. Usually Raw fish is gross, but in the case of Tartar, you can sense the dilecitble dilectability of such a devine dish. One time this guy ate it and then he died.\",\
 	\"restaurantID\":63,\
 	\"restaurantName\":\"Salad Fingers\",\
 	\"latitude\":37.33225,\
@@ -221,7 +221,7 @@
 	{\
 	\"id\":139,\
 	\"name\":\"Miso Soup\",\
-	\"description\":\"Our famous fries served with ketchup and mayonnaise\",\
+	\"description\":\"Miso....A Type of Japanese Soup. Excellent. Your wager? Horney. Miso Horney. Great.\",\
 	\"restaurantID\":63,\
 	\"restaurantName\":\"The Fry Shop\",\
 	\"latitude\":37.33235,\

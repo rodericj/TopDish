@@ -160,7 +160,7 @@
 																		
 	asyncImage.tag = 999;
 	NSURL *url = [NSURL URLWithString: [thisDish dish_photoURL]];
-	[asyncImage loadImageFromURL:url withImageView:imageView];
+	[asyncImage loadImageFromURL:url withImageView:imageView showActivityIndicator:FALSE];
 	[cell.contentView addSubview:asyncImage];
 	
     // Configure the cell.

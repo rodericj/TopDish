@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>5FBB98161262493A00141693</string>
+						<string>5FBB98B21262524600141693</string>
 						<key>history</key>
 						<array>
 							<string>5FBB980C126248A300141693</string>
@@ -256,7 +256,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>5FBB98191262493A00141693</string>
+						<string>5FBB98B31262524600141693</string>
 						<key>history</key>
 						<array>
 							<string>5FBB980B1262489C00141693</string>
@@ -310,8 +310,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -396,12 +394,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>asyncimageview.m</string>
+								<string>ScrollingDishDetailViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -409,11 +409,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>asyncimageview.m</string>
+										<string>ScrollingDishDetailViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>5FBB98131262493A00141693</string>
+										<string>5FBB98B11262524600141693</string>
 										<key>history</key>
 										<array>
 											<string>5F89EFD61259314000959D05</string>
@@ -431,19 +431,19 @@
 											<string>5F88A80F126016EF0014D2C9</string>
 											<string>5F88A8A4126175B30014D2C9</string>
 											<string>5FBB96AD1262366A00141693</string>
-											<string>5FBB972212623D1F00141693</string>
 											<string>5FBB972312623D1F00141693</string>
 											<string>5FBB973312623D6A00141693</string>
 											<string>5FBB9755126241C800141693</string>
 											<string>5FBB9758126241E900141693</string>
 											<string>5FBB97601262424D00141693</string>
-											<string>5FBB97681262435900141693</string>
 											<string>5FBB97691262435900141693</string>
 											<string>5FBB976A1262435900141693</string>
 											<string>5FBB977E1262452000141693</string>
 											<string>5FBB97AC126246EA00141693</string>
-											<string>5FBB97AD126246EA00141693</string>
-											<string>5FBB97AE126246EA00141693</string>
+											<string>5FBB984E12624C0C00141693</string>
+											<string>5FBB984F12624C0C00141693</string>
+											<string>5FBB985912624CBD00141693</string>
+											<string>5FBB986412624D3800141693</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -644,10 +644,10 @@
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
-		<string>/Users/roderic/dev/TopDish/TopDish.xcodeproj</string>
 		<string>5FBB98171262493A00141693</string>
 		<string>5FBB98141262493A00141693</string>
 		<string>5F0762F312592A22007D2C7E</string>
+		<string>/Users/roderic/dev/TopDish/TopDish.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>208 103 1075 675 0 0 1280 778 </string>
@@ -673,7 +673,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ScrollingDishDetailViewController.m</string>
+								<string>RootViewController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -884,12 +884,14 @@
 							<key>Dock</key>
 							<array>
 								<dict>
+									<key>BecomeActive</key>
+									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>RootViewController.m</string>
+										<string>ScrollingDishDetailViewController.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -910,8 +912,6 @@
 							<string>423pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>

@@ -18,6 +18,7 @@
 	IBOutlet UILabel *upVotes;
 	IBOutlet UILabel *downVotes;
 	IBOutlet UIImageView *dishImage;
+	IBOutlet UILabel *description;
 }
 @property (nonatomic, retain) Dish *dish;
 
@@ -27,5 +28,6 @@
 @property (nonatomic, retain) UILabel *upVotes;
 @property (nonatomic, retain) UILabel *downVotes;
 @property (nonatomic, retain) UIImageView *dishImage;
+@property (nonatomic, retain) UILabel *description;
 
 @end

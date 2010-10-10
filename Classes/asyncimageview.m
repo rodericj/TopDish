@@ -25,18 +25,20 @@
 }
 
 
-- (void)loadImageFromURL:(NSURL*)url withImageView:(UIImageView *)imageView {
+- (void)loadImageFromURL:(NSURL*)url withImageView:(UIImageView *)imageView showActivityIndicator:(Boolean)showIndicator {
 	if (connection!=nil) { [connection release]; } //in case we are downloading a 2nd image
 	if (data!=nil) { [data release]; }
 	
 	thisImageView = imageView;
-	
-	//Add a spinner
-	spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
+	showThisIndicator = showIndicator;
+	if(showThisIndicator){
+		//Add a spinner
+		spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
 												UIActivityIndicatorViewStyleWhiteLarge];
-	[spinner setFrame:[imageView frame]];
-	[spinner startAnimating];
-	[thisImageView addSubview:spinner];
+		[spinner setFrame:[imageView frame]];
+		[spinner startAnimating];
+		[thisImageView addSubview:spinner];
+	}
 
 	
 	NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:8];
@@ -63,9 +65,10 @@
 		//then this must be another image, the old one is still in subviews
 		[[[self subviews] objectAtIndex:0] removeFromSuperview]; //so remove it (releases it also)
 	}
-	//stop spinner
-	[spinner stopAnimating];
-
+	if (showThisIndicator) {
+		//stop spinner
+		[spinner stopAnimating];
+	}
 	//make an image view for the image
 	//UIImageView* imageView = [[[UIImageView alloc] initWithImage:[UIImage imageWithData:data]] autorelease];
 	thisImageView.image = [UIImage imageWithData:data];
