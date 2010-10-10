@@ -188,8 +188,8 @@
 	\"description\":\"Just bacon and bun\",\
 	\"restaurantID\":37,\
 	\"restaurantName\":\"The Burger Joint\",\
-	\"latitude\":33.677854,\
-	\"longitude\":-117.799428,\
+	\"latitude\":37.33215,\
+	\"longitude\":-122.02935,\
 	\"posReviews\":34,\
 	\"negReviews\":12,\
 	\"photoURL\":\"http://topdish1.appspot.com/getPhoto?id=84001\"\
@@ -200,8 +200,8 @@
 	\"description\":\"Our famous fries served with ketchup and mayonnaise\",\
 	\"restaurantID\":63,\
 	\"restaurantName\":\"The Fry Shop\",\
-	\"latitude\":33.677854,\
-	\"longitude\":-117.799428,\
+	\"latitude\":37.33216,\
+	\"longitude\":-122.02999,\
 	\"posReviews\":92,\
 	\"negReviews\":21,\
 	\"photoURL\":\"http://topdish1.appspot.com/getPhoto?id=74001\"\
@@ -212,8 +212,8 @@
 	\"description\":\"Hello bobby whistlecast\",\
 	\"restaurantID\":63,\
 	\"restaurantName\":\"Salad Fingers\",\
-	\"latitude\":33.677854,\
-	\"longitude\":-117.799428,\
+	\"latitude\":37.33225,\
+	\"longitude\":-122.02975,\
 	\"posReviews\":12,\
 	\"negReviews\":5,\
 	\"photoURL\":\"http://topdish1.appspot.com/getPhoto?id=70001\"\
@@ -224,8 +224,8 @@
 	\"description\":\"Our famous fries served with ketchup and mayonnaise\",\
 	\"restaurantID\":63,\
 	\"restaurantName\":\"The Fry Shop\",\
-	\"latitude\":33.677854,\
-	\"longitude\":-117.799428,\
+	\"latitude\":37.33235,\
+	\"longitude\":-122.02965,\
 	\"posReviews\":89,\
 	\"negReviews\":32,\
 	\"photoURL\":\"http://topdish1.appspot.com/getPhoto?id=72001\"\
@@ -236,8 +236,8 @@
 	\"description\":\"Everyone loves a sloppy one\",\
 	\"restaurantID\":63,\
 	\"restaurantName\":\"Busters\",\
-	\"latitude\":33.677854,\
-	\"longitude\":-117.799428,\
+	\"latitude\":37.3295,\
+	\"longitude\":-122.02975,\
 	\"posReviews\":19,\
 	\"negReviews\":11,\
 	\"photoURL\":\"http://topdish1.appspot.com/getPhoto?id=70002\"\
