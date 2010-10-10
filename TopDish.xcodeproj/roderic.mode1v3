@@ -216,10 +216,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>5FBB974A12623FE900141693</string>
+						<string>5FBB97DF126247A300141693</string>
 						<key>history</key>
 						<array>
-							<string>5FBB960E12622B4100141693</string>
+							<string>5FBB97801262452000141693</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -308,14 +308,17 @@
 								<string>5F89F595125C4A1A00959D05</string>
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>5F89F594125C4A0B00959D05</string>
+								<string>5FBB975C126241F100141693</string>
+								<string>5F89EFAF125930A300959D05</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
-								<string>5F89F15E125951FE00959D05</string>
-								<string>28D3F201112F7DC200FD0661</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>17</integer>
+									<integer>15</integer>
+									<integer>3</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -369,7 +372,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>5FBB974912623FE900141693</string>
+										<string>5FBB97DE126247A300141693</string>
 										<key>history</key>
 										<array>
 											<string>5F89EFD61259314000959D05</string>
@@ -382,24 +385,24 @@
 											<string>5F89F48B125AD11300959D05</string>
 											<string>5F89F48C125AD11300959D05</string>
 											<string>5F89F5FA125D809A00959D05</string>
-											<string>5F7AA236125D88C400843F4A</string>
 											<string>5F7AA2B8125D98E100843F4A</string>
 											<string>5F7AA2B9125D98E100843F4A</string>
-											<string>5F7AA2D8125D9C8400843F4A</string>
 											<string>5F88A80F126016EF0014D2C9</string>
-											<string>5F88A828126018D50014D2C9</string>
-											<string>5F88A86612601CE00014D2C9</string>
 											<string>5F88A8A4126175B30014D2C9</string>
-											<string>5F88A8A7126175B30014D2C9</string>
-											<string>5FBB9592126182EC00141693</string>
 											<string>5FBB96AD1262366A00141693</string>
-											<string>5FBB970A12623B1900141693</string>
 											<string>5FBB972212623D1F00141693</string>
 											<string>5FBB972312623D1F00141693</string>
 											<string>5FBB973312623D6A00141693</string>
-											<string>5FBB974612623FE900141693</string>
-											<string>5FBB974712623FE900141693</string>
-											<string>5FBB974812623FE900141693</string>
+											<string>5FBB9755126241C800141693</string>
+											<string>5FBB9758126241E900141693</string>
+											<string>5FBB97601262424D00141693</string>
+											<string>5FBB97681262435900141693</string>
+											<string>5FBB97691262435900141693</string>
+											<string>5FBB976A1262435900141693</string>
+											<string>5FBB977E1262452000141693</string>
+											<string>5FBB97AC126246EA00141693</string>
+											<string>5FBB97AD126246EA00141693</string>
+											<string>5FBB97AE126246EA00141693</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -597,11 +600,11 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>5F0762F312592A22007D2C7E</string>
-		<string>5FBB961812622C9F00141693</string>
 		<string>1C78EAAD065D492600B07095</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
+		<string>5FBB961812622C9F00141693</string>
 		<string>/Users/roderic/dev/TopDish/TopDish.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -628,7 +631,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>RootViewController.m</string>
+								<string>asyncimageview.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -697,7 +700,7 @@
 			<key>WindowToolGUID</key>
 			<string>5F0762F312592A22007D2C7E</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -839,8 +842,6 @@
 							<key>Dock</key>
 							<array>
 								<dict>
-									<key>BecomeActive</key>
-									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
@@ -867,6 +868,8 @@
 							<string>423pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -912,7 +915,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C530D57069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

@@ -133,31 +133,34 @@
 	
 	//Build the UIElements
     UILabel *dishName;
-	dishName = (UILabel *)[cell viewWithTag:1];
+	dishName = (UILabel *)[cell viewWithTag:ROOTVIEW_DISH_NAME_TAG];
 	dishName.text = thisDish.dish_name;
 	
 	UILabel *resto;
-	resto = (UILabel *)[cell viewWithTag:2];
+	resto = (UILabel *)[cell viewWithTag:ROOTVIEW_RESTAURANT_NAME_TAG];
 	resto.text = @"Resto Name";
 	
 	UILabel *cost;
-	cost = (UILabel *)[cell viewWithTag:3];
+	cost = (UILabel *)[cell viewWithTag:ROOTVIEW_COST_TAG];
 	cost.text = @"$12.50";
 	
 	UILabel *upVotes;
-	upVotes = (UILabel *)[cell viewWithTag:4];
-	upVotes.text = [NSString stringWithFormat:@"%@", [thisDish posReviews]];
+	upVotes = (UILabel *)[cell viewWithTag:ROOTVIEW_UPVOTES_TAG];
+	upVotes.text = [NSString stringWithFormat:@"%@", 
+					[thisDish posReviews]];
 	
 	UILabel *downVotes;
-	downVotes = (UILabel *)[cell viewWithTag:6];
-	downVotes.text = [NSString stringWithFormat:@"%@", [thisDish negReviews]];
+	downVotes = (UILabel *)[cell viewWithTag:ROOTVIEW_DOWNVOTES_TAG];
+	downVotes.text = [NSString stringWithFormat:@"%@", 
+					  [thisDish negReviews]];
 	
-	//UIImageView = 
+	UIImageView *imageView = (UIImageView *)[cell viewWithTag:ROOTVIEW_IMAGE_TAG];
 	
-	AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[[cell viewWithTag:8] frame]];
+	AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[imageView frame]];
+																		
 	asyncImage.tag = 999;
 	NSURL *url = [NSURL URLWithString: [thisDish dish_photoURL]];
-	[asyncImage loadImageFromURL:url];
+	[asyncImage loadImageFromURL:url withImageView:imageView];
 	[cell.contentView addSubview:asyncImage];
 	
     // Configure the cell.

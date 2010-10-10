@@ -25,9 +25,19 @@
 }
 
 
-- (void)loadImageFromURL:(NSURL*)url {
+- (void)loadImageFromURL:(NSURL*)url withImageView:(UIImageView *)imageView {
 	if (connection!=nil) { [connection release]; } //in case we are downloading a 2nd image
 	if (data!=nil) { [data release]; }
+	
+	thisImageView = imageView;
+	
+	//Add a spinner
+	spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
+												UIActivityIndicatorViewStyleWhiteLarge];
+	[spinner setFrame:[imageView frame]];
+	[spinner startAnimating];
+	[thisImageView addSubview:spinner];
+
 	
 	NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:8];
 	connection = [[NSURLConnection alloc] initWithRequest:request delegate:self]; //notice how delegate set to self object
@@ -53,16 +63,19 @@
 		//then this must be another image, the old one is still in subviews
 		[[[self subviews] objectAtIndex:0] removeFromSuperview]; //so remove it (releases it also)
 	}
-	
+	//stop spinner
+	[spinner stopAnimating];
+
 	//make an image view for the image
-	UIImageView* imageView = [[[UIImageView alloc] initWithImage:[UIImage imageWithData:data]] autorelease];
+	//UIImageView* imageView = [[[UIImageView alloc] initWithImage:[UIImage imageWithData:data]] autorelease];
+	thisImageView.image = [UIImage imageWithData:data];
 	//make sizing choices based on your needs, experiment with these. maybe not all the calls below are needed.
-	imageView.contentMode = UIViewContentModeScaleAspectFit;
-	imageView.autoresizingMask = ( UIViewAutoresizingFlexibleWidth || UIViewAutoresizingFlexibleHeight );
-	[self addSubview:imageView];
-	imageView.frame = self.bounds;
-	[imageView setNeedsLayout];
-	[self setNeedsLayout];
+	//imageView.contentMode = UIViewContentModeScaleAspectFit;
+//	imageView.autoresizingMask = ( UIViewAutoresizingFlexibleWidth || UIViewAutoresizingFlexibleHeight );
+//	[self addSubview:imageView];
+//	imageView.frame = self.bounds;
+//	[imageView setNeedsLayout];
+//	[self setNeedsLayout];
 	
 	[data release]; //don't need this any more, its in the UIImageView now
 	data=nil;

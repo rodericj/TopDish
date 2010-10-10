@@ -10,7 +10,6 @@
 #import "Dish.h"
 
 @interface ScrollingDishDetailViewController : UIViewController {
-
 	Dish* dish;
 	
 	IBOutlet UIScrollView *scrollView;
