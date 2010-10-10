@@ -2,7 +2,7 @@
 //  Restaurant.h
 //  TopDish
 //
-//  Created by Roderic Campbell on 10/4/10.
+//  Created by Roderic Campbell on 10/10/10.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 

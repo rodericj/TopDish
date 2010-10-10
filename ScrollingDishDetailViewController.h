@@ -7,9 +7,11 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+
 #import "Dish.h"
 
-@interface ScrollingDishDetailViewController : UIViewController {
+@interface ScrollingDishDetailViewController : UIViewController <NSFetchedResultsControllerDelegate> {
 	Dish* dish;
 	
 	IBOutlet UIScrollView *scrollView;
@@ -19,7 +21,17 @@
 	IBOutlet UILabel *downVotes;
 	IBOutlet UIImageView *dishImage;
 	IBOutlet UILabel *description;
+	
+	IBOutlet UIView *commentSubView;
+@private
+    NSFetchedResultsController *fetchedResultsController_;
+    NSManagedObjectContext *managedObjectContext_;
+
 }
+
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+
 @property (nonatomic, retain) Dish *dish;
 
 @property (nonatomic, retain) UIScrollView *scrollView;
@@ -27,6 +39,7 @@
 @property (nonatomic, retain) UILabel *dishName;
 @property (nonatomic, retain) UILabel *upVotes;
 @property (nonatomic, retain) UILabel *downVotes;
+@property (nonatomic, retain) UIView *commentSubView;
 @property (nonatomic, retain) UIImageView *dishImage;
 @property (nonatomic, retain) UILabel *description;
 

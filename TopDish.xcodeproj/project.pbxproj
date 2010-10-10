@@ -32,11 +32,12 @@
 		5F89F27612597E8F00959D05 /* noPicWares.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F89F27512597E8F00959D05 /* noPicWares.png */; };
 		5F89F2E3125988C900959D05 /* tdlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F89F2E2125988C900959D05 /* tdlogo.png */; };
 		5F89F32C12598F9C00959D05 /* asyncimageview.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F89F32B12598F9C00959D05 /* asyncimageview.m */; };
-		5F89F482125AD08700959D05 /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F89F47F125AD08700959D05 /* Dish.m */; };
-		5F89F483125AD08700959D05 /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F89F481125AD08700959D05 /* Restaurant.m */; };
 		5F89F55A125C464900959D05 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F89F559125C464900959D05 /* MapKit.framework */; };
 		5FBB9659126232B600141693 /* ScrollingDishDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FBB9658126232B600141693 /* ScrollingDishDetailView.xib */; };
 		5FBB9663126233DB00141693 /* ScrollingDishDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */; };
+		5FBB992012625A5A00141693 /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB991B12625A5A00141693 /* Restaurant.m */; };
+		5FBB992212625A5A00141693 /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB991F12625A5A00141693 /* Dish.m */; };
+		5FBB993312625B8100141693 /* DishComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB993212625B8100141693 /* DishComment.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,15 +80,17 @@
 		5F89F2E2125988C900959D05 /* tdlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tdlogo.png; sourceTree = "<group>"; };
 		5F89F32A12598F9C00959D05 /* asyncimageview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asyncimageview.h; sourceTree = "<group>"; };
 		5F89F32B12598F9C00959D05 /* asyncimageview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = asyncimageview.m; sourceTree = "<group>"; };
-		5F89F47E125AD08700959D05 /* Dish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
-		5F89F47F125AD08700959D05 /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
-		5F89F480125AD08700959D05 /* Restaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
-		5F89F481125AD08700959D05 /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
 		5F89F559125C464900959D05 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		5FBB95F11262288E00141693 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 		5FBB9658126232B600141693 /* ScrollingDishDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScrollingDishDetailView.xib; path = ../ScrollingDishDetailView.xib; sourceTree = "<group>"; };
 		5FBB9661126233DB00141693 /* ScrollingDishDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollingDishDetailViewController.h; path = ../ScrollingDishDetailViewController.h; sourceTree = "<group>"; };
 		5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScrollingDishDetailViewController.m; path = ../ScrollingDishDetailViewController.m; sourceTree = "<group>"; };
+		5FBB991A12625A5A00141693 /* Restaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
+		5FBB991B12625A5A00141693 /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
+		5FBB991E12625A5A00141693 /* Dish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
+		5FBB991F12625A5A00141693 /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
+		5FBB993112625B8100141693 /* DishComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishComment.h; sourceTree = "<group>"; };
+		5FBB993212625B8100141693 /* DishComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishComment.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* TopDish-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TopDish-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -342,11 +345,12 @@
 				5F89EFC2125930AF00959D05 /* SBJsonParser.m in Sources */,
 				5F89EFC3125930AF00959D05 /* SBJsonWriter.m in Sources */,
 				5F89F32C12598F9C00959D05 /* asyncimageview.m in Sources */,
-				5F89F482125AD08700959D05 /* Dish.m in Sources */,
-				5F89F483125AD08700959D05 /* Restaurant.m in Sources */,
 				5F7AA19E125D833200843F4A /* NearbyMapViewController.m in Sources */,
 				5F7AA284125D955500843F4A /* DishAnnotation.m in Sources */,
 				5FBB9663126233DB00141693 /* ScrollingDishDetailViewController.m in Sources */,
+				5FBB992012625A5A00141693 /* Restaurant.m in Sources */,
+				5FBB992212625A5A00141693 /* Dish.m in Sources */,
+				5FBB993312625B8100141693 /* DishComment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,10 +438,12 @@
 		28D3F201112F7DC200FD0661 /* TopDish.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				5F89F47E125AD08700959D05 /* Dish.h */,
-				5F89F47F125AD08700959D05 /* Dish.m */,
-				5F89F480125AD08700959D05 /* Restaurant.h */,
-				5F89F481125AD08700959D05 /* Restaurant.m */,
+				5FBB993112625B8100141693 /* DishComment.h */,
+				5FBB993212625B8100141693 /* DishComment.m */,
+				5FBB991A12625A5A00141693 /* Restaurant.h */,
+				5FBB991B12625A5A00141693 /* Restaurant.m */,
+				5FBB991E12625A5A00141693 /* Dish.h */,
+				5FBB991F12625A5A00141693 /* Dish.m */,
 				28860B760F44E54D00985440 /* TopDish.xcdatamodel */,
 			);
 			currentVersion = 28860B760F44E54D00985440 /* TopDish.xcdatamodel */;

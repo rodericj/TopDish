@@ -2,12 +2,13 @@
 //  Dish.m
 //  TopDish
 //
-//  Created by Roderic Campbell on 10/4/10.
+//  Created by Roderic Campbell on 10/10/10.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
 #import "Dish.h"
 
+#import "DishComment.h"
 
 @implementation Dish 
 
@@ -20,5 +21,6 @@
 @dynamic longitude;
 @dynamic timeStamp;
 @dynamic dish_photoURL;
+@dynamic comments;
 
 @end

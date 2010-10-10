@@ -12,6 +12,7 @@
 #import "NearbyMapViewController.h"
 #import "ScrollingDishDetailViewController.h"
 #import "constants.h"
+
 @interface RootViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end

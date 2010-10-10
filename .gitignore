@@ -2,6 +2,8 @@
 *.swp
 iPhoneSDKCertificates/*
 
+*moved-aside*
+
 #xcode noise
 *.pbxuser
 build
