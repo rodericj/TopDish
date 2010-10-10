@@ -6,6 +6,7 @@
 //
 
 #import "ScrollingDishDetailViewController.h"
+#import "asyncimageview.h"
 
 @implementation ScrollingDishDetailViewController
 @synthesize dish;
@@ -27,11 +28,15 @@
 	[dishName setText:[dish dish_name]];
 	[upVotes setText:[NSString stringWithFormat:@"%@", [dish posReviews]]];
 	[downVotes setText:[NSString stringWithFormat:@"%@", [dish negReviews]]];
+	
 	NSURL *photoUrl = [NSURL URLWithString:[dish dish_photoURL]];
 
+	AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[dishImage frame]];
+	//NSData *photoData = [NSData dataWithContentsOfURL:photoUrl];
+	[asyncImage loadImageFromURL:photoUrl withImageView:dishImage];
+	
 	//TODO Very bad, need to thread this. The issue is that it's not going to khttphost
-	NSData *photoData = [NSData dataWithContentsOfURL:photoUrl];
-	[dishImage setImage:[UIImage imageWithData:photoData]];
+	//[dishImage setImage:[UIImage imageWithData:photoData]];
     [super viewWillAppear:animated];
 }
 
