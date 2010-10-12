@@ -18,6 +18,8 @@
 @synthesize scrollView;
 @synthesize dishImage;
 @synthesize description;
+@synthesize commentsController;
+
 @synthesize fetchedResultsController=fetchedResultsController_, managedObjectContext=managedObjectContext_;
 
 -(void)initializeDishDatabase{
@@ -103,7 +105,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[scrollView setContentSize:CGSizeMake(320, 9000)];
-	[self initializeDishDatabase];
+	//[self initializeDishDatabase];
 
 }
 - (void)viewWillAppear:(BOOL)animated {

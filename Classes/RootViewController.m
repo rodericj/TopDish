@@ -143,7 +143,7 @@
 	
 	UILabel *cost;
 	cost = (UILabel *)[cell viewWithTag:ROOTVIEW_COST_TAG];
-	cost.text = @"$12.50";
+	cost.text = @"$$$";
 	
 	UILabel *upVotes;
 	upVotes = (UILabel *)[cell viewWithTag:ROOTVIEW_UPVOTES_TAG];
@@ -227,7 +227,7 @@
 	// Pass the selected object to the new view controller.
 	[detailViewController setDish:selectedObject];
 	[detailViewController setManagedObjectContext:self.managedObjectContext];
-	NSLog(@"the dishdetailviewcontroller object %@", detailViewController );
+	//NSLog(@"the dishdetailviewcontroller object %@", [detailViewController ] );
 	[self.navigationController pushViewController:detailViewController animated:YES];
 	[detailViewController release];
      

@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 #import "Dish.h"
+#import "CommentsTableViewController.h"
 
 @interface ScrollingDishDetailViewController : UIViewController <NSFetchedResultsControllerDelegate> {
 	Dish* dish;
@@ -23,12 +24,14 @@
 	IBOutlet UILabel *description;
 	
 	IBOutlet UIView *commentSubView;
+	IBOutlet CommentsTableViewController *commentsController;
 @private
     NSFetchedResultsController *fetchedResultsController_;
     NSManagedObjectContext *managedObjectContext_;
 
 }
 
+@property (nonatomic, retain) CommentsTableViewController *commentsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
