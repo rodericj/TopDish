@@ -10,6 +10,7 @@
 #import "Dish.h"
 #import "asyncimageview.h"
 #import "NearbyMapViewController.h"
+#import "SettingsViewController.h"
 #import "ScrollingDishDetailViewController.h"
 #import "constants.h"
 
@@ -31,7 +32,14 @@
     [super viewDidLoad];
 
     // Set up the edit and add buttons.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;	
+	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] 
+								  initWithImage:[UIImage imageNamed:POSITIVE_REVIEW_IMAGE_NAME] 
+								  style:UIBarButtonItemStylePlain 
+								  target:self 
+								  action:@selector(showSettings)];
+	
+    self.navigationItem.leftBarButtonItem = settingsButton;
+	
 	UIBarButtonItem *mapButton = [[UIBarButtonItem alloc] 
 								  initWithImage:[UIImage imageNamed:POSITIVE_REVIEW_IMAGE_NAME] 
 								  style:UIBarButtonItemStylePlain 
@@ -87,19 +95,22 @@
 	NearbyMapViewController *map = [[NearbyMapViewController alloc] initWithNibName:@"NearbyMapView" 
 												 bundle:nil];
 	[map setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-	
-	UIBarButtonItem *mapButton = [[UIBarButtonItem alloc] 
-								  initWithImage:[UIImage imageNamed:NEGATIVE_REVIEW_IMAGE_NAME] 
-								  style:UIBarButtonItemStylePlain 
-								  target:self 
-								  action:@selector(unflipMap)];
-	[map.navigationController.navigationItem setRightBarButtonItem:mapButton];
+
 	NSArray *nearbyObjects = [self.fetchedResultsController fetchedObjects];
 	[map setNearbyObjects:nearbyObjects];
 	//[map.navigationItem setRightBarButtonItem:mapButton];
 	[self presentModalViewController:map animated:TRUE];
 }
 
+#pragma mark -
+#pragma mark Bring up the Settings view
+- (void) showSettings{
+	SettingsView *map = [[SettingsView alloc] initWithNibName:@"SettingsView" 
+																			 bundle:nil];
+	[map setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+	
+	[self presentModalViewController:map animated:TRUE];
+}
 	 
 #pragma mark -
 #pragma mark Table view data source

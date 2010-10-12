@@ -17,6 +17,8 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28D3F202112F7DC200FD0661 /* TopDish.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* TopDish.xcdatamodeld */; };
+		5F08954A12641D5000EDE197 /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F08954912641D5000EDE197 /* SettingsView.xib */; };
+		5F08954D12641D6100EDE197 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */; };
 		5F7AA19A125D82CC00843F4A /* NearbyMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F7AA199125D82CC00843F4A /* NearbyMapView.xib */; };
 		5F7AA19E125D833200843F4A /* NearbyMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7AA19C125D833200843F4A /* NearbyMapViewController.m */; };
 		5F7AA284125D955500843F4A /* DishAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7AA282125D955500843F4A /* DishAnnotation.m */; };
@@ -56,6 +58,9 @@
 		28C286DF0D94DF7D0034E888 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5F08954912641D5000EDE197 /* SettingsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingsView.xib; path = ../SettingsView.xib; sourceTree = "<group>"; };
+		5F08954B12641D6100EDE197 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = ../SettingsViewController.h; sourceTree = "<group>"; };
+		5F08954C12641D6100EDE197 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = ../SettingsViewController.m; sourceTree = "<group>"; };
 		5F7AA199125D82CC00843F4A /* NearbyMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NearbyMapView.xib; sourceTree = "<group>"; };
 		5F7AA19C125D833200843F4A /* NearbyMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyMapViewController.m; sourceTree = "<group>"; };
 		5F7AA19D125D833200843F4A /* NearbyMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyMapViewController.h; sourceTree = "<group>"; };
@@ -177,6 +182,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5F08956912641F0000EDE197 /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				5F08954912641D5000EDE197 /* SettingsView.xib */,
+				5F08954B12641D6100EDE197 /* SettingsViewController.h */,
+				5F08954C12641D6100EDE197 /* SettingsViewController.m */,
+			);
+			name = SettingsView;
+			sourceTree = "<group>";
+		};
 		5F89EFAF125930A300959D05 /* lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +236,7 @@
 		5F89F594125C4A0B00959D05 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5F08956912641F0000EDE197 /* SettingsView */,
 				5FBB975E1262423C00141693 /* DishDetailView */,
 				5FBB975D1262420600141693 /* NearbyMapView */,
 				5FBB975C126241F100141693 /* MainView */,
@@ -329,6 +345,7 @@
 				5F89F2E3125988C900959D05 /* tdlogo.png in Resources */,
 				5F7AA19A125D82CC00843F4A /* NearbyMapView.xib in Resources */,
 				5FBB9659126232B600141693 /* ScrollingDishDetailView.xib in Resources */,
+				5F08954A12641D5000EDE197 /* SettingsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +374,7 @@
 				5FBB992212625A5A00141693 /* Dish.m in Sources */,
 				5FBB993312625B8100141693 /* DishComment.m in Sources */,
 				5FBB9AA21264036500141693 /* CommentsTableViewController.m in Sources */,
+				5F08954D12641D6100EDE197 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
