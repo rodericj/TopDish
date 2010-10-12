@@ -38,6 +38,7 @@
 		5FBB992012625A5A00141693 /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB991B12625A5A00141693 /* Restaurant.m */; };
 		5FBB992212625A5A00141693 /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB991F12625A5A00141693 /* Dish.m */; };
 		5FBB993312625B8100141693 /* DishComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB993212625B8100141693 /* DishComment.m */; };
+		5FBB9AA21264036500141693 /* CommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +92,8 @@
 		5FBB991F12625A5A00141693 /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
 		5FBB993112625B8100141693 /* DishComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishComment.h; sourceTree = "<group>"; };
 		5FBB993212625B8100141693 /* DishComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishComment.m; sourceTree = "<group>"; };
+		5FBB9AA01264036500141693 /* CommentsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentsTableViewController.h; path = ../CommentsTableViewController.h; sourceTree = "<group>"; };
+		5FBB9AA11264036500141693 /* CommentsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentsTableViewController.m; path = ../CommentsTableViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* TopDish-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TopDish-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -262,6 +265,8 @@
 				5FBB9658126232B600141693 /* ScrollingDishDetailView.xib */,
 				5FBB9661126233DB00141693 /* ScrollingDishDetailViewController.h */,
 				5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */,
+				5FBB9AA01264036500141693 /* CommentsTableViewController.h */,
+				5FBB9AA11264036500141693 /* CommentsTableViewController.m */,
 			);
 			name = DishDetailView;
 			sourceTree = "<group>";
@@ -351,6 +356,7 @@
 				5FBB992012625A5A00141693 /* Restaurant.m in Sources */,
 				5FBB992212625A5A00141693 /* Dish.m in Sources */,
 				5FBB993312625B8100141693 /* DishComment.m in Sources */,
+				5FBB9AA21264036500141693 /* CommentsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -226,6 +226,7 @@
 	// ...
 	// Pass the selected object to the new view controller.
 	[detailViewController setDish:selectedObject];
+	[detailViewController setManagedObjectContext:self.managedObjectContext];
 	NSLog(@"the dishdetailviewcontroller object %@", detailViewController );
 	[self.navigationController pushViewController:detailViewController animated:YES];
 	[detailViewController release];

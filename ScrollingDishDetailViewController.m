@@ -18,36 +18,65 @@
 @synthesize scrollView;
 @synthesize dishImage;
 @synthesize description;
+@synthesize fetchedResultsController=fetchedResultsController_, managedObjectContext=managedObjectContext_;
 
 -(void)initializeDishDatabase{
 	NSString *jsonData = @"[\
 	{\
 	\"id\":1,\
-	\"dish_id\":\"2\",\
+	\"dish_id\":\"38\",\
 	\"reviewer_id\":\"2\",\
 	\"comment\":\"I found that the beef was undercooked\",\
 	\"reviewer_name\":\"Sunil Subhedar\",\
-	\"restaurantID\":37,\
+	\"restaurantID\":37\
 	},\
 	{\
 	\"id\":2,\
-	\"dish_id\":\"2\",\
+	\"dish_id\":\"38\",\
+	\"reviewer_id\":\"2\",\
+	\"comment\":\"I found that the beef was undercooked\",\
+	\"reviewer_name\":\"Sunil Subhedar\",\
+	\"restaurantID\":37\
+	},\
+	{\
+	\"id\":3,\
+	\"dish_id\":\"139\",\
+	\"reviewer_id\":\"2\",\
+	\"comment\":\"I love tacos.\",\
+	\"reviewer_name\":\"Sunil Subhedar\",\
+	\"restaurantID\":37\
+	},\
+	{\
+	\"id\":4,\
+	\"dish_id\":\"1\",\
+	\"reviewer_id\":\"2\",\
+	\"comment\":\"Tuna tartar ftw\",\
+	\"reviewer_name\":\"Sunil Subhedar\",\
+	\"restaurantID\":37\
+	},\
+	{\
+	\"id\":5,\
+	\"dish_id\":\"139\",\
 	\"reviewer_id\":\"3\",\
-	\"comment\":\"Probably the best burger I've ever eaten\",\
+	\"comment\":\"It reminds me of Celebrity Jeopardy\",\
 	\"reviewer_name\":\"Salil Pandit\",\
-	\"restaurantID\":37,\
+	\"restaurantID\":37\
 	}]\
 	";	
 	
+	NSLog(@"json string is %@", jsonData);
 	SBJSON *parser = [SBJSON new];
 	NSArray *responseAsArray = [parser objectWithString:jsonData error:NULL];
 	[parser release];
-	
+	NSLog(@"initialize comment database");
+	NSLog(@"%@", responseAsArray);
 	for (int i =0; i < [responseAsArray count]; i++){
-		DishComment *thisDishComment = (DishComment *)[NSEntityDescription insertNewObjectForEntityForName:@"DishComment" inManagedObjectContext:self.managedObjectContext];
+		NSLog(@"initialize comment database %d", i);
+
+		DishComment *thisDishComment = (DishComment *)[NSEntityDescription insertNewObjectForEntityForName:@"DishComment" 
+																					inManagedObjectContext:self.managedObjectContext];
 		NSDictionary *thisElement = [responseAsArray objectAtIndex:i];
 		//Need to query for a specific dish here
-		
 		
 		//[thisDishComment setDish_id:<#(Dish *)#>:[thisElement objectForKey:@"dish_id"]];
 		
@@ -62,6 +91,8 @@
 	[fetchRequest setEntity:entity];
 	
 	NSError *error;
+	//[self.managedObjectContext save:error];
+
 	NSArray *items = [self.managedObjectContext
 					  executeFetchRequest:fetchRequest error:&error];
 	NSLog(@"items is %@", items);
@@ -72,7 +103,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[scrollView setContentSize:CGSizeMake(320, 9000)];
-	//[self initializeDishDatabase];
+	[self initializeDishDatabase];
 
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -89,10 +120,8 @@
 	[description setTextAlignment:UITextAlignmentCenter];
 
 	CGAffineTransform translate = CGAffineTransformMakeTranslation(0,[description frame].size.height);
-	commentSubView
-	.transform = translate;
+	commentSubView.transform = translate;
 	
-	NSLog(@"the length of this description %d", [[dish dish_description] length]);
 	NSURL *photoUrl = [NSURL URLWithString:[dish dish_photoURL]];
 
 	AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[dishImage frame]];
