@@ -222,8 +222,9 @@
 		reviews = [NSArray alloc];
 	}
 	reviews = [[responseAsDictionary objectForKey:@"reviews"] copy];
-	//I'm going to do this the stupid way:
 	
+	//I'm going to do this the stupid way:
+	//TODO should probably put this into CoreData
 	
 	
 //	for (int i =0; i < [responseAsDictionary count]; i++){

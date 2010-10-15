@@ -137,6 +137,8 @@
 	[commentsController refreshFromServer];
 	NSLog(@"dish id from the scrolling dishdetailview controller %@", [dish dish_id]);
 	
+	//TODO Set the height of the UIScrollView here. We should know the height of all of the internal views. Should be able to set it.
+	
 }
 
 @end

@@ -483,6 +483,8 @@
 			5F94ED301268065B0080CEDD /* PBXTextBookmark */ = 5F94ED301268065B0080CEDD /* PBXTextBookmark */;
 			5F94ED311268065B0080CEDD /* PBXTextBookmark */ = 5F94ED311268065B0080CEDD /* PBXTextBookmark */;
 			5F94ED321268065B0080CEDD /* PBXTextBookmark */ = 5F94ED321268065B0080CEDD /* PBXTextBookmark */;
+			5F94ED35126806D90080CEDD /* PBXTextBookmark */ = 5F94ED35126806D90080CEDD /* PBXTextBookmark */;
+			5F94ED36126806D90080CEDD /* PBXTextBookmark */ = 5F94ED36126806D90080CEDD /* PBXTextBookmark */;
 			5FADD30A1266F09D0020E45B = 5FADD30A1266F09D0020E45B /* PBXBookmark */;
 			5FADD33B1266F2DD0020E45B = 5FADD33B1266F2DD0020E45B /* PBXTextBookmark */;
 			5FADD35C1266F43E0020E45B = 5FADD35C1266F43E0020E45B /* PBXTextBookmark */;
@@ -1054,7 +1056,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 219";
 		rLen = 0;
-		rLoc = 8933;
+		rLoc = 8980;
 		rType = 0;
 		vrLen = 1729;
 		vrLoc = 6206;
@@ -1064,7 +1066,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 219";
 		rLen = 0;
-		rLoc = 8903;
+		rLoc = 8950;
 		rType = 0;
 		vrLen = 1493;
 		vrLoc = 6442;
@@ -1094,7 +1096,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 219";
 		rLen = 0;
-		rLoc = 8903;
+		rLoc = 8950;
 		rType = 0;
 		vrLen = 1496;
 		vrLoc = 6442;
@@ -1104,7 +1106,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 219";
 		rLen = 0;
-		rLoc = 8903;
+		rLoc = 8950;
 		rType = 0;
 		vrLen = 1443;
 		vrLoc = 6502;
@@ -1311,7 +1313,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 274";
 		rLen = 0;
-		rLoc = 10183;
+		rLoc = 10230;
 		rType = 0;
 		vrLen = 585;
 		vrLoc = 8332;
@@ -2690,6 +2692,26 @@
 		vrLen = 654;
 		vrLoc = 142;
 	};
+	5F94ED35126806D90080CEDD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
+		name = "CommentsTableViewController.m: 207";
+		rLen = 9;
+		rLoc = 6250;
+		rType = 0;
+		vrLen = 1895;
+		vrLoc = 5679;
+	};
+	5F94ED36126806D90080CEDD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FBB95F11262288E00141693 /* constants.h */;
+		name = "constants.h: 32";
+		rLen = 16;
+		rLoc = 804;
+		rType = 0;
+		vrLen = 654;
+		vrLoc = 142;
+	};
 	5FADD30A1266F09D0020E45B /* PBXBookmark */ = {
 		isa = PBXBookmark;
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
@@ -3025,10 +3047,10 @@
 	};
 	5FBB9AA11264036500141693 /* CommentsTableViewController.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            l = DetailViewController;\n            r = \"{5857, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{5908, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{5958, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 10252}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {3400, 3783}}";
+			sepNavFolds = "{\n    c =     (\n                {\n            l = DetailViewController;\n            r = \"{5857, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{5908, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{5958, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 10299}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {3400, 3926}}";
 			sepNavSelRange = "{6193, 9}";
-			sepNavVisRange = "{5645, 1823}";
+			sepNavVisRange = "{5679, 1838}";
 			sepNavWindowFrame = "{{-4, 209}, {883, 542}}";
 		};
 	};
