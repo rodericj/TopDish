@@ -48,11 +48,15 @@
 }
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
 	NSLog(@"is this a fail?");
+	NSLog(@"%@", error);
 }
 
 //the URL connection calls this repeatedly as data arrives
 - (void)connection:(NSURLConnection *)theConnection didReceiveData:(NSData *)incrementalData {
-	if (data==nil) { data = [[NSMutableData alloc] initWithCapacity:2048]; } 
+	NSLog(@"didRecieveData in aync view");
+	if (data==nil) { 
+		data = [[NSMutableData alloc] initWithCapacity:2048]; 
+	} 
 	[data appendData:incrementalData];
 }
 

@@ -40,7 +40,7 @@
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
 
-	[self initializedatabase];
+	//[self initializedatabase];
     return YES;
 }
 

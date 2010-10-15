@@ -7,13 +7,21 @@
 //
 
 #import "CommentsTableViewController.h"
+#import "constants.h"
+#import "JSON.h"
+#import "DishComment.h"
 
+@interface CommentsTableViewController ()
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+@end
 
 @implementation CommentsTableViewController
-
-
-#pragma mark -
-#pragma mark Initialization
+@synthesize dishId;
+@synthesize managedObjectContext;
+@synthesize reviews;
+@synthesize commentCell;
+//#pragma mark -
+//#pragma mark Initialization
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -31,7 +39,7 @@
 /*
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+	
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -42,9 +50,25 @@
     [super viewWillAppear:animated];
 }
 */
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    //NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
+	//NSLog(@"here we are using the managed Object %@", managedObject);
+}
+
+-(void)refreshFromServer{
+	NSLog(@"the dish id is %@", dishId);
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishDetail?id=%@", NETWORKHOST, dishId]];
+	//Start up the networking
+	request = [NSURLRequest requestWithURL:url];
+	conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE]; 
+	//TODO Start the spinner
+	
+}
+
 /*
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+	 
 }
 */
 /*
@@ -71,13 +95,19 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
+
     return 1;
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return 72;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 3;
+	if(reviews == nil){
+		return 0;
+	}
+	return [reviews count];
 }
 
 
@@ -87,12 +117,31 @@
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
+   // if (cell == nil) {
+//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+//    }
     
+	if (cell == nil) {
+		NSLog(@"the cell is null. Must get it");
+        [[NSBundle mainBundle] loadNibNamed:@"CommentControllerTableViewCell" owner:self options:nil];
+		cell = commentCell;
+	}
+	
     // Configure the cell...
-    cell.text = @"test";
+	NSDictionary *thisReview = [reviews objectAtIndex:[indexPath row]];
+    //cell.text = [thisReview objectForKey:@"comment"];
+	
+	UILabel *commentorName;
+	commentorName = (UILabel *)[cell viewWithTag:COMMENTOR_NAME_TAG];
+	commentorName.text = [thisReview objectForKey:@"creator"];
+	
+	UILabel *commentText;
+	commentText = (UILabel *)[cell viewWithTag:COMMENT_TEXT_TAG];
+	commentText.text = [NSString stringWithFormat:@"\"%@\"", [thisReview objectForKey:@"comment"]];
+//	[self configureCell:cell atIndexPath:indexPath];
+
+	NSLog(@"%@", [thisReview objectForKey:@"creator"]);
+	NSLog(@"%@", [thisReview objectForKey:@"comment"]);
     return cell;
 }
 
@@ -153,6 +202,92 @@
 
 
 #pragma mark -
+#pragma mark Network Delegate 
+
+- (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
+	//NSLog(@"connection did finish loading");
+	NSLog(@"%@", _responseText);
+	NSString *responseText = [[NSString alloc] initWithData:_responseText encoding:NSUTF8StringEncoding];
+	responseText = @"{\"id\":38, \"name\":\"Bacon Burger\", \"Description\":\"All bacon and bun\", \"restaurantID\":37, \"latitude\":33.677854, \"longitude\":-117799428, \"posReviews\":1, \"negReviews\":2, \"photoURL\":\"\", \"reviews\":[{\"direction\":1, \"comment\": \"yo this thing was great\",\"creator\":\"andy\", \"dateCreated\":\"oct 11, 2010 4:39:42 AM\"},{\"direction\":-1, \"comment\": \"it was bad\",\"creator\":\"Steven\", \"dateCreated\":\"oct 12, 2010 4:39:42 AM\"}]}"; 
+	NSLog(@"dishdetail text is %@", responseText);
+	SBJSON *parser = [SBJSON new];
+	NSError *error;
+	NSDictionary *responseAsDictionary = [parser objectWithString:responseText error:&error];
+	[parser release];
+	[self.managedObjectContext reset];
+	NSLog(@"the comment passed in object %@", [responseAsDictionary objectForKey:@"reviews"]);
+	//[reviews release];
+	if(reviews == nil){
+		NSLog(@"allocate the array the first time");
+		reviews = [NSArray alloc];
+	}
+	reviews = [[responseAsDictionary objectForKey:@"reviews"] copy];
+	//I'm going to do this the stupid way:
+	
+	
+	
+//	for (int i =0; i < [responseAsDictionary count]; i++){
+//		DishComment *thisDishComment = (DishComment *)[NSEntityDescription insertNewObjectForEntityForName:@"DishComment" inManagedObjectContext:self.managedObjectContext];
+//		NSDictionary *thisElement = [responseAsArray objectAtIndex:i];
+//		[thisDish setDish_id:[thisElement objectForKey:@"id"]];
+//		[thisDish setDish_name:[thisElement objectForKey:@"name"]];
+//		[thisDish setDish_description:[thisElement objectForKey:@"description"]];
+//		[thisDish setDish_photoURL:[thisElement objectForKey:@"photoURL"]];
+//		[thisDish setLatitude:[thisElement objectForKey:@"latitude"]];
+//		[thisDish setLongitude:[thisElement objectForKey:@"longitude"]];
+//		[thisDish setPosReviews:[thisElement objectForKey:@"posReviews"]];
+//		[thisDish setNegReviews:[thisElement objectForKey:@"negReviews"]];
+//		[thisDish setDish_id:[thisElement objectForKey:@"id"]];
+//	}
+	
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish"  
+											  inManagedObjectContext:self.managedObjectContext];
+	[fetchRequest setEntity:entity];
+	
+	//NSError *error;
+	NSArray *items = [self.managedObjectContext
+					  executeFetchRequest:fetchRequest error:&error];
+	
+	[fetchRequest release];	
+	
+	[responseText release];
+	[_responseText release];
+	_responseText = nil;
+	[self.tableView reloadData];
+
+	//TODO Stop the spinner
+	//TODO Do I need to release the connection here?
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
+	NSLog(@"Comments Table View connection didfailwitherror");
+	NSLog(@"%@", error);
+	
+	//TODO when the server is in a bit better shape I'll have to 
+	//remove this default call as well as the hard coded data
+	[self connectionDidFinishLoading:connection];
+	
+	//TODO Do I need to release the connection here?
+	//TODO Stop the spinner
+	//TODO Put out a popup
+	
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
+	if(_responseText == nil){
+		_responseText = [[NSData alloc] initWithData:data];
+	}
+	else{
+		[_responseText appendData:data];
+	}
+	//Add the data that came in to the data we have so far
+}
+
+
+
+
+#pragma mark -
 #pragma mark Memory management
 
 - (void)didReceiveMemoryWarning {
@@ -169,6 +304,9 @@
 
 
 - (void)dealloc {
+	[reviews release];
+	[request release];
+	[conn release];
     [super dealloc];
 }
 

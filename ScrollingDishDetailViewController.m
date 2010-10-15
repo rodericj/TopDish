@@ -105,7 +105,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[scrollView setContentSize:CGSizeMake(320, 9000)];
-	//[self initializeDishDatabase];
 
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -130,6 +129,14 @@
 	[asyncImage loadImageFromURL:photoUrl withImageView:dishImage showActivityIndicator:FALSE];
 	
 	[super viewWillAppear:animated];
+	
+	[commentsController setManagedObjectContext:self.managedObjectContext];
+	[commentsController setDishId:[dish dish_id]];
+	
+	
+	[commentsController refreshFromServer];
+	NSLog(@"dish id from the scrolling dishdetailview controller %@", [dish dish_id]);
+	
 }
 
 @end

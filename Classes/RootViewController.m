@@ -13,6 +13,7 @@
 #import "SettingsViewController.h"
 #import "ScrollingDishDetailViewController.h"
 #import "constants.h"
+#import "SBJSON.h"
 
 @interface RootViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -31,6 +32,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishSearch?lat=33.6886&lng=-117.8129&disance=200000", NETWORKHOST]];
+	//Start up the networking
+	NSURLRequest *request = [NSURLRequest requestWithURL:url];
+	NSURLRequest *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE]; 
+	//TODO Start the spinner
+	
     // Set up the edit and add buttons.
 	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] 
 								  initWithImage:[UIImage imageNamed:POSITIVE_REVIEW_IMAGE_NAME] 
@@ -126,12 +133,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
+	if (sectionInfo == nil){
+		return 0;
+	}
+	return [sectionInfo numberOfObjects];
 }
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+	//NSLog(@"row number %d", [indexPath row]);
+
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -139,7 +150,11 @@
         [[NSBundle mainBundle] loadNibNamed:@"RootControllerTableViewCell" owner:self options:nil];
 		cell = tvCell;
 	}
-
+//	if ([indexPath row] == 0){
+//		cell.text=@"search";
+//	}
+//	else {
+		
 	//Query the results controller
 	Dish *thisDish = [[self fetchedResultsController] objectAtIndexPath:indexPath];	
 	
@@ -177,8 +192,7 @@
 	
     // Configure the cell.
     [self configureCell:cell atIndexPath:indexPath];
-    
-	//[cell setBackgroundColor:[UIColor clearColor]];
+//    }
 	[cell setOpaque:FALSE];
     return cell;
 }
@@ -296,7 +310,75 @@
     
     return fetchedResultsController_;
 }    
+#pragma mark -
+#pragma mark Network Delegate 
 
+- (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
+	NSLog(@"connection did finish loading");
+	NSLog(@"%@", _responseText);
+	NSString *responseText = [[NSString alloc] initWithData:_responseText encoding:NSUTF8StringEncoding];
+	NSLog(@"text is %@", responseText);
+	
+	SBJSON *parser = [SBJSON new];
+	NSArray *responseAsArray = [parser objectWithString:responseText error:NULL];
+	[parser release];
+	[self.managedObjectContext reset];
+	
+	for (int i =0; i < [responseAsArray count]; i++){
+		Dish *thisDish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" inManagedObjectContext:self.managedObjectContext];
+		NSDictionary *thisElement = [responseAsArray objectAtIndex:i];
+		[thisDish setDish_id:[thisElement objectForKey:@"id"]];
+		[thisDish setDish_name:[thisElement objectForKey:@"name"]];
+		[thisDish setDish_description:[thisElement objectForKey:@"description"]];
+		[thisDish setDish_photoURL:[thisElement objectForKey:@"photoURL"]];
+		[thisDish setLatitude:[thisElement objectForKey:@"latitude"]];
+		[thisDish setLongitude:[thisElement objectForKey:@"longitude"]];
+		[thisDish setPosReviews:[thisElement objectForKey:@"posReviews"]];
+		[thisDish setNegReviews:[thisElement objectForKey:@"negReviews"]];
+		[thisDish setDish_id:[thisElement objectForKey:@"id"]];
+	}
+	
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish"  
+											  inManagedObjectContext:self.managedObjectContext];
+	[fetchRequest setEntity:entity];
+	
+	NSError *error;
+	NSArray *items = [self.managedObjectContext
+					  executeFetchRequest:fetchRequest error:&error];
+	
+	[fetchRequest release];	
+	
+	[responseText release];
+	[_responseText release];
+	_responseText = nil;
+	//TODO Stop the spinner
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
+	NSLog(@"connection didfailwitherror");
+	NSLog(@"%@", error);
+	//TODO Stop the spinner
+	//TODO Put out a popup
+	
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
+	NSLog(@"didRecieveData in root view %@", data);
+	NSString *responseText = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	NSLog(@"data %@", responseText);
+	if(_responseText == nil){
+		_responseText = [[NSData alloc] initWithData:data];
+	}
+	else{
+		[_responseText appendData:data];
+	}
+	NSLog(@"done didRecieveData in root view");
+
+	//Add the data that came in to the data we have so far
+}
+
+	
 
 #pragma mark -
 #pragma mark Fetched results controller delegate

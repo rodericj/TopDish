@@ -35,6 +35,7 @@
 		5F89F2E3125988C900959D05 /* tdlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F89F2E2125988C900959D05 /* tdlogo.png */; };
 		5F89F32C12598F9C00959D05 /* asyncimageview.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F89F32B12598F9C00959D05 /* asyncimageview.m */; };
 		5F89F55A125C464900959D05 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F89F559125C464900959D05 /* MapKit.framework */; };
+		5F94EC281267F7570080CEDD /* CommentControllerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F94EC271267F7570080CEDD /* CommentControllerTableViewCell.xib */; };
 		5FBB9659126232B600141693 /* ScrollingDishDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FBB9658126232B600141693 /* ScrollingDishDetailView.xib */; };
 		5FBB9663126233DB00141693 /* ScrollingDishDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */; };
 		5FBB992012625A5A00141693 /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB991B12625A5A00141693 /* Restaurant.m */; };
@@ -87,6 +88,7 @@
 		5F89F32A12598F9C00959D05 /* asyncimageview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asyncimageview.h; sourceTree = "<group>"; };
 		5F89F32B12598F9C00959D05 /* asyncimageview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = asyncimageview.m; sourceTree = "<group>"; };
 		5F89F559125C464900959D05 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		5F94EC271267F7570080CEDD /* CommentControllerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CommentControllerTableViewCell.xib; path = ../CommentControllerTableViewCell.xib; sourceTree = "<group>"; };
 		5FBB95F11262288E00141693 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 		5FBB9658126232B600141693 /* ScrollingDishDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScrollingDishDetailView.xib; path = ../ScrollingDishDetailView.xib; sourceTree = "<group>"; };
 		5FBB9661126233DB00141693 /* ScrollingDishDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollingDishDetailViewController.h; path = ../ScrollingDishDetailViewController.h; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 				5FBB9658126232B600141693 /* ScrollingDishDetailView.xib */,
 				5FBB9661126233DB00141693 /* ScrollingDishDetailViewController.h */,
 				5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */,
+				5F94EC271267F7570080CEDD /* CommentControllerTableViewCell.xib */,
 				5FBB9AA01264036500141693 /* CommentsTableViewController.h */,
 				5FBB9AA11264036500141693 /* CommentsTableViewController.m */,
 			);
@@ -346,6 +349,7 @@
 				5F7AA19A125D82CC00843F4A /* NearbyMapView.xib in Resources */,
 				5FBB9659126232B600141693 /* ScrollingDishDetailView.xib in Resources */,
 				5F08954A12641D5000EDE197 /* SettingsView.xib in Resources */,
+				5F94EC281267F7570080CEDD /* CommentControllerTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

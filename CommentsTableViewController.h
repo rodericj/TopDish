@@ -10,8 +10,27 @@
 
 
 @interface CommentsTableViewController : UITableViewController {
+	NSDecimalNumber *dishId;
+	NSData *_responseText;
+	
+	NSArray *reviews;
+	UITableViewCell *commentCell;
 
-
+	NSURLRequest *request;
+	NSURLRequest *conn;
+	
+@private
+    NSFetchedResultsController *fetchedResultsController_;
+    NSManagedObjectContext *managedObjectContext_;
 }
+
+-(void) refreshFromServer;
+@property (nonatomic, assign) IBOutlet UITableViewCell *commentCell;
+
+@property (nonatomic, retain)  NSDecimalNumber *dishId;
+@property (nonatomic, retain)  NSArray *reviews;
+@property (nonatomic, retain)  NSData *_responseText;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
 @end

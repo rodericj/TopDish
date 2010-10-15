@@ -15,6 +15,9 @@
 #define POSITIVE_REVIEW_IMAGE_NAME @"greenup.gif"
 #define NEGATIVE_REVIEW_IMAGE_NAME @"reddown.gif"
 
+#pragma mark network constants
+#define NETWORKHOST @"http://topdish1.appspot.com"
+
 #pragma tags
 #define DISHDETAILIMAGETAG 1
 #define DISH_DETAIL_CELL_IDENTIFIER @"dishdetailimagecell"
@@ -24,3 +27,6 @@
 #define ROOTVIEW_UPVOTES_TAG 4
 #define ROOTVIEW_DOWNVOTES_TAG 6
 #define ROOTVIEW_IMAGE_TAG 8
+
+#define COMMENTOR_NAME_TAG 1
+#define COMMENT_TEXT_TAG 2
