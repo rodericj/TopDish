@@ -51,7 +51,6 @@
 
 //the URL connection calls this repeatedly as data arrives
 - (void)connection:(NSURLConnection *)theConnection didReceiveData:(NSData *)incrementalData {
-	NSLog(@"didRecieveData in aync view");
 	if (data==nil) { 
 		data = [[NSMutableData alloc] initWithCapacity:2048]; 
 	} 

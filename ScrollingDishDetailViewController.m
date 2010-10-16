@@ -135,6 +135,8 @@
 	
 	NSURL *photoUrl = [NSURL URLWithString:[dish dish_photoURL]];
 
+	//NSURL *photoUrl = [NSURL URLWithString:@"http://topdish1.appspot.com/getPhoto?id=84001"];
+
 	AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[dishImage frame]];
 	[asyncImage loadImageFromURL:photoUrl withImageView:dishImage showActivityIndicator:FALSE];
 	

@@ -180,10 +180,6 @@
 	if(_responseText == nil){
 		_responseText = [[NSData alloc] initWithData:data];
 	}
-//	else{
-//		[_responseText appendData:data];
-//	}
-	//Add the data that came in to the data we have so far
 }
 
 

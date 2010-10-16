@@ -9,9 +9,9 @@
 	};
 	1D3623250D0F684500981E51 /* TopDishAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {2021, 4108}}";
-			sepNavSelRange = "{10796, 0}";
-			sepNavVisRange = "{10222, 1012}";
+			sepNavIntBoundsRect = "{{0, 0}, {2371, 4238}}";
+			sepNavSelRange = "{608, 0}";
+			sepNavVisRange = "{2747, 1391}";
 			sepNavWindowFrame = "{{2, 18}, {883, 542}}";
 		};
 	};
@@ -190,9 +190,9 @@
 	};
 	28C286E00D94DF7D0034E888 /* RootViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1265, 6344}}";
-			sepNavSelRange = "{13780, 7}";
-			sepNavVisRange = "{13254, 674}";
+			sepNavIntBoundsRect = "{{0, 0}, {1265, 6175}}";
+			sepNavSelRange = "{13684, 83}";
+			sepNavVisRange = "{14793, 1052}";
 			sepNavWindowFrame = "{{560, 190}, {810, 584}}";
 		};
 	};
@@ -207,7 +207,7 @@
 			5F89F04C125936B900959D05 /* SBJsonParser.m:244 */,
 			5FBB99F41263F4FF00141693 /* ScrollingDishDetailViewController.m:71 */,
 			5FBB9A811264003200141693 /* ScrollingDishDetailViewController.m:91 */,
-			5F0894EA12640E6000EDE197 /* RootViewController.m:257 */,
+			5F0894EA12640E6000EDE197 /* RootViewController.m:254 */,
 		);
 		codeSenseManager = 5F0762E21258EF65007D2C7E /* Code sense */;
 		executables = (
@@ -535,6 +535,90 @@
 			5F92A5A81269885E007D2451 /* PBXTextBookmark */ = 5F92A5A81269885E007D2451 /* PBXTextBookmark */;
 			5F92A5AB1269888F007D2451 /* PBXTextBookmark */ = 5F92A5AB1269888F007D2451 /* PBXTextBookmark */;
 			5F92A5AC126988B0007D2451 /* PBXTextBookmark */ = 5F92A5AC126988B0007D2451 /* PBXTextBookmark */;
+			5F92A5AD12698944007D2451 /* PBXTextBookmark */ = 5F92A5AD12698944007D2451 /* PBXTextBookmark */;
+			5F92A5AE12698944007D2451 /* PBXTextBookmark */ = 5F92A5AE12698944007D2451 /* PBXTextBookmark */;
+			5F92A5AF12698944007D2451 /* PBXTextBookmark */ = 5F92A5AF12698944007D2451 /* PBXTextBookmark */;
+			5F92A5B012698944007D2451 /* PBXTextBookmark */ = 5F92A5B012698944007D2451 /* PBXTextBookmark */;
+			5F92A5B112698944007D2451 /* PBXTextBookmark */ = 5F92A5B112698944007D2451 /* PBXTextBookmark */;
+			5F92A5B212698944007D2451 /* PBXTextBookmark */ = 5F92A5B212698944007D2451 /* PBXTextBookmark */;
+			5F92A5B312698944007D2451 /* XDModelBookmark */ = 5F92A5B312698944007D2451 /* XDModelBookmark */;
+			5F92A5B412698944007D2451 /* PBXTextBookmark */ = 5F92A5B412698944007D2451 /* PBXTextBookmark */;
+			5F92A5B512698944007D2451 /* XCBuildMessageTextBookmark */ = 5F92A5B512698944007D2451 /* XCBuildMessageTextBookmark */;
+			5F92A5B612698944007D2451 /* PBXTextBookmark */ = 5F92A5B612698944007D2451 /* PBXTextBookmark */;
+			5F92A5B712698944007D2451 /* PBXTextBookmark */ = 5F92A5B712698944007D2451 /* PBXTextBookmark */;
+			5F92A5B812698944007D2451 /* PBXTextBookmark */ = 5F92A5B812698944007D2451 /* PBXTextBookmark */;
+			5F92A5B912698944007D2451 /* PBXTextBookmark */ = 5F92A5B912698944007D2451 /* PBXTextBookmark */;
+			5F92A5BA12698944007D2451 /* PBXTextBookmark */ = 5F92A5BA12698944007D2451 /* PBXTextBookmark */;
+			5F92A5BB12698944007D2451 /* PBXTextBookmark */ = 5F92A5BB12698944007D2451 /* PBXTextBookmark */;
+			5F92A5BC12698946007D2451 /* PBXTextBookmark */ = 5F92A5BC12698946007D2451 /* PBXTextBookmark */;
+			5F92A5BD12698946007D2451 /* PBXTextBookmark */ = 5F92A5BD12698946007D2451 /* PBXTextBookmark */;
+			5F92A5BE12698947007D2451 /* PBXTextBookmark */ = 5F92A5BE12698947007D2451 /* PBXTextBookmark */;
+			5F92A5BF12698947007D2451 /* PBXTextBookmark */ = 5F92A5BF12698947007D2451 /* PBXTextBookmark */;
+			5F92A5D0126989C2007D2451 /* PBXTextBookmark */ = 5F92A5D0126989C2007D2451 /* PBXTextBookmark */;
+			5F92A5D1126989C2007D2451 /* PBXTextBookmark */ = 5F92A5D1126989C2007D2451 /* PBXTextBookmark */;
+			5F92A5D2126989C2007D2451 /* PBXTextBookmark */ = 5F92A5D2126989C2007D2451 /* PBXTextBookmark */;
+			5F92A5D3126989C2007D2451 /* PBXTextBookmark */ = 5F92A5D3126989C2007D2451 /* PBXTextBookmark */;
+			5F92A5D4126989C6007D2451 /* PBXTextBookmark */ = 5F92A5D4126989C6007D2451 /* PBXTextBookmark */;
+			5F92A5D5126989C6007D2451 /* PBXTextBookmark */ = 5F92A5D5126989C6007D2451 /* PBXTextBookmark */;
+			5F92A5D6126989C6007D2451 /* PBXTextBookmark */ = 5F92A5D6126989C6007D2451 /* PBXTextBookmark */;
+			5F92A5D7126989C6007D2451 /* PBXTextBookmark */ = 5F92A5D7126989C6007D2451 /* PBXTextBookmark */;
+			5F92A5DB126A28FF007D2451 /* PBXTextBookmark */ = 5F92A5DB126A28FF007D2451 /* PBXTextBookmark */;
+			5F92A5DC126A28FF007D2451 /* PBXTextBookmark */ = 5F92A5DC126A28FF007D2451 /* PBXTextBookmark */;
+			5F92A5DD126A28FF007D2451 /* PBXTextBookmark */ = 5F92A5DD126A28FF007D2451 /* PBXTextBookmark */;
+			5F92A5E0126A2C6B007D2451 /* PBXTextBookmark */ = 5F92A5E0126A2C6B007D2451 /* PBXTextBookmark */;
+			5F92A5E1126A2C6B007D2451 /* PBXTextBookmark */ = 5F92A5E1126A2C6B007D2451 /* PBXTextBookmark */;
+			5F92A5E2126A2C6B007D2451 /* PBXTextBookmark */ = 5F92A5E2126A2C6B007D2451 /* PBXTextBookmark */;
+			5F92A5E7126A2C98007D2451 /* PBXTextBookmark */ = 5F92A5E7126A2C98007D2451 /* PBXTextBookmark */;
+			5F92A5E8126A2C98007D2451 /* PBXTextBookmark */ = 5F92A5E8126A2C98007D2451 /* PBXTextBookmark */;
+			5F92A5E9126A2C98007D2451 /* PBXTextBookmark */ = 5F92A5E9126A2C98007D2451 /* PBXTextBookmark */;
+			5F92A5EE126A2D2F007D2451 /* PBXTextBookmark */ = 5F92A5EE126A2D2F007D2451 /* PBXTextBookmark */;
+			5F92A5EF126A2D2F007D2451 /* PBXTextBookmark */ = 5F92A5EF126A2D2F007D2451 /* PBXTextBookmark */;
+			5F92A5F2126A2D59007D2451 /* PBXTextBookmark */ = 5F92A5F2126A2D59007D2451 /* PBXTextBookmark */;
+			5F92A5F3126A2D59007D2451 /* PBXTextBookmark */ = 5F92A5F3126A2D59007D2451 /* PBXTextBookmark */;
+			5F92A5F4126A2D59007D2451 /* PBXTextBookmark */ = 5F92A5F4126A2D59007D2451 /* PBXTextBookmark */;
+			5F92A5F7126A2E21007D2451 /* PBXTextBookmark */ = 5F92A5F7126A2E21007D2451 /* PBXTextBookmark */;
+			5F92A5F8126A2E21007D2451 /* PBXTextBookmark */ = 5F92A5F8126A2E21007D2451 /* PBXTextBookmark */;
+			5F92A5F9126A2E21007D2451 /* PBXTextBookmark */ = 5F92A5F9126A2E21007D2451 /* PBXTextBookmark */;
+			5F92A5FC126A2F1C007D2451 /* PBXTextBookmark */ = 5F92A5FC126A2F1C007D2451 /* PBXTextBookmark */;
+			5F92A5FD126A2F1C007D2451 /* PBXTextBookmark */ = 5F92A5FD126A2F1C007D2451 /* PBXTextBookmark */;
+			5F92A5FE126A2F1C007D2451 /* PBXTextBookmark */ = 5F92A5FE126A2F1C007D2451 /* PBXTextBookmark */;
+			5F92A603126A2F80007D2451 /* PBXTextBookmark */ = 5F92A603126A2F80007D2451 /* PBXTextBookmark */;
+			5F92A604126A2F80007D2451 /* PBXTextBookmark */ = 5F92A604126A2F80007D2451 /* PBXTextBookmark */;
+			5F92A605126A2F80007D2451 /* PBXTextBookmark */ = 5F92A605126A2F80007D2451 /* PBXTextBookmark */;
+			5F92A608126A2FD1007D2451 /* PBXTextBookmark */ = 5F92A608126A2FD1007D2451 /* PBXTextBookmark */;
+			5F92A60B126A2FF6007D2451 /* PBXTextBookmark */ = 5F92A60B126A2FF6007D2451 /* PBXTextBookmark */;
+			5F92A60E126A3027007D2451 /* PBXTextBookmark */ = 5F92A60E126A3027007D2451 /* PBXTextBookmark */;
+			5F92A613126A313C007D2451 /* PBXTextBookmark */ = 5F92A613126A313C007D2451 /* PBXTextBookmark */;
+			5F92A616126A3181007D2451 /* PBXTextBookmark */ = 5F92A616126A3181007D2451 /* PBXTextBookmark */;
+			5F92A619126A32B6007D2451 /* PBXTextBookmark */ = 5F92A619126A32B6007D2451 /* PBXTextBookmark */;
+			5F92A61C126A32F4007D2451 /* PBXTextBookmark */ = 5F92A61C126A32F4007D2451 /* PBXTextBookmark */;
+			5F92A629126A3F0E007D2451 /* PBXTextBookmark */ = 5F92A629126A3F0E007D2451 /* PBXTextBookmark */;
+			5F92A62A126A3F0E007D2451 /* PBXTextBookmark */ = 5F92A62A126A3F0E007D2451 /* PBXTextBookmark */;
+			5F92A62B126A3F0E007D2451 /* PBXTextBookmark */ = 5F92A62B126A3F0E007D2451 /* PBXTextBookmark */;
+			5F92A62C126A3F0E007D2451 /* PBXTextBookmark */ = 5F92A62C126A3F0E007D2451 /* PBXTextBookmark */;
+			5F92A62D126A3F0E007D2451 /* PBXTextBookmark */ = 5F92A62D126A3F0E007D2451 /* PBXTextBookmark */;
+			5F92A62E126A3F0E007D2451 /* PBXTextBookmark */ = 5F92A62E126A3F0E007D2451 /* PBXTextBookmark */;
+			5F92A639126A3F2F007D2451 /* PBXTextBookmark */ = 5F92A639126A3F2F007D2451 /* PBXTextBookmark */;
+			5F92A63A126A3F2F007D2451 /* PBXTextBookmark */ = 5F92A63A126A3F2F007D2451 /* PBXTextBookmark */;
+			5F92A63B126A3F2F007D2451 /* PBXTextBookmark */ = 5F92A63B126A3F2F007D2451 /* PBXTextBookmark */;
+			5F92A63E126A4035007D2451 /* PBXTextBookmark */ = 5F92A63E126A4035007D2451 /* PBXTextBookmark */;
+			5F92A641126A4067007D2451 /* PBXTextBookmark */ = 5F92A641126A4067007D2451 /* PBXTextBookmark */;
+			5F92A644126A40B7007D2451 /* PBXTextBookmark */ = 5F92A644126A40B7007D2451 /* PBXTextBookmark */;
+			5F92A645126A411D007D2451 /* PBXTextBookmark */ = 5F92A645126A411D007D2451 /* PBXTextBookmark */;
+			5F92A646126A411D007D2451 /* PBXTextBookmark */ = 5F92A646126A411D007D2451 /* PBXTextBookmark */;
+			5F92A647126A411D007D2451 /* PBXTextBookmark */ = 5F92A647126A411D007D2451 /* PBXTextBookmark */;
+			5F92A648126A411D007D2451 /* PBXTextBookmark */ = 5F92A648126A411D007D2451 /* PBXTextBookmark */;
+			5F92A649126A411D007D2451 /* PBXTextBookmark */ = 5F92A649126A411D007D2451 /* PBXTextBookmark */;
+			5F92A64A126A4122007D2451 /* PBXTextBookmark */ = 5F92A64A126A4122007D2451 /* PBXTextBookmark */;
+			5F92A64F126A414E007D2451 /* PBXTextBookmark */ = 5F92A64F126A414E007D2451 /* PBXTextBookmark */;
+			5F92A652126A41A9007D2451 /* PBXTextBookmark */ = 5F92A652126A41A9007D2451 /* PBXTextBookmark */;
+			5F92A653126A41A9007D2451 /* PBXTextBookmark */ = 5F92A653126A41A9007D2451 /* PBXTextBookmark */;
+			5F92A654126A41BA007D2451 /* PBXTextBookmark */ = 5F92A654126A41BA007D2451 /* PBXTextBookmark */;
+			5F92A659126A41F3007D2451 /* PBXTextBookmark */ = 5F92A659126A41F3007D2451 /* PBXTextBookmark */;
+			5F92A660126A425C007D2451 /* PBXTextBookmark */ = 5F92A660126A425C007D2451 /* PBXTextBookmark */;
+			5F92A663126A42BB007D2451 /* PBXTextBookmark */ = 5F92A663126A42BB007D2451 /* PBXTextBookmark */;
+			5F92A664126A42BB007D2451 /* PBXTextBookmark */ = 5F92A664126A42BB007D2451 /* PBXTextBookmark */;
+			5F92A669126A42DA007D2451 /* PBXTextBookmark */ = 5F92A669126A42DA007D2451 /* PBXTextBookmark */;
 			5F94EB9D1267F1A30080CEDD = 5F94EB9D1267F1A30080CEDD /* PBXTextBookmark */;
 			5F94EC391267F8C90080CEDD = 5F94EC391267F8C90080CEDD /* PBXTextBookmark */;
 			5F94EC401267F9B70080CEDD = 5F94EC401267F9B70080CEDD /* PBXTextBookmark */;
@@ -618,7 +702,7 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
-	5F0894EA12640E6000EDE197 /* RootViewController.m:257 */ = {
+	5F0894EA12640E6000EDE197 /* RootViewController.m:254 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -630,7 +714,7 @@
 		functionName = "-tableView:didSelectRowAtIndexPath:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 257;
+		lineNumber = 254;
 		location = TopDish;
 		modificationTime = 308629004.537139;
 		originalNumberOfMultipleMatches = 1;
@@ -638,16 +722,16 @@
 	};
 	5F08954B12641D6100EDE197 /* SettingsViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {818, 375}}";
-			sepNavSelRange = "{276, 0}";
-			sepNavVisRange = "{0, 337}";
+			sepNavIntBoundsRect = "{{0, 0}, {852, 488}}";
+			sepNavSelRange = "{477, 0}";
+			sepNavVisRange = "{0, 741}";
 		};
 	};
 	5F08954C12641D6100EDE197 /* SettingsViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {852, 465}}";
-			sepNavSelRange = "{220, 12}";
-			sepNavVisRange = "{0, 321}";
+			sepNavIntBoundsRect = "{{0, 0}, {852, 884}}";
+			sepNavSelRange = "{1100, 0}";
+			sepNavVisRange = "{771, 585}";
 		};
 	};
 	5F08955912641E8500EDE197 /* PBXTextBookmark */ = {
@@ -665,7 +749,7 @@
 		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 15";
 		rLen = 0;
-		rLoc = 312;
+		rLoc = 878;
 		rType = 0;
 		vrLen = 332;
 		vrLoc = 0;
@@ -675,16 +759,16 @@
 		fRef = 5F08954B12641D6100EDE197 /* SettingsViewController.h */;
 		name = "SettingsViewController.h: 12";
 		rLen = 0;
-		rLoc = 247;
+		rLoc = 367;
 		rType = 0;
 		vrLen = 337;
 		vrLoc = 0;
 	};
 	5F7AA19C125D833200843F4A /* NearbyMapViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {964, 1365}}";
-			sepNavSelRange = "{2607, 0}";
-			sepNavVisRange = "{2064, 782}";
+			sepNavIntBoundsRect = "{{0, 0}, {964, 1352}}";
+			sepNavSelRange = "{1421, 8}";
+			sepNavVisRange = "{1306, 758}";
 		};
 	};
 	5F7AA19D125D833200843F4A /* NearbyMapViewController.h */ = {
@@ -752,9 +836,9 @@
 	};
 	5F89EFB9125930AF00959D05 /* SBJsonBase.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {777, 1027}}";
-			sepNavSelRange = "{2602, 0}";
-			sepNavVisRange = "{1850, 903}";
+			sepNavIntBoundsRect = "{{0, 0}, {850, 1027}}";
+			sepNavSelRange = "{1782, 66}";
+			sepNavVisRange = "{1847, 898}";
 		};
 	};
 	5F89EFBB125930AF00959D05 /* SBJsonParser.m */ = {
@@ -831,9 +915,9 @@
 	};
 	5F89F32B12598F9C00959D05 /* asyncimageview.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {901, 1274}}";
-			sepNavSelRange = "{1698, 0}";
-			sepNavVisRange = "{989, 946}";
+			sepNavIntBoundsRect = "{{0, 0}, {901, 1209}}";
+			sepNavSelRange = "{1876, 0}";
+			sepNavVisRange = "{1667, 963}";
 		};
 	};
 	5F89F438125ACACA00959D05 /* PBXBookmark */ = {
@@ -976,7 +1060,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 210;
+		rLoc = 206;
 		rType = 1;
 	};
 	5F92A3BE1269604A007D2451 /* PBXTextBookmark */ = {
@@ -994,7 +1078,7 @@
 		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
 		name = "RootViewController.m: 363";
 		rLen = 0;
-		rLoc = 13581;
+		rLoc = 13599;
 		rType = 0;
 		vrLen = 829;
 		vrLoc = 13059;
@@ -1147,7 +1231,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		rLen = 4;
-		rLoc = 5208;
+		rLoc = 5302;
 		rType = 0;
 	};
 	5F92A3D512696160007D2451 /* PBXTextBookmark */ = {
@@ -1155,7 +1239,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 140";
 		rLen = 4;
-		rLoc = 5208;
+		rLoc = 5302;
 		rType = 0;
 		vrLen = 930;
 		vrLoc = 3433;
@@ -1185,7 +1269,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 141";
 		rLen = 0;
-		rLoc = 5337;
+		rLoc = 5431;
 		rType = 0;
 		vrLen = 1341;
 		vrLoc = 3022;
@@ -1205,7 +1289,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 139";
 		rLen = 0;
-		rLoc = 5204;
+		rLoc = 5298;
 		rType = 0;
 		vrLen = 1440;
 		vrLoc = 2945;
@@ -1313,7 +1397,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 163;
+		rLoc = 165;
 		rType = 1;
 	};
 	5F92A3F2126963F7007D2451 /* PBXTextBookmark */ = {
@@ -1321,7 +1405,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 140";
 		rLen = 0;
-		rLoc = 5203;
+		rLoc = 5297;
 		rType = 0;
 		vrLen = 872;
 		vrLoc = 3545;
@@ -1330,7 +1414,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		rLen = 0;
-		rLoc = 5203;
+		rLoc = 5297;
 		rType = 0;
 	};
 	5F92A3F4126963F7007D2451 /* PBXTextBookmark */ = {
@@ -1338,7 +1422,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 140";
 		rLen = 0;
-		rLoc = 5203;
+		rLoc = 5297;
 		rType = 0;
 		vrLen = 872;
 		vrLoc = 3545;
@@ -1448,7 +1532,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 142";
 		rLen = 0;
-		rLoc = 5203;
+		rLoc = 5297;
 		rType = 0;
 		vrLen = 872;
 		vrLoc = 3697;
@@ -1468,7 +1552,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 140";
 		rLen = 0;
-		rLoc = 4693;
+		rLoc = 4787;
 		rType = 0;
 		vrLen = 656;
 		vrLoc = 244;
@@ -1695,7 +1779,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 148";
 		rLen = 0;
-		rLoc = 5203;
+		rLoc = 5297;
 		rType = 0;
 		vrLen = 1068;
 		vrLoc = 3521;
@@ -1722,7 +1806,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 152";
 		rLen = 0;
-		rLoc = 4957;
+		rLoc = 5051;
 		rType = 0;
 		vrLen = 1565;
 		vrLoc = 3751;
@@ -1742,7 +1826,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 152";
 		rLen = 0;
-		rLoc = 4957;
+		rLoc = 5051;
 		rType = 0;
 		vrLen = 1387;
 		vrLoc = 3929;
@@ -1762,7 +1846,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 5203;
+		rLoc = 5297;
 		rType = 0;
 		vrLen = 990;
 		vrLoc = 3601;
@@ -1792,7 +1876,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 152";
 		rLen = 0;
-		rLoc = 4957;
+		rLoc = 5051;
 		rType = 0;
 		vrLen = 1387;
 		vrLoc = 3929;
@@ -1802,7 +1886,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 149";
 		rLen = 0;
-		rLoc = 4804;
+		rLoc = 4898;
 		rType = 0;
 		vrLen = 1505;
 		vrLoc = 3816;
@@ -1832,7 +1916,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 149";
 		rLen = 0;
-		rLoc = 4804;
+		rLoc = 4898;
 		rType = 0;
 		vrLen = 1500;
 		vrLoc = 3816;
@@ -1842,7 +1926,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 148";
 		rLen = 0;
-		rLoc = 4725;
+		rLoc = 4819;
 		rType = 0;
 		vrLen = 1511;
 		vrLoc = 3781;
@@ -1872,7 +1956,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 149";
 		rLen = 0;
-		rLoc = 4797;
+		rLoc = 4891;
 		rType = 0;
 		vrLen = 1535;
 		vrLoc = 3781;
@@ -1882,7 +1966,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 157";
 		rLen = 0;
-		rLoc = 5203;
+		rLoc = 5297;
 		rType = 0;
 		vrLen = 1537;
 		vrLoc = 3816;
@@ -1902,7 +1986,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 5203;
+		rLoc = 5297;
 		rType = 0;
 		vrLen = 1585;
 		vrLoc = 3903;
@@ -1922,7 +2006,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 5203;
+		rLoc = 5297;
 		rType = 0;
 		vrLen = 1336;
 		vrLoc = 3986;
@@ -1942,7 +2026,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 154";
 		rLen = 0;
-		rLoc = 5203;
+		rLoc = 5297;
 		rType = 0;
 		vrLen = 1279;
 		vrLoc = 4041;
@@ -1962,7 +2046,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 154";
 		rLen = 0;
-		rLoc = 5203;
+		rLoc = 5297;
 		rType = 0;
 		vrLen = 1280;
 		vrLoc = 4041;
@@ -1982,7 +2066,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 154";
 		rLen = 0;
-		rLoc = 5203;
+		rLoc = 5297;
 		rType = 0;
 		vrLen = 1247;
 		vrLoc = 4041;
@@ -2032,7 +2116,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 152";
 		rLen = 0;
-		rLoc = 4948;
+		rLoc = 5042;
 		rType = 0;
 		vrLen = 1274;
 		vrLoc = 4041;
@@ -2042,7 +2126,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 151";
 		rLen = 0;
-		rLoc = 4948;
+		rLoc = 5042;
 		rType = 0;
 		vrLen = 1317;
 		vrLoc = 4042;
@@ -2062,7 +2146,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 151";
 		rLen = 0;
-		rLoc = 4948;
+		rLoc = 5042;
 		rType = 0;
 		vrLen = 1317;
 		vrLoc = 4042;
@@ -2102,7 +2186,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 160";
 		rLen = 0;
-		rLoc = 5203;
+		rLoc = 5297;
 		rType = 0;
 		vrLen = 1042;
 		vrLoc = 3754;
@@ -2189,7 +2273,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 149";
 		rLen = 0;
-		rLoc = 4695;
+		rLoc = 4789;
 		rType = 0;
 		vrLen = 1505;
 		vrLoc = 3754;
@@ -2199,7 +2283,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 149";
 		rLen = 0;
-		rLoc = 4695;
+		rLoc = 4789;
 		rType = 0;
 		vrLen = 1319;
 		vrLoc = 4122;
@@ -2219,7 +2303,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 5204;
+		rLoc = 5298;
 		rType = 0;
 		vrLen = 1343;
 		vrLoc = 3983;
@@ -2239,7 +2323,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 155";
 		rLen = 177;
-		rLoc = 5027;
+		rLoc = 5121;
 		rType = 0;
 		vrLen = 1426;
 		vrLoc = 4009;
@@ -2259,7 +2343,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 155";
 		rLen = 0;
-		rLoc = 5027;
+		rLoc = 5121;
 		rType = 0;
 		vrLen = 1373;
 		vrLoc = 4066;
@@ -2279,7 +2363,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 153";
 		rLen = 0;
-		rLoc = 4948;
+		rLoc = 5042;
 		rType = 0;
 		vrLen = 1362;
 		vrLoc = 4066;
@@ -2309,7 +2393,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 151";
 		rLen = 0;
-		rLoc = 4870;
+		rLoc = 4964;
 		rType = 0;
 		vrLen = 1367;
 		vrLoc = 4066;
@@ -2319,7 +2403,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 151";
 		rLen = 0;
-		rLoc = 4870;
+		rLoc = 4964;
 		rType = 0;
 		vrLen = 1424;
 		vrLoc = 4009;
@@ -2339,7 +2423,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 152";
 		rLen = 0;
-		rLoc = 4893;
+		rLoc = 4987;
 		rType = 0;
 		vrLen = 1467;
 		vrLoc = 4009;
@@ -2369,7 +2453,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 143";
 		rLen = 18;
-		rLoc = 4574;
+		rLoc = 4668;
 		rType = 0;
 		vrLen = 1467;
 		vrLoc = 4009;
@@ -2379,7 +2463,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 151";
 		rLen = 0;
-		rLoc = 4891;
+		rLoc = 4985;
 		rType = 0;
 		vrLen = 1431;
 		vrLoc = 4009;
@@ -2399,7 +2483,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 151";
 		rLen = 0;
-		rLoc = 4890;
+		rLoc = 4984;
 		rType = 0;
 		vrLen = 1326;
 		vrLoc = 4121;
@@ -2419,7 +2503,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 151";
 		rLen = 0;
-		rLoc = 4890;
+		rLoc = 4984;
 		rType = 0;
 		vrLen = 1326;
 		vrLoc = 4121;
@@ -2456,7 +2540,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 162";
 		rLen = 0;
-		rLoc = 5204;
+		rLoc = 5298;
 		rType = 0;
 		vrLen = 967;
 		vrLoc = 3831;
@@ -2476,7 +2560,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 162";
 		rLen = 0;
-		rLoc = 5204;
+		rLoc = 5298;
 		rType = 0;
 		vrLen = 967;
 		vrLoc = 3831;
@@ -2506,7 +2590,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 151";
 		rLen = 0;
-		rLoc = 4890;
+		rLoc = 4984;
 		rType = 0;
 		vrLen = 1326;
 		vrLoc = 4121;
@@ -2516,7 +2600,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 151";
 		rLen = 0;
-		rLoc = 4890;
+		rLoc = 4984;
 		rType = 0;
 		vrLen = 1321;
 		vrLoc = 4121;
@@ -2526,7 +2610,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 151";
 		rLen = 0;
-		rLoc = 4890;
+		rLoc = 4984;
 		rType = 0;
 		vrLen = 1321;
 		vrLoc = 4121;
@@ -2583,7 +2667,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 162";
 		rLen = 0;
-		rLoc = 5204;
+		rLoc = 5298;
 		rType = 0;
 		vrLen = 985;
 		vrLoc = 4261;
@@ -2690,7 +2774,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 161";
 		rLen = 0;
-		rLoc = 5204;
+		rLoc = 5298;
 		rType = 0;
 		vrLen = 812;
 		vrLoc = 4559;
@@ -2710,7 +2794,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 154";
 		rLen = 0;
-		rLoc = 4974;
+		rLoc = 5068;
 		rType = 0;
 		vrLen = 1029;
 		vrLoc = 4342;
@@ -2737,7 +2821,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 161";
 		rLen = 0;
-		rLoc = 5204;
+		rLoc = 5298;
 		rType = 0;
 		vrLen = 812;
 		vrLoc = 4559;
@@ -2756,7 +2840,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		rLen = 8;
-		rLoc = 4871;
+		rLoc = 4965;
 		rType = 0;
 	};
 	5F92A5041269760E007D2451 /* PBXTextBookmark */ = {
@@ -2764,7 +2848,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 150";
 		rLen = 74;
-		rLoc = 4818;
+		rLoc = 4912;
 		rType = 0;
 		vrLen = 851;
 		vrLoc = 4523;
@@ -2824,7 +2908,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 163";
 		rLen = 0;
-		rLoc = 5204;
+		rLoc = 5298;
 		rType = 0;
 		vrLen = 812;
 		vrLoc = 4626;
@@ -2834,7 +2918,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 152";
 		rLen = 74;
-		rLoc = 4818;
+		rLoc = 4912;
 		rType = 0;
 		vrLen = 818;
 		vrLoc = 4626;
@@ -2864,7 +2948,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 155";
 		rLen = 0;
-		rLoc = 4948;
+		rLoc = 5042;
 		rType = 0;
 		vrLen = 1262;
 		vrLoc = 4201;
@@ -2874,7 +2958,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 155";
 		rLen = 0;
-		rLoc = 4948;
+		rLoc = 5042;
 		rType = 0;
 		vrLen = 1325;
 		vrLoc = 4202;
@@ -2884,7 +2968,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 155";
 		rLen = 0;
-		rLoc = 4948;
+		rLoc = 5042;
 		rType = 0;
 		vrLen = 1325;
 		vrLoc = 4202;
@@ -2894,7 +2978,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 155";
 		rLen = 0;
-		rLoc = 4948;
+		rLoc = 5042;
 		rType = 0;
 		vrLen = 1325;
 		vrLoc = 4202;
@@ -2924,7 +3008,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 155";
 		rLen = 0;
-		rLoc = 4948;
+		rLoc = 5042;
 		rType = 0;
 		vrLen = 1295;
 		vrLoc = 4146;
@@ -2934,7 +3018,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 5024;
+		rLoc = 5118;
 		rType = 0;
 		vrLen = 1349;
 		vrLoc = 4201;
@@ -2944,7 +3028,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 5024;
+		rLoc = 5118;
 		rType = 0;
 		vrLen = 1348;
 		vrLoc = 4202;
@@ -2954,7 +3038,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 5024;
+		rLoc = 5118;
 		rType = 0;
 		vrLen = 1348;
 		vrLoc = 4202;
@@ -2964,7 +3048,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 5024;
+		rLoc = 5118;
 		rType = 0;
 		vrLen = 1348;
 		vrLoc = 4202;
@@ -2974,7 +3058,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 5024;
+		rLoc = 5118;
 		rType = 0;
 		vrLen = 1348;
 		vrLoc = 4202;
@@ -2984,7 +3068,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 5024;
+		rLoc = 5118;
 		rType = 0;
 		vrLen = 1240;
 		vrLoc = 4201;
@@ -2994,7 +3078,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 162";
 		rLen = 0;
-		rLoc = 5204;
+		rLoc = 5298;
 		rType = 0;
 		vrLen = 620;
 		vrLoc = 4624;
@@ -3023,7 +3107,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		rLen = 0;
-		rLoc = 5024;
+		rLoc = 5118;
 		rType = 0;
 	};
 	5F92A53D12697A9C007D2451 /* PBXTextBookmark */ = {
@@ -3031,7 +3115,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 5024;
+		rLoc = 5118;
 		rType = 0;
 		vrLen = 817;
 		vrLoc = 4624;
@@ -3041,7 +3125,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 5024;
+		rLoc = 5118;
 		rType = 0;
 		vrLen = 1240;
 		vrLoc = 4201;
@@ -3071,7 +3155,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 160";
 		rLen = 0;
-		rLoc = 5204;
+		rLoc = 5298;
 		rType = 0;
 		vrLen = 817;
 		vrLoc = 4467;
@@ -3082,7 +3166,7 @@
 		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 17;
+		rLoc = 66;
 		rType = 1;
 	};
 	5F92A5541269839A007D2451 /* PBXTextBookmark */ = {
@@ -3090,7 +3174,7 @@
 		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 18";
 		rLen = 0;
-		rLoc = 316;
+		rLoc = 1351;
 		rType = 0;
 		vrLen = 321;
 		vrLoc = 0;
@@ -3100,7 +3184,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 154";
 		rLen = 0;
-		rLoc = 5024;
+		rLoc = 5118;
 		rType = 0;
 		vrLen = 817;
 		vrLoc = 4467;
@@ -3252,6 +3336,988 @@
 		vrLen = 321;
 		vrLoc = 0;
 	};
+	5F92A5AD12698944007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 18";
+		rLen = 0;
+		rLoc = 1351;
+		rType = 0;
+		vrLen = 321;
+		vrLoc = 0;
+	};
+	5F92A5AE12698944007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FBB991E12625A5A00141693 /* Dish.h */;
+		name = "Dish.h: 21";
+		rLen = 50;
+		rLoc = 448;
+		rType = 0;
+		vrLen = 760;
+		vrLoc = 0;
+	};
+	5F92A5AF12698944007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FBB9661126233DB00141693 /* ScrollingDishDetailViewController.h */;
+		name = "ScrollingDishDetailViewController.h: 27";
+		rLen = 27;
+		rLoc = 656;
+		rType = 0;
+		vrLen = 889;
+		vrLoc = 178;
+	};
+	5F92A5B012698944007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FBB9AA01264036500141693 /* CommentsTableViewController.h */;
+		name = "CommentsTableViewController.h: 29";
+		rLen = 0;
+		rLoc = 631;
+		rType = 0;
+		vrLen = 808;
+		vrLoc = 97;
+	};
+	5F92A5B112698944007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
+		name = "ScrollingDishDetailViewController.m: 22";
+		rLen = 0;
+		rLoc = 534;
+		rType = 0;
+		vrLen = 732;
+		vrLoc = 91;
+	};
+	5F92A5B212698944007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* TopDishAppDelegate.m */;
+		name = "TopDishAppDelegate.m: 269";
+		rLen = 0;
+		rLoc = 10796;
+		rType = 0;
+		vrLen = 1012;
+		vrLoc = 10222;
+	};
+	5F92A5B312698944007D2451 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 28860B760F44E54D00985440 /* TopDish.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 1;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					22.000000,
+					122.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {834, 220}}",
+						"{{839, 0}, {439, 220}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {1278, 220}}",
+						"{{0, 225}, {1278, 152}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {272, 220}}",
+						"{{277, 0}, {557, 220}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					294.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-272, 167}, {1263, 137}}";
+			"xdesign model selected entities key" = (
+				"<XDPMEntity: 0x2746fa0>{name=Dish, package=}",
+			);
+			"xdesign model selected properties key" = (
+				"<XDPMRelationship: 0x3dc6050>{name=restaurant, type=(null)}",
+			);
+		};
+	};
+	5F92A5B412698944007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
+		name = "CommentsTableViewController.m: 180";
+		rLen = 82;
+		rLoc = 7754;
+		rType = 0;
+		vrLen = 732;
+		vrLoc = 7362;
+	};
+	5F92A5B512698944007D2451 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "'NSData' may not respond to '-appendData:'";
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 0;
+		rLoc = 369;
+		rType = 1;
+	};
+	5F92A5B612698944007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 371";
+		rLen = 83;
+		rLoc = 13684;
+		rType = 0;
+		vrLen = 664;
+		vrLoc = 13276;
+	};
+	5F92A5B712698944007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 11";
+		rLen = 0;
+		rLoc = 219;
+		rType = 0;
+		vrLen = 321;
+		vrLoc = 0;
+	};
+	5F92A5B812698944007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
+		name = "ScrollingDishDetailViewController.m: 153";
+		rLen = 0;
+		rLoc = 4991;
+		rType = 0;
+		vrLen = 849;
+		vrLoc = 4497;
+	};
+	5F92A5B912698944007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
+		name = "CommentsTableViewController.m: 182";
+		rLen = 0;
+		rLoc = 7836;
+		rType = 0;
+		vrLen = 751;
+		vrLoc = 7139;
+	};
+	5F92A5BA12698944007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		rLen = 0;
+		rLoc = 13767;
+		rType = 0;
+	};
+	5F92A5BB12698944007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 373";
+		rLen = 0;
+		rLoc = 13767;
+		rType = 0;
+		vrLen = 685;
+		vrLoc = 13254;
+	};
+	5F92A5BC12698946007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 371";
+		rLen = 83;
+		rLoc = 13684;
+		rType = 0;
+		vrLen = 664;
+		vrLoc = 13276;
+	};
+	5F92A5BD12698946007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 373";
+		rLen = 0;
+		rLoc = 13767;
+		rType = 0;
+		vrLen = 685;
+		vrLoc = 13254;
+	};
+	5F92A5BE12698947007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 371";
+		rLen = 83;
+		rLoc = 13684;
+		rType = 0;
+		vrLen = 664;
+		vrLoc = 13276;
+	};
+	5F92A5BF12698947007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 373";
+		rLen = 0;
+		rLoc = 13767;
+		rType = 0;
+		vrLen = 685;
+		vrLoc = 13254;
+	};
+	5F92A5D0126989C2007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 367";
+		rLen = 83;
+		rLoc = 13684;
+		rType = 0;
+		vrLen = 664;
+		vrLoc = 13206;
+	};
+	5F92A5D1126989C2007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 369";
+		rLen = 0;
+		rLoc = 13767;
+		rType = 0;
+		vrLen = 685;
+		vrLoc = 13184;
+	};
+	5F92A5D2126989C2007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F7AA19C125D833200843F4A /* NearbyMapViewController.m */;
+		rLen = 8;
+		rLoc = 1421;
+		rType = 0;
+	};
+	5F92A5D3126989C2007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F7AA19C125D833200843F4A /* NearbyMapViewController.m */;
+		name = "NearbyMapViewController.m: 56";
+		rLen = 8;
+		rLoc = 1421;
+		rType = 0;
+		vrLen = 647;
+		vrLoc = 1143;
+	};
+	5F92A5D4126989C6007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 19";
+		rLen = 0;
+		rLoc = 1356;
+		rType = 0;
+		vrLen = 321;
+		vrLoc = 0;
+	};
+	5F92A5D5126989C6007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 156";
+		rLen = 0;
+		rLoc = 4952;
+		rType = 0;
+		vrLen = 1178;
+		vrLoc = 4423;
+	};
+	5F92A5D6126989C6007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* TopDishAppDelegate.m */;
+		name = "TopDishAppDelegate.m: 29";
+		rLen = 0;
+		rLoc = 608;
+		rType = 0;
+		vrLen = 1590;
+		vrLoc = 418;
+	};
+	5F92A5D7126989C6007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* TopDishAppDelegate.m */;
+		name = "TopDishAppDelegate.m: 29";
+		rLen = 0;
+		rLoc = 608;
+		rType = 0;
+		vrLen = 1391;
+		vrLoc = 2747;
+	};
+	5F92A5DB126A28FF007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* TopDishAppDelegate.m */;
+		name = "TopDishAppDelegate.m: 29";
+		rLen = 0;
+		rLoc = 608;
+		rType = 0;
+		vrLen = 1391;
+		vrLoc = 2747;
+	};
+	5F92A5DC126A28FF007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 19";
+		rLen = 0;
+		rLoc = 1356;
+		rType = 0;
+		vrLen = 321;
+		vrLoc = 0;
+	};
+	5F92A5DD126A28FF007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954B12641D6100EDE197 /* SettingsViewController.h */;
+		name = "SettingsViewController.h: 12";
+		rLen = 0;
+		rLoc = 367;
+		rType = 0;
+		vrLen = 337;
+		vrLoc = 0;
+	};
+	5F92A5E0126A2C6B007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954B12641D6100EDE197 /* SettingsViewController.h */;
+		name = "SettingsViewController.h: 12";
+		rLen = 119;
+		rLoc = 247;
+		rType = 0;
+		vrLen = 622;
+		vrLoc = 0;
+	};
+	5F92A5E1126A2C6B007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 19";
+		rLen = 0;
+		rLoc = 1356;
+		rType = 0;
+		vrLen = 321;
+		vrLoc = 0;
+	};
+	5F92A5E2126A2C6B007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 21";
+		rLen = 0;
+		rLoc = 798;
+		rType = 0;
+		vrLen = 562;
+		vrLoc = 0;
+	};
+	5F92A5E7126A2C98007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954B12641D6100EDE197 /* SettingsViewController.h */;
+		name = "SettingsViewController.h: 20";
+		rLen = 0;
+		rLoc = 431;
+		rType = 0;
+		vrLen = 682;
+		vrLoc = 0;
+	};
+	5F92A5E8126A2C98007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 17";
+		rLen = 250;
+		rLoc = 325;
+		rType = 0;
+		vrLen = 562;
+		vrLoc = 0;
+	};
+	5F92A5E9126A2C98007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 20";
+		rLen = 0;
+		rLoc = 581;
+		rType = 0;
+		vrLen = 562;
+		vrLoc = 0;
+	};
+	5F92A5EE126A2D2F007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 367";
+		rLen = 83;
+		rLoc = 13684;
+		rType = 0;
+		vrLen = 794;
+		vrLoc = 13493;
+	};
+	5F92A5EF126A2D2F007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F7AA19C125D833200843F4A /* NearbyMapViewController.m */;
+		name = "NearbyMapViewController.m: 56";
+		rLen = 8;
+		rLoc = 1421;
+		rType = 0;
+		vrLen = 775;
+		vrLoc = 1219;
+	};
+	5F92A5F2126A2D59007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954B12641D6100EDE197 /* SettingsViewController.h */;
+		name = "SettingsViewController.h: 13";
+		rLen = 8;
+		rLoc = 288;
+		rType = 0;
+		vrLen = 682;
+		vrLoc = 0;
+	};
+	5F92A5F3126A2D59007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 26";
+		rLen = 0;
+		rLoc = 878;
+		rType = 0;
+		vrLen = 562;
+		vrLoc = 0;
+	};
+	5F92A5F4126A2D59007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 21";
+		rLen = 0;
+		rLoc = 798;
+		rType = 0;
+		vrLen = 562;
+		vrLoc = 0;
+	};
+	5F92A5F7126A2E21007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F89EFB9125930AF00959D05 /* SBJsonBase.m */;
+		name = "SBJsonBase.m: 46";
+		rLen = 67;
+		rLoc = 1782;
+		rType = 0;
+		vrLen = 974;
+		vrLoc = 1779;
+	};
+	5F92A5F8126A2E21007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 31";
+		rLen = 0;
+		rLoc = 1307;
+		rType = 0;
+		vrLen = 630;
+		vrLoc = 0;
+	};
+	5F92A5F9126A2E21007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 33";
+		rLen = 0;
+		rLoc = 1326;
+		rType = 0;
+		vrLen = 662;
+		vrLoc = 35;
+	};
+	5F92A5FC126A2F1C007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 33";
+		rLen = 0;
+		rLoc = 1326;
+		rType = 0;
+		vrLen = 662;
+		vrLoc = 35;
+	};
+	5F92A5FD126A2F1C007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954B12641D6100EDE197 /* SettingsViewController.h */;
+		name = "SettingsViewController.h: 13";
+		rLen = 8;
+		rLoc = 288;
+		rType = 0;
+		vrLen = 682;
+		vrLoc = 0;
+	};
+	5F92A5FE126A2F1C007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954B12641D6100EDE197 /* SettingsViewController.h */;
+		name = "SettingsViewController.h: 13";
+		rLen = 0;
+		rLoc = 288;
+		rType = 0;
+		vrLen = 718;
+		vrLoc = 0;
+	};
+	5F92A603126A2F80007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954B12641D6100EDE197 /* SettingsViewController.h */;
+		name = "SettingsViewController.h: 13";
+		rLen = 0;
+		rLoc = 288;
+		rType = 0;
+		vrLen = 718;
+		vrLoc = 0;
+	};
+	5F92A604126A2F80007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 33";
+		rLen = 0;
+		rLoc = 1326;
+		rType = 0;
+		vrLen = 665;
+		vrLoc = 32;
+	};
+	5F92A605126A2F80007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 31";
+		rLen = 0;
+		rLoc = 1326;
+		rType = 0;
+		vrLen = 606;
+		vrLoc = 0;
+	};
+	5F92A608126A2FD1007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 19";
+		rLen = 0;
+		rLoc = 533;
+		rType = 0;
+		vrLen = 774;
+		vrLoc = 3;
+	};
+	5F92A60B126A2FF6007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 24";
+		rLen = 0;
+		rLoc = 708;
+		rType = 0;
+		vrLen = 750;
+		vrLoc = 35;
+	};
+	5F92A60E126A3027007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 28";
+		rLen = 0;
+		rLoc = 798;
+		rType = 0;
+		vrLen = 710;
+		vrLoc = 139;
+	};
+	5F92A613126A313C007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 18";
+		rLen = 0;
+		rLoc = 462;
+		rType = 0;
+		vrLen = 753;
+		vrLoc = 142;
+	};
+	5F92A616126A3181007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 25";
+		rLen = 0;
+		rLoc = 643;
+		rType = 0;
+		vrLen = 764;
+		vrLoc = 178;
+	};
+	5F92A619126A32B6007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 21";
+		rLen = 0;
+		rLoc = 462;
+		rType = 0;
+		vrLen = 853;
+		vrLoc = 179;
+	};
+	5F92A61C126A32F4007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 21";
+		rLen = 0;
+		rLoc = 462;
+		rType = 0;
+		vrLen = 803;
+		vrLoc = 234;
+	};
+	5F92A629126A3F0E007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 368";
+		rLen = 83;
+		rLoc = 13684;
+		rType = 0;
+		vrLen = 1222;
+		vrLoc = 13957;
+	};
+	5F92A62A126A3F0E007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F7AA19C125D833200843F4A /* NearbyMapViewController.m */;
+		name = "NearbyMapViewController.m: 56";
+		rLen = 8;
+		rLoc = 1421;
+		rType = 0;
+		vrLen = 758;
+		vrLoc = 1306;
+	};
+	5F92A62B126A3F0E007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F89EFB9125930AF00959D05 /* SBJsonBase.m */;
+		name = "SBJsonBase.m: 46";
+		rLen = 66;
+		rLoc = 1782;
+		rType = 0;
+		vrLen = 898;
+		vrLoc = 1847;
+	};
+	5F92A62C126A3F0E007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 190";
+		rLen = 88;
+		rLoc = 6050;
+		rType = 0;
+		vrLen = 836;
+		vrLoc = 5570;
+	};
+	5F92A62D126A3F0E007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
+		rLen = 5;
+		rLoc = 4406;
+		rType = 0;
+	};
+	5F92A62E126A3F0E007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
+		name = "ScrollingDishDetailViewController.m: 138";
+		rLen = 0;
+		rLoc = 4296;
+		rType = 0;
+		vrLen = 1277;
+		vrLoc = 3962;
+	};
+	5F92A639126A3F2F007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954B12641D6100EDE197 /* SettingsViewController.h */;
+		name = "SettingsViewController.h: 21";
+		rLen = 0;
+		rLoc = 477;
+		rType = 0;
+		vrLen = 741;
+		vrLoc = 0;
+	};
+	5F92A63A126A3F2F007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 25";
+		rLen = 0;
+		rLoc = 573;
+		rType = 0;
+		vrLen = 891;
+		vrLoc = 139;
+	};
+	5F92A63B126A3F2F007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 36";
+		rLen = 0;
+		rLoc = 797;
+		rType = 0;
+		vrLen = 807;
+		vrLoc = 324;
+	};
+	5F92A63E126A4035007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 49";
+		rLen = 0;
+		rLoc = 989;
+		rType = 0;
+		vrLen = 791;
+		vrLoc = 432;
+	};
+	5F92A641126A4067007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 47";
+		rLen = 0;
+		rLoc = 922;
+		rType = 0;
+		vrLen = 798;
+		vrLoc = 434;
+	};
+	5F92A644126A40B7007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 47";
+		rLen = 0;
+		rLoc = 986;
+		rType = 0;
+		vrLen = 780;
+		vrLoc = 507;
+	};
+	5F92A645126A411D007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 368";
+		rLen = 83;
+		rLoc = 13684;
+		rType = 0;
+		vrLen = 1108;
+		vrLoc = 14375;
+	};
+	5F92A646126A411D007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
+		name = "ScrollingDishDetailViewController.m: 138";
+		rLen = 0;
+		rLoc = 4296;
+		rType = 0;
+		vrLen = 1018;
+		vrLoc = 4281;
+	};
+	5F92A647126A411D007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 367";
+		rLen = 7;
+		rLoc = 13653;
+		rType = 0;
+		vrLen = 769;
+		vrLoc = 13185;
+	};
+	5F92A648126A411D007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F89F32B12598F9C00959D05 /* asyncimageview.m */;
+		rLen = 7;
+		rLoc = 1833;
+		rType = 0;
+	};
+	5F92A649126A411D007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F89F32B12598F9C00959D05 /* asyncimageview.m */;
+		name = "asyncimageview.m: 54";
+		rLen = 0;
+		rLoc = 1876;
+		rType = 0;
+		vrLen = 933;
+		vrLoc = 1263;
+	};
+	5F92A64A126A4122007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 47";
+		rLen = 0;
+		rLoc = 986;
+		rType = 0;
+		vrLen = 780;
+		vrLoc = 507;
+	};
+	5F92A64F126A414E007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 33";
+		rLen = 0;
+		rLoc = 689;
+		rType = 0;
+		vrLen = 790;
+		vrLoc = 552;
+	};
+	5F92A652126A41A9007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 368";
+		rLen = 83;
+		rLoc = 13684;
+		rType = 0;
+		vrLen = 1213;
+		vrLoc = 14603;
+	};
+	5F92A653126A41A9007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F89F32B12598F9C00959D05 /* asyncimageview.m */;
+		name = "asyncimageview.m: 54";
+		rLen = 0;
+		rLoc = 1876;
+		rType = 0;
+		vrLen = 1066;
+		vrLoc = 1373;
+	};
+	5F92A654126A41BA007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 43";
+		rLen = 0;
+		rLoc = 878;
+		rType = 0;
+		vrLen = 793;
+		vrLoc = 549;
+	};
+	5F92A659126A41F3007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 53";
+		rLen = 0;
+		rLoc = 1030;
+		rType = 0;
+		vrLen = 800;
+		vrLoc = 654;
+	};
+	5F92A660126A425C007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 51";
+		rLen = 0;
+		rLoc = 1100;
+		rType = 0;
+		vrLen = 585;
+		vrLoc = 771;
+	};
+	5F92A663126A42BB007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 368";
+		rLen = 83;
+		rLoc = 13684;
+		rType = 0;
+		vrLen = 1052;
+		vrLoc = 14793;
+	};
+	5F92A664126A42BB007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F89F32B12598F9C00959D05 /* asyncimageview.m */;
+		name = "asyncimageview.m: 54";
+		rLen = 0;
+		rLoc = 1876;
+		rType = 0;
+		vrLen = 963;
+		vrLoc = 1667;
+	};
+	5F92A669126A42DA007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 51";
+		rLen = 0;
+		rLoc = 1100;
+		rType = 0;
+		vrLen = 585;
+		vrLoc = 771;
+	};
 	5F94EB9D1267F1A30080CEDD /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 1D3623250D0F684500981E51 /* TopDishAppDelegate.m */;
@@ -3311,7 +4377,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 140";
 		rLen = 0;
-		rLoc = 5335;
+		rLoc = 5429;
 		rType = 0;
 		vrLen = 1338;
 		vrLoc = 3025;
@@ -3390,10 +4456,10 @@
 	};
 	5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            l = \"(Dish *)\";\n            r = \"{2265, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 5346}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {943, 2054}}";
-			sepNavSelRange = "{4886, 0}";
-			sepNavVisRange = "{4486, 849}";
+			sepNavFolds = "{\n    c =     (\n                {\n            l = \"(Dish *)\";\n            r = \"{2265, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 5440}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 2106}}";
+			sepNavSelRange = "{4272, 0}";
+			sepNavVisRange = "{4008, 1099}";
 			sepNavWindowFrame = "{{529, 206}, {726, 567}}";
 		};
 	};
@@ -3420,7 +4486,7 @@
 		fRef = 5F89F32B12598F9C00959D05 /* asyncimageview.m */;
 		name = "asyncimageview.m: 68";
 		rLen = 0;
-		rLoc = 2475;
+		rLoc = 2435;
 		rType = 0;
 		vrLen = 1555;
 		vrLoc = 1675;

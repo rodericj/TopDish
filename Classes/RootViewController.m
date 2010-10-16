@@ -154,10 +154,6 @@
         [[NSBundle mainBundle] loadNibNamed:@"RootControllerTableViewCell" owner:self options:nil];
 		cell = tvCell;
 	}
-//	if ([indexPath row] == 0){
-//		cell.text=@"search";
-//	}
-//	else {
 		
 	//Query the results controller
 	Dish *thisDish = [[self fetchedResultsController] objectAtIndexPath:indexPath];	
@@ -191,6 +187,7 @@
 																		
 	asyncImage.tag = 999;
 	NSURL *url = [NSURL URLWithString: [thisDish dish_photoURL]];
+	//NSURL *url = [NSURL URLWithString:@"http://topdish1.appspot.com/getPhoto?id=84001"];
 	[asyncImage loadImageFromURL:url withImageView:imageView showActivityIndicator:FALSE];
 	[cell.contentView addSubview:asyncImage];
 	
