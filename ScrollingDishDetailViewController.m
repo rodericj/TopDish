@@ -19,6 +19,7 @@
 @synthesize dishImage;
 @synthesize description;
 @synthesize commentsController;
+@synthesize commentSubView;
 
 @synthesize fetchedResultsController=fetchedResultsController_, managedObjectContext=managedObjectContext_;
 
@@ -108,7 +109,7 @@
 	NSLog(@"height of the comments %f", [commentSubView frame].size.height);
 	float descriptionHeight = [description frame].size.height;
 	float commentHeight = [commentSubView frame].size.height;
-	float commentHeight2 = [commentsController.tableView contentSize].height;
+	//float commentHeight2 = [commentsController.tableView contentSize].height;
 
 	float imageHeight = [dishImage frame].size.height;
 
@@ -141,15 +142,15 @@
 	
 	[commentsController setManagedObjectContext:self.managedObjectContext];
 	[commentsController setDishId:[dish dish_id]];
-	
+	//[[dish dish_id] intValue] 
 	
 	[commentsController refreshFromServer];
 	
-	float descriptionHeight = [description frame].size.height;
+	//float descriptionHeight = [description frame].size.height;
 	//float commentHeight = [commentSubView frame].size.height;
 	float commentHeight = [commentsController.tableView contentSize].height;
 	
-	float imageHeight = [dishImage frame].size.height;
+	//float imageHeight = [dishImage frame].size.height;
 	NSLog(@"determine comment height after viewWillAppear %f", commentHeight);
 	//[scrollView setContentSize:CGSizeMake(320, 9000)];
 	//[scrollView setContentSize:CGSizeMake(320, descriptionHeight)];

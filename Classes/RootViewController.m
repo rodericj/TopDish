@@ -25,6 +25,10 @@
 @synthesize fetchedResultsController=fetchedResultsController_, managedObjectContext=managedObjectContext_;
 @synthesize tvCell;
 @synthesize bgImage;
+@synthesize theSearchBar;
+@synthesize theTableView;
+@synthesize tableData;
+@synthesize _responseText;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -340,9 +344,9 @@
 											  inManagedObjectContext:self.managedObjectContext];
 	[fetchRequest setEntity:entity];
 	
-	NSError *error;
-	NSArray *items = [self.managedObjectContext
-					  executeFetchRequest:fetchRequest error:&error];
+//	NSError *error;
+//	NSArray *items = [self.managedObjectContext
+//					  executeFetchRequest:fetchRequest error:&error];
 	
 	[fetchRequest release];	
 	
@@ -364,16 +368,9 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-	NSString *responseText = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	if(_responseText == nil){
 		_responseText = [[NSData alloc] initWithData:data];
 	}
-	else{
-		[_responseText appendData:data];
-	}
-	NSLog(@"done didRecieveData in root view");
-
-	//Add the data that came in to the data we have so far
 }
 
 	

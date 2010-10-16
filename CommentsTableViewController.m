@@ -20,6 +20,9 @@
 @synthesize managedObjectContext;
 @synthesize reviews;
 @synthesize commentCell;
+@synthesize _responseText;
+@synthesize fetchedResultsController;
+
 //#pragma mark -
 //#pragma mark Initialization
 
@@ -145,8 +148,8 @@
 	[fetchRequest setEntity:entity];
 	
 	//NSError *error;
-	NSArray *items = [self.managedObjectContext
-					  executeFetchRequest:fetchRequest error:&error];
+	//NSArray *items = [self.managedObjectContext
+//					  executeFetchRequest:fetchRequest error:&error];
 	
 	[fetchRequest release];	
 	
@@ -177,9 +180,9 @@
 	if(_responseText == nil){
 		_responseText = [[NSData alloc] initWithData:data];
 	}
-	else{
-		[_responseText appendData:data];
-	}
+//	else{
+//		[_responseText appendData:data];
+//	}
 	//Add the data that came in to the data we have so far
 }
 

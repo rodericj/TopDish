@@ -266,10 +266,10 @@
 											  inManagedObjectContext:self.managedObjectContext];
 	[fetchRequest setEntity:entity];
 	
-	NSError *error;
-	NSArray *items = [self.managedObjectContext
-					  executeFetchRequest:fetchRequest error:&error];
-	
+//	NSError *error;
+	//NSArray *items = [self.managedObjectContext
+//					  executeFetchRequest:fetchRequest error:&error];
+//	
 	[fetchRequest release];	
 }
 

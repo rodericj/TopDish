@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="3"/>
+			<integer value="6"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -47,14 +47,16 @@
 						<int key="NSvFlags">290</int>
 						<string key="NSFrameSize">{320, 44}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSMutableArray" key="IBUIItems">
+						<object class="NSArray" key="IBUIItems">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUINavigationItem" id="487776055">
 								<reference key="IBUINavigationBar" ref="724105545"/>
 								<string key="IBUITitle">Top Dish</string>
 								<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="400450776">
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+									<int key="IBUIStyle">2</int>
 									<reference key="IBUINavigationItem" ref="487776055"/>
 									<int key="IBUISystemItemIdentifier">12</int>
 								</object>
@@ -217,7 +219,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>NearbyMapViewController</string>
 					<string>UIResponder</string>
-					<string>{{186, 262}, {320, 480}}</string>
+					<string>{{343, 262}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

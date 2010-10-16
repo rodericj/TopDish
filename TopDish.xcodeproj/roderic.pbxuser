@@ -9,9 +9,9 @@
 	};
 	1D3623250D0F684500981E51 /* TopDishAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1020, 4329}}";
-			sepNavSelRange = "{11294, 10}";
-			sepNavVisRange = "{11274, 450}";
+			sepNavIntBoundsRect = "{{0, 0}, {2021, 4108}}";
+			sepNavSelRange = "{10796, 0}";
+			sepNavVisRange = "{10222, 1012}";
 			sepNavWindowFrame = "{{2, 18}, {883, 542}}";
 		};
 	};
@@ -47,7 +47,7 @@
 					chosenTableWidths = (
 						103.000000,
 						22.000000,
-						41.080078,
+						122.080078,
 					);
 				};
 				UIContextForLayoutManager = {
@@ -57,8 +57,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {588, 218}}",
-							"{{593, 0}, {309, 218}}",
+							"{{0, 0}, {834, 220}}",
+							"{{839, 0}, {439, 220}}",
 						);
 					};
 					diagramSplitGeometry = {
@@ -67,8 +67,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {902, 220}}",
-							"{{0, 225}, {902, 254}}",
+							"{{0, 0}, {1278, 220}}",
+							"{{0, 225}, {1278, 152}}",
 						);
 					};
 					tableSplitGeometry = {
@@ -77,8 +77,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {191, 218}}",
-							"{{196, 0}, {392, 218}}",
+							"{{0, 0}, {272, 220}}",
+							"{{277, 0}, {557, 220}}",
 						);
 					};
 				};
@@ -167,7 +167,7 @@
 					chosenTableWidthsPT = (
 						128.000000,
 						108.110840,
-						129.570801,
+						294.570801,
 					);
 					chosenTableWidthsRT = (
 						128.000000,
@@ -175,7 +175,7 @@
 					);
 				};
 				"xdesign model browser state key - shown/hidden" = 1;
-				"xdesign model diagram view visible rect key" = "{{-84, 167}, {887, 239}}";
+				"xdesign model diagram view visible rect key" = "{{-272, 167}, {1263, 137}}";
 			};
 			sepNavWindowFrame = "{{18, 96}, {902, 615}}";
 		};
@@ -190,9 +190,9 @@
 	};
 	28C286E00D94DF7D0034E888 /* RootViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1265, 6292}}";
-			sepNavSelRange = "{1037, 9}";
-			sepNavVisRange = "{652, 1039}";
+			sepNavIntBoundsRect = "{{0, 0}, {1265, 6344}}";
+			sepNavSelRange = "{13780, 7}";
+			sepNavVisRange = "{13254, 674}";
 			sepNavWindowFrame = "{{560, 190}, {810, 584}}";
 		};
 	};
@@ -205,9 +205,9 @@
 		);
 		breakpoints = (
 			5F89F04C125936B900959D05 /* SBJsonParser.m:244 */,
-			5FBB99F41263F4FF00141693 /* ScrollingDishDetailViewController.m:70 */,
-			5FBB9A811264003200141693 /* ScrollingDishDetailViewController.m:90 */,
-			5F0894EA12640E6000EDE197 /* RootViewController.m:253 */,
+			5FBB99F41263F4FF00141693 /* ScrollingDishDetailViewController.m:71 */,
+			5FBB9A811264003200141693 /* ScrollingDishDetailViewController.m:91 */,
+			5F0894EA12640E6000EDE197 /* RootViewController.m:257 */,
 		);
 		codeSenseManager = 5F0762E21258EF65007D2C7E /* Code sense */;
 		executables = (
@@ -516,6 +516,25 @@
 			5F92A54212697AC3007D2451 /* PBXTextBookmark */ = 5F92A54212697AC3007D2451 /* PBXTextBookmark */;
 			5F92A54312697AC3007D2451 /* PBXTextBookmark */ = 5F92A54312697AC3007D2451 /* PBXTextBookmark */;
 			5F92A54612697AD4007D2451 /* PBXTextBookmark */ = 5F92A54612697AD4007D2451 /* PBXTextBookmark */;
+			5F92A5521269839A007D2451 /* PBXTextBookmark */ = 5F92A5521269839A007D2451 /* PBXTextBookmark */;
+			5F92A5531269839A007D2451 /* XCBuildMessageTextBookmark */ = 5F92A5531269839A007D2451 /* XCBuildMessageTextBookmark */;
+			5F92A5541269839A007D2451 /* PBXTextBookmark */ = 5F92A5541269839A007D2451 /* PBXTextBookmark */;
+			5F92A5551269839A007D2451 /* PBXTextBookmark */ = 5F92A5551269839A007D2451 /* PBXTextBookmark */;
+			5F92A5561269839A007D2451 /* PBXTextBookmark */ = 5F92A5561269839A007D2451 /* PBXTextBookmark */;
+			5F92A5571269839A007D2451 /* PBXTextBookmark */ = 5F92A5571269839A007D2451 /* PBXTextBookmark */;
+			5F92A560126983E5007D2451 /* PBXTextBookmark */ = 5F92A560126983E5007D2451 /* PBXTextBookmark */;
+			5F92A561126983E5007D2451 /* PBXTextBookmark */ = 5F92A561126983E5007D2451 /* PBXTextBookmark */;
+			5F92A562126983E5007D2451 /* PBXTextBookmark */ = 5F92A562126983E5007D2451 /* PBXTextBookmark */;
+			5F92A5671269851B007D2451 /* PBXTextBookmark */ = 5F92A5671269851B007D2451 /* PBXTextBookmark */;
+			5F92A56E1269859A007D2451 /* PBXTextBookmark */ = 5F92A56E1269859A007D2451 /* PBXTextBookmark */;
+			5F92A58012698647007D2451 /* PBXTextBookmark */ = 5F92A58012698647007D2451 /* PBXTextBookmark */;
+			5F92A596126987B5007D2451 /* PBXTextBookmark */ = 5F92A596126987B5007D2451 /* PBXTextBookmark */;
+			5F92A59D126987F1007D2451 /* PBXTextBookmark */ = 5F92A59D126987F1007D2451 /* PBXTextBookmark */;
+			5F92A5A012698805007D2451 /* PBXTextBookmark */ = 5F92A5A012698805007D2451 /* PBXTextBookmark */;
+			5F92A5A512698845007D2451 /* PBXTextBookmark */ = 5F92A5A512698845007D2451 /* PBXTextBookmark */;
+			5F92A5A81269885E007D2451 /* PBXTextBookmark */ = 5F92A5A81269885E007D2451 /* PBXTextBookmark */;
+			5F92A5AB1269888F007D2451 /* PBXTextBookmark */ = 5F92A5AB1269888F007D2451 /* PBXTextBookmark */;
+			5F92A5AC126988B0007D2451 /* PBXTextBookmark */ = 5F92A5AC126988B0007D2451 /* PBXTextBookmark */;
 			5F94EB9D1267F1A30080CEDD = 5F94EB9D1267F1A30080CEDD /* PBXTextBookmark */;
 			5F94EC391267F8C90080CEDD = 5F94EC391267F8C90080CEDD /* PBXTextBookmark */;
 			5F94EC401267F9B70080CEDD = 5F94EC401267F9B70080CEDD /* PBXTextBookmark */;
@@ -599,7 +618,7 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
-	5F0894EA12640E6000EDE197 /* RootViewController.m:253 */ = {
+	5F0894EA12640E6000EDE197 /* RootViewController.m:257 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -611,7 +630,7 @@
 		functionName = "-tableView:didSelectRowAtIndexPath:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 253;
+		lineNumber = 257;
 		location = TopDish;
 		modificationTime = 308629004.537139;
 		originalNumberOfMultipleMatches = 1;
@@ -626,9 +645,9 @@
 	};
 	5F08954C12641D6100EDE197 /* SettingsViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {840, 247}}";
-			sepNavSelRange = "{245, 0}";
-			sepNavVisRange = "{0, 332}";
+			sepNavIntBoundsRect = "{{0, 0}, {852, 465}}";
+			sepNavSelRange = "{220, 12}";
+			sepNavVisRange = "{0, 321}";
 		};
 	};
 	5F08955912641E8500EDE197 /* PBXTextBookmark */ = {
@@ -646,7 +665,7 @@
 		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 15";
 		rLen = 0;
-		rLoc = 323;
+		rLoc = 312;
 		rType = 0;
 		vrLen = 332;
 		vrLoc = 0;
@@ -829,7 +848,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		rLen = 0;
-		rLoc = 1512;
+		rLoc = 1578;
 		rType = 0;
 	};
 	5F92A39012695A8A007D2451 /* PBXTextBookmark */ = {
@@ -837,7 +856,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 64";
 		rLen = 0;
-		rLoc = 1512;
+		rLoc = 1578;
 		rType = 0;
 		vrLen = 1279;
 		vrLoc = 1191;
@@ -857,7 +876,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 64";
 		rLen = 0;
-		rLoc = 1512;
+		rLoc = 1578;
 		rType = 0;
 		vrLen = 1279;
 		vrLoc = 1191;
@@ -867,7 +886,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 124";
 		rLen = 0;
-		rLoc = 4183;
+		rLoc = 4213;
 		rType = 0;
 		vrLen = 1418;
 		vrLoc = 2945;
@@ -887,7 +906,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 124";
 		rLen = 0;
-		rLoc = 4183;
+		rLoc = 4213;
 		rType = 0;
 		vrLen = 1418;
 		vrLoc = 2945;
@@ -917,7 +936,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 124";
 		rLen = 0;
-		rLoc = 4183;
+		rLoc = 4213;
 		rType = 0;
 		vrLen = 1418;
 		vrLoc = 2945;
@@ -928,7 +947,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 157;
+		rLoc = 160;
 		rType = 1;
 	};
 	5F92A3BA12695FCA007D2451 /* PBXTextBookmark */ = {
@@ -936,7 +955,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 264";
 		rLen = 0;
-		rLoc = 6981;
+		rLoc = 7051;
 		rType = 0;
 		vrLen = 1154;
 		vrLoc = 9023;
@@ -957,7 +976,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 207;
+		rLoc = 210;
 		rType = 1;
 	};
 	5F92A3BE1269604A007D2451 /* PBXTextBookmark */ = {
@@ -965,7 +984,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 257";
 		rLen = 0;
-		rLoc = 6981;
+		rLoc = 7051;
 		rType = 0;
 		vrLen = 857;
 		vrLoc = 8491;
@@ -975,7 +994,7 @@
 		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
 		name = "RootViewController.m: 363";
 		rLen = 0;
-		rLoc = 13473;
+		rLoc = 13581;
 		rType = 0;
 		vrLen = 829;
 		vrLoc = 13059;
@@ -985,7 +1004,7 @@
 		fRef = 5FBB9AA01264036500141693 /* CommentsTableViewController.h */;
 		name = "CommentsTableViewController.h: 20";
 		rLen = 0;
-		rLoc = 378;
+		rLoc = 371;
 		rType = 0;
 		vrLen = 739;
 		vrLoc = 185;
@@ -995,7 +1014,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 267";
 		rLen = 0;
-		rLoc = 7294;
+		rLoc = 7364;
 		rType = 0;
 		vrLen = 914;
 		vrLoc = 8841;
@@ -1022,7 +1041,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 257";
 		rLen = 0;
-		rLoc = 6981;
+		rLoc = 7051;
 		rType = 0;
 		vrLen = 857;
 		vrLoc = 8491;
@@ -1042,7 +1061,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 257";
 		rLen = 0;
-		rLoc = 6981;
+		rLoc = 7051;
 		rType = 0;
 		vrLen = 1192;
 		vrLoc = 8920;
@@ -1061,7 +1080,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		rLen = 9;
-		rLoc = 1409;
+		rLoc = 1475;
 		rType = 0;
 	};
 	5F92A3CE126960B7007D2451 /* PBXTextBookmark */ = {
@@ -1069,7 +1088,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 63";
 		rLen = 9;
-		rLoc = 1409;
+		rLoc = 1475;
 		rType = 0;
 		vrLen = 1136;
 		vrLoc = 1073;
@@ -1089,7 +1108,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 258";
 		rLen = 0;
-		rLoc = 6981;
+		rLoc = 7051;
 		rType = 0;
 		vrLen = 858;
 		vrLoc = 9037;
@@ -1099,7 +1118,7 @@
 		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
 		name = "RootViewController.m: 38";
 		rLen = 9;
-		rLoc = 1037;
+		rLoc = 1139;
 		rType = 0;
 		vrLen = 1039;
 		vrLoc = 652;
@@ -1109,7 +1128,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 63";
 		rLen = 9;
-		rLoc = 1409;
+		rLoc = 1475;
 		rType = 0;
 		vrLen = 683;
 		vrLoc = 1487;
@@ -1128,7 +1147,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		rLen = 4;
-		rLoc = 5146;
+		rLoc = 5208;
 		rType = 0;
 	};
 	5F92A3D512696160007D2451 /* PBXTextBookmark */ = {
@@ -1136,7 +1155,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 140";
 		rLen = 4;
-		rLoc = 5146;
+		rLoc = 5208;
 		rType = 0;
 		vrLen = 930;
 		vrLoc = 3433;
@@ -1146,7 +1165,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 75";
 		rLen = 0;
-		rLoc = 1588;
+		rLoc = 1654;
 		rType = 0;
 		vrLen = 1136;
 		vrLoc = 1073;
@@ -1156,7 +1175,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 124";
 		rLen = 0;
-		rLoc = 4183;
+		rLoc = 4213;
 		rType = 0;
 		vrLen = 1393;
 		vrLoc = 2970;
@@ -1166,7 +1185,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 141";
 		rLen = 0;
-		rLoc = 5275;
+		rLoc = 5337;
 		rType = 0;
 		vrLen = 1341;
 		vrLoc = 3022;
@@ -1186,7 +1205,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 139";
 		rLen = 0;
-		rLoc = 5142;
+		rLoc = 5204;
 		rType = 0;
 		vrLen = 1440;
 		vrLoc = 2945;
@@ -1215,7 +1234,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		rLen = 6;
-		rLoc = 3400;
+		rLoc = 3430;
 		rType = 0;
 	};
 	5F92A3E6126963A2007D2451 /* PBXTextBookmark */ = {
@@ -1223,7 +1242,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 107";
 		rLen = 0;
-		rLoc = 3373;
+		rLoc = 3403;
 		rType = 0;
 		vrLen = 1244;
 		vrLoc = 2445;
@@ -1243,7 +1262,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 107";
 		rLen = 0;
-		rLoc = 3373;
+		rLoc = 3403;
 		rType = 0;
 		vrLen = 1244;
 		vrLoc = 2445;
@@ -1263,7 +1282,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 107";
 		rLen = 0;
-		rLoc = 3373;
+		rLoc = 3403;
 		rType = 0;
 		vrLen = 1242;
 		vrLoc = 2445;
@@ -1283,7 +1302,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 258";
 		rLen = 0;
-		rLoc = 6981;
+		rLoc = 7051;
 		rType = 0;
 		vrLen = 767;
 		vrLoc = 9267;
@@ -1294,7 +1313,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 162;
+		rLoc = 163;
 		rType = 1;
 	};
 	5F92A3F2126963F7007D2451 /* PBXTextBookmark */ = {
@@ -1302,7 +1321,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 140";
 		rLen = 0;
-		rLoc = 5141;
+		rLoc = 5203;
 		rType = 0;
 		vrLen = 872;
 		vrLoc = 3545;
@@ -1311,7 +1330,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		rLen = 0;
-		rLoc = 5141;
+		rLoc = 5203;
 		rType = 0;
 	};
 	5F92A3F4126963F7007D2451 /* PBXTextBookmark */ = {
@@ -1319,7 +1338,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 140";
 		rLen = 0;
-		rLoc = 5141;
+		rLoc = 5203;
 		rType = 0;
 		vrLen = 872;
 		vrLoc = 3545;
@@ -1329,7 +1348,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 107";
 		rLen = 0;
-		rLoc = 3045;
+		rLoc = 3073;
 		rType = 0;
 		vrLen = 1281;
 		vrLoc = 2445;
@@ -1349,7 +1368,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 107";
 		rLen = 0;
-		rLoc = 3011;
+		rLoc = 3039;
 		rType = 0;
 		vrLen = 1281;
 		vrLoc = 2445;
@@ -1379,7 +1398,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 108";
 		rLen = 0;
-		rLoc = 3373;
+		rLoc = 3403;
 		rType = 0;
 		vrLen = 1281;
 		vrLoc = 2445;
@@ -1389,7 +1408,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 108";
 		rLen = 0;
-		rLoc = 3085;
+		rLoc = 3113;
 		rType = 0;
 		vrLen = 1350;
 		vrLoc = 2448;
@@ -1409,7 +1428,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 108";
 		rLen = 0;
-		rLoc = 3085;
+		rLoc = 3113;
 		rType = 0;
 		vrLen = 1350;
 		vrLoc = 2448;
@@ -1429,7 +1448,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 142";
 		rLen = 0;
-		rLoc = 5141;
+		rLoc = 5203;
 		rType = 0;
 		vrLen = 872;
 		vrLoc = 3697;
@@ -1449,7 +1468,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 140";
 		rLen = 0;
-		rLoc = 4635;
+		rLoc = 4693;
 		rType = 0;
 		vrLen = 656;
 		vrLoc = 244;
@@ -1458,7 +1477,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		rLen = 28;
-		rLoc = 3720;
+		rLoc = 3786;
 		rType = 0;
 	};
 	5F92A40F126965AF007D2451 /* PBXTextBookmark */ = {
@@ -1466,7 +1485,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 211";
 		rLen = 0;
-		rLoc = 4073;
+		rLoc = 4139;
 		rType = 0;
 		vrLen = 1468;
 		vrLoc = 6262;
@@ -1486,7 +1505,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 111";
 		rLen = 0;
-		rLoc = 3348;
+		rLoc = 3378;
 		rType = 0;
 		vrLen = 1306;
 		vrLoc = 2448;
@@ -1496,7 +1515,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 113";
 		rLen = 0;
-		rLoc = 3420;
+		rLoc = 3450;
 		rType = 0;
 		vrLen = 1352;
 		vrLoc = 2448;
@@ -1516,7 +1535,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 113";
 		rLen = 0;
-		rLoc = 3420;
+		rLoc = 3450;
 		rType = 0;
 		vrLen = 1356;
 		vrLoc = 2448;
@@ -1536,7 +1555,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 114";
 		rLen = 0;
-		rLoc = 3521;
+		rLoc = 3551;
 		rType = 0;
 		vrLen = 1337;
 		vrLoc = 2448;
@@ -1556,7 +1575,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 114";
 		rLen = 0;
-		rLoc = 3521;
+		rLoc = 3551;
 		rType = 0;
 		vrLen = 1337;
 		vrLoc = 2448;
@@ -1576,7 +1595,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 114";
 		rLen = 0;
-		rLoc = 3521;
+		rLoc = 3551;
 		rType = 0;
 		vrLen = 1337;
 		vrLoc = 2448;
@@ -1596,7 +1615,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 113";
 		rLen = 0;
-		rLoc = 3373;
+		rLoc = 3403;
 		rType = 0;
 		vrLen = 1323;
 		vrLoc = 2448;
@@ -1616,7 +1635,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 115";
 		rLen = 0;
-		rLoc = 3521;
+		rLoc = 3551;
 		rType = 0;
 		vrLen = 1455;
 		vrLoc = 2448;
@@ -1636,7 +1655,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 115";
 		rLen = 0;
-		rLoc = 3521;
+		rLoc = 3551;
 		rType = 0;
 		vrLen = 1455;
 		vrLoc = 2448;
@@ -1656,7 +1675,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 115";
 		rLen = 0;
-		rLoc = 3521;
+		rLoc = 3551;
 		rType = 0;
 		vrLen = 1455;
 		vrLoc = 2448;
@@ -1676,7 +1695,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 148";
 		rLen = 0;
-		rLoc = 5141;
+		rLoc = 5203;
 		rType = 0;
 		vrLen = 1068;
 		vrLoc = 3521;
@@ -1685,7 +1704,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		rLen = 6;
-		rLoc = 3765;
+		rLoc = 3831;
 		rType = 0;
 	};
 	5F92A438126967A1007D2451 /* PBXTextBookmark */ = {
@@ -1693,7 +1712,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 210";
 		rLen = 0;
-		rLoc = 4025;
+		rLoc = 4091;
 		rType = 0;
 		vrLen = 1541;
 		vrLoc = 6257;
@@ -1703,7 +1722,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 152";
 		rLen = 0;
-		rLoc = 4895;
+		rLoc = 4957;
 		rType = 0;
 		vrLen = 1565;
 		vrLoc = 3751;
@@ -1723,7 +1742,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 152";
 		rLen = 0;
-		rLoc = 4895;
+		rLoc = 4957;
 		rType = 0;
 		vrLen = 1387;
 		vrLoc = 3929;
@@ -1743,7 +1762,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 5141;
+		rLoc = 5203;
 		rType = 0;
 		vrLen = 990;
 		vrLoc = 3601;
@@ -1753,7 +1772,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 211";
 		rLen = 0;
-		rLoc = 4711;
+		rLoc = 4777;
 		rType = 0;
 		vrLen = 2716;
 		vrLoc = 6265;
@@ -1773,7 +1792,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 152";
 		rLen = 0;
-		rLoc = 4895;
+		rLoc = 4957;
 		rType = 0;
 		vrLen = 1387;
 		vrLoc = 3929;
@@ -1783,7 +1802,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 149";
 		rLen = 0;
-		rLoc = 4744;
+		rLoc = 4804;
 		rType = 0;
 		vrLen = 1505;
 		vrLoc = 3816;
@@ -1813,7 +1832,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 149";
 		rLen = 0;
-		rLoc = 4744;
+		rLoc = 4804;
 		rType = 0;
 		vrLen = 1500;
 		vrLoc = 3816;
@@ -1823,7 +1842,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 148";
 		rLen = 0;
-		rLoc = 4665;
+		rLoc = 4725;
 		rType = 0;
 		vrLen = 1511;
 		vrLoc = 3781;
@@ -1853,7 +1872,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 149";
 		rLen = 0;
-		rLoc = 4737;
+		rLoc = 4797;
 		rType = 0;
 		vrLen = 1535;
 		vrLoc = 3781;
@@ -1863,7 +1882,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 157";
 		rLen = 0;
-		rLoc = 5141;
+		rLoc = 5203;
 		rType = 0;
 		vrLen = 1537;
 		vrLoc = 3816;
@@ -1883,7 +1902,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 5141;
+		rLoc = 5203;
 		rType = 0;
 		vrLen = 1585;
 		vrLoc = 3903;
@@ -1903,7 +1922,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 5141;
+		rLoc = 5203;
 		rType = 0;
 		vrLen = 1336;
 		vrLoc = 3986;
@@ -1923,7 +1942,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 154";
 		rLen = 0;
-		rLoc = 5141;
+		rLoc = 5203;
 		rType = 0;
 		vrLen = 1279;
 		vrLoc = 4041;
@@ -1943,7 +1962,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 154";
 		rLen = 0;
-		rLoc = 5141;
+		rLoc = 5203;
 		rType = 0;
 		vrLen = 1280;
 		vrLoc = 4041;
@@ -1963,7 +1982,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 154";
 		rLen = 0;
-		rLoc = 5141;
+		rLoc = 5203;
 		rType = 0;
 		vrLen = 1247;
 		vrLoc = 4041;
@@ -1993,7 +2012,7 @@
 		fRef = 5FBB9AA01264036500141693 /* CommentsTableViewController.h */;
 		name = "CommentsTableViewController.h: 27";
 		rLen = 0;
-		rLoc = 592;
+		rLoc = 585;
 		rType = 0;
 		vrLen = 924;
 		vrLoc = 0;
@@ -2003,7 +2022,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 106";
 		rLen = 88;
-		rLoc = 1876;
+		rLoc = 1942;
 		rType = 0;
 		vrLen = 1147;
 		vrLoc = 2211;
@@ -2013,7 +2032,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 152";
 		rLen = 0;
-		rLoc = 4886;
+		rLoc = 4948;
 		rType = 0;
 		vrLen = 1274;
 		vrLoc = 4041;
@@ -2023,7 +2042,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 151";
 		rLen = 0;
-		rLoc = 4886;
+		rLoc = 4948;
 		rType = 0;
 		vrLen = 1317;
 		vrLoc = 4042;
@@ -2043,7 +2062,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 151";
 		rLen = 0;
-		rLoc = 4886;
+		rLoc = 4948;
 		rType = 0;
 		vrLen = 1317;
 		vrLoc = 4042;
@@ -2063,7 +2082,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 114";
 		rLen = 0;
-		rLoc = 3373;
+		rLoc = 3403;
 		rType = 0;
 		vrLen = 1409;
 		vrLoc = 2452;
@@ -2083,7 +2102,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 160";
 		rLen = 0;
-		rLoc = 5141;
+		rLoc = 5203;
 		rType = 0;
 		vrLen = 1042;
 		vrLoc = 3754;
@@ -2092,7 +2111,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		rLen = 5;
-		rLoc = 2071;
+		rLoc = 2137;
 		rType = 0;
 	};
 	5F92A48312696BD1007D2451 /* PBXTextBookmark */ = {
@@ -2100,7 +2119,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 111";
 		rLen = 5;
-		rLoc = 2071;
+		rLoc = 2137;
 		rType = 0;
 		vrLen = 757;
 		vrLoc = 2511;
@@ -2110,7 +2129,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 114";
 		rLen = 0;
-		rLoc = 3373;
+		rLoc = 3403;
 		rType = 0;
 		vrLen = 1504;
 		vrLoc = 2094;
@@ -2120,7 +2139,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 114";
 		rLen = 0;
-		rLoc = 3373;
+		rLoc = 3403;
 		rType = 0;
 		vrLen = 1415;
 		vrLoc = 3829;
@@ -2140,7 +2159,7 @@
 		fRef = 5FBB9AA01264036500141693 /* CommentsTableViewController.h */;
 		name = "CommentsTableViewController.h: 27";
 		rLen = 0;
-		rLoc = 592;
+		rLoc = 585;
 		rType = 0;
 		vrLen = 924;
 		vrLoc = 0;
@@ -2170,7 +2189,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 149";
 		rLen = 0;
-		rLoc = 4637;
+		rLoc = 4695;
 		rType = 0;
 		vrLen = 1505;
 		vrLoc = 3754;
@@ -2180,7 +2199,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 149";
 		rLen = 0;
-		rLoc = 4637;
+		rLoc = 4695;
 		rType = 0;
 		vrLen = 1319;
 		vrLoc = 4122;
@@ -2200,7 +2219,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 5142;
+		rLoc = 5204;
 		rType = 0;
 		vrLen = 1343;
 		vrLoc = 3983;
@@ -2220,7 +2239,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 155";
 		rLen = 177;
-		rLoc = 4965;
+		rLoc = 5027;
 		rType = 0;
 		vrLen = 1426;
 		vrLoc = 4009;
@@ -2240,7 +2259,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 155";
 		rLen = 0;
-		rLoc = 4965;
+		rLoc = 5027;
 		rType = 0;
 		vrLen = 1373;
 		vrLoc = 4066;
@@ -2260,7 +2279,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 153";
 		rLen = 0;
-		rLoc = 4886;
+		rLoc = 4948;
 		rType = 0;
 		vrLen = 1362;
 		vrLoc = 4066;
@@ -2290,7 +2309,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 151";
 		rLen = 0;
-		rLoc = 4810;
+		rLoc = 4870;
 		rType = 0;
 		vrLen = 1367;
 		vrLoc = 4066;
@@ -2300,7 +2319,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 151";
 		rLen = 0;
-		rLoc = 4810;
+		rLoc = 4870;
 		rType = 0;
 		vrLen = 1424;
 		vrLoc = 4009;
@@ -2320,7 +2339,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 152";
 		rLen = 0;
-		rLoc = 4833;
+		rLoc = 4893;
 		rType = 0;
 		vrLen = 1467;
 		vrLoc = 4009;
@@ -2350,7 +2369,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 143";
 		rLen = 18;
-		rLoc = 4544;
+		rLoc = 4574;
 		rType = 0;
 		vrLen = 1467;
 		vrLoc = 4009;
@@ -2360,7 +2379,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 151";
 		rLen = 0;
-		rLoc = 4831;
+		rLoc = 4891;
 		rType = 0;
 		vrLen = 1431;
 		vrLoc = 4009;
@@ -2380,7 +2399,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 151";
 		rLen = 0;
-		rLoc = 4830;
+		rLoc = 4890;
 		rType = 0;
 		vrLen = 1326;
 		vrLoc = 4121;
@@ -2400,7 +2419,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 151";
 		rLen = 0;
-		rLoc = 4830;
+		rLoc = 4890;
 		rType = 0;
 		vrLen = 1326;
 		vrLoc = 4121;
@@ -2409,7 +2428,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		rLen = 6;
-		rLoc = 3765;
+		rLoc = 3831;
 		rType = 0;
 	};
 	5F92A4BD12696E32007D2451 /* PBXTextBookmark */ = {
@@ -2417,7 +2436,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 210";
 		rLen = 6;
-		rLoc = 3765;
+		rLoc = 3831;
 		rType = 0;
 		vrLen = 3129;
 		vrLoc = 5854;
@@ -2437,7 +2456,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 162";
 		rLen = 0;
-		rLoc = 5142;
+		rLoc = 5204;
 		rType = 0;
 		vrLen = 967;
 		vrLoc = 3831;
@@ -2447,7 +2466,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 211";
 		rLen = 0;
-		rLoc = 4082;
+		rLoc = 4148;
 		rType = 0;
 		vrLen = 2560;
 		vrLoc = 6078;
@@ -2457,7 +2476,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 162";
 		rLen = 0;
-		rLoc = 5142;
+		rLoc = 5204;
 		rType = 0;
 		vrLen = 967;
 		vrLoc = 3831;
@@ -2467,7 +2486,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 211";
 		rLen = 0;
-		rLoc = 4082;
+		rLoc = 4148;
 		rType = 0;
 		vrLen = 2560;
 		vrLoc = 6078;
@@ -2477,7 +2496,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 210";
 		rLen = 6;
-		rLoc = 3765;
+		rLoc = 3831;
 		rType = 0;
 		vrLen = 3129;
 		vrLoc = 5854;
@@ -2487,7 +2506,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 151";
 		rLen = 0;
-		rLoc = 4830;
+		rLoc = 4890;
 		rType = 0;
 		vrLen = 1326;
 		vrLoc = 4121;
@@ -2497,7 +2516,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 151";
 		rLen = 0;
-		rLoc = 4830;
+		rLoc = 4890;
 		rType = 0;
 		vrLen = 1321;
 		vrLoc = 4121;
@@ -2507,7 +2526,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 151";
 		rLen = 0;
-		rLoc = 4830;
+		rLoc = 4890;
 		rType = 0;
 		vrLen = 1321;
 		vrLoc = 4121;
@@ -2516,7 +2535,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		rLen = 10;
-		rLoc = 1265;
+		rLoc = 1331;
 		rType = 0;
 	};
 	5F92A4D712696EC8007D2451 /* PBXTextBookmark */ = {
@@ -2524,7 +2543,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 60";
 		rLen = 10;
-		rLoc = 1265;
+		rLoc = 1331;
 		rType = 0;
 		vrLen = 1057;
 		vrLoc = 1073;
@@ -2534,7 +2553,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 60";
 		rLen = 10;
-		rLoc = 1265;
+		rLoc = 1331;
 		rType = 0;
 		vrLen = 1028;
 		vrLoc = 1144;
@@ -2544,7 +2563,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 60";
 		rLen = 10;
-		rLoc = 1265;
+		rLoc = 1331;
 		rType = 0;
 		vrLen = 1066;
 		vrLoc = 1147;
@@ -2554,7 +2573,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 60";
 		rLen = 10;
-		rLoc = 1265;
+		rLoc = 1331;
 		rType = 0;
 		vrLen = 1068;
 		vrLoc = 1151;
@@ -2564,7 +2583,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 162";
 		rLen = 0;
-		rLoc = 5142;
+		rLoc = 5204;
 		rType = 0;
 		vrLen = 985;
 		vrLoc = 4261;
@@ -2574,7 +2593,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 215";
 		rLen = 0;
-		rLoc = 5101;
+		rLoc = 5167;
 		rType = 0;
 		vrLen = 2485;
 		vrLoc = 6264;
@@ -2584,7 +2603,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 105";
 		rLen = 0;
-		rLoc = 3044;
+		rLoc = 3110;
 		rType = 0;
 		vrLen = 3412;
 		vrLoc = 3512;
@@ -2594,7 +2613,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 126";
 		rLen = 0;
-		rLoc = 5378;
+		rLoc = 5444;
 		rType = 0;
 		vrLen = 3446;
 		vrLoc = 3409;
@@ -2604,7 +2623,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 118";
 		rLen = 0;
-		rLoc = 5102;
+		rLoc = 5168;
 		rType = 0;
 		vrLen = 3416;
 		vrLoc = 3409;
@@ -2614,7 +2633,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 116";
 		rLen = 0;
-		rLoc = 4972;
+		rLoc = 5038;
 		rType = 0;
 		vrLen = 3403;
 		vrLoc = 3308;
@@ -2623,7 +2642,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		rLen = 0;
-		rLoc = 3521;
+		rLoc = 3551;
 		rType = 0;
 	};
 	5F92A4F2126974BA007D2451 /* PBXTextBookmark */ = {
@@ -2631,7 +2650,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 116";
 		rLen = 0;
-		rLoc = 3521;
+		rLoc = 3551;
 		rType = 0;
 		vrLen = 1466;
 		vrLoc = 2861;
@@ -2641,7 +2660,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 116";
 		rLen = 0;
-		rLoc = 3521;
+		rLoc = 3551;
 		rType = 0;
 		vrLen = 1512;
 		vrLoc = 2918;
@@ -2651,7 +2670,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 116";
 		rLen = 0;
-		rLoc = 3521;
+		rLoc = 3551;
 		rType = 0;
 		vrLen = 1605;
 		vrLoc = 2920;
@@ -2661,7 +2680,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 116";
 		rLen = 0;
-		rLoc = 3521;
+		rLoc = 3551;
 		rType = 0;
 		vrLen = 1638;
 		vrLoc = 2923;
@@ -2671,7 +2690,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 161";
 		rLen = 0;
-		rLoc = 5142;
+		rLoc = 5204;
 		rType = 0;
 		vrLen = 812;
 		vrLoc = 4559;
@@ -2681,7 +2700,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 45";
 		rLen = 0;
-		rLoc = 1194;
+		rLoc = 1260;
 		rType = 0;
 		vrLen = 867;
 		vrLoc = 843;
@@ -2691,7 +2710,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 154";
 		rLen = 0;
-		rLoc = 4912;
+		rLoc = 4974;
 		rType = 0;
 		vrLen = 1029;
 		vrLoc = 4342;
@@ -2718,7 +2737,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 161";
 		rLen = 0;
-		rLoc = 5142;
+		rLoc = 5204;
 		rType = 0;
 		vrLen = 812;
 		vrLoc = 4559;
@@ -2737,7 +2756,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		rLen = 8;
-		rLoc = 4811;
+		rLoc = 4871;
 		rType = 0;
 	};
 	5F92A5041269760E007D2451 /* PBXTextBookmark */ = {
@@ -2745,7 +2764,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 150";
 		rLen = 74;
-		rLoc = 4758;
+		rLoc = 4818;
 		rType = 0;
 		vrLen = 851;
 		vrLoc = 4523;
@@ -2755,7 +2774,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 116";
 		rLen = 0;
-		rLoc = 3373;
+		rLoc = 3403;
 		rType = 0;
 		vrLen = 1446;
 		vrLoc = 2700;
@@ -2765,7 +2784,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 116";
 		rLen = 0;
-		rLoc = 3373;
+		rLoc = 3403;
 		rType = 0;
 		vrLen = 1442;
 		vrLoc = 2760;
@@ -2775,7 +2794,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 111";
 		rLen = 0;
-		rLoc = 3270;
+		rLoc = 3300;
 		rType = 0;
 		vrLen = 1242;
 		vrLoc = 4202;
@@ -2785,7 +2804,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 111";
 		rLen = 0;
-		rLoc = 4972;
+		rLoc = 5038;
 		rType = 0;
 		vrLen = 3311;
 		vrLoc = 3264;
@@ -2795,7 +2814,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 115";
 		rLen = 0;
-		rLoc = 5221;
+		rLoc = 5287;
 		rType = 0;
 		vrLen = 2954;
 		vrLoc = 2840;
@@ -2805,7 +2824,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 163";
 		rLen = 0;
-		rLoc = 5142;
+		rLoc = 5204;
 		rType = 0;
 		vrLen = 812;
 		vrLoc = 4626;
@@ -2815,7 +2834,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 152";
 		rLen = 74;
-		rLoc = 4758;
+		rLoc = 4818;
 		rType = 0;
 		vrLen = 818;
 		vrLoc = 4626;
@@ -2825,7 +2844,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 115";
 		rLen = 0;
-		rLoc = 5221;
+		rLoc = 5287;
 		rType = 0;
 		vrLen = 2954;
 		vrLoc = 2840;
@@ -2835,7 +2854,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 57";
 		rLen = 65;
-		rLoc = 1642;
+		rLoc = 1708;
 		rType = 0;
 		vrLen = 1170;
 		vrLoc = 910;
@@ -2845,7 +2864,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 155";
 		rLen = 0;
-		rLoc = 4886;
+		rLoc = 4948;
 		rType = 0;
 		vrLen = 1262;
 		vrLoc = 4201;
@@ -2855,7 +2874,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 155";
 		rLen = 0;
-		rLoc = 4886;
+		rLoc = 4948;
 		rType = 0;
 		vrLen = 1325;
 		vrLoc = 4202;
@@ -2865,7 +2884,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 155";
 		rLen = 0;
-		rLoc = 4886;
+		rLoc = 4948;
 		rType = 0;
 		vrLen = 1325;
 		vrLoc = 4202;
@@ -2875,7 +2894,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 155";
 		rLen = 0;
-		rLoc = 4886;
+		rLoc = 4948;
 		rType = 0;
 		vrLen = 1325;
 		vrLoc = 4202;
@@ -2885,7 +2904,7 @@
 		fRef = 5FBB9AA01264036500141693 /* CommentsTableViewController.h */;
 		name = "CommentsTableViewController.h: 20";
 		rLen = 0;
-		rLoc = 378;
+		rLoc = 371;
 		rType = 0;
 		vrLen = 1005;
 		vrLoc = 0;
@@ -2895,7 +2914,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 70";
 		rLen = 0;
-		rLoc = 2037;
+		rLoc = 2103;
 		rType = 0;
 		vrLen = 1038;
 		vrLoc = 1187;
@@ -2905,7 +2924,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 155";
 		rLen = 0;
-		rLoc = 4886;
+		rLoc = 4948;
 		rType = 0;
 		vrLen = 1295;
 		vrLoc = 4146;
@@ -2915,7 +2934,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 4962;
+		rLoc = 5024;
 		rType = 0;
 		vrLen = 1349;
 		vrLoc = 4201;
@@ -2925,7 +2944,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 4962;
+		rLoc = 5024;
 		rType = 0;
 		vrLen = 1348;
 		vrLoc = 4202;
@@ -2935,7 +2954,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 4962;
+		rLoc = 5024;
 		rType = 0;
 		vrLen = 1348;
 		vrLoc = 4202;
@@ -2945,7 +2964,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 4962;
+		rLoc = 5024;
 		rType = 0;
 		vrLen = 1348;
 		vrLoc = 4202;
@@ -2955,7 +2974,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 4962;
+		rLoc = 5024;
 		rType = 0;
 		vrLen = 1348;
 		vrLoc = 4202;
@@ -2965,7 +2984,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 4962;
+		rLoc = 5024;
 		rType = 0;
 		vrLen = 1240;
 		vrLoc = 4201;
@@ -2975,7 +2994,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 162";
 		rLen = 0;
-		rLoc = 5142;
+		rLoc = 5204;
 		rType = 0;
 		vrLen = 620;
 		vrLoc = 4624;
@@ -2985,7 +3004,7 @@
 		fRef = 5FBB9AA01264036500141693 /* CommentsTableViewController.h */;
 		name = "CommentsTableViewController.h: 20";
 		rLen = 0;
-		rLoc = 378;
+		rLoc = 371;
 		rType = 0;
 		vrLen = 764;
 		vrLoc = 160;
@@ -2995,7 +3014,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 116";
 		rLen = 0;
-		rLoc = 5182;
+		rLoc = 5248;
 		rType = 0;
 		vrLen = 2798;
 		vrLoc = 3060;
@@ -3004,7 +3023,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		rLen = 0;
-		rLoc = 4962;
+		rLoc = 5024;
 		rType = 0;
 	};
 	5F92A53D12697A9C007D2451 /* PBXTextBookmark */ = {
@@ -3012,7 +3031,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 4962;
+		rLoc = 5024;
 		rType = 0;
 		vrLen = 817;
 		vrLoc = 4624;
@@ -3022,7 +3041,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 156";
 		rLen = 0;
-		rLoc = 4962;
+		rLoc = 5024;
 		rType = 0;
 		vrLen = 1240;
 		vrLoc = 4201;
@@ -3032,7 +3051,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 116";
 		rLen = 0;
-		rLoc = 3425;
+		rLoc = 3455;
 		rType = 0;
 		vrLen = 1425;
 		vrLoc = 2761;
@@ -3042,10 +3061,196 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 116";
 		rLen = 0;
-		rLoc = 3425;
+		rLoc = 3455;
 		rType = 0;
 		vrLen = 1423;
 		vrLoc = 2761;
+	};
+	5F92A5521269839A007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
+		name = "ScrollingDishDetailViewController.m: 160";
+		rLen = 0;
+		rLoc = 5204;
+		rType = 0;
+		vrLen = 817;
+		vrLoc = 4467;
+	};
+	5F92A5531269839A007D2451 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Property 'refineButton' requires method '-refineButton' to be defined - use @synthesize, @dynamic or provide a method implementation";
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 17;
+		rType = 1;
+	};
+	5F92A5541269839A007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 18";
+		rLen = 0;
+		rLoc = 316;
+		rType = 0;
+		vrLen = 321;
+		vrLoc = 0;
+	};
+	5F92A5551269839A007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
+		name = "ScrollingDishDetailViewController.m: 154";
+		rLen = 0;
+		rLoc = 5024;
+		rType = 0;
+		vrLen = 817;
+		vrLoc = 4467;
+	};
+	5F92A5561269839A007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		rLen = 12;
+		rLoc = 220;
+		rType = 0;
+	};
+	5F92A5571269839A007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 11";
+		rLen = 0;
+		rLoc = 219;
+		rType = 0;
+		vrLen = 321;
+		vrLoc = 0;
+	};
+	5F92A560126983E5007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
+		name = "ScrollingDishDetailViewController.m: 116";
+		rLen = 0;
+		rLoc = 3455;
+		rType = 0;
+		vrLen = 1423;
+		vrLoc = 2761;
+	};
+	5F92A561126983E5007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 143";
+		rLen = 102;
+		rLoc = 4517;
+		rType = 0;
+		vrLen = 1103;
+		vrLoc = 4321;
+	};
+	5F92A562126983E5007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 11";
+		rLen = 12;
+		rLoc = 220;
+		rType = 0;
+		vrLen = 321;
+		vrLoc = 0;
+	};
+	5F92A5671269851B007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 11";
+		rLen = 12;
+		rLoc = 220;
+		rType = 0;
+		vrLen = 321;
+		vrLoc = 0;
+	};
+	5F92A56E1269859A007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 11";
+		rLen = 12;
+		rLoc = 220;
+		rType = 0;
+		vrLen = 321;
+		vrLoc = 0;
+	};
+	5F92A58012698647007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 11";
+		rLen = 12;
+		rLoc = 220;
+		rType = 0;
+		vrLen = 321;
+		vrLoc = 0;
+	};
+	5F92A596126987B5007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 11";
+		rLen = 12;
+		rLoc = 220;
+		rType = 0;
+		vrLen = 321;
+		vrLoc = 0;
+	};
+	5F92A59D126987F1007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 11";
+		rLen = 12;
+		rLoc = 220;
+		rType = 0;
+		vrLen = 321;
+		vrLoc = 0;
+	};
+	5F92A5A012698805007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 11";
+		rLen = 12;
+		rLoc = 220;
+		rType = 0;
+		vrLen = 321;
+		vrLoc = 0;
+	};
+	5F92A5A512698845007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 11";
+		rLen = 12;
+		rLoc = 220;
+		rType = 0;
+		vrLen = 321;
+		vrLoc = 0;
+	};
+	5F92A5A81269885E007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 11";
+		rLen = 12;
+		rLoc = 220;
+		rType = 0;
+		vrLen = 321;
+		vrLoc = 0;
+	};
+	5F92A5AB1269888F007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 11";
+		rLen = 12;
+		rLoc = 220;
+		rType = 0;
+		vrLen = 321;
+		vrLoc = 0;
+	};
+	5F92A5AC126988B0007D2451 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 11";
+		rLen = 12;
+		rLoc = 220;
+		rType = 0;
+		vrLen = 321;
+		vrLoc = 0;
 	};
 	5F94EB9D1267F1A30080CEDD /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -3062,7 +3267,7 @@
 		fRef = 5FBB9AA01264036500141693 /* CommentsTableViewController.h */;
 		name = "CommentsTableViewController.h: 28";
 		rLen = 0;
-		rLoc = 592;
+		rLoc = 585;
 		rType = 0;
 		vrLen = 945;
 		vrLoc = 0;
@@ -3082,7 +3287,7 @@
 		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
 		name = "RootViewController.m: 143";
 		rLen = 102;
-		rLoc = 4415;
+		rLoc = 4517;
 		rType = 0;
 		vrLen = 1210;
 		vrLoc = 4543;
@@ -3106,7 +3311,7 @@
 		fRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */;
 		name = "ScrollingDishDetailViewController.m: 140";
 		rLen = 0;
-		rLoc = 5273;
+		rLoc = 5335;
 		rType = 0;
 		vrLen = 1338;
 		vrLoc = 3025;
@@ -3115,7 +3320,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		rLen = 9;
-		rLoc = 3110;
+		rLoc = 3176;
 		rType = 0;
 	};
 	5F94ED4B126826540080CEDD /* PBXTextBookmark */ = {
@@ -3123,7 +3328,7 @@
 		fRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */;
 		name = "CommentsTableViewController.m: 207";
 		rLen = 9;
-		rLoc = 3110;
+		rLoc = 3176;
 		rType = 0;
 		vrLen = 2305;
 		vrLoc = 6185;
@@ -3178,17 +3383,17 @@
 	};
 	5FBB9661126233DB00141693 /* ScrollingDishDetailViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {852, 650}}";
-			sepNavSelRange = "{567, 9}";
-			sepNavVisRange = "{178, 1245}";
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 637}}";
+			sepNavSelRange = "{656, 27}";
+			sepNavVisRange = "{178, 889}";
 		};
 	};
 	5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            l = \"(Dish *)\";\n            r = \"{2237, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 5284}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {950, 2119}}";
-			sepNavSelRange = "{3414, 0}";
-			sepNavVisRange = "{2750, 1423}";
+			sepNavFolds = "{\n    c =     (\n                {\n            l = \"(Dish *)\";\n            r = \"{2265, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 5346}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 2054}}";
+			sepNavSelRange = "{4886, 0}";
+			sepNavVisRange = "{4486, 849}";
 			sepNavWindowFrame = "{{529, 206}, {726, 567}}";
 		};
 	};
@@ -3239,9 +3444,9 @@
 	};
 	5FBB991E12625A5A00141693 /* Dish.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {783, 507}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 988}";
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 507}}";
+			sepNavSelRange = "{448, 50}";
+			sepNavVisRange = "{0, 760}";
 		};
 	};
 	5FBB991F12625A5A00141693 /* Dish.m */ = {
@@ -3309,7 +3514,7 @@
 		vrLen = 419;
 		vrLoc = 0;
 	};
-	5FBB99F41263F4FF00141693 /* ScrollingDishDetailViewController.m:70 */ = {
+	5FBB99F41263F4FF00141693 /* ScrollingDishDetailViewController.m:71 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -3321,7 +3526,7 @@
 		functionName = "-initializeDishDatabase";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 70;
+		lineNumber = 71;
 		modificationTime = 308629004.537109;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
@@ -3361,7 +3566,7 @@
 		vrLen = 877;
 		vrLoc = 0;
 	};
-	5FBB9A811264003200141693 /* ScrollingDishDetailViewController.m:90 */ = {
+	5FBB9A811264003200141693 /* ScrollingDishDetailViewController.m:91 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -3373,7 +3578,7 @@
 		functionName = "-initializeDishDatabase";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 90;
+		lineNumber = 91;
 		location = TopDish;
 		modificationTime = 308629004.537125;
 		originalNumberOfMultipleMatches = 1;
@@ -3381,17 +3586,17 @@
 	};
 	5FBB9AA01264036500141693 /* CommentsTableViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {850, 468}}";
-			sepNavSelRange = "{378, 0}";
-			sepNavVisRange = "{160, 764}";
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 468}}";
+			sepNavSelRange = "{631, 0}";
+			sepNavVisRange = "{97, 808}";
 			sepNavWindowFrame = "{{38, 210}, {883, 542}}";
 		};
 	};
 	5FBB9AA11264036500141693 /* CommentsTableViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {6263, 2327}}";
-			sepNavSelRange = "{5182, 0}";
-			sepNavVisRange = "{3060, 2798}";
+			sepNavIntBoundsRect = "{{0, 0}, {1265, 2977}}";
+			sepNavSelRange = "{7836, 0}";
+			sepNavVisRange = "{7139, 751}";
 			sepNavWindowFrame = "{{-4, 209}, {883, 542}}";
 		};
 	};

@@ -8,7 +8,7 @@
 #import "SettingsViewController.h"
 
 @implementation SettingsView
-//@synthesize UIButton refineButton;
+@synthesize refineButton;
 
 -(IBAction) closeSettings{
 	[self dismissModalViewControllerAnimated:TRUE]; 
