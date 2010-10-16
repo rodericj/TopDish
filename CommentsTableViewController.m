@@ -60,7 +60,8 @@
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishDetail?id=%@", NETWORKHOST, dishId]];
 	//Start up the networking
 	request = [NSURLRequest requestWithURL:url];
-	conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE]; 
+	NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE]; 
+	[conn release];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
 }
@@ -205,7 +206,6 @@
 #pragma mark Network Delegate 
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
-	//NSLog(@"connection did finish loading");
 	NSLog(@"%@", _responseText);
 	NSString *responseText = [[NSString alloc] initWithData:_responseText encoding:NSUTF8StringEncoding];
 	responseText = @"{\"id\":38, \"name\":\"Bacon Burger\", \"Description\":\"All bacon and bun\", \"restaurantID\":37, \"latitude\":33.677854, \"longitude\":-117.799428, \"posReviews\":1, \"negReviews\":2, \"photoURL\":\"\", \"reviews\":[{\"direction\":1, \"comment\": \"yo this thing was great\",\"creator\":\"andy\", \"dateCreated\":\"oct 11, 2010 4:39:42 AM\"},{\"direction\":-1, \"comment\": \"it was bad\",\"creator\":\"Steven\", \"dateCreated\":\"oct 12, 2010 4:39:42 AM\"}]}"; 
@@ -214,9 +214,7 @@
 	NSError *error;
 	NSDictionary *responseAsDictionary = [parser objectWithString:responseText error:&error];
 	[parser release];
-	//[self.managedObjectContext reset];
 	NSLog(@"the comment passed in object %@", [responseAsDictionary objectForKey:@"reviews"]);
-	//[reviews release];
 	if(reviews == nil){
 		NSLog(@"allocate the array the first time");
 		reviews = [NSArray alloc];
@@ -258,9 +256,6 @@
 	[self.tableView reloadData];
 
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
-	//TODO Do I need to release the connection here?
-	[conn release];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
@@ -270,11 +265,12 @@
 	//remove this default call as well as the hard coded data
 	[self connectionDidFinishLoading:connection];
 	
-	//TODO Do I need to release the connection here?
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
-	//TODO Put out a popup
-	
+	UIAlertView *alert;
+	alert = [[UIAlertView alloc] initWithTitle:@"NetworkError" message:@"There was a network issue. Try again later" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil]; 
+	[alert show];
+	[alert release];	
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
@@ -309,7 +305,6 @@
 - (void)dealloc {
 	[reviews release];
 	[request release];
-	[conn release];
     [super dealloc];
 }
 

@@ -216,10 +216,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>5F92A3AB12695BF2007D2451</string>
+						<string>5F92A3CF126960B7007D2451</string>
 						<key>history</key>
 						<array>
-							<string>5F94ED4C126826540080CEDD</string>
+							<string>5F92A3B012695F0A007D2451</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -319,9 +319,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>13</integer>
-									<integer>9</integer>
-									<integer>7</integer>
+									<integer>4</integer>
 									<integer>3</integer>
 									<integer>0</integer>
 								</array>
@@ -364,7 +362,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ScrollingDishDetailViewController.m</string>
+								<string>CommentsTableViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -372,11 +370,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ScrollingDishDetailViewController.m</string>
+										<string>CommentsTableViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>5F92A3AA12695BF2007D2451</string>
+										<string>5F92A3CE126960B7007D2451</string>
 										<key>history</key>
 										<array>
 											<string>5F89EFD61259314000959D05</string>
@@ -412,8 +410,8 @@
 											<string>5F94EC401267F9B70080CEDD</string>
 											<string>5F94EC461267F9FC0080CEDD</string>
 											<string>5F94ED2E1268065B0080CEDD</string>
-											<string>5F92A3A912695BF2007D2451</string>
-											<string>5F94ED2F1268065B0080CEDD</string>
+											<string>5F92A3B812695FCA007D2451</string>
+											<string>5F92A3CD126960B7007D2451</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -635,12 +633,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>CommentsTableViewController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -865,7 +865,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{0, 0}, {911, 479}}</string>
+										<string>{{0, 0}, {911, 416}}</string>
 										<key>RubberWindowFrame</key>
 										<string>369 45 911 733 0 0 1280 778 </string>
 									</dict>
@@ -876,7 +876,7 @@
 								</dict>
 							</array>
 							<key>Proportion</key>
-							<string>479pt</string>
+							<string>416pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -889,14 +889,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 484}, {911, 208}}</string>
+								<string>{{0, 421}, {911, 271}}</string>
 								<key>RubberWindowFrame</key>
 								<string>369 45 911 733 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXProjectFindModule</string>
 							<key>Proportion</key>
-							<string>208pt</string>
+							<string>271pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>

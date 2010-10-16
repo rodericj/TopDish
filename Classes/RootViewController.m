@@ -36,6 +36,7 @@
 	//Start up the networking
 	NSURLRequest *request = [NSURLRequest requestWithURL:url];
 	NSURLRequest *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE]; 
+	[conn release];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
     // Set up the edit and add buttons.
@@ -123,8 +124,7 @@
 #pragma mark Table view data source
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	//TODO const
-	return 72;
+	return COMMENTTABLECELLHEIGHT;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -356,7 +356,10 @@
 	NSLog(@"%@", error);
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
-	//TODO Put out a popup
+	UIAlertView *alert;
+	alert = [[UIAlertView alloc] initWithTitle:@"NetworkError" message:@"There was a network issue. Try again later" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil]; 
+	[alert show];
+	[alert release];
 	
 }
 

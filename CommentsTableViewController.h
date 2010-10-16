@@ -17,7 +17,6 @@
 	UITableViewCell *commentCell;
 
 	NSURLRequest *request;
-	NSURLRequest *conn;
 	
 @private
     NSFetchedResultsController *fetchedResultsController_;

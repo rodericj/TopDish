@@ -42,9 +42,7 @@
 
 	
 	NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:8];
-	connection = [[NSURLConnection alloc] initWithRequest:request delegate:self]; //notice how delegate set to self object
-	//TODO error handling, what if connection is nil?
-	
+	connection = [[NSURLConnection alloc] initWithRequest:request delegate:self]; 	
 }
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
 	NSLog(@"is this a fail?");
