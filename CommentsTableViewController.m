@@ -61,8 +61,8 @@
 	//Start up the networking
 	request = [NSURLRequest requestWithURL:url];
 	conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE]; 
-	//TODO Start the spinner
-	
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
 }
 
 /*
@@ -208,13 +208,13 @@
 	//NSLog(@"connection did finish loading");
 	NSLog(@"%@", _responseText);
 	NSString *responseText = [[NSString alloc] initWithData:_responseText encoding:NSUTF8StringEncoding];
-	responseText = @"{\"id\":38, \"name\":\"Bacon Burger\", \"Description\":\"All bacon and bun\", \"restaurantID\":37, \"latitude\":33.677854, \"longitude\":-117799428, \"posReviews\":1, \"negReviews\":2, \"photoURL\":\"\", \"reviews\":[{\"direction\":1, \"comment\": \"yo this thing was great\",\"creator\":\"andy\", \"dateCreated\":\"oct 11, 2010 4:39:42 AM\"},{\"direction\":-1, \"comment\": \"it was bad\",\"creator\":\"Steven\", \"dateCreated\":\"oct 12, 2010 4:39:42 AM\"}]}"; 
+	responseText = @"{\"id\":38, \"name\":\"Bacon Burger\", \"Description\":\"All bacon and bun\", \"restaurantID\":37, \"latitude\":33.677854, \"longitude\":-117.799428, \"posReviews\":1, \"negReviews\":2, \"photoURL\":\"\", \"reviews\":[{\"direction\":1, \"comment\": \"yo this thing was great\",\"creator\":\"andy\", \"dateCreated\":\"oct 11, 2010 4:39:42 AM\"},{\"direction\":-1, \"comment\": \"it was bad\",\"creator\":\"Steven\", \"dateCreated\":\"oct 12, 2010 4:39:42 AM\"}]}"; 
 	NSLog(@"dishdetail text is %@", responseText);
 	SBJSON *parser = [SBJSON new];
 	NSError *error;
 	NSDictionary *responseAsDictionary = [parser objectWithString:responseText error:&error];
 	[parser release];
-	[self.managedObjectContext reset];
+	//[self.managedObjectContext reset];
 	NSLog(@"the comment passed in object %@", [responseAsDictionary objectForKey:@"reviews"]);
 	//[reviews release];
 	if(reviews == nil){
@@ -257,12 +257,13 @@
 	_responseText = nil;
 	[self.tableView reloadData];
 
-	//TODO Stop the spinner
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
 	//TODO Do I need to release the connection here?
+	[conn release];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-	NSLog(@"Comments Table View connection didfailwitherror");
 	NSLog(@"%@", error);
 	
 	//TODO when the server is in a bit better shape I'll have to 
@@ -270,7 +271,8 @@
 	[self connectionDidFinishLoading:connection];
 	
 	//TODO Do I need to release the connection here?
-	//TODO Stop the spinner
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
 	//TODO Put out a popup
 	
 }

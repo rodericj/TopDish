@@ -36,8 +36,8 @@
 	//Start up the networking
 	NSURLRequest *request = [NSURLRequest requestWithURL:url];
 	NSURLRequest *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE]; 
-	//TODO Start the spinner
-	
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
     // Set up the edit and add buttons.
 	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] 
 								  initWithImage:[UIImage imageNamed:POSITIVE_REVIEW_IMAGE_NAME] 
@@ -314,10 +314,7 @@
 #pragma mark Network Delegate 
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
-	NSLog(@"connection did finish loading");
-	NSLog(@"%@", _responseText);
 	NSString *responseText = [[NSString alloc] initWithData:_responseText encoding:NSUTF8StringEncoding];
-	NSLog(@"text is %@", responseText);
 	
 	SBJSON *parser = [SBJSON new];
 	NSArray *responseAsArray = [parser objectWithString:responseText error:NULL];
@@ -352,21 +349,19 @@
 	[responseText release];
 	[_responseText release];
 	_responseText = nil;
-	//TODO Stop the spinner
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-	NSLog(@"connection didfailwitherror");
 	NSLog(@"%@", error);
-	//TODO Stop the spinner
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
 	//TODO Put out a popup
 	
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-	NSLog(@"didRecieveData in root view %@", data);
 	NSString *responseText = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	NSLog(@"data %@", responseText);
 	if(_responseText == nil){
 		_responseText = [[NSData alloc] initWithData:data];
 	}
