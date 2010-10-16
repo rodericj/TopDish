@@ -104,7 +104,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[scrollView setContentSize:CGSizeMake(320, 9000)];
+	NSLog(@"the height of the description %f", [description frame].size.height);
+	NSLog(@"height of the comments %f", [commentSubView frame].size.height);
+	float descriptionHeight = [description frame].size.height;
+	float commentHeight = [commentSubView frame].size.height;
+	float commentHeight2 = [commentsController.tableView contentSize].height;
+
+	float imageHeight = [dishImage frame].size.height;
+
+	//[scrollView setContentSize:CGSizeMake(320, 9000)];
+	[scrollView setContentSize:CGSizeMake(320, descriptionHeight+commentHeight+imageHeight + 528)];
 
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -135,8 +144,20 @@
 	
 	
 	[commentsController refreshFromServer];
-	NSLog(@"dish id from the scrolling dishdetailview controller %@", [dish dish_id]);
 	
+	float descriptionHeight = [description frame].size.height;
+	//float commentHeight = [commentSubView frame].size.height;
+	float commentHeight = [commentsController.tableView contentSize].height;
+	
+	float imageHeight = [dishImage frame].size.height;
+	NSLog(@"determine comment height after viewWillAppear %f", commentHeight);
+	//[scrollView setContentSize:CGSizeMake(320, 9000)];
+	//[scrollView setContentSize:CGSizeMake(320, descriptionHeight)];
+	
+	
+	
+	//[scrollView setContentSize:CGSizeMake(320, 200)];
+
 	//TODO Set the height of the UIScrollView here. We should know the height of all of the internal views. Should be able to set it.
 	
 }

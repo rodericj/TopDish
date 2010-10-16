@@ -46,7 +46,7 @@
 }
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
 	NSLog(@"is this a fail?");
-	NSLog(@"%@", error);
+	//NSLog(@"%@", error);
 }
 
 //the URL connection calls this repeatedly as data arrives
