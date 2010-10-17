@@ -259,6 +259,7 @@
 		[thisDish setPosReviews:[thisElement objectForKey:@"posReviews"]];
 		[thisDish setNegReviews:[thisElement objectForKey:@"negReviews"]];
 		[thisDish setDish_id:[thisElement objectForKey:@"id"]];
+		NSLog(@"adding all the stuff to a dish: %@", [thisDish price]);
 	}
 	
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

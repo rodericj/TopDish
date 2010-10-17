@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 
 @interface RootViewController : UITableViewController < NSFetchedResultsControllerDelegate> {
-    NSMutableArray *tableData;
+    //NSMutableArray *tableData;
     
 	UIImageView *bgImage;
     UITableView *theTableView;
@@ -23,6 +23,8 @@
     NSFetchedResultsController *fetchedResultsController_;
     NSManagedObjectContext *managedObjectContext_;
 }
+-(void) updateSettings:(NSDictionary *)settings;
+
 
 @property (nonatomic, retain) IBOutlet UIImageView *bgImage;
 @property (nonatomic, assign) IBOutlet UITableViewCell *tvCell;
@@ -32,7 +34,7 @@
 @property (nonatomic, retain) NSData *_responseText;
 
 
-@property(retain) NSMutableArray *tableData;
+//@property(retain) NSMutableArray *tableData;
 @property (nonatomic, retain) IBOutlet UITableView *theTableView;
 @property (nonatomic, retain) IBOutlet UISearchBar *theSearchBar;
 

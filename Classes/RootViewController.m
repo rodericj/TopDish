@@ -27,7 +27,7 @@
 @synthesize bgImage;
 @synthesize theSearchBar;
 @synthesize theTableView;
-@synthesize tableData;
+//@synthesize tableData;
 @synthesize _responseText;
 
 #pragma mark -
@@ -71,31 +71,6 @@
 }
 
 
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-
-/*
- // Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
- */
-
-
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     //NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	//NSLog(@"here we are using the managed Object %@", managedObject);
@@ -117,13 +92,71 @@
 #pragma mark -
 #pragma mark Bring up the Settings view
 - (void) showSettings{
-	SettingsView *map = [[SettingsView alloc] initWithNibName:@"SettingsView" 
+	SettingsView *settings = [[SettingsView alloc] initWithNibName:@"SettingsView" 
 																			 bundle:nil];
-	[map setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+	[settings setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
 	
-	[self presentModalViewController:map animated:TRUE];
+	[self presentModalViewController:settings animated:TRUE];
+	[settings setDelegate:self];
 }
 	 
+-(void) updateSettings:(NSDictionary *)settings{
+
+	NSPredicate *filterPricePredicate = [NSPredicate predicateWithFormat: @"%K <= %@ AND %K >= %@", 
+										 @"price", [settings objectForKey:@"maxPrice"], 
+										 @"price", [settings objectForKey:@"minPrice"]];
+	
+	
+	/*
+     Set up the fetched results controller.
+	 */
+    // Create the fetch request for the entity.
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+	[fetchRequest setPredicate:filterPricePredicate];
+	
+    // Set the batch size to a suitable number.
+    [fetchRequest setFetchBatchSize:20];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"posReviews" ascending:NO];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+	
+	//must release old fetch result controller
+	//[self.fetchedResultsController release];
+	
+    // Edit the section name key path and cache name if appropriate.
+    // nil for section name key path means "no sections".
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
+    aFetchedResultsController.delegate = self;
+    self.fetchedResultsController = aFetchedResultsController;
+    
+    [aFetchedResultsController release];
+    [fetchRequest release];
+    [sortDescriptor release];
+    [sortDescriptors release];
+    
+    NSError *error = nil;
+    if (![fetchedResultsController_ performFetch:&error]) {
+        /*
+         Replace this implementation with code to handle the error appropriately.
+         //TODO remove auto generated abort
+         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+         */
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+	[self.tableView reloadData];
+
+}
+
+
 #pragma mark -
 #pragma mark Table view data source
 
@@ -180,6 +213,11 @@
 	downVotes = (UILabel *)[cell viewWithTag:ROOTVIEW_DOWNVOTES_TAG];
 	downVotes.text = [NSString stringWithFormat:@"%@", 
 					  [thisDish negReviews]];
+	
+	UILabel *priceNumber;
+	priceNumber = (UILabel *)[cell viewWithTag:ROOTVIEW_COST_TAG];
+	priceNumber.text = [NSString stringWithFormat:@"%d", 
+					  [[thisDish price] intValue]];
 	
 	UIImageView *imageView = (UIImageView *)[cell viewWithTag:ROOTVIEW_IMAGE_TAG];
 	
@@ -246,14 +284,11 @@
 	Dish *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
 	NSLog(@"DishName from RootView Controller %@", [selectedObject dish_name]);
 	
-    
-	//DishDetailTableViewController *detailViewController = [[DishDetailTableViewController alloc] initWithNibName:@"DishDetailTableViewController" bundle:nil];
 	ScrollingDishDetailViewController *detailViewController = [[ScrollingDishDetailViewController alloc] initWithNibName:@"ScrollingDishDetailView" bundle:nil];
-	// ...
-	// Pass the selected object to the new view controller.
+
 	[detailViewController setDish:selectedObject];
 	[detailViewController setManagedObjectContext:self.managedObjectContext];
-	//NSLog(@"the dishdetailviewcontroller object %@", [detailViewController ] );
+
 	[self.navigationController pushViewController:detailViewController animated:YES];
 	[detailViewController release];
      
@@ -289,7 +324,8 @@
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
+    //NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
@@ -302,7 +338,7 @@
     if (![fetchedResultsController_ performFetch:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
-         
+         //TODO remove auto generated abort
          abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
          */
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
@@ -327,6 +363,7 @@
 		NSDictionary *thisElement = [responseAsArray objectAtIndex:i];
 		[thisDish setDish_id:[thisElement objectForKey:@"id"]];
 		[thisDish setDish_name:[thisElement objectForKey:@"name"]];
+		[thisDish setPrice:[NSNumber numberWithInt:i+1]];
 		[thisDish setDish_description:[thisElement objectForKey:@"description"]];
 		[thisDish setDish_photoURL:[thisElement objectForKey:@"photoURL"]];
 		[thisDish setLatitude:[thisElement objectForKey:@"latitude"]];

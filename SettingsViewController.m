@@ -13,6 +13,7 @@
 @synthesize minSlider;
 @synthesize maxLabel;
 @synthesize minLabel;
+@synthesize delegate;
 
 -(IBAction) updateMaxSlider{
 	//make the slider appear rigid
@@ -38,6 +39,16 @@
 -(IBAction) closeSettings{
 	[self dismissModalViewControllerAnimated:TRUE]; 
 
+	NSNumber *minFloatVal = [[NSNumber alloc] initWithFloat:[minSlider value]];
+	NSNumber *maxFloatVal = [[NSNumber alloc] initWithFloat:[maxSlider value]];
+	//NSFloat *maxFloatVal = [[NSInteger alloc] initWithFloat:[maxSlider value]];
+	
+	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
+							  maxFloatVal, @"maxPrice",
+							  minFloatVal, @"minPrice",
+							  nil] ;
+	
+	[delegate updateSettings:settings];
 }
 
 - (void) updateSymbols{
@@ -54,9 +65,6 @@
 		[output appendString:@"$"];
 	
 	[minLabel setText:output];
-	
-	NSLog(@"output %@", output);
-
 }
 
 - (void)dealloc {

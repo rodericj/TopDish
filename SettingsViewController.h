@@ -7,12 +7,14 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import "RootViewController.h"
 
 @interface SettingsView : UIViewController {
 	IBOutlet UISlider *maxSlider;
 	IBOutlet UISlider *minSlider;
 	IBOutlet UILabel *maxLabel;
 	IBOutlet UILabel *minLabel;
+	RootViewController *delegate;
 }
 
 -(IBAction) closeSettings; 
@@ -20,7 +22,7 @@
 -(IBAction) updateMinSlider;
 -(void) updateSymbols;
 
-
+@property (nonatomic, retain) RootViewController *delegate;
 @property (nonatomic, retain) UIButton *refineButton;
 @property (nonatomic, retain) UISlider *maxSlider;
 @property (nonatomic, retain) UISlider *minSlider;
