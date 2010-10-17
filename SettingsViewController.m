@@ -6,6 +6,7 @@
 //
 
 #import "SettingsViewController.h"
+#import "constants.h"
 
 @implementation SettingsView
 @synthesize refineButton;
@@ -14,6 +15,15 @@
 @synthesize maxLabel;
 @synthesize minLabel;
 @synthesize delegate;
+
+
+- (void)viewWillAppear:(BOOL)animated {
+	
+	//We need to maintain the previous state of the slider values.
+	[minSlider setValue:[[[NSUserDefaults standardUserDefaults] objectForKey:MIN_PRICE_VALUE_LOCATION] floatValue]];
+	[maxSlider setValue:[[[NSUserDefaults standardUserDefaults] objectForKey:MAX_PRICE_VALUE_LOCATION] floatValue]];
+	[self updateSymbols];
+}
 
 -(IBAction) updateMaxSlider{
 	//make the slider appear rigid
@@ -48,6 +58,9 @@
 							  minFloatVal, @"minPrice",
 							  nil] ;
 	
+	[[NSUserDefaults standardUserDefaults] setObject:maxFloatVal forKey:MAX_PRICE_VALUE_LOCATION];
+	[[NSUserDefaults standardUserDefaults] setObject:minFloatVal forKey:MIN_PRICE_VALUE_LOCATION];
+
 	[delegate updateSettings:settings];
 }
 

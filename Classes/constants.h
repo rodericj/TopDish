@@ -19,9 +19,14 @@
 #pragma mark network constants
 #define NETWORKHOST @"http://topdish1.appspot.com"
 
-#pragma tags
-#define DISHDETAILIMAGETAG 1
 #define DISH_DETAIL_CELL_IDENTIFIER @"dishdetailimagecell"
+#define MIN_PRICE_VALUE_LOCATION @"minpricevaluelocation"
+#define MAX_PRICE_VALUE_LOCATION @"maxpricevaluelocation"
+
+
+#pragma tags
+
+#define DISHDETAILIMAGETAG 1
 #define ROOTVIEW_DISH_NAME_TAG 1
 #define ROOTVIEW_RESTAURANT_NAME_TAG 2
 #define ROOTVIEW_COST_TAG 3

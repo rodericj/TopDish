@@ -89,7 +89,6 @@
 	
     // Configure the cell...
 	NSDictionary *thisReview = [reviews objectAtIndex:[indexPath row]];
-    //cell.text = [thisReview objectForKey:@"comment"];
 	
 	UILabel *commentorName;
 	commentorName = (UILabel *)[cell viewWithTag:COMMENTOR_NAME_TAG];

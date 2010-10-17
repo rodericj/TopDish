@@ -102,9 +102,11 @@
 	 
 -(void) updateSettings:(NSDictionary *)settings{
 
+	NSNumber *min = [[NSUserDefaults standardUserDefaults] objectForKey:MIN_PRICE_VALUE_LOCATION];
+	NSNumber *max = [[NSUserDefaults standardUserDefaults] objectForKey:MAX_PRICE_VALUE_LOCATION];
 	NSPredicate *filterPricePredicate = [NSPredicate predicateWithFormat: @"%K <= %@ AND %K >= %@", 
-										 @"price", [settings objectForKey:@"maxPrice"], 
-										 @"price", [settings objectForKey:@"minPrice"]];
+										 @"price", max, 
+										 @"price", min];
 	
 	
 	/*
@@ -127,10 +129,6 @@
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
-	
-	//must release old fetch result controller
-	//[self.fetchedResultsController release];
-	
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
