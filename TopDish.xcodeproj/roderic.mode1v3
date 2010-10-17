@@ -277,15 +277,15 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>11</integer>
-									<integer>8</integer>
+									<integer>18</integer>
+									<integer>14</integer>
 									<integer>7</integer>
 									<integer>3</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 25}, {297, 513}}</string>
+							<string>{{0, 25}, {297, 517}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -297,14 +297,14 @@
 					<key>GeometryConfiguration</key>
 					<dict>
 						<key>Frame</key>
-						<string>{{0, 0}, {314, 531}}</string>
+						<string>{{0, 0}, {314, 535}}</string>
 						<key>GroupTreeTableConfiguration</key>
 						<array>
 							<string>MainColumn</string>
 							<real>297</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>-20 204 1250 572 0 0 1280 778 </string>
+						<string>-20 200 1102 576 0 0 1280 778 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -322,7 +322,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SettingsViewController.m</string>
+								<string>RootViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -330,11 +330,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SettingsViewController.m</string>
+										<string>RootViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>5F92A859126A9847007D2451</string>
+										<string>5F92A86C126A9B7D007D2451</string>
 										<key>history</key>
 										<array>
 											<string>5F89EFD61259314000959D05</string>
@@ -369,9 +369,9 @@
 											<string>5F92A752126A66B2007D2451</string>
 											<string>5F92A800126A7517007D2451</string>
 											<string>5F92A843126A9762007D2451</string>
-											<string>5F92A852126A97EC007D2451</string>
 											<string>5F92A853126A97EC007D2451</string>
-											<string>5F92A854126A97EC007D2451</string>
+											<string>5F92A864126A9B5C007D2451</string>
+											<string>5F92A865126A9B5C007D2451</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -383,14 +383,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {931, 467}}</string>
+								<string>{{0, 0}, {783, 471}}</string>
 								<key>RubberWindowFrame</key>
-								<string>-20 204 1250 572 0 0 1280 778 </string>
+								<string>-20 200 1102 576 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>467pt</string>
+							<string>471pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -403,9 +403,9 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 472}, {931, 59}}</string>
+								<string>{{0, 476}, {783, 59}}</string>
 								<key>RubberWindowFrame</key>
-								<string>-20 204 1250 572 0 0 1280 778 </string>
+								<string>-20 200 1102 576 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -414,7 +414,7 @@
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>931pt</string>
+					<string>783pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -571,12 +571,12 @@
 	<array>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
-		<string>5F0762F312592A22007D2C7E</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
+		<string>5F0762F312592A22007D2C7E</string>
 		<string>/Users/roderic/dev/TopDish/TopDish.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>-20 204 1250 572 0 0 1280 778 </string>
+	<string>-20 200 1102 576 0 0 1280 778 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -883,7 +883,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C530D57069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

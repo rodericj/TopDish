@@ -35,6 +35,7 @@
 	}
 	[self updateSymbols];
 }
+
 -(IBAction) updateMinSlider{
 	//Make the slider appear rigid
 	[minSlider setValue:(int)[minSlider value]];
@@ -43,9 +44,8 @@
 		[maxSlider setValue:[minSlider value]];
 	}
 	[self updateSymbols];
-
-
 }
+
 -(IBAction) closeSettings{
 	[self dismissModalViewControllerAnimated:TRUE]; 
 

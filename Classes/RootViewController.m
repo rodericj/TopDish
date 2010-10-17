@@ -108,6 +108,7 @@
 										 @"price", max, 
 										 @"price", min];
 	
+	//TODO....Ok this should all be in a function somewhere.
 	
 	/*
      Set up the fetched results controller.
@@ -214,8 +215,12 @@
 	
 	UILabel *priceNumber;
 	priceNumber = (UILabel *)[cell viewWithTag:ROOTVIEW_COST_TAG];
-	priceNumber.text = [NSString stringWithFormat:@"%d", 
-					  [[thisDish price] intValue]];
+	
+	NSMutableString *output = [NSMutableString stringWithCapacity:[[thisDish price] intValue]];
+	
+	for (int i = 0; i < [[thisDish price] intValue]; i++)
+		[output appendString:@"$"];
+	priceNumber.text = output;
 	
 	UIImageView *imageView = (UIImageView *)[cell viewWithTag:ROOTVIEW_IMAGE_TAG];
 	
