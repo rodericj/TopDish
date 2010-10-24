@@ -8,24 +8,34 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "MyCLController.h"
 
-@interface RootViewController : UITableViewController < NSFetchedResultsControllerDelegate> {
-    //NSMutableArray *tableData;
-    
+@interface RootViewController : UITableViewController <MyCLControllerDelegate, NSFetchedResultsControllerDelegate> {
+	MyCLController *locationController;
+	NSString *currentLat;
+	NSString *currentLon;
+	
 	UIImageView *bgImage;
     UITableView *theTableView;
     UISearchBar *theSearchBar;
 
+	UISegmentedControl *dishRestoSelector;
+	
 	UITableViewCell *tvCell;
 	NSData *_responseText;
+	
+
 
 @private
     NSFetchedResultsController *fetchedResultsController_;
     NSManagedObjectContext *managedObjectContext_;
 }
 -(void) updateSettings:(NSDictionary *)settings;
+-(void)getNearbyItems:(CLLocation *)location;
 
-
+@property (nonatomic, retain) NSString *currentLat;
+@property (nonatomic, retain) NSString *currentLon;
+@property (nonatomic, retain) UISegmentedControl *dishRestoSelector;
 @property (nonatomic, retain) IBOutlet UIImageView *bgImage;
 @property (nonatomic, assign) IBOutlet UITableViewCell *tvCell;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
@@ -34,7 +44,6 @@
 @property (nonatomic, retain) NSData *_responseText;
 
 
-//@property(retain) NSMutableArray *tableData;
 @property (nonatomic, retain) IBOutlet UITableView *theTableView;
 @property (nonatomic, retain) IBOutlet UISearchBar *theSearchBar;
 

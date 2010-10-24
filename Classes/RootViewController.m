@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 #import "Dish.h"
+#import "Restaurant.h"
 #import "asyncimageview.h"
 #import "NearbyMapViewController.h"
 #import "SettingsViewController.h"
@@ -27,8 +28,10 @@
 @synthesize bgImage;
 @synthesize theSearchBar;
 @synthesize theTableView;
-//@synthesize tableData;
 @synthesize _responseText;
+@synthesize dishRestoSelector;
+@synthesize currentLat;
+@synthesize currentLon;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -36,14 +39,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishSearch?lat=33.6886&lng=-117.8129&disance=200000", NETWORKHOST]];
+	locationController = [[MyCLController alloc] init];
+	locationController.delegate = self;
+	locationController.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+	[locationController.locationManager startUpdatingLocation];	
+	
+	//The first time this view loads it will always be a dish Search 37.958, -121.998
+	//NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishSearch?lat=33.6886&lng=-117.8129&disance=2000", NETWORKHOST]];
+	//NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishSearch?lat=37.958&lng=-121.998&disance=2000000", NETWORKHOST]];
 	//Start up the networking
-	NSURLRequest *request = [NSURLRequest requestWithURL:url];
-	NSURLRequest *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE]; 
-	[conn release];
+	//NSURLRequest *request = [NSURLRequest requestWithURL:url];
+	//NSURLRequest *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE]; 
+	//[conn release];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
-    // Set up the edit and add buttons.
+    // Set up the settings button
 	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] 
 								  initWithImage:[UIImage imageNamed:POSITIVE_REVIEW_IMAGE_NAME] 
 								  style:UIBarButtonItemStylePlain 
@@ -52,6 +62,7 @@
 	
     self.navigationItem.leftBarButtonItem = settingsButton;
 	
+	// Set up the map button
 	UIBarButtonItem *mapButton = [[UIBarButtonItem alloc] 
 								  initWithImage:[UIImage imageNamed:POSITIVE_REVIEW_IMAGE_NAME] 
 								  style:UIBarButtonItemStylePlain 
@@ -60,13 +71,57 @@
 	
 	self.navigationItem.rightBarButtonItem = mapButton;
 
+	
+	// Set up the dish/restaurant selector
+	dishRestoSelector = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Dishes", @"Restaurants", nil]];
+	dishRestoSelector.segmentedControlStyle = UISegmentedControlStyleBar;
+	dishRestoSelector.selectedSegmentIndex = 0;	
+
+	//TODO Commented out so we don't show the selector. Add in when restaurant's are ready
+	//self.navigationItem.titleView = dishRestoSelector;
+	
+	[dishRestoSelector addTarget:self 
+						 action:@selector(initiateNetworkBasedOnSegmentControl) 
+			   forControlEvents:UIControlEventValueChanged];
+	
+	
 	[theTableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tdlogo.png"]]];
 }
+-(void) networkQuery:(NSString *)query{
+	NSURL *url;
+	NSURLRequest *request;
+	NSURLConnection *conn;
+	NSLog(@"we are switching to dishes");
+	url = [NSURL URLWithString:query];
+	//Start up the networking
+	request = [NSURLRequest requestWithURL:url];
+	conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE]; 
+	//[conn release];
+	
+}
+-(void)initiateNetworkBasedOnSegmentControl{
+	//TODO RESTODISH SWITCH - turn off the 'settings' button for restaurants
 
+	NSLog(@"Segmentedcontrol changed");
+	if([dishRestoSelector selectedSegmentIndex] == 0){
+		NSLog(@"we are switching to dishes %@ %@", currentLat, currentLon);
+		[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&disance=200000000", NETWORKHOST, currentLat, currentLon]];
+		//url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishSearch?lat=33.6886&lng=-117.8129&disance=2000", NETWORKHOST]];
+	}
+	else if([dishRestoSelector selectedSegmentIndex] == 1){
+		NSLog(@"we are switching to restaurants %@ %@", currentLat, currentLon);
+		NSLog(@"%@", currentLat);
+		[self networkQuery:[NSString stringWithFormat:@"%@/api/restaurantSearch?lat=%@&lng=%@&disance=200000000", NETWORKHOST, currentLat, currentLon]];
+
+	}
+	else {
+		NSLog(@"Wait...what did we just switch to?");
+	}
+
+}
 
 // Implement viewWillAppear: to do additional setup before the view is presented.
 - (void)viewWillAppear:(BOOL)animated {
-	
     [super viewWillAppear:animated];
 }
 
@@ -179,6 +234,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	//NSLog(@"row number %d", [indexPath row]);
 
+	//TODO RESTODISH SWITCH - Show a different cell for restaurants vs dishs
+
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -227,11 +284,13 @@
 	AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[imageView frame]];
 																		
 	asyncImage.tag = 999;
-	NSURL *url = [NSURL URLWithString: [thisDish dish_photoURL]];
-	//NSURL *url = [NSURL URLWithString:@"http://topdish1.appspot.com/getPhoto?id=84001"];
-	[asyncImage loadImageFromURL:url withImageView:imageView showActivityIndicator:FALSE];
-	[cell.contentView addSubview:asyncImage];
-	
+	if( [[thisDish dish_photoURL] length] > 0 ){
+		
+		NSString *urlString = [NSString stringWithFormat:@"%@%@", NETWORKHOST, [thisDish dish_photoURL]]; 
+		NSURL *photoUrl = [NSURL URLWithString:urlString];
+		[asyncImage loadImageFromURL:photoUrl withImageView:imageView showActivityIndicator:FALSE];
+		[cell.contentView addSubview:asyncImage];
+	}
     // Configure the cell.
     [self configureCell:cell atIndexPath:indexPath];
 //    }
@@ -250,29 +309,6 @@
 */
 
 
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the managed object for the given index path
-        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-        
-        // Save the context.
-        NSError *error = nil;
-        if (![context save:&error]) {
-            /*
-             Replace this implementation with code to handle the error appropriately.
-             
-             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-             */
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        }
-    }   
-}
-
-
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // The table view should not be re-orderable.
     return NO;
@@ -283,6 +319,8 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	//TODO RESTODISH SWITCH - The drilldown for restaurants and dishes are different in the detailviewcontroller
+
     // Navigation logic may go here -- for example, create and push another view controller.
 	Dish *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
 	NSLog(@"DishName from RootView Controller %@", [selectedObject dish_name]);
@@ -350,40 +388,121 @@
     
     return fetchedResultsController_;
 }    
+
+#pragma mark -
+#pragma mark Location
+
+- (void)locationUpdate:(CLLocation *)location {
+	
+	[self getNearbyItems:location];
+	locationController = [[MyCLController alloc] init];
+	locationController.delegate = self;
+	//[locationController.locationManager stopUpdatingLocation];
+}
+
+- (void)getNearbyItems:(CLLocation *)location {
+	NSLog(@"getNearbyItems Called %@. Accuracy: %d, %d", [location description], location.verticalAccuracy, location.horizontalAccuracy);
+	
+	if (location == NULL){
+		NSLog(@"the location was null which means that the thread is doing something intersting. Lets send this back.");
+	}
+	else{
+		//Make location string 2 separate lat/long
+		NSString *latlong = [[[location description] stringByReplacingOccurrencesOfString:@"<" withString:@""] 
+							 stringByReplacingOccurrencesOfString:@">" withString:@""];
+		NSLog(@"the latlong is %@", latlong);
+		NSArray *chunks = [latlong componentsSeparatedByString:@" "];
+		if (currentLat != nil) {
+			[currentLat release];
+		}
+		if (currentLon != nil){
+			[currentLat release];
+		}
+		currentLat =[[[chunks objectAtIndex:0] stringByReplacingOccurrencesOfString:@"," withString:@""] copy];
+		currentLon = [[chunks objectAtIndex:1] copy];
+		[self initiateNetworkBasedOnSegmentControl];
+		
+	}
+}
+
+
 #pragma mark -
 #pragma mark Network Delegate 
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
+	NSLog(@"connectin did finish loading");
 	NSString *responseText = [[NSString alloc] initWithData:_responseText encoding:NSUTF8StringEncoding];
-	
+	NSLog(@"response Text %@", responseText);
+	//TODO RESTODISH SWITCH - when response has finised loading, I should determine if it's dishes or restauarants that I'm looking at
+
 	SBJSON *parser = [SBJSON new];
 	NSArray *responseAsArray = [parser objectWithString:responseText error:NULL];
 	[parser release];
+	NSLog(@"nearby dishes loaded %@", responseAsArray);
+	if(responseAsArray == nil){
+		NSLog(@"the response is nil");
+		NSString *restoJsonData = @"[\
+		{\
+		\"id\":138,\
+		\"restaurantName\":\"The Burger Joint\",\
+		\"addressLine1\":\"123 main street\",\
+		\"addressLine2\":\"\",\
+		\"city\":34,\
+		\"state\":12,\
+		\"neighborhood\":\"pac Heights\"\
+		},\
+		{\
+		\"id\":139,\
+		\"restaurantName\":\"The Burger Joint\",\
+		\"addressline1\":\"123 main street\",\
+		\"addressLine2\":\"\",\
+		\"city\":\"San Francisco\",\
+		\"state\":\"CA\",\
+		\"neighborhood\":\"Nob Hill\"\
+		}]";
+		parser = [SBJSON new];
+		responseAsArray = [parser objectWithString:restoJsonData error:NULL];
+		[parser release];
+		NSLog(@"response hard coded = %@", responseAsArray);
+		
+	}
 	[self.managedObjectContext reset];
 	
-	for (int i =0; i < [responseAsArray count]; i++){
-		Dish *thisDish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" inManagedObjectContext:self.managedObjectContext];
-		NSDictionary *thisElement = [responseAsArray objectAtIndex:i];
-		[thisDish setDish_id:[thisElement objectForKey:@"id"]];
-		[thisDish setDish_name:[thisElement objectForKey:@"name"]];
-		[thisDish setPrice:[NSNumber numberWithInt:i+1]];
-		[thisDish setDish_description:[thisElement objectForKey:@"description"]];
-		[thisDish setDish_photoURL:[thisElement objectForKey:@"photoURL"]];
-		[thisDish setLatitude:[thisElement objectForKey:@"latitude"]];
-		[thisDish setLongitude:[thisElement objectForKey:@"longitude"]];
-		[thisDish setPosReviews:[thisElement objectForKey:@"posReviews"]];
-		[thisDish setNegReviews:[thisElement objectForKey:@"negReviews"]];
-		[thisDish setDish_id:[thisElement objectForKey:@"id"]];
+	if([dishRestoSelector selectedSegmentIndex] == 0){
+		
+		for (int i =0; i < [responseAsArray count]; i++){
+			Dish *thisDish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" inManagedObjectContext:self.managedObjectContext];
+			NSDictionary *thisElement = [responseAsArray objectAtIndex:i];
+			[thisDish setDish_id:[thisElement objectForKey:@"id"]];
+			[thisDish setDish_name:[thisElement objectForKey:@"name"]];
+			[thisDish setPrice:[NSNumber numberWithInt:i+1]];
+			[thisDish setDish_description:[thisElement objectForKey:@"description"]];
+			[thisDish setDish_photoURL:[thisElement objectForKey:@"photoURL"]];
+			[thisDish setLatitude:[thisElement objectForKey:@"latitude"]];
+			[thisDish setLongitude:[thisElement objectForKey:@"longitude"]];
+			[thisDish setPosReviews:[thisElement objectForKey:@"posReviews"]];
+			[thisDish setNegReviews:[thisElement objectForKey:@"negReviews"]];
+			[thisDish setDish_id:[thisElement objectForKey:@"id"]];
+		}
+		
+		}
+	else if([dishRestoSelector selectedSegmentIndex] == 1){
+		
+		for (int i =0; i < [responseAsArray count]; i++){
+			Restaurant *thisResto = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" inManagedObjectContext:self.managedObjectContext];
+			NSDictionary *thisElement = [responseAsArray objectAtIndex:i];
+			NSLog(@"%@ %@", [thisElement objectForKey:@"id"], [thisElement objectForKey:@"restaurantName"]);
+			//[thisDish setDish_id:[thisElement objectForKey:@"id"]];
+//			[thisDish setDish_name:[thisElement objectForKey:@"name"]];
+		}
+		
 	}
 	
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish"  
 											  inManagedObjectContext:self.managedObjectContext];
-	[fetchRequest setEntity:entity];
 	
-//	NSError *error;
-//	NSArray *items = [self.managedObjectContext
-//					  executeFetchRequest:fetchRequest error:&error];
+	[fetchRequest setEntity:entity];
 	
 	[fetchRequest release];	
 	
@@ -405,9 +524,12 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
+	NSLog(@"connectin did receive data");
+
 	if(_responseText == nil){
 		_responseText = [[NSData alloc] initWithData:data];
 	}
+	//append
 }
 
 	
@@ -467,16 +589,6 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView endUpdates];
 }
-
-
-/*
-// Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed. 
- 
- - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    // In the simplest, most efficient, case, reload the table view.
-    [self.tableView reloadData];
-}
- */
 
 
 #pragma mark -

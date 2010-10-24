@@ -181,6 +181,26 @@
 -(void)initializedatabase {
 	NSLog(@"initialize database");
 	
+	NSString *restoJsonData = @"[\
+							   {\
+								   \"id\":138,\
+								   \"restaurantName\":\"The Burger Joint\",\
+								   \"addressLine1\":\"123 main street\",\
+								   \"addressLine2\":\"\",\
+								   \"city\":34,\
+								   \"state\":12,\
+								   \"neighborhood\":\"pac Heights\"\
+								   },\
+								   [\
+								   {\
+								   \"id\":138,\
+								   \"restaurantName\":\"The Burger Joint\",\
+								   \"addressline1\":\"123 main street\",\
+								   \"addressLine2\":\"\",\
+								   \"city\":\"San Francisco\",\
+								   \"state\":\"CA\",\
+								   \"neighborhood\":\"Nob Hill\"\
+								   }}";
 	NSString *jsonData = @"[\
 	{\
 	\"id\":38,\

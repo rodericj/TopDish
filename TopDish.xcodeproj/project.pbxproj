@@ -36,6 +36,8 @@
 		5F89F32C12598F9C00959D05 /* asyncimageview.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F89F32B12598F9C00959D05 /* asyncimageview.m */; };
 		5F89F55A125C464900959D05 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F89F559125C464900959D05 /* MapKit.framework */; };
 		5F92A6ED126A5F0F007D2451 /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F92A6EC126A5F0F007D2451 /* Dish.m */; };
+		5F92A9A2126D4A41007D2451 /* MyCLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F92A9A1126D4A41007D2451 /* MyCLController.m */; };
+		5F92A9AB126D4B53007D2451 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F92A9AA126D4B53007D2451 /* CoreLocation.framework */; };
 		5F94EC281267F7570080CEDD /* CommentControllerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F94EC271267F7570080CEDD /* CommentControllerTableViewCell.xib */; };
 		5FBB9659126232B600141693 /* ScrollingDishDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FBB9658126232B600141693 /* ScrollingDishDetailView.xib */; };
 		5FBB9663126233DB00141693 /* ScrollingDishDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */; };
@@ -90,6 +92,9 @@
 		5F89F559125C464900959D05 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		5F92A6EB126A5F0F007D2451 /* Dish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
 		5F92A6EC126A5F0F007D2451 /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
+		5F92A9A0126D4A41007D2451 /* MyCLController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCLController.h; sourceTree = "<group>"; };
+		5F92A9A1126D4A41007D2451 /* MyCLController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCLController.m; sourceTree = "<group>"; };
+		5F92A9AA126D4B53007D2451 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5F94EC271267F7570080CEDD /* CommentControllerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CommentControllerTableViewCell.xib; path = ../CommentControllerTableViewCell.xib; sourceTree = "<group>"; };
 		5FBB95F11262288E00141693 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 		5FBB9658126232B600141693 /* ScrollingDishDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScrollingDishDetailView.xib; path = ../ScrollingDishDetailView.xib; sourceTree = "<group>"; };
@@ -114,6 +119,7 @@
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				28860BE50F44EE6400985440 /* CoreData.framework in Frameworks */,
 				5F89F55A125C464900959D05 /* MapKit.framework in Frameworks */,
+				5F92A9AB126D4B53007D2451 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +186,7 @@
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 				28860BE40F44EE6400985440 /* CoreData.framework */,
+				5F92A9AA126D4B53007D2451 /* CoreLocation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -257,6 +264,8 @@
 		5FBB975C126241F100141693 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
+				5F92A9A0126D4A41007D2451 /* MyCLController.h */,
+				5F92A9A1126D4A41007D2451 /* MyCLController.m */,
 				5F89F15C1259501800959D05 /* RootControllerTableViewCell.xib */,
 				2899E55F0DE3E45000AC0155 /* RootViewController.xib */,
 				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
@@ -379,6 +388,7 @@
 				5FBB9AA21264036500141693 /* CommentsTableViewController.m in Sources */,
 				5F08954D12641D6100EDE197 /* SettingsViewController.m in Sources */,
 				5F92A6ED126A5F0F007D2451 /* Dish.m in Sources */,
+				5F92A9A2126D4A41007D2451 /* MyCLController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

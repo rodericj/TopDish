@@ -9,6 +9,7 @@
 #import "asyncimageview.h"
 #import "JSON.h"
 #import "DishComment.h"
+#import "constants.h"
 
 @implementation ScrollingDishDetailViewController
 @synthesize dish;
@@ -133,13 +134,13 @@
 	CGAffineTransform translate = CGAffineTransformMakeTranslation(0,[description frame].size.height);
 	commentSubView.transform = translate;
 	
-	NSURL *photoUrl = [NSURL URLWithString:[dish dish_photoURL]];
+	if( [[dish dish_photoURL] length] > 0 ){
 
-	//NSURL *photoUrl = [NSURL URLWithString:@"http://topdish1.appspot.com/getPhoto?id=84001"];
-
-	AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[dishImage frame]];
-	[asyncImage loadImageFromURL:photoUrl withImageView:dishImage showActivityIndicator:FALSE];
-	
+		NSString *urlString = [NSString stringWithFormat:@"%@%@", NETWORKHOST, [dish dish_photoURL]]; 
+		NSURL *photoUrl = [NSURL URLWithString:urlString];
+		AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[dishImage frame]];
+		[asyncImage loadImageFromURL:photoUrl withImageView:dishImage showActivityIndicator:FALSE];
+	}
 	[super viewWillAppear:animated];
 	
 	[commentsController setManagedObjectContext:self.managedObjectContext];
