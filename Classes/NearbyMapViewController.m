@@ -63,12 +63,10 @@
 	NSLog(@"view for annotation...perhaps a click");
 	
 	// if it's the user location, just return nil.
-	//if ([annotation isKindOfClass:[MKUserLocation class]])
-	//	return nil;
+	if ([annotation isKindOfClass:[MKUserLocation class]])
+		return nil;
 
-	if([annotation isKindOfClass:[DishAnnotation class]] || [annotation isKindOfClass:[MKUserLocation class]]){
-		if ([annotation isKindOfClass:[MKUserLocation class]])
-			NSLog(@"Adding the location of the user");
+	if([annotation isKindOfClass:[DishAnnotation class]]){
 		static NSString *DishAnnotationIdentifier = @"stringAnnotationIdentifier";
 		MKPinAnnotationView *annotationView = (MKPinAnnotationView *)
 			[mapView dequeueReusableAnnotationViewWithIdentifier:DishAnnotationIdentifier];
