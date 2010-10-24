@@ -267,6 +267,7 @@
 								<string>5F89F595125C4A1A00959D05</string>
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>5F89F594125C4A0B00959D05</string>
+								<string>5FBB975D1262420600141693</string>
 								<string>5FBB975C126241F100141693</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>28D3F201112F7DC200FD0661</string>
@@ -277,9 +278,10 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>29</integer>
-									<integer>22</integer>
-									<integer>20</integer>
+									<integer>15</integer>
+									<integer>10</integer>
+									<integer>7</integer>
+									<integer>3</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -321,7 +323,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>RootViewController.m</string>
+								<string>NearbyMapViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -329,11 +331,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>RootViewController.m</string>
+										<string>NearbyMapViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>5FBB1FDD1274A90800E307B4</string>
+										<string>5FBB1FE71274AC8300E307B4</string>
 										<key>history</key>
 										<array>
 											<string>5F89EFD61259314000959D05</string>
@@ -352,7 +354,6 @@
 											<string>5FBB99991262646500141693</string>
 											<string>5FBB9A281263F85B00141693</string>
 											<string>5FBB9A401263F9ED00141693</string>
-											<string>5FE4B7F91266DD3D007413DF</string>
 											<string>5FADD33B1266F2DD0020E45B</string>
 											<string>5FADD3CF1267F0BE0020E45B</string>
 											<string>5F92A48C12696CA1007D2451</string>
@@ -361,7 +362,6 @@
 											<string>5F92A5F7126A2E21007D2451</string>
 											<string>5F92A684126A466A007D2451</string>
 											<string>5F92A6F2126A5F27007D2451</string>
-											<string>5F92A6F4126A5F27007D2451</string>
 											<string>5F92A73F126A6340007D2451</string>
 											<string>5F92A750126A66B2007D2451</string>
 											<string>5F92A843126A9762007D2451</string>
@@ -372,7 +372,9 @@
 											<string>5F92AA28126D6454007D2451</string>
 											<string>5F92AA62126D669E007D2451</string>
 											<string>5F92AA71126D67CD007D2451</string>
-											<string>5FBB1FCE1274A6C800E307B4</string>
+											<string>5FBB1FE41274AC8300E307B4</string>
+											<string>5FBB1FE51274AC8300E307B4</string>
+											<string>5FBB1FE61274AC8300E307B4</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -573,8 +575,8 @@
 		<string>1C78EAAD065D492600B07095</string>
 		<string>5F0762F312592A22007D2C7E</string>
 		<string>1CD10A99069EF8BA00B06720</string>
-		<string>/Users/roderic/dev/TopDish/TopDish.xcodeproj</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
+		<string>/Users/roderic/dev/TopDish/TopDish.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>248 125 996 653 0 0 1280 778 </string>

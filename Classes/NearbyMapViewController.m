@@ -16,13 +16,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	//NSLog(@"mapview view did load");
-    // Set up the edit and add buttons.
-//	[returnButton setAction:@selector(flipMap)];
-//		
-//	self.navigationItem.rightBarButtonItem = returnButton;
-//	[self.navigationController dismissModalViewControllerAnimated:TRUE];
-	
 	DishAnnotation *thisAnnotation;
 	CLLocationCoordinate2D c;
 	float smallestLat=999, smallestLon = 999, largestLat=-999, largestLon=-999;
@@ -47,9 +40,7 @@
 		c.latitude = lat;
 		c.longitude = lon;
 		thisAnnotation = [[DishAnnotation alloc] initWithCoordinate:c];
-		//[thisAnnotation setSomeint:i];
-
-		
+		[thisAnnotation setTitle:[dish dish_name]];
 		[mapView addAnnotation:thisAnnotation];
 		[thisAnnotation release];
 	}
@@ -72,11 +63,12 @@
 	NSLog(@"view for annotation...perhaps a click");
 	
 	// if it's the user location, just return nil.
-	if ([annotation isKindOfClass:[MKUserLocation class]])
-		return nil;
+	//if ([annotation isKindOfClass:[MKUserLocation class]])
+	//	return nil;
 
-	if([annotation isKindOfClass:[DishAnnotation class]]){
-		NSLog(@"here?");
+	if([annotation isKindOfClass:[DishAnnotation class]] || [annotation isKindOfClass:[MKUserLocation class]]){
+		if ([annotation isKindOfClass:[MKUserLocation class]])
+			NSLog(@"Adding the location of the user");
 		static NSString *DishAnnotationIdentifier = @"stringAnnotationIdentifier";
 		MKPinAnnotationView *annotationView = (MKPinAnnotationView *)
 			[mapView dequeueReusableAnnotationViewWithIdentifier:DishAnnotationIdentifier];
@@ -87,8 +79,8 @@
 			annotationView = [[[MKPinAnnotationView alloc]
 												  initWithAnnotation:annotation  reuseIdentifier:DishAnnotationIdentifier] autorelease];
 			annotationView.canShowCallout = YES;
-			//annotationView.leftCalloutAccessoryView = [leftSide view];
 		}
+		NSLog(@"about to return the annotation view %d, %@", [annotationView canShowCallout], [annotation title]);
 		return annotationView;
 	}
 	NSLog(@"returned nil? hmmm");
@@ -96,7 +88,6 @@
 }
 
 -(void) flipMap{
-	NSLog(@"reflip?:");
 	[self dismissModalViewControllerAnimated:TRUE]; 
 }
 

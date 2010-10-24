@@ -12,13 +12,9 @@
 @interface DishAnnotation : NSObject <MKAnnotation>{
 	CLLocationCoordinate2D coordinate;
 	NSString *title;
-	//NSString *imageURL;
-	//int someint;
 }
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-@property (nonatomic, readonly) NSString *title;
-//@property (nonatomic, readonly) NSString *imageURL;
-//@property (nonatomic, readwrite) int someint;
+@property (nonatomic, retain) NSString *title;
 
 @end

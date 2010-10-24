@@ -12,14 +12,10 @@
 @implementation DishAnnotation
 @synthesize coordinate;
 @synthesize title;
-//@synthesize imageURL;
-//@synthesize someint;
 
-//-(NSString *)subtitle{
-//	return @"test";
-//}
 -(id)initWithCoordinate:(CLLocationCoordinate2D) c{
 	coordinate=c;
+	title = @"hi";
 	return self;
 }
 
