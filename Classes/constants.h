@@ -22,7 +22,9 @@
 #define DISH_DETAIL_CELL_IDENTIFIER @"dishdetailimagecell"
 #define MIN_PRICE_VALUE_LOCATION @"minpricevaluelocation"
 #define MAX_PRICE_VALUE_LOCATION @"maxpricevaluelocation"
-
+#define SORT_VALUE_LOCATION @"sortvaluelocation"
+#define RATINGS_SORT @"posReviews"
+#define DISTANCE_SORT @"distance"
 
 #pragma tags
 

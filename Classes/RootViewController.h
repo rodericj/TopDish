@@ -22,7 +22,7 @@
 	UISegmentedControl *dishRestoSelector;
 	
 	UITableViewCell *tvCell;
-	NSData *_responseText;
+	NSMutableData *_responseText;
 	
 
 
@@ -30,8 +30,11 @@
     NSFetchedResultsController *fetchedResultsController_;
     NSManagedObjectContext *managedObjectContext_;
 }
--(void) updateSettings:(NSDictionary *)settings;
--(void)getNearbyItems:(CLLocation *)location;
+
+- (NSNumber *) calculateDishDistance:(id *)dish;
+- (void) updateSettings:(NSDictionary *)settings;
+- (void)getNearbyItems:(CLLocation *)location;
+-(NSArray *) getArrayOfIdsWithArray:(NSArray *)responseAsArray;
 
 @property (nonatomic, retain) NSString *currentLat;
 @property (nonatomic, retain) NSString *currentLon;
@@ -41,7 +44,7 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
-@property (nonatomic, retain) NSData *_responseText;
+@property (nonatomic, retain) NSMutableData *_responseText;
 
 
 @property (nonatomic, retain) IBOutlet UITableView *theTableView;

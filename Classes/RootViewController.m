@@ -91,7 +91,6 @@
 	NSURL *url;
 	NSURLRequest *request;
 	NSURLConnection *conn;
-	NSLog(@"we are switching to dishes");
 	url = [NSURL URLWithString:query];
 	//Start up the networking
 	request = [NSURLRequest requestWithURL:url];
@@ -105,13 +104,13 @@
 	NSLog(@"Segmentedcontrol changed");
 	if([dishRestoSelector selectedSegmentIndex] == 0){
 		NSLog(@"we are switching to dishes %@ %@", currentLat, currentLon);
-		[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&disance=200000000", NETWORKHOST, currentLat, currentLon]];
+		[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=20000", NETWORKHOST, currentLat, currentLon]];
 		//url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishSearch?lat=33.6886&lng=-117.8129&disance=2000", NETWORKHOST]];
 	}
 	else if([dishRestoSelector selectedSegmentIndex] == 1){
 		NSLog(@"we are switching to restaurants %@ %@", currentLat, currentLon);
 		NSLog(@"%@", currentLat);
-		[self networkQuery:[NSString stringWithFormat:@"%@/api/restaurantSearch?lat=%@&lng=%@&disance=200000000", NETWORKHOST, currentLat, currentLon]];
+		[self networkQuery:[NSString stringWithFormat:@"%@/api/restaurantSearch?lat=%@&lng=%@&distance=20000", NETWORKHOST, currentLat, currentLon]];
 
 	}
 	else {
@@ -140,7 +139,6 @@
 
 	NSArray *nearbyObjects = [self.fetchedResultsController fetchedObjects];
 	[map setNearbyObjects:nearbyObjects];
-	//[map.navigationItem setRightBarButtonItem:mapButton];
 	[self presentModalViewController:map animated:TRUE];
 }
 
@@ -163,8 +161,13 @@
 										 @"price", max, 
 										 @"price", min];
 	
-	//TODO....Ok this should all be in a function somewhere.
 	
+	
+	//TODO....Ok this should all be in a function somewhere.
+	//Create array with sort params, then store in NSUserDefaults
+	NSNumber *selectedIndex = (NSNumber *)[[NSUserDefaults standardUserDefaults] objectForKey:SORT_VALUE_LOCATION];
+	NSString *sorter = [[NSArray arrayWithObjects:RATINGS_SORT, DISTANCE_SORT, nil] objectAtIndex:[selectedIndex intValue]];
+
 	/*
      Set up the fetched results controller.
 	 */
@@ -180,7 +183,7 @@
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"posReviews" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:sorter ascending:NO];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -210,6 +213,21 @@
 
 }
 
+
+- (NSNumber *) calculateDishDistance:(id *)dish{
+	Dish *thisDish = (Dish *)dish;
+	double a = [currentLat doubleValue];
+	double b = [[thisDish latitude] doubleValue];
+	double c = (a-b)*(a-b);
+	a = [currentLon doubleValue];
+	b = [[thisDish longitude] doubleValue];
+	double d = (a-b)*(a-b);
+	NSLog(@"%f %f",c, d);
+	
+	NSNumber *ret = [[[NSNumber alloc] initWithDouble:d] autorelease];
+	
+	return ret;
+}
 
 #pragma mark -
 #pragma mark Table view data source
@@ -286,7 +304,7 @@
 	asyncImage.tag = 999;
 	if( [[thisDish dish_photoURL] length] > 0 ){
 		
-		NSString *urlString = [NSString stringWithFormat:@"%@%@", NETWORKHOST, [thisDish dish_photoURL]]; 
+		NSString *urlString = [NSString stringWithFormat:@"%@", [thisDish dish_photoURL]]; 
 		NSURL *photoUrl = [NSURL URLWithString:urlString];
 		[asyncImage loadImageFromURL:photoUrl withImageView:imageView showActivityIndicator:FALSE];
 		[cell.contentView addSubview:asyncImage];
@@ -391,7 +409,10 @@
 
 #pragma mark -
 #pragma mark Location
-
+- (void)locationError:(CLLocation *)location {
+	NSLog(@"Error getting location");
+}
+	
 - (void)locationUpdate:(CLLocation *)location {
 	
 	[self getNearbyItems:location];
@@ -430,15 +451,20 @@
 #pragma mark Network Delegate 
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
-	NSLog(@"connectin did finish loading");
+	NSLog(@"connection did finish loading");
 	NSString *responseText = [[NSString alloc] initWithData:_responseText encoding:NSUTF8StringEncoding];
-	NSLog(@"response Text %@", responseText);
+	//NSLog(@"response Text %@", responseText);
 	//TODO RESTODISH SWITCH - when response has finised loading, I should determine if it's dishes or restauarants that I'm looking at
 
 	SBJSON *parser = [SBJSON new];
-	NSArray *responseAsArray = [parser objectWithString:responseText error:NULL];
+	NSError *error = nil;
+	NSArray *responseAsArray = [parser objectWithString:responseText error:&error];	
+	if(error != nil){
+		NSLog(@"there was an error when jsoning");
+		NSLog(@"%@", error);
+	}
 	[parser release];
-	NSLog(@"nearby dishes loaded %@", responseAsArray);
+	//NSLog(@"nearby dishes loaded %@", responseAsArray);
 	if(responseAsArray == nil){
 		NSLog(@"the response is nil");
 		NSString *restoJsonData = @"[\
@@ -470,19 +496,87 @@
 	
 	if([dishRestoSelector selectedSegmentIndex] == 0){
 		
-		for (int i =0; i < [responseAsArray count]; i++){
-			Dish *thisDish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" inManagedObjectContext:self.managedObjectContext];
-			NSDictionary *thisElement = [responseAsArray objectAtIndex:i];
-			[thisDish setDish_id:[thisElement objectForKey:@"id"]];
-			[thisDish setDish_name:[thisElement objectForKey:@"name"]];
-			[thisDish setPrice:[NSNumber numberWithInt:i+1]];
-			[thisDish setDish_description:[thisElement objectForKey:@"description"]];
-			[thisDish setDish_photoURL:[thisElement objectForKey:@"photoURL"]];
-			[thisDish setLatitude:[thisElement objectForKey:@"latitude"]];
-			[thisDish setLongitude:[thisElement objectForKey:@"longitude"]];
-			[thisDish setPosReviews:[thisElement objectForKey:@"posReviews"]];
-			[thisDish setNegReviews:[thisElement objectForKey:@"negReviews"]];
-			[thisDish setDish_id:[thisElement objectForKey:@"id"]];
+		//Sort the inputted array
+		NSArray *sortedArray = [responseAsArray sortedArrayUsingComparator: ^(id obj1, id obj2) {
+
+			NSLog(@"obj1 %d", [[obj1 objectForKey:@"id"] intValue]);
+			NSLog(@"obj2 %d", [[obj2 objectForKey:@"id"] intValue]);
+			if ([[obj1 objectForKey:@"id"] intValue] > [[obj2 objectForKey:@"id"] intValue]) {
+				NSLog(@"desc");
+				return (NSComparisonResult)NSOrderedDescending;
+			}
+			
+			if ([[obj1 objectForKey:@"id"] intValue] < [[obj2 objectForKey:@"id"] intValue]) {
+				NSLog(@"ascend");
+
+				return (NSComparisonResult)NSOrderedAscending;
+			}
+			NSLog(@"same");
+
+			return (NSComparisonResult)NSOrderedSame;
+		}];
+
+		NSArray *ids = [self getArrayOfIdsWithArray:responseAsArray];
+		NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+		[fetchRequest setEntity:
+		 [NSEntityDescription entityForName:@"Dish" inManagedObjectContext:self.managedObjectContext]];
+		[fetchRequest setPredicate: [NSPredicate predicateWithFormat: @"(dish_id IN %@)", ids]];
+		
+		// make sure the results are sorted as well
+		[fetchRequest setSortDescriptors: [NSArray arrayWithObject:
+										   [[[NSSortDescriptor alloc] initWithKey: @"dish_id"
+																		ascending:YES] autorelease]]];
+		
+		NSError *error;
+		NSArray *dishesMatchingId = [self.managedObjectContext
+										   executeFetchRequest:fetchRequest error:&error];
+		
+		NSLog(@"dishesMatchingId %@", dishesMatchingId);
+			
+		int j = 0;
+		for (int i =0; i < [sortedArray count]; i++){
+			NSDictionary *newElement = [sortedArray objectAtIndex:i];
+			Dish *existingDish; 
+			if (j >= [dishesMatchingId count]){
+				existingDish = nil;
+			}
+			else{
+				existingDish = [dishesMatchingId objectAtIndex:j];
+			}
+			NSLog(@"Do we need to create this object? %@ \n\n%@", newElement, [existingDish dish_id]);
+			if([[newElement objectForKey:@"id"] intValue] != [[existingDish dish_id] intValue]){
+				NSLog(@"%@", [[existingDish dish_id] class]);
+				NSLog(@"%@", [[newElement objectForKey:@"id"] class]);
+				NSLog(@"yes ");
+				NSDictionary *thisElement = [sortedArray objectAtIndex:i];
+				Dish *thisDish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" 
+																	   inManagedObjectContext:self.managedObjectContext];
+				[thisDish setDish_id:[thisElement objectForKey:@"id"]];
+				[thisDish setDish_name:[thisElement objectForKey:@"name"]];
+				[thisDish setPrice:[NSNumber numberWithInt:(i%4)+1]];
+				[thisDish setDish_description:[thisElement objectForKey:@"description"]];
+				[thisDish setDish_photoURL:[NSString stringWithFormat:@"%@%@", NETWORKHOST, 
+											[thisElement objectForKey:@"photoURL"]]];
+				[thisDish setLatitude:[thisElement objectForKey:@"latitude"]];
+				[thisDish setLongitude:[thisElement objectForKey:@"longitude"]];
+				[thisDish setPosReviews:[thisElement objectForKey:@"posReviews"]];
+				[thisDish setNegReviews:[thisElement objectForKey:@"negReviews"]];
+				[thisDish setDish_id:[thisElement objectForKey:@"id"]];
+				
+				[thisDish setDistance:[self calculateDishDistance:(id *)thisDish]];
+				NSLog(@"the distance of this dish is %@", [thisDish distance]);
+
+				if (![self.managedObjectContext save:&error]){
+					NSLog(@"there was an error when saving");
+					NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
+				}
+			}
+			else{
+				NSLog(@"no");
+				j++;
+			}
+
+			
 		}
 		
 		}
@@ -495,8 +589,14 @@
 			//[thisDish setDish_id:[thisElement objectForKey:@"id"]];
 //			[thisDish setDish_name:[thisElement objectForKey:@"name"]];
 		}
-		
+
 	}
+	
+	//TODO save all of the dishes or restaurants created here
+//	if(![self.managedObjectContext save:&error]){
+//		NSLog(@"there was an error when saving");
+//		NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
+//	}
 	
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish"  
@@ -527,12 +627,29 @@
 	NSLog(@"connectin did receive data");
 
 	if(_responseText == nil){
-		_responseText = [[NSData alloc] initWithData:data];
+		NSLog(@"must be the first time we got data, had to initialize it here");
+		//_responseText = [[NSData alloc] initWithData:data];
+		_responseText = [[NSMutableData alloc] initWithData:data];
 	}
-	//append
+	else{
+		[_responseText appendData:data];
+	}
 }
 
 	
+-(NSArray *)getArrayOfIdsWithArray:(NSArray *)responseAsArray{
+	NSEnumerator *enumerator = [responseAsArray objectEnumerator];
+	id anObject;
+	NSMutableArray *ret = [[NSMutableArray alloc] init];
+	while (anObject = (NSDictionary *)[enumerator nextObject]){
+		NSLog(@"%@", anObject);
+		[ret addObject:[anObject objectForKey:@"id"]];
+	}
+	NSLog(@"At the end of all that, the return is %@", ret);
+	[ret sortUsingSelector:@selector(compare:)];
+	return ret;
+}
+
 
 #pragma mark -
 #pragma mark Fetched results controller delegate

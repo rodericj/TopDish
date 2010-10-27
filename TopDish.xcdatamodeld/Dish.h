@@ -2,7 +2,7 @@
 //  Dish.h
 //  TopDish
 //
-//  Created by Roderic Campbell on 10/16/10.
+//  Created by Roderic Campbell on 10/24/10.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
@@ -23,6 +23,7 @@
 @property (nonatomic, retain) NSDate * timeStamp;
 @property (nonatomic, retain) NSString * dish_name;
 @property (nonatomic, retain) NSNumber * price;
+@property (nonatomic, retain) NSNumber * distance;
 @property (nonatomic, retain) NSNumber * negReviews;
 @property (nonatomic, retain) NSNumber * posReviews;
 @property (nonatomic, retain) NSSet* comments;

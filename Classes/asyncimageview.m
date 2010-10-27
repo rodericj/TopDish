@@ -30,6 +30,7 @@
 	if (data!=nil) { [data release]; }
 	
 	thisImageView = imageView;
+	[thisImageView retain];
 	showThisIndicator = showIndicator;
 	if(showThisIndicator){
 		//Add a spinner
@@ -72,6 +73,9 @@
 	}
 	//make an image view for the image
 	//UIImageView* imageView = [[[UIImageView alloc] initWithImage:[UIImage imageWithData:data]] autorelease];
+	if(thisImageView.image == NULL){
+		NSLog(@"ok, the image view's image is nil");
+	}
 	thisImageView.image = [UIImage imageWithData:data];
 	//make sizing choices based on your needs, experiment with these. maybe not all the calls below are needed.
 	//imageView.contentMode = UIViewContentModeScaleAspectFit;

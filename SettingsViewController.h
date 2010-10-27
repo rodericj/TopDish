@@ -14,6 +14,7 @@
 	IBOutlet UISlider *minSlider;
 	IBOutlet UILabel *maxLabel;
 	IBOutlet UILabel *minLabel;
+	IBOutlet UISegmentedControl *sortBySegmentedControl;
 	RootViewController *delegate;
 }
 
@@ -28,5 +29,6 @@
 @property (nonatomic, retain) UISlider *minSlider;
 @property (nonatomic, retain) UILabel *maxLabel;
 @property (nonatomic, retain) UILabel *minLabel;
+@property (nonatomic, retain) UISegmentedControl *sortBySegmentedControl;
 
 @end

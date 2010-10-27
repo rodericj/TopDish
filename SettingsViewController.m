@@ -14,12 +14,15 @@
 @synthesize minSlider;
 @synthesize maxLabel;
 @synthesize minLabel;
+@synthesize sortBySegmentedControl;
 @synthesize delegate;
 
 
 - (void)viewWillAppear:(BOOL)animated {
 	
 	//We need to maintain the previous state of the slider values.
+	NSNumber *value = [[NSNumber alloc] initWithInt:[[[NSUserDefaults standardUserDefaults] objectForKey:SORT_VALUE_LOCATION] intValue]];
+	[sortBySegmentedControl setSelectedSegmentIndex:[value intValue]];
 	[minSlider setValue:[[[NSUserDefaults standardUserDefaults] objectForKey:MIN_PRICE_VALUE_LOCATION] floatValue]];
 	[maxSlider setValue:[[[NSUserDefaults standardUserDefaults] objectForKey:MAX_PRICE_VALUE_LOCATION] floatValue]];
 	[self updateSymbols];
@@ -56,8 +59,14 @@
 	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
 							  maxFloatVal, @"maxPrice",
 							  minFloatVal, @"minPrice",
-							  nil] ;
-	
+							  nil];
+	//Create array with sort params, then store in NSUserDefaults
+	//NSString *sorter = [[NSArray arrayWithObjects:RATINGS_SORT, DISTANCE_SORT, nil] objectAtIndex:[sortBySegmentedControl selectedSegmentIndex]];
+	NSNumber *anInt = [[NSNumber alloc] initWithInt:[sortBySegmentedControl selectedSegmentIndex]];	
+	[[NSUserDefaults standardUserDefaults] setObject:anInt forKey:SORT_VALUE_LOCATION];
+
+	NSLog(@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:SORT_VALUE_LOCATION]);
+		
 	[[NSUserDefaults standardUserDefaults] setObject:maxFloatVal forKey:MAX_PRICE_VALUE_LOCATION];
 	[[NSUserDefaults standardUserDefaults] setObject:minFloatVal forKey:MIN_PRICE_VALUE_LOCATION];
 
