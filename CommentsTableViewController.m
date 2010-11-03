@@ -115,7 +115,7 @@
 	NSError *error;
 	NSArray *responseAsArray = [parser objectWithString:responseText error:&error];
 	NSDictionary *thisDishDetailDictionary = [responseAsArray objectAtIndex:0];
-	NSLog(@"%@", thisDishDetailDictionary);
+	NSLog(@"thisdishdetaildictionary %@", thisDishDetailDictionary);
 	//NSLog(@"%@", thisDishDetailDictionary);
 	[parser release];
 	if(reviews == nil){

@@ -19,7 +19,9 @@
 	DishAnnotation *thisAnnotation;
 	CLLocationCoordinate2D c;
 	float smallestLat=999, smallestLon = 999, largestLat=-999, largestLon=-999;
+	NSMutableDictionary *markerCount = [[NSMutableDictionary alloc] init];
 	for (int i = 0; i < [nearbyObjects count]; i++) {
+		NSLog(@"%d", i);
 		Dish *dish = [nearbyObjects objectAtIndex:i];
 		float lat = [dish.latitude floatValue];
 		float lon = [dish.longitude floatValue];
@@ -39,6 +41,16 @@
 		}
 		c.latitude = lat;
 		c.longitude = lon;
+		NSString *hash = [[NSString alloc] initWithFormat:@"%d %d", lat, lon];
+		int count = [[markerCount valueForKey:hash] intValue];
+		if(count){
+		    [markerCount setValue:[NSNumber numberWithInt:count+1] forKey:hash];	
+		}
+		else{
+			[markerCount setValue:[NSNumber numberWithInt:1] forKey:hash];
+			c.longitude = lon +.0001;
+		}
+		[hash release];
 		thisAnnotation = [[DishAnnotation alloc] initWithCoordinate:c];
 		[thisAnnotation setTitle:[dish dish_name]];
 		[mapView addAnnotation:thisAnnotation];
@@ -60,7 +72,6 @@
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation{
-	NSLog(@"view for annotation...perhaps a click");
 	
 	// if it's the user location, just return nil.
 	if ([annotation isKindOfClass:[MKUserLocation class]])
@@ -68,12 +79,11 @@
 
 	if([annotation isKindOfClass:[DishAnnotation class]]){
 		static NSString *DishAnnotationIdentifier = @"stringAnnotationIdentifier";
+
 		MKPinAnnotationView *annotationView = (MKPinAnnotationView *)
 			[mapView dequeueReusableAnnotationViewWithIdentifier:DishAnnotationIdentifier];
 		
 		if(!annotationView){
-			NSLog(@"here? now?");
-
 			annotationView = [[[MKPinAnnotationView alloc]
 												  initWithAnnotation:annotation  reuseIdentifier:DishAnnotationIdentifier] autorelease];
 			annotationView.canShowCallout = YES;

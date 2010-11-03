@@ -65,7 +65,7 @@
 	NSNumber *anInt = [[NSNumber alloc] initWithInt:[sortBySegmentedControl selectedSegmentIndex]];	
 	[[NSUserDefaults standardUserDefaults] setObject:anInt forKey:SORT_VALUE_LOCATION];
 
-	NSLog(@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:SORT_VALUE_LOCATION]);
+	NSLog(@"close settings %@", [[NSUserDefaults standardUserDefaults] objectForKey:SORT_VALUE_LOCATION]);
 		
 	[[NSUserDefaults standardUserDefaults] setObject:maxFloatVal forKey:MAX_PRICE_VALUE_LOCATION];
 	[[NSUserDefaults standardUserDefaults] setObject:minFloatVal forKey:MIN_PRICE_VALUE_LOCATION];

@@ -46,8 +46,8 @@
 	connection = [[NSURLConnection alloc] initWithRequest:request delegate:self]; 	
 }
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-	NSLog(@"is this a fail?");
-	//NSLog(@"%@", error);
+	NSLog(@"async image did fail with error");
+	NSLog(@"%@", error);
 }
 
 //the URL connection calls this repeatedly as data arrives

@@ -298,13 +298,11 @@
 	priceNumber.text = output;
 	
 	UIImageView *imageView = (UIImageView *)[cell viewWithTag:ROOTVIEW_IMAGE_TAG];
-	
+
 	AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[imageView frame]];
-																		
 	asyncImage.tag = 999;
 	if( [[thisDish dish_photoURL] length] > 0 ){
-		
-		NSString *urlString = [NSString stringWithFormat:@"%@", [thisDish dish_photoURL]]; 
+		NSString *urlString = [NSString stringWithFormat:@"%@&w=70&h=70", [thisDish dish_photoURL]];
 		NSURL *photoUrl = [NSURL URLWithString:urlString];
 		[asyncImage loadImageFromURL:photoUrl withImageView:imageView showActivityIndicator:FALSE];
 		[cell.contentView addSubview:asyncImage];
@@ -499,20 +497,13 @@
 		//Sort the inputted array
 		NSArray *sortedArray = [responseAsArray sortedArrayUsingComparator: ^(id obj1, id obj2) {
 
-			NSLog(@"obj1 %d", [[obj1 objectForKey:@"id"] intValue]);
-			NSLog(@"obj2 %d", [[obj2 objectForKey:@"id"] intValue]);
 			if ([[obj1 objectForKey:@"id"] intValue] > [[obj2 objectForKey:@"id"] intValue]) {
-				NSLog(@"desc");
 				return (NSComparisonResult)NSOrderedDescending;
 			}
 			
 			if ([[obj1 objectForKey:@"id"] intValue] < [[obj2 objectForKey:@"id"] intValue]) {
-				NSLog(@"ascend");
-
 				return (NSComparisonResult)NSOrderedAscending;
 			}
-			NSLog(@"same");
-
 			return (NSComparisonResult)NSOrderedSame;
 		}];
 
@@ -530,11 +521,10 @@
 		NSError *error;
 		NSArray *dishesMatchingId = [self.managedObjectContext
 										   executeFetchRequest:fetchRequest error:&error];
-		
-		NSLog(@"dishesMatchingId %@", dishesMatchingId);
-			
+					
 		int j = 0;
 		for (int i =0; i < [sortedArray count]; i++){
+			NSLog(@"checking all of the elements we just got");
 			NSDictionary *newElement = [sortedArray objectAtIndex:i];
 			Dish *existingDish; 
 			if (j >= [dishesMatchingId count]){
@@ -543,11 +533,8 @@
 			else{
 				existingDish = [dishesMatchingId objectAtIndex:j];
 			}
-			NSLog(@"Do we need to create this object? %@ \n\n%@", newElement, [existingDish dish_id]);
 			if([[newElement objectForKey:@"id"] intValue] != [[existingDish dish_id] intValue]){
-				NSLog(@"%@", [[existingDish dish_id] class]);
-				NSLog(@"%@", [[newElement objectForKey:@"id"] class]);
-				NSLog(@"yes ");
+				NSLog(@"must create the dish %@", newElement);
 				NSDictionary *thisElement = [sortedArray objectAtIndex:i];
 				Dish *thisDish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" 
 																	   inManagedObjectContext:self.managedObjectContext];
@@ -566,13 +553,15 @@
 				[thisDish setDistance:[self calculateDishDistance:(id *)thisDish]];
 				NSLog(@"the distance of this dish is %@", [thisDish distance]);
 
-				if (![self.managedObjectContext save:&error]){
-					NSLog(@"there was an error when saving");
-					NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
-				}
+				//NSLog(@"saving %@", self.managedObjectContext);
+//				if (![self.managedObjectContext save:&error]){
+//					NSLog(@"there was an error when saving");
+//					NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
+//				}
+//				NSLog(@"done saving");
 			}
 			else{
-				NSLog(@"no");
+				NSLog(@"no need to create the dish %@", [existingDish dish_id]);
 				j++;
 			}
 
@@ -613,7 +602,7 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-	NSLog(@"%@", error);
+	NSLog(@"connection did fail with error %@", error);
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
 	UIAlertView *alert;
@@ -642,7 +631,6 @@
 	id anObject;
 	NSMutableArray *ret = [[NSMutableArray alloc] init];
 	while (anObject = (NSDictionary *)[enumerator nextObject]){
-		NSLog(@"%@", anObject);
 		[ret addObject:[anObject objectForKey:@"id"]];
 	}
 	NSLog(@"At the end of all that, the return is %@", ret);
@@ -662,7 +650,7 @@
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
            atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
-    
+
     switch(type) {
         case NSFetchedResultsChangeInsert:
             [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
@@ -680,7 +668,6 @@
       newIndexPath:(NSIndexPath *)newIndexPath {
     
     UITableView *tableView = self.tableView;
-    
     switch(type) {
             
         case NSFetchedResultsChangeInsert:

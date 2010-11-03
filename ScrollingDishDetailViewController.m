@@ -73,7 +73,7 @@
 	NSArray *responseAsArray = [parser objectWithString:jsonData error:NULL];
 	[parser release];
 	NSLog(@"initialize comment database");
-	NSLog(@"%@", responseAsArray);
+	NSLog(@"comement database array%@", responseAsArray);
 	for (int i =0; i < [responseAsArray count]; i++){
 		NSLog(@"initialize comment database %d", i);
 
@@ -136,7 +136,7 @@
 	
 	if( [[dish dish_photoURL] length] > 0 ){
 
-		NSString *urlString = [NSString stringWithFormat:@"%@%@", NETWORKHOST, [dish dish_photoURL]]; 
+		NSString *urlString = [NSString stringWithFormat:@"%@", [dish dish_photoURL]]; 
 		NSURL *photoUrl = [NSURL URLWithString:urlString];
 		AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[dishImage frame]];
 		[asyncImage loadImageFromURL:photoUrl withImageView:dishImage showActivityIndicator:FALSE];

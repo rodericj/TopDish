@@ -15,7 +15,6 @@
 
 -(id)initWithCoordinate:(CLLocationCoordinate2D) c{
 	coordinate=c;
-	title = @"hi";
 	return self;
 }
 
