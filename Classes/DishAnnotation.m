@@ -10,6 +10,7 @@
 
 
 @implementation DishAnnotation
+@synthesize thisDish;
 @synthesize coordinate;
 @synthesize title;
 

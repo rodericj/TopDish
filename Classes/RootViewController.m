@@ -92,6 +92,7 @@
 	NSURLRequest *request;
 	NSURLConnection *conn;
 	url = [NSURL URLWithString:query];
+	NSLog(@"url is %@", query);
 	//Start up the networking
 	request = [NSURLRequest requestWithURL:url];
 	conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE]; 
@@ -104,7 +105,7 @@
 	NSLog(@"Segmentedcontrol changed");
 	if([dishRestoSelector selectedSegmentIndex] == 0){
 		NSLog(@"we are switching to dishes %@ %@", currentLat, currentLon);
-		[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=20000", NETWORKHOST, currentLat, currentLon]];
+		[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=20000&limit=5", NETWORKHOST, currentLat, currentLon]];
 		//url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishSearch?lat=33.6886&lng=-117.8129&disance=2000", NETWORKHOST]];
 	}
 	else if([dishRestoSelector selectedSegmentIndex] == 1){
@@ -136,10 +137,13 @@
 	NearbyMapViewController *map = [[NearbyMapViewController alloc] initWithNibName:@"NearbyMapView" 
 												 bundle:nil];
 	[map setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-
+	[map setManagedObjectContext:self.managedObjectContext];
+	
 	NSArray *nearbyObjects = [self.fetchedResultsController fetchedObjects];
 	[map setNearbyObjects:nearbyObjects];
-	[self presentModalViewController:map animated:TRUE];
+	[nearbyObjects release];
+	[self.navigationController pushViewController:map animated:TRUE];
+	//[self presentModalViewController:map animated:TRUE];
 }
 
 #pragma mark -
@@ -451,7 +455,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
 	NSLog(@"connection did finish loading");
 	NSString *responseText = [[NSString alloc] initWithData:_responseText encoding:NSUTF8StringEncoding];
-	//NSLog(@"response Text %@", responseText);
+	NSLog(@"response Text %@", responseText);
 	//TODO RESTODISH SWITCH - when response has finised loading, I should determine if it's dishes or restauarants that I'm looking at
 
 	SBJSON *parser = [SBJSON new];
@@ -460,6 +464,8 @@
 	if(error != nil){
 		NSLog(@"there was an error when jsoning");
 		NSLog(@"%@", error);
+		NSLog(@"the text %@", responseText);
+		NSLog(@"the raw data %@", _responseText);
 	}
 	[parser release];
 	//NSLog(@"nearby dishes loaded %@", responseAsArray);
@@ -534,7 +540,6 @@
 				existingDish = [dishesMatchingId objectAtIndex:j];
 			}
 			if([[newElement objectForKey:@"id"] intValue] != [[existingDish dish_id] intValue]){
-				NSLog(@"must create the dish %@", newElement);
 				NSDictionary *thisElement = [sortedArray objectAtIndex:i];
 				Dish *thisDish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" 
 																	   inManagedObjectContext:self.managedObjectContext];
@@ -614,7 +619,9 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
 	NSLog(@"connectin did receive data");
-
+	NSString *responseText = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	NSLog(@"this segment of data is %@", responseText);
+	[responseText release];
 	if(_responseText == nil){
 		NSLog(@"must be the first time we got data, had to initialize it here");
 		//_responseText = [[NSData alloc] initWithData:data];

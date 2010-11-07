@@ -8,11 +8,14 @@
 #import "NearbyMapViewController.h"
 #import "DishAnnotation.h"
 #import "Dish.h"
+#import "ScrollingDishDetailViewController.h"
+#import "Dish.h"
 
 @implementation NearbyMapViewController
 @synthesize mapView;
-@synthesize returnButton;
 @synthesize nearbyObjects;
+@synthesize dishMap;
+@synthesize managedObjectContext=managedObjectContext_;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,8 +24,14 @@
 	float smallestLat=999, smallestLon = 999, largestLat=-999, largestLon=-999;
 	NSMutableDictionary *markerCount = [[NSMutableDictionary alloc] init];
 	for (int i = 0; i < [nearbyObjects count]; i++) {
-		NSLog(@"%d", i);
 		Dish *dish = [nearbyObjects objectAtIndex:i];
+		
+		//Add dish to this MapView's dish Dictionary
+		if(dishMap == nil){
+			dishMap = [[NSMutableDictionary alloc] init];
+		}
+		[dishMap setObject:dish forKey:[dish dish_id]];
+		
 		float lat = [dish.latitude floatValue];
 		float lon = [dish.longitude floatValue];
 		
@@ -44,15 +53,18 @@
 		NSString *hash = [[NSString alloc] initWithFormat:@"%d %d", lat, lon];
 		int count = [[markerCount valueForKey:hash] intValue];
 		if(count){
-		    [markerCount setValue:[NSNumber numberWithInt:count+1] forKey:hash];	
+		    [markerCount setValue:[NSNumber numberWithInt:count+1] forKey:hash];
+			c.longitude = lon +.0001*count;
 		}
 		else{
 			[markerCount setValue:[NSNumber numberWithInt:1] forKey:hash];
-			c.longitude = lon +.0001;
+			//c.longitude = lon +.0001;
 		}
 		[hash release];
 		thisAnnotation = [[DishAnnotation alloc] initWithCoordinate:c];
 		[thisAnnotation setTitle:[dish dish_name]];
+		[thisAnnotation setThisDish:dish];
+		
 		[mapView addAnnotation:thisAnnotation];
 		[thisAnnotation release];
 	}
@@ -88,6 +100,15 @@
 												  initWithAnnotation:annotation  reuseIdentifier:DishAnnotationIdentifier] autorelease];
 			annotationView.canShowCallout = YES;
 		}
+		
+		UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+		[rightButton addTarget:self
+						action:@selector(showDetails:)
+			  forControlEvents:UIControlEventTouchUpInside];
+		//annotation = (DishAnnotation *)annotation;
+		rightButton.tag = [[[annotation thisDish] dish_id] intValue];
+		annotationView.rightCalloutAccessoryView = rightButton;
+		
 		NSLog(@"about to return the annotation view %d, %@", [annotationView canShowCallout], [annotation title]);
 		return annotationView;
 	}
@@ -95,8 +116,15 @@
 	return nil;
 }
 
--(void) flipMap{
-	[self dismissModalViewControllerAnimated:TRUE]; 
+- (void)showDetails:(id)sender
+{
+	NSNumber *clickedDishId = [[NSNumber alloc] initWithInt:[sender tag]];
+	Dish *selectedObject = [dishMap objectForKey:clickedDishId];
+	ScrollingDishDetailViewController *detailViewController = [[ScrollingDishDetailViewController alloc] initWithNibName:@"ScrollingDishDetailView" bundle:nil];
+	[detailViewController setDish:selectedObject];
+	[detailViewController setManagedObjectContext:self.managedObjectContext];
+	[self.navigationController pushViewController:detailViewController animated:YES];
+	[detailViewController release];
 }
 
 @end

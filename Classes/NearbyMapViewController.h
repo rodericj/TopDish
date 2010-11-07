@@ -11,13 +11,16 @@
 
 @interface NearbyMapViewController : UIViewController <MKMapViewDelegate> {
 	MKMapView *mapView;
-	UIBarButtonItem *returnButton;
 	NSArray *nearbyObjects;
+	NSMutableDictionary *dishMap;
+@private
+    NSManagedObjectContext *managedObjectContext_;
+	
 }
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
 @property (nonatomic, retain) NSArray *nearbyObjects;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *returnButton;
--(IBAction) flipMap;
+@property (nonatomic, retain) NSMutableDictionary *dishMap;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end
 

@@ -8,13 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import "Dish.h"
 
 @interface DishAnnotation : NSObject <MKAnnotation>{
 	CLLocationCoordinate2D coordinate;
 	NSString *title;
+	Dish *thisDish;
 }
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) Dish *thisDish;
 
 @end
