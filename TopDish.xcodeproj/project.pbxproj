@@ -38,12 +38,12 @@
 		5F92A9A2126D4A41007D2451 /* MyCLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F92A9A1126D4A41007D2451 /* MyCLController.m */; };
 		5F92A9AB126D4B53007D2451 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F92A9AA126D4B53007D2451 /* CoreLocation.framework */; };
 		5F94EC281267F7570080CEDD /* CommentControllerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F94EC271267F7570080CEDD /* CommentControllerTableViewCell.xib */; };
-		5FBB20411274E1A300E307B4 /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB20401274E1A300E307B4 /* Dish.m */; };
 		5FBB9659126232B600141693 /* ScrollingDishDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FBB9658126232B600141693 /* ScrollingDishDetailView.xib */; };
 		5FBB9663126233DB00141693 /* ScrollingDishDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */; };
-		5FBB992012625A5A00141693 /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB991B12625A5A00141693 /* Restaurant.m */; };
-		5FBB993312625B8100141693 /* DishComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB993212625B8100141693 /* DishComment.m */; };
 		5FBB9AA21264036500141693 /* CommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */; };
+		5FD125D81287BE8B0029AFA8 /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD125D31287BE8B0029AFA8 /* Dish.m */; };
+		5FD125D91287BE8B0029AFA8 /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD125D51287BE8B0029AFA8 /* Restaurant.m */; };
+		5FD125DA1287BE8B0029AFA8 /* DishComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD125D71287BE8B0029AFA8 /* DishComment.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,18 +94,18 @@
 		5F92A9A1126D4A41007D2451 /* MyCLController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCLController.m; sourceTree = "<group>"; };
 		5F92A9AA126D4B53007D2451 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5F94EC271267F7570080CEDD /* CommentControllerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CommentControllerTableViewCell.xib; path = ../CommentControllerTableViewCell.xib; sourceTree = "<group>"; };
-		5FBB203F1274E1A300E307B4 /* Dish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
-		5FBB20401274E1A300E307B4 /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
 		5FBB95F11262288E00141693 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 		5FBB9658126232B600141693 /* ScrollingDishDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScrollingDishDetailView.xib; path = ../ScrollingDishDetailView.xib; sourceTree = "<group>"; };
 		5FBB9661126233DB00141693 /* ScrollingDishDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollingDishDetailViewController.h; path = ../ScrollingDishDetailViewController.h; sourceTree = "<group>"; };
 		5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScrollingDishDetailViewController.m; path = ../ScrollingDishDetailViewController.m; sourceTree = "<group>"; };
-		5FBB991A12625A5A00141693 /* Restaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
-		5FBB991B12625A5A00141693 /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
-		5FBB993112625B8100141693 /* DishComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishComment.h; sourceTree = "<group>"; };
-		5FBB993212625B8100141693 /* DishComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishComment.m; sourceTree = "<group>"; };
 		5FBB9AA01264036500141693 /* CommentsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentsTableViewController.h; path = ../CommentsTableViewController.h; sourceTree = "<group>"; };
 		5FBB9AA11264036500141693 /* CommentsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentsTableViewController.m; path = ../CommentsTableViewController.m; sourceTree = "<group>"; };
+		5FD125D21287BE8B0029AFA8 /* Dish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
+		5FD125D31287BE8B0029AFA8 /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
+		5FD125D41287BE8B0029AFA8 /* Restaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
+		5FD125D51287BE8B0029AFA8 /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
+		5FD125D61287BE8B0029AFA8 /* DishComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishComment.h; sourceTree = "<group>"; };
+		5FD125D71287BE8B0029AFA8 /* DishComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishComment.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* TopDish-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TopDish-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -383,12 +383,12 @@
 				5F7AA19E125D833200843F4A /* NearbyMapViewController.m in Sources */,
 				5F7AA284125D955500843F4A /* DishAnnotation.m in Sources */,
 				5FBB9663126233DB00141693 /* ScrollingDishDetailViewController.m in Sources */,
-				5FBB992012625A5A00141693 /* Restaurant.m in Sources */,
-				5FBB993312625B8100141693 /* DishComment.m in Sources */,
 				5FBB9AA21264036500141693 /* CommentsTableViewController.m in Sources */,
 				5F08954D12641D6100EDE197 /* SettingsViewController.m in Sources */,
 				5F92A9A2126D4A41007D2451 /* MyCLController.m in Sources */,
-				5FBB20411274E1A300E307B4 /* Dish.m in Sources */,
+				5FD125D81287BE8B0029AFA8 /* Dish.m in Sources */,
+				5FD125D91287BE8B0029AFA8 /* Restaurant.m in Sources */,
+				5FD125DA1287BE8B0029AFA8 /* DishComment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,12 +476,12 @@
 		28D3F201112F7DC200FD0661 /* TopDish.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				5FBB203F1274E1A300E307B4 /* Dish.h */,
-				5FBB20401274E1A300E307B4 /* Dish.m */,
-				5FBB993112625B8100141693 /* DishComment.h */,
-				5FBB993212625B8100141693 /* DishComment.m */,
-				5FBB991A12625A5A00141693 /* Restaurant.h */,
-				5FBB991B12625A5A00141693 /* Restaurant.m */,
+				5FD125D21287BE8B0029AFA8 /* Dish.h */,
+				5FD125D31287BE8B0029AFA8 /* Dish.m */,
+				5FD125D41287BE8B0029AFA8 /* Restaurant.h */,
+				5FD125D51287BE8B0029AFA8 /* Restaurant.m */,
+				5FD125D61287BE8B0029AFA8 /* DishComment.h */,
+				5FD125D71287BE8B0029AFA8 /* DishComment.m */,
 				28860B760F44E54D00985440 /* TopDish.xcdatamodel */,
 			);
 			currentVersion = 28860B760F44E54D00985440 /* TopDish.xcdatamodel */;

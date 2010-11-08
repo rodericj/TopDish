@@ -21,6 +21,7 @@
 @synthesize description;
 @synthesize commentsController;
 @synthesize commentSubView;
+@synthesize restaurantName;
 
 @synthesize fetchedResultsController=fetchedResultsController_, managedObjectContext=managedObjectContext_;
 
@@ -124,6 +125,7 @@
 	[upVotes setText:[NSString stringWithFormat:@"%@", [dish posReviews]]];
 	[downVotes setText:[NSString stringWithFormat:@"%@", [dish negReviews]]];
 	
+	[restaurantName setText:[[dish restaurant] restaurant_name]];
 	//Set up description UILabel
 	[description setNumberOfLines:0];
 	[description setText:[NSString stringWithFormat:@"\"%@\"", [dish dish_description]]];

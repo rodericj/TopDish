@@ -13,6 +13,7 @@
 	NSNumber *dishId;
 	NSData *_responseText;
 	
+	UIImageView *commentDirection;
 	NSArray *reviews;
 	UITableViewCell *commentCell;
 
@@ -26,6 +27,7 @@
 -(void) refreshFromServer;
 @property (nonatomic, assign) IBOutlet UITableViewCell *commentCell;
 
+@property (nonatomic, retain)  UIImageView *commentDirection;
 @property (nonatomic, retain)  NSNumber *dishId;
 @property (nonatomic, retain)  NSArray *reviews;
 @property (nonatomic, retain)  NSData *_responseText;

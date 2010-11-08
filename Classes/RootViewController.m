@@ -283,7 +283,6 @@
 		restaurantName = [restaurantName substringToIndex:MAXRESTAURANTNAMELENGTH];
 	}
 	resto.text = restaurantName;
-	[restaurantName release];
 	
 	UILabel *cost;
 	cost = (UILabel *)[cell viewWithTag:ROOTVIEW_COST_TAG];
@@ -548,9 +547,9 @@
 		[restaurantFetchRequest setEntity:
 		 [NSEntityDescription entityForName:@"Restaurant" 
 					 inManagedObjectContext:self.managedObjectContext]];
-		[restaurantFetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(id IN %@)", restaurantIds]];
+		[restaurantFetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(restaurant_id IN %@)", restaurantIds]];
 		[restaurantFetchRequest setSortDescriptors:[NSArray arrayWithObject:
-													[[[NSSortDescriptor alloc] initWithKey:@"id" 
+													[[[NSSortDescriptor alloc] initWithKey:@"restaurant_id" 
 																				 ascending:YES] autorelease]]];
 		
 		NSArray *restaurantsMatchingId = [self.managedObjectContext executeFetchRequest:restaurantFetchRequest error:error];
@@ -580,7 +579,11 @@
 				if (existingRestoCounter >= [restaurantsMatchingId count]){
 					thisRestaurant = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" 
 																				 inManagedObjectContext:self.managedObjectContext];
-					[thisRestaurant setId:[thisElement objectForKey:@"restaurantID"]];
+					NSLog(@"the resto id is: %@", [[thisElement objectForKey:@"restaurantID"] class]);
+					NSNumber *restaurant_id = [thisElement objectForKey:@"restaurantID"];
+					NSLog(@"the id now is %@", restaurant_id);
+					NSLog(@"the resto class is %@", [thisRestaurant class]);
+					[thisRestaurant setRestaurant_id:restaurant_id];
 					[thisRestaurant setRestaurant_name:[thisElement objectForKey:@"restaurantName"]];
 				}
 				else{

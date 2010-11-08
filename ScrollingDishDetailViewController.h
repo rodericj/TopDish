@@ -22,6 +22,7 @@
 	IBOutlet UILabel *downVotes;
 	IBOutlet UIImageView *dishImage;
 	IBOutlet UILabel *description;
+	IBOutlet UILabel *restaurantName;
 	
 	IBOutlet UIView *commentSubView;
 	IBOutlet CommentsTableViewController *commentsController;
@@ -40,6 +41,7 @@
 @property (nonatomic, retain) UIScrollView *scrollView;
 
 @property (nonatomic, retain) UILabel *dishName;
+@property (nonatomic, retain) UILabel *restaurantName;
 @property (nonatomic, retain) UILabel *upVotes;
 @property (nonatomic, retain) UILabel *downVotes;
 @property (nonatomic, retain) UIView *commentSubView;

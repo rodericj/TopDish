@@ -22,6 +22,7 @@
 @synthesize commentCell;
 @synthesize _responseText;
 @synthesize fetchedResultsController;
+@synthesize commentDirection;
 
 //#pragma mark -
 //#pragma mark Initialization
@@ -47,6 +48,7 @@
 -(void)refreshFromServer{
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishDetail?id[]=%@", NETWORKHOST, dishId]];
 	//Start up the networking
+	NSLog(@"the comments url is %@", url);
 	request = [NSURLRequest requestWithURL:url];
 	NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE]; 
 	[conn release];
@@ -98,6 +100,14 @@
 	commentText = (UILabel *)[cell viewWithTag:COMMENT_TEXT_TAG];
 	commentText.text = [NSString stringWithFormat:@"\"%@\"", [thisReview objectForKey:@"comment"]];
 
+	UIImageView *im = (UIImageView *)[cell viewWithTag:COMMENT_DIRECTION_IMAGE_TAG];
+	NSLog(@"direction %d", [thisReview objectForKey:@"direction"]);
+	if([[thisReview objectForKey:@"direction"] intValue] == 1){
+		[im setImage:[UIImage imageNamed:POSITIVE_REVIEW_IMAGE_NAME]];
+	}
+	else{
+		[im setImage:[UIImage imageNamed:NEGATIVE_REVIEW_IMAGE_NAME]];
+	}
 	return cell;
 }
 
