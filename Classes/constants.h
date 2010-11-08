@@ -6,7 +6,7 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-
+#define MAXRESTAURANTNAMELENGTH 26
 #define DISHDETAILIMAGECELLHEIGHT 72
 #define IPHONESCREENWIDTH 320
 #define NUMBEROFROWSINDISHDETAILVIEW 4
