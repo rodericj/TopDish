@@ -149,19 +149,9 @@
 	
 	[commentsController refreshFromServer];
 	
-	//float descriptionHeight = [description frame].size.height;
-	//float commentHeight = [commentSubView frame].size.height;
 	float commentHeight = [commentsController.tableView contentSize].height;
 	
-	//float imageHeight = [dishImage frame].size.height;
 	NSLog(@"determine comment height after viewWillAppear %f", commentHeight);
-	//[scrollView setContentSize:CGSizeMake(320, 9000)];
-	//[scrollView setContentSize:CGSizeMake(320, descriptionHeight)];
-	
-	
-	
-	//[scrollView setContentSize:CGSizeMake(320, 200)];
-
 	//TODO Set the height of the UIScrollView here. We should know the height of all of the internal views. Should be able to set it.
 	
 }

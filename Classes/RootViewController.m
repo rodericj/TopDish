@@ -448,10 +448,34 @@
 	}
 }
 
-
 #pragma mark -
 #pragma mark Network Delegate 
-
+- (NSArray *)loadDummyRestaurantData{
+	NSString *restoJsonData = @"[\
+	{\
+	\"id\":138,\
+	\"restaurantName\":\"The Burger Joint\",\
+	\"addressLine1\":\"123 main street\",\
+	\"addressLine2\":\"\",\
+	\"city\":34,\
+	\"state\":12,\
+	\"neighborhood\":\"pac Heights\"\
+	},\
+	{\
+	\"id\":139,\
+	\"restaurantName\":\"The Burger Joint\",\
+	\"addressline1\":\"123 main street\",\
+	\"addressLine2\":\"\",\
+	\"city\":\"San Francisco\",\
+	\"state\":\"CA\",\
+	\"neighborhood\":\"Nob Hill\"\
+	}]";
+	SBJSON *parser = [SBJSON new];
+	parser = [SBJSON new];
+	NSArray *responseAsArray = [parser objectWithString:restoJsonData error:NULL];
+	[parser release];
+	return responseAsArray;
+}
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
 	NSLog(@"connection did finish loading");
 	NSString *responseText = [[NSString alloc] initWithData:_responseText encoding:NSUTF8StringEncoding];
@@ -461,40 +485,18 @@
 	SBJSON *parser = [SBJSON new];
 	NSError *error = nil;
 	NSArray *responseAsArray = [parser objectWithString:responseText error:&error];	
+	[parser release];
+
 	if(error != nil){
 		NSLog(@"there was an error when jsoning");
 		NSLog(@"%@", error);
 		NSLog(@"the text %@", responseText);
 		NSLog(@"the raw data %@", _responseText);
 	}
-	[parser release];
-	//NSLog(@"nearby dishes loaded %@", responseAsArray);
+
 	if(responseAsArray == nil){
 		NSLog(@"the response is nil");
-		NSString *restoJsonData = @"[\
-		{\
-		\"id\":138,\
-		\"restaurantName\":\"The Burger Joint\",\
-		\"addressLine1\":\"123 main street\",\
-		\"addressLine2\":\"\",\
-		\"city\":34,\
-		\"state\":12,\
-		\"neighborhood\":\"pac Heights\"\
-		},\
-		{\
-		\"id\":139,\
-		\"restaurantName\":\"The Burger Joint\",\
-		\"addressline1\":\"123 main street\",\
-		\"addressLine2\":\"\",\
-		\"city\":\"San Francisco\",\
-		\"state\":\"CA\",\
-		\"neighborhood\":\"Nob Hill\"\
-		}]";
-		parser = [SBJSON new];
-		responseAsArray = [parser objectWithString:restoJsonData error:NULL];
-		[parser release];
-		NSLog(@"response hard coded = %@", responseAsArray);
-		
+		responseAsArray = [self loadDummyRestaurantData];
 	}
 	[self.managedObjectContext reset];
 	
@@ -549,6 +551,7 @@
 				[thisDish setDish_description:[thisElement objectForKey:@"description"]];
 				[thisDish setDish_photoURL:[NSString stringWithFormat:@"%@%@", NETWORKHOST, 
 											[thisElement objectForKey:@"photoURL"]]];
+				//[thisDish setRestaurant:<#(Restaurant *)#>
 				[thisDish setLatitude:[thisElement objectForKey:@"latitude"]];
 				[thisDish setLongitude:[thisElement objectForKey:@"longitude"]];
 				[thisDish setPosReviews:[thisElement objectForKey:@"posReviews"]];

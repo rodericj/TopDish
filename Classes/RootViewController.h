@@ -34,7 +34,8 @@
 - (NSNumber *) calculateDishDistance:(id *)dish;
 - (void) updateSettings:(NSDictionary *)settings;
 - (void)getNearbyItems:(CLLocation *)location;
--(NSArray *) getArrayOfIdsWithArray:(NSArray *)responseAsArray;
+- (NSArray *) getArrayOfIdsWithArray:(NSArray *)responseAsArray;
+- (NSArray *)loadDummyRestaurantData;
 
 @property (nonatomic, retain) NSString *currentLat;
 @property (nonatomic, retain) NSString *currentLon;
