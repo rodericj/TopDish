@@ -179,11 +179,14 @@
 	[self connectionDidFinishLoading:connection];
 	
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
+	
+#ifndef AirplaneMode
 	UIAlertView *alert;
 	alert = [[UIAlertView alloc] initWithTitle:@"NetworkError" message:@"There was a network issue. Try again later" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil]; 
 	[alert show];
 	[alert release];	
+#endif
+	
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{

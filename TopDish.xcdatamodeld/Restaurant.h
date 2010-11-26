@@ -2,7 +2,7 @@
 //  Restaurant.h
 //  TopDish
 //
-//  Created by Roderic Campbell on 11/7/10.
+//  Created by roderic campbell on 11/26/10.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
@@ -14,12 +14,18 @@
 {
 }
 
-@property (nonatomic, retain) NSString * restaurant_photoURL;
-@property (nonatomic, retain) NSNumber * longitude;
-@property (nonatomic, retain) NSNumber * latitude;
+@property (nonatomic, retain) NSString * state;
+@property (nonatomic, retain) NSString * addressLine2;
+@property (nonatomic, retain) NSString * phone;
 @property (nonatomic, retain) NSString * restaurant_description;
-@property (nonatomic, retain) NSString * restaurant_name;
+@property (nonatomic, retain) NSNumber * longitude;
+@property (nonatomic, retain) NSDate * dateDefined;
+@property (nonatomic, retain) NSNumber * latitude;
+@property (nonatomic, retain) NSString * restaurant_photoURL;
 @property (nonatomic, retain) NSNumber * restaurant_id;
+@property (nonatomic, retain) NSString * restaurant_name;
+@property (nonatomic, retain) NSString * city;
+@property (nonatomic, retain) NSString * addressLine1;
 @property (nonatomic, retain) NSSet* restaurant_dish;
 
 @end

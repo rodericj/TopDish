@@ -24,8 +24,6 @@
 	UITableViewCell *tvCell;
 	NSMutableData *_responseText;
 	
-
-
 @private
     NSFetchedResultsController *fetchedResultsController_;
     NSManagedObjectContext *managedObjectContext_;
@@ -36,6 +34,7 @@
 - (void)getNearbyItems:(CLLocation *)location;
 - (NSArray *) getArrayOfIdsWithArray:(NSArray *)responseAsArray withKey:(NSString*) key;
 - (NSArray *)loadDummyRestaurantData;
+-(void) processIncomingNetworkText:(NSString *)responseText;
 
 @property (nonatomic, retain) NSString *currentLat;
 @property (nonatomic, retain) NSString *currentLon;

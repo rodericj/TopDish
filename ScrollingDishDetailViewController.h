@@ -31,6 +31,8 @@
     NSManagedObjectContext *managedObjectContext_;
 
 }
+-(IBAction) goToRestaurantDetailView; 
+
 
 @property (nonatomic, retain) CommentsTableViewController *commentsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;

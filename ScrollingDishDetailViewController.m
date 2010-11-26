@@ -10,6 +10,8 @@
 #import "JSON.h"
 #import "DishComment.h"
 #import "constants.h"
+#import "RestaurantDetailViewController.h"
+#import "Restaurant.h"
 
 @implementation ScrollingDishDetailViewController
 @synthesize dish;
@@ -158,4 +160,16 @@
 	
 }
 
+-(IBAction) goToRestaurantDetailView{
+	
+	//NSNumber *clickedDishId = [[NSNumber alloc] initWithInt:[sender tag]];
+	Restaurant *selectedObject = [dish restaurant];
+	RestaurantDetailViewController *detailViewController = [[RestaurantDetailViewController alloc] initWithNibName:@"RestaurantDetailView" bundle:nil];
+	[detailViewController setRestaurant:selectedObject];
+	[detailViewController setManagedObjectContext:self.managedObjectContext];
+	[self.navigationController pushViewController:detailViewController animated:YES];
+	[detailViewController release];
+	
+	
+}
 @end

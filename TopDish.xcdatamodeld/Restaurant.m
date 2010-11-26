@@ -2,7 +2,7 @@
 //  Restaurant.m
 //  TopDish
 //
-//  Created by Roderic Campbell on 11/7/10.
+//  Created by roderic campbell on 11/26/10.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
@@ -12,12 +12,18 @@
 
 @implementation Restaurant 
 
-@dynamic restaurant_photoURL;
-@dynamic longitude;
-@dynamic latitude;
+@dynamic state;
+@dynamic addressLine2;
+@dynamic phone;
 @dynamic restaurant_description;
-@dynamic restaurant_name;
+@dynamic longitude;
+@dynamic dateDefined;
+@dynamic latitude;
+@dynamic restaurant_photoURL;
 @dynamic restaurant_id;
+@dynamic restaurant_name;
+@dynamic city;
+@dynamic addressLine1;
 @dynamic restaurant_dish;
 
 @end

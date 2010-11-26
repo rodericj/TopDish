@@ -18,6 +18,7 @@
 
 @interface RootViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 
@@ -86,7 +87,9 @@
 	
 	
 	[theTableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tdlogo.png"]]];
+	
 }
+
 -(void) networkQuery:(NSString *)query{
 	NSURL *url;
 	NSURLRequest *request;
@@ -95,17 +98,17 @@
 	NSLog(@"url is %@", query);
 	//Start up the networking
 	request = [NSURLRequest requestWithURL:url];
-	conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE]; 
-	//[conn release];
+	conn = [[[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE] autorelease];
 	
 }
+
 -(void)initiateNetworkBasedOnSegmentControl{
 	//TODO RESTODISH SWITCH - turn off the 'settings' button for restaurants
 
 	NSLog(@"Segmentedcontrol changed");
 	if([dishRestoSelector selectedSegmentIndex] == 0){
 		NSLog(@"we are switching to dishes %@ %@", currentLat, currentLon);
-		[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=20000&limit=5", NETWORKHOST, currentLat, currentLon]];
+		[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=2000&limit=1000", NETWORKHOST, currentLat, currentLon]];
 		//url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishSearch?lat=33.6886&lng=-117.8129&disance=2000", NETWORKHOST]];
 	}
 	else if([dishRestoSelector selectedSegmentIndex] == 1){
@@ -213,7 +216,7 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-	[self.tableView reloadData];
+		[self.tableView reloadData];
 
 }
 
@@ -482,9 +485,19 @@
 	[parser release];
 	return responseAsArray;
 }
+	
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
 	NSLog(@"connection did finish loading");
-	NSString *responseText = [[NSString alloc] initWithData:_responseText encoding:NSUTF8StringEncoding];
+	NSString *responseText = [[NSString alloc] initWithData:_responseText encoding:NSASCIIStringEncoding];
+	NSLog(@"response text before replacing %@", responseText);
+
+
+	responseText = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
+	NSLog(@"response text after replacing %@", responseText);
+	[self processIncomingNetworkText:responseText];
+}
+-(void)processIncomingNetworkText:(NSString *)responseText{
+
 	//TODO RESTODISH SWITCH - when response has finised loading, I should determine if it's dishes or restauarants that I'm looking at
 
 	SBJSON *parser = [SBJSON new];
@@ -651,25 +664,24 @@
 	NSLog(@"connection did fail with error %@", error);
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
+#ifndef AirplaneMode
 	UIAlertView *alert;
 	alert = [[UIAlertView alloc] initWithTitle:@"NetworkError" message:@"There was a network issue. Try again later" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil]; 
 	[alert show];
-	[alert release];
-	
+#else	
+	//Airplane mode must set _responseText
+	[self processIncomingNetworkText:DishSearchResponseText];
+#endif
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-	NSLog(@"connectin did receive data");
-	NSString *responseText = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	NSLog(@"this segment of data is %@", responseText);
-	[responseText release];
 	if(_responseText == nil){
-		NSLog(@"must be the first time we got data, had to initialize it here");
-		//_responseText = [[NSData alloc] initWithData:data];
 		_responseText = [[NSMutableData alloc] initWithData:data];
 	}
 	else{
-		[_responseText appendData:data];
+		if (data) {
+			[_responseText appendData:data];
+		}
 	}
 }
 
