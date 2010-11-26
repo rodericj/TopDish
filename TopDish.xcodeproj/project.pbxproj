@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		179B846812A05F1200730FAC /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B846712A05F1200730FAC /* Restaurant.m */; };
+		179B854212A0727F00730FAC /* DishTableViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B854112A0727F00730FAC /* DishTableViewer.m */; };
 		17B48AE512A033C200F43202 /* RestaurantDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B48AE312A033C200F43202 /* RestaurantDetailViewController.m */; };
 		17B48AE612A033C200F43202 /* RestaurantDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B48AE412A033C200F43202 /* RestaurantDetailView.xib */; };
 		1D3623260D0F684500981E51 /* TopDishAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* TopDishAppDelegate.m */; };
@@ -51,6 +52,8 @@
 /* Begin PBXFileReference section */
 		179B846612A05F1200730FAC /* Restaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
 		179B846712A05F1200730FAC /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
+		179B854012A0727F00730FAC /* DishTableViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishTableViewer.h; sourceTree = "<group>"; };
+		179B854112A0727F00730FAC /* DishTableViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishTableViewer.m; sourceTree = "<group>"; };
 		17B48AE212A033C200F43202 /* RestaurantDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDetailViewController.h; sourceTree = "<group>"; };
 		17B48AE312A033C200F43202 /* RestaurantDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantDetailViewController.m; sourceTree = "<group>"; };
 		17B48AE412A033C200F43202 /* RestaurantDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantDetailView.xib; sourceTree = "<group>"; };
@@ -170,6 +173,8 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				179B854012A0727F00730FAC /* DishTableViewer.h */,
+				179B854112A0727F00730FAC /* DishTableViewer.m */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -408,6 +413,7 @@
 				5FD125DA1287BE8B0029AFA8 /* DishComment.m in Sources */,
 				17B48AE512A033C200F43202 /* RestaurantDetailViewController.m in Sources */,
 				179B846812A05F1200730FAC /* Restaurant.m in Sources */,
+				179B854212A0727F00730FAC /* DishTableViewer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Restaurant.h"
+#import "DishTableViewer.h"
 
-@interface RestaurantDetailViewController : UITableViewController {
+@interface RestaurantDetailViewController : DishTableViewer {
 
 	Restaurant *restaurant;
 	NSMutableData *_responseData;
@@ -19,9 +20,9 @@
 	IBOutlet UILabel *restaurantAddress;
 	IBOutlet UILabel *restaurantPhone;
 	
-@private
-    NSFetchedResultsController *fetchedResultsController_;
-    NSManagedObjectContext *managedObjectContext_;
+//@private
+//    NSFetchedResultsController *fetchedResultsController_;
+//    NSManagedObjectContext *managedObjectContext_;
 	
 
 }

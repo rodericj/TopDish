@@ -168,6 +168,7 @@
 	[detailViewController setRestaurant:selectedObject];
 	[detailViewController setManagedObjectContext:self.managedObjectContext];
 	[self.navigationController pushViewController:detailViewController animated:YES];
+	[detailViewController setTitle:[selectedObject restaurant_name]];
 	[detailViewController release];
 	
 	

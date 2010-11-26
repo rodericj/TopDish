@@ -178,121 +178,121 @@
     return persistentStoreCoordinator_;
 }
 
--(void)initializedatabase {
-	NSLog(@"initialize database");
-	
-	NSString *restoJsonData = @"[\
-							   {\
-								   \"id\":138,\
-								   \"restaurantName\":\"The Burger Joint\",\
-								   \"addressLine1\":\"123 main street\",\
-								   \"addressLine2\":\"\",\
-								   \"city\":34,\
-								   \"state\":12,\
-								   \"neighborhood\":\"pac Heights\"\
-								   },\
-								   [\
-								   {\
-								   \"id\":138,\
-								   \"restaurantName\":\"The Burger Joint\",\
-								   \"addressline1\":\"123 main street\",\
-								   \"addressLine2\":\"\",\
-								   \"city\":\"San Francisco\",\
-								   \"state\":\"CA\",\
-								   \"neighborhood\":\"Nob Hill\"\
-								   }}";
-	NSString *jsonData = @"[\
-	{\
-	\"id\":38,\
-	\"name\":\"Bacon Burger\",\
-	\"description\":\"7 lbs of raw beef, covered in a package of bacon. Seriously, the bacon isn't even unwrapped. There's even a pricetag on some of them. Get it while it's raw.\",\
-	\"restaurantID\":37,\
-	\"restaurantName\":\"The Burger Joint\",\
-	\"latitude\":37.33215,\
-	\"longitude\":-122.02935,\
-	\"posReviews\":34,\
-	\"negReviews\":12,\
-	\"photoURL\":\"http://topdish1.appspot.com/getPhoto?id=84001\"\
-	},\
-	{\
-	\"id\":139,\
-	\"name\":\"Carne Asada Tacos\",\
-	\"description\":\"Like Meat? Try these Carne Asada Tacos. Rumor has it that there is actual human meat in there to add some 'urban' flavor.\",\
-	\"restaurantID\":63,\
-	\"restaurantName\":\"The Fry Shop\",\
-	\"latitude\":37.33216,\
-	\"longitude\":-122.02999,\
-	\"posReviews\":92,\
-	\"negReviews\":21,\
-	\"photoURL\":\"http://topdish1.appspot.com/getPhoto?id=74001\"\
-	},\
-	{\
-	\"id\":1,\
-	\"name\":\"Tuna Tartar\",\
-	\"description\":\"Tartare is a preparation of finely chopped raw meat or fish optionally with seasonings and sauces. Usually Raw fish is gross, but in the case of Tartar, you can sense the dilecitble dilectability of such a devine dish. One time this guy ate it and then he died.\",\
-	\"restaurantID\":63,\
-	\"restaurantName\":\"Salad Fingers\",\
-	\"latitude\":37.33225,\
-	\"longitude\":-122.02975,\
-	\"posReviews\":12,\
-	\"negReviews\":5,\
-	\"photoURL\":\"http://topdish1.appspot.com/getPhoto?id=70001\"\
-	},\
-	{\
-	\"id\":139,\
-	\"name\":\"Miso Soup\",\
-	\"description\":\"Miso....A Type of Japanese Soup. Excellent. Your wager? Horney. Miso Horney. Great.\",\
-	\"restaurantID\":63,\
-	\"restaurantName\":\"The Fry Shop\",\
-	\"latitude\":37.33235,\
-	\"longitude\":-122.02965,\
-	\"posReviews\":89,\
-	\"negReviews\":32,\
-	\"photoURL\":\"http://topdish1.appspot.com/getPhoto?id=72001\"\
-	},\
-	{\
-	\"id\":139,\
-	\"name\":\"Sloppy Joe\",\
-	\"description\":\"Everyone loves a sloppy one\",\
-	\"restaurantID\":63,\
-	\"restaurantName\":\"Busters\",\
-	\"latitude\":37.3295,\
-	\"longitude\":-122.02975,\
-	\"posReviews\":19,\
-	\"negReviews\":11,\
-	\"photoURL\":\"http://topdish1.appspot.com/getPhoto?id=70002\"\
-	}\
-	]";
-	SBJSON *parser = [SBJSON new];
-	NSArray *responseAsArray = [parser objectWithString:jsonData error:NULL];
-	[parser release];
-	
-	for (int i =0; i < [responseAsArray count]; i++){
-		Dish *thisDish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" inManagedObjectContext:self.managedObjectContext];
-		NSDictionary *thisElement = [responseAsArray objectAtIndex:i];
-		[thisDish setDish_id:[thisElement objectForKey:@"id"]];
-		[thisDish setDish_name:[thisElement objectForKey:@"name"]];
-		[thisDish setDish_description:[thisElement objectForKey:@"description"]];
-		[thisDish setDish_photoURL:[thisElement objectForKey:@"photoURL"]];
-		[thisDish setLatitude:[thisElement objectForKey:@"latitude"]];
-		[thisDish setLongitude:[thisElement objectForKey:@"longitude"]];
-		[thisDish setPosReviews:[thisElement objectForKey:@"posReviews"]];
-		[thisDish setNegReviews:[thisElement objectForKey:@"negReviews"]];
-		[thisDish setDish_id:[thisElement objectForKey:@"id"]];
-		NSLog(@"adding all the stuff to a dish: %@", [thisDish price]);
-	}
-	
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish"  
-											  inManagedObjectContext:self.managedObjectContext];
-	[fetchRequest setEntity:entity];
-	
-//	NSError *error;
-	//NSArray *items = [self.managedObjectContext
-//					  executeFetchRequest:fetchRequest error:&error];
+//-(void)initializedatabase {
+//	NSLog(@"initialize database");
 //	
-	[fetchRequest release];	
-}
+//	NSString *restoJsonData = @"[\
+//							   {\
+//								   \"id\":138,\
+//								   \"restaurantName\":\"The Burger Joint\",\
+//								   \"addressLine1\":\"123 main street\",\
+//								   \"addressLine2\":\"\",\
+//								   \"city\":34,\
+//								   \"state\":12,\
+//								   \"neighborhood\":\"pac Heights\"\
+//								   },\
+//								   [\
+//								   {\
+//								   \"id\":138,\
+//								   \"restaurantName\":\"The Burger Joint\",\
+//								   \"addressline1\":\"123 main street\",\
+//								   \"addressLine2\":\"\",\
+//								   \"city\":\"San Francisco\",\
+//								   \"state\":\"CA\",\
+//								   \"neighborhood\":\"Nob Hill\"\
+//								   }}";
+//	NSString *jsonData = @"[\
+//	{\
+//	\"id\":38,\
+//	\"name\":\"Bacon Burger\",\
+//	\"description\":\"7 lbs of raw beef, covered in a package of bacon. Seriously, the bacon isn't even unwrapped. There's even a pricetag on some of them. Get it while it's raw.\",\
+//	\"restaurantID\":37,\
+//	\"restaurantName\":\"The Burger Joint\",\
+//	\"latitude\":37.33215,\
+//	\"longitude\":-122.02935,\
+//	\"posReviews\":34,\
+//	\"negReviews\":12,\
+//	\"photoURL\":\"http://topdish1.appspot.com/getPhoto?id=84001\"\
+//	},\
+//	{\
+//	\"id\":139,\
+//	\"name\":\"Carne Asada Tacos\",\
+//	\"description\":\"Like Meat? Try these Carne Asada Tacos. Rumor has it that there is actual human meat in there to add some 'urban' flavor.\",\
+//	\"restaurantID\":63,\
+//	\"restaurantName\":\"The Fry Shop\",\
+//	\"latitude\":37.33216,\
+//	\"longitude\":-122.02999,\
+//	\"posReviews\":92,\
+//	\"negReviews\":21,\
+//	\"photoURL\":\"http://topdish1.appspot.com/getPhoto?id=74001\"\
+//	},\
+//	{\
+//	\"id\":1,\
+//	\"name\":\"Tuna Tartar\",\
+//	\"description\":\"Tartare is a preparation of finely chopped raw meat or fish optionally with seasonings and sauces. Usually Raw fish is gross, but in the case of Tartar, you can sense the dilecitble dilectability of such a devine dish. One time this guy ate it and then he died.\",\
+//	\"restaurantID\":63,\
+//	\"restaurantName\":\"Salad Fingers\",\
+//	\"latitude\":37.33225,\
+//	\"longitude\":-122.02975,\
+//	\"posReviews\":12,\
+//	\"negReviews\":5,\
+//	\"photoURL\":\"http://topdish1.appspot.com/getPhoto?id=70001\"\
+//	},\
+//	{\
+//	\"id\":139,\
+//	\"name\":\"Miso Soup\",\
+//	\"description\":\"Miso....A Type of Japanese Soup. Excellent. Your wager? Horney. Miso Horney. Great.\",\
+//	\"restaurantID\":63,\
+//	\"restaurantName\":\"The Fry Shop\",\
+//	\"latitude\":37.33235,\
+//	\"longitude\":-122.02965,\
+//	\"posReviews\":89,\
+//	\"negReviews\":32,\
+//	\"photoURL\":\"http://topdish1.appspot.com/getPhoto?id=72001\"\
+//	},\
+//	{\
+//	\"id\":139,\
+//	\"name\":\"Sloppy Joe\",\
+//	\"description\":\"Everyone loves a sloppy one\",\
+//	\"restaurantID\":63,\
+//	\"restaurantName\":\"Busters\",\
+//	\"latitude\":37.3295,\
+//	\"longitude\":-122.02975,\
+//	\"posReviews\":19,\
+//	\"negReviews\":11,\
+//	\"photoURL\":\"http://topdish1.appspot.com/getPhoto?id=70002\"\
+//	}\
+//	]";
+//	SBJSON *parser = [SBJSON new];
+//	NSArray *responseAsArray = [parser objectWithString:jsonData error:NULL];
+//	[parser release];
+//	
+//	for (int i =0; i < [responseAsArray count]; i++){
+//		Dish *thisDish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" inManagedObjectContext:self.managedObjectContext];
+//		NSDictionary *thisElement = [responseAsArray objectAtIndex:i];
+//		[thisDish setDish_id:[thisElement objectForKey:@"id"]];
+//		[thisDish setDish_name:[thisElement objectForKey:@"name"]];
+//		[thisDish setDish_description:[thisElement objectForKey:@"description"]];
+//		[thisDish setDish_photoURL:[thisElement objectForKey:@"photoURL"]];
+//		[thisDish setLatitude:[thisElement objectForKey:@"latitude"]];
+//		[thisDish setLongitude:[thisElement objectForKey:@"longitude"]];
+//		[thisDish setPosReviews:[thisElement objectForKey:@"posReviews"]];
+//		[thisDish setNegReviews:[thisElement objectForKey:@"negReviews"]];
+//		[thisDish setDish_id:[thisElement objectForKey:@"id"]];
+//		NSLog(@"adding all the stuff to a dish: %@", [thisDish price]);
+//	}
+//	
+//	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish"  
+//											  inManagedObjectContext:self.managedObjectContext];
+//	[fetchRequest setEntity:entity];
+//	
+////	NSError *error;
+//	//NSArray *items = [self.managedObjectContext
+////					  executeFetchRequest:fetchRequest error:&error];
+////	
+//	[fetchRequest release];	
+//}
 
 #pragma mark -
 #pragma mark Application's Documents directory
