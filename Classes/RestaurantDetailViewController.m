@@ -9,6 +9,7 @@
 #import "RestaurantDetailViewController.h"
 #import "constants.h"
 #import "JSON.h"
+#import "asyncimageview.h"
 
 @implementation RestaurantDetailViewController
 @synthesize restaurant;
@@ -95,6 +96,17 @@
 	[restaurantPhone setText:[restaurant phone]];
 	[restaurantAddress setText:[restaurant addressLine1]];
 	 
+	AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[restaurantImage frame]];
+	asyncImage.tag = 999;
+	if( [[restaurant restaurant_photoURL] length] > 0 ){
+		NSString *urlString = [NSString stringWithFormat:@"%@&w=70&h=70", [restaurant restaurant_photoURL]];
+		NSLog(@"the url of the resto image %@", urlString);
+		NSURL *photoUrl = [NSURL URLWithString:urlString];
+		[asyncImage loadImageFromURL:photoUrl withImageView:restaurantImage showActivityIndicator:FALSE];
+		//[cell.contentView addSubview:asyncImage];
+		[restaurantHeader addSubview:asyncImage];
+	}
+	
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }

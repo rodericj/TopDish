@@ -19,6 +19,7 @@
 	IBOutlet UILabel *restaurantName;
 	IBOutlet UILabel *restaurantAddress;
 	IBOutlet UILabel *restaurantPhone;
+	IBOutlet UIImageView *restaurantImage;
 	
 //@private
 //    NSFetchedResultsController *fetchedResultsController_;
