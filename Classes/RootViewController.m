@@ -363,7 +363,6 @@
 		NSArray *dishIds = [self getArrayOfIdsWithArray:responseAsArray withKey:@"id"];
 		NSArray *restaurantIds = [self getArrayOfIdsWithArray:responseAsArray withKey:@"restaurantID"];
 		
-		
 		//Fetch the dishes
 		NSFetchRequest *dishFetchRequest = [[NSFetchRequest alloc] init];
 		[dishFetchRequest setEntity:
@@ -391,7 +390,7 @@
 													[[[NSSortDescriptor alloc] initWithKey:@"restaurant_id" 
 																				 ascending:YES] autorelease]]];
 		
-		NSArray *restaurantsMatchingId = [self.managedObjectContext executeFetchRequest:restaurantFetchRequest error:error];
+		NSArray *restaurantsMatchingId = [self.managedObjectContext executeFetchRequest:restaurantFetchRequest error:&error];
 		
 		[restaurantIds release];
 		[restaurantFetchRequest release];

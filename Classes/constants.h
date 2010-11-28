@@ -44,3 +44,88 @@
 
 #define DishSearchResponseText @"[{\"id\":164001,\"name\":\"Breakfast Burrito\",\"description\":\"A Large white flour tortilla, filled with meat, beans, cheese, salsa, or a combination of these, and rolled. Served smothered with chile sauce and melted cheese\",\"restaurantID\":163001,\"latitude\":37.793075,\"longitude\":-122.421094,\"restaurantName\":\"La Parrilla Grill - Polk\",\"posReviews\":1,\"negReviews\":0,\"photoURL\":\"/getPhoto?id=167001\"}]"
 #define RestaurantResponseText @"{\"dishes\":[{\"id\":164001,\"name\":\"Breakfast Burrito\",\"description\":\"A Large white flour tortilla, filled with meat, beans, cheese, salsa, or a combination of these, and rolled. Served smothered with chile sauce and melted cheese\",\"restaurantID\":163001,\"latitude\":37.793075,\"longitude\":-122.421094,\"restaurantName\":\"La Parrilla Grill - Polk\",\"posReviews\":1,\"negReviews\":0,\"photoURL\":\"/getPhoto?id=167001\"}]}"
+#define RestaurantResponsetext @"[\
+{\
+\"id\":2312,\
+\"name\":\"Blush\",\
+\"addressLine1\":\"476 Castro Street\",\
+\"addressLine2\":\"\",\
+\"city\":\"San Francisco\",\
+\"state\":\"CA\",\
+\"neighborhood\":\"\",\
+\"latitude\":37.761203,\
+\"longitude\":-122.4350654,\
+\"phone\":\"4155580893\",\
+\"numDishes\":3,\
+\"photoURL\":\"\",\
+\"dishes\":\
+[\
+{\
+\"id\":2313,\
+\"name\":\"some dish name\",\
+\"description\":\"food on a plate\",\
+\"restaurantID\":2312,\
+\"latitude\":37.761203,\
+\"longitude\":-122.4350654,\
+\"restaurantName\":\"Blush\",\
+\"posReviews\":1,\
+\"negReviews\":0,\
+\"photoURL\":\"”\
+},\
+{\
+	\"id\":2316,\
+	\"name\":\"Another dish title\",\
+	\"description\":\"ss\",\
+	\"restaurantID\":2312,\
+	\"latitude\":37.761203,\
+	\"longitude\":-122.4350654,\
+	\"restaurantName\":\"Blush\",\
+	\"posReviews\":0,\
+	\"negReviews\":1,\
+	\"photoURL\":\"”\
+	},\
+	{\
+	\"id\":2329,\
+	\"name\":\"a very long name for a drink\",\
+		\"description\":\"s\",\
+		\"restaurantID\":2312,\
+		\"latitude\":37.761203,\
+		\"longitude\":-122.4350654,\
+		\"restaurantName\":\"Blush\",\
+		\"posReviews\":1,\
+		\"negReviews\":0,\
+		\"photoURL\":\"”\
+		}\
+]\
+},\
+{\
+	\"id\":2319,\
+	\"name\":\"PizzaHacker\",\
+	\"addressLine1\":\"Mission District\",\
+	\"addressLine2\":\"\",\
+	\"city\":\"San Francisco\",\
+	\"state\":\"CA\",\
+	\"neighborhood\":\"\",\
+	\"latitude\":37.76,\
+	\"longitude\":-122.42,\
+	\"phone\":\"4158745585\",\
+	\"numDishes\":1,\
+	\"photoURL\":\"\",\
+	\"dishes\":\
+	[\
+	{\\
+		\"id\":2320,\
+		\"name\":\"Hax0r Pizza\",\
+		\"description\":\"some fine ass pizza\",\
+		\"restaurantID\":2319,\
+		\"latitude\":37.76,\
+		\"longitude\":-122.42,\
+		\"restaurantName\":\"PizzaHacker\",\
+		\"posReviews\":1,\
+		\"negReviews\":0,\
+		\"photoURL\":\"\”\
+		}\
+		]\
+		}\
+		]"
+#define cool 1

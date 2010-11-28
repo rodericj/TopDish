@@ -13,6 +13,7 @@
 
 @implementation RestaurantDetailViewController
 @synthesize restaurant;
+@synthesize _responseData;
 
 #pragma mark -
 #pragma mark networking

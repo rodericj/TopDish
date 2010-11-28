@@ -16,7 +16,6 @@
 
 @synthesize tvCell;
 @synthesize fetchedResultsController=fetchedResultsController_, managedObjectContext=managedObjectContext_;
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	return COMMENTTABLECELLHEIGHT;
 }
