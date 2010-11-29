@@ -144,8 +144,7 @@
 		NSURL *photoUrl = [NSURL URLWithString:urlString];
 		AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[dishImage frame]];
 		[asyncImage setOwningObject:dish];
-		[asyncImage setIsLarge:YES];
-		[asyncImage loadImageFromURL:photoUrl withImageView:dishImage showActivityIndicator:FALSE];
+		[asyncImage loadImageFromURL:photoUrl withImageView:dishImage isThumb:NO showActivityIndicator:FALSE];
 	}
 	[super viewWillAppear:animated];
 	

@@ -96,7 +96,7 @@
 	NSLog(@"Segmentedcontrol changed");
 	if([dishRestoSelector selectedSegmentIndex] == 0){
 		NSLog(@"we are switching to dishes %@ %@", currentLat, currentLon);
-		[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=2000000&limit=200000", NETWORKHOST, currentLat, currentLon]];
+		[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=200000000&limit=200", NETWORKHOST, currentLat, currentLon]];
 		//url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishSearch?lat=33.6886&lng=-117.8129&disance=2000", NETWORKHOST]];
 	}
 	else if([dishRestoSelector selectedSegmentIndex] == 1){

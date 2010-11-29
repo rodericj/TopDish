@@ -149,7 +149,7 @@
 		NSString *urlString = [NSString stringWithFormat:@"%@&w=70&h=70", [thisDish photoURL]];
 		NSURL *photoUrl = [NSURL URLWithString:urlString];
 		[asyncImage setOwningObject:thisDish];
-		[asyncImage loadImageFromURL:photoUrl withImageView:imageView showActivityIndicator:FALSE];
+		[asyncImage loadImageFromURL:photoUrl withImageView:imageView isThumb:YES showActivityIndicator:NO];
 		[cell.contentView addSubview:asyncImage];
 	}
     // Configure the cell.

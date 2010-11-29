@@ -18,8 +18,7 @@
 @implementation AsyncImageView
 @synthesize owningObject;
 @synthesize managedObjectContext=managedObjectContext_;
-@synthesize isLarge;
-
+@synthesize isThumb;
 - (void)dealloc {
 	[connection cancel]; //in case the URL is still downloading
 	[connection release];
@@ -28,10 +27,10 @@
 }
 
 
-- (void)loadImageFromURL:(NSURL*)url withImageView:(UIImageView *)imageView showActivityIndicator:(Boolean)showIndicator {
+- (void)loadImageFromURL:(NSURL*)url withImageView:(UIImageView *)imageView isThumb:(Boolean)isThumbNail showActivityIndicator:(Boolean)showIndicator {
 	if (connection!=nil) { [connection release]; } //in case we are downloading a 2nd image
 	if (data!=nil) { [data release]; }
-	
+	isThumb = isThumbNail;
 	thisImageView = imageView;
 	[thisImageView retain];
 	showThisIndicator = showIndicator;
@@ -44,16 +43,31 @@
 		[thisImageView addSubview:spinner];
 	}
 
-	NSLog(@"length of data %d", [[owningObject imageData] length]);
-
-	if([owningObject imageData] && !(isLarge && [[owningObject imageData] length] < 10000000)){
-
+	NSLog(@"Dish or whatever  data %@ %d", owningObject, [owningObject ImageDataThumb]==NULL);
+	NSURLRequest* request;
+	if ([owningObject imageData] && !isThumb){
 		thisImageView.image = [UIImage imageWithData:[owningObject imageData]];
 	}
-	else{
-		NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:8];
-		connection = [[NSURLConnection alloc] initWithRequest:request delegate:self]; 	
+	else if ([owningObject ImageDataThumb] && isThumb){
+		thisImageView.image = [UIImage imageWithData:[owningObject ImageDataThumb]];
 	}
+	else if(([owningObject imageData] == NULL && !isThumb) || ([owningObject ImageDataThumb] == NULL && isThumb)){
+		request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:8];
+		connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+	}
+	else {
+		NSAssert(1, @"Should have covered all of the cases at this point");
+	}
+
+	
+	
+	//if([owningObject imageData] && !(isThumb && [[owningObject imageData] length] < 10000000)){
+//		thisImageView.image = [UIImage imageWithData:[owningObject imageData]];
+//	}
+//	else{
+//		request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:8];
+//		connection = [[NSURLConnection alloc] initWithRequest:request delegate:self]; 	
+//	}
 }
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
 	NSLog(@"async image did fail with error");
@@ -98,7 +112,12 @@
 //	[self setNeedsLayout];
 	
 	if (owningObject) {
-		[owningObject setImageData:data];
+		if(isThumb){
+			[owningObject setImageDataThumb:data];
+		}
+		else{
+			[owningObject setImageData:data];
+		}
 		NSError *error;
 
 		if([self.managedObjectContext save:&error]){

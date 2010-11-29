@@ -68,7 +68,7 @@
 		NSString *urlString = [NSString stringWithFormat:@"%@&w=70&h=70", [restaurant photoURL]];
 		NSLog(@"the url of the resto image %@", urlString);
 		NSURL *photoUrl = [NSURL URLWithString:urlString];
-		[asyncImage loadImageFromURL:photoUrl withImageView:restaurantImage showActivityIndicator:FALSE];
+		[asyncImage loadImageFromURL:photoUrl withImageView:restaurantImage isThumb:NO showActivityIndicator:FALSE];
 		//[cell.contentView addSubview:asyncImage];
 		[restaurantHeader addSubview:asyncImage];
 	}

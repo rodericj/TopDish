@@ -10,7 +10,7 @@
 		179B854212A0727F00730FAC /* DishTableViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B854112A0727F00730FAC /* DishTableViewer.m */; };
 		179B879212A310E200730FAC /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B878D12A310E200730FAC /* Restaurant.m */; };
 		179B879312A310E200730FAC /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B878F12A310E200730FAC /* Dish.m */; };
-		179B879412A310E200730FAC /* ObjectWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B879112A310E200730FAC /* ObjectWithImage.m */; };
+		179B88D612A3719500730FAC /* ObjectWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B88D512A3719500730FAC /* ObjectWithImage.m */; };
 		17B48AE512A033C200F43202 /* RestaurantDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B48AE312A033C200F43202 /* RestaurantDetailViewController.m */; };
 		17B48AE612A033C200F43202 /* RestaurantDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B48AE412A033C200F43202 /* RestaurantDetailView.xib */; };
 		1D3623260D0F684500981E51 /* TopDishAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* TopDishAppDelegate.m */; };
@@ -57,8 +57,9 @@
 		179B878D12A310E200730FAC /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
 		179B878E12A310E200730FAC /* Dish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
 		179B878F12A310E200730FAC /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
-		179B879012A310E200730FAC /* ObjectWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectWithImage.h; sourceTree = "<group>"; };
-		179B879112A310E200730FAC /* ObjectWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectWithImage.m; sourceTree = "<group>"; };
+		179B88D112A3716A00730FAC /* TopDish 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TopDish 2.xcdatamodel"; sourceTree = "<group>"; };
+		179B88D412A3719500730FAC /* ObjectWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectWithImage.h; sourceTree = "<group>"; };
+		179B88D512A3719500730FAC /* ObjectWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectWithImage.m; sourceTree = "<group>"; };
 		17B48AE212A033C200F43202 /* RestaurantDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDetailViewController.h; sourceTree = "<group>"; };
 		17B48AE312A033C200F43202 /* RestaurantDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantDetailViewController.m; sourceTree = "<group>"; };
 		17B48AE412A033C200F43202 /* RestaurantDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantDetailView.xib; sourceTree = "<group>"; };
@@ -417,7 +418,7 @@
 				179B854212A0727F00730FAC /* DishTableViewer.m in Sources */,
 				179B879212A310E200730FAC /* Restaurant.m in Sources */,
 				179B879312A310E200730FAC /* Dish.m in Sources */,
-				179B879412A310E200730FAC /* ObjectWithImage.m in Sources */,
+				179B88D612A3719500730FAC /* ObjectWithImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,15 +506,16 @@
 		28D3F201112F7DC200FD0661 /* TopDish.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				179B88D412A3719500730FAC /* ObjectWithImage.h */,
+				179B88D512A3719500730FAC /* ObjectWithImage.m */,
 				179B878C12A310E200730FAC /* Restaurant.h */,
 				179B878D12A310E200730FAC /* Restaurant.m */,
 				179B878E12A310E200730FAC /* Dish.h */,
 				179B878F12A310E200730FAC /* Dish.m */,
-				179B879012A310E200730FAC /* ObjectWithImage.h */,
-				179B879112A310E200730FAC /* ObjectWithImage.m */,
 				5FD125D61287BE8B0029AFA8 /* DishComment.h */,
 				5FD125D71287BE8B0029AFA8 /* DishComment.m */,
 				28860B760F44E54D00985440 /* TopDish.xcdatamodel */,
+				179B88D112A3716A00730FAC /* TopDish 2.xcdatamodel */,
 			);
 			currentVersion = 28860B760F44E54D00985440 /* TopDish.xcdatamodel */;
 			path = TopDish.xcdatamodeld;

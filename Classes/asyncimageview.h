@@ -21,9 +21,8 @@
 	UIImageView *thisImageView; 
 	NSURLConnection* connection; //keep a reference to the connection so we can cancel download in dealloc
 	NSMutableData* data; //keep reference to the data so we can collect it as it downloads
-	Boolean isLarge;
 	//but where is the UIImage reference? We keep it in self.subviews - no need to re-code what we have in the parent class
-	
+	Boolean isThumb;
 @private
     NSManagedObjectContext *managedObjectContext_;
 
@@ -31,8 +30,8 @@
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
-- (void)loadImageFromURL:(NSURL*)url withImageView:(UIImageView *)imageView showActivityIndicator:(Boolean)showIndicator;
+- (void)loadImageFromURL:(NSURL*)url withImageView:(UIImageView *)imageView isThumb:(Boolean)isThumb showActivityIndicator:(Boolean)showIndicator;
 - (UIImage*) image;
-@property (nonatomic, assign) Boolean isLarge;
 @property (nonatomic, retain) ObjectWithImage *owningObject;
+@property (nonatomic, assign) Boolean isThumb;
 @end
