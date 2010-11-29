@@ -16,6 +16,9 @@
 // are multiple images being downloaded and displayed all at the same time. 
 
 @implementation AsyncImageView
+@synthesize owningObject;
+@synthesize managedObjectContext=managedObjectContext_;
+@synthesize isLarge;
 
 - (void)dealloc {
 	[connection cancel]; //in case the URL is still downloading
@@ -41,9 +44,16 @@
 		[thisImageView addSubview:spinner];
 	}
 
-	
-	NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:8];
-	connection = [[NSURLConnection alloc] initWithRequest:request delegate:self]; 	
+	NSLog(@"length of data %d", [[owningObject imageData] length]);
+
+	if([owningObject imageData] && !(isLarge && [[owningObject imageData] length] < 10000000)){
+
+		thisImageView.image = [UIImage imageWithData:[owningObject imageData]];
+	}
+	else{
+		NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:8];
+		connection = [[NSURLConnection alloc] initWithRequest:request delegate:self]; 	
+	}
 }
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
 	NSLog(@"async image did fail with error");
@@ -76,6 +86,8 @@
 	if(thisImageView.image == NULL){
 		NSLog(@"ok, the image view's image is nil");
 	}
+	NSLog(@"length of data %d", data);
+
 	thisImageView.image = [UIImage imageWithData:data];
 	//make sizing choices based on your needs, experiment with these. maybe not all the calls below are needed.
 	//imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -85,6 +97,14 @@
 //	[imageView setNeedsLayout];
 //	[self setNeedsLayout];
 	
+	if (owningObject) {
+		[owningObject setImageData:data];
+		NSError *error;
+
+		if([self.managedObjectContext save:&error]){
+			NSLog(@"error saving: %@",error);
+		}
+	}
 	[data release]; //don't need this any more, its in the UIImageView now
 	data=nil;
 }

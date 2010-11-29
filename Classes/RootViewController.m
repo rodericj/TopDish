@@ -25,7 +25,6 @@
 @synthesize bgImage;
 @synthesize theSearchBar;
 @synthesize theTableView;
-@synthesize _responseText;
 @synthesize dishRestoSelector;
 @synthesize currentLat;
 @synthesize currentLon;
@@ -97,7 +96,7 @@
 	NSLog(@"Segmentedcontrol changed");
 	if([dishRestoSelector selectedSegmentIndex] == 0){
 		NSLog(@"we are switching to dishes %@ %@", currentLat, currentLon);
-		[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=20000000&limit=1000", NETWORKHOST, currentLat, currentLon]];
+		[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=2000000&limit=200000", NETWORKHOST, currentLat, currentLon]];
 		//url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishSearch?lat=33.6886&lng=-117.8129&disance=2000", NETWORKHOST]];
 	}
 	else if([dishRestoSelector selectedSegmentIndex] == 1){
@@ -312,16 +311,6 @@
 	return responseAsArray;
 }
 	
-- (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
-	NSLog(@"connection did finish loading");
-	NSString *responseText = [[NSString alloc] initWithData:_responseText encoding:NSASCIIStringEncoding];
-	NSLog(@"response text before replacing %@", responseText);
-
-
-	responseText = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
-	NSLog(@"response text after replacing %@", responseText);
-	[self processIncomingNetworkText:responseText];
-}
 -(void)processIncomingNetworkText:(NSString *)responseText{
 
 	//TODO RESTODISH SWITCH - when response has finised loading, I should determine if it's dishes or restauarants that I'm looking at
@@ -334,15 +323,15 @@
 	if(error != nil){
 		NSLog(@"there was an error when jsoning");
 		NSLog(@"%@", error);
-		NSLog(@"the text %@", responseText);
-		NSLog(@"the raw data %@", _responseText);
+		//NSLog(@"the text %@", responseText);
+//		NSLog(@"the raw data %@", _responseText);
 	}
 
 	if(responseAsArray == nil){
 		NSLog(@"the response is nil");
 		responseAsArray = [self loadDummyRestaurantData];
 	}
-	[self.managedObjectContext reset];
+	//[self.managedObjectContext reset];
 	
 	if([dishRestoSelector selectedSegmentIndex] == 0){
 		
@@ -422,17 +411,17 @@
 					NSLog(@"the id now is %@", restaurant_id);
 					NSLog(@"the resto class is %@", [thisRestaurant class]);
 					[thisRestaurant setRestaurant_id:restaurant_id];
-					[thisRestaurant setRestaurant_name:[thisElement objectForKey:@"restaurantName"]];
+					[thisRestaurant setObjName:[thisElement objectForKey:@"restaurantName"]];
 				}
 				else{
 					thisRestaurant = [restaurantsMatchingId objectAtIndex:existingRestoCounter];
 				}
 				
 				[thisDish setDish_id:[thisElement objectForKey:@"id"]];
-				[thisDish setDish_name:[thisElement objectForKey:@"name"]];
+				[thisDish setObjName:[thisElement objectForKey:@"name"]];
 				[thisDish setPrice:[NSNumber numberWithInt:(incomingCounter%4)+1]];
 				[thisDish setDish_description:[thisElement objectForKey:@"description"]];
-				[thisDish setDish_photoURL:[NSString stringWithFormat:@"%@%@", NETWORKHOST, 
+				[thisDish setPhotoURL:[NSString stringWithFormat:@"%@%@", NETWORKHOST, 
 											[thisElement objectForKey:@"photoURL"]]];
 				[thisDish setRestaurant:thisRestaurant];
 				[thisDish setLatitude:[thisElement objectForKey:@"latitude"]];
@@ -466,10 +455,10 @@
 	}
 	
 	//TODO save all of the dishes or restaurants created here
-//	if(![self.managedObjectContext save:&error]){
-//		NSLog(@"there was an error when saving");
-//		NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
-//	}
+	if(![self.managedObjectContext save:&error]){
+		NSLog(@"there was an error when saving");
+		NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
+	}
 	
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish"  
@@ -480,36 +469,10 @@
 	[fetchRequest release];	
 	
 	[responseText release];
-	[_responseText release];
-	_responseText = nil;
+	[_responseData release];
+	_responseData = nil;
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-	NSLog(@"connection did fail with error %@", error);
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
-#ifndef AirplaneMode
-	UIAlertView *alert;
-	alert = [[UIAlertView alloc] initWithTitle:@"NetworkError" message:@"There was a network issue. Try again later" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil]; 
-	[alert show];
-#else	
-	//Airplane mode must set _responseText
-	[self processIncomingNetworkText:DishSearchResponseText];
-#endif
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-	if(_responseText == nil){
-		_responseText = [[NSMutableData alloc] initWithData:data];
-	}
-	else{
-		if (data) {
-			[_responseText appendData:data];
-		}
-	}
-}
-
 	
 -(NSArray *)getArrayOfIdsWithArray:(NSArray *)responseAsArray withKey:(NSString *)key{
 	NSEnumerator *enumerator = [responseAsArray objectEnumerator];

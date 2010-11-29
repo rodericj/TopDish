@@ -2,15 +2,16 @@
 //  Restaurant.h
 //  TopDish
 //
-//  Created by roderic campbell on 11/26/10.
+//  Created by roderic campbell on 11/28/10.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
 #import <CoreData/CoreData.h>
+#import "ObjectWithImage.h"
 
 @class Dish;
 
-@interface Restaurant :  NSManagedObject  
+@interface Restaurant :  ObjectWithImage  
 {
 }
 
@@ -18,12 +19,8 @@
 @property (nonatomic, retain) NSString * addressLine2;
 @property (nonatomic, retain) NSString * phone;
 @property (nonatomic, retain) NSString * restaurant_description;
-@property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSDate * dateDefined;
-@property (nonatomic, retain) NSNumber * latitude;
-@property (nonatomic, retain) NSString * restaurant_photoURL;
 @property (nonatomic, retain) NSNumber * restaurant_id;
-@property (nonatomic, retain) NSString * restaurant_name;
 @property (nonatomic, retain) NSString * city;
 @property (nonatomic, retain) NSString * addressLine1;
 @property (nonatomic, retain) NSSet* restaurant_dish;

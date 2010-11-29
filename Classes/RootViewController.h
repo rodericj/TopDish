@@ -21,9 +21,6 @@
     UISearchBar *theSearchBar;
 
 	UISegmentedControl *dishRestoSelector;
-	
-	NSMutableData *_responseText;
-
 }
 
 - (NSNumber *) calculateDishDistance:(id *)dish;
@@ -31,14 +28,12 @@
 - (void)getNearbyItems:(CLLocation *)location;
 - (NSArray *) getArrayOfIdsWithArray:(NSArray *)responseAsArray withKey:(NSString*) key;
 - (NSArray *)loadDummyRestaurantData;
--(void) processIncomingNetworkText:(NSString *)responseText;
 
 @property (nonatomic, retain) NSString *currentLat;
 @property (nonatomic, retain) NSString *currentLon;
 @property (nonatomic, retain) UISegmentedControl *dishRestoSelector;
 @property (nonatomic, retain) IBOutlet UIImageView *bgImage;
 
-@property (nonatomic, retain) NSMutableData *_responseText;
 
 
 @property (nonatomic, retain) IBOutlet UITableView *theTableView;

@@ -62,7 +62,7 @@
 		}
 		[hash release];
 		thisAnnotation = [[DishAnnotation alloc] initWithCoordinate:c];
-		[thisAnnotation setTitle:[dish dish_name]];
+		[thisAnnotation setTitle:[dish objName]];
 		[thisAnnotation setThisDish:dish];
 		
 		[mapView addAnnotation:thisAnnotation];

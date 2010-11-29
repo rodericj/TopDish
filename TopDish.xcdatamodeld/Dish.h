@@ -2,30 +2,26 @@
 //  Dish.h
 //  TopDish
 //
-//  Created by Roderic Campbell on 11/7/10.
+//  Created by roderic campbell on 11/28/10.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
 #import <CoreData/CoreData.h>
+#import "ObjectWithImage.h"
 
 @class DishComment;
 @class Restaurant;
 
-@interface Dish :  NSManagedObject  
+@interface Dish :  ObjectWithImage  
 {
 }
 
-@property (nonatomic, retain) NSString * dish_photoURL;
-@property (nonatomic, retain) NSNumber * dish_id;
-@property (nonatomic, retain) NSString * dish_description;
-@property (nonatomic, retain) NSNumber * longitude;
-@property (nonatomic, retain) NSNumber * latitude;
-@property (nonatomic, retain) NSDate * timeStamp;
-@property (nonatomic, retain) NSString * dish_name;
-@property (nonatomic, retain) NSNumber * price;
-@property (nonatomic, retain) NSNumber * distance;
-@property (nonatomic, retain) NSNumber * negReviews;
 @property (nonatomic, retain) NSNumber * posReviews;
+@property (nonatomic, retain) NSNumber * price;
+@property (nonatomic, retain) NSString * dish_description;
+@property (nonatomic, retain) NSNumber * negReviews;
+@property (nonatomic, retain) NSNumber * dish_id;
+@property (nonatomic, retain) NSNumber * distance;
 @property (nonatomic, retain) NSSet* comments;
 @property (nonatomic, retain) Restaurant * restaurant;
 

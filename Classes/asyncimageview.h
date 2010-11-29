@@ -9,22 +9,30 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ObjectWithImage.h"
 
 @interface AsyncImageView : UIView {
 	//could instead be a subclass of UIImageView instead of UIView, depending on what other features you want to 
 	// to build into this class?
 
+	ObjectWithImage *owningObject;
 	Boolean showThisIndicator;
 	UIActivityIndicatorView *spinner;
 	UIImageView *thisImageView; 
 	NSURLConnection* connection; //keep a reference to the connection so we can cancel download in dealloc
 	NSMutableData* data; //keep reference to the data so we can collect it as it downloads
+	Boolean isLarge;
 	//but where is the UIImage reference? We keep it in self.subviews - no need to re-code what we have in the parent class
 	
+@private
+    NSManagedObjectContext *managedObjectContext_;
+
 }
+
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 - (void)loadImageFromURL:(NSURL*)url withImageView:(UIImageView *)imageView showActivityIndicator:(Boolean)showIndicator;
 - (UIImage*) image;
-
+@property (nonatomic, assign) Boolean isLarge;
+@property (nonatomic, retain) ObjectWithImage *owningObject;
 @end

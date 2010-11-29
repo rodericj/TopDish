@@ -13,21 +13,12 @@
 
 @implementation RestaurantDetailViewController
 @synthesize restaurant;
-@synthesize _responseData;
+//@synthesize _responseData;
 
 #pragma mark -
 #pragma mark networking
 
-- (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
-	NSLog(@"connection did finish loading");
-	NSString *responseText = [[NSString alloc] initWithData:_responseData encoding:NSASCIIStringEncoding];
-	NSLog(@"response text before replacing %@", responseText);
-	
-	
-	responseText = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
-	NSLog(@"response text after replacing %@", responseText);
-	[self processIncomingNetworkText:responseText];
-}
+
 
 -(void)processIncomingNetworkText:(NSString *)responseText{
 	NSLog(@"processing incoming network text %@", responseText);
@@ -46,33 +37,7 @@
 	
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-	if(_responseData == nil){
-		_responseData= [[NSMutableData alloc] initWithData:data];
-	}
-	else{
-		if (data) {
-			[_responseData appendData:data];
-		}
-	}
-}
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-	NSLog(@"connection did fail with error %@", error);
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	
-#ifndef AirplaneMode
-
-	UIAlertView *alert;
-	alert = [[UIAlertView alloc] initWithTitle:@"NetworkError" message:@"There was a network issue. Try again later" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil]; 
-	[alert show];
-	[alert release];
-#else	
-	//Airplane mode must set _responseText
-	[self processIncomingNetworkText:RestaurantResponseText];
-
-#endif
-}
 
 -(void) networkQuery:(NSString *)query{
 	NSURL *url;
@@ -93,14 +58,14 @@
     [super viewDidLoad];
 	[self.tableView setTableHeaderView:restaurantHeader];
 	[self networkQuery:[NSString stringWithFormat:@"%@/api/RestaurantDetail?id[]=%@", NETWORKHOST, [restaurant restaurant_id]]];
-	[restaurantName setText:[restaurant restaurant_name]];
+	[restaurantName setText:[restaurant objName]];
 	[restaurantPhone setText:[restaurant phone]];
 	[restaurantAddress setText:[restaurant addressLine1]];
 	 
 	AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[restaurantImage frame]];
 	asyncImage.tag = 999;
-	if( [[restaurant restaurant_photoURL] length] > 0 ){
-		NSString *urlString = [NSString stringWithFormat:@"%@&w=70&h=70", [restaurant restaurant_photoURL]];
+	if( [[restaurant photoURL] length] > 0 ){
+		NSString *urlString = [NSString stringWithFormat:@"%@&w=70&h=70", [restaurant photoURL]];
 		NSLog(@"the url of the resto image %@", urlString);
 		NSURL *photoUrl = [NSURL URLWithString:urlString];
 		[asyncImage loadImageFromURL:photoUrl withImageView:restaurantImage showActivityIndicator:FALSE];

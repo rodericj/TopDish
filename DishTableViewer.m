@@ -16,6 +16,7 @@
 
 @synthesize tvCell;
 @synthesize fetchedResultsController=fetchedResultsController_, managedObjectContext=managedObjectContext_;
+@synthesize _responseData;
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	return COMMENTTABLECELLHEIGHT;
 }
@@ -105,12 +106,12 @@
 	//Build the UIElements
     UILabel *dishName;
 	dishName = (UILabel *)[cell viewWithTag:ROOTVIEW_DISH_NAME_TAG];
-	dishName.text = thisDish.dish_name;
+	dishName.text = thisDish.objName;
 	
 	UILabel *resto;
 	resto = (UILabel *)[cell viewWithTag:ROOTVIEW_RESTAURANT_NAME_TAG];
 	resto.text = @"Resto Name";
-	NSString *restaurantName = [[thisDish restaurant] restaurant_name];
+	NSString *restaurantName = [[thisDish restaurant] objName];
 	int length = [restaurantName length];
 	if (length > MAXRESTAURANTNAMELENGTH){
 		restaurantName = [restaurantName substringToIndex:MAXRESTAURANTNAMELENGTH];
@@ -144,9 +145,10 @@
 	
 	AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[imageView frame]];
 	asyncImage.tag = 999;
-	if( [[thisDish dish_photoURL] length] > 0 ){
-		NSString *urlString = [NSString stringWithFormat:@"%@&w=70&h=70", [thisDish dish_photoURL]];
+	if( [[thisDish photoURL] length] > 0 ){
+		NSString *urlString = [NSString stringWithFormat:@"%@&w=70&h=70", [thisDish photoURL]];
 		NSURL *photoUrl = [NSURL URLWithString:urlString];
+		[asyncImage setOwningObject:thisDish];
 		[asyncImage loadImageFromURL:photoUrl withImageView:imageView showActivityIndicator:FALSE];
 		[cell.contentView addSubview:asyncImage];
 	}
@@ -163,7 +165,7 @@
 	
     // Navigation logic may go here -- for example, create and push another view controller.
 	Dish *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-	NSLog(@"DishName from RootView Controller %@", [selectedObject dish_name]);
+	NSLog(@"DishName from RootView Controller %@", [selectedObject objName]);
 	
 	ScrollingDishDetailViewController *detailViewController = [[ScrollingDishDetailViewController alloc] initWithNibName:@"ScrollingDishDetailView" bundle:nil];
 	
@@ -171,9 +173,45 @@
 	[detailViewController setManagedObjectContext:self.managedObjectContext];
 	
 	[self.navigationController pushViewController:detailViewController animated:YES];
-	[detailViewController setTitle:[selectedObject dish_name]];
+	[detailViewController setTitle:[selectedObject objName]];
 	[detailViewController release];
 	
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
+	NSLog(@"connection did finish loading");
+	NSString *responseText = [[NSString alloc] initWithData:_responseData encoding:NSASCIIStringEncoding];
+	//NSLog(@"response text before replacing %@", responseText);
+	
+	
+	responseText = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
+	NSLog(@"response text after replacing %@", responseText);
+	[self processIncomingNetworkText:responseText];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
+	NSLog(@"connection did fail with error %@", error);
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	
+#ifndef AirplaneMode
+	UIAlertView *alert;
+	alert = [[UIAlertView alloc] initWithTitle:@"NetworkError" message:@"There was a network issue. Try again later" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil]; 
+	[alert show];
+#else	
+	//Airplane mode must set _responseText
+	[self processIncomingNetworkText:DishSearchResponseText];
+#endif
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
+	if(_responseData == nil){
+		_responseData = [[NSMutableData alloc] initWithData:data];
+	}
+	else{
+		if (data) {
+			[_responseData appendData:data];
+		}
+	}
 }
 
 @end

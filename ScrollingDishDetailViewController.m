@@ -123,11 +123,11 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
 	
-	[dishName setText:[dish dish_name]];
+	[dishName setText:[dish objName]];
 	[upVotes setText:[NSString stringWithFormat:@"%@", [dish posReviews]]];
 	[downVotes setText:[NSString stringWithFormat:@"%@", [dish negReviews]]];
 	
-	[restaurantName setText:[[dish restaurant] restaurant_name]];
+	[restaurantName setText:[[dish restaurant] objName]];
 	//Set up description UILabel
 	[description setNumberOfLines:0];
 	[description setText:[NSString stringWithFormat:@"\"%@\"", [dish dish_description]]];
@@ -138,11 +138,13 @@
 	CGAffineTransform translate = CGAffineTransformMakeTranslation(0,[description frame].size.height);
 	commentSubView.transform = translate;
 	
-	if( [[dish dish_photoURL] length] > 0 ){
+	if( [[dish photoURL] length] > 0 ){
 
-		NSString *urlString = [NSString stringWithFormat:@"%@", [dish dish_photoURL]]; 
+		NSString *urlString = [NSString stringWithFormat:@"%@", [dish photoURL]]; 
 		NSURL *photoUrl = [NSURL URLWithString:urlString];
 		AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[dishImage frame]];
+		[asyncImage setOwningObject:dish];
+		[asyncImage setIsLarge:YES];
 		[asyncImage loadImageFromURL:photoUrl withImageView:dishImage showActivityIndicator:FALSE];
 	}
 	[super viewWillAppear:animated];
@@ -168,7 +170,7 @@
 	[detailViewController setRestaurant:selectedObject];
 	[detailViewController setManagedObjectContext:self.managedObjectContext];
 	[self.navigationController pushViewController:detailViewController animated:YES];
-	[detailViewController setTitle:[selectedObject restaurant_name]];
+	[detailViewController setTitle:[selectedObject objName]];
 	[detailViewController release];
 	
 	

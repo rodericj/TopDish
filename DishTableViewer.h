@@ -17,9 +17,14 @@
 @protected
     NSFetchedResultsController *fetchedResultsController_;
     NSManagedObjectContext *managedObjectContext_;
+	NSMutableData *_responseData;
+
 }
 @property (nonatomic, assign) IBOutlet UITableViewCell *tvCell;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, retain) NSMutableData *_responseData;
+
+-(void) processIncomingNetworkText:(NSString *)responseText;
 
 @end

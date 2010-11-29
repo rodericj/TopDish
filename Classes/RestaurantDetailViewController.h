@@ -13,23 +13,14 @@
 @interface RestaurantDetailViewController : DishTableViewer {
 
 	Restaurant *restaurant;
-	NSMutableData *_responseData;
 	
 	IBOutlet UIView *restaurantHeader;
 	IBOutlet UILabel *restaurantName;
 	IBOutlet UILabel *restaurantAddress;
 	IBOutlet UILabel *restaurantPhone;
 	IBOutlet UIImageView *restaurantImage;
-	
-//@private
-//    NSFetchedResultsController *fetchedResultsController_;
-//    NSManagedObjectContext *managedObjectContext_;
-	
 
 }
-
--(void) processIncomingNetworkText:(NSString *)responseText;
-
 @property (nonatomic, retain) Restaurant *restaurant;
 @property (nonatomic, retain) NSMutableData *_responseData;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
