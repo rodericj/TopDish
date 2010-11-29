@@ -43,7 +43,6 @@
 		[thisImageView addSubview:spinner];
 	}
 
-	NSLog(@"Dish or whatever  data %@ %d", owningObject, [owningObject ImageDataThumb]==NULL);
 	NSURLRequest* request;
 	if ([owningObject imageData] && !isThumb){
 		thisImageView.image = [UIImage imageWithData:[owningObject imageData]];

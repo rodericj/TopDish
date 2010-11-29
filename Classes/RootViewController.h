@@ -11,16 +11,22 @@
 #import "MyCLController.h"
 #import "DishTableViewer.h"
 
-@interface RootViewController : DishTableViewer <MyCLControllerDelegate, NSFetchedResultsControllerDelegate> {
+@interface RootViewController : DishTableViewer <MyCLControllerDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate> {
 	MyCLController *locationController;
 	NSString *currentLat;
 	NSString *currentLon;
+	NSString *currentSearchTerm;
 	
+	NSMutableDictionary *settingsDict;
+	
+	IBOutlet UIView *searchHeader;
+	IBOutlet UISearchBar *theSearchBar;
+
 	UIImageView *bgImage;
     UITableView *theTableView;
-    UISearchBar *theSearchBar;
 
 	UISegmentedControl *dishRestoSelector;
+	
 }
 
 - (NSNumber *) calculateDishDistance:(id *)dish;
@@ -29,15 +35,16 @@
 - (NSArray *) getArrayOfIdsWithArray:(NSArray *)responseAsArray withKey:(NSString*) key;
 - (NSArray *)loadDummyRestaurantData;
 
+@property (nonatomic, retain) NSMutableDictionary *settingsDict;
+@property (nonatomic, retain) NSString *currentSearchTerm;
 @property (nonatomic, retain) NSString *currentLat;
 @property (nonatomic, retain) NSString *currentLon;
 @property (nonatomic, retain) UISegmentedControl *dishRestoSelector;
 @property (nonatomic, retain) IBOutlet UIImageView *bgImage;
 
-
-
 @property (nonatomic, retain) IBOutlet UITableView *theTableView;
 @property (nonatomic, retain) IBOutlet UISearchBar *theSearchBar;
+@property (nonatomic, retain) IBOutlet UIView *searchHeader;
 
 
 @end
