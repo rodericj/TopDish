@@ -56,10 +56,6 @@
 	NSNumber *maxFloatVal = [[NSNumber alloc] initWithFloat:[maxSlider value]];
 	//NSFloat *maxFloatVal = [[NSInteger alloc] initWithFloat:[maxSlider value]];
 	
-	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
-							  maxFloatVal, @"maxPrice",
-							  minFloatVal, @"minPrice",
-							  nil];
 	//Create array with sort params, then store in NSUserDefaults
 	//NSString *sorter = [[NSArray arrayWithObjects:RATINGS_SORT, DISTANCE_SORT, nil] objectAtIndex:[sortBySegmentedControl selectedSegmentIndex]];
 	NSNumber *anInt = [[NSNumber alloc] initWithInt:[sortBySegmentedControl selectedSegmentIndex]];	
@@ -70,7 +66,7 @@
 	[[NSUserDefaults standardUserDefaults] setObject:maxFloatVal forKey:MAX_PRICE_VALUE_LOCATION];
 	[[NSUserDefaults standardUserDefaults] setObject:minFloatVal forKey:MIN_PRICE_VALUE_LOCATION];
 
-	[delegate updateSettings:settings];
+	[delegate updateFetch];
 }
 
 - (void) updateSymbols{

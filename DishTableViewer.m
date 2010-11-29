@@ -185,7 +185,6 @@
 	
 	
 	responseText = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
-	NSLog(@"response text after replacing %@", responseText);
 	[self processIncomingNetworkText:responseText];
 }
 

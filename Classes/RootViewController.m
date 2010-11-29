@@ -56,6 +56,9 @@
 								  action:@selector(showSettings)];
 	
     self.navigationItem.leftBarButtonItem = settingsButton;
+	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:4] forKey:MAX_PRICE_VALUE_LOCATION];
+	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:1] forKey:MIN_PRICE_VALUE_LOCATION];
+
 	self.settingsDict = [[NSMutableDictionary alloc] init];
 	
 	// Set up the map button
@@ -104,9 +107,8 @@
 	if([dishRestoSelector selectedSegmentIndex] == 0){
 		NSLog(@"we are switching to dishes %@ %@", currentLat, currentLon);
 		if (currentSearchTerm != nil) {
-			[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=200000000&limit=2&q=%@", NETWORKHOST, currentLat, currentLon, currentSearchTerm]];
-			[currentSearchTerm release];
-			currentSearchTerm = nil;
+			[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=200000000&limit=2&q=%@", NETWORKHOST, currentLat, currentLon, [currentSearchTerm lowercaseString]]];
+			
 		}
 		else
 			[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=200000000&limit=2", NETWORKHOST, currentLat, currentLon]];
@@ -308,14 +310,13 @@
 }
 
 -(NSArray *)getArrayOfIdsWithArray:(NSArray *)responseAsArray withKey:(NSString *)key{
-	NSLog(@"response as array %@\nKey %@", responseAsArray, key);
 	NSEnumerator *enumerator = [responseAsArray objectEnumerator];
 	id anObject;
 	NSMutableArray *ret = [[NSMutableArray alloc] init];
 	while (anObject = (NSDictionary *)[enumerator nextObject]){
 		[ret addObject:[anObject objectForKey:key]];
 	}
-	NSLog(@"At the end of all that, the return is %@", ret);
+	//NSLog(@"At the end of all that, the return is %@", ret);
 	[ret sortUsingSelector:@selector(compare:)];
 	return ret;
 }
@@ -329,13 +330,10 @@
 	[settings setDelegate:self];
 }
 	 
--(void) updateSettings:(NSDictionary *)settings{
+-(void) updateFetch{
 
 	NSNumber *min = [[NSUserDefaults standardUserDefaults] objectForKey:MIN_PRICE_VALUE_LOCATION];
 	NSNumber *max = [[NSUserDefaults standardUserDefaults] objectForKey:MAX_PRICE_VALUE_LOCATION];
-	NSPredicate *filterPricePredicate = [NSPredicate predicateWithFormat: @"%K <= %@ AND %K >= %@", 
-										 @"price", max, 
-										 @"price", min];
 	
 	//TODO....Ok this should all be in a function somewhere.
 	//Create array with sort params, then store in NSUserDefaults
@@ -351,9 +349,37 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
-	[fetchRequest setPredicate:filterPricePredicate];
+	NSPredicate *filterPredicate;
+	NSLog(@"current search term %@", currentSearchTerm);
+	if (currentSearchTerm && [currentSearchTerm length] > 0) {
+		
+		NSString *attributeName = @"objName";
+		NSString *attributeValue = currentSearchTerm;
+		NSLog(@"the predicate we are sending: %@ contains(cd) %@ AND %@ <= %@ AND %@ >= %@",
+			  attributeName, attributeValue,
+			  @"price", max, 
+			  @"price", min);
+		filterPredicate = [NSPredicate predicateWithFormat:@"%K contains[cd] %@ AND %K <= %@ AND %K >= %@",
+										attributeName, attributeValue,
+										@"price", max, 
+										@"price", min];
+		
+		NSLog(@"the real predicate is %@", filterPredicate);
+	}
+	else {
+		NSLog(@"the else predicate %K <= %@ AND %K >= %@", 
+			  @"price", max, 
+			  @"price", min);
+		filterPredicate = [NSPredicate predicateWithFormat: @"%K <= %@ AND %K >= %@", 
+								@"price", max, 
+								@"price", min];
+		
+	}
+
+		
+	[fetchRequest setPredicate:filterPredicate];
 	
-    // Set the batch size to a suitable number.
+	// Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
@@ -364,7 +390,8 @@
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
+   // NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
@@ -372,7 +399,8 @@
     [fetchRequest release];
     [sortDescriptor release];
     [sortDescriptors release];
-    
+    [currentSearchTerm release];
+	currentSearchTerm = nil;
     NSError *error = nil;
     if (![fetchedResultsController_ performFetch:&error]) {
         /*
@@ -412,7 +440,7 @@
 	[self initiateNetworkBasedOnSegmentControl];
 	
 	//Limit the core data output
-	
+	[self updateFetch];
 }
 
 

@@ -30,7 +30,7 @@
 }
 
 - (NSNumber *) calculateDishDistance:(id *)dish;
-- (void) updateSettings:(NSDictionary *)settings;
+- (void) updateFetch;
 - (void)getNearbyItems:(CLLocation *)location;
 - (NSArray *) getArrayOfIdsWithArray:(NSArray *)responseAsArray withKey:(NSString*) key;
 - (NSArray *)loadDummyRestaurantData;
