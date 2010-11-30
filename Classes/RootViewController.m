@@ -32,6 +32,11 @@
 @synthesize settingsDict;
 #pragma mark -
 #pragma mark View lifecycle
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSLog(@"adding this didSelect");
+	[theSearchBar resignFirstResponder];
+	[super tableView:tableView didSelectRowAtIndexPath:indexPath];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
