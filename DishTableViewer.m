@@ -50,7 +50,7 @@
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
-    
+    [self decorateFetchRequest:fetchRequest];
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
@@ -86,6 +86,12 @@
     return fetchedResultsController_;
 }   
 
+-(void)decorateFetchRequest:(NSFetchRequest *)request{
+
+}
+
+#pragma mark -
+#pragma mark table view
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	//NSLog(@"row number %d", [indexPath row]);
@@ -156,8 +162,10 @@
    // [self configureCell:cell atIndexPath:indexPath];
 	//    }
 	[cell setOpaque:FALSE];
+	
     return cell;
 }
+
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -178,6 +186,8 @@
 	
 }
 
+#pragma mark -
+#pragma mark network connection stuff
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
 	NSLog(@"connection did finish loading");
 	NSString *responseText = [[NSString alloc] initWithData:_responseData encoding:NSASCIIStringEncoding];

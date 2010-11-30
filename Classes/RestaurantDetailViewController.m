@@ -18,8 +18,6 @@
 #pragma mark -
 #pragma mark networking
 
-
-
 -(void)processIncomingNetworkText:(NSString *)responseText{
 	NSLog(@"processing incoming network text %@", responseText);
 	
@@ -37,8 +35,6 @@
 	
 }
 
-
-
 -(void) networkQuery:(NSString *)query{
 	NSURL *url;
 	NSURLRequest *request;
@@ -49,6 +45,12 @@
 	request = [NSURLRequest requestWithURL:url];
 	conn = [[[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE] autorelease]; 
 	
+}
+
+#pragma mark -
+#pragma mark fetch handling
+-(void)decorateFetchRequest:(NSFetchRequest *)request{
+	[request setPredicate: [NSPredicate predicateWithFormat: @"(restaurant.restaurant_id = %@)", [restaurant restaurant_id]]];
 }
 
 #pragma mark -

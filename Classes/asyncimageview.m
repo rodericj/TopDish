@@ -99,7 +99,6 @@
 	if(thisImageView.image == NULL){
 		NSLog(@"ok, the image view's image is nil");
 	}
-	NSLog(@"length of data %d", data);
 
 	thisImageView.image = [UIImage imageWithData:data];
 	//make sizing choices based on your needs, experiment with these. maybe not all the calls below are needed.

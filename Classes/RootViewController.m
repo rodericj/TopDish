@@ -37,13 +37,18 @@
 	[theSearchBar resignFirstResponder];
 	[super tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+	[searchBar resignFirstResponder];
+}
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+	[searchBar resignFirstResponder];
+}	
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[self.tableView setTableHeaderView:searchHeader];
-	[theSearchBar setPlaceholder:@"the placeholder"];
-	//[theSearchBar setShowsSearchResultsButton:YES];
-	[theSearchBar setShowsBookmarkButton:YES];
+	[theSearchBar setPlaceholder:@"Search Dishes"];
+	[theSearchBar setShowsCancelButton:YES];
 	[theSearchBar setDelegate:self];
 	
 	locationController = [[MyCLController alloc] init];
