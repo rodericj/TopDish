@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import "RootViewController.h"
+#import "DishTableViewController.h"
 
 @interface SettingsView : UIViewController {
 	IBOutlet UISlider *maxSlider;
@@ -15,7 +15,7 @@
 	IBOutlet UILabel *maxLabel;
 	IBOutlet UILabel *minLabel;
 	IBOutlet UISegmentedControl *sortBySegmentedControl;
-	RootViewController *delegate;
+	DishTableViewController *delegate;
 }
 
 -(IBAction) closeSettings; 
@@ -23,7 +23,7 @@
 -(IBAction) updateMinSlider;
 -(void) updateSymbols;
 
-@property (nonatomic, retain) RootViewController *delegate;
+@property (nonatomic, retain) DishTableViewController *delegate;
 @property (nonatomic, retain) UIButton *refineButton;
 @property (nonatomic, retain) UISlider *maxSlider;
 @property (nonatomic, retain) UISlider *minSlider;

@@ -102,7 +102,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        [[NSBundle mainBundle] loadNibNamed:@"RootControllerTableViewCell" owner:self options:nil];
+        [[NSBundle mainBundle] loadNibNamed:@"DishTableViewCell" owner:self options:nil];
 		cell = tvCell;
 	}
 	
@@ -111,11 +111,11 @@
 	
 	//Build the UIElements
     UILabel *dishName;
-	dishName = (UILabel *)[cell viewWithTag:ROOTVIEW_DISH_NAME_TAG];
+	dishName = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_DISH_NAME_TAG];
 	dishName.text = thisDish.objName;
 	
 	UILabel *resto;
-	resto = (UILabel *)[cell viewWithTag:ROOTVIEW_RESTAURANT_NAME_TAG];
+	resto = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_RESTAURANT_NAME_TAG];
 	resto.text = @"Resto Name";
 	NSString *restaurantName = [[thisDish restaurant] objName];
 	int length = [restaurantName length];
@@ -125,25 +125,25 @@
 	resto.text = restaurantName;
 	
 	UILabel *cost;
-	cost = (UILabel *)[cell viewWithTag:ROOTVIEW_COST_TAG];
+	cost = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_COST_TAG];
 	cost.text = @"$$$";
 
 	UILabel *distance;
-	distance = (UILabel *)[cell viewWithTag:ROOTVIEW_DIST_TAG];
+	distance = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_DIST_TAG];
 	distance.text = [[[thisDish distance] stringValue] substringToIndex:5];
 	
 	UILabel *upVotes;
-	upVotes = (UILabel *)[cell viewWithTag:ROOTVIEW_UPVOTES_TAG];
+	upVotes = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_UPVOTES_TAG];
 	upVotes.text = [NSString stringWithFormat:@"%@", 
 					[thisDish posReviews]];
 	
 	UILabel *downVotes;
-	downVotes = (UILabel *)[cell viewWithTag:ROOTVIEW_DOWNVOTES_TAG];
+	downVotes = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_DOWNVOTES_TAG];
 	downVotes.text = [NSString stringWithFormat:@"%@", 
 					  [thisDish negReviews]];
 	
 	UILabel *priceNumber;
-	priceNumber = (UILabel *)[cell viewWithTag:ROOTVIEW_COST_TAG];
+	priceNumber = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_COST_TAG];
 	
 	NSMutableString *output = [NSMutableString stringWithCapacity:[[thisDish price] intValue]];
 	
@@ -151,7 +151,7 @@
 		[output appendString:@"$"];
 	priceNumber.text = output;
 	
-	UIImageView *imageView = (UIImageView *)[cell viewWithTag:ROOTVIEW_IMAGE_TAG];
+	UIImageView *imageView = (UIImageView *)[cell viewWithTag:DISHTABLEVIEW_IMAGE_TAG];
 	
 	AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[imageView frame]];
 	asyncImage.tag = 999;
@@ -177,7 +177,7 @@
 	
     // Navigation logic may go here -- for example, create and push another view controller.
 	Dish *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-	NSLog(@"DishName from RootView Controller %@", [selectedObject objName]);
+	NSLog(@"DishName from DishTableViewController %@", [selectedObject objName]);
 	
 	ScrollingDishDetailViewController *detailViewController = [[ScrollingDishDetailViewController alloc] initWithNibName:@"ScrollingDishDetailView" bundle:nil];
 	

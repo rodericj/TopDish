@@ -7,7 +7,7 @@
 //
 
 #import "TopDishAppDelegate.h"
-#import "RootViewController.h"
+#import "DishTableViewController.h"
 #import "JSON.h"
 #import "Dish.h"
 
@@ -23,8 +23,8 @@
 
 - (void)awakeFromNib {    
     
-    RootViewController *rootViewController = (RootViewController *)[navigationController topViewController];
-    rootViewController.managedObjectContext = self.managedObjectContext;
+    DishTableViewController *dishTableViewController = (DishTableViewController *)[navigationController topViewController];
+    dishTableViewController.managedObjectContext = self.managedObjectContext;
 	
 }
 
