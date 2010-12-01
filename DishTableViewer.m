@@ -127,6 +127,10 @@
 	UILabel *cost;
 	cost = (UILabel *)[cell viewWithTag:ROOTVIEW_COST_TAG];
 	cost.text = @"$$$";
+
+	UILabel *distance;
+	distance = (UILabel *)[cell viewWithTag:ROOTVIEW_DIST_TAG];
+	distance.text = [[[thisDish distance] stringValue] substringToIndex:5];
 	
 	UILabel *upVotes;
 	upVotes = (UILabel *)[cell viewWithTag:ROOTVIEW_UPVOTES_TAG];

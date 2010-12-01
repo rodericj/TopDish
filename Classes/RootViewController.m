@@ -392,8 +392,9 @@
 	// Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
+	NSLog(@"sorting ascending %d", [selectedIndex intValue]==0);
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:sorter ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:sorter ascending:[selectedIndex intValue]==1];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];

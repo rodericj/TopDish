@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1794422112A5B195008EE034 /* DetailButtonImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 1794422012A5B195008EE034 /* DetailButtonImage.png */; };
 		179B854212A0727F00730FAC /* DishTableViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B854112A0727F00730FAC /* DishTableViewer.m */; };
 		179B879212A310E200730FAC /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B878D12A310E200730FAC /* Restaurant.m */; };
 		179B879312A310E200730FAC /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B878F12A310E200730FAC /* Dish.m */; };
@@ -51,6 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1794422012A5B195008EE034 /* DetailButtonImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DetailButtonImage.png; sourceTree = "<group>"; };
 		179B854012A0727F00730FAC /* DishTableViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DishTableViewer.h; path = ../DishTableViewer.h; sourceTree = "<group>"; };
 		179B854112A0727F00730FAC /* DishTableViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DishTableViewer.m; path = ../DishTableViewer.m; sourceTree = "<group>"; };
 		179B878C12A310E200730FAC /* Restaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 		5F89F15E125951FE00959D05 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				1794422012A5B195008EE034 /* DetailButtonImage.png */,
 				5F89F2E2125988C900959D05 /* tdlogo.png */,
 				5F89F27512597E8F00959D05 /* noPicWares.png */,
 				5F89F1631259520700959D05 /* greenup.gif */,
@@ -386,6 +389,7 @@
 				5F08954A12641D5000EDE197 /* SettingsView.xib in Resources */,
 				5F94EC281267F7570080CEDD /* CommentControllerTableViewCell.xib in Resources */,
 				17B48AE612A033C200F43202 /* RestaurantDetailView.xib in Resources */,
+				1794422112A5B195008EE034 /* DetailButtonImage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

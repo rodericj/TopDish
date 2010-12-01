@@ -113,14 +113,13 @@
 	NSLog(@"height of the comments %f", [commentSubView frame].size.height);
 	float descriptionHeight = [description frame].size.height;
 	float commentHeight = [commentSubView frame].size.height;
-	//float commentHeight2 = [commentsController.tableView contentSize].height;
 
 	float imageHeight = [dishImage frame].size.height;
 
-	//[scrollView setContentSize:CGSizeMake(320, 9000)];
 	[scrollView setContentSize:CGSizeMake(320, descriptionHeight+commentHeight+imageHeight + 528)];
 
 }
+
 - (void)viewWillAppear:(BOOL)animated {
 	
 	[dishName setText:[dish objName]];
@@ -128,6 +127,7 @@
 	[downVotes setText:[NSString stringWithFormat:@"%@", [dish negReviews]]];
 	
 	[restaurantName setText:[[dish restaurant] objName]];
+	
 	//Set up description UILabel
 	[description setNumberOfLines:0];
 	[description setText:[NSString stringWithFormat:@"\"%@\"", [dish dish_description]]];
@@ -150,7 +150,6 @@
 	
 	[commentsController setManagedObjectContext:self.managedObjectContext];
 	[commentsController setDishId:[dish dish_id]];
-	//[[dish dish_id] intValue] 
 	
 	[commentsController refreshFromServer];
 	
@@ -162,8 +161,7 @@
 }
 
 -(IBAction) goToRestaurantDetailView{
-	
-	//NSNumber *clickedDishId = [[NSNumber alloc] initWithInt:[sender tag]];
+	NSLog(@"goToRestaurantDetailView");
 	Restaurant *selectedObject = [dish restaurant];
 	RestaurantDetailViewController *detailViewController = [[RestaurantDetailViewController alloc] initWithNibName:@"RestaurantDetailView" bundle:nil];
 	[detailViewController setRestaurant:selectedObject];
@@ -171,7 +169,5 @@
 	[self.navigationController pushViewController:detailViewController animated:YES];
 	[detailViewController setTitle:[selectedObject objName]];
 	[detailViewController release];
-	
-	
 }
 @end
