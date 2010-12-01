@@ -68,6 +68,7 @@
     self.navigationItem.leftBarButtonItem = settingsButton;
 	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:4] forKey:MAX_PRICE_VALUE_LOCATION];
 	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:1] forKey:MIN_PRICE_VALUE_LOCATION];
+	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:0] forKey:SORT_VALUE_LOCATION];
 
 	self.settingsDict = [[NSMutableDictionary alloc] init];
 	
