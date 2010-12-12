@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface CommentsTableViewController : UITableViewController {
 	NSNumber *dishId;
 	NSData *_responseText;
@@ -18,6 +17,7 @@
 	UITableViewCell *commentCell;
 
 	NSURLRequest *request;
+	
 	
 @private
     NSFetchedResultsController *fetchedResultsController_;
@@ -33,5 +33,6 @@
 @property (nonatomic, retain)  NSData *_responseText;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+//@property (nonatomic, retain) ScrollingDishDetailViewController *parentView;
 
 @end

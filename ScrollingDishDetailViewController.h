@@ -32,7 +32,7 @@
 
 }
 -(IBAction) goToRestaurantDetailView; 
-
+-(IBAction) pushRateViewController;
 
 @property (nonatomic, retain) CommentsTableViewController *commentsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;

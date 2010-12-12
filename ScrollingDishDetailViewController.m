@@ -11,7 +11,9 @@
 #import "DishComment.h"
 #import "constants.h"
 #import "RestaurantDetailViewController.h"
+#import "RateDishViewController.h"
 #import "Restaurant.h"
+
 
 @implementation ScrollingDishDetailViewController
 @synthesize dish;
@@ -158,6 +160,13 @@
 	NSLog(@"determine comment height after viewWillAppear %f", commentHeight);
 	//TODO Set the height of the UIScrollView here. We should know the height of all of the internal views. Should be able to set it.
 	
+}
+
+-(IBAction) pushRateViewController{
+	RateDishViewController *rateDish = [[RateDishViewController alloc] init];
+	[rateDish setDish:dish];
+	[self.navigationController pushViewController:rateDish animated:YES];
+	[rateDish release];
 }
 
 -(IBAction) goToRestaurantDetailView{
