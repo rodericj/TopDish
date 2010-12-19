@@ -9,6 +9,7 @@
 #import "RateDishViewController.h"
 #import "constants.h"
 #import "DishComment.h"
+#import "ASIFormDataRequest.h"
 
 @implementation RateDishViewController
 
@@ -70,13 +71,42 @@
 	NSLog(@"submit rating");	
 	NSLog(@"description %@ and %@ %d", self.dishDescription.text, self.dishComment.text, currentVote);
 	
-	DishComment *comment = [[DishComment alloc] init];
-	[comment setDish:self.dish];
-	[comment setComment:self.dishComment.text];
-	[comment setIsPositive:[NSNumber numberWithInt:currentVote]];
-	[comment setReviewer_id:[NSNumber numberWithInt:1]];
-	[comment setReviewer_name:@"TODO GET A REVIEWER NAME"];
-	NSLog(@"dish %@\ncomment %@");
+	//Should probably create a Comment here, this will help with unsubmitted data
+	//DishComment *comment = [[DishComment alloc] init];
+//	//[comment setDish:self.dish];
+//	[comment setComment:self.dishComment.text];
+//	[comment setIsPositive:[NSNumber numberWithInt:currentVote]];
+//	[comment setReviewer_id:[NSNumber numberWithInt:1]];
+//	[comment setReviewer_name:@"TODO GET A REVIEWER NAME"];
+	
+	NSURL *url = [NSURL URLWithString: @"http://www.topdish.com/api/rateDish"];
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[request setPostValue:self.dishComment.text forKey:@"comment"];
+	[request setPostValue:[NSNumber numberWithInt:currentVote] forKey:@"isPositive"];
+	[request setPostValue:[self.dish dish_id] forKey:@"dishid"];	
+	[request setPostValue:@"TODO GET A REVIEWER NAME" forKey:@"reviewer_name"];	
+	[request setPostValue:@"1" forKey:@"reviewer_id"];	
+	
+	// Upload an NSData instance
+	//[request setData:imageData withFileName:@"myphoto.jpg" andContentType:@"image/jpeg" forKey:@"photo"];
+	[request setDelegate:self];
+	[request startAsynchronous];
+
+}
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+	// Use when fetching text data
+	NSString *responseString = [request responseString];
+	
+	// Use when fetching binary data
+	NSData *responseData = [request responseData];
+	NSLog(@"response string %@ \n and data %@\n %@", responseString, responseData, request);
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+	NSError *error = [request error];
+	NSLog(@"error %@", error);
 }
 - (void)dealloc {
     [super dealloc];
