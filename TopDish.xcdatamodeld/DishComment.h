@@ -2,7 +2,7 @@
 //  DishComment.h
 //  TopDish
 //
-//  Created by Roderic Campbell on 11/7/10.
+//  Created by roderic campbell on 12/18/10.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
@@ -15,10 +15,10 @@
 }
 
 @property (nonatomic, retain) NSString * reviewer_name;
-@property (nonatomic, retain) NSString * comment;
 @property (nonatomic, retain) NSNumber * isPositive;
+@property (nonatomic, retain) NSString * comment;
 @property (nonatomic, retain) NSNumber * reviewer_id;
-@property (nonatomic, retain) Dish * dish_id;
+@property (nonatomic, retain) Dish * dish;
 
 @end
 

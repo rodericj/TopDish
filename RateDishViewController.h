@@ -13,13 +13,26 @@
 	Dish *mDish;
 	IBOutlet UILabel *mRestaurantName;
 	IBOutlet UILabel *mDishName;
+	IBOutlet UIView *mCurrentSelectionUp;
+	IBOutlet UIView *mCurrentSelectionDown;
+	IBOutlet UITextView *mDishDescription;
+	IBOutlet UITextView *mDishComment;
 	IBOutlet UIScrollView *mScrollView;
+	int currentVote;
 
 }
-
+@property (nonatomic, retain) UITextView *dishDescription;
+@property (nonatomic, retain) UITextView *dishComment;
+@property (nonatomic, retain) UIView *currentSelectionUp;
+@property (nonatomic, retain) UIView *currentSelectionDown;
 @property (nonatomic, retain) UIScrollView *scrollView;
 @property (nonatomic, retain) Dish *dish;
 @property (nonatomic, retain) UILabel *restaurantName;
 @property (nonatomic, retain) UILabel *dishName;
+
+-(IBAction)voteUp;
+-(IBAction)voteDown;
+-(IBAction)closeKeyboard;
+-(IBAction)submitRating;
 
 @end
