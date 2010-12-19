@@ -502,10 +502,10 @@
 		NSLog(@"the latlong is %@", latlong);
 		NSArray *chunks = [latlong componentsSeparatedByString:@" "];
 		if (currentLat != nil) {
-			[currentLat release];
+			currentLat = nil;
 		}
 		if (currentLon != nil){
-			[currentLat release];
+			currentLon = nil;
 		}
 		currentLat =[[[chunks objectAtIndex:0] stringByReplacingOccurrencesOfString:@"," withString:@""] copy];
 		currentLon = [[chunks objectAtIndex:1] copy];

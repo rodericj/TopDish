@@ -10,6 +10,8 @@
 #import "constants.h"
 #import "JSON.h"
 #import "asyncimageview.h"
+#import "AddNewDishViewController.h"
+#import "ImagePickerViewController.h"
 
 @implementation RestaurantDetailViewController
 @synthesize restaurant;
@@ -77,6 +79,34 @@
 	
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+#pragma mark -
+#pragma mark Table view classes overridden 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+	if (sectionInfo == nil){
+		return 0;
+	}
+	NSLog(@"the number of rows %d", [sectionInfo numberOfObjects] +1);
+	return [sectionInfo numberOfObjects] + 1;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	//TODO RESTODISH SWITCH - The drilldown for restaurants and dishes are different in the detailviewcontroller
+	
+	if (indexPath.row == [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]] numberOfObjects]) {
+		NSLog(@"add a thing");
+		AddNewDishViewController *addDishViewController = [[AddNewDishViewController alloc] initWithNibName:@"AddNewDishViewController" bundle:nil];
+		[addDishViewController setTitle:@"Add a Dish"];
+		[addDishViewController setRestaurant:restaurant];
+		[addDishViewController setManagedObjectContext:managedObjectContext_];
+		[self.navigationController pushViewController:addDishViewController animated:YES];
+		[addDishViewController release];
+		
+	}	
+	else{
+		[self pushDishViewControllerAtIndexPath:indexPath];
+	}
 }
 
 #pragma mark -

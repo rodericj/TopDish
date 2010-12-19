@@ -21,7 +21,7 @@
 @synthesize currentSelectionDown = mCurrentSelectionDown;
 @synthesize dishDescription = mDishDescription;
 @synthesize dishComment = mDishComment;
-
+@synthesize dishImage = mDishImage;
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,6 +29,8 @@
 	self.dishName.text = [self.dish objName];
 	self.restaurantName.text = [[self.dish restaurant] objName];
 	self.dishDescription.text = [self.dish dish_description];
+	NSLog(@"dish when the view loaded %@", self.dish);
+	self.dishImage.image = [UIImage imageWithData:[self.dish imageData]];
 	[self.scrollView setContentSize:CGSizeMake(IPHONESCREENWIDTH, IPHONESCREENHEIGHT )];
 	currentVote = 0;
 

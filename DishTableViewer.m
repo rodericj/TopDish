@@ -11,26 +11,17 @@
 #import "Dish.h"
 #import "asyncimageview.h"
 #import "ScrollingDishDetailViewController.h"
+#import "AddNewDishViewController.h"
 
 @implementation DishTableViewer
 
 @synthesize tvCell;
 @synthesize fetchedResultsController=fetchedResultsController_, managedObjectContext=managedObjectContext_;
 @synthesize _responseData;
+@synthesize addItemCell = mAddItemCell;
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	return COMMENTTABLECELLHEIGHT;
-}
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-	//return [[self.fetchedResultsController sections] count];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-	if (sectionInfo == nil){
-		return 0;
-	}
-	return [sectionInfo numberOfObjects];
 }
 
 #pragma mark -
@@ -92,10 +83,29 @@
 
 #pragma mark -
 #pragma mark table view
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+	//return [[self.fetchedResultsController sections] count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+	if (sectionInfo == nil){
+		return 0;
+	}
+	return [sectionInfo numberOfObjects];
+}
+
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	//NSLog(@"row number %d", [indexPath row]);
-	
+	NSLog(@"item cell %@", self.addItemCell);
+	if (indexPath.row == [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]] numberOfObjects]) {
+		if(!self.addItemCell){
+			NSLog(@"must set up a new item cell");
+			self.addItemCell = [[AddNewDish alloc] init];
+		}
+		return self.addItemCell;
+	}	
 	//TODO RESTODISH SWITCH - Show a different cell for restaurants vs dishs
 	
     static NSString *CellIdentifier = @"Cell";
@@ -170,12 +180,7 @@
     return cell;
 }
 
-
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	//TODO RESTODISH SWITCH - The drilldown for restaurants and dishes are different in the detailviewcontroller
-	
-    // Navigation logic may go here -- for example, create and push another view controller.
+-(void) pushDishViewControllerAtIndexPath:(NSIndexPath *) indexPath{
 	Dish *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
 	NSLog(@"DishName from DishTableViewController %@", [selectedObject objName]);
 	
@@ -188,6 +193,11 @@
 	[detailViewController setTitle:[selectedObject objName]];
 	[detailViewController release];
 	
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	//TODO RESTODISH SWITCH - The drilldown for restaurants and dishes are different in the detailviewcontroller
+	NSLog(@"indexPath %@", indexPath);
+	[self pushDishViewControllerAtIndexPath:indexPath];
 }
 
 #pragma mark -
@@ -226,5 +236,11 @@
 		}
 	}
 }
+
+-(void)dealloc{
+	self.addItemCell = nil;
+	[super dealloc];
+}
+	
 
 @end
