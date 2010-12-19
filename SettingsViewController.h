@@ -18,6 +18,7 @@
 	DishTableViewController *delegate;
 }
 
+-(IBAction) cancelSettings;
 -(IBAction) closeSettings; 
 -(IBAction) updateMaxSlider;
 -(IBAction) updateMinSlider;
