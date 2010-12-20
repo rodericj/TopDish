@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "dish.h"
 @interface CommentsTableViewController : UITableViewController {
 	NSNumber *dishId;
 	NSData *_responseText;
-	
+	Dish *mdish;
 	UIImageView *commentDirection;
 	NSArray *reviews;
 	UITableViewCell *commentCell;
@@ -26,13 +26,12 @@
 
 -(void) refreshFromServer;
 @property (nonatomic, assign) IBOutlet UITableViewCell *commentCell;
-
+@property (nonatomic, assign) Dish *dish;
 @property (nonatomic, retain)  UIImageView *commentDirection;
 @property (nonatomic, retain)  NSNumber *dishId;
 @property (nonatomic, retain)  NSArray *reviews;
 @property (nonatomic, retain)  NSData *_responseText;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
-//@property (nonatomic, retain) ScrollingDishDetailViewController *parentView;
 
 @end

@@ -10,6 +10,7 @@
 #import "constants.h"
 #import "JSON.h"
 #import "DishComment.h"
+#import "ScrollingDishDetailViewController.h"
 
 @interface CommentsTableViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -17,6 +18,7 @@
 
 @implementation CommentsTableViewController
 @synthesize dishId;
+@synthesize dish = mDish;
 @synthesize managedObjectContext;
 @synthesize reviews;
 @synthesize commentCell;
@@ -27,15 +29,14 @@
 //#pragma mark -
 //#pragma mark Initialization
 
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    if ((self = [super initWithStyle:style])) {
-    }
-    return self;
+-(void)viewDidLoad{
+	[super viewDidLoad];
+	ScrollingDishDetailViewController *detailViewController = [[ScrollingDishDetailViewController alloc] initWithNibName:@"ScrollingDishDetailView" bundle:nil];
+	[detailViewController setDish:self.dish];
+	NSLog(@"the dish is %@", self.dish);
+	[self.tableView setTableHeaderView:detailViewController.view];
+	[self refreshFromServer];
 }
-*/
-
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -44,9 +45,17 @@
     //NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	//NSLog(@"here we are using the managed Object %@", managedObject);
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+	return 40;
 
+}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//	ScrollingDishDetailViewController *detailViewController = [[ScrollingDishDetailViewController alloc] initWithNibName:@"ScrollingDishDetailView" bundle:nil];
+//	[detailViewController setDish:self.dish];
+//	return detailViewController.view;
+//}
 -(void)refreshFromServer{
-	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishDetail?id[]=%@", NETWORKHOST, dishId]];
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishDetail?id[]=%@", NETWORKHOST, [self.dish dish_id]]];
 	//Start up the networking
 	NSLog(@"the comments url is %@", url);
 	request = [NSURLRequest requestWithURL:url];
@@ -116,11 +125,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
 	NSString *responseText = [[NSString alloc] initWithData:_responseText encoding:NSUTF8StringEncoding];
-	
-	//If I add these dummies in I need to make them arrays
-	//responseText = @"{\"id\":38, \"name\":\"Bacon Burger\", \"Description\":\"All bacon and bun\", \"restaurantID\":37, \"latitude\":33.677854, \"longitude\":-117.799428, \"posReviews\":1, \"negReviews\":2, \"photoURL\":\"\", \"reviews\":[{\"direction\":1, \"comment\": \"yo this thing was great\",\"creator\":\"andy\", \"dateCreated\":\"oct 11, 2010 4:39:42 AM\"},{\"direction\":-1, \"comment\": \"I've been sad all of my life\",\"creator\":\"Marcus\", \"dateCreated\":\"oct 12, 2010 4:49:42 AM\"},{\"direction\":-1, \"comment\": \"I've been sad all of my life\",\"creator\":\"Marcus\", \"dateCreated\":\"oct 12, 2010 4:49:42 AM\"},{\"direction\":-1, \"comment\": \"MATT DAMON\",\"creator\":\"Matt Damon\", \"dateCreated\":\"oct 12, 2010 4:39:42 AM\"}]}"; 
-	//responseText = @"{\"id\":38, \"name\":\"Bacon Burger\", \"Description\":\"All bacon and bun\", \"restaurantID\":37, \"latitude\":33.677854, \"longitude\":-117.799428, \"posReviews\":1, \"negReviews\":2, \"photoURL\":\"\", \"reviews\":[{\"direction\":1, \"comment\": \"yo this thing was great\",\"creator\":\"andy\", \"dateCreated\":\"oct 11, 2010 4:39:42 AM\"},{\"direction\":-1, \"comment\": \"I've been sad all of my life\",\"creator\":\"Marcus\", \"dateCreated\":\"oct 12, 2010 4:49:42 AM\"},{\"direction\":-1, \"comment\": \"I've been sad all of my life\",\"creator\":\"Marcus\", \"dateCreated\":\"oct 12, 2010 4:49:42 AM\"},{\"direction\":-1, \"comment\": \"I've been sad all of my life\",\"creator\":\"Marcus\", \"dateCreated\":\"oct 12, 2010 4:49:42 AM\"},{\"direction\":-1, \"comment\": \"MATT DAMON\",\"creator\":\"Matt Damon\", \"dateCreated\":\"oct 12, 2010 4:39:42 AM\"}]}"; 
-	
+		
 	SBJSON *parser = [SBJSON new];
 	NSError *error;
 	NSArray *responseAsArray = [parser objectWithString:responseText error:&error];
@@ -134,37 +139,13 @@
 	}
 	reviews = [[thisDishDetailDictionary objectForKey:@"reviews"] copy];
 	
-	//I'm going to do this the stupid way:
-	//TODO should probably put this into CoreData
-	
-	
-//	for (int i =0; i < [responseAsDictionary count]; i++){
-//		DishComment *thisDishComment = (DishComment *)[NSEntityDescription insertNewObjectForEntityForName:@"DishComment" inManagedObjectContext:self.managedObjectContext];
-//		NSDictionary *thisElement = [responseAsArray objectAtIndex:i];
-//		[thisDish setDish_id:[thisElement objectForKey:@"id"]];
-//		[thisDish setDish_name:[thisElement objectForKey:@"name"]];
-//		[thisDish setDish_description:[thisElement objectForKey:@"description"]];
-//		[thisDish setDish_photoURL:[thisElement objectForKey:@"photoURL"]];
-//		[thisDish setLatitude:[thisElement objectForKey:@"latitude"]];
-//		[thisDish setLongitude:[thisElement objectForKey:@"longitude"]];
-//		[thisDish setPosReviews:[thisElement objectForKey:@"posReviews"]];
-//		[thisDish setNegReviews:[thisElement objectForKey:@"negReviews"]];
-//		[thisDish setDish_id:[thisElement objectForKey:@"id"]];
-//	}
-	
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish"  
 											  inManagedObjectContext:self.managedObjectContext];
 	[fetchRequest setEntity:entity];
-	
-	//NSError *error;
-	//NSArray *items = [self.managedObjectContext
-//					  executeFetchRequest:fetchRequest error:&error];
-	
 	[fetchRequest release];	
-	
 	[responseText release];
-	[_responseText release];
+	//[_responseText release];
 	_responseText = nil;
 	[self.tableView reloadData];
 
@@ -194,9 +175,6 @@
 		_responseText = [[NSData alloc] initWithData:data];
 	}
 }
-
-
-
 
 #pragma mark -
 #pragma mark Memory management

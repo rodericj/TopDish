@@ -10,7 +10,6 @@
 #import <CoreData/CoreData.h>
 
 #import "Dish.h"
-#import "CommentsTableViewController.h"
 
 @interface ScrollingDishDetailViewController : UIViewController <NSFetchedResultsControllerDelegate> {
 	Dish* dish;
@@ -24,8 +23,6 @@
 	IBOutlet UILabel *description;
 	IBOutlet UILabel *restaurantName;
 	
-	IBOutlet UIView *commentSubView;
-	IBOutlet CommentsTableViewController *commentsController;
 @private
     NSFetchedResultsController *fetchedResultsController_;
     NSManagedObjectContext *managedObjectContext_;
@@ -34,7 +31,6 @@
 -(IBAction) goToRestaurantDetailView; 
 -(IBAction) pushRateViewController;
 
-@property (nonatomic, retain) CommentsTableViewController *commentsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
@@ -46,7 +42,6 @@
 @property (nonatomic, retain) UILabel *restaurantName;
 @property (nonatomic, retain) UILabel *upVotes;
 @property (nonatomic, retain) UILabel *downVotes;
-@property (nonatomic, retain) UIView *commentSubView;
 @property (nonatomic, retain) UIImageView *dishImage;
 @property (nonatomic, retain) UILabel *description;
 

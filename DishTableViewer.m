@@ -12,6 +12,7 @@
 #import "asyncimageview.h"
 #import "ScrollingDishDetailViewController.h"
 #import "AddNewDishViewController.h"
+#import "CommentsTableViewController.h"
 
 @implementation DishTableViewer
 
@@ -184,8 +185,8 @@
 	Dish *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
 	NSLog(@"DishName from DishTableViewController %@", [selectedObject objName]);
 	
-	ScrollingDishDetailViewController *detailViewController = [[ScrollingDishDetailViewController alloc] initWithNibName:@"ScrollingDishDetailView" bundle:nil];
-	
+	//ScrollingDishDetailViewController *detailViewController = [[ScrollingDishDetailViewController alloc] initWithNibName:@"ScrollingDishDetailView" bundle:nil];
+	CommentsTableViewController *detailViewController = [[CommentsTableViewController alloc] init];//WithNibName:@"CommentsTableViewController" bundle:nil];
 	[detailViewController setDish:selectedObject];
 	[detailViewController setManagedObjectContext:self.managedObjectContext];
 	
