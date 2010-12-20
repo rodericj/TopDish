@@ -11,18 +11,21 @@
 #import "JSON.h"
 #import "DishComment.h"
 #import "ScrollingDishDetailViewController.h"
+#import "RateDishViewController.h"
+#import "RestaurantDetailViewController.h"
 
 @interface CommentsTableViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
 
 @implementation CommentsTableViewController
-@synthesize dishId;
 @synthesize dish = mDish;
 @synthesize managedObjectContext;
-@synthesize reviews;
+@synthesize reviews = mReviews;
 @synthesize commentCell;
-@synthesize _responseText;
+@synthesize addRatingCell = mAddRatingCell;
+@synthesize pushRestaurantCell = mPushRestaurantCell;
+@synthesize responseText = mResponseText;
 @synthesize fetchedResultsController;
 @synthesize commentDirection;
 
@@ -47,22 +50,16 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 	return 40;
-
 }
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//	ScrollingDishDetailViewController *detailViewController = [[ScrollingDishDetailViewController alloc] initWithNibName:@"ScrollingDishDetailView" bundle:nil];
-//	[detailViewController setDish:self.dish];
-//	return detailViewController.view;
-//}
+
 -(void)refreshFromServer{
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishDetail?id[]=%@", NETWORKHOST, [self.dish dish_id]]];
 	//Start up the networking
 	NSLog(@"the comments url is %@", url);
-	request = [NSURLRequest requestWithURL:url];
+	NSURLRequest *request = [NSURLRequest requestWithURL:url];
 	NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE]; 
 	[conn release];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-
 }
 
 #pragma mark -
@@ -70,7 +67,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-
     return 1;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -79,13 +75,20 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-	if(reviews == nil){
-		return 0;
+	if(!self.reviews){
+		return 1;
 	}
 	
-	return [reviews count];
+	return [self.reviews count]+2;
 }
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+	if (indexPath.row == [self.reviews count]) {
+		[self pushRateViewController];
+	}
+	if (indexPath.row == [self.reviews count]+1) {
+		[self goToRestaurantDetailView];
+	}
+}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -95,11 +98,18 @@
     
 	if (cell == nil) {
         [[NSBundle mainBundle] loadNibNamed:@"CommentControllerTableViewCell" owner:self options:nil];
+		if (indexPath.row == [self.reviews count]) {
+			return self.addRatingCell;
+		}
+		if (indexPath.row == [self.reviews count]+1) {
+			return self.pushRestaurantCell;
+		}
 		cell = commentCell;
+		[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 	}
 	
     // Configure the cell...
-	NSDictionary *thisReview = [reviews objectAtIndex:[indexPath row]];
+	NSDictionary *thisReview = [self.reviews objectAtIndex:[indexPath row]];
 	
 	UILabel *commentorName;
 	commentorName = (UILabel *)[cell viewWithTag:COMMENTOR_NAME_TAG];
@@ -110,7 +120,6 @@
 	commentText.text = [NSString stringWithFormat:@"\"%@\"", [thisReview objectForKey:@"comment"]];
 
 	UIImageView *im = (UIImageView *)[cell viewWithTag:COMMENT_DIRECTION_IMAGE_TAG];
-	NSLog(@"direction %d", [thisReview objectForKey:@"direction"]);
 	if([[thisReview objectForKey:@"direction"] intValue] == 1){
 		[im setImage:[UIImage imageNamed:POSITIVE_REVIEW_IMAGE_NAME]];
 	}
@@ -124,7 +133,7 @@
 #pragma mark Network Delegate 
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
-	NSString *responseText = [[NSString alloc] initWithData:_responseText encoding:NSUTF8StringEncoding];
+	NSString *responseText = [[NSString alloc] initWithData:self.responseText encoding:NSUTF8StringEncoding];
 		
 	SBJSON *parser = [SBJSON new];
 	NSError *error;
@@ -133,11 +142,11 @@
 	NSLog(@"thisdishdetaildictionary %@", thisDishDetailDictionary);
 	//NSLog(@"%@", thisDishDetailDictionary);
 	[parser release];
-	if(reviews == nil){
+	if(self.reviews == nil){
 		NSLog(@"allocate the array the first time");
-		reviews = [NSArray alloc];
+		self.reviews = [NSArray alloc];
 	}
-	reviews = [[thisDishDetailDictionary objectForKey:@"reviews"] copy];
+	self.reviews = [[thisDishDetailDictionary objectForKey:@"reviews"] copy];
 	
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish"  
@@ -145,8 +154,7 @@
 	[fetchRequest setEntity:entity];
 	[fetchRequest release];	
 	[responseText release];
-	//[_responseText release];
-	_responseText = nil;
+	self.responseText = nil;
 	[self.tableView reloadData];
 
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -171,31 +179,36 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-	if(_responseText == nil){
-		_responseText = [[NSData alloc] initWithData:data];
+	if(self.responseText == nil){
+		self.responseText = data;
+		//self.responseText = [[NSData alloc] initWithData:data];
 	}
 }
 
 #pragma mark -
-#pragma mark Memory management
+#pragma mark actions
 
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Relinquish ownership any cached data, images, etc that aren't in use.
+-(IBAction) pushRateViewController{
+	RateDishViewController *rateDish = [[RateDishViewController alloc] init];
+	[rateDish setDish:self.dish];
+	[self.navigationController pushViewController:rateDish animated:YES];
+	[rateDish release];
 }
 
-- (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
+-(IBAction) goToRestaurantDetailView{
+	NSLog(@"goToRestaurantDetailView");
+	RestaurantDetailViewController *detailViewController = [[RestaurantDetailViewController alloc] initWithNibName:@"RestaurantDetailView" bundle:nil];
+	[detailViewController setRestaurant:[self.dish restaurant]];
+	[detailViewController setManagedObjectContext:self.managedObjectContext];
+	[self.navigationController pushViewController:detailViewController animated:YES];
+	[detailViewController setTitle:[[self.dish restaurant] objName]];
+	[detailViewController release];
 }
-
 
 - (void)dealloc {
-	[reviews release];
-	[request release];
+	self.reviews = nil;
     [super dealloc];
+	NSLog(@"done deallocing comments");
 }
 
 

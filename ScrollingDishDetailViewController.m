@@ -12,10 +12,11 @@
 #import "RestaurantDetailViewController.h"
 #import "RateDishViewController.h"
 #import "Restaurant.h"
+#import "CommentsTableViewController.h"
 
 
 @implementation ScrollingDishDetailViewController
-@synthesize dish;
+@synthesize dish = mDish;
 @synthesize dishName;
 @synthesize downVotes;
 @synthesize upVotes;
@@ -28,50 +29,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[dishName setText:[dish objName]];
-	[upVotes setText:[NSString stringWithFormat:@"%@", [dish posReviews]]];
-	[downVotes setText:[NSString stringWithFormat:@"%@", [dish negReviews]]];
+	[dishName setText:[self.dish objName]];
+	[upVotes setText:[NSString stringWithFormat:@"%@", [self.dish posReviews]]];
+	[downVotes setText:[NSString stringWithFormat:@"%@", [self.dish negReviews]]];
 	
-	[restaurantName setText:[[dish restaurant] objName]];
+	[restaurantName setText:[[self.dish restaurant] objName]];
 	
 	//Set up description UILabel
 	[description setNumberOfLines:0];
-	[description setText:[NSString stringWithFormat:@"\"%@\"", [dish dish_description]]];
+	[description setText:[NSString stringWithFormat:@"\"%@\"", [self.dish dish_description]]];
 	[description sizeToFit];
 	[description setLineBreakMode:UILineBreakModeWordWrap];
 	[description setTextAlignment:UITextAlignmentCenter];
 	
-	if( [[dish photoURL] length] > 0 ){
-		
-		NSString *urlString = [NSString stringWithFormat:@"%@", [dish photoURL]]; 
+	if( [[self.dish photoURL] length] > 0 ){
+		NSString *urlString = [NSString stringWithFormat:@"%@", [self.dish photoURL]]; 
 		NSURL *photoUrl = [NSURL URLWithString:urlString];
 		AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[dishImage frame]];
-		[asyncImage setOwningObject:dish];
+		[asyncImage setOwningObject:self.dish];
 		[asyncImage loadImageFromURL:photoUrl withImageView:dishImage isThumb:NO showActivityIndicator:FALSE];
-	}
-	
+	}	
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-	
-	[super viewWillAppear:animated];
-}
-
--(IBAction) pushRateViewController{
-	RateDishViewController *rateDish = [[RateDishViewController alloc] init];
-	[rateDish setDish:dish];
-	[self.navigationController pushViewController:rateDish animated:YES];
-	[rateDish release];
-}
-
--(IBAction) goToRestaurantDetailView{
-	NSLog(@"goToRestaurantDetailView");
-	Restaurant *selectedObject = [dish restaurant];
-	RestaurantDetailViewController *detailViewController = [[RestaurantDetailViewController alloc] initWithNibName:@"RestaurantDetailView" bundle:nil];
-	[detailViewController setRestaurant:selectedObject];
-	[detailViewController setManagedObjectContext:self.managedObjectContext];
-	[self.navigationController pushViewController:detailViewController animated:YES];
-	[detailViewController setTitle:[selectedObject objName]];
-	[detailViewController release];
+-(IBAction)pushRestaurant{
+	CommentsTableViewController *c = (CommentsTableViewController*)self.parentViewController;
+	[c goToRestaurantDetailView];
+	//RateDishViewController *rateDish = [[RateDishViewController alloc] init];
+//	[rateDish setDish:self.dish];
+//	[self.parentViewController pushViewController:rateDish animated:YES];
+//	[rateDish release];
 }
 @end

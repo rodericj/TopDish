@@ -12,7 +12,7 @@
 #import "Dish.h"
 
 @interface ScrollingDishDetailViewController : UIViewController <NSFetchedResultsControllerDelegate> {
-	Dish* dish;
+	Dish* mDish;
 	
 	IBOutlet UIScrollView *scrollView;
 	
@@ -28,8 +28,8 @@
     NSManagedObjectContext *managedObjectContext_;
 
 }
--(IBAction) goToRestaurantDetailView; 
--(IBAction) pushRateViewController;
+
+-(IBAction)pushRestaurant;
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;

@@ -9,15 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "dish.h"
 @interface CommentsTableViewController : UITableViewController {
-	NSNumber *dishId;
-	NSData *_responseText;
+	NSData *mResponseText;
 	Dish *mdish;
 	UIImageView *commentDirection;
-	NSArray *reviews;
+	NSArray *mReviews;
 	UITableViewCell *commentCell;
-
-	NSURLRequest *request;
-	
+	UITableViewCell *mAddRatingCell;
+	UITableViewCell *mPushRestaurantCell;
+	UITableViewStyle style;
 	
 @private
     NSFetchedResultsController *fetchedResultsController_;
@@ -26,12 +25,18 @@
 
 -(void) refreshFromServer;
 @property (nonatomic, assign) IBOutlet UITableViewCell *commentCell;
+@property (nonatomic, assign) IBOutlet UITableViewCell *addRatingCell;
+@property (nonatomic, assign) IBOutlet UITableViewCell *pushRestaurantCell;
 @property (nonatomic, assign) Dish *dish;
-@property (nonatomic, retain)  UIImageView *commentDirection;
-@property (nonatomic, retain)  NSNumber *dishId;
-@property (nonatomic, retain)  NSArray *reviews;
-@property (nonatomic, retain)  NSData *_responseText;
+@property (nonatomic, retain) UIImageView *commentDirection;
+@property (nonatomic, retain) NSArray *reviews;
+@property (nonatomic, retain) NSData *responseText;
+@property (nonatomic) UITableViewStyle style;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+
+
+-(IBAction) goToRestaurantDetailView; 
+-(IBAction) pushRateViewController;
 
 @end
