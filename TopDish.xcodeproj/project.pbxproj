@@ -32,8 +32,6 @@
 		17DD272B12BDBEC60048C1A1 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DD272A12BDBEC60048C1A1 /* libz.1.2.3.dylib */; };
 		17DD27F112BDEB6C0048C1A1 /* AddNewDishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DD27EF12BDEB6C0048C1A1 /* AddNewDishViewController.m */; };
 		17DD27F212BDEB6C0048C1A1 /* AddNewDishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DD27F012BDEB6C0048C1A1 /* AddNewDishViewController.xib */; };
-		17DD286212BDF73D0048C1A1 /* AddNewDish.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DD286012BDF73D0048C1A1 /* AddNewDish.m */; };
-		17DD286312BDF73D0048C1A1 /* AddNewDish.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DD286112BDF73D0048C1A1 /* AddNewDish.xib */; };
 		17DE005412B43B01001F6907 /* RateDishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DE005212B43B01001F6907 /* RateDishViewController.m */; };
 		17DE005512B43B01001F6907 /* RateDishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DE005312B43B01001F6907 /* RateDishViewController.xib */; };
 		1D3623260D0F684500981E51 /* TopDishAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* TopDishAppDelegate.m */; };
@@ -120,9 +118,6 @@
 		17DD27EE12BDEB6C0048C1A1 /* AddNewDishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddNewDishViewController.h; path = Classes/AddNewDishViewController.h; sourceTree = "<group>"; };
 		17DD27EF12BDEB6C0048C1A1 /* AddNewDishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddNewDishViewController.m; path = Classes/AddNewDishViewController.m; sourceTree = "<group>"; };
 		17DD27F012BDEB6C0048C1A1 /* AddNewDishViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AddNewDishViewController.xib; path = Classes/AddNewDishViewController.xib; sourceTree = "<group>"; };
-		17DD285F12BDF73D0048C1A1 /* AddNewDish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewDish.h; sourceTree = "<group>"; };
-		17DD286012BDF73D0048C1A1 /* AddNewDish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewDish.m; sourceTree = "<group>"; };
-		17DD286112BDF73D0048C1A1 /* AddNewDish.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddNewDish.xib; sourceTree = "<group>"; };
 		17DE005112B43B01001F6907 /* RateDishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RateDishViewController.h; sourceTree = "<group>"; };
 		17DE005212B43B01001F6907 /* RateDishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RateDishViewController.m; sourceTree = "<group>"; };
 		17DE005312B43B01001F6907 /* RateDishViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateDishViewController.xib; sourceTree = "<group>"; };
@@ -275,9 +270,6 @@
 		17DE013912B43EEB001F6907 /* RateDishView */ = {
 			isa = PBXGroup;
 			children = (
-				17DD285F12BDF73D0048C1A1 /* AddNewDish.h */,
-				17DD286012BDF73D0048C1A1 /* AddNewDish.m */,
-				17DD286112BDF73D0048C1A1 /* AddNewDish.xib */,
 				17DD27EE12BDEB6C0048C1A1 /* AddNewDishViewController.h */,
 				17DD27EF12BDEB6C0048C1A1 /* AddNewDishViewController.m */,
 				17DD27F012BDEB6C0048C1A1 /* AddNewDishViewController.xib */,
@@ -524,7 +516,6 @@
 				1794422112A5B195008EE034 /* DetailButtonImage.png in Resources */,
 				17DE005512B43B01001F6907 /* RateDishViewController.xib in Resources */,
 				17DD27F212BDEB6C0048C1A1 /* AddNewDishViewController.xib in Resources */,
-				17DD286312BDF73D0048C1A1 /* AddNewDish.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,7 +562,6 @@
 				17DD270412BDBCE80048C1A1 /* Reachability.m in Sources */,
 				17DD271C12BDBDEE0048C1A1 /* ASIInputStream.m in Sources */,
 				17DD27F112BDEB6C0048C1A1 /* AddNewDishViewController.m in Sources */,
-				17DD286212BDF73D0048C1A1 /* AddNewDish.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

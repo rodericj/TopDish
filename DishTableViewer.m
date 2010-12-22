@@ -101,10 +101,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSLog(@"item cell %@", self.addItemCell);
 	if (indexPath.row == [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]] numberOfObjects]) {
-		if(!self.addItemCell){
-			NSLog(@"must set up a new item cell");
-			self.addItemCell = [[AddNewDish alloc] init];
-		}
+		//if(!self.addItemCell){
+//			NSLog(@"must set up a new item cell");
+//			self.addItemCell = [[AddNewDish alloc] init];
+//		}
 		return self.addItemCell;
 	}	
 	//TODO RESTODISH SWITCH - Show a different cell for restaurants vs dishs

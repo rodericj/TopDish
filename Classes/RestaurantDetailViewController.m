@@ -87,7 +87,7 @@
 	if (sectionInfo == nil){
 		return 0;
 	}
-	NSLog(@"the number of rows %d", [sectionInfo numberOfObjects] +1);
+	//Add 1 for the "Add a new dish cell"
 	return [sectionInfo numberOfObjects] + 1;
 }
 

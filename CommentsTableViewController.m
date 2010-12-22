@@ -76,7 +76,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
 	if(!self.reviews){
-		return 1;
+		return 2;
 	}
 	
 	return [self.reviews count]+2;
