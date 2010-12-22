@@ -60,6 +60,11 @@
 		//Add Dish Name
 		[thisDish setRestaurant:self.restaurant];
 		[thisDish setObjName:self.dishNameTextField.text];
+		
+		//Add location from the restaurant here....
+		[thisDish setLatitude:[[thisDish restaurant] latitude]];
+		[thisDish setLongitude:[[thisDish restaurant] longitude]];
+		
 		RateDishViewController *rateDish = [[RateDishViewController alloc] init];
 		[rateDish setDish:thisDish];
 		[thisDish setImageData:UIImagePNGRepresentation([self.dishImageFromPicker image])];

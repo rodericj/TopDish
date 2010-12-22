@@ -99,14 +99,11 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSLog(@"item cell %@", self.addItemCell);
-	if (indexPath.row == [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]] numberOfObjects]) {
-		//if(!self.addItemCell){
-//			NSLog(@"must set up a new item cell");
-//			self.addItemCell = [[AddNewDish alloc] init];
-//		}
+
+	//Return the Descriptor cell for adding a new dish
+	if (indexPath.row == [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]] numberOfObjects])
 		return self.addItemCell;
-	}	
+		
 	//TODO RESTODISH SWITCH - Show a different cell for restaurants vs dishs
 	
     static NSString *CellIdentifier = @"Cell";
