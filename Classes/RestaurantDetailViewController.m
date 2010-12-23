@@ -15,7 +15,7 @@
 
 @implementation RestaurantDetailViewController
 @synthesize restaurant;
-//@synthesize _responseData;
+//@synthesize managedObjectContext = mManagedObjectContext;
 
 #pragma mark -
 #pragma mark networking

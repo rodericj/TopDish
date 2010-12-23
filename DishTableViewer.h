@@ -26,5 +26,7 @@
 @property (nonatomic, retain) NSMutableData *_responseData;
 
 -(void) processIncomingNetworkText:(NSString *)responseText;
+-(void) decorateFetchRequest:(NSFetchRequest *)request;
+-(void) pushDishViewControllerAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

@@ -31,7 +31,6 @@
 @property (nonatomic, retain) UIImageView *commentDirection;
 @property (nonatomic, retain) NSArray *reviews;
 @property (nonatomic, retain) NSData *responseText;
-@property (nonatomic) UITableViewStyle style;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 

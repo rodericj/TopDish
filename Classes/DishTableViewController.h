@@ -33,7 +33,6 @@
 - (void) updateFetch;
 - (void)getNearbyItems:(CLLocation *)location;
 - (NSArray *) getArrayOfIdsWithArray:(NSArray *)responseAsArray withKey:(NSString*) key;
-- (NSArray *)loadDummyRestaurantData;
 
 @property (nonatomic, retain) NSMutableDictionary *settingsDict;
 @property (nonatomic, retain) NSString *currentSearchTerm;

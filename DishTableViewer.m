@@ -200,6 +200,10 @@
 
 #pragma mark -
 #pragma mark network connection stuff
+-(void)processIncomingNetworkText:(NSString *)responseText{
+	//Noop
+}
+
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
 	NSLog(@"connection did finish loading");
 	NSString *responseText = [[NSString alloc] initWithData:_responseData encoding:NSASCIIStringEncoding];

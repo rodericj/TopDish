@@ -30,6 +30,8 @@
 @synthesize currentLon;
 @synthesize currentSearchTerm;
 @synthesize settingsDict;
+@synthesize searchHeader;
+
 #pragma mark -
 #pragma mark View lifecycle
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -181,7 +183,6 @@
 	if(responseAsArray == nil){
 		NSLog(@"the response is nil");
 		return;
-		//responseAsArray = [self loadDummyRestaurantData];
 	}
 	
 	if([dishRestoSelector selectedSegmentIndex] == 0){
@@ -291,7 +292,7 @@
 	else if([dishRestoSelector selectedSegmentIndex] == 1){
 		
 		for (int i =0; i < [responseAsArray count]; i++){
-			Restaurant *thisResto = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" inManagedObjectContext:self.managedObjectContext];
+			//Restaurant *thisResto = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" inManagedObjectContext:self.managedObjectContext];
 			NSDictionary *thisElement = [responseAsArray objectAtIndex:i];
 			NSLog(@"%@ %@", [thisElement objectForKey:@"id"], [thisElement objectForKey:@"restaurantName"]);
 			//[thisDish setDish_id:[thisElement objectForKey:@"id"]];
@@ -477,8 +478,8 @@
 
 #pragma mark -
 #pragma mark Location
-- (void)locationError:(CLLocation *)location {
-	NSLog(@"Error getting location");
+- (void)locationError:(NSError *)error {
+	NSLog(@"Error getting location %@", error);
 }
 	
 - (void)locationUpdate:(CLLocation *)location {

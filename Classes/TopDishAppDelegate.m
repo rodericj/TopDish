@@ -16,6 +16,7 @@
 
 @synthesize window;
 @synthesize navigationController;
+@synthesize tabBarController;
 
 
 #pragma mark -
