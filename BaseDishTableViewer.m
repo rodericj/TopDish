@@ -1,12 +1,12 @@
 //
-//  DishTableViewer.m
+//  BaseDishTableViewer.m
 //  TopDish
 //
 //  Created by roderic campbell on 11/26/10.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "DishTableViewer.h"
+#import "BaseDishTableViewer.h"
 #import "constants.h"
 #import "Dish.h"
 #import "asyncimageview.h"
@@ -14,7 +14,7 @@
 #import "AddNewDishViewController.h"
 #import "CommentsTableViewController.h"
 
-@implementation DishTableViewer
+@implementation BaseDishTableViewer
 
 @synthesize tvCell;
 @synthesize fetchedResultsController=fetchedResultsController_, managedObjectContext=managedObjectContext_;
@@ -22,7 +22,7 @@
 @synthesize addItemCell = mAddItemCell;
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return COMMENTTABLECELLHEIGHT;
+	return DISHLISTCELLHEIGHT;
 }
 
 #pragma mark -
@@ -106,7 +106,7 @@
 		
 	//TODO RESTODISH SWITCH - Show a different cell for restaurants vs dishs
 	
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"DishCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -178,6 +178,15 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	//TODO RESTODISH SWITCH - The drilldown for restaurants and dishes are different in the detailviewcontroller
+	NSLog(@"indexPath %@", indexPath);
+	[self pushDishViewControllerAtIndexPath:indexPath];
+}
+
+#pragma mark -
+#pragma mark other stuff
+
 -(void) pushDishViewControllerAtIndexPath:(NSIndexPath *) indexPath{
 	Dish *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
 	NSLog(@"DishName from DishTableViewController %@", [selectedObject objName]);
@@ -191,11 +200,6 @@
 	[detailViewController setTitle:[selectedObject objName]];
 	[detailViewController release];
 	
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	//TODO RESTODISH SWITCH - The drilldown for restaurants and dishes are different in the detailviewcontroller
-	NSLog(@"indexPath %@", indexPath);
-	[self pushDishViewControllerAtIndexPath:indexPath];
 }
 
 #pragma mark -
@@ -215,10 +219,10 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-	NSLog(@"connection did fail with error %@", error);
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	
 #ifndef AirplaneMode
+	NSLog(@"connection did fail with error %@", error);
 	UIAlertView *alert;
 	alert = [[UIAlertView alloc] initWithTitle:@"NetworkError" message:@"There was a network issue. Try again later" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil]; 
 	[alert show];

@@ -69,8 +69,9 @@
 //	}
 }
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-	NSLog(@"async image did fail with error");
+#ifndef AirplaneMode
 	NSLog(@"%@", error);
+#endif
 }
 
 //the URL connection calls this repeatedly as data arrives

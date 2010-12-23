@@ -31,6 +31,7 @@
 @synthesize currentSearchTerm;
 @synthesize settingsDict;
 @synthesize searchHeader;
+@synthesize rltv = mrltv;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -90,7 +91,7 @@
 	dishRestoSelector.selectedSegmentIndex = 0;	
 
 	//TODO Commented out so we don't show the selector. Add in when restaurant's are ready
-	//self.navigationItem.titleView = dishRestoSelector;
+	self.navigationItem.titleView = dishRestoSelector;
 	
 	[dishRestoSelector addTarget:self 
 						 action:@selector(initiateNetworkBasedOnSegmentControl) 
@@ -125,17 +126,26 @@
 		}
 		else
 			[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=200000000&limit=2", NETWORKHOST, currentLat, currentLon]];
+		
+		[self.tableView setDelegate:self];
+		[self.tableView setDataSource:self];
+
+
 	}
 	else if([dishRestoSelector selectedSegmentIndex] == 1){
 		NSLog(@"we are switching to restaurants %@ %@", currentLat, currentLon);
-		NSLog(@"%@", currentLat);
-		[self networkQuery:[NSString stringWithFormat:@"%@/api/restaurantSearch?lat=%@&lng=%@&distance=20000", NETWORKHOST, currentLat, currentLon]];
+		NSLog(@"rltv is %@", self.rltv);
+		if(!self.rltv)
+			self.rltv = [[RestaurantListTableView alloc] init];
+		[self.tableView setDelegate:self.rltv];
+		[self.tableView setDataSource:self.rltv];
+		//[self networkQuery:[NSString stringWithFormat:@"%@/api/restaurantSearch?lat=%@&lng=%@&distance=20000", NETWORKHOST, currentLat, currentLon]];
 
 	}
 	else {
 		NSLog(@"Wait...what did we just switch to?");
 	}
-
+	[self.tableView reloadData];
 }
 
 // Implement viewWillAppear: to do additional setup before the view is presented.
@@ -294,7 +304,7 @@
 		for (int i =0; i < [responseAsArray count]; i++){
 			//Restaurant *thisResto = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" inManagedObjectContext:self.managedObjectContext];
 			NSDictionary *thisElement = [responseAsArray objectAtIndex:i];
-			NSLog(@"%@ %@", [thisElement objectForKey:@"id"], [thisElement objectForKey:@"restaurantName"]);
+			NSLog(@"elemented at id: %@\nresto name: %@", [thisElement objectForKey:@"id"], [thisElement objectForKey:@"restaurantName"]);
 			//[thisDish setDish_id:[thisElement objectForKey:@"id"]];
 			//			[thisDish setDish_name:[thisElement objectForKey:@"name"]];
 		}
@@ -459,15 +469,6 @@
 
 #pragma mark -
 #pragma mark Table view data source
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {

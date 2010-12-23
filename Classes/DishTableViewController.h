@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "MyCLController.h"
-#import "DishTableViewer.h"
+#import "BaseDishTableViewer.h"
+#import "RestaurantListTableView.h"
 
-@interface DishTableViewController : DishTableViewer <MyCLControllerDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate> {
+@interface DishTableViewController : BaseDishTableViewer <MyCLControllerDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate> {
 	MyCLController *locationController;
 	NSString *currentLat;
 	NSString *currentLon;
@@ -27,12 +28,16 @@
 
 	UISegmentedControl *dishRestoSelector;
 	
+	RestaurantListTableView *mrltv;
+	
 }
 
 - (NSNumber *) calculateDishDistance:(id *)dish;
 - (void) updateFetch;
 - (void)getNearbyItems:(CLLocation *)location;
 - (NSArray *) getArrayOfIdsWithArray:(NSArray *)responseAsArray withKey:(NSString*) key;
+
+@property (nonatomic, retain) RestaurantListTableView *rltv;
 
 @property (nonatomic, retain) NSMutableDictionary *settingsDict;
 @property (nonatomic, retain) NSString *currentSearchTerm;

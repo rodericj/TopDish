@@ -1,5 +1,5 @@
 //
-//  DishTableViewer.h
+//  BaseDishTableViewer.h
 //  TopDish
 //
 //  Created by roderic campbell on 11/26/10.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@interface DishTableViewer : UITableViewController {
+@interface BaseDishTableViewer : UITableViewController {
 
 	UITableViewCell *tvCell;
 	UITableViewCell *mAddItemCell;

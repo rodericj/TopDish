@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Restaurant.h"
-#import "DishTableViewer.h"
+#import "BaseDishTableViewer.h"
 
-@interface RestaurantDetailViewController : DishTableViewer {
+@interface RestaurantDetailViewController : BaseDishTableViewer {
 
 	Restaurant *restaurant;
 	
