@@ -8,17 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "ObjectWithImage.h"
 
 @interface BaseDishTableViewer : UITableViewController {
 
-	UITableViewCell *tvCell;
-	UITableViewCell *mAddItemCell;
+	NSString					*mEntityTypeString;
+	UITableViewCell				*tvCell;
+	UITableViewCell				*mAddItemCell;
 @protected
     NSFetchedResultsController *fetchedResultsController_;
     NSManagedObjectContext *managedObjectContext_;
 	NSMutableData *_responseData;
 
 }
+
+@property (nonatomic, retain) NSString *entityTypeString;
 @property (nonatomic, retain) IBOutlet UITableViewCell *addItemCell;
 @property (nonatomic, assign) IBOutlet UITableViewCell *tvCell;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
@@ -27,6 +31,7 @@
 
 -(void) processIncomingNetworkText:(NSString *)responseText;
 -(void) decorateFetchRequest:(NSFetchRequest *)request;
--(void) pushDishViewControllerAtIndexPath:(NSIndexPath *)indexPath;
+-(void) pushDishViewController:(ObjectWithImage *) selectedObject;
+//-(void) pushRestaurantViewController:(ObjectWithImage *) selectedObject;
 
 @end

@@ -14,6 +14,7 @@
 		179B879212A310E200730FAC /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B878D12A310E200730FAC /* Restaurant.m */; };
 		179B879312A310E200730FAC /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B878F12A310E200730FAC /* Dish.m */; };
 		179B88D612A3719500730FAC /* ObjectWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B88D512A3719500730FAC /* ObjectWithImage.m */; };
+		17AE7F6612D9AE74007B96EC /* SignInSignUpBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17AE7F6512D9AE74007B96EC /* SignInSignUpBaseViewController.m */; };
 		17B48AE512A033C200F43202 /* RestaurantDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B48AE312A033C200F43202 /* RestaurantDetailViewController.m */; };
 		17B48AE612A033C200F43202 /* RestaurantDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B48AE412A033C200F43202 /* RestaurantDetailView.xib */; };
 		17DD22C312BD87610048C1A1 /* DishComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DD22C212BD87610048C1A1 /* DishComment.m */; };
@@ -34,8 +35,15 @@
 		17DD27F212BDEB6C0048C1A1 /* AddNewDishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DD27F012BDEB6C0048C1A1 /* AddNewDishViewController.xib */; };
 		17DE005412B43B01001F6907 /* RateDishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DE005212B43B01001F6907 /* RateDishViewController.m */; };
 		17DE005512B43B01001F6907 /* RateDishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DE005312B43B01001F6907 /* RateDishViewController.xib */; };
-		17FCD5B412C2F1CC0081D5EA /* RestaurantListTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FCD5B212C2F1CC0081D5EA /* RestaurantListTableView.m */; };
-		17FCD5B512C2F1CC0081D5EA /* RestaurantListTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17FCD5B312C2F1CC0081D5EA /* RestaurantListTableView.xib */; };
+		17EEB69912D9A2550032E12B /* AccountSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EEB69712D9A2550032E12B /* AccountSettingsViewController.m */; };
+		17EEB6AE12D9A3160032E12B /* SignInSignUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17EEB6AD12D9A3160032E12B /* SignInSignUp.xib */; };
+		17EEB6B312D9A3560032E12B /* SignInSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EEB6B212D9A3560032E12B /* SignInSignUpViewController.m */; };
+		17EEB74712D9A8AD0032E12B /* SignIn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17EEB74612D9A8AD0032E12B /* SignIn.xib */; };
+		17EEB74C12D9A9260032E12B /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EEB74B12D9A9260032E12B /* SignInViewController.m */; };
+		17EEB75012D9A9550032E12B /* SignUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17EEB74F12D9A9550032E12B /* SignUp.xib */; };
+		17EEB75B12D9AA010032E12B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EEB75A12D9AA010032E12B /* SignUpViewController.m */; };
+		17FCD5B412C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FCD5B212C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m */; };
+		17FCD78112C403120081D5EA /* RestaurantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17FCD78012C403120081D5EA /* RestaurantTableViewCell.xib */; };
 		1D3623260D0F684500981E51 /* TopDishAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* TopDishAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -86,6 +94,8 @@
 		179B88D112A3716A00730FAC /* TopDish 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TopDish 2.xcdatamodel"; sourceTree = "<group>"; };
 		179B88D412A3719500730FAC /* ObjectWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectWithImage.h; sourceTree = "<group>"; };
 		179B88D512A3719500730FAC /* ObjectWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectWithImage.m; sourceTree = "<group>"; };
+		17AE7F6412D9AE74007B96EC /* SignInSignUpBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInSignUpBaseViewController.h; sourceTree = "<group>"; };
+		17AE7F6512D9AE74007B96EC /* SignInSignUpBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInSignUpBaseViewController.m; sourceTree = "<group>"; };
 		17B48AE212A033C200F43202 /* RestaurantDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDetailViewController.h; sourceTree = "<group>"; };
 		17B48AE312A033C200F43202 /* RestaurantDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantDetailViewController.m; sourceTree = "<group>"; };
 		17B48AE412A033C200F43202 /* RestaurantDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantDetailView.xib; sourceTree = "<group>"; };
@@ -123,9 +133,20 @@
 		17DE005112B43B01001F6907 /* RateDishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RateDishViewController.h; sourceTree = "<group>"; };
 		17DE005212B43B01001F6907 /* RateDishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RateDishViewController.m; sourceTree = "<group>"; };
 		17DE005312B43B01001F6907 /* RateDishViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateDishViewController.xib; sourceTree = "<group>"; };
-		17FCD5B112C2F1CC0081D5EA /* RestaurantListTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListTableView.h; sourceTree = "<group>"; };
-		17FCD5B212C2F1CC0081D5EA /* RestaurantListTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantListTableView.m; sourceTree = "<group>"; };
-		17FCD5B312C2F1CC0081D5EA /* RestaurantListTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantListTableView.xib; sourceTree = "<group>"; };
+		17EEB69712D9A2550032E12B /* AccountSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountSettingsViewController.m; path = ../AccountSettingsViewController.m; sourceTree = "<group>"; };
+		17EEB69812D9A2550032E12B /* AccountSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountSettingsViewController.h; path = ../AccountSettingsViewController.h; sourceTree = "<group>"; };
+		17EEB6AD12D9A3160032E12B /* SignInSignUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInSignUp.xib; sourceTree = "<group>"; };
+		17EEB6B112D9A3560032E12B /* SignInSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignInSignUpViewController.h; path = ../SignInSignUpViewController.h; sourceTree = "<group>"; };
+		17EEB6B212D9A3560032E12B /* SignInSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignInSignUpViewController.m; path = ../SignInSignUpViewController.m; sourceTree = "<group>"; };
+		17EEB74612D9A8AD0032E12B /* SignIn.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignIn.xib; sourceTree = "<group>"; };
+		17EEB74A12D9A9260032E12B /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignInViewController.h; path = ../SignInViewController.h; sourceTree = "<group>"; };
+		17EEB74B12D9A9260032E12B /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignInViewController.m; path = ../SignInViewController.m; sourceTree = "<group>"; };
+		17EEB74F12D9A9550032E12B /* SignUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUp.xib; sourceTree = "<group>"; };
+		17EEB75912D9AA010032E12B /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpViewController.h; path = ../SignUpViewController.h; sourceTree = "<group>"; };
+		17EEB75A12D9AA010032E12B /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpViewController.m; path = ../SignUpViewController.m; sourceTree = "<group>"; };
+		17FCD5B112C2F1CC0081D5EA /* RestaurantListTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListTableViewDelegate.h; sourceTree = "<group>"; };
+		17FCD5B212C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantListTableViewDelegate.m; sourceTree = "<group>"; };
+		17FCD78012C403120081D5EA /* RestaurantTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RestaurantTableViewCell.xib; path = ../RestaurantTableViewCell.xib; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* TopDishAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopDishAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* TopDishAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopDishAppDelegate.m; sourceTree = "<group>"; };
@@ -286,6 +307,42 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		17EEB69D12D9A2720032E12B /* AccountSettings */ = {
+			isa = PBXGroup;
+			children = (
+				17EEB74E12D9A9470032E12B /* SignUp */,
+				17EEB74D12D9A93A0032E12B /* SignIn */,
+				17EEB69812D9A2550032E12B /* AccountSettingsViewController.h */,
+				17EEB69712D9A2550032E12B /* AccountSettingsViewController.m */,
+				17AE7F6412D9AE74007B96EC /* SignInSignUpBaseViewController.h */,
+				17AE7F6512D9AE74007B96EC /* SignInSignUpBaseViewController.m */,
+				17EEB6B112D9A3560032E12B /* SignInSignUpViewController.h */,
+				17EEB6B212D9A3560032E12B /* SignInSignUpViewController.m */,
+				17EEB6AD12D9A3160032E12B /* SignInSignUp.xib */,
+			);
+			name = AccountSettings;
+			sourceTree = "<group>";
+		};
+		17EEB74D12D9A93A0032E12B /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				17EEB74612D9A8AD0032E12B /* SignIn.xib */,
+				17EEB74A12D9A9260032E12B /* SignInViewController.h */,
+				17EEB74B12D9A9260032E12B /* SignInViewController.m */,
+			);
+			name = SignIn;
+			sourceTree = "<group>";
+		};
+		17EEB74E12D9A9470032E12B /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				17EEB74F12D9A9550032E12B /* SignUp.xib */,
+				17EEB75912D9AA010032E12B /* SignUpViewController.h */,
+				17EEB75A12D9AA010032E12B /* SignUpViewController.m */,
+			);
+			name = SignUp;
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -399,6 +456,7 @@
 		5F89F594125C4A0B00959D05 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				17EEB69D12D9A2720032E12B /* AccountSettings */,
 				17DE013912B43EEB001F6907 /* RateDishView */,
 				179443F512A5FFE2008EE034 /* SubmitADish */,
 				17B48AD512A0337700F43202 /* RestaurantDetailView */,
@@ -423,9 +481,9 @@
 			children = (
 				179B854012A0727F00730FAC /* BaseDishTableViewer.h */,
 				179B854112A0727F00730FAC /* BaseDishTableViewer.m */,
-				17FCD5B112C2F1CC0081D5EA /* RestaurantListTableView.h */,
-				17FCD5B212C2F1CC0081D5EA /* RestaurantListTableView.m */,
-				17FCD5B312C2F1CC0081D5EA /* RestaurantListTableView.xib */,
+				17FCD78012C403120081D5EA /* RestaurantTableViewCell.xib */,
+				17FCD5B112C2F1CC0081D5EA /* RestaurantListTableViewDelegate.h */,
+				17FCD5B212C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m */,
 				5F92A9A0126D4A41007D2451 /* MyCLController.h */,
 				5F92A9A1126D4A41007D2451 /* MyCLController.m */,
 				5F89F15C1259501800959D05 /* DishTableViewCell.xib */,
@@ -524,7 +582,10 @@
 				1794422112A5B195008EE034 /* DetailButtonImage.png in Resources */,
 				17DE005512B43B01001F6907 /* RateDishViewController.xib in Resources */,
 				17DD27F212BDEB6C0048C1A1 /* AddNewDishViewController.xib in Resources */,
-				17FCD5B512C2F1CC0081D5EA /* RestaurantListTableView.xib in Resources */,
+				17FCD78112C403120081D5EA /* RestaurantTableViewCell.xib in Resources */,
+				17EEB6AE12D9A3160032E12B /* SignInSignUp.xib in Resources */,
+				17EEB74712D9A8AD0032E12B /* SignIn.xib in Resources */,
+				17EEB75012D9A9550032E12B /* SignUp.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,7 +632,12 @@
 				17DD270412BDBCE80048C1A1 /* Reachability.m in Sources */,
 				17DD271C12BDBDEE0048C1A1 /* ASIInputStream.m in Sources */,
 				17DD27F112BDEB6C0048C1A1 /* AddNewDishViewController.m in Sources */,
-				17FCD5B412C2F1CC0081D5EA /* RestaurantListTableView.m in Sources */,
+				17FCD5B412C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m in Sources */,
+				17EEB69912D9A2550032E12B /* AccountSettingsViewController.m in Sources */,
+				17EEB6B312D9A3560032E12B /* SignInSignUpViewController.m in Sources */,
+				17EEB74C12D9A9260032E12B /* SignInViewController.m in Sources */,
+				17EEB75B12D9AA010032E12B /* SignUpViewController.m in Sources */,
+				17AE7F6612D9AE74007B96EC /* SignInSignUpBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

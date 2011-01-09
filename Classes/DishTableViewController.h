@@ -10,9 +10,10 @@
 #import <CoreData/CoreData.h>
 #import "MyCLController.h"
 #import "BaseDishTableViewer.h"
-#import "RestaurantListTableView.h"
+#import "RestaurantListTableViewDelegate.h"
 
 @interface DishTableViewController : BaseDishTableViewer <MyCLControllerDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate> {
+	//NSString *mEntityTypeString;
 	MyCLController *locationController;
 	NSString *currentLat;
 	NSString *currentLon;
@@ -24,11 +25,10 @@
 	IBOutlet UISearchBar *theSearchBar;
 
 	UIImageView *bgImage;
-    UITableView *theTableView;
 
 	UISegmentedControl *dishRestoSelector;
 	
-	RestaurantListTableView *mrltv;
+	RestaurantListTableViewDelegate *mrltv;
 	
 }
 
@@ -37,7 +37,8 @@
 - (void)getNearbyItems:(CLLocation *)location;
 - (NSArray *) getArrayOfIdsWithArray:(NSArray *)responseAsArray withKey:(NSString*) key;
 
-@property (nonatomic, retain) RestaurantListTableView *rltv;
+//@property (nonatomic, retain) NSString *entityTypeString;
+@property (nonatomic, retain) RestaurantListTableViewDelegate *rltv;
 
 @property (nonatomic, retain) NSMutableDictionary *settingsDict;
 @property (nonatomic, retain) NSString *currentSearchTerm;
@@ -46,7 +47,6 @@
 @property (nonatomic, retain) UISegmentedControl *dishRestoSelector;
 @property (nonatomic, retain) IBOutlet UIImageView *bgImage;
 
-@property (nonatomic, retain) IBOutlet UITableView *theTableView;
 @property (nonatomic, retain) IBOutlet UISearchBar *theSearchBar;
 @property (nonatomic, retain) IBOutlet UIView *searchHeader;
 

@@ -15,6 +15,7 @@
 
 @implementation RestaurantDetailViewController
 @synthesize restaurant;
+//@synthesize entityTypeString = mEntityTypeString;
 //@synthesize managedObjectContext = mManagedObjectContext;
 
 #pragma mark -
@@ -52,20 +53,23 @@
 #pragma mark -
 #pragma mark fetch handling
 -(void)decorateFetchRequest:(NSFetchRequest *)request{
+	//NSLog(@"restaurant.restaurant_id = %@", [[restaurant restaurant_id] intValue]);
 	[request setPredicate: [NSPredicate predicateWithFormat: @"(restaurant.restaurant_id = %@)", [restaurant restaurant_id]]];
+	//[request setPredicate: [NSPredicate predicateWithFormat: @"Restaurant.restaurant_id < %@", [restaurant restaurant_id]]];
 }
 
 #pragma mark -
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
+	self.entityTypeString = @"Dish";
     [super viewDidLoad];
+	NSLog(@"header %@", restaurantHeader);
 	[self.tableView setTableHeaderView:restaurantHeader];
 	[self networkQuery:[NSString stringWithFormat:@"%@/api/RestaurantDetail?id[]=%@", NETWORKHOST, [restaurant restaurant_id]]];
 	[restaurantName setText:[restaurant objName]];
 	[restaurantPhone setText:[restaurant phone]];
 	[restaurantAddress setText:[restaurant addressLine1]];
-	 
 	AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[restaurantImage frame]];
 	asyncImage.tag = 999;
 	if( [[restaurant photoURL] length] > 0 ){
@@ -105,7 +109,9 @@
 		
 	}	
 	else{
-		[self pushDishViewControllerAtIndexPath:indexPath];
+		[self pushDishViewController:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+
+//		[self pushDishViewControllerAtIndexPath:indexPath];
 	}
 }
 

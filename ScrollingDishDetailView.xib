@@ -50,7 +50,7 @@
 							<object class="IBUIImageView" id="388689095">
 								<reference key="NSNextResponder" ref="566543393"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{20, 89}, {280, 280}}</string>
+								<string key="NSFrame">{{20, 89}, {280, 210}}</string>
 								<reference key="NSSuperview" ref="566543393"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
@@ -172,7 +172,7 @@
 							<object class="IBUILabel" id="587949949">
 								<reference key="NSNextResponder" ref="566543393"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 377}, {280, 48}}</string>
+								<string key="NSFrame">{{19, 307}, {280, 48}}</string>
 								<reference key="NSSuperview" ref="566543393"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -434,6 +434,7 @@
 					<string>19.IBViewBoundsToFrameTransform</string>
 					<string>3.IBPluginDependency</string>
 					<string>3.IBUserGuides</string>
+					<string>3.IBViewBoundsToFrameTransform</string>
 					<string>37.IBPluginDependency</string>
 					<string>37.IBViewBoundsToFrameTransform</string>
 					<string>4.IBPluginDependency</string>
@@ -466,7 +467,7 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABBoAAAw84AAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABBoAAAw70AAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -474,6 +475,9 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<reference ref="0"/>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAAAAAAAAxFaAAA</bytes>
+					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABC/gAAw8SAAA</bytes>

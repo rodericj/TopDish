@@ -190,7 +190,7 @@
 
 -(IBAction) pushRateViewController{
 	RateDishViewController *rateDish = [[RateDishViewController alloc] init];
-	[rateDish setDish:self.dish];
+	[rateDish setDish:self.dish]; 
 	[self.navigationController pushViewController:rateDish animated:YES];
 	[rateDish release];
 }

@@ -11,6 +11,7 @@
 #import "BaseDishTableViewer.h"
 
 @interface RestaurantDetailViewController : BaseDishTableViewer {
+	//NSString					*mEntityTypeString;
 
 	Restaurant *restaurant;
 	
@@ -22,6 +23,8 @@
 	//NSManagedObjectContext *mManagedObjectContext;
 
 }
+//@property (nonatomic, retain) NSString *entityTypeString;
+
 @property (nonatomic, retain) Restaurant *restaurant;
 //@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 

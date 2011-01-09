@@ -9,8 +9,9 @@
 #import "BaseDishTableViewer.h"
 #import "constants.h"
 #import "Dish.h"
+#import "Restaurant.h"
 #import "asyncimageview.h"
-#import "ScrollingDishDetailViewController.h"
+#import "RestaurantDetailViewController.h"
 #import "AddNewDishViewController.h"
 #import "CommentsTableViewController.h"
 
@@ -20,6 +21,7 @@
 @synthesize fetchedResultsController=fetchedResultsController_, managedObjectContext=managedObjectContext_;
 @synthesize _responseData;
 @synthesize addItemCell = mAddItemCell;
+@synthesize entityTypeString = mEntityTypeString;
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	return DISHLISTCELLHEIGHT;
@@ -29,7 +31,6 @@
 #pragma mark Fetched results controller
 
 - (NSFetchedResultsController *)fetchedResultsController {
-    
     if (fetchedResultsController_ != nil) {
         return fetchedResultsController_;
     }
@@ -40,14 +41,20 @@
     // Create the fetch request for the entity.
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish" inManagedObjectContext:self.managedObjectContext];
+	NSLog(@"entity type string %@ and Managed Object Context = %@", self.entityTypeString, self.managedObjectContext);
+    NSEntityDescription *entity = [NSEntityDescription entityForName:self.entityTypeString inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
+	
     [self decorateFetchRequest:fetchRequest];
+	
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"posReviews" ascending:NO];
+	
+	// taken out so we can show the restaurant table results
+    //NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"posReviews" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"objName" ascending:NO];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -86,7 +93,6 @@
 #pragma mark table view
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
-	//return [[self.fetchedResultsController sections] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -94,6 +100,7 @@
 	if (sectionInfo == nil){
 		return 0;
 	}
+	NSLog(@"section info objects %@", [sectionInfo objects]);
 	return [sectionInfo numberOfObjects];
 }
 
@@ -178,22 +185,38 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	//TODO RESTODISH SWITCH - The drilldown for restaurants and dishes are different in the detailviewcontroller
-	NSLog(@"indexPath %@", indexPath);
-	[self pushDishViewControllerAtIndexPath:indexPath];
-}
 
 #pragma mark -
 #pragma mark other stuff
-
--(void) pushDishViewControllerAtIndexPath:(NSIndexPath *) indexPath{
-	Dish *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-	NSLog(@"DishName from DishTableViewController %@", [selectedObject objName]);
+-(void) pushRestaurantViewController:(ObjectWithImage *) selectedObject{
 	
-	//ScrollingDishDetailViewController *detailViewController = [[ScrollingDishDetailViewController alloc] initWithNibName:@"ScrollingDishDetailView" bundle:nil];
-	CommentsTableViewController *detailViewController = [[CommentsTableViewController alloc] init];//WithNibName:@"CommentsTableViewController" bundle:nil];
-	[detailViewController setDish:selectedObject];
+	NSLog(@"goToRestaurantDetailView");
+	RestaurantDetailViewController *detailViewController = [[RestaurantDetailViewController alloc] initWithNibName:@"RestaurantDetailView" bundle:nil];
+	[detailViewController setRestaurant:(Restaurant *)selectedObject];
+	[detailViewController setManagedObjectContext:self.managedObjectContext];
+	[self.navigationController pushViewController:detailViewController animated:YES];
+	[detailViewController setTitle:[(Restaurant *)selectedObject objName]];
+	[detailViewController release];
+	
+	
+	
+	//NSLog(@"RestaurantName from RestaurantTableViewController %@", [selectedObject objName]);
+//	self.entityTypeString = @"Restaurant";
+//	RestaurantDetailViewController *detailViewController = [[RestaurantDetailViewController alloc] init];
+//	[detailViewController setRestaurant:(Restaurant*)selectedObject];
+//	[detailViewController setManagedObjectContext:self.managedObjectContext];
+//	
+//	[self.navigationController pushViewController:detailViewController animated:YES];
+//	[detailViewController setTitle:[selectedObject objName]];
+//	[detailViewController release];
+	
+}
+-(void) pushDishViewController:(ObjectWithImage *) selectedObject{
+	NSLog(@"DishName from DishTableViewController %@", [selectedObject objName]);
+	//self.entityTypeString = @"Dish";
+
+	CommentsTableViewController *detailViewController = [[CommentsTableViewController alloc] init];	
+	[detailViewController setDish:(Dish*)selectedObject];
 	[detailViewController setManagedObjectContext:self.managedObjectContext];
 	
 	[self.navigationController pushViewController:detailViewController animated:YES];
@@ -206,12 +229,13 @@
 #pragma mark network connection stuff
 -(void)processIncomingNetworkText:(NSString *)responseText{
 	//Noop
+	NSAssert(YES, @"assert, should have overridden processIncomingNetworkText");
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
 	NSLog(@"connection did finish loading");
 	NSString *responseText = [[NSString alloc] initWithData:_responseData encoding:NSASCIIStringEncoding];
-	//NSLog(@"response text before replacing %@", responseText);
+	NSLog(@"response text before replacing %@", responseText);
 	
 	
 	responseText = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];

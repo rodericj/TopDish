@@ -24,7 +24,6 @@
 
 @synthesize bgImage;
 @synthesize theSearchBar;
-@synthesize theTableView;
 @synthesize dishRestoSelector;
 @synthesize currentLat;
 @synthesize currentLon;
@@ -32,14 +31,9 @@
 @synthesize settingsDict;
 @synthesize searchHeader;
 @synthesize rltv = mrltv;
-
+//@synthesize entityTypeString = mEntityTypeString;
 #pragma mark -
 #pragma mark View lifecycle
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSLog(@"adding this didSelect");
-	[theSearchBar resignFirstResponder];
-	[super tableView:tableView didSelectRowAtIndexPath:indexPath];
-}
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
 	[searchBar resignFirstResponder];
 }
@@ -48,8 +42,13 @@
 }	
 
 - (void)viewDidLoad {
+	self.entityTypeString = @"Dish";
+
     [super viewDidLoad];
 	[self.tableView setTableHeaderView:searchHeader];
+	self.tableView.delegate = self;
+	
+	
 	[theSearchBar setPlaceholder:@"Search Dishes"];
 	[theSearchBar setShowsCancelButton:YES];
 	[theSearchBar setDelegate:self];
@@ -90,7 +89,6 @@
 	dishRestoSelector.segmentedControlStyle = UISegmentedControlStyleBar;
 	dishRestoSelector.selectedSegmentIndex = 0;	
 
-	//TODO Commented out so we don't show the selector. Add in when restaurant's are ready
 	self.navigationItem.titleView = dishRestoSelector;
 	
 	[dishRestoSelector addTarget:self 
@@ -98,7 +96,7 @@
 			   forControlEvents:UIControlEventValueChanged];
 	
 	
-	[theTableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tdlogo.png"]]];
+	[self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tdlogo.png"]]];
 	
 }
 
@@ -120,6 +118,8 @@
 	NSLog(@"Segmentedcontrol changed");
 	if([dishRestoSelector selectedSegmentIndex] == 0){
 		NSLog(@"we are switching to dishes %@ %@", currentLat, currentLon);
+		self.fetchedResultsController = nil;
+		self.entityTypeString = @"Dish";
 		if (currentSearchTerm != nil) {
 			[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=200000000&limit=2&q=%@", NETWORKHOST, currentLat, currentLon, [currentSearchTerm lowercaseString]]];
 			
@@ -127,20 +127,19 @@
 		else
 			[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=200000000&limit=2", NETWORKHOST, currentLat, currentLon]];
 		
-		[self.tableView setDelegate:self];
 		[self.tableView setDataSource:self];
-
-
 	}
 	else if([dishRestoSelector selectedSegmentIndex] == 1){
 		NSLog(@"we are switching to restaurants %@ %@", currentLat, currentLon);
 		NSLog(@"rltv is %@", self.rltv);
-		if(!self.rltv)
-			self.rltv = [[RestaurantListTableView alloc] init];
-		[self.tableView setDelegate:self.rltv];
+		if(!self.rltv){
+			self.rltv = [[RestaurantListTableViewDelegate alloc] init];
+			[self.rltv setEntityTypeString:@"Restaurant"];
+			[self.rltv setManagedObjectContext:self.managedObjectContext];
+		}
+		
 		[self.tableView setDataSource:self.rltv];
 		//[self networkQuery:[NSString stringWithFormat:@"%@/api/restaurantSearch?lat=%@&lng=%@&distance=20000", NETWORKHOST, currentLat, currentLon]];
-
 	}
 	else {
 		NSLog(@"Wait...what did we just switch to?");
@@ -208,9 +207,8 @@
 				return (NSComparisonResult)NSOrderedAscending;
 			}
 			return (NSComparisonResult)NSOrderedSame;
-		}];
+		}];   
 		
-		//TODO release dishIds and restaurantIds
 		NSArray *dishIds = [self getArrayOfIdsWithArray:responseAsArray withKey:@"id"];
 		NSArray *restaurantIds = [self getArrayOfIdsWithArray:responseAsArray withKey:@"restaurantID"];
 		
@@ -248,7 +246,7 @@
 		
 		int existingDishCounter = 0;
 		int existingRestoCounter = 0;
-		for (int incomingCounter =0; incomingCounter < [sortedDishes count]; incomingCounter++){
+		for (int incomingCounter = 0; incomingCounter < [sortedDishes count]; incomingCounter++){
 			NSDictionary *newElement = [sortedDishes objectAtIndex:incomingCounter];
 			Dish *existingDish; 
 			Restaurant *thisRestaurant; 
@@ -259,14 +257,17 @@
 				existingDish = [dishesMatchingId objectAtIndex:existingDishCounter];
 			}			
 			
-			
+			//if the element we are looking at is not the current existing dish then we need to create a new one
 			if([[newElement objectForKey:@"id"] intValue] != [[existingDish dish_id] intValue]){
+				//We've never seen this dish
 				NSDictionary *thisElement = [sortedDishes objectAtIndex:incomingCounter];
 				Dish *thisDish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" 
 																	   inManagedObjectContext:self.managedObjectContext];
+				
 				if (existingRestoCounter >= [restaurantsMatchingId count]){
 					thisRestaurant = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" 
 																				 inManagedObjectContext:self.managedObjectContext];
+					NSLog(@"adding %@", [thisElement objectForKey:@"restaurantID"]);
 					NSNumber *restaurant_id = [thisElement objectForKey:@"restaurantID"];
 					
 					[thisRestaurant setRestaurant_id:restaurant_id];
@@ -368,7 +369,9 @@
     // Create the fetch request for the entity.
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish" inManagedObjectContext:self.managedObjectContext];
+	NSLog(@"entity type string %@", self.entityTypeString);
+
+    NSEntityDescription *entity = [NSEntityDescription entityForName:self.entityTypeString inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
 	NSPredicate *filterPredicate;
@@ -466,16 +469,33 @@
 	[self updateFetch];
 }
 
-
 #pragma mark -
 #pragma mark Table view data source
-
-
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // The table view should not be re-orderable.
     return NO;
 }
  
+#pragma mark -
+#pragma mark Table view data delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSLog(@"adding this didSelect");
+	[theSearchBar resignFirstResponder];
+	ObjectWithImage *selectedObject;
+	self.fetchedResultsController = nil;
+
+	if([dishRestoSelector selectedSegmentIndex] == 0){
+		self.entityTypeString = @"Dish";
+		selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+		[self pushDishViewController:selectedObject];
+	}
+	else {
+		self.entityTypeString = @"Restaurant";
+		selectedObject = [[self.rltv fetchedResultsController] objectAtIndexPath:indexPath];
+		[self pushRestaurantViewController:selectedObject];
+	}
+	//[super tableView:tableView didSelectRowAtIndexPath:indexPath];
+}
 
 #pragma mark -
 #pragma mark Location
