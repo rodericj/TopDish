@@ -5,10 +5,11 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "AccountSettingsViewController.h"
+#import "LoggedInLoggedOutGate.h"
 #import "SignInSignUpViewController.h"
+#import "AccountView.h"
 
-@implementation AccountSettingsViewController
+@implementation LoggedInLoggedOutGate
 
 -(BOOL)isLoggedIn
 {
@@ -18,13 +19,16 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	
-	if ([self isLoggedIn]) {
+	NSLog(@"setting the view for logged in logged out");
 
+	if ([self isLoggedIn]) {
+		AccountView *accountView = [[AccountView alloc] initWithNibName:@"AccountView" bundle:nil];
+		[self.navigationController setViewControllers:[NSArray arrayWithObject:accountView]];
+		[accountView release];
 	}
 	else {
 		SignInSignUpViewController *signInSignUp = [[SignInSignUpViewController alloc] initWithNibName:@"SignInSignUp" bundle:nil];
-		[self.navigationController pushViewController:signInSignUp animated:YES];
+		[self.navigationController setViewControllers:[NSArray arrayWithObject:signInSignUp]];
 		[signInSignUp release];
 	}
 

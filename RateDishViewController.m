@@ -102,7 +102,9 @@
 	
 	// Use when fetching binary data
 	NSData *responseData = [request responseData];
-	NSLog(@"response string %@ \n and data %@\n %@", responseString, responseData, request);
+	NSString *responseText = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
+
+	NSLog(@"response string %@ \n and data %@\n \nand of course %@", responseString, responseData, responseText);
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
