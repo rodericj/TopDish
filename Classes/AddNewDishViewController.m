@@ -116,8 +116,9 @@
 		[request setPostValue:@"hardcoded iPhone description" forKey:@"description"];
 		[request setPostValue:[NSString stringWithFormat:@"%@", [self.restaurant restaurant_id]] forKey:@"restaurantId"];		
 		[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-		//[request setData:UIImagePNGRepresentation(self.dishImageFromPicker.image) forKey:@"photo"];
-		
+		[request setPostValue:self.selectedPrice forKey:@"price"];
+		[request setPostValue:self.selectedMealType	forKey:@"mealType"];
+				
 		// Upload an NSData instance
 		[request setDelegate:self];
 		[request startAsynchronous];

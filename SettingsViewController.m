@@ -48,9 +48,11 @@
 	}
 	[self updateSymbols];
 }
+
 -(IBAction) cancelSettings{
 	[self dismissModalViewControllerAnimated:TRUE]; 
 }
+
 -(IBAction) closeSettings{
 	[self dismissModalViewControllerAnimated:TRUE]; 
 

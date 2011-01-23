@@ -153,12 +153,12 @@
 
 	UILabel *upVotes;
 	upVotes = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_UPVOTES_TAG];
-	upVotes.text = [NSString stringWithFormat:@"%@", 
+	upVotes.text = [NSString stringWithFormat:@"+%@", 
 					[thisDish posReviews]];
 	
 	UILabel *downVotes;
 	downVotes = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_DOWNVOTES_TAG];
-	downVotes.text = [NSString stringWithFormat:@"%@", 
+	downVotes.text = [NSString stringWithFormat:@"-%@", 
 					  [thisDish negReviews]];
 	
 	UILabel *priceNumber;

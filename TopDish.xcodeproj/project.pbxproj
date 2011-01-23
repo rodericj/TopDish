@@ -90,8 +90,8 @@
 		176A9EE912E2649600CC595C /* AppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppModel.h; sourceTree = "<group>"; };
 		176A9EEA12E2649600CC595C /* AppModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppModel.m; sourceTree = "<group>"; };
 		1794422012A5B195008EE034 /* DetailButtonImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DetailButtonImage.png; sourceTree = "<group>"; };
-		179443FD12A60199008EE034 /* ImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerViewController.h; sourceTree = "<group>"; };
-		179443FE12A60199008EE034 /* ImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerViewController.m; sourceTree = "<group>"; };
+		179443FD12A60199008EE034 /* ImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImagePickerViewController.h; path = Classes/ImagePickerViewController.h; sourceTree = "<group>"; };
+		179443FE12A60199008EE034 /* ImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImagePickerViewController.m; path = Classes/ImagePickerViewController.m; sourceTree = "<group>"; };
 		179B854012A0727F00730FAC /* BaseDishTableViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseDishTableViewer.h; path = ../BaseDishTableViewer.h; sourceTree = "<group>"; };
 		179B854112A0727F00730FAC /* BaseDishTableViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseDishTableViewer.m; path = ../BaseDishTableViewer.m; sourceTree = "<group>"; };
 		179B878C12A310E200730FAC /* Restaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
@@ -325,6 +325,8 @@
 		17DE013912B43EEB001F6907 /* RateDishView */ = {
 			isa = PBXGroup;
 			children = (
+				179443FD12A60199008EE034 /* ImagePickerViewController.h */,
+				179443FE12A60199008EE034 /* ImagePickerViewController.m */,
 				17FA55C312EBFBBF00902FEE /* DishOptionPickerTableViewController.h */,
 				17FA55C412EBFBBF00902FEE /* DishOptionPickerTableViewController.m */,
 				17DD27EE12BDEB6C0048C1A1 /* AddNewDishViewController.h */,
@@ -484,8 +486,6 @@
 			children = (
 				17EEB69D12D9A2720032E12B /* AccountSettings */,
 				17DE013912B43EEB001F6907 /* RateDishView */,
-				179443FD12A60199008EE034 /* ImagePickerViewController.h */,
-				179443FE12A60199008EE034 /* ImagePickerViewController.m */,
 				17B48AD512A0337700F43202 /* RestaurantDetailView */,
 				5F08956912641F0000EDE197 /* SettingsView */,
 				5FBB975E1262423C00141693 /* DishDetailView */,
