@@ -14,6 +14,7 @@
 #import "AppModel.h"
 #import "constants.h"
 #import "ASIFormDataRequest.h"
+#import "DishOptionPickerTableViewController.h"
 
 @implementation AddNewDishViewController
 @synthesize dishNameTextField = mDishNameTextField;
@@ -24,6 +25,15 @@
 @synthesize dishImageFromPicker = mDishImageFromPicker;
 @synthesize hasPicture = mHasPicture;
 @synthesize dishId = mDishId;
+@synthesize mealTypePickerButton = mMealTypePickerButton;
+@synthesize pricePickerButton = mPricePickerButton;
+@synthesize pickerView = mPickerView;
+@synthesize pickerArray = mPickerArray;
+@synthesize selectedPrice = mSelectedPrice;
+@synthesize selectedMealType = mSelectedMealType;
+
+@synthesize priceLabel = mPriceLabel;
+@synthesize mealTypeLabel = mMealLabel;
 
 -(void)viewDidLoad{
 	self.restaurantNameLabel.text = [self.restaurant objName];
@@ -50,6 +60,9 @@
 			[imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
 			[imagePicker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModePhoto];
 			[imagePicker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
+			
+			[imagePicker setCameraOverlayView:[UIButton buttonWithType:UIButtonTypeRoundedRect]];
+			
 		}
 		else {
 			[imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
@@ -62,7 +75,28 @@
 		//For previously-saved media, your delegate can then use the image data according to the 
 		//purpose of your app.
 	}
-	
+	if (self.selectedMealType) 
+		self.mealTypeLabel.text = self.selectedMealType;
+	if(self.selectedPrice)
+		self.priceLabel.text = self.selectedPrice;
+}
+
+-(IBAction)pickPrice {
+	NSLog(@"pick a price");
+	DishOptionPickerTableViewController *d = [[DishOptionPickerTableViewController alloc] init];
+	[d setOptionValues:[NSArray arrayWithObjects:@"$", @"$$", @"$$$", nil]];
+	[d setOptionType:kPriceType];
+	[self.navigationController pushViewController:d animated:YES];
+	[d release];
+}
+
+-(IBAction)pickMealType {
+	NSLog(@"show meal type picker");
+	DishOptionPickerTableViewController *d = [[DishOptionPickerTableViewController alloc] init];
+	[d setOptionValues:[NSArray arrayWithObjects:@"Breakfast", @"Lunch", @"Dinner", nil]];
+	[d setOptionType:kMealType];
+	[self.navigationController pushViewController:d animated:YES];
+	[d release];
 }
 
 -(IBAction)addDish {
@@ -96,12 +130,6 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-	
-	//First time through we need to send the image 
-	
-	// Use when fetching text data
-	//NSString *responseString = [request responseString];
-	
 	// Use when fetching binary data
 	NSString *responseText = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
 	
@@ -119,19 +147,18 @@
 	[thisDish setLongitude:[[thisDish restaurant] longitude]];
 	
 	//self.dish = thisDish;
-
+	
 	//Push the RateDishViewController
 	RateDishViewController *rateDish = [[RateDishViewController alloc] init];
 	[rateDish setDish:thisDish];
 	[thisDish setImageData:UIImagePNGRepresentation([self.dishImageFromPicker image])];
 	[self.navigationController pushViewController:rateDish animated:YES];
-
+	
 	[rateDish release];
 	[thisDish release];
-
 	
 	//Now let's send the picture
-	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/uploadPhoto"]];
+	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
 	NSLog(@"submitting the image %@", [url absoluteURL]);
 	ASIFormDataRequest *newImageRequest = [ASIFormDataRequest requestWithURL:url];
 	[newImageRequest setDidFinishSelector:@selector(imageSubmissionSuccess:)];
@@ -163,16 +190,16 @@
 }
 
 - (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc. that aren't in use.
+	// Releases the view if it doesn't have a superview.
+	[super didReceiveMemoryWarning];
+	
+	// Release any cached data, images, etc. that aren't in use.
 }
 
 - (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+	[super viewDidUnload];
+	// Release any retained subviews of the main view.
+	// e.g. self.myOutlet = nil;
 }
 
 #pragma mark -
@@ -196,7 +223,7 @@
 	self.restaurant = nil;
 	self.dishNameTextField = nil;
 	self.restaurantNameLabel = nil;
-    [super dealloc];
+	[super dealloc];
 }
 
 

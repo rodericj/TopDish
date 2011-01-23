@@ -46,6 +46,7 @@
 		17EEB74C12D9A9260032E12B /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EEB74B12D9A9260032E12B /* SignInViewController.m */; };
 		17EEB75012D9A9550032E12B /* SignUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17EEB74F12D9A9550032E12B /* SignUp.xib */; };
 		17EEB75B12D9AA010032E12B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EEB75A12D9AA010032E12B /* SignUpViewController.m */; };
+		17FA55C512EBFBBF00902FEE /* DishOptionPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FA55C412EBFBBF00902FEE /* DishOptionPickerTableViewController.m */; };
 		17FCD5B412C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FCD5B212C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m */; };
 		17FCD78112C403120081D5EA /* RestaurantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17FCD78012C403120081D5EA /* RestaurantTableViewCell.xib */; };
 		1D3623260D0F684500981E51 /* TopDishAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* TopDishAppDelegate.m */; };
@@ -154,6 +155,8 @@
 		17EEB74F12D9A9550032E12B /* SignUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUp.xib; sourceTree = "<group>"; };
 		17EEB75912D9AA010032E12B /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpViewController.h; path = ../SignUpViewController.h; sourceTree = "<group>"; };
 		17EEB75A12D9AA010032E12B /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpViewController.m; path = ../SignUpViewController.m; sourceTree = "<group>"; };
+		17FA55C312EBFBBF00902FEE /* DishOptionPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishOptionPickerTableViewController.h; sourceTree = "<group>"; };
+		17FA55C412EBFBBF00902FEE /* DishOptionPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishOptionPickerTableViewController.m; sourceTree = "<group>"; };
 		17FCD5B112C2F1CC0081D5EA /* RestaurantListTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListTableViewDelegate.h; sourceTree = "<group>"; };
 		17FCD5B212C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantListTableViewDelegate.m; sourceTree = "<group>"; };
 		17FCD78012C403120081D5EA /* RestaurantTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RestaurantTableViewCell.xib; path = ../RestaurantTableViewCell.xib; sourceTree = "<group>"; };
@@ -322,6 +325,8 @@
 		17DE013912B43EEB001F6907 /* RateDishView */ = {
 			isa = PBXGroup;
 			children = (
+				17FA55C312EBFBBF00902FEE /* DishOptionPickerTableViewController.h */,
+				17FA55C412EBFBBF00902FEE /* DishOptionPickerTableViewController.m */,
 				17DD27EE12BDEB6C0048C1A1 /* AddNewDishViewController.h */,
 				17DD27EF12BDEB6C0048C1A1 /* AddNewDishViewController.m */,
 				17DD27F012BDEB6C0048C1A1 /* AddNewDishViewController.xib */,
@@ -664,6 +669,7 @@
 				17AE80B912DA7231007B96EC /* AccountView.m in Sources */,
 				176A9E6812E2618900CC595C /* User.m in Sources */,
 				176A9EEB12E2649600CC595C /* AppModel.m in Sources */,
+				17FA55C512EBFBBF00902FEE /* DishOptionPickerTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

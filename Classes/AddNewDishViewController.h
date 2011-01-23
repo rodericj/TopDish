@@ -17,8 +17,26 @@
 	UIImageView *mDishImageFromPicker;
 	BOOL mHasPicture;
 	int mDishId;
+	UIButton *mMealTypePickerButton;
+	UIButton *mPricePickerButton;
+	UIPickerView *mPickerView;
+	NSArray *mPickerArray;
+	NSString *mSelectedPrice;
+	NSString *mSelectedMealType;
+	UILabel *mMealTypeLabel;
+	UILabel *mPriceLabel;
 }
 
+@property (nonatomic, retain) IBOutlet UILabel *mealTypeLabel;
+@property (nonatomic, retain) IBOutlet UILabel *priceLabel;
+
+
+@property (nonatomic, retain) NSString *selectedMealType;
+@property (nonatomic, retain) NSString *selectedPrice;
+@property (nonatomic, retain) NSArray *pickerArray;
+@property (nonatomic, retain) UIPickerView *pickerView;
+@property (nonatomic, retain) UIButton *mealTypePickerButton;
+@property (nonatomic, retain) UIButton *pricePickerButton;
 @property (nonatomic, assign) BOOL hasPicture;
 @property (nonatomic, assign) int dishId;
 @property (nonatomic, retain) Dish *dish;
@@ -29,4 +47,7 @@
 @property (nonatomic, retain) IBOutlet UIImageView *dishImageFromPicker;
 
 -(IBAction)addDish;
+-(IBAction)pickPrice;
+-(IBAction)pickMealType;
+
 @end

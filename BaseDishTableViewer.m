@@ -100,7 +100,6 @@
 	if (sectionInfo == nil){
 		return 0;
 	}
-	NSLog(@"section info objects %@", [sectionInfo objects]);
 	return [sectionInfo numberOfObjects];
 }
 

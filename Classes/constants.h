@@ -49,6 +49,10 @@
 #define COMMENT_TEXT_TAG 2
 #define COMMENT_DIRECTION_IMAGE_TAG 0
 
+
+#define kPriceType	1
+#define kMealType	2
+
 #define kAccountsTab 1
 
 #define keyforauthorizing @"apiKey"
