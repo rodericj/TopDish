@@ -84,7 +84,7 @@
 -(IBAction)pickPrice {
 	NSLog(@"pick a price");
 	DishOptionPickerTableViewController *d = [[DishOptionPickerTableViewController alloc] init];
-	[d setOptionValues:[NSArray arrayWithObjects:@"$", @"$$", @"$$$", nil]];
+	[d setOptionValues:[NSArray arrayWithObjects:@"$1 or less", @"Under $5", @"$5-$10",  nil]];
 	[d setOptionType:kPriceType];
 	[self.navigationController pushViewController:d animated:YES];
 	[d release];
