@@ -15,6 +15,10 @@
 @synthesize confirmPasswordTextField = mConfirmPasswordTextField;
 @synthesize userNameTextField = mUserNameTextField;
 
+-(IBAction)submitClicked{
+	NSLog(@"no-op submitClicked");
+}
+
 
 -(IBAction)cancelClicked
 {
@@ -29,5 +33,6 @@
 	self.userNameTextField = nil;
 	
 }
+
 
 @end

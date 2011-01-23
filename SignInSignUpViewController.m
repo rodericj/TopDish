@@ -8,6 +8,9 @@
 #import "SignInSignUpViewController.h"
 #import "SignInViewController.h"
 #import "SignUpViewController.h"
+#import "AppModel.h"
+#import "constants.h"
+#import "AccountView.h"
 
 @implementation SignInSignUpViewController
 @synthesize signInButton = mSignInButton;
@@ -35,6 +38,18 @@
 	[signUp release];	
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{		
+	[super viewDidAppear:animated];
+	NSLog(@"the view will appear. If we have the key, go to the account page");
+	AppModel *a = [AppModel instance];
+	NSLog(@"the api key is %@", [a.user objectForKey:keyforauthorizing]);
+	if ([[AppModel instance].user objectForKey:keyforauthorizing] != nil) {
+		AccountView *accountView = [[AccountView alloc] initWithNibName:@"AccountView" bundle:nil];
+		[self.navigationController setViewControllers:[NSArray arrayWithObject:accountView]];
+		[accountView release];
+	}
+}
 -(void)dealloc
 {	
 	[super dealloc];

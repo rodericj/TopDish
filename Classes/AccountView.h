@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LoggedInLoggedOutGate.h"
 
 @interface AccountView : UITableViewController {
 	UILabel *mUserName;

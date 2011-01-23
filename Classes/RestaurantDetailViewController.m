@@ -66,14 +66,15 @@
     [super viewDidLoad];
 	NSLog(@"header %@", restaurantHeader);
 	[self.tableView setTableHeaderView:restaurantHeader];
-	[self networkQuery:[NSString stringWithFormat:@"%@/api/RestaurantDetail?id[]=%@", NETWORKHOST, [restaurant restaurant_id]]];
+	[self networkQuery:[NSString stringWithFormat:@"%@/api/restaurantDetail?id[]=%@", NETWORKHOST, [restaurant restaurant_id]]];
 	[restaurantName setText:[restaurant objName]];
 	[restaurantPhone setText:[restaurant phone]];
 	[restaurantAddress setText:[restaurant addressLine1]];
 	AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[restaurantImage frame]];
 	asyncImage.tag = 999;
 	if( [[restaurant photoURL] length] > 0 ){
-		NSString *urlString = [NSString stringWithFormat:@"%@&w=70&h=70", [restaurant photoURL]];
+		NSLog(@"the restaurant photo URL is %@", [restaurant photoURL]);
+		NSString *urlString = [NSString stringWithFormat:@"%@&w=%d&h=%d", [restaurant photoURL], DISHDETAILIMAGECELLHEIGHT, DISHDETAILIMAGECELLHEIGHT];
 		NSLog(@"the url of the resto image %@", urlString);
 		NSURL *photoUrl = [NSURL URLWithString:urlString];
 		[asyncImage loadImageFromURL:photoUrl withImageView:restaurantImage isThumb:NO showActivityIndicator:FALSE];

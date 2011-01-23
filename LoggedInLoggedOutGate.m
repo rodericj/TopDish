@@ -8,20 +8,18 @@
 #import "LoggedInLoggedOutGate.h"
 #import "SignInSignUpViewController.h"
 #import "AccountView.h"
+#import "AppModel.h"
+#import "constants.h"
 
 @implementation LoggedInLoggedOutGate
 
--(BOOL)isLoggedIn
-{
-	return NO;
-}
 
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
 	NSLog(@"setting the view for logged in logged out");
 
-	if ([self isLoggedIn]) {
+	if ([[AppModel instance].user objectForKey:keyforauthorizing] != nil) {
 		AccountView *accountView = [[AccountView alloc] initWithNibName:@"AccountView" bundle:nil];
 		[self.navigationController setViewControllers:[NSArray arrayWithObject:accountView]];
 		[accountView release];

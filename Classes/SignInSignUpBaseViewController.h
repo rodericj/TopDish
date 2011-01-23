@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface SignInSignUpBaseViewController : UIViewController {
+@interface SignInSignUpBaseViewController : UIViewController <UIAlertViewDelegate>{
 	UITextField *mUserNameTextField;
 	UITextField *mPasswordTextField;
 	UITextField *mConfirmPasswordTextField;

@@ -10,6 +10,10 @@
 #import "RateDishViewController.h"
 #import "ImagePickerViewController.h"
 #import "Dish.h"
+#import "TopDishAppDelegate.h"
+#import "AppModel.h"
+#import "constants.h"
+#import "ASIFormDataRequest.h"
 
 @implementation AddNewDishViewController
 @synthesize dishNameTextField = mDishNameTextField;
@@ -18,64 +22,146 @@
 @synthesize dish = mDish;
 @synthesize managedObjectContext=managedObjectContext_;
 @synthesize dishImageFromPicker = mDishImageFromPicker;
-
+@synthesize hasPicture = mHasPicture;
+@synthesize dishId = mDishId;
 
 -(void)viewDidLoad{
 	self.restaurantNameLabel.text = [self.restaurant objName];
-	
-	//To use an image picker controller containing its default controls, perform these steps:
+	self.hasPicture = NO;
+}
 
-	//	1. Verify that the device is capable of picking content from the desired source. Do this calling 
-	//the isSourceTypeAvailable: class method, providing a constant from the 
-	//“UIImagePickerControllerSourceType” enum.
-	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-	[imagePicker setDelegate:self];
-	[imagePicker setAllowsEditing:YES];
-
-	if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-		//then push the imagepicker
-		[imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
-		[imagePicker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModePhoto];
-		[imagePicker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
+-(void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	if ([[AppModel instance].user objectForKey:keyforauthorizing] == nil)
+		[[(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] tabBarController] setSelectedIndex:kAccountsTab];
+	else if (!self.hasPicture)
+	{
+		//To use an image picker controller containing its default controls, perform these steps:
+		
+		//	1. Verify that the device is capable of picking content from the desired source. Do this calling 
+		//the isSourceTypeAvailable: class method, providing a constant from the 
+		//“UIImagePickerControllerSourceType” enum.
+		UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+		[imagePicker setDelegate:self];
+		[imagePicker setAllowsEditing:YES];
+		
+		if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+			//then push the imagepicker
+			[imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+			[imagePicker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModePhoto];
+			[imagePicker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
+		}
+		else {
+			[imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+		}
+		[self presentModalViewController:imagePicker animated:YES]; 
+		
+		//	5. When the user taps a button to pick a newly-captured or saved image or movie, or 
+		//cancels the operation, dismiss the image picker using your delegate object. For 
+		//newly-captured media, your delegate can then save it to the Camera Roll on the device. 
+		//For previously-saved media, your delegate can then use the image data according to the 
+		//purpose of your app.
 	}
-	else {
-		[imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-	}
-	
-	[self presentModalViewController:imagePicker animated:YES];
-	
-	//	5. When the user taps a button to pick a newly-captured or saved image or movie, or 
-	//cancels the operation, dismiss the image picker using your delegate object. For 
-	//newly-captured media, your delegate can then save it to the Camera Roll on the device. 
-	//For previously-saved media, your delegate can then use the image data according to the 
-	//purpose of your app.
 	
 }
+
 -(IBAction)addDish {
 	if(self.dishNameTextField.text){
 		//Create Dish
-		Dish *thisDish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" 
-															   inManagedObjectContext:self.managedObjectContext];
-		NSLog(@"dish %@", thisDish);
-		//Add Dish Name
-		[thisDish setRestaurant:self.restaurant];
-		[thisDish setObjName:self.dishNameTextField.text];
+		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addDish"]];
 		
-		//Add location from the restaurant here....
-		[thisDish setLatitude:[[thisDish restaurant] latitude]];
-		[thisDish setLongitude:[[thisDish restaurant] longitude]];
-		
-		RateDishViewController *rateDish = [[RateDishViewController alloc] init];
-		[rateDish setDish:thisDish];
-		[thisDish setImageData:UIImagePNGRepresentation([self.dishImageFromPicker image])];
-		[self.navigationController pushViewController:rateDish animated:YES];
-		[rateDish release];
-		self.dish = thisDish;
-		[thisDish release];
+		ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+		[request setPostValue:self.dishNameTextField.text forKey:@"name"];
+		[request setPostValue:@"hardcoded iPhone description" forKey:@"description"];
+		[request setPostValue:[NSString stringWithFormat:@"%@", [self.restaurant restaurant_id]] forKey:@"restaurantId"];		
+		[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+		[request setData:UIImagePNGRepresentation(self.dishImageFromPicker.image) forKey:@"photo"];
+
+		//[request setData:imageData forKey:@"image"];
+		//NSLog(@"key %@, value %@", keyforauthorizing, [[AppModel instance] user] objectForKey:keyforauthorizing]);
+		NSLog(@"request is %@", request);
+		// Upload an NSData instance
+		//[request setData:imageData withFileName:@"myphoto.jpg" andContentType:@"image/jpeg" forKey:@"photo"];
+		[request setDelegate:self];
+		[request startAsynchronous];
+		NSLog(@"this is what we are sending for add a dish: url%@\n, name %@\n description %@\n resto id %@\n apiKey %@", 
+			  [url absoluteURL], 
+			  self.dishNameTextField.text,
+			  @"this is the description",
+			  [self.restaurant restaurant_id] ,
+			  [[[AppModel instance] user] objectForKey:keyforauthorizing]);
 	}
 	else{
 		NSLog(@"give the dish a name");
 	}
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+	
+	//First time through we need to send the image 
+	
+	// Use when fetching text data
+	//NSString *responseString = [request responseString];
+	
+	// Use when fetching binary data
+	NSString *responseText = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
+	
+	//Create the dish in our database
+	//Add Dish Name
+	Dish *thisDish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" 
+														   inManagedObjectContext:self.managedObjectContext];
+	[thisDish setDish_id:[NSNumber numberWithShort:[responseText intValue]]];
+	[thisDish setObjName:self.dishNameTextField.text];
+	[thisDish setRestaurant:self.restaurant];
+	[thisDish setObjName:self.dishNameTextField.text];
+	
+	//Add location from the restaurant here....
+	[thisDish setLatitude:[[thisDish restaurant] latitude]];
+	[thisDish setLongitude:[[thisDish restaurant] longitude]];
+	
+	//self.dish = thisDish;
+
+	//Push the RateDishViewController
+	RateDishViewController *rateDish = [[RateDishViewController alloc] init];
+	[rateDish setDish:thisDish];
+	[thisDish setImageData:UIImagePNGRepresentation([self.dishImageFromPicker image])];
+	[self.navigationController pushViewController:rateDish animated:YES];
+
+	[rateDish release];
+	[thisDish release];
+
+	
+	//Now let's send the picture
+	//NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/getBlobUrl"]];
+//	NSLog(@"submitting the image %@", [url absoluteURL]);
+//	ASIFormDataRequest *newImageRequest = [ASIFormDataRequest requestWithURL:url];
+//	[newImageRequest setDidFinishSelector:@selector(imageSubmissionSuccess:)];
+//	[newImageRequest setDidFailSelector:@selector(imageSubmissionFailure:)];
+//	[newImageRequest setData:UIImagePNGRepresentation(self.dishImageFromPicker.image) forKey:@"photo"];
+//	[newImageRequest setPostValue:self.dishNameTextField.text forKey:@"dishId"];
+//	[newImageRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+//	
+//	[newImageRequest setDelegate:nil];
+//	[newImageRequest startAsynchronous];
+	
+	//NSLog(@"response string %@  \nand of course %@", responseString, responseText);
+}
+-(void)imageSubmissionSuccess:(ASIHTTPRequest *) request
+{
+	NSLog(@"request to submit image succeeded");
+}
+
+-(void)imageSubmissionFailure:(ASIHTTPRequest *) request
+{
+	NSLog(@"request to submit image failed");
+}
+
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+	NSError *error = [request error];
+	NSLog(@"error %@", error);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -97,6 +183,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
 	//self.dishImageFromPicker = [info objectForKey:@"UIImagePickerControllerEditedImage"];
 	[self.dishImageFromPicker setImage:[info objectForKey:@"UIImagePickerControllerEditedImage"]];
+	self.hasPicture = YES;
 	[self dismissModalViewControllerAnimated:YES];
 }
 

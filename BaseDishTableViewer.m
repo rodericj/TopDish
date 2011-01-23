@@ -17,7 +17,7 @@
 
 @implementation BaseDishTableViewer
 
-@synthesize tvCell;
+@synthesize tvCell = mTvCell;
 @synthesize fetchedResultsController=fetchedResultsController_, managedObjectContext=managedObjectContext_;
 @synthesize _responseData;
 @synthesize addItemCell = mAddItemCell;
@@ -118,7 +118,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         [[NSBundle mainBundle] loadNibNamed:@"DishTableViewCell" owner:self options:nil];
-		cell = tvCell;
+		cell = self.tvCell;
 	}
 	
 	//Query the results controller
@@ -145,8 +145,13 @@
 
 	UILabel *distance;
 	distance = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_DIST_TAG];
-	distance.text = [[[thisDish distance] stringValue] substringToIndex:5];
-	
+	if ([[[thisDish distance] stringValue] length] > 5) {
+		distance.text = [[[thisDish distance] stringValue] substringToIndex:5];
+	}
+	else {
+		distance.text = [[thisDish distance] stringValue];
+	}
+
 	UILabel *upVotes;
 	upVotes = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_UPVOTES_TAG];
 	upVotes.text = [NSString stringWithFormat:@"%@", 
@@ -171,7 +176,9 @@
 	AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[imageView frame]];
 	asyncImage.tag = 999;
 	if( [[thisDish photoURL] length] > 0 ){
-		NSString *urlString = [NSString stringWithFormat:@"%@&w=70&h=70", [thisDish photoURL]];
+		NSLog(@"the dish photo URL is %@", [thisDish photoURL]);
+
+		NSString *urlString = [NSString stringWithFormat:@"%@&w=%d&h=%d", [thisDish photoURL], DISHDETAILIMAGECELLHEIGHT, DISHDETAILIMAGECELLHEIGHT];
 		NSURL *photoUrl = [NSURL URLWithString:urlString];
 		[asyncImage setOwningObject:thisDish];
 		[asyncImage loadImageFromURL:photoUrl withImageView:imageView isThumb:YES showActivityIndicator:NO];

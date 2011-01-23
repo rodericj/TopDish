@@ -13,7 +13,6 @@
 #import "RestaurantListTableViewDelegate.h"
 
 @interface DishTableViewController : BaseDishTableViewer <MyCLControllerDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate> {
-	//NSString *mEntityTypeString;
 	MyCLController *locationController;
 	NSString *currentLat;
 	NSString *currentLon;

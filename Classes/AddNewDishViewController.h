@@ -15,8 +15,12 @@
 	UITextField *mDishNameTextField;
 	UILabel *mRestaurantNameLabel;
 	UIImageView *mDishImageFromPicker;
+	BOOL mHasPicture;
+	int mDishId;
 }
 
+@property (nonatomic, assign) BOOL hasPicture;
+@property (nonatomic, assign) int dishId;
 @property (nonatomic, retain) Dish *dish;
 @property (nonatomic, retain) Restaurant *restaurant;
 @property (nonatomic, retain) IBOutlet UITextField *dishNameTextField;

@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		176A9E6812E2618900CC595C /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 176A9E6712E2618900CC595C /* User.m */; };
+		176A9EEB12E2649600CC595C /* AppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 176A9EEA12E2649600CC595C /* AppModel.m */; };
 		1794422112A5B195008EE034 /* DetailButtonImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 1794422012A5B195008EE034 /* DetailButtonImage.png */; };
-		179443F412A5FFDC008EE034 /* SubmitADishScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 179443F312A5FFDC008EE034 /* SubmitADishScrollViewController.m */; };
 		179443FF12A60199008EE034 /* ImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 179443FE12A60199008EE034 /* ImagePickerViewController.m */; };
 		179B854212A0727F00730FAC /* BaseDishTableViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B854112A0727F00730FAC /* BaseDishTableViewer.m */; };
 		179B879212A310E200730FAC /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B878D12A310E200730FAC /* Restaurant.m */; };
@@ -83,9 +84,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		176A9E6612E2618900CC595C /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		176A9E6712E2618900CC595C /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		176A9EE912E2649600CC595C /* AppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppModel.h; sourceTree = "<group>"; };
+		176A9EEA12E2649600CC595C /* AppModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppModel.m; sourceTree = "<group>"; };
 		1794422012A5B195008EE034 /* DetailButtonImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DetailButtonImage.png; sourceTree = "<group>"; };
-		179443F212A5FFDC008EE034 /* SubmitADishScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubmitADishScrollViewController.h; sourceTree = "<group>"; };
-		179443F312A5FFDC008EE034 /* SubmitADishScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubmitADishScrollViewController.m; sourceTree = "<group>"; };
 		179443FD12A60199008EE034 /* ImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerViewController.h; sourceTree = "<group>"; };
 		179443FE12A60199008EE034 /* ImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerViewController.m; sourceTree = "<group>"; };
 		179B854012A0727F00730FAC /* BaseDishTableViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseDishTableViewer.h; path = ../BaseDishTableViewer.h; sourceTree = "<group>"; };
@@ -233,6 +236,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				176A9EE812E2648900CC595C /* Model */,
 				5FBB95F11262288E00141693 /* constants.h */,
 				1D3623240D0F684500981E51 /* TopDishAppDelegate.h */,
 				1D3623250D0F684500981E51 /* TopDishAppDelegate.m */,
@@ -242,15 +246,14 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		179443F512A5FFE2008EE034 /* SubmitADish */ = {
+		176A9EE812E2648900CC595C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				179443F212A5FFDC008EE034 /* SubmitADishScrollViewController.h */,
-				179443F312A5FFDC008EE034 /* SubmitADishScrollViewController.m */,
-				179443FD12A60199008EE034 /* ImagePickerViewController.h */,
-				179443FE12A60199008EE034 /* ImagePickerViewController.m */,
+				28D3F201112F7DC200FD0661 /* TopDish.xcdatamodeld */,
+				176A9EE912E2649600CC595C /* AppModel.h */,
+				176A9EEA12E2649600CC595C /* AppModel.m */,
 			);
-			name = SubmitADish;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		17AE80B412DA71CF007B96EC /* SIgnInSignUp */ = {
@@ -399,7 +402,6 @@
 			isa = PBXGroup;
 			children = (
 				5F89F15E125951FE00959D05 /* images */,
-				28D3F201112F7DC200FD0661 /* TopDish.xcdatamodeld */,
 				8D1107310486CEB800E47090 /* TopDish-Info.plist */,
 			);
 			name = Resources;
@@ -477,7 +479,8 @@
 			children = (
 				17EEB69D12D9A2720032E12B /* AccountSettings */,
 				17DE013912B43EEB001F6907 /* RateDishView */,
-				179443F512A5FFE2008EE034 /* SubmitADish */,
+				179443FD12A60199008EE034 /* ImagePickerViewController.h */,
+				179443FE12A60199008EE034 /* ImagePickerViewController.m */,
 				17B48AD512A0337700F43202 /* RestaurantDetailView */,
 				5F08956912641F0000EDE197 /* SettingsView */,
 				5FBB975E1262423C00141693 /* DishDetailView */,
@@ -639,7 +642,6 @@
 				179B879212A310E200730FAC /* Restaurant.m in Sources */,
 				179B879312A310E200730FAC /* Dish.m in Sources */,
 				179B88D612A3719500730FAC /* ObjectWithImage.m in Sources */,
-				179443F412A5FFDC008EE034 /* SubmitADishScrollViewController.m in Sources */,
 				179443FF12A60199008EE034 /* ImagePickerViewController.m in Sources */,
 				17DE005412B43B01001F6907 /* RateDishViewController.m in Sources */,
 				17DD22C312BD87610048C1A1 /* DishComment.m in Sources */,
@@ -660,6 +662,8 @@
 				17EEB75B12D9AA010032E12B /* SignUpViewController.m in Sources */,
 				17AE7F6612D9AE74007B96EC /* SignInSignUpBaseViewController.m in Sources */,
 				17AE80B912DA7231007B96EC /* AccountView.m in Sources */,
+				176A9E6812E2618900CC595C /* User.m in Sources */,
+				176A9EEB12E2649600CC595C /* AppModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -763,11 +767,14 @@
 				179B878D12A310E200730FAC /* Restaurant.m */,
 				179B878E12A310E200730FAC /* Dish.h */,
 				179B878F12A310E200730FAC /* Dish.m */,
+				176A9E6612E2618900CC595C /* User.h */,
+				176A9E6712E2618900CC595C /* User.m */,
 				28860B760F44E54D00985440 /* TopDish.xcdatamodel */,
 				179B88D112A3716A00730FAC /* TopDish 2.xcdatamodel */,
 			);
 			currentVersion = 28860B760F44E54D00985440 /* TopDish.xcdatamodel */;
-			path = TopDish.xcdatamodeld;
+			name = TopDish.xcdatamodeld;
+			path = ../TopDish.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

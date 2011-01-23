@@ -9,18 +9,21 @@
 #define NSZombiesEnabled YES
 
 #define MAXRESTAURANTNAMELENGTH 26
-#define DISHDETAILIMAGECELLHEIGHT 72
+#define DISHDETAILIMAGECELLHEIGHT 88
 #define IPHONESCREENWIDTH 320
 #define IPHONESCREENHEIGHT 480
 #define NUMBEROFROWSINDISHDETAILVIEW 4
 #define DISHDETAILDEFAULCELLHEIGHT 40
-#define DISHLISTCELLHEIGHT 72
+#define DISHLISTCELLHEIGHT 93
 
 #define POSITIVE_REVIEW_IMAGE_NAME @"greenup.gif"
 #define NEGATIVE_REVIEW_IMAGE_NAME @"reddown.gif"
 
 #pragma mark network constants
-#define NETWORKHOST @"http://topdish1.appspot.com"
+//#define NETWORKHOST @"http://topdish1.appspot.com"
+//#define NETWORKHOST @"http://localhost:8888"
+//#define NETWORKHOST @"http://testing-randy.topdish1.appspot.com"
+#define NETWORKHOST @"http://10.0.1.11:8888"
 
 #define DISH_DETAIL_CELL_IDENTIFIER @"dishdetailimagecell"
 #define MIN_PRICE_VALUE_LOCATION @"minpricevaluelocation"
@@ -45,6 +48,10 @@
 #define COMMENTOR_NAME_TAG 1
 #define COMMENT_TEXT_TAG 2
 #define COMMENT_DIRECTION_IMAGE_TAG 0
+
+#define kAccountsTab 1
+
+#define keyforauthorizing @"apiKey"
 
 //#define AirplaneMode YES
 

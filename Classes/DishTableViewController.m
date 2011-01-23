@@ -176,9 +176,6 @@
 #pragma mark -
 #pragma mark Util
 -(void)processIncomingNetworkText:(NSString *)responseText{
-	
-	//TODO RESTODISH SWITCH - when response has finised loading, I should determine if it's dishes or restauarants that I'm looking at
-	
 	SBJSON *parser = [SBJSON new];
 	NSError *error = nil;
 	NSArray *responseAsArray = [parser objectWithString:responseText error:&error];	

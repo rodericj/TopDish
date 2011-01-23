@@ -13,7 +13,7 @@
 @interface BaseDishTableViewer : UITableViewController {
 
 	NSString					*mEntityTypeString;
-	UITableViewCell				*tvCell;
+	UITableViewCell				*mTvCell;
 	UITableViewCell				*mAddItemCell;
 @protected
     NSFetchedResultsController *fetchedResultsController_;

@@ -10,6 +10,9 @@
 #import "constants.h"
 #import "DishComment.h"
 #import "ASIFormDataRequest.h"
+//#import "SignInSignUpViewController.h"
+#import "AppModel.h"
+#import "TopDishAppDelegate.h"
 
 @implementation RateDishViewController
 
@@ -22,6 +25,7 @@
 @synthesize dishDescription = mDishDescription;
 @synthesize dishComment = mDishComment;
 @synthesize dishImage = mDishImage;
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,9 +35,15 @@
 	self.dishDescription.text = [self.dish dish_description];
 	NSLog(@"dish when the view loaded %@", self.dish);
 	self.dishImage.image = [UIImage imageWithData:[self.dish imageData]];
-	[self.scrollView setContentSize:CGSizeMake(IPHONESCREENWIDTH, IPHONESCREENHEIGHT )];
+	//[self.scrollView setContentSize:CGSizeMake(IPHONESCREENWIDTH, IPHONESCREENHEIGHT+200 )];
 	currentVote = 0;
 
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	if ([[AppModel instance].user objectForKey:keyforauthorizing] == nil)
+		[[(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] tabBarController] setSelectedIndex:kAccountsTab];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,23 +82,22 @@
 -(IBAction)submitRating{
 	NSLog(@"submit rating");	
 	NSLog(@"description %@ and %@ %d", self.dishDescription.text, self.dishComment.text, currentVote);
-	
-	//Should probably create a Comment here, this will help with unsubmitted data
-	//DishComment *comment = [[DishComment alloc] init];
-//	//[comment setDish:self.dish];
-//	[comment setComment:self.dishComment.text];
-//	[comment setIsPositive:[NSNumber numberWithInt:currentVote]];
-//	[comment setReviewer_id:[NSNumber numberWithInt:1]];
-//	[comment setReviewer_name:@"TODO GET A REVIEWER NAME"];
-	
-	NSURL *url = [NSURL URLWithString: @"http://www.topdish.com/api/rateDish"];
+	NSLog(@"the dish id is %@", [self.dish dish_id]);
+	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/rateDish"]];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request setPostValue:self.dishComment.text forKey:@"comment"];
-	[request setPostValue:[NSNumber numberWithInt:currentVote] forKey:@"isPositive"];
-	[request setPostValue:[self.dish dish_id] forKey:@"dishid"];	
-	[request setPostValue:@"TODO GET A REVIEWER NAME" forKey:@"reviewer_name"];	
-	[request setPostValue:@"1" forKey:@"reviewer_id"];	
-	
+	[request setPostValue:[NSNumber numberWithInt:currentVote] forKey:@"direction"];
+	[request setPostValue:[NSString stringWithFormat:@"%@", [self.dish dish_id]] forKey:@"dishId"];		
+	[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+	//NSLog(@"key %@, value %@", keyforauthorizing, [[AppModel instance] user] objectForKey:keyforauthorizing]);
+	NSLog(@"request is %@", request);
+	NSLog(@"this is what we are sending for RATE a dish: url: %@\n, comment: %@\n, vote: %d\n, dish_id %@\n, apiKey: %@", 
+		  [url absoluteURL], 
+		  self.dishComment.text, 
+		  currentVote, 
+		  [self.dish dish_id],
+		  [[[AppModel instance] user] objectForKey:keyforauthorizing]); 
+
 	// Upload an NSData instance
 	//[request setData:imageData withFileName:@"myphoto.jpg" andContentType:@"image/jpeg" forKey:@"photo"];
 	[request setDelegate:self];
@@ -101,10 +110,10 @@
 	NSString *responseString = [request responseString];
 	
 	// Use when fetching binary data
-	NSData *responseData = [request responseData];
+	//NSData *responseData = [request responseData];
 	NSString *responseText = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
 
-	NSLog(@"response string %@ \n and data %@\n \nand of course %@", responseString, responseData, responseText);
+	NSLog(@"response string %@  \nand of course %@", responseString, responseText);
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
