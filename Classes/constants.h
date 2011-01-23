@@ -22,8 +22,8 @@
 #pragma mark network constants
 //#define NETWORKHOST @"http://topdish1.appspot.com"
 //#define NETWORKHOST @"http://localhost:8888"
-//#define NETWORKHOST @"http://testing-randy.topdish1.appspot.com"
-#define NETWORKHOST @"http://10.0.1.11:8888"
+#define NETWORKHOST @"http://testing-randy.topdish1.appspot.com"
+//#define NETWORKHOST @"http://10.0.1.11:8888"
 
 #define DISH_DETAIL_CELL_IDENTIFIER @"dishdetailimagecell"
 #define MIN_PRICE_VALUE_LOCATION @"minpricevaluelocation"

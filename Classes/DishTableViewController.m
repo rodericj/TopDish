@@ -14,6 +14,9 @@
 #import "constants.h"
 #import "SBJSON.h"
 
+
+#define kTopDishBlue [UIColor colorWithRed:0 green:.3843 blue:.5725 alpha:1]
+
 @interface DishTableViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
@@ -48,10 +51,13 @@
 	[self.tableView setTableHeaderView:searchHeader];
 	self.tableView.delegate = self;
 	
+	self.navigationController.navigationBar.tintColor = kTopDishBlue;
+//	myBar.tintColor = [UIColor greenColor];
 	
 	[theSearchBar setPlaceholder:@"Search Dishes"];
 	[theSearchBar setShowsCancelButton:YES];
 	[theSearchBar setDelegate:self];
+	[theSearchBar setTintColor:kTopDishBlue];
 	
 	locationController = [[MyCLController alloc] init];
 	locationController.delegate = self;
@@ -88,7 +94,7 @@
 	dishRestoSelector = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Dishes", @"Restaurants", nil]];
 	dishRestoSelector.segmentedControlStyle = UISegmentedControlStyleBar;
 	dishRestoSelector.selectedSegmentIndex = 0;	
-
+	
 	self.navigationItem.titleView = dishRestoSelector;
 	
 	[dishRestoSelector addTarget:self 

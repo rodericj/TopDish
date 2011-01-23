@@ -70,26 +70,24 @@
 		//Create Dish
 		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addDish"]];
 		
-		ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-		[request setPostValue:self.dishNameTextField.text forKey:@"name"];
-		[request setPostValue:@"hardcoded iPhone description" forKey:@"description"];
-		[request setPostValue:[NSString stringWithFormat:@"%@", [self.restaurant restaurant_id]] forKey:@"restaurantId"];		
-		[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-		[request setData:UIImagePNGRepresentation(self.dishImageFromPicker.image) forKey:@"photo"];
-
-		//[request setData:imageData forKey:@"image"];
-		//NSLog(@"key %@, value %@", keyforauthorizing, [[AppModel instance] user] objectForKey:keyforauthorizing]);
-		NSLog(@"request is %@", request);
-		// Upload an NSData instance
-		//[request setData:imageData withFileName:@"myphoto.jpg" andContentType:@"image/jpeg" forKey:@"photo"];
-		[request setDelegate:self];
-		[request startAsynchronous];
 		NSLog(@"this is what we are sending for add a dish: url%@\n, name %@\n description %@\n resto id %@\n apiKey %@", 
 			  [url absoluteURL], 
 			  self.dishNameTextField.text,
 			  @"this is the description",
 			  [self.restaurant restaurant_id] ,
 			  [[[AppModel instance] user] objectForKey:keyforauthorizing]);
+		
+		ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+		[request setPostValue:self.dishNameTextField.text forKey:@"name"];
+		[request setPostValue:@"hardcoded iPhone description" forKey:@"description"];
+		[request setPostValue:[NSString stringWithFormat:@"%@", [self.restaurant restaurant_id]] forKey:@"restaurantId"];		
+		[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+		//[request setData:UIImagePNGRepresentation(self.dishImageFromPicker.image) forKey:@"photo"];
+		
+		// Upload an NSData instance
+		[request setDelegate:self];
+		[request startAsynchronous];
+		
 	}
 	else{
 		NSLog(@"give the dish a name");
@@ -133,17 +131,17 @@
 
 	
 	//Now let's send the picture
-	//NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/getBlobUrl"]];
-//	NSLog(@"submitting the image %@", [url absoluteURL]);
-//	ASIFormDataRequest *newImageRequest = [ASIFormDataRequest requestWithURL:url];
-//	[newImageRequest setDidFinishSelector:@selector(imageSubmissionSuccess:)];
-//	[newImageRequest setDidFailSelector:@selector(imageSubmissionFailure:)];
-//	[newImageRequest setData:UIImagePNGRepresentation(self.dishImageFromPicker.image) forKey:@"photo"];
-//	[newImageRequest setPostValue:self.dishNameTextField.text forKey:@"dishId"];
-//	[newImageRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-//	
-//	[newImageRequest setDelegate:nil];
-//	[newImageRequest startAsynchronous];
+	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/uploadPhoto"]];
+	NSLog(@"submitting the image %@", [url absoluteURL]);
+	ASIFormDataRequest *newImageRequest = [ASIFormDataRequest requestWithURL:url];
+	[newImageRequest setDidFinishSelector:@selector(imageSubmissionSuccess:)];
+	[newImageRequest setDidFailSelector:@selector(imageSubmissionFailure:)];
+	[newImageRequest setData:UIImagePNGRepresentation(self.dishImageFromPicker.image) forKey:@"photo"];
+	[newImageRequest setPostValue:responseText forKey:@"dishId"];
+	[newImageRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+	
+	[newImageRequest setDelegate:nil];
+	[newImageRequest startAsynchronous];
 	
 	//NSLog(@"response string %@  \nand of course %@", responseString, responseText);
 }
