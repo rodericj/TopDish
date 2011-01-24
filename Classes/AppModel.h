@@ -11,8 +11,17 @@
 
 @interface AppModel : NSObject {
 	NSMutableDictionary *mUser;
+	NSArray *mMealTypeTags;
+	NSArray *mPriceTags;
+	int mSelectedPrice;
+	int mSelectedMealType;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *user;
+@property (nonatomic, retain) NSArray *mealTypeTags;
+@property (nonatomic, retain) NSArray *priceTags;
+@property (nonatomic, assign) int selectedPrice;
+@property (nonatomic, assign) int selectedMealType;
+
 +(AppModel *)instance;
 @end

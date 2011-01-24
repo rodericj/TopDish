@@ -10,26 +10,26 @@
 #import "DishTableViewController.h"
 
 @interface SettingsView : UIViewController {
-	IBOutlet UISlider *maxSlider;
-	IBOutlet UISlider *minSlider;
-	IBOutlet UILabel *maxLabel;
-	IBOutlet UILabel *minLabel;
-	IBOutlet UISegmentedControl *sortBySegmentedControl;
+	UISlider *mMealTypeSlider;
+	UISlider *mPriceSlider;
+	UILabel *mMealTypeLabel;
+	UILabel *mPriceLabel;
+	UISegmentedControl *sortBySegmentedControl;
 	DishTableViewController *delegate;
 }
 
 -(IBAction) cancelSettings;
 -(IBAction) closeSettings; 
--(IBAction) updateMaxSlider;
--(IBAction) updateMinSlider;
+-(IBAction) updateMealType;
+-(IBAction) updatePriceTags;
 -(void) updateSymbols;
 
 @property (nonatomic, retain) DishTableViewController *delegate;
-@property (nonatomic, retain) UIButton *refineButton;
-@property (nonatomic, retain) UISlider *maxSlider;
-@property (nonatomic, retain) UISlider *minSlider;
-@property (nonatomic, retain) UILabel *maxLabel;
-@property (nonatomic, retain) UILabel *minLabel;
+@property (nonatomic, retain) IBOutlet UIButton *refineButton;
+@property (nonatomic, retain) IBOutlet UISlider *mealTypeSlider;
+@property (nonatomic, retain) IBOutlet UISlider *priceSlider;
+@property (nonatomic, retain) IBOutlet UILabel *mealTypeLabel;
+@property (nonatomic, retain) IBOutlet UILabel *priceLabel;
 @property (nonatomic, retain) UISegmentedControl *sortBySegmentedControl;
 
 @end

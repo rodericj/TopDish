@@ -47,6 +47,9 @@
 		17EEB75012D9A9550032E12B /* SignUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17EEB74F12D9A9550032E12B /* SignUp.xib */; };
 		17EEB75B12D9AA010032E12B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EEB75A12D9AA010032E12B /* SignUpViewController.m */; };
 		17FA55C512EBFBBF00902FEE /* DishOptionPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FA55C412EBFBBF00902FEE /* DishOptionPickerTableViewController.m */; };
+		17FA573B12ED069E00902FEE /* SettingsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FA573A12ED069E00902FEE /* SettingsTableView.m */; };
+		17FA587612ED14FD00902FEE /* SettingsView1.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FA587412ED14FD00902FEE /* SettingsView1.m */; };
+		17FA587712ED14FD00902FEE /* SettingsView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17FA587512ED14FD00902FEE /* SettingsView1.xib */; };
 		17FCD5B412C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FCD5B212C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m */; };
 		17FCD78112C403120081D5EA /* RestaurantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17FCD78012C403120081D5EA /* RestaurantTableViewCell.xib */; };
 		1D3623260D0F684500981E51 /* TopDishAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* TopDishAppDelegate.m */; };
@@ -157,6 +160,11 @@
 		17EEB75A12D9AA010032E12B /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpViewController.m; path = ../SignUpViewController.m; sourceTree = "<group>"; };
 		17FA55C312EBFBBF00902FEE /* DishOptionPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishOptionPickerTableViewController.h; sourceTree = "<group>"; };
 		17FA55C412EBFBBF00902FEE /* DishOptionPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishOptionPickerTableViewController.m; sourceTree = "<group>"; };
+		17FA573912ED069E00902FEE /* SettingsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsTableView.h; path = ../SettingsTableView.h; sourceTree = "<group>"; };
+		17FA573A12ED069E00902FEE /* SettingsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsTableView.m; path = ../SettingsTableView.m; sourceTree = "<group>"; };
+		17FA587312ED14FD00902FEE /* SettingsView1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsView1.h; sourceTree = "<group>"; };
+		17FA587412ED14FD00902FEE /* SettingsView1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsView1.m; sourceTree = "<group>"; };
+		17FA587512ED14FD00902FEE /* SettingsView1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsView1.xib; sourceTree = "<group>"; };
 		17FCD5B112C2F1CC0081D5EA /* RestaurantListTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListTableViewDelegate.h; sourceTree = "<group>"; };
 		17FCD5B212C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantListTableViewDelegate.m; sourceTree = "<group>"; };
 		17FCD78012C403120081D5EA /* RestaurantTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RestaurantTableViewCell.xib; path = ../RestaurantTableViewCell.xib; sourceTree = "<group>"; };
@@ -430,6 +438,11 @@
 		5F08956912641F0000EDE197 /* SettingsView */ = {
 			isa = PBXGroup;
 			children = (
+				17FA573912ED069E00902FEE /* SettingsTableView.h */,
+				17FA573A12ED069E00902FEE /* SettingsTableView.m */,
+				17FA587312ED14FD00902FEE /* SettingsView1.h */,
+				17FA587412ED14FD00902FEE /* SettingsView1.m */,
+				17FA587512ED14FD00902FEE /* SettingsView1.xib */,
 				5F08954912641D5000EDE197 /* SettingsView.xib */,
 				5F08954B12641D6100EDE197 /* SettingsViewController.h */,
 				5F08954C12641D6100EDE197 /* SettingsViewController.m */,
@@ -615,6 +628,7 @@
 				17EEB75012D9A9550032E12B /* SignUp.xib in Resources */,
 				17AE80DE12DA7393007B96EC /* AccountView.xib in Resources */,
 				17AE812A12DA777C007B96EC /* default_user_300x300.png in Resources */,
+				17FA587712ED14FD00902FEE /* SettingsView1.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,6 +684,8 @@
 				176A9E6812E2618900CC595C /* User.m in Sources */,
 				176A9EEB12E2649600CC595C /* AppModel.m in Sources */,
 				17FA55C512EBFBBF00902FEE /* DishOptionPickerTableViewController.m in Sources */,
+				17FA573B12ED069E00902FEE /* SettingsTableView.m in Sources */,
+				17FA587612ED14FD00902FEE /* SettingsView1.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

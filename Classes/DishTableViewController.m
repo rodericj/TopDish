@@ -13,7 +13,8 @@
 #import "SettingsViewController.h"
 #import "constants.h"
 #import "SBJSON.h"
-
+#import "SettingsTableView.h"
+#import "SettingsView1.h"
 
 #define kTopDishBlue [UIColor colorWithRed:0 green:.3843 blue:.5725 alpha:1]
 
@@ -348,12 +349,15 @@
 }
 
 - (void) showSettings{
-	SettingsView *settings = [[SettingsView alloc] initWithNibName:@"SettingsView" 
-																			 bundle:nil];
+	SettingsView1 *settings = [[SettingsView1 alloc] initWithNibName:@"SettingsView1" bundle:nil];
+	//SettingsTableView *settings = [[SettingsTableView alloc] initWithStyle:UITableViewStyleGrouped];
+
+	//SettingsView *settings = [[SettingsView alloc] initWithNibName:@"SettingsView" bundle:nil];
 	[settings setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
 	
-	[self presentModalViewController:settings animated:TRUE];
-	[settings setDelegate:self];
+	[self.navigationController pushViewController:settings animated:TRUE];
+	//[self presentModalViewController:settings animated:TRUE];
+//	[settings setDelegate:self];
 }
 	 
 -(void) updateFetch{

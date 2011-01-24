@@ -8,8 +8,8 @@
 
 #import "DishOptionPickerTableViewController.h"
 #import "constants.h"
-#import "AddNewDishViewController.h"
-
+//#import "AddNewDishViewController.h"
+#import "AppModel.h"
 
 @implementation DishOptionPickerTableViewController
 
@@ -50,13 +50,17 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSArray *controllers = self.navigationController.viewControllers;
-	AddNewDishViewController *a = [controllers objectAtIndex:[controllers count]-2];
+	//NSArray *controllers = self.navigationController.viewControllers;
+	//AddNewDishViewController *a = [controllers objectAtIndex:[controllers count]-2];
 														
-	if(self.optionType == kPriceType)
-		[a setSelectedPrice:[self.optionValues objectAtIndex:indexPath.row]];
-	if(self.optionType == kMealType)
-		[a setSelectedMealType:[self.optionValues objectAtIndex:indexPath.row]];
+	if(self.optionType == kPriceType){
+		//[a setSelectedPrice:[self.optionValues objectAtIndex:indexPath.row]];
+		[[AppModel instance] setSelectedPrice:indexPath.row];
+	}
+	if(self.optionType == kMealType){
+		//[a setSelectedMealType:[self.optionValues objectAtIndex:indexPath.row]];
+		[[AppModel instance ] setSelectedMealType:indexPath.row];
+	}
 
 	[self.navigationController popViewControllerAnimated:YES];
 }
@@ -80,6 +84,8 @@
 
 - (void)dealloc {
     [super dealloc];
+	
+	self.optionValues = nil;
 }
 
 

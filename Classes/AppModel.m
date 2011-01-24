@@ -12,6 +12,11 @@
 @implementation AppModel
 
 @synthesize user = mUser;
+@synthesize mealTypeTags = mMealTypeTags;
+@synthesize priceTags = mPriceTags;
+@synthesize selectedMealType = mSelectedMealType;
+@synthesize selectedPrice = mSelectedPrice;
+
 AppModel *gAppModelInstance = nil;
 
 +(AppModel *) instance{
@@ -26,6 +31,8 @@ AppModel *gAppModelInstance = nil;
 {
 	self = [super init];
 	self.user = [NSMutableDictionary new];
+	self.priceTags = [NSArray arrayWithObjects: @"none", @"under $5", @"$5-10", @"$10-$15", @"$15-$25", @"$25+", nil];
+	self.mealTypeTags = [NSArray arrayWithObjects:@"all", @"breakfast", @"lunch", @"dinner", @"dessert", @"appetizer", nil];
 	return self;
 }
 
