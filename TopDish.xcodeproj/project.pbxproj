@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		176A9E6812E2618900CC595C /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 176A9E6712E2618900CC595C /* User.m */; };
 		176A9EEB12E2649600CC595C /* AppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 176A9EEA12E2649600CC595C /* AppModel.m */; };
+		178F1E9512EEB35600DE5B24 /* RateADishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 178F1E9312EEB35600DE5B24 /* RateADishViewController.m */; };
+		178F1E9612EEB35600DE5B24 /* RateADishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 178F1E9412EEB35600DE5B24 /* RateADishViewController.xib */; };
 		1794422112A5B195008EE034 /* DetailButtonImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 1794422012A5B195008EE034 /* DetailButtonImage.png */; };
 		179443FF12A60199008EE034 /* ImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 179443FE12A60199008EE034 /* ImagePickerViewController.m */; };
 		179B854212A0727F00730FAC /* BaseDishTableViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B854112A0727F00730FAC /* BaseDishTableViewer.m */; };
@@ -93,6 +95,9 @@
 		176A9E6712E2618900CC595C /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		176A9EE912E2649600CC595C /* AppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppModel.h; sourceTree = "<group>"; };
 		176A9EEA12E2649600CC595C /* AppModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppModel.m; sourceTree = "<group>"; };
+		178F1E9212EEB35600DE5B24 /* RateADishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RateADishViewController.h; sourceTree = "<group>"; };
+		178F1E9312EEB35600DE5B24 /* RateADishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RateADishViewController.m; sourceTree = "<group>"; };
+		178F1E9412EEB35600DE5B24 /* RateADishViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateADishViewController.xib; sourceTree = "<group>"; };
 		1794422012A5B195008EE034 /* DetailButtonImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DetailButtonImage.png; sourceTree = "<group>"; };
 		179443FD12A60199008EE034 /* ImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImagePickerViewController.h; path = Classes/ImagePickerViewController.h; sourceTree = "<group>"; };
 		179443FE12A60199008EE034 /* ImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImagePickerViewController.m; path = Classes/ImagePickerViewController.m; sourceTree = "<group>"; };
@@ -343,6 +348,9 @@
 				17DD27EF12BDEB6C0048C1A1 /* AddNewDishViewController.m */,
 				17DD27F012BDEB6C0048C1A1 /* AddNewDishViewController.xib */,
 				17DE005112B43B01001F6907 /* RateDishViewController.h */,
+				178F1E9212EEB35600DE5B24 /* RateADishViewController.h */,
+				178F1E9312EEB35600DE5B24 /* RateADishViewController.m */,
+				178F1E9412EEB35600DE5B24 /* RateADishViewController.xib */,
 				17DE005212B43B01001F6907 /* RateDishViewController.m */,
 				17DE005312B43B01001F6907 /* RateDishViewController.xib */,
 			);
@@ -633,6 +641,7 @@
 				17AE812A12DA777C007B96EC /* default_user_300x300.png in Resources */,
 				17FA587712ED14FD00902FEE /* SettingsView1.xib in Resources */,
 				17FA59AD12ED53F900902FEE /* DishDetailViewController.xib in Resources */,
+				178F1E9612EEB35600DE5B24 /* RateADishViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,6 +699,7 @@
 				17FA55C512EBFBBF00902FEE /* DishOptionPickerTableViewController.m in Sources */,
 				17FA587612ED14FD00902FEE /* SettingsView1.m in Sources */,
 				17FA59AC12ED53F900902FEE /* DishDetailViewController.m in Sources */,
+				178F1E9512EEB35600DE5B24 /* RateADishViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

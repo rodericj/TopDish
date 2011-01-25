@@ -11,6 +11,7 @@
 #import "constants.h"
 #import "JSON.h"
 #import "RateDishViewController.h"
+#import "RateADishViewController.h"
 
 #define kImageSection 0
 #define kDescriptionSection 1
@@ -225,8 +226,9 @@
 }
 
 -(IBAction)pushRateDishController {
-	RateDishViewController *rateDish = [[RateDishViewController alloc] init];
-	[rateDish setDish:self.thisDish];
+	//RateADishViewController *rateDish = [[RateADishViewController alloc] init];
+	RateADishViewController *rateDish = [[RateADishViewController alloc] initWithNibName:@"RateADishViewController" bundle:nil];
+	[rateDish setThisDish:self.thisDish];
 	[self.navigationController pushViewController:rateDish animated:YES];
 	
 	[rateDish release];
