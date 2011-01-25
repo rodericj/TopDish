@@ -11,6 +11,7 @@
 		176A9EEB12E2649600CC595C /* AppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 176A9EEA12E2649600CC595C /* AppModel.m */; };
 		178F1E9512EEB35600DE5B24 /* RateADishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 178F1E9312EEB35600DE5B24 /* RateADishViewController.m */; };
 		178F1E9612EEB35600DE5B24 /* RateADishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 178F1E9412EEB35600DE5B24 /* RateADishViewController.xib */; };
+		178F202512EECEBC00DE5B24 /* background_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 178F202412EECEBC00DE5B24 /* background_tile.png */; };
 		1794422112A5B195008EE034 /* DetailButtonImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 1794422012A5B195008EE034 /* DetailButtonImage.png */; };
 		179443FF12A60199008EE034 /* ImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 179443FE12A60199008EE034 /* ImagePickerViewController.m */; };
 		179B854212A0727F00730FAC /* BaseDishTableViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B854112A0727F00730FAC /* BaseDishTableViewer.m */; };
@@ -98,6 +99,7 @@
 		178F1E9212EEB35600DE5B24 /* RateADishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RateADishViewController.h; sourceTree = "<group>"; };
 		178F1E9312EEB35600DE5B24 /* RateADishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RateADishViewController.m; sourceTree = "<group>"; };
 		178F1E9412EEB35600DE5B24 /* RateADishViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateADishViewController.xib; sourceTree = "<group>"; };
+		178F202412EECEBC00DE5B24 /* background_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_tile.png; sourceTree = "<group>"; };
 		1794422012A5B195008EE034 /* DetailButtonImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DetailButtonImage.png; sourceTree = "<group>"; };
 		179443FD12A60199008EE034 /* ImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImagePickerViewController.h; path = Classes/ImagePickerViewController.h; sourceTree = "<group>"; };
 		179443FE12A60199008EE034 /* ImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImagePickerViewController.m; path = Classes/ImagePickerViewController.m; sourceTree = "<group>"; };
@@ -492,6 +494,7 @@
 		5F89F15E125951FE00959D05 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				178F202412EECEBC00DE5B24 /* background_tile.png */,
 				17AE812912DA777C007B96EC /* default_user_300x300.png */,
 				1794422012A5B195008EE034 /* DetailButtonImage.png */,
 				5F89F2E2125988C900959D05 /* tdlogo.png */,
@@ -642,6 +645,7 @@
 				17FA587712ED14FD00902FEE /* SettingsView1.xib in Resources */,
 				17FA59AD12ED53F900902FEE /* DishDetailViewController.xib in Resources */,
 				178F1E9612EEB35600DE5B24 /* RateADishViewController.xib in Resources */,
+				178F202512EECEBC00DE5B24 /* background_tile.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

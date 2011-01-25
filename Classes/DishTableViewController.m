@@ -44,6 +44,8 @@
 }	
 
 - (void)viewDidLoad {
+	self.view.backgroundColor = kTopDishBackground;
+	self.tableView.backgroundColor = kTopDishBackground;
 	self.entityTypeString = @"Dish";
 
     [super viewDidLoad];

@@ -7,7 +7,7 @@
 //
 
 #import "AccountView.h"
-
+#import "constants.h"
 
 @implementation AccountView
 
@@ -29,6 +29,8 @@ enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	self.view.backgroundColor = kTopDishBackground;
+
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
 	[self.tableView setTableHeaderView:self.tableHeader];
      self.navigationItem.rightBarButtonItem = self.editButtonItem;

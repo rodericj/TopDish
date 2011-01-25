@@ -28,9 +28,9 @@
 -(void)dealloc
 {		
 	[super dealloc];
-	self.passwordTextField = nil;
-	self.confirmPasswordTextField = nil;
-	self.userNameTextField = nil;
+//	self.passwordTextField = nil;
+//	self.confirmPasswordTextField = nil;
+//	self.userNameTextField = nil;
 	
 }
 

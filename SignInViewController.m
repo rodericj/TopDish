@@ -12,10 +12,13 @@
 
 @implementation SignInViewController
 
--(IBAction)submitClicked
-{
+-(void) viewDidLoad {
+	[super viewDidLoad];
+	self.view.backgroundColor = kTopDishBackground;
 
-	
+}
+-(IBAction)submitClicked
+{	
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/login?email=%@", NETWORKHOST, self.userNameTextField.text]];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	//[request setUsername:self.userNameTextField.text];

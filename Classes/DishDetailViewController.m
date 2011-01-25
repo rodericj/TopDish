@@ -137,6 +137,8 @@
 }
 
 - (void)viewDidLoad {
+	self.view.backgroundColor = kTopDishBackground;
+
 	NSLog(@"view did load for %@", [self.thisDish objName]);
 	if( [[self.thisDish photoURL] length] > 0 ){
 		

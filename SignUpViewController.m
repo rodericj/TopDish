@@ -6,8 +6,15 @@
 //
 
 #import "SignUpViewController.h"
+#import "constants.h"
 
 @implementation SignUpViewController
+
+-(void) viewDidLoad {
+	[super viewDidLoad];
+	self.view.backgroundColor = kTopDishBackground;
+	
+}
 
 -(IBAction)submitClicked
 {

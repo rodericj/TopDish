@@ -46,9 +46,12 @@
 	self.restaurantTitle.text = [[self.thisDish restaurant] objName];
 	self.restaurantTitle.textColor = kTopDishBlue;
 	
-	self.dishTitle.text = [self.thisDish objName];
-	self.dishTitle.textColor = kTopDishBlue;
-	
+	//if (self.thisDish) {
+		self.dishTitle.text = [self.thisDish objName];
+		self.dishTitle.textColor = kTopDishBlue;
+	//}backgroundImage
+	self.view.backgroundColor = kTopDishBackground;
+
 	self.dishImage.image = [UIImage imageWithData:[self.thisDish imageData]];
 	
 }
@@ -192,7 +195,9 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
 	//self.dishImageFromPicker = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-	[self.newPicture setImage:[info objectForKey:@"UIImagePickerControllerEditedImage"]];
+	if ([info objectForKey:@"UIImagePickerControllerEditedImage"]) {
+		[self.newPicture setImage:[info objectForKey:@"UIImagePickerControllerEditedImage"]];
+	}
 	[self dismissModalViewControllerAnimated:YES];
 }
 
@@ -288,23 +293,23 @@
 
 - (void)dealloc {
     [super dealloc];
-	self.thisDish = nil;
-	self.dishHeaderCell = nil;
-	self.dishTitle = nil;
-	self.restaurantTitle = nil;
-	self.dishImage = nil;
-	
-	self.dishCommentCell = nil;
-	self.dishComment = nil;
-	
-	self.wouldYouCell = nil;
- 	self.wouldYou = nil;
-	
- 	self.pictureCell = nil;
-	self.newPicture = nil;
-	
-	self.submitButtonCell = nil;
-	self.submitButton = nil;
+	//self.thisDish = nil;
+//	self.dishHeaderCell = nil;
+//	self.dishTitle = nil;
+//	self.restaurantTitle = nil;
+//	self.dishImage = nil;
+//	
+//	self.dishCommentCell = nil;
+//	self.dishComment = nil;
+//	
+//	self.wouldYouCell = nil;
+// 	self.wouldYou = nil;
+//	
+// 	self.pictureCell = nil;
+//	self.newPicture = nil;
+//	
+//	self.submitButtonCell = nil;
+//	self.submitButton = nil;
 }
 
 

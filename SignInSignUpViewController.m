@@ -19,7 +19,7 @@
 -(void)viewDidLoad
 {
 	[super viewDidLoad];
-	//self.navigationController.navigationBar.backItem.hidesBackButton = YES; 
+	self.view.backgroundColor = kTopDishBackground;
 }
 
 -(IBAction)signInClicked
@@ -53,8 +53,8 @@
 -(void)dealloc
 {	
 	[super dealloc];
-	self.signInButton = nil;
-	self.signUpButton = nil;
+//	self.signInButton = nil;
+//	self.signUpButton = nil;
 }
 
 @end
