@@ -29,6 +29,7 @@
 @property (nonatomic, retain) IBOutlet UITableViewCell *mealTypeCell;
 @property (nonatomic, retain) IBOutlet UILabel *mealTypeLabel;
 
+-(IBAction) changeSegmentedSelector;
 
 -(IBAction) updatePriceTags;
 

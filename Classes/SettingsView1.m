@@ -109,6 +109,11 @@
     return cell;
 }
 
+-(IBAction) changeSegmentedSelector {
+	NSLog(@"blah %d", [self.segmentedControl selectedSegmentIndex]);
+	[[AppModel instance] setSorter:[self.segmentedControl selectedSegmentIndex]];
+}
+
 -(IBAction) updatePriceTags{
 	[self.priceSlider setValue:(int)[self.priceSlider value]];
 	[self.priceValue setText:[[AppModel instance].priceTags objectAtIndex:[self.priceSlider value]]];	
@@ -147,6 +152,14 @@
 
 - (void)dealloc {
     [super dealloc];
+	self.segmentedControl = nil;
+	self.segmentedControlCell = nil;
+	self.priceSliderCell = nil;
+	self.priceSlider = nil;
+	self.priceValueCell = nil;
+	self.priceValue = nil;
+	self.mealTypeCell = nil;
+	self.mealTypeLabel = nil;
 }
 
 

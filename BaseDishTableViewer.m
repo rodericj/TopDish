@@ -14,6 +14,7 @@
 #import "RestaurantDetailViewController.h"
 #import "AddNewDishViewController.h"
 #import "CommentsTableViewController.h"
+#import "DishDetailViewController.h"
 
 @implementation BaseDishTableViewer
 
@@ -204,8 +205,6 @@
 	[detailViewController setTitle:[(Restaurant *)selectedObject objName]];
 	[detailViewController release];
 	
-	
-	
 	//NSLog(@"RestaurantName from RestaurantTableViewController %@", [selectedObject objName]);
 //	self.entityTypeString = @"Restaurant";
 //	RestaurantDetailViewController *detailViewController = [[RestaurantDetailViewController alloc] init];
@@ -221,8 +220,11 @@
 	NSLog(@"DishName from DishTableViewController %@", [selectedObject objName]);
 	//self.entityTypeString = @"Dish";
 
-	CommentsTableViewController *detailViewController = [[CommentsTableViewController alloc] init];	
-	[detailViewController setDish:(Dish*)selectedObject];
+	DishDetailViewController *detailViewController = [[DishDetailViewController alloc] initWithNibName:@"DishDetailViewController" bundle:nil];
+	[detailViewController setThisDish:(Dish*)selectedObject];
+	
+	//CommentsTableViewController *detailViewController = [[CommentsTableViewController alloc] init];	
+	//[detailViewController setDish:(Dish*)selectedObject];
 	[detailViewController setManagedObjectContext:self.managedObjectContext];
 	
 	[self.navigationController pushViewController:detailViewController animated:YES];

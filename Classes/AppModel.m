@@ -16,6 +16,7 @@
 @synthesize priceTags = mPriceTags;
 @synthesize selectedMealType = mSelectedMealType;
 @synthesize selectedPrice = mSelectedPrice;
+@synthesize sorter = mSorter;
 
 AppModel *gAppModelInstance = nil;
 

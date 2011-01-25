@@ -45,7 +45,7 @@
 					<object class="IBUILabel" id="93955723">
 						<reference key="NSNextResponder" ref="914660654"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{27, 20}, {88, 21}}</string>
+						<string key="NSFrame">{{27, 102}, {88, 21}}</string>
 						<reference key="NSSuperview" ref="914660654"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -67,7 +67,7 @@
 					<object class="IBUIButton" id="232530208">
 						<reference key="NSNextResponder" ref="914660654"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{121, 318}, {80, 37}}</string>
+						<string key="NSFrame">{{113, 20}, {80, 37}}</string>
 						<reference key="NSSuperview" ref="914660654"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -93,7 +93,7 @@
 					<object class="IBUITextField" id="73877217">
 						<reference key="NSNextResponder" ref="914660654"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{143, 60}, {157, 31}}</string>
+						<string key="NSFrame">{{143, 142}, {157, 31}}</string>
 						<reference key="NSSuperview" ref="914660654"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -120,7 +120,7 @@
 					<object class="IBUILabel" id="81155678">
 						<reference key="NSNextResponder" ref="914660654"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{143, 20}, {157, 21}}</string>
+						<string key="NSFrame">{{143, 102}, {157, 21}}</string>
 						<reference key="NSSuperview" ref="914660654"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -136,7 +136,7 @@
 					<object class="IBUILabel" id="486647939">
 						<reference key="NSNextResponder" ref="914660654"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{27, 63}, {91, 21}}</string>
+						<string key="NSFrame">{{27, 145}, {91, 21}}</string>
 						<reference key="NSSuperview" ref="914660654"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -152,7 +152,7 @@
 					<object class="IBUIImageView" id="719139584">
 						<reference key="NSNextResponder" ref="914660654"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{143, 99}, {157, 157}}</string>
+						<string key="NSFrame">{{143, 181}, {157, 157}}</string>
 						<reference key="NSSuperview" ref="914660654"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -160,7 +160,7 @@
 					<object class="IBUILabel" id="642968619">
 						<reference key="NSNextResponder" ref="914660654"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{27, 167}, {58, 21}}</string>
+						<string key="NSFrame">{{27, 249}, {58, 21}}</string>
 						<reference key="NSSuperview" ref="914660654"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -176,7 +176,7 @@
 					<object class="IBUILabel" id="522408078">
 						<reference key="NSNextResponder" ref="914660654"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{185, 274}, {85, 21}}</string>
+						<string key="NSFrame">{{185, 356}, {85, 21}}</string>
 						<reference key="NSSuperview" ref="914660654"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -192,7 +192,7 @@
 					<object class="IBUIButton" id="587253081">
 						<reference key="NSNextResponder" ref="914660654"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{274, 269}, {29, 31}}</string>
+						<string key="NSFrame">{{274, 351}, {29, 31}}</string>
 						<reference key="NSSuperview" ref="914660654"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -210,7 +210,7 @@
 					<object class="IBUILabel" id="128981859">
 						<reference key="NSNextResponder" ref="914660654"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{27, 274}, {62, 21}}</string>
+						<string key="NSFrame">{{27, 356}, {62, 21}}</string>
 						<reference key="NSSuperview" ref="914660654"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -226,7 +226,7 @@
 					<object class="IBUIButton" id="943823010">
 						<reference key="NSNextResponder" ref="914660654"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{94, 269}, {29, 31}}</string>
+						<string key="NSFrame">{{94, 351}, {29, 31}}</string>
 						<reference key="NSSuperview" ref="914660654"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -358,14 +358,14 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="93955723"/>
 							<reference ref="73877217"/>
-							<reference ref="486647939"/>
 							<reference ref="81155678"/>
+							<reference ref="486647939"/>
 							<reference ref="719139584"/>
 							<reference ref="642968619"/>
-							<reference ref="128981859"/>
-							<reference ref="943823010"/>
 							<reference ref="522408078"/>
 							<reference ref="587253081"/>
+							<reference ref="128981859"/>
+							<reference ref="943823010"/>
 							<reference ref="232530208"/>
 						</object>
 						<reference key="parent" ref="0"/>
@@ -442,6 +442,7 @@
 					<string>13.IBPluginDependency</string>
 					<string>13.IBViewBoundsToFrameTransform</string>
 					<string>14.IBPluginDependency</string>
+					<string>14.IBViewBoundsToFrameTransform</string>
 					<string>20.IBPluginDependency</string>
 					<string>20.IBViewBoundsToFrameTransform</string>
 					<string>22.IBPluginDependency</string>
@@ -464,46 +465,49 @@
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDKQAAwzgAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABB2AAAwhwAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABC5AAAw7CAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABCygAAwsYAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDDwAAwjAAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDDwAAwrIAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABDDwAAwhwAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDDwAAw5SAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABB2AAAwqQAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABB2AAAwuwAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDDwAAw34AAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDOQAAw6KAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABB2AAAwzoAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDiQAAw6UAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDOQAAw5KAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDTwAAw5OAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDiQAAw5UAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDiQAAw5YAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABB2AAAw5KAAA</bytes>
 					</object>
-					<string>{{569, 192}, {320, 460}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABCvAAAw5UAAA</bytes>
+					</object>
+					<string>{{474, 95}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<boolean value="YES"/>
 				</object>

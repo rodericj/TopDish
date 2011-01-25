@@ -10,10 +10,8 @@
 #import "Dish.h"
 #import "Restaurant.h"
 #import "NearbyMapViewController.h"
-#import "SettingsViewController.h"
 #import "constants.h"
 #import "SBJSON.h"
-#import "SettingsTableView.h"
 #import "SettingsView1.h"
 
 #define kTopDishBlue [UIColor colorWithRed:0 green:.3843 blue:.5725 alpha:1]
@@ -128,11 +126,11 @@
 		self.fetchedResultsController = nil;
 		self.entityTypeString = @"Dish";
 		if (currentSearchTerm != nil) {
-			[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=200000000&limit=2&q=%@", NETWORKHOST, currentLat, currentLon, [currentSearchTerm lowercaseString]]];
+			[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=200000&limit=2&q=%@", NETWORKHOST, currentLat, currentLon, [currentSearchTerm lowercaseString]]];
 			
 		}
 		else
-			[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=200000000&limit=2", NETWORKHOST, currentLat, currentLon]];
+			[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=200000&limit=2", NETWORKHOST, currentLat, currentLon]];
 		
 		[self.tableView setDataSource:self];
 	}

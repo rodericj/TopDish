@@ -15,6 +15,7 @@
 	NSArray *mPriceTags;
 	int mSelectedPrice;
 	int mSelectedMealType;
+	int mSorter;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *user;
@@ -22,6 +23,7 @@
 @property (nonatomic, retain) NSArray *priceTags;
 @property (nonatomic, assign) int selectedPrice;
 @property (nonatomic, assign) int selectedMealType;
+@property (nonatomic, assign) int sorter;
 
 +(AppModel *)instance;
 @end

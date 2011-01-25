@@ -27,11 +27,6 @@
 	[self.mealTypeSlider setMinimumValue:0];
 	[self.priceSlider setMinimumValue:0];
 	
-	//We need to maintain the previous state of the slider values.
-	//NSNumber *value = [[NSNumber alloc] initWithInt:[[[NSUserDefaults standardUserDefaults] objectForKey:SORT_VALUE_LOCATION] intValue]];
-//	[sortBySegmentedControl setSelectedSegmentIndex:[value intValue]];
-//	[self.priceSlider setValue:[[[NSUserDefaults standardUserDefaults] objectForKey:MIN_PRICE_VALUE_LOCATION] floatValue]];
-//	[self.mealTypeSlider setValue:[[[NSUserDefaults standardUserDefaults] objectForKey:MAX_PRICE_VALUE_LOCATION] floatValue]];
 	[self updateSymbols];
 }
 
@@ -53,15 +48,12 @@
 	[self dismissModalViewControllerAnimated:TRUE]; 
 }
 
--(IBAction) closeSettings{
-	[self dismissModalViewControllerAnimated:TRUE]; 
-
-	//NSNumber *minFloatVal = [[NSNumber alloc] initWithFloat:[minSlider value]];
+//-(IBAction) closeSettings{
+//	[self dismissModalViewControllerAnimated:TRUE]; 
+//
 //	NSNumber *maxFloatVal = [[NSNumber alloc] initWithFloat:[maxSlider value]];
-//	//NSFloat *maxFloatVal = [[NSInteger alloc] initWithFloat:[maxSlider value]];
 //	
 //	//Create array with sort params, then store in NSUserDefaults
-//	//NSString *sorter = [[NSArray arrayWithObjects:RATINGS_SORT, DISTANCE_SORT, nil] objectAtIndex:[sortBySegmentedControl selectedSegmentIndex]];
 //	NSNumber *anInt = [[NSNumber alloc] initWithInt:[sortBySegmentedControl selectedSegmentIndex]];	
 //	[[NSUserDefaults standardUserDefaults] setObject:anInt forKey:SORT_VALUE_LOCATION];
 //
@@ -70,8 +62,8 @@
 //	[[NSUserDefaults standardUserDefaults] setObject:maxFloatVal forKey:MAX_PRICE_VALUE_LOCATION];
 //	[[NSUserDefaults standardUserDefaults] setObject:minFloatVal forKey:MIN_PRICE_VALUE_LOCATION];
 //
-	[delegate updateFetch];
-}
+//	[delegate updateFetch];
+//}
 
 - (void) updateSymbols{
 	[self.mealTypeLabel setText:[[[AppModel instance] mealTypeTags] objectAtIndex:[self.mealTypeSlider value]]];
