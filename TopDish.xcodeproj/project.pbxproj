@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		17134E7B12EFF0F600A46B6B /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 17134E7A12EFF0F600A46B6B /* check.png */; };
+		17134EEC12EFFE9F00A46B6B /* AddADishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17134EEA12EFFE9F00A46B6B /* AddADishViewController.m */; };
+		17134EED12EFFE9F00A46B6B /* AddADishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17134EEB12EFFE9F00A46B6B /* AddADishViewController.xib */; };
 		176A9E6812E2618900CC595C /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 176A9E6712E2618900CC595C /* User.m */; };
 		176A9EEB12E2649600CC595C /* AppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 176A9EEA12E2649600CC595C /* AppModel.m */; };
 		178F1E9512EEB35600DE5B24 /* RateADishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 178F1E9312EEB35600DE5B24 /* RateADishViewController.m */; };
@@ -94,6 +96,9 @@
 
 /* Begin PBXFileReference section */
 		17134E7A12EFF0F600A46B6B /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		17134EE912EFFE9F00A46B6B /* AddADishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddADishViewController.h; sourceTree = "<group>"; };
+		17134EEA12EFFE9F00A46B6B /* AddADishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddADishViewController.m; sourceTree = "<group>"; };
+		17134EEB12EFFE9F00A46B6B /* AddADishViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddADishViewController.xib; sourceTree = "<group>"; };
 		176A9E6612E2618900CC595C /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		176A9E6712E2618900CC595C /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		176A9EE912E2649600CC595C /* AppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppModel.h; sourceTree = "<group>"; };
@@ -268,6 +273,22 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		17134EE812EFFE7D00A46B6B /* legacy */ = {
+			isa = PBXGroup;
+			children = (
+				17DD27EE12BDEB6C0048C1A1 /* AddNewDishViewController.h */,
+				17DD27EF12BDEB6C0048C1A1 /* AddNewDishViewController.m */,
+				17DD27F012BDEB6C0048C1A1 /* AddNewDishViewController.xib */,
+				17DE005112B43B01001F6907 /* RateDishViewController.h */,
+				17DE005212B43B01001F6907 /* RateDishViewController.m */,
+				17DE005312B43B01001F6907 /* RateDishViewController.xib */,
+				17134EE912EFFE9F00A46B6B /* AddADishViewController.h */,
+				17134EEA12EFFE9F00A46B6B /* AddADishViewController.m */,
+				17134EEB12EFFE9F00A46B6B /* AddADishViewController.xib */,
+			);
+			name = legacy;
+			sourceTree = "<group>";
+		};
 		176A9EE812E2648900CC595C /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,19 +365,14 @@
 		17DE013912B43EEB001F6907 /* RateDishView */ = {
 			isa = PBXGroup;
 			children = (
+				17134EE812EFFE7D00A46B6B /* legacy */,
 				179443FD12A60199008EE034 /* ImagePickerViewController.h */,
 				179443FE12A60199008EE034 /* ImagePickerViewController.m */,
 				17FA55C312EBFBBF00902FEE /* DishOptionPickerTableViewController.h */,
 				17FA55C412EBFBBF00902FEE /* DishOptionPickerTableViewController.m */,
-				17DD27EE12BDEB6C0048C1A1 /* AddNewDishViewController.h */,
-				17DD27EF12BDEB6C0048C1A1 /* AddNewDishViewController.m */,
-				17DD27F012BDEB6C0048C1A1 /* AddNewDishViewController.xib */,
-				17DE005112B43B01001F6907 /* RateDishViewController.h */,
 				178F1E9212EEB35600DE5B24 /* RateADishViewController.h */,
 				178F1E9312EEB35600DE5B24 /* RateADishViewController.m */,
 				178F1E9412EEB35600DE5B24 /* RateADishViewController.xib */,
-				17DE005212B43B01001F6907 /* RateDishViewController.m */,
-				17DE005312B43B01001F6907 /* RateDishViewController.xib */,
 			);
 			name = RateDishView;
 			path = ..;
@@ -650,6 +666,7 @@
 				178F1E9612EEB35600DE5B24 /* RateADishViewController.xib in Resources */,
 				178F202512EECEBC00DE5B24 /* background_tile.png in Resources */,
 				17134E7B12EFF0F600A46B6B /* check.png in Resources */,
+				17134EED12EFFE9F00A46B6B /* AddADishViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,6 +725,7 @@
 				17FA587612ED14FD00902FEE /* SettingsView1.m in Sources */,
 				17FA59AC12ED53F900902FEE /* DishDetailViewController.m in Sources */,
 				178F1E9512EEB35600DE5B24 /* RateADishViewController.m in Sources */,
+				17134EEC12EFFE9F00A46B6B /* AddADishViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
