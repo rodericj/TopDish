@@ -41,6 +41,7 @@
 }
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
 	[searchBar resignFirstResponder];
+	[self.tableView reloadData];
 }	
 
 - (void)viewDidLoad {
