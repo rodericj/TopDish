@@ -123,7 +123,6 @@
 	
 	//Query the results controller
 	Dish *thisDish = [[self fetchedResultsController] objectAtIndexPath:indexPath];	
-	
 	//Build the UIElements
     UILabel *dishName;
 	dishName = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_DISH_NAME_TAG];
@@ -133,10 +132,6 @@
 	resto = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_RESTAURANT_NAME_TAG];
 	resto.text = @"Resto Name";
 	NSString *restaurantName = [[thisDish restaurant] objName];
-	int length = [restaurantName length];
-	if (length > MAXRESTAURANTNAMELENGTH){
-		restaurantName = [restaurantName substringToIndex:MAXRESTAURANTNAMELENGTH];
-	}
 	resto.text = restaurantName;
 	
 	UILabel *cost;

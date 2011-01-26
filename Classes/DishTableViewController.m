@@ -264,10 +264,11 @@
 			
 			//if the element we are looking at is not the current existing dish then we need to create a new one
 			if([[newElement objectForKey:@"id"] intValue] != [[existingDish dish_id] intValue]){
-				//We've never seen this dish
+				//We've never seen this dish, so create it
 				NSDictionary *thisElement = [sortedDishes objectAtIndex:incomingCounter];
 				Dish *thisDish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" 
 																	   inManagedObjectContext:self.managedObjectContext];
+				
 				
 				if (existingRestoCounter >= [restaurantsMatchingId count]){
 					thisRestaurant = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" 
@@ -280,6 +281,27 @@
 				}
 				else{
 					thisRestaurant = [restaurantsMatchingId objectAtIndex:existingRestoCounter];
+					
+					BOOL foundRestaurantInCoreDataForThisDish = FALSE;
+					//Then from the object determine if this restaurant is in the restaurantsMatchingId array
+					for (int i = existingRestoCounter; i < [restaurantsMatchingId count]; i++) {
+						NSNumber *restaurantID = [restaurantsMatchingId objectAtIndex:i];
+						if (restaurantID == [[thisDish restaurant] restaurant_id]) {
+							//set thisDish's restaurant to restaurantID
+							//set flag saying we've set the restaurant
+							foundRestaurantInCoreDataForThisDish = YES;
+						}
+					}
+					if (!foundRestaurantInCoreDataForThisDish) {
+						//create a new restaurant with this id and [thisElement objectForKey:@"restaurantName"]
+						thisRestaurant = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" 
+																					 inManagedObjectContext:self.managedObjectContext];
+						NSLog(@"adding %@", [thisElement objectForKey:@"restaurantID"]);
+						NSNumber *restaurant_id = [thisElement objectForKey:@"restaurantID"];
+						
+						[thisRestaurant setRestaurant_id:restaurant_id];
+						[thisRestaurant setObjName:[thisElement objectForKey:@"restaurantName"]];
+					}
 				}
 				
 				[thisDish setDish_id:[thisElement objectForKey:@"id"]];
