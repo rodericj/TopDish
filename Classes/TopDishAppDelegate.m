@@ -40,17 +40,17 @@
     //execute mobile init
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/mobileInit", NETWORKHOST]];	
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-	[request setPostBody:nil];
+	
+	//seems like i have to supply an empty post in order to make this a post not a get....boo
+	[request setPostValue:nil forKey:@"comment"];
+
 	// Upload an NSData instance
 	[request setDelegate:self];
 	[request startAsynchronous];
 	
     // Add the navigation controller's view to the window and display.
-    //[window addSubview:navigationController.view];
     [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
-
-	//[self initializedatabase];
     return YES;
 }
 
@@ -63,7 +63,20 @@
 	//NSData *responseData = [request responseData];
 	NSString *responseText = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
 	
-	NSLog(@"response string %@  \nand of course %@", responseString, responseText);
+	SBJSON *parser = [SBJSON new];
+	NSError *error = nil;
+	NSArray *responseAsArray = [parser objectWithString:responseText error:&error];	
+	[parser release];
+	
+	if(error != nil){
+		NSLog(@"there was an error when jsoning");
+		NSLog(@"%@", error);
+		NSLog(@"the text %@", responseText);
+	}
+	NSLog(@"the dict is %@", responseAsArray);
+	
+	//NSLog(@"response string %@  \nand of course %@", responseString, responseText);
+	NSLog(@"response string %@", responseString);
 	
 	NSArray *priceTags = [NSArray arrayWithObjects: @"none", @"under $5", @"$5-10", @"$10-$15", @"$15-$25", @"$25+", nil];
 	NSArray *mealTypeTags = [NSArray arrayWithObjects:@"all", @"breakfast", @"lunch", @"dinner", @"dessert", @"appetizer", nil];
