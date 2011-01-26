@@ -13,6 +13,8 @@
 	Dish *mThisDish;
 	UITableViewCell *mDishImageCell;
 	UIImageView *mDishImageView;
+	UILabel *mNegativeReviews;
+	UILabel *mPositiveReviews;	
 	
 	UITableViewCell *mDishDescriptionCell;
 	UILabel	*mDishDescriptionLabel;
@@ -30,6 +32,8 @@
 @property (nonatomic, retain) Dish *thisDish;
 @property (nonatomic, retain) IBOutlet UITableViewCell *dishImageCell;
 @property (nonatomic, retain) IBOutlet UIImageView *dishImageView;
+@property (nonatomic, retain) IBOutlet UILabel *negativeReviews;
+@property (nonatomic, retain) IBOutlet UILabel *positiveReviews;
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *dishDescriptionCell;
 @property (nonatomic, retain) IBOutlet UILabel *dishDescriptionLabel;

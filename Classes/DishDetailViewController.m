@@ -24,6 +24,9 @@
 @synthesize dishImageView = mDishImageView;
 @synthesize dishDescriptionCell = mDishDescriptionCell;
 @synthesize dishDescriptionLabel = mDishDescriptionLabel;
+@synthesize negativeReviews = mNegativeReviews;
+@synthesize positiveReviews = mPositiveReviews;
+
 
 @synthesize dishNameLabel = mDishNameLabel;
 @synthesize restaurantNameLabel = mRestaurantNameLabel;
@@ -169,6 +172,12 @@
 	[conn release];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	self.negativeReviews.text = [NSString stringWithFormat:@"-%@",[self.thisDish negReviews]];
+	self.positiveReviews.text = [NSString stringWithFormat:@"+%@",[self.thisDish posReviews]];	
 }
 
 #pragma mark -

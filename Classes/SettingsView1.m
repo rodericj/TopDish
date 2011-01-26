@@ -27,6 +27,7 @@
 @synthesize mealTypeLabel = mMealTypeLabel;
 
 - (void)viewDidLoad {
+	self.view.backgroundColor = kTopDishBackground;
 	NSLog(@"count is %d",[[[AppModel instance] priceTags] count] );
 	[self.priceSlider setMaximumValue:[[[AppModel instance] priceTags] count] - 1];
 	[self.priceSlider setMinimumValue:0];

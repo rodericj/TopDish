@@ -15,6 +15,8 @@
 	UILabel *mDishTitle;
 	UILabel *mRestaurantTitle;
 	UIImageView *mDishImage;
+	UILabel *mPositiveReviews;
+	UILabel *mNegativeReviews;
 	
 	UITableViewCell *mDishCommentCell;
 	UITextView	*mDishComment;
@@ -34,6 +36,8 @@
 @property (nonatomic, retain) IBOutlet UILabel *dishTitle;
 @property (nonatomic, retain) IBOutlet UILabel *restaurantTitle;
 @property (nonatomic, retain) IBOutlet UIImageView *dishImage;
+@property (nonatomic, retain) IBOutlet UILabel *positiveReviews;
+@property (nonatomic, retain) IBOutlet UILabel *negativeReviews;
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *dishCommentCell;
 @property (nonatomic, retain) IBOutlet UITextView *dishComment;

@@ -25,6 +25,8 @@
 @synthesize dishTitle = mDishTitle;
 @synthesize restaurantTitle = mRestaurantTitle;
 @synthesize dishImage = mDishImage;
+@synthesize positiveReviews = mPositiveReviews;
+@synthesize negativeReviews = mNegativeReviews;
 
 @synthesize dishCommentCell = mDishCommentCell;
 @synthesize dishComment = mDishComment;
@@ -46,14 +48,22 @@
 	self.restaurantTitle.text = [[self.thisDish restaurant] objName];
 	self.restaurantTitle.textColor = kTopDishBlue;
 	
-	//if (self.thisDish) {
-		self.dishTitle.text = [self.thisDish objName];
-		self.dishTitle.textColor = kTopDishBlue;
-	//}backgroundImage
+	self.dishTitle.text = [self.thisDish objName];
+	self.dishTitle.textColor = kTopDishBlue;
+
+	self.negativeReviews.text = [NSString stringWithFormat:@"-%@",[self.thisDish negReviews]];
+	self.positiveReviews.text = [NSString stringWithFormat:@"+%@",[self.thisDish posReviews]];
+	
 	self.view.backgroundColor = kTopDishBackground;
 
 	self.dishImage.image = [UIImage imageWithData:[self.thisDish imageData]];
 	
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	self.negativeReviews.text = [NSString stringWithFormat:@"-%@",[self.thisDish negReviews]];
+	self.positiveReviews.text = [NSString stringWithFormat:@"+%@",[self.thisDish posReviews]];	
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -236,6 +246,7 @@
 	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/rateDish"]];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request setPostValue:self.dishComment.text forKey:@"comment"];
+	NSLog(@"would you state %@", [self.wouldYou state]);
 	int selection = [self.wouldYou state] ? 1 : -1;
 	
 	[request setPostValue:[NSNumber numberWithInt:selection] forKey:@"direction"];
