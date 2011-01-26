@@ -32,7 +32,9 @@
 @synthesize dishComment = mDishComment;
 
 @synthesize wouldYouCell = mWouldYouCell;
-@synthesize wouldYou = mWouldYou;
+@synthesize yesImage = mYesImage;
+@synthesize noImage = mNoImage;
+@synthesize rating = mRating;
 
 @synthesize pictureCell = mPictureCell;
 @synthesize newPicture = mNewPicture;
@@ -53,6 +55,9 @@
 
 	self.negativeReviews.text = [NSString stringWithFormat:@"-%@",[self.thisDish negReviews]];
 	self.positiveReviews.text = [NSString stringWithFormat:@"+%@",[self.thisDish posReviews]];
+	
+	self.noImage.hidden = YES;
+	self.yesImage.hidden = YES;
 	
 	self.view.backgroundColor = kTopDishBackground;
 
@@ -214,7 +219,7 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
 	NSLog(@"cancelled, should we go back another level?");
 	[self dismissModalViewControllerAnimated:YES];
-	[self.navigationController popViewControllerAnimated:YES];
+	//[self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -
@@ -231,9 +236,8 @@
 		[imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
 		[imagePicker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModePhoto];
 		[imagePicker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
-		
+
 		[imagePicker setCameraOverlayView:[UIButton buttonWithType:UIButtonTypeRoundedRect]];
-		
 	}
 	else {
 		[imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
@@ -242,27 +246,50 @@
 	
 	
 }
--(IBAction)submitRating{
+-(IBAction)yesButtonClicked {
+	self.noImage.hidden = YES;
+	self.yesImage.hidden = NO;
+	self.rating = 1;
+}
+-(IBAction)noButtonClicked {
+	self.yesImage.hidden = YES;
+	self.noImage.hidden = NO;
+	self.rating = -1;
+}
+
+-(IBAction)submitRating {
 	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/rateDish"]];
+	
+	if (!self.rating) {
+		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Error Rating Dish" 
+															message:@"Please select Yes or No" 
+														   delegate:nil 
+												  cancelButtonTitle:@"OK"
+												  otherButtonTitles:nil];
+		[alertview show];
+		[alertview release];
+		return;
+	}
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request setPostValue:self.dishComment.text forKey:@"comment"];
-	NSLog(@"would you state %@", [self.wouldYou state]);
-	int selection = [self.wouldYou state] ? 1 : -1;
+	//NSLog(@"would you state %@", [self.wouldYou state]);
+//	int selection = [self.wouldYou state] ? 1 : -1;
 	
-	[request setPostValue:[NSNumber numberWithInt:selection] forKey:@"direction"];
+	[request setPostValue:[NSNumber numberWithInt:self.rating] forKey:@"direction"];
 	[request setPostValue:[NSString stringWithFormat:@"%@", [self.thisDish dish_id]] forKey:@"dishId"];		
 	[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-	//NSLog(@"key %@, value %@", keyforauthorizing, [[AppModel instance] user] objectForKey:keyforauthorizing]);
 	NSLog(@"request is %@", request);
 	NSLog(@"this is what we are sending for RATE a dish: url: %@\n, comment: %@\n, vote: %d\n, dish_id %@\n, apiKey: %@", 
 		  [url absoluteURL], 
 		  self.dishComment.text, 
-		  selection, 
+		  self.rating, 
 		  [self.thisDish dish_id],
 		  [[[AppModel instance] user] objectForKey:keyforauthorizing]); 
 	
 	// Upload an NSData instance
-	//[request setData:imageData withFileName:@"myphoto.jpg" andContentType:@"image/jpeg" forKey:@"photo"];
+	if (self.newPicture)
+		[request setData:UIImagePNGRepresentation(self.newPicture.image) forKey:@"photo"];
+
 	[request setDelegate:self];
 	[request startAsynchronous];
 
@@ -278,6 +305,8 @@
 	NSString *responseText = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
 	
 	NSLog(@"response string %@  \nand of course %@", responseString, responseText);
+	[self.navigationController popViewControllerAnimated:YES];
+
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request

@@ -22,7 +22,9 @@
 	UITextView	*mDishComment;
 	
 	UITableViewCell *mWouldYouCell;
-	UISwitch *mWouldYou;
+	UIImageView *mYesImage;
+	UIImageView *mNoImage;
+	int mRating;
 	
 	UITableViewCell *mPictureCell;
 	UIImageView *mNewPicture;
@@ -43,7 +45,9 @@
 @property (nonatomic, retain) IBOutlet UITextView *dishComment;
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *wouldYouCell;
-@property (nonatomic, retain) IBOutlet UISwitch *wouldYou;
+@property (nonatomic, retain) IBOutlet UIImageView *noImage;
+@property (nonatomic, retain) IBOutlet UIImageView *yesImage;
+@property (nonatomic, assign) int rating;
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *pictureCell;
 @property (nonatomic, retain) IBOutlet UIImageView *newPicture;
@@ -53,4 +57,8 @@
 
 -(IBAction)takePicture;
 -(IBAction)submitRating;
+-(IBAction)noButtonClicked;
+-(IBAction)yesButtonClicked;
+
+	
 @end
