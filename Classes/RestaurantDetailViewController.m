@@ -74,10 +74,15 @@
 	asyncImage.tag = 999;
 	if( [[restaurant photoURL] length] > 0 ){
 		NSLog(@"the restaurant photo URL is %@", [restaurant photoURL]);
-		NSString *urlString = [NSString stringWithFormat:@"%@&w=%d&h=%d", [restaurant photoURL], DISHDETAILIMAGECELLHEIGHT, DISHDETAILIMAGECELLHEIGHT];
+		NSString *urlString = [NSString stringWithFormat:@"%@%@&w=%d&h=%d", 
+							   NETWORKHOST, 
+							   [restaurant photoURL], 
+							   DISHDETAILIMAGECELLHEIGHT,
+							   DISHDETAILIMAGECELLHEIGHT];
 		NSLog(@"the url of the resto image %@", urlString);
 		NSURL *photoUrl = [NSURL URLWithString:urlString];
-		[asyncImage loadImageFromURL:photoUrl withImageView:restaurantImage isThumb:NO showActivityIndicator:FALSE];
+		[asyncImage loadImageFromURL:photoUrl withImageView:restaurantImage 
+							 isThumb:NO showActivityIndicator:FALSE];
 		//[cell.contentView addSubview:asyncImage];
 		[restaurantHeader addSubview:asyncImage];
 	}

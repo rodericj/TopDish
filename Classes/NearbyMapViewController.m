@@ -8,7 +8,6 @@
 #import "NearbyMapViewController.h"
 #import "DishAnnotation.h"
 #import "Dish.h"
-#import "ScrollingDishDetailViewController.h"
 #import "Dish.h"
 #import "DishDetailViewController.h"
 
@@ -121,10 +120,8 @@
 {
 	NSNumber *clickedDishId = [[NSNumber alloc] initWithInt:[sender tag]];
 	Dish *selectedObject = [dishMap objectForKey:clickedDishId];
-	//ScrollingDishDetailViewController *detailViewController = [[ScrollingDishDetailViewController alloc] initWithNibName:@"ScrollingDishDetailView" bundle:nil];
 	DishDetailViewController *detailViewController = [[DishDetailViewController alloc] initWithNibName:@"DishDetailViewController" bundle:nil];
 	[detailViewController setThisDish:selectedObject];
-	//[detailViewController setDish:selectedObject];
 	[detailViewController setManagedObjectContext:self.managedObjectContext];
 	[self.navigationController pushViewController:detailViewController animated:YES];
 	[detailViewController release];

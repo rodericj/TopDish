@@ -62,20 +62,11 @@
 	// Use when fetching binary data
 	//NSData *responseData = [request responseData];
 	NSString *responseText = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
-	
+	NSLog(@"responseText = %@", responseText);
 	SBJSON *parser = [SBJSON new];
 	NSError *error = nil;
 	NSArray *responseAsArray = [parser objectWithString:responseText error:&error];	
 	
-	if(error != nil){
-		NSLog(@"there was an error when jsoning");
-		NSLog(@"%@", error);
-		NSLog(@"the text %@", responseText);
-	}
-	NSLog(@"the dict is %@", responseAsArray);
-	
-	//NSLog(@"response string %@  \nand of course %@", responseString, responseText);
-	NSLog(@"response string %@", responseString);
 	NSMutableArray *priceTypeTags = [NSMutableArray array];
 	NSMutableArray *mealTypeTags = [NSMutableArray array];
 	for (NSString *d in responseAsArray)
@@ -93,11 +84,8 @@
 	NSLog(@"tags %@, \n\n%@", mealTypeTags, priceTypeTags);
 	//priceTypeTags = [NSArray arrayWithObjects: @"none", @"under $5", @"$5-10", @"$10-$15", @"$15-$25", @"$25+", nil];	
 //	mealTypeTags = [NSArray arrayWithObjects:@"all", @"breakfast", @"lunch", @"dinner", @"dessert", @"appetizer", nil];
-	[[AppModel instance] setPriceTags:priceTypeTags];
-	[[AppModel instance] setMealTypeTags:mealTypeTags];
-	AppModel *a = [AppModel instance];
-	NSLog(@"app model %@", a);
-	
+	//[[AppModel instance] setPriceTags:priceTypeTags];
+	//[[AppModel instance] setMealTypeTags:mealTypeTags];
 	
 }
 
