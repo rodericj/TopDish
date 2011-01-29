@@ -282,9 +282,6 @@
 				17DE005112B43B01001F6907 /* RateDishViewController.h */,
 				17DE005212B43B01001F6907 /* RateDishViewController.m */,
 				17DE005312B43B01001F6907 /* RateDishViewController.xib */,
-				17134EE912EFFE9F00A46B6B /* AddADishViewController.h */,
-				17134EEA12EFFE9F00A46B6B /* AddADishViewController.m */,
-				17134EEB12EFFE9F00A46B6B /* AddADishViewController.xib */,
 			);
 			name = legacy;
 			sourceTree = "<group>";
@@ -366,6 +363,9 @@
 			isa = PBXGroup;
 			children = (
 				17134EE812EFFE7D00A46B6B /* legacy */,
+				17134EE912EFFE9F00A46B6B /* AddADishViewController.h */,
+				17134EEA12EFFE9F00A46B6B /* AddADishViewController.m */,
+				17134EEB12EFFE9F00A46B6B /* AddADishViewController.xib */,
 				179443FD12A60199008EE034 /* ImagePickerViewController.h */,
 				179443FE12A60199008EE034 /* ImagePickerViewController.m */,
 				17FA55C312EBFBBF00902FEE /* DishOptionPickerTableViewController.h */,
