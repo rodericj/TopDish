@@ -7,7 +7,8 @@
 //
 
 #import "AppModel.h"
-
+#import "constants.h"
+#import "JSON.h"
 
 @implementation AppModel
 
@@ -32,8 +33,32 @@ AppModel *gAppModelInstance = nil;
 {
 	self = [super init];
 	self.user = [NSMutableDictionary new];
-	self.priceTags = [NSArray arrayWithObjects: @"none", @"under $5", @"$5-10", @"$10-$15", @"$15-$25", @"$25+", nil];
-	self.mealTypeTags = [NSArray arrayWithObjects:@"all", @"breakfast", @"lunch", @"dinner", @"dessert", @"appetizer", nil];
+	
+	SBJSON *parser = [SBJSON new];
+	NSError *error = nil;
+	NSLog(@"mobileInitResponseText %@", mobileInitResponseText);
+	NSArray *responseAsArray = [parser objectWithString:mobileInitResponseText error:&error];	
+	NSLog(@"response Array is %@", responseAsArray);
+	if (error)
+		NSLog(@"there was an error when jsoning in AppModel Init %@", error);
+	
+	NSMutableArray *priceTypeTags = [NSMutableArray array];
+	NSMutableArray *mealTypeTags = [NSMutableArray array];
+	for (NSDictionary *thisDictionary in responseAsArray)
+	{
+		//NSDictionary *thisDictionary = [parser objectWithString:d];
+		if ([[thisDictionary objectForKey:@"type"] isEqualToString:kMealTypeString])
+			[mealTypeTags addObject:thisDictionary];
+		
+		if ([[thisDictionary objectForKey:@"type"] isEqualToString:kPriceTypeString])
+			[priceTypeTags addObject:thisDictionary];
+		
+	}
+	[parser release];
+	NSLog(@"priceTypeTags = %@", priceTypeTags);
+	self.priceTags = priceTypeTags;
+	self.mealTypeTags = mealTypeTags;
+	
 	return self;
 }
 

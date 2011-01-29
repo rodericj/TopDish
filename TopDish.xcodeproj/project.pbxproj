@@ -74,8 +74,6 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* DishTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* DishTableViewController.m */; };
 		28D3F202112F7DC200FD0661 /* TopDish.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* TopDish.xcdatamodeld */; };
-		5F08954A12641D5000EDE197 /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F08954912641D5000EDE197 /* SettingsView.xib */; };
-		5F08954D12641D6100EDE197 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F08954C12641D6100EDE197 /* SettingsViewController.m */; };
 		5F7AA19A125D82CC00843F4A /* NearbyMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F7AA199125D82CC00843F4A /* NearbyMapView.xib */; };
 		5F7AA19E125D833200843F4A /* NearbyMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7AA19C125D833200843F4A /* NearbyMapViewController.m */; };
 		5F7AA284125D955500843F4A /* DishAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7AA282125D955500843F4A /* DishAnnotation.m */; };
@@ -95,9 +93,6 @@
 		5F92A9A2126D4A41007D2451 /* MyCLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F92A9A1126D4A41007D2451 /* MyCLController.m */; };
 		5F92A9AB126D4B53007D2451 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F92A9AA126D4B53007D2451 /* CoreLocation.framework */; };
 		5F94EC281267F7570080CEDD /* CommentControllerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F94EC271267F7570080CEDD /* CommentControllerTableViewCell.xib */; };
-		5FBB9659126232B600141693 /* ScrollingDishDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FBB9658126232B600141693 /* ScrollingDishDetailView.xib */; };
-		5FBB9663126233DB00141693 /* ScrollingDishDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */; };
-		5FBB9AA21264036500141693 /* CommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB9AA11264036500141693 /* CommentsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -209,9 +204,6 @@
 		28C286DF0D94DF7D0034E888 /* DishTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishTableViewController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* DishTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishTableViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		5F08954912641D5000EDE197 /* SettingsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingsView.xib; path = ../SettingsView.xib; sourceTree = "<group>"; };
-		5F08954B12641D6100EDE197 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = ../SettingsViewController.h; sourceTree = "<group>"; };
-		5F08954C12641D6100EDE197 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = ../SettingsViewController.m; sourceTree = "<group>"; };
 		5F7AA199125D82CC00843F4A /* NearbyMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NearbyMapView.xib; sourceTree = "<group>"; };
 		5F7AA19C125D833200843F4A /* NearbyMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyMapViewController.m; sourceTree = "<group>"; };
 		5F7AA19D125D833200843F4A /* NearbyMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyMapViewController.h; sourceTree = "<group>"; };
@@ -243,11 +235,6 @@
 		5F92A9AA126D4B53007D2451 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5F94EC271267F7570080CEDD /* CommentControllerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CommentControllerTableViewCell.xib; path = ../CommentControllerTableViewCell.xib; sourceTree = "<group>"; };
 		5FBB95F11262288E00141693 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
-		5FBB9658126232B600141693 /* ScrollingDishDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScrollingDishDetailView.xib; path = ../ScrollingDishDetailView.xib; sourceTree = "<group>"; };
-		5FBB9661126233DB00141693 /* ScrollingDishDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollingDishDetailViewController.h; path = ../ScrollingDishDetailViewController.h; sourceTree = "<group>"; };
-		5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScrollingDishDetailViewController.m; path = ../ScrollingDishDetailViewController.m; sourceTree = "<group>"; };
-		5FBB9AA01264036500141693 /* CommentsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentsTableViewController.h; path = ../CommentsTableViewController.h; sourceTree = "<group>"; };
-		5FBB9AA11264036500141693 /* CommentsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentsTableViewController.m; path = ../CommentsTableViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* TopDish-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TopDish-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -483,9 +470,6 @@
 				17FA587312ED14FD00902FEE /* SettingsView1.h */,
 				17FA587412ED14FD00902FEE /* SettingsView1.m */,
 				17FA587512ED14FD00902FEE /* SettingsView1.xib */,
-				5F08954912641D5000EDE197 /* SettingsView.xib */,
-				5F08954B12641D6100EDE197 /* SettingsViewController.h */,
-				5F08954C12641D6100EDE197 /* SettingsViewController.m */,
 			);
 			name = SettingsView;
 			sourceTree = "<group>";
@@ -599,12 +583,7 @@
 				17FA59A912ED53F900902FEE /* DishDetailViewController.h */,
 				17FA59AA12ED53F900902FEE /* DishDetailViewController.m */,
 				17FA59AB12ED53F900902FEE /* DishDetailViewController.xib */,
-				5FBB9658126232B600141693 /* ScrollingDishDetailView.xib */,
-				5FBB9661126233DB00141693 /* ScrollingDishDetailViewController.h */,
-				5FBB9662126233DB00141693 /* ScrollingDishDetailViewController.m */,
 				5F94EC271267F7570080CEDD /* CommentControllerTableViewCell.xib */,
-				5FBB9AA01264036500141693 /* CommentsTableViewController.h */,
-				5FBB9AA11264036500141693 /* CommentsTableViewController.m */,
 			);
 			name = DishDetailView;
 			sourceTree = "<group>";
@@ -666,8 +645,6 @@
 				5F89F27612597E8F00959D05 /* noPicWares.png in Resources */,
 				5F89F2E3125988C900959D05 /* tdlogo.png in Resources */,
 				5F7AA19A125D82CC00843F4A /* NearbyMapView.xib in Resources */,
-				5FBB9659126232B600141693 /* ScrollingDishDetailView.xib in Resources */,
-				5F08954A12641D5000EDE197 /* SettingsView.xib in Resources */,
 				5F94EC281267F7570080CEDD /* CommentControllerTableViewCell.xib in Resources */,
 				17B48AE612A033C200F43202 /* RestaurantDetailView.xib in Resources */,
 				1794422112A5B195008EE034 /* DetailButtonImage.png in Resources */,
@@ -714,9 +691,6 @@
 				5F89F32C12598F9C00959D05 /* asyncimageview.m in Sources */,
 				5F7AA19E125D833200843F4A /* NearbyMapViewController.m in Sources */,
 				5F7AA284125D955500843F4A /* DishAnnotation.m in Sources */,
-				5FBB9663126233DB00141693 /* ScrollingDishDetailViewController.m in Sources */,
-				5FBB9AA21264036500141693 /* CommentsTableViewController.m in Sources */,
-				5F08954D12641D6100EDE197 /* SettingsViewController.m in Sources */,
 				5F92A9A2126D4A41007D2451 /* MyCLController.m in Sources */,
 				17B48AE512A033C200F43202 /* RestaurantDetailViewController.m in Sources */,
 				179B854212A0727F00730FAC /* BaseDishTableViewer.m in Sources */,

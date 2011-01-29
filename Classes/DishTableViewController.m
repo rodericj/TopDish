@@ -311,8 +311,7 @@
 				[thisDish setObjName:[thisElement objectForKey:@"name"]];
 				[thisDish setPrice:[NSNumber numberWithInt:(incomingCounter%4)+1]];
 				[thisDish setDish_description:[thisElement objectForKey:@"description"]];
-				[thisDish setPhotoURL:[NSString stringWithFormat:@"%@%@", NETWORKHOST, 
-									   [thisElement objectForKey:@"photoURL"]]];
+				[thisDish setPhotoURL:[thisElement objectForKey:@"photoURL"]];
 				[thisDish setRestaurant:thisRestaurant];
 				[thisDish setLatitude:[thisElement objectForKey:@"latitude"]];
 				[thisDish setLongitude:[thisElement objectForKey:@"longitude"]];

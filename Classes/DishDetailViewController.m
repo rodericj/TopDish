@@ -145,7 +145,8 @@
 	NSLog(@"view did load for %@", [self.thisDish objName]);
 	if( [[self.thisDish photoURL] length] > 0 ){
 		
-		NSString *urlString = [NSString stringWithFormat:@"%@&w=%d&h=%d", 
+		NSString *urlString = [NSString stringWithFormat:@"%@%@&w=%d&h=%d", 
+							   NETWORKHOST,
 							   [self.thisDish photoURL], 
 							   self.dishImageView.bounds.size.width, 
 							   self.dishImageView.bounds.size.height]; 
@@ -153,7 +154,8 @@
 		NSURL *photoUrl = [NSURL URLWithString:urlString];
 		AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[self.dishImageView frame]];
 		[asyncImage setOwningObject:self.thisDish];
-		[asyncImage loadImageFromURL:photoUrl withImageView:self.dishImageView isThumb:NO showActivityIndicator:FALSE];
+		[asyncImage loadImageFromURL:photoUrl withImageView:self.dishImageView 
+							 isThumb:NO showActivityIndicator:FALSE];
 	}
 	[self.dishDescriptionLabel setText:[self.thisDish dish_description]];
 	[self.dishDescriptionLabel numberOfLines];

@@ -13,7 +13,6 @@
 #import "asyncimageview.h"
 #import "RestaurantDetailViewController.h"
 #import "AddNewDishViewController.h"
-#import "CommentsTableViewController.h"
 #import "DishDetailViewController.h"
 
 @implementation BaseDishTableViewer
@@ -175,10 +174,17 @@
 	if( [[thisDish photoURL] length] > 0 ){
 		NSLog(@"the dish photo URL is %@", [thisDish photoURL]);
 
-		NSString *urlString = [NSString stringWithFormat:@"%@&w=%d&h=%d", [thisDish photoURL], DISHDETAILIMAGECELLHEIGHT, DISHDETAILIMAGECELLHEIGHT];
+		NSString *urlString = [NSString stringWithFormat:@"%@%@&w=%d&h=%d", 
+							   NETWORKHOST, 
+							   [thisDish photoURL], 
+							   DISHDETAILIMAGECELLHEIGHT, 
+							   DISHDETAILIMAGECELLHEIGHT];
 		NSURL *photoUrl = [NSURL URLWithString:urlString];
 		[asyncImage setOwningObject:thisDish];
-		[asyncImage loadImageFromURL:photoUrl withImageView:imageView isThumb:YES showActivityIndicator:NO];
+		[asyncImage loadImageFromURL:photoUrl 
+					   withImageView:imageView 
+							 isThumb:YES 
+			   showActivityIndicator:NO];
 		[cell.contentView addSubview:asyncImage];
 	}
     // Configure the cell.
@@ -220,7 +226,6 @@
 	DishDetailViewController *detailViewController = [[DishDetailViewController alloc] initWithNibName:@"DishDetailViewController" bundle:nil];
 	[detailViewController setThisDish:(Dish*)selectedObject];
 	
-	//CommentsTableViewController *detailViewController = [[CommentsTableViewController alloc] init];	
 	//[detailViewController setDish:(Dish*)selectedObject];
 	[detailViewController setManagedObjectContext:self.managedObjectContext];
 	
