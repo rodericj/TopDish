@@ -18,6 +18,7 @@
 	UILabel *mPriceValue;
 	UITableViewCell *mMealTypeCell;
 	UILabel *mMealTypeLabel;
+	int *pointer;
 }
 
 @property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;

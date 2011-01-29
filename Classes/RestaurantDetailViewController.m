@@ -10,7 +10,7 @@
 #import "constants.h"
 #import "JSON.h"
 #import "asyncimageview.h"
-#import "AddNewDishViewController.h"
+#import "AddADishViewController.h"
 #import "ImagePickerViewController.h"
 
 @implementation RestaurantDetailViewController
@@ -100,8 +100,7 @@
 	//TODO RESTODISH SWITCH - The drilldown for restaurants and dishes are different in the detailviewcontroller
 	
 	if (indexPath.row == [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]] numberOfObjects]) {
-		NSLog(@"add a thing");
-		AddNewDishViewController *addDishViewController = [[AddNewDishViewController alloc] initWithNibName:@"AddNewDishViewController" bundle:nil];
+		AddADishViewController *addDishViewController = [[AddADishViewController alloc] initWithNibName:@"AddADishViewController" bundle:nil];
 		[addDishViewController setTitle:@"Add a Dish"];
 		[addDishViewController setRestaurant:restaurant];
 		[addDishViewController setManagedObjectContext:managedObjectContext_];

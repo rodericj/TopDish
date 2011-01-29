@@ -16,6 +16,7 @@
 	int mSelectedPrice;
 	int mSelectedMealType;
 	int mSorter;
+	NSNumber *mSelectedMealTypeObject;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *user;
@@ -24,6 +25,8 @@
 @property (nonatomic, assign) int selectedPrice;
 @property (nonatomic, assign) int selectedMealType;
 @property (nonatomic, assign) int sorter;
+@property (nonatomic, assign) NSNumber *selectedMealTypeObject;
+
 
 +(AppModel *)instance;
 @end

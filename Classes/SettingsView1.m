@@ -27,17 +27,22 @@
 @synthesize mealTypeLabel = mMealTypeLabel;
 
 - (void)viewDidLoad {
+	pointer = malloc(sizeof(int));
 	self.view.backgroundColor = kTopDishBackground;
-	NSLog(@"count is %d",[[[AppModel instance] priceTags] count] );
 	[self.priceSlider setMaximumValue:[[[AppModel instance] priceTags] count] - 1];
 	[self.priceSlider setMinimumValue:0];
 	[self.priceSlider setValue:0];
+	*pointer = 0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	AppModel *a = [AppModel instance];
-	NSLog(@"meal type tags %@, %d", [a mealTypeTags], [a selectedMealType]);
-	[self.mealTypeLabel setText:[[a mealTypeTags] objectAtIndex:[a selectedMealType]]];
+	NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:kMealTypeSection];
+	[self.tableView beginUpdates];
+	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationFade];
+	[self.tableView endUpdates];
+	
+	//TODO You should actually do something with the value of pointer
+	
 }
 
 #pragma mark -
@@ -88,8 +93,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
     }
     
 	if (indexPath.section == 0 && indexPath.row == 0) {
@@ -102,7 +106,17 @@
 		cell = self.priceValueCell;
 	}
 	if (indexPath.section == kMealTypeSection) {
-		cell = self.mealTypeCell;
+		//cell = self.mealTypeCell;
+		AppModel *a = [AppModel instance];
+
+		cell.textLabel.text = @"Meal Type";
+		if (*pointer > 0 && *pointer < [[a mealTypeTags] count]) {
+			NSLog(@"now set the meal type to %@", [[a mealTypeTags] objectAtIndex:*pointer]);
+			cell.detailTextLabel.text = [[a mealTypeTags] objectAtIndex:*pointer];
+			[self.mealTypeLabel setText:[[a mealTypeTags] objectAtIndex:*pointer]];
+			NSLog(@"meal type is %@", self.mealTypeLabel.text);
+		}
+		//cell.detailTextLabel.text = [[AppModel instance] pr
 	}
     // Configure the cell...
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -125,15 +139,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == kMealTypeSection) {
-		
 		DishOptionPickerTableViewController *d = [[DishOptionPickerTableViewController alloc] init];
 		[d setOptionValues:[[AppModel instance] mealTypeTags]];
 		[d setOptionType:kMealType];
+		[d useThisIntPointer:pointer];
 		[self.navigationController pushViewController:d animated:YES];
 		[d release];
 	}
 }
-
 
 #pragma mark -
 #pragma mark Memory management

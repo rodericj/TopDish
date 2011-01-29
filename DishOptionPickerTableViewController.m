@@ -8,7 +8,6 @@
 
 #import "DishOptionPickerTableViewController.h"
 #import "constants.h"
-//#import "AddNewDishViewController.h"
 #import "AppModel.h"
 
 @implementation DishOptionPickerTableViewController
@@ -23,7 +22,6 @@
     // Return the number of sections.
     return 1;
 }
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
@@ -50,21 +48,13 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	//NSArray *controllers = self.navigationController.viewControllers;
-	//AddNewDishViewController *a = [controllers objectAtIndex:[controllers count]-2];
-														
-	if(self.optionType == kPriceType){
-		//[a setSelectedPrice:[self.optionValues objectAtIndex:indexPath.row]];
-		[[AppModel instance] setSelectedPrice:indexPath.row];
-	}
-	if(self.optionType == kMealType){
-		//[a setSelectedMealType:[self.optionValues objectAtIndex:indexPath.row]];
-		[[AppModel instance ] setSelectedMealType:indexPath.row];
-	}
-
+	*pointer = indexPath.row;
 	[self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)useThisIntPointer:(int *)topLevelPointer{
+	pointer = topLevelPointer;
+}
 
 #pragma mark -
 #pragma mark Memory management

@@ -12,8 +12,12 @@
 @interface DishOptionPickerTableViewController : UITableViewController {
 	NSArray *mOptionValues;
 	int mOptionType;
+	int *pointer;
 }
 
 @property (nonatomic, assign) int optionType;
 @property (nonatomic, retain) NSArray *optionValues;
+
+- (void)setSelectedTypeNumberRef:(NSNumber **)num;
+- (void)useThisIntPointer:(int *)topLevelPointer;
 @end

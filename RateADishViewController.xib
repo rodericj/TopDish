@@ -12,11 +12,11 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="8"/>
-			<integer value="19"/>
 			<integer value="29"/>
-			<integer value="33"/>
+			<integer value="19"/>
 			<integer value="22"/>
+			<integer value="33"/>
+			<integer value="8"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -889,7 +889,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABCCAAAwsQAAA</bytes>
 					</object>
-					<string>{{327, 679}, {295, 44}}</string>
+					<string>{{381, 647}, {295, 44}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1011,7 +1011,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<string>dishTitle</string>
 							<string>negativeReviews</string>
 							<string>newPicture</string>
-							<string>noButton</string>
 							<string>noImage</string>
 							<string>pictureCell</string>
 							<string>positiveReviews</string>
@@ -1019,7 +1018,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<string>submitButton</string>
 							<string>submitButtonCell</string>
 							<string>wouldYouCell</string>
-							<string>yesButton</string>
 							<string>yesImage</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -1031,7 +1029,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UIImageView</string>
-							<string>UIButton</string>
 							<string>UIImageView</string>
 							<string>UITableViewCell</string>
 							<string>UILabel</string>
@@ -1039,7 +1036,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<string>UIButton</string>
 							<string>UITableViewCell</string>
 							<string>UITableViewCell</string>
-							<string>UIButton</string>
 							<string>UIImageView</string>
 						</object>
 					</object>
@@ -1054,7 +1050,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<string>dishTitle</string>
 							<string>negativeReviews</string>
 							<string>newPicture</string>
-							<string>noButton</string>
 							<string>noImage</string>
 							<string>pictureCell</string>
 							<string>positiveReviews</string>
@@ -1062,7 +1057,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<string>submitButton</string>
 							<string>submitButtonCell</string>
 							<string>wouldYouCell</string>
-							<string>yesButton</string>
 							<string>yesImage</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -1096,10 +1090,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">noButton</string>
-								<string key="candidateClassName">UIButton</string>
-							</object>
-							<object class="IBToOneOutletInfo">
 								<string key="name">noImage</string>
 								<string key="candidateClassName">UIImageView</string>
 							</object>
@@ -1126,10 +1116,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<object class="IBToOneOutletInfo">
 								<string key="name">wouldYouCell</string>
 								<string key="candidateClassName">UITableViewCell</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">yesButton</string>
-								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">yesImage</string>

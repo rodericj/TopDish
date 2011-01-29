@@ -81,17 +81,17 @@
 #pragma mark Table view data source
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == kDishHeaderSection) {
-		return self.dishHeaderCell.bounds.size.height;
-	}
-	if (indexPath.section == kDishCommentSection) {
-		return self.dishCommentCell.bounds.size.height;
-	}
-	if (indexPath.section == kPictureCell) {
-		return self.pictureCell.bounds.size.height;
-	}
-	if (indexPath.section == kSubmitButtonCell) {
-		return self.pictureCell.bounds.size.height;
+	switch (indexPath.section) {
+		case kDishHeaderSection:
+			return self.dishHeaderCell.bounds.size.height;
+		case kDishCommentSection:
+			return self.dishCommentCell.bounds.size.height;
+		case kPictureCell:
+			return self.pictureCell.bounds.size.height;
+		case kSubmitButtonCell:
+			return self.submitButtonCell.bounds.size.height;
+		default:
+			break;
 	}
 	return 40;
 }
@@ -101,13 +101,10 @@
 	switch (section) {
 		case kDishCommentSection:
 			return @"Additional Food For Thought?";
-			break;
 		case kWouldYouRecommend:
 			return @"Would you recommend this Dish?";
-			break;
 		case kPictureCell:
 			return @"Upload a Picture";
-			break;
 			
 		default:
 			break;
@@ -137,40 +134,30 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-	if (indexPath.section == kDishHeaderSection) {
-		return self.dishHeaderCell;
+	switch (indexPath.section) {
+		case kDishHeaderSection:
+			//we don't want this one to be clear for now
+			return self.dishHeaderCell;
+		case kDishCommentSection:
+			cell = self.dishCommentCell;
+			break;
+		case kWouldYouRecommend:
+			cell = self.wouldYouCell;
+			break;
+		case kPictureCell:
+			cell = self.pictureCell;
+			break;
+		case kSubmitButtonCell:
+			cell = self.submitButtonCell;
+			break;
+		default:
+			break;
 	}
 	
-	if (indexPath.section == kDishCommentSection) {
-		cell = self.dishCommentCell;
-		UIView *backView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
-		backView.backgroundColor = [UIColor clearColor];
-		cell.backgroundView = backView;
-		return cell;
-	}
-	if (indexPath.section == kWouldYouRecommend) {
-		cell = self.wouldYouCell;
-		UIView *backView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
-		backView.backgroundColor = [UIColor clearColor];
-		cell.backgroundView = backView;
-		return cell;
-	}
-	if(indexPath.section == kPictureCell){
-		cell = self.pictureCell;
-		UIView *backView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
-		backView.backgroundColor = [UIColor clearColor];
-		cell.backgroundView = backView;
-		return cell;
-	}
-	if (indexPath.section == kSubmitButtonCell) {
-		cell = self.submitButtonCell;
-		UIView *backView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
-		backView.backgroundColor = [UIColor clearColor];
-		cell.backgroundView = backView;
-		return cell;
-	}
-    // Configure the cell...
-    
+	// Configure the cell...
+    UIView *backView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+	backView.backgroundColor = [UIColor clearColor];
+	cell.backgroundView = backView;
     return cell;
 }
 
@@ -272,13 +259,14 @@
 	}
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request setPostValue:self.dishComment.text forKey:@"comment"];
-	//NSLog(@"would you state %@", [self.wouldYou state]);
-//	int selection = [self.wouldYou state] ? 1 : -1;
-	
 	[request setPostValue:[NSNumber numberWithInt:self.rating] forKey:@"direction"];
 	[request setPostValue:[NSString stringWithFormat:@"%@", [self.thisDish dish_id]] forKey:@"dishId"];		
 	[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-	NSLog(@"request is %@", request);
+
+	// Upload an NSData instance
+	//if (self.newPicture.image)
+	//	[request setData:UIImagePNGRepresentation(self.newPicture.image) forKey:@"photo"];
+	
 	NSLog(@"this is what we are sending for RATE a dish: url: %@\n, comment: %@\n, vote: %d\n, dish_id %@\n, apiKey: %@", 
 		  [url absoluteURL], 
 		  self.dishComment.text, 
@@ -286,10 +274,6 @@
 		  [self.thisDish dish_id],
 		  [[[AppModel instance] user] objectForKey:keyforauthorizing]); 
 	
-	// Upload an NSData instance
-	if (self.newPicture)
-		[request setData:UIImagePNGRepresentation(self.newPicture.image) forKey:@"photo"];
-
 	[request setDelegate:self];
 	[request startAsynchronous];
 
@@ -300,11 +284,7 @@
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
 	
-	// Use when fetching binary data
-	//NSData *responseData = [request responseData];
-	NSString *responseText = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
-	
-	NSLog(@"response string %@  \nand of course %@", responseString, responseText);
+	NSLog(@"response string %@", responseString);
 	[self.navigationController popViewControllerAnimated:YES];
 
 }
