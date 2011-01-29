@@ -277,7 +277,7 @@
 
 -(IBAction)submitDish
 {
-	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/rateDish"]];
+	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addDish"]];
 	
 	if (!self.rating) {
 		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Error Rating Dish" 
@@ -298,6 +298,10 @@
 	[request setPostValue:[NSNumber numberWithInt:self.selectedPriceType] forKey:@"price"];
 	[request setPostValue:[NSNumber numberWithInt:self.selectedMealType]	forKey:@"mealType"];
 
+	//NSLog(@"posting to AddADish dish: %@\nadditional: %@\n restaurant_id\n%@auth_key: %@\nprice: %dmeal type: %d", 
+//		  self.dishTitle.text, self.additionalDetailsTextView.text, 
+//		  [[[AppModel instance] user] objectForKey:keyforauthorizing], 
+//		  self.selectedPriceType, self.selectedMealType);
 	[request setDelegate:self];
 	[request startAsynchronous];
 	
