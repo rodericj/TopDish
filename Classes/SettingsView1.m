@@ -40,7 +40,7 @@
 	[self.tableView beginUpdates];
 	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationFade];
 	[self.tableView endUpdates];
-	
+	[[AppModel instance] setSelectedMealType:*pointer];
 	//TODO You should actually do something with the value of pointer
 	
 }
@@ -131,7 +131,9 @@
 
 -(IBAction) updatePriceTags{
 	[self.priceSlider setValue:(int)[self.priceSlider value]];
-	[self.priceValue setText:[[AppModel instance].priceTags objectAtIndex:[self.priceSlider value]]];	
+	[self.priceValue setText:[[AppModel instance].priceTags objectAtIndex:[self.priceSlider value]]];
+	NSLog(@"setting the price tags %f", [self.priceSlider value]);
+	[[AppModel instance] setSelectedPrice:(int)[self.priceSlider value]];
 }
 
 #pragma mark -
