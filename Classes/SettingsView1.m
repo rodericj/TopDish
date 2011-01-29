@@ -24,7 +24,6 @@
 @synthesize priceValue = mPriceValue;
 @synthesize priceSlider = mPriceSlider;
 @synthesize mealTypeCell = mMealTypeCell;
-@synthesize mealTypeLabel = mMealTypeLabel;
 
 - (void)viewDidLoad {
 	pointer = malloc(sizeof(int));
@@ -73,10 +72,10 @@
 {
 	switch (section) {
 		case kMealTypeSection:
-			return @"Meal Type";
+			return kMealTypeString;
 			break;
 		case kPriceFilterSection:
-			return @"Price";
+			return kPriceTypeString;
 			break;
 		case kSortingSection:
 			return @"Sort by";
@@ -109,12 +108,10 @@
 		//cell = self.mealTypeCell;
 		AppModel *a = [AppModel instance];
 
-		cell.textLabel.text = @"Meal Type";
+		cell.textLabel.text = kMealTypeString;
 		if (*pointer > 0 && *pointer < [[a mealTypeTags] count]) {
 			NSLog(@"now set the meal type to %@", [[a mealTypeTags] objectAtIndex:*pointer]);
-			cell.detailTextLabel.text = [[a mealTypeTags] objectAtIndex:*pointer];
-			[self.mealTypeLabel setText:[[a mealTypeTags] objectAtIndex:*pointer]];
-			NSLog(@"meal type is %@", self.mealTypeLabel.text);
+			cell.detailTextLabel.text = [[[a mealTypeTags] objectAtIndex:*pointer] objectForKey:@"name"];
 		}
 		//cell.detailTextLabel.text = [[AppModel instance] pr
 	}
@@ -123,6 +120,8 @@
 
     return cell;
 }
+#pragma mark -
+#pragma mark IBActions
 
 -(IBAction) changeSegmentedSelector {
 	NSLog(@"blah %d", [self.segmentedControl selectedSegmentIndex]);
@@ -131,7 +130,10 @@
 
 -(IBAction) updatePriceTags{
 	[self.priceSlider setValue:(int)[self.priceSlider value]];
-	[self.priceValue setText:[[AppModel instance].priceTags objectAtIndex:[self.priceSlider value]]];
+	NSLog(@"price tags is %@", [AppModel instance].priceTags);
+	NSDictionary *d = [[AppModel instance].priceTags objectAtIndex:[self.priceSlider value]];
+	NSLog(@"the dictionary is %@", d);
+	[self.priceValue setText:[d objectForKey:@"name"]];
 	NSLog(@"setting the price tags %f", [self.priceSlider value]);
 	[[AppModel instance] setSelectedPrice:(int)[self.priceSlider value]];
 }
@@ -175,7 +177,6 @@
 	self.priceValueCell = nil;
 	self.priceValue = nil;
 	self.mealTypeCell = nil;
-	self.mealTypeLabel = nil;
 }
 
 

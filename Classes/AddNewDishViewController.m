@@ -116,7 +116,7 @@
 		[request setPostValue:@"hardcoded iPhone description" forKey:@"description"];
 		[request setPostValue:[NSString stringWithFormat:@"%@", [self.restaurant restaurant_id]] forKey:@"restaurantId"];		
 		[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-		[request setPostValue:self.selectedPrice forKey:@"price"];
+		[request setPostValue:self.selectedPrice forKey:kPriceTypeString];
 		[request setPostValue:self.selectedMealType	forKey:@"mealType"];
 				
 		// Upload an NSData instance

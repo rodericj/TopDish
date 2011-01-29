@@ -40,7 +40,7 @@
     }
     
     // Configure the cell...
-	cell.textLabel.text = [self.optionValues objectAtIndex:indexPath.row];
+	cell.textLabel.text = [[self.optionValues objectAtIndex:indexPath.row] objectForKey:@"name"];
     return cell;
 }
 

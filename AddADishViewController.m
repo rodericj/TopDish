@@ -185,7 +185,7 @@
 					cell.detailTextLabel.text = [[[AppModel instance] mealTypeTags] objectAtIndex:self.selectedMealType];
 					break;
 				case kPriceTypeRow:
-					cell.textLabel.text = @"Price";
+					cell.textLabel.text = kPriceTypeString;
 					cell.detailTextLabel.text = [[[AppModel instance] priceTags] objectAtIndex:self.selectedPriceType];
 				default:
 					break;

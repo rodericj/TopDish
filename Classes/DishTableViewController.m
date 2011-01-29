@@ -13,6 +13,7 @@
 #import "constants.h"
 #import "SBJSON.h"
 #import "SettingsView1.h"
+#import "AppModel.h"
 
 #define kTopDishBlue [UIColor colorWithRed:0 green:.3843 blue:.5725 alpha:1]
 
@@ -159,6 +160,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+	NSLog(@"filter on these %d, %d", [[AppModel instance] selectedMealType], [[AppModel instance] selectedPrice]);
 }
 
 
@@ -386,8 +388,8 @@
 	 
 -(void) updateFetch{
 
-	NSNumber *min = [[NSUserDefaults standardUserDefaults] objectForKey:MIN_PRICE_VALUE_LOCATION];
-	NSNumber *max = [[NSUserDefaults standardUserDefaults] objectForKey:MAX_PRICE_VALUE_LOCATION];
+	NSNumber *minimumPriceFilter = [[NSUserDefaults standardUserDefaults] objectForKey:MIN_PRICE_VALUE_LOCATION];
+	NSNumber *maximumPriceFilter = [[NSUserDefaults standardUserDefaults] objectForKey:MAX_PRICE_VALUE_LOCATION];
 	
 	//TODO....Ok this should all be in a function somewhere.
 	//Create array with sort params, then store in NSUserDefaults
@@ -413,22 +415,22 @@
 		NSString *attributeValue = currentSearchTerm;
 		NSLog(@"the predicate we are sending: %@ contains(cd) %@ AND %@ <= %@ AND %@ >= %@",
 			  attributeName, attributeValue,
-			  @"price", max, 
-			  @"price", min);
+			  @"price", maximumPriceFilter, 
+			  @"price", minimumPriceFilter);
 		filterPredicate = [NSPredicate predicateWithFormat:@"%K contains[cd] %@ AND %K <= %@ AND %K >= %@",
 										attributeName, attributeValue,
-										@"price", max, 
-										@"price", min];
+										@"price", maximumPriceFilter, 
+										@"price", minimumPriceFilter];
 		
 		NSLog(@"the real predicate is %@", filterPredicate);
 	}
 	else {
 		NSLog(@"the else predicate %K <= %@ AND %K >= %@", 
-			  @"price", max, 
-			  @"price", min);
+			  @"price", maximumPriceFilter, 
+			  @"price", minimumPriceFilter);
 		filterPredicate = [NSPredicate predicateWithFormat: @"%K <= %@ AND %K >= %@", 
-								@"price", max, 
-								@"price", min];
+								@"price", maximumPriceFilter, 
+								@"price", minimumPriceFilter];
 		
 	}
 

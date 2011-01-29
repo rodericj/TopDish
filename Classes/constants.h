@@ -57,6 +57,9 @@
 
 #define kAccountsTab 1
 
+#define kMealTypeString @"Meal Type"
+#define kPriceTypeString @"Price"
+
 #define keyforauthorizing @"apiKey"
 
 //#define AirplaneMode YES

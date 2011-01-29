@@ -17,7 +17,6 @@
 	UITableViewCell *mPriceValueCell;
 	UILabel *mPriceValue;
 	UITableViewCell *mMealTypeCell;
-	UILabel *mMealTypeLabel;
 	int *pointer;
 }
 
@@ -28,7 +27,6 @@
 @property (nonatomic, retain) IBOutlet UITableViewCell *priceValueCell;
 @property (nonatomic, retain) IBOutlet UILabel *priceValue;
 @property (nonatomic, retain) IBOutlet UITableViewCell *mealTypeCell;
-@property (nonatomic, retain) IBOutlet UILabel *mealTypeLabel;
 
 -(IBAction) changeSegmentedSelector;
 

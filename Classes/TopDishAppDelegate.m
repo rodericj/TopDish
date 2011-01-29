@@ -66,7 +66,6 @@
 	SBJSON *parser = [SBJSON new];
 	NSError *error = nil;
 	NSArray *responseAsArray = [parser objectWithString:responseText error:&error];	
-	[parser release];
 	
 	if(error != nil){
 		NSLog(@"there was an error when jsoning");
@@ -77,11 +76,27 @@
 	
 	//NSLog(@"response string %@  \nand of course %@", responseString, responseText);
 	NSLog(@"response string %@", responseString);
-	
-	NSArray *priceTags = [NSArray arrayWithObjects: @"none", @"under $5", @"$5-10", @"$10-$15", @"$15-$25", @"$25+", nil];
-	NSArray *mealTypeTags = [NSArray arrayWithObjects:@"all", @"breakfast", @"lunch", @"dinner", @"dessert", @"appetizer", nil];
-	[[AppModel instance] setPriceTags:priceTags];
+	NSMutableArray *priceTypeTags = [NSMutableArray array];
+	NSMutableArray *mealTypeTags = [NSMutableArray array];
+	for (NSString *d in responseAsArray)
+	{
+		NSDictionary *thisDictionary = [parser objectWithString:d];
+		if ([[thisDictionary objectForKey:@"type"] isEqualToString:kMealTypeString])
+			[mealTypeTags addObject:thisDictionary];
+		
+		if ([[thisDictionary objectForKey:@"type"] isEqualToString:kPriceTypeString])
+			[priceTypeTags addObject:thisDictionary];
+		
+	}
+	[parser release];
+
+	NSLog(@"tags %@, \n\n%@", mealTypeTags, priceTypeTags);
+	//priceTypeTags = [NSArray arrayWithObjects: @"none", @"under $5", @"$5-10", @"$10-$15", @"$15-$25", @"$25+", nil];	
+//	mealTypeTags = [NSArray arrayWithObjects:@"all", @"breakfast", @"lunch", @"dinner", @"dessert", @"appetizer", nil];
+	[[AppModel instance] setPriceTags:priceTypeTags];
 	[[AppModel instance] setMealTypeTags:mealTypeTags];
+	AppModel *a = [AppModel instance];
+	NSLog(@"app model %@", a);
 	
 	
 }
