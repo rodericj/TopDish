@@ -25,7 +25,9 @@
 @synthesize entityTypeString = mEntityTypeString;
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return DISHLISTCELLHEIGHT;
+	UITableViewCell *c = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+	return c.bounds.size.height;
+	//return DISHLISTCELLHEIGHT;
 }
 
 #pragma mark -
