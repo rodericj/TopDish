@@ -68,8 +68,13 @@
     // Create the fetch request for the entity.
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-	NSLog(@"entity type string %@ and Managed Object Context = %@", self.entityTypeString, self.managedObjectContext);
-    NSEntityDescription *entity = [NSEntityDescription entityForName:self.entityTypeString inManagedObjectContext:self.managedObjectContext];
+	NSLog(@"entity type string %@ and Managed Object Context = %@", 
+		  self.entityTypeString, 
+		  self.managedObjectContext);
+	
+    NSEntityDescription *entity = 
+	[NSEntityDescription entityForName:self.entityTypeString 
+				inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
 
     // Set the batch size to a suitable number.
@@ -85,8 +90,10 @@
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    //NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    NSFetchedResultsController *aFetchedResultsController = 
+	[[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
+										managedObjectContext:self.managedObjectContext 
+										  sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     

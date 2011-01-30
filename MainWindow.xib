@@ -87,7 +87,7 @@
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 					</object>
-					<object class="IBUIButton" id="638086015">
+					<object class="IBUIButton" id="22170000">
 						<reference key="NSNextResponder" ref="831897988"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{0, 44}, {93, 19}}</string>
@@ -96,13 +96,13 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<object class="NSFont" key="IBUIFont" id="1073309443">
+						<object class="NSFont" key="IBUIFont" id="916199053">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
 						</object>
 						<string key="IBUINormalTitle">Price</string>
-						<object class="NSColor" key="IBUIHighlightedTitleColor" id="77156420">
+						<object class="NSColor" key="IBUIHighlightedTitleColor" id="684291580">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
@@ -110,7 +110,7 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
-						<object class="NSColor" key="IBUINormalTitleShadowColor" id="58787814">
+						<object class="NSColor" key="IBUINormalTitleShadowColor" id="457827807">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
@@ -119,7 +119,7 @@
 							<string key="NSResourceName">priceSort.png</string>
 						</object>
 					</object>
-					<object class="IBUIButton" id="620175207">
+					<object class="IBUIButton" id="230724962">
 						<reference key="NSNextResponder" ref="831897988"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{101, 44}, {100, 18}}</string>
@@ -128,20 +128,20 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="1073309443"/>
+						<reference key="IBUIFont" ref="916199053"/>
 						<string key="IBUINormalTitle">Distance</string>
-						<reference key="IBUIHighlightedTitleColor" ref="77156420"/>
+						<reference key="IBUIHighlightedTitleColor" ref="684291580"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="58787814"/>
+						<reference key="IBUINormalTitleShadowColor" ref="457827807"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">distanceSort.png</string>
 						</object>
 					</object>
-					<object class="IBUIButton" id="100612519">
+					<object class="IBUIButton" id="419209510">
 						<reference key="NSNextResponder" ref="831897988"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{215, 40}, {100, 25}}</string>
@@ -150,14 +150,14 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="1073309443"/>
+						<reference key="IBUIFont" ref="916199053"/>
 						<string key="IBUINormalTitle">Rating</string>
-						<reference key="IBUIHighlightedTitleColor" ref="77156420"/>
+						<reference key="IBUIHighlightedTitleColor" ref="684291580"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="58787814"/>
+						<reference key="IBUINormalTitleShadowColor" ref="457827807"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">bestSort.png</string>
@@ -398,7 +398,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">sortByDistance</string>
-						<reference key="source" ref="620175207"/>
+						<reference key="source" ref="230724962"/>
 						<reference key="destination" ref="619226028"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -407,7 +407,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">sortByPrice</string>
-						<reference key="source" ref="638086015"/>
+						<reference key="source" ref="22170000"/>
 						<reference key="destination" ref="619226028"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -416,7 +416,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">sortByRating</string>
-						<reference key="source" ref="100612519"/>
+						<reference key="source" ref="419209510"/>
 						<reference key="destination" ref="619226028"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -519,11 +519,12 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="37559541"/>
-							<reference ref="638086015"/>
-							<reference ref="620175207"/>
-							<reference ref="100612519"/>
+							<reference ref="22170000"/>
+							<reference ref="230724962"/>
+							<reference ref="419209510"/>
 						</object>
 						<reference key="parent" ref="0"/>
+						<string key="objectName">Search View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">67</int>
@@ -577,17 +578,17 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">92</int>
-						<reference key="object" ref="638086015"/>
+						<reference key="object" ref="22170000"/>
 						<reference key="parent" ref="831897988"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">93</int>
-						<reference key="object" ref="620175207"/>
+						<reference key="object" ref="230724962"/>
 						<reference key="parent" ref="831897988"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">94</int>
-						<reference key="object" ref="100612519"/>
+						<reference key="object" ref="419209510"/>
 						<reference key="parent" ref="831897988"/>
 					</object>
 				</object>
