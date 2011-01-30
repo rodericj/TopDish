@@ -74,13 +74,10 @@
 		
 	}
 	[parser release];
-
-	//priceTypeTags = [NSArray arrayWithObjects: @"none", @"under $5", @"$5-10", @"$10-$15", @"$15-$25", @"$25+", nil];	
-//	mealTypeTags = [NSArray arrayWithObjects:@"all", @"breakfast", @"lunch", @"dinner", @"dessert", @"appetizer", nil];
+	[responseText release];
 	//TODO set randy's tags
 	//[[AppModel instance] setPriceTags:priceTypeTags];
 	//[[AppModel instance] setMealTypeTags:mealTypeTags];
-	
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -15,7 +15,7 @@
 	UITableViewCell				*tvCell;
 	UINavigationController		*mNavigationController;
 
-    NSFetchedResultsController *fetchedResultsController_;
+    NSFetchedResultsController *mFetchedResultsController;
     NSManagedObjectContext *managedObjectContext_;
 	
 }

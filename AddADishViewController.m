@@ -209,10 +209,10 @@
 			break;
 	}
     // Configure the cell...
-	UIView *backView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
-	//backView.backgroundColor = [UIColor clearColor];
+	UIView *backView = [[UIView alloc] initWithFrame:CGRectZero];
 	cell.backgroundView = backView;
-
+	[backView release];
+	
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     return cell;

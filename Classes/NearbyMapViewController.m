@@ -22,7 +22,6 @@
 	DishAnnotation *thisAnnotation;
 	CLLocationCoordinate2D c;
 	float smallestLat=999, smallestLon = 999, largestLat=-999, largestLon=-999;
-	NSMutableDictionary *markerCount = [[NSMutableDictionary alloc] init];
 	for (int i = 0; i < [nearbyObjects count]; i++) {
 		Dish *dish = [nearbyObjects objectAtIndex:i];
 		
@@ -50,17 +49,7 @@
 		}
 		c.latitude = lat;
 		c.longitude = lon;
-		NSString *hash = [[NSString alloc] initWithFormat:@"%d %d", lat, lon];
-		int count = [[markerCount valueForKey:hash] intValue];
-		if(count){
-		    [markerCount setValue:[NSNumber numberWithInt:count+1] forKey:hash];
-			c.longitude = lon +.0001*count;
-		}
-		else{
-			[markerCount setValue:[NSNumber numberWithInt:1] forKey:hash];
-			//c.longitude = lon +.0001;
-		}
-		[hash release];
+		
 		thisAnnotation = [[DishAnnotation alloc] initWithCoordinate:c];
 		[thisAnnotation setTitle:[dish objName]];
 		[thisAnnotation setThisDish:dish];
@@ -97,7 +86,8 @@
 		
 		if(!annotationView){
 			annotationView = [[[MKPinAnnotationView alloc]
-												  initWithAnnotation:annotation  reuseIdentifier:DishAnnotationIdentifier] autorelease];
+												  initWithAnnotation:annotation  
+							   reuseIdentifier:DishAnnotationIdentifier] autorelease];
 			annotationView.canShowCallout = YES;
 		}
 		
@@ -118,9 +108,11 @@
 
 - (void)showDetails:(id)sender
 {
-	NSNumber *clickedDishId = [[NSNumber alloc] initWithInt:[sender tag]];
+	NSNumber *clickedDishId = [NSNumber numberWithInt:[sender tag]];
 	Dish *selectedObject = [dishMap objectForKey:clickedDishId];
-	DishDetailViewController *detailViewController = [[DishDetailViewController alloc] initWithNibName:@"DishDetailViewController" bundle:nil];
+	DishDetailViewController *detailViewController = [[DishDetailViewController alloc] 
+													  initWithNibName:@"DishDetailViewController" 
+													  bundle:nil];
 	[detailViewController setThisDish:selectedObject];
 	[detailViewController setManagedObjectContext:self.managedObjectContext];
 	[self.navigationController pushViewController:detailViewController animated:YES];

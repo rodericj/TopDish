@@ -20,12 +20,11 @@
 	IBOutlet UILabel *restaurantAddress;
 	IBOutlet UILabel *restaurantPhone;
 	IBOutlet UIImageView *restaurantImage;
-	//NSManagedObjectContext *mManagedObjectContext;
-
 }
 //@property (nonatomic, retain) NSString *entityTypeString;
 
 @property (nonatomic, retain) Restaurant *restaurant;
+
 //@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end

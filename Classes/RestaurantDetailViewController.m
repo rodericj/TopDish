@@ -41,12 +41,11 @@
 -(void) networkQuery:(NSString *)query{
 	NSURL *url;
 	NSURLRequest *request;
-	NSURLConnection *conn;
 	url = [NSURL URLWithString:query];
 	NSLog(@"url is %@", query);
 	//Start up the networking
 	request = [NSURLRequest requestWithURL:url];
-	conn = [[[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE] autorelease]; 
+	self.conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE]; 
 	
 }
 
@@ -70,7 +69,8 @@
 	[restaurantName setText:[restaurant objName]];
 	[restaurantPhone setText:[restaurant phone]];
 	[restaurantAddress setText:[restaurant addressLine1]];
-	AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[restaurantImage frame]];
+	AsyncImageView *asyncImage = [[AsyncImageView alloc] 
+								  initWithFrame:[restaurantImage frame]];
 	asyncImage.tag = 999;
 	if( [[restaurant photoURL] length] > 0 ){
 		NSLog(@"the restaurant photo URL is %@", [restaurant photoURL]);
@@ -108,7 +108,7 @@
 		AddADishViewController *addDishViewController = [[AddADishViewController alloc] initWithNibName:@"AddADishViewController" bundle:nil];
 		[addDishViewController setTitle:@"Add a Dish"];
 		[addDishViewController setRestaurant:restaurant];
-		[addDishViewController setManagedObjectContext:managedObjectContext_];
+		[addDishViewController setManagedObjectContext:self.managedObjectContext];
 		[self.navigationController pushViewController:addDishViewController animated:YES];
 		[addDishViewController release];
 		

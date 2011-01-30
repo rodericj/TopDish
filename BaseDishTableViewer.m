@@ -12,7 +12,6 @@
 #import "Restaurant.h"
 #import "asyncimageview.h"
 #import "RestaurantDetailViewController.h"
-#import "AddNewDishViewController.h"
 #import "DishDetailViewController.h"
 #import "AppModel.h"
 
@@ -20,10 +19,12 @@
 @implementation BaseDishTableViewer
 
 @synthesize tvCell = mTvCell;
-@synthesize fetchedResultsController=fetchedResultsController_, managedObjectContext=managedObjectContext_;
-@synthesize _responseData;
+@synthesize fetchedResultsController = mFetchedResultsController;
+@synthesize managedObjectContext = mManagedObjectContext;
+@synthesize responseData = mResponseData;
 @synthesize addItemCell = mAddItemCell;
 @synthesize entityTypeString = mEntityTypeString;
+@synthesize conn = mConn;
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *c = [self tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -35,8 +36,8 @@
 #pragma mark Fetched results controller
 
 - (NSFetchedResultsController *)fetchedResultsController {
-    if (fetchedResultsController_ != nil) {
-        return fetchedResultsController_;
+    if (mFetchedResultsController != nil) {
+        return mFetchedResultsController;
     }
     
     /*
@@ -76,7 +77,7 @@
     [sortDescriptors release];
     
     NSError *error = nil;
-    if (![fetchedResultsController_ performFetch:&error]) {
+    if (![mFetchedResultsController performFetch:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
          //TODO remove auto generated abort
@@ -86,7 +87,7 @@
         abort();
     }
     
-    return fetchedResultsController_;
+    return mFetchedResultsController;
 }   
 
 -(void)decorateFetchRequest:(NSFetchRequest *)request{
@@ -134,8 +135,7 @@
 	UILabel *resto;
 	resto = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_RESTAURANT_NAME_TAG];
 	resto.text = @"Resto Name";
-	NSString *restaurantName = [[thisDish restaurant] objName];
-	resto.text = restaurantName;
+	resto.text = [[thisDish restaurant] objName];
 	
 	UILabel *mealType;
 	mealType = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_MEALTYPE_TAG];
@@ -159,31 +159,31 @@
 		distance.text = [[thisDish distance] stringValue];
 	}
 
-	float pos = [[thisDish posReviews] intValue];
-	float neg = [[thisDish negReviews] intValue];
-	if (pos + neg >= kMinimumToShowPercentage) {
-		[cell viewWithTag:DISHTABLEVIEW_UPVOTES_TAG].hidden = YES;
-		[cell viewWithTag:DISHTABLEVIEW_DOWNVOTES_TAG].hidden = YES;
-		UILabel *percentage = (UILabel *)[cell viewWithTag:PERCENTAGE_TAG];
-		percentage.text = [NSString stringWithFormat:@"%.0f\%",
-						   pos / (pos+neg) * 100]; 
-		percentage.hidden = NO;
-		NSLog(@"percentage.text %@", percentage.text);
-	}
-	else{
-		[cell viewWithTag:PERCENTAGE_TAG].hidden = YES;
-		UILabel *upVotes;
-		upVotes = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_UPVOTES_TAG];
-		upVotes.text = [NSString stringWithFormat:@"+%@", 
-						[thisDish posReviews]];
-		upVotes.hidden = NO;
-		
-		UILabel *downVotes;
-		downVotes = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_DOWNVOTES_TAG];
-		downVotes.text = [NSString stringWithFormat:@"-%@", 
-						  [thisDish negReviews]];
-		downVotes.hidden = NO;
-	}
+	//float pos = [[thisDish posReviews] intValue];
+//	float neg = [[thisDish negReviews] intValue];
+//	if (pos + neg >= kMinimumToShowPercentage) {
+//		[cell viewWithTag:DISHTABLEVIEW_UPVOTES_TAG].hidden = YES;
+//		[cell viewWithTag:DISHTABLEVIEW_DOWNVOTES_TAG].hidden = YES;
+//		UILabel *percentage = (UILabel *)[cell viewWithTag:PERCENTAGE_TAG];
+//		percentage.text = [NSString stringWithFormat:@"%.0f\%",
+//						   pos / (pos+neg) * 100]; 
+//		percentage.hidden = NO;
+//		NSLog(@"percentage.text %@", percentage.text);
+//	}
+	//	else{
+	[cell viewWithTag:PERCENTAGE_TAG].hidden = YES;
+	UILabel *upVotes;
+	upVotes = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_UPVOTES_TAG];
+	upVotes.text = [NSString stringWithFormat:@"+%@", 
+					[thisDish posReviews]];
+	upVotes.hidden = NO;
+	
+	UILabel *downVotes;
+	downVotes = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_DOWNVOTES_TAG];
+	downVotes.text = [NSString stringWithFormat:@"-%@", 
+					  [thisDish negReviews]];
+	downVotes.hidden = NO;
+	//}
 	
 	UILabel *priceNumber;
 	priceNumber = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_COST_TAG];
@@ -192,7 +192,7 @@
 	//to find the price and mealtype
 	for (NSDictionary *d in [[AppModel instance] priceTags]) {
 		if ([[d objectForKey:@"id"] intValue]== [[thisDish price] intValue]) {
-			priceNumber.text = 	[NSString stringWithFormat:@"%@", [d objectForKey:@"name"]];
+			priceNumber.text = 	[d objectForKey:@"name"];
 			continue;
 		}
 	}
@@ -271,13 +271,17 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
-	NSLog(@"connection did finish loading");
-	NSString *responseText = [[NSString alloc] initWithData:_responseData encoding:NSASCIIStringEncoding];
-	NSLog(@"response text before replacing %@", responseText);
+	NSLog(@"didFinishLoading BaseDishTableViewController start");
+	NSString *responseText = [[NSString alloc] initWithData:self.responseData 
+												   encoding:NSASCIIStringEncoding];
 	
 	
-	responseText = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
-	[self processIncomingNetworkText:responseText];
+	NSString *responseTextStripped = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
+	[self processIncomingNetworkText:responseTextStripped];
+	self.conn = nil;
+	[responseText release];
+	NSLog(@"didFinishLoading BaseDishTableViewController end");
+
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
@@ -286,27 +290,42 @@
 #ifndef AirplaneMode
 	NSLog(@"connection did fail with error %@", error);
 	UIAlertView *alert;
-	alert = [[UIAlertView alloc] initWithTitle:@"NetworkError" message:@"There was a network issue. Try again later" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil]; 
+	alert = [[UIAlertView alloc] initWithTitle:@"NetworkError" 
+									   message:@"There was a network issue. Try again later" 
+									  delegate:self 
+							 cancelButtonTitle:@"Ok" 
+							 otherButtonTitles:nil]; 
 	[alert show];
+	[alert release];
 #else	
 	//Airplane mode must set _responseText
 	[self processIncomingNetworkText:DishSearchResponseText];
 #endif
+	self.conn = nil;
+	self.responseData = nil;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-	if(_responseData == nil){
-		_responseData = [[NSMutableData alloc] initWithData:data];
+	if(self.responseData == nil){
+		self.responseData = [[NSMutableData alloc] initWithData:data];
 	}
 	else{
 		if (data) {
-			[_responseData appendData:data];
+			[self.responseData appendData:data];
 		}
 	}
 }
 
 -(void)dealloc{
 	self.addItemCell = nil;
+	
+	self.entityTypeString = nil;
+	self.addItemCell = nil;
+	self.managedObjectContext = nil;
+	self.fetchedResultsController = nil;
+	self.responseData = nil;
+	self.conn = nil;
+	
 	[super dealloc];
 }
 	

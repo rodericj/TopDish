@@ -14,18 +14,18 @@
 
 @interface DishTableViewController : BaseDishTableViewer <MyCLControllerDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate> {
 	MyCLController *locationController;
-	NSString *currentLat;
-	NSString *currentLon;
-	NSString *currentSearchTerm;
+	NSString *mCurrentLat;
+	NSString *mCurrentLon;
+	NSString *mCurrentSearchTerm;
 	
-	NSMutableDictionary *settingsDict;
+	NSMutableDictionary *mSettingsDict;
 	
-	IBOutlet UIView *searchHeader;
-	IBOutlet UISearchBar *theSearchBar;
+	IBOutlet UIView *mSearchHeader;
+	IBOutlet UISearchBar *mTheSearchBar;
 
-	UIImageView *bgImage;
+	UIImageView *mBgImage;
 
-	UISegmentedControl *dishRestoSelector;
+	UISegmentedControl *mDishRestoSelector;
 	
 	RestaurantListTableViewDelegate *mrltv;
 	

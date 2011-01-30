@@ -155,9 +155,10 @@
 	}
 	
 	// Configure the cell...
-    UIView *backView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectZero];
 	backView.backgroundColor = [UIColor clearColor];
 	cell.backgroundView = backView;
+	[backView release];
     return cell;
 }
 

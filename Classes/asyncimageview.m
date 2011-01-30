@@ -96,7 +96,6 @@
 		[spinner stopAnimating];
 	}
 	//make an image view for the image
-	//UIImageView* imageView = [[[UIImageView alloc] initWithImage:[UIImage imageWithData:data]] autorelease];
 	if(thisImageView.image == NULL){
 		NSLog(@"ok, the image view's image is nil");
 	}

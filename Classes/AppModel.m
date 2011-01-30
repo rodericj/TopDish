@@ -61,7 +61,6 @@ AppModel *gAppModelInstance = nil;
 		
 	}
 	[parser release];
-	NSLog(@"priceTypeTags = %@", priceTypeTags);
 	self.priceTags = priceTypeTags;
 	self.mealTypeTags = mealTypeTags;
 	

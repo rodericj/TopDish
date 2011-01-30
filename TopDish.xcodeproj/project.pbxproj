@@ -44,10 +44,6 @@
 		17DD270D12BDBD970048C1A1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DD270C12BDBD970048C1A1 /* MobileCoreServices.framework */; };
 		17DD271C12BDBDEE0048C1A1 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DD271B12BDBDEE0048C1A1 /* ASIInputStream.m */; };
 		17DD272B12BDBEC60048C1A1 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DD272A12BDBEC60048C1A1 /* libz.1.2.3.dylib */; };
-		17DD27F112BDEB6C0048C1A1 /* AddNewDishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DD27EF12BDEB6C0048C1A1 /* AddNewDishViewController.m */; };
-		17DD27F212BDEB6C0048C1A1 /* AddNewDishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DD27F012BDEB6C0048C1A1 /* AddNewDishViewController.xib */; };
-		17DE005412B43B01001F6907 /* RateDishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DE005212B43B01001F6907 /* RateDishViewController.m */; };
-		17DE005512B43B01001F6907 /* RateDishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DE005312B43B01001F6907 /* RateDishViewController.xib */; };
 		17EEB69912D9A2550032E12B /* LoggedInLoggedOutGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EEB69712D9A2550032E12B /* LoggedInLoggedOutGate.m */; };
 		17EEB6AE12D9A3160032E12B /* SignInSignUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17EEB6AD12D9A3160032E12B /* SignInSignUp.xib */; };
 		17EEB6B312D9A3560032E12B /* SignInSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EEB6B212D9A3560032E12B /* SignInSignUpViewController.m */; };
@@ -164,12 +160,6 @@
 		17DD271A12BDBDEE0048C1A1 /* ASIInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIInputStream.h; path = Classes/ASIInputStream.h; sourceTree = SOURCE_ROOT; };
 		17DD271B12BDBDEE0048C1A1 /* ASIInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIInputStream.m; path = Classes/ASIInputStream.m; sourceTree = SOURCE_ROOT; };
 		17DD272A12BDBEC60048C1A1 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
-		17DD27EE12BDEB6C0048C1A1 /* AddNewDishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddNewDishViewController.h; path = Classes/AddNewDishViewController.h; sourceTree = "<group>"; };
-		17DD27EF12BDEB6C0048C1A1 /* AddNewDishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddNewDishViewController.m; path = Classes/AddNewDishViewController.m; sourceTree = "<group>"; };
-		17DD27F012BDEB6C0048C1A1 /* AddNewDishViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AddNewDishViewController.xib; path = Classes/AddNewDishViewController.xib; sourceTree = "<group>"; };
-		17DE005112B43B01001F6907 /* RateDishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RateDishViewController.h; sourceTree = "<group>"; };
-		17DE005212B43B01001F6907 /* RateDishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RateDishViewController.m; sourceTree = "<group>"; };
-		17DE005312B43B01001F6907 /* RateDishViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateDishViewController.xib; sourceTree = "<group>"; };
 		17EEB69712D9A2550032E12B /* LoggedInLoggedOutGate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoggedInLoggedOutGate.m; path = ../LoggedInLoggedOutGate.m; sourceTree = "<group>"; };
 		17EEB69812D9A2550032E12B /* LoggedInLoggedOutGate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoggedInLoggedOutGate.h; path = ../LoggedInLoggedOutGate.h; sourceTree = "<group>"; };
 		17EEB6AD12D9A3160032E12B /* SignInSignUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInSignUp.xib; sourceTree = "<group>"; };
@@ -280,19 +270,6 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		17134EE812EFFE7D00A46B6B /* legacy */ = {
-			isa = PBXGroup;
-			children = (
-				17DD27EE12BDEB6C0048C1A1 /* AddNewDishViewController.h */,
-				17DD27EF12BDEB6C0048C1A1 /* AddNewDishViewController.m */,
-				17DD27F012BDEB6C0048C1A1 /* AddNewDishViewController.xib */,
-				17DE005112B43B01001F6907 /* RateDishViewController.h */,
-				17DE005212B43B01001F6907 /* RateDishViewController.m */,
-				17DE005312B43B01001F6907 /* RateDishViewController.xib */,
-			);
-			name = legacy;
-			sourceTree = "<group>";
-		};
 		176A9EE812E2648900CC595C /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,7 +346,6 @@
 		17DE013912B43EEB001F6907 /* RateDishView */ = {
 			isa = PBXGroup;
 			children = (
-				17134EE812EFFE7D00A46B6B /* legacy */,
 				17134EE912EFFE9F00A46B6B /* AddADishViewController.h */,
 				17134EEA12EFFE9F00A46B6B /* AddADishViewController.m */,
 				17134EEB12EFFE9F00A46B6B /* AddADishViewController.xib */,
@@ -659,8 +635,6 @@
 				5F7AA19A125D82CC00843F4A /* NearbyMapView.xib in Resources */,
 				17B48AE612A033C200F43202 /* RestaurantDetailView.xib in Resources */,
 				1794422112A5B195008EE034 /* DetailButtonImage.png in Resources */,
-				17DE005512B43B01001F6907 /* RateDishViewController.xib in Resources */,
-				17DD27F212BDEB6C0048C1A1 /* AddNewDishViewController.xib in Resources */,
 				17FCD78112C403120081D5EA /* RestaurantTableViewCell.xib in Resources */,
 				17EEB6AE12D9A3160032E12B /* SignInSignUp.xib in Resources */,
 				17EEB74712D9A8AD0032E12B /* SignIn.xib in Resources */,
@@ -713,7 +687,6 @@
 				179B879212A310E200730FAC /* Restaurant.m in Sources */,
 				179B88D612A3719500730FAC /* ObjectWithImage.m in Sources */,
 				179443FF12A60199008EE034 /* ImagePickerViewController.m in Sources */,
-				17DE005412B43B01001F6907 /* RateDishViewController.m in Sources */,
 				17DD22C312BD87610048C1A1 /* DishComment.m in Sources */,
 				17DD26E112BDBC760048C1A1 /* ASIHTTPRequest.m in Sources */,
 				17DD26E912BDBC880048C1A1 /* ASIDataCompressor.m in Sources */,
@@ -724,7 +697,6 @@
 				17DD26FD12BDBCDF0048C1A1 /* ASIAuthenticationDialog.m in Sources */,
 				17DD270412BDBCE80048C1A1 /* Reachability.m in Sources */,
 				17DD271C12BDBDEE0048C1A1 /* ASIInputStream.m in Sources */,
-				17DD27F112BDEB6C0048C1A1 /* AddNewDishViewController.m in Sources */,
 				17FCD5B412C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m in Sources */,
 				17EEB69912D9A2550032E12B /* LoggedInLoggedOutGate.m in Sources */,
 				17EEB6B312D9A3560032E12B /* SignInSignUpViewController.m in Sources */,

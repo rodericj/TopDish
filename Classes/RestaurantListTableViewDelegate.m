@@ -14,7 +14,8 @@
 @implementation RestaurantListTableViewDelegate
 
 @synthesize tvCell;
-@synthesize fetchedResultsController=fetchedResultsController_, managedObjectContext=managedObjectContext_;
+@synthesize fetchedResultsController=mFetchedResultsController;
+@synthesize managedObjectContext=managedObjectContext_;
 @synthesize entityTypeString = mEntityTypeString;
 @synthesize topNavigationController = mNavigationController;
 #pragma mark -
@@ -58,8 +59,8 @@
 #pragma mark fetchedResultsController
 - (NSFetchedResultsController *)fetchedResultsController {
 	NSLog(@"entity type string %@", self.entityTypeString);
-    if (fetchedResultsController_ != nil) {
-        return fetchedResultsController_;
+    if (mFetchedResultsController != nil) {
+        return mFetchedResultsController;
     }
     
     /*
@@ -103,7 +104,7 @@
     [sortDescriptors release];
     
     NSError *error = nil;
-    if (![fetchedResultsController_ performFetch:&error]) {
+    if (![mFetchedResultsController performFetch:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
          //TODO remove auto generated abort
@@ -113,7 +114,7 @@
         abort();
     }
     
-    return fetchedResultsController_;
+    return mFetchedResultsController;
 }   
 
 
@@ -134,6 +135,11 @@
 
 - (void)dealloc {
     [super dealloc];
+	self.entityTypeString = nil;
+	self.topNavigationController = nil;
+	//self.tvCell = nil;
+	self.managedObjectContext = nil;
+	self.fetchedResultsController = nil;
 }
 
 

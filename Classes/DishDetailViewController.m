@@ -10,7 +10,6 @@
 #import "asyncimageview.h"
 #import "constants.h"
 #import "JSON.h"
-#import "RateDishViewController.h"
 #import "RateADishViewController.h"
 #import "RestaurantDetailViewController.h"
 
@@ -33,7 +32,7 @@
 @synthesize restaurantNameLabel = mRestaurantNameLabel;
 
 @synthesize reviews = mReviews;
-@synthesize responseText = mResponseText;
+@synthesize responseData = mResponseData;
 @synthesize managedObjectContext;
 
 #pragma mark -
@@ -87,7 +86,7 @@
 		case kCommentsSection:
 			cell = [tableView dequeueReusableCellWithIdentifier:@"DishDetailCommentCell"];
 			if (!cell)
-				cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DishDetailCommentCell"];
+				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DishDetailCommentCell"] autorelease];
 
 			NSString *comment = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"comment"];
 			NSString *creator = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"creator"];
@@ -106,16 +105,6 @@
 #pragma mark -
 #pragma mark Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-    // ...
-    // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-    */
-}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == kImageSection) {
 		//return 280;
@@ -167,7 +156,9 @@
 	[self.restaurantNameLabel setText:[[self.thisDish restaurant] objName]];
 	[self.restaurantNameLabel setTextColor:kTopDishBlue];
 	
-	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishDetail?id[]=%@", NETWORKHOST, [self.thisDish dish_id]]];
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishDetail?id[]=%@", 
+									   NETWORKHOST, 
+									   [self.thisDish dish_id]]];
 	//Start up the networking
 	NSLog(@"the comments url is %@", url);
 	NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -187,31 +178,33 @@
 #pragma mark Network Delegate 
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
-	NSString *responseText = [[NSString alloc] initWithData:self.responseText encoding:NSUTF8StringEncoding];
+	NSLog(@"didFinishLoading dishDetailViewController start");
+	NSString *responseText = [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding];
 	
 	SBJSON *parser = [SBJSON new];
 	NSError *error;
 	NSArray *responseAsArray = [parser objectWithString:responseText error:&error];
 	NSDictionary *thisDishDetailDictionary = [responseAsArray objectAtIndex:0];
-	NSLog(@"thisdishdetaildictionary %@", thisDishDetailDictionary);
 	//NSLog(@"%@", thisDishDetailDictionary);
 	[parser release];
 	if(self.reviews == nil){
-		NSLog(@"allocate the array the first time");
 		self.reviews = [NSArray alloc];
 	}
 	self.reviews = [[thisDishDetailDictionary objectForKey:@"reviews"] copy];
 	
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish"  
-											  inManagedObjectContext:self.managedObjectContext];
-	[fetchRequest setEntity:entity];
-	[fetchRequest release];	
+	//TODO, 1/30, for some reason this fetch request is happening, then nothing?
+	//NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish"  
+//											  inManagedObjectContext:self.managedObjectContext];
+//	[fetchRequest setEntity:entity];
+//	[fetchRequest release];	
 	[responseText release];
-	self.responseText = nil;
+	self.responseData = nil;
 	[self.tableView reloadData];
 	
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	NSLog(@"didFinishLoading dishDetailViewController end");
+
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
@@ -229,14 +222,18 @@
 	[alert show];
 	[alert release];	
 #endif
-	
+	self.responseData = nil;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-	if(self.responseText == nil){
-		self.responseText = data;
+	if(self.responseData == nil){
+		self.responseData = data;
 		//self.responseText = [[NSData alloc] initWithData:data];
 	}
+	else {
+		NSLog(@"a ha!, the response text was not null, which means we may be missing some data");
+	}
+
 }
 
 -(IBAction)pushRateDishController {
@@ -259,6 +256,7 @@
 
 	[restaurantController setRestaurant:[self.thisDish restaurant]];
 	[self.navigationController pushViewController:restaurantController animated:YES];
+	[restaurantController release];
 }
 
 
