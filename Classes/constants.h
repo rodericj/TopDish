@@ -18,6 +18,8 @@
 
 #define POSITIVE_REVIEW_IMAGE_NAME @"greenup.gif"
 #define NEGATIVE_REVIEW_IMAGE_NAME @"reddown.gif"
+#define FILTER_IMAGE_NAME @"filter.png"
+#define GLOBAL_IMAGE_NAME @"globe-1.png"
 
 #pragma mark network constants
 //#define NETWORKHOST @"http://topdish1.appspot.com"
