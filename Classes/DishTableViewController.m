@@ -81,8 +81,6 @@
 								  action:@selector(showSettings)];
 	
     self.navigationItem.leftBarButtonItem = settingsButton;
-	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:0] forKey:SORT_VALUE_LOCATION];
-
 	self.settingsDict = [[NSMutableDictionary alloc] init];
 	
 	// Set up the map button
@@ -96,7 +94,9 @@
 
 	
 	// Set up the dish/restaurant selector
-	dishRestoSelector = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Dishes", @"Restaurants", nil]];
+	dishRestoSelector = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Dishes", 
+																   @"Restaurants", 
+																   nil]];
 	[dishRestoSelector setSegmentedControlStyle:UISegmentedControlStyleBar];
 	[dishRestoSelector setSelectedSegmentIndex:0];
 	[dishRestoSelector setTintColor:buttonLightBlue];
@@ -395,7 +395,7 @@
 	return ret;
 }
 
-- (void) showSettings{
+- (void) showSettings {
 	SettingsView1 *settings = [[SettingsView1 alloc] initWithNibName:@"SettingsView1" bundle:nil];
 	//SettingsTableView *settings = [[SettingsTableView alloc] initWithStyle:UITableViewStyleGrouped];
 
@@ -406,25 +406,10 @@
 	//[self presentModalViewController:settings animated:TRUE];
 //	[settings setDelegate:self];
 }
-	 
--(void) updateFetch{
-	
-	/*
-     Set up the fetched results controller.
-	 */
-    // Create the fetch request for the entity.
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    // Edit the entity name as appropriate.
-	NSLog(@"entity type string %@", self.entityTypeString);
 
-    NSEntityDescription *entity = [NSEntityDescription entityForName:self.entityTypeString 
-											  inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    
-	//Set up the filters that are stored in the AppModel
-	NSMutableArray *filterPredicateArray = [NSMutableArray array];
+-(void) populatePredicateArray:(NSMutableArray *)filterPredicateArray{
 	NSPredicate *filterPredicate;
-	
+
 	//Filter based on search
 	if (currentSearchTerm && [currentSearchTerm length] > 0) {
 		
@@ -463,6 +448,26 @@
 		[filterPredicateArray addObject:filterPredicate];
 	}
 	
+}
+-(void) updateFetch {
+	
+	/*
+     Set up the fetched results controller.
+	 */
+    // Create the fetch request for the entity.
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	
+    // Edit the entity name as appropriate.
+	NSLog(@"entity type string %@", self.entityTypeString);
+
+    NSEntityDescription *entity = [NSEntityDescription entityForName:self.entityTypeString 
+											  inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+	//Set up the filters that are stored in the AppModel
+	NSMutableArray *filterPredicateArray = [NSMutableArray array];
+	
+	[self populatePredicateArray:filterPredicateArray];
 	
 	NSPredicate *fullPredicate = [NSCompoundPredicate 
 								  andPredicateWithSubpredicates:filterPredicateArray]; 
@@ -471,40 +476,38 @@
 	// Set the batch size to a suitable number.
 	[fetchRequest setFetchBatchSize:20];
     
-	//TODO....Ok this should all be in a function somewhere.
 	//Create array with sort params, then store in NSUserDefaults
-	//NSNumber *selectedIndex = (NSNumber *)[[NSUserDefaults standardUserDefaults] objectForKey:SORT_VALUE_LOCATION];
 	NSString *sorter = [sortStringArray objectAtIndex:[[AppModel instance] sorter]];
-	//NSLog(@"sorting ascending %d", [selectedIndex intValue]==0);
+
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:sorter ascending:FALSE];
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-    
+    NSSortDescriptor *sortDescriptor = 
+	[[NSSortDescriptor alloc] initWithKey:sorter 
+								ascending:FALSE];
+	
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     [fetchRequest setSortDescriptors:sortDescriptors];
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-   // NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    NSFetchedResultsController *aFetchedResultsController = 
+	[[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
+										managedObjectContext:self.managedObjectContext 
+										  sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
     [aFetchedResultsController release];
     [fetchRequest release];
     [sortDescriptor release];
-    [sortDescriptors release];
     [currentSearchTerm release];
 	currentSearchTerm = nil;
     NSError *error = nil;
     if (![fetchedResultsController_ performFetch:&error]) {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         //TODO remove auto generated abort
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-         */
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+	
+	//Finally, reload the data with the latest fetch
 	[self.tableView reloadData];
 
 }

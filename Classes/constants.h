@@ -28,7 +28,6 @@
 //#define NETWORKHOST @"http://10.0.1.11:8888"
 
 #define DISH_DETAIL_CELL_IDENTIFIER @"dishdetailimagecell"
-#define SORT_VALUE_LOCATION @"sortvaluelocation"
 #define RATINGS_SORT @"posReviews"
 #define DISTANCE_SORT @"distance"
 #define PRICE_SORT @"price"
