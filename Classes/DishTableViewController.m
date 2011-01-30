@@ -19,6 +19,7 @@
 #define buttonLightBlue [UIColor colorWithRed:0 green:.73 blue:.89 alpha:1 ]
 #define buttonLightBlueShine [UIColor colorWithRed:.53 green:.91 blue:.99 alpha:1]
 
+#define sortStringArray [NSArray arrayWithObjects:DISTANCE_SORT, RATINGS_SORT, PRICE_SORT, nil]
 @interface DishTableViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
@@ -403,12 +404,7 @@
 }
 	 
 -(void) updateFetch{
-		
-	//TODO....Ok this should all be in a function somewhere.
-	//Create array with sort params, then store in NSUserDefaults
-	NSNumber *selectedIndex = (NSNumber *)[[NSUserDefaults standardUserDefaults] objectForKey:SORT_VALUE_LOCATION];
-	NSString *sorter = [[NSArray arrayWithObjects:RATINGS_SORT, DISTANCE_SORT, nil] objectAtIndex:[selectedIndex intValue]];
-
+	
 	/*
      Set up the fetched results controller.
 	 */
@@ -470,9 +466,13 @@
 	// Set the batch size to a suitable number.
 	[fetchRequest setFetchBatchSize:20];
     
-	NSLog(@"sorting ascending %d", [selectedIndex intValue]==0);
+	//TODO....Ok this should all be in a function somewhere.
+	//Create array with sort params, then store in NSUserDefaults
+	//NSNumber *selectedIndex = (NSNumber *)[[NSUserDefaults standardUserDefaults] objectForKey:SORT_VALUE_LOCATION];
+	NSString *sorter = [sortStringArray objectAtIndex:[[AppModel instance] sorter]];
+	//NSLog(@"sorting ascending %d", [selectedIndex intValue]==0);
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:sorter ascending:[selectedIndex intValue]==1];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:sorter ascending:FALSE];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -558,6 +558,26 @@
 		[self pushRestaurantViewController:selectedObject];
 	}
 	//[super tableView:tableView didSelectRowAtIndexPath:indexPath];
+}
+
+
+-(IBAction) sortByDistance
+{
+	NSLog(@"sort by distance");
+	[[AppModel instance] setSorter:kSortByDistance];
+	[self updateFetch];
+}
+-(IBAction) sortByRating
+{
+	NSLog(@"sort by Rating");
+	[[AppModel instance] setSorter:kSortByRating];
+	[self updateFetch];
+}
+-(IBAction) sortByPrice
+{
+	NSLog(@"sort by Price");
+	[[AppModel instance] setSorter:kSortByPrice];
+	[self updateFetch];
 }
 
 #pragma mark -

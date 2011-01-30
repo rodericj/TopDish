@@ -35,6 +35,9 @@
 - (void) updateFetch;
 - (void)getNearbyItems:(CLLocation *)location;
 - (NSArray *) getArrayOfIdsWithArray:(NSArray *)responseAsArray withKey:(NSString*) key;
+-(IBAction) sortByDistance;
+-(IBAction) sortByRating;
+-(IBAction) sortByPrice;
 
 //@property (nonatomic, retain) NSString *entityTypeString;
 @property (nonatomic, retain) RestaurantListTableViewDelegate *rltv;

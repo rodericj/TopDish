@@ -31,6 +31,11 @@
 #define SORT_VALUE_LOCATION @"sortvaluelocation"
 #define RATINGS_SORT @"posReviews"
 #define DISTANCE_SORT @"distance"
+#define PRICE_SORT @"price"
+
+#define kSortByDistance 0
+#define kSortByRating 1
+#define kSortByPrice 2
 
 #pragma tags
 
