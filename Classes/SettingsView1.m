@@ -39,8 +39,10 @@
 	[self.tableView beginUpdates];
 	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationFade];
 	[self.tableView endUpdates];
-	[[AppModel instance] setSelectedMealType:*pointer];
-	//TODO You should actually do something with the value of pointer
+	NSLog(@"the price at pointer is %@", [[[AppModel instance] mealTypeTags] objectAtIndex:*pointer]);
+	int mealtype = [[[[[AppModel instance] mealTypeTags] objectAtIndex:*pointer] objectForKey:@"id"] intValue];
+	NSLog(@"the mealType id is %d", mealtype);
+	[[AppModel instance] setSelectedMealType:mealtype];
 	
 }
 
@@ -124,18 +126,20 @@
 #pragma mark IBActions
 
 -(IBAction) changeSegmentedSelector {
-	NSLog(@"blah %d", [self.segmentedControl selectedSegmentIndex]);
 	[[AppModel instance] setSorter:[self.segmentedControl selectedSegmentIndex]];
+	
+	NSLog(@"price tags at pointer is %@", [[[AppModel instance] priceTags] objectAtIndex:*pointer]);
+	int priceTagId = [[[[[AppModel instance] priceTags] objectAtIndex:*pointer] objectForKey:@"id"] intValue];
+	[[AppModel instance] setSelectedPrice:priceTagId];
 }
 
 -(IBAction) updatePriceTags{
 	[self.priceSlider setValue:(int)[self.priceSlider value]];
-	NSLog(@"price tags is %@", [AppModel instance].priceTags);
 	NSDictionary *d = [[AppModel instance].priceTags objectAtIndex:[self.priceSlider value]];
-	NSLog(@"the dictionary is %@", d);
 	[self.priceValue setText:[d objectForKey:@"name"]];
-	NSLog(@"setting the price tags %f", [self.priceSlider value]);
-	[[AppModel instance] setSelectedPrice:(int)[self.priceSlider value]];
+	int priceTagId = [[[[[AppModel instance] priceTags] objectAtIndex: [self.priceSlider value]] objectForKey:@"id"] intValue];
+
+	[[AppModel instance] setSelectedPrice:priceTagId];
 }
 
 #pragma mark -

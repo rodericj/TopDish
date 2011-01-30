@@ -77,8 +77,6 @@
 								  action:@selector(showSettings)];
 	
     self.navigationItem.leftBarButtonItem = settingsButton;
-	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:4] forKey:MAX_PRICE_VALUE_LOCATION];
-	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:1] forKey:MIN_PRICE_VALUE_LOCATION];
 	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:0] forKey:SORT_VALUE_LOCATION];
 
 	self.settingsDict = [[NSMutableDictionary alloc] init];
@@ -159,7 +157,7 @@
 // Implement viewWillAppear: to do additional setup before the view is presented.
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
+	[self updateFetch];
 	NSLog(@"filter on these %d, %d", [[AppModel instance] selectedMealType], [[AppModel instance] selectedPrice]);
 }
 
@@ -401,10 +399,7 @@
 }
 	 
 -(void) updateFetch{
-
-	NSNumber *minimumPriceFilter = [[NSUserDefaults standardUserDefaults] objectForKey:MIN_PRICE_VALUE_LOCATION];
-	NSNumber *maximumPriceFilter = [[NSUserDefaults standardUserDefaults] objectForKey:MAX_PRICE_VALUE_LOCATION];
-	
+		
 	//TODO....Ok this should all be in a function somewhere.
 	//Create array with sort params, then store in NSUserDefaults
 	NSNumber *selectedIndex = (NSNumber *)[[NSUserDefaults standardUserDefaults] objectForKey:SORT_VALUE_LOCATION];
@@ -418,7 +413,8 @@
     // Edit the entity name as appropriate.
 	NSLog(@"entity type string %@", self.entityTypeString);
 
-    NSEntityDescription *entity = [NSEntityDescription entityForName:self.entityTypeString inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:self.entityTypeString 
+											  inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
 	NSPredicate *filterPredicate;
@@ -427,24 +423,21 @@
 		
 		NSString *attributeName = @"objName";
 		NSString *attributeValue = currentSearchTerm;
-		NSLog(@"the predicate we are sending: %@ contains(cd) %@ AND %@ <= %@ AND %@ >= %@",
+		NSLog(@"the predicate we are sending: %@ contains(cd) %@ AND %@ == %d",
 			  attributeName, attributeValue,
-			  @"price", maximumPriceFilter, 
-			  @"price", minimumPriceFilter);
-		filterPredicate = [NSPredicate predicateWithFormat:@"%K contains[cd] %@ AND %K <= %@ AND %K >= %@",
+			  @"price", [[AppModel instance] selectedPrice]);
+		
+		filterPredicate = [NSPredicate predicateWithFormat:@"%K contains[cd] %@ AND %K == %@",
 										attributeName, attributeValue,
-										@"price", maximumPriceFilter, 
-										@"price", minimumPriceFilter];
+										@"price", [NSNumber numberWithInt:[[AppModel instance] selectedPrice]]];
 		
 		NSLog(@"the real predicate is %@", filterPredicate);
 	}
 	else {
-		NSLog(@"the else predicate %K <= %@ AND %K >= %@", 
-			  @"price", maximumPriceFilter, 
-			  @"price", minimumPriceFilter);
-		filterPredicate = [NSPredicate predicateWithFormat: @"%K <= %@ AND %K >= %@", 
-								@"price", maximumPriceFilter, 
-								@"price", minimumPriceFilter];
+		NSLog(@"the else predicate %@ == %d", 
+			  @"price", [[AppModel instance] selectedPrice]);
+		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
+								@"price", [NSNumber numberWithInt:[[AppModel instance] selectedPrice]]];
 		
 	}
 

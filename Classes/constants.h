@@ -26,8 +26,6 @@
 //#define NETWORKHOST @"http://10.0.1.11:8888"
 
 #define DISH_DETAIL_CELL_IDENTIFIER @"dishdetailimagecell"
-#define MIN_PRICE_VALUE_LOCATION @"minpricevaluelocation"
-#define MAX_PRICE_VALUE_LOCATION @"maxpricevaluelocation"
 #define SORT_VALUE_LOCATION @"sortvaluelocation"
 #define RATINGS_SORT @"posReviews"
 #define DISTANCE_SORT @"distance"
@@ -40,7 +38,9 @@
 #define DISHTABLEVIEW_DISH_NAME_TAG 1
 #define DISHTABLEVIEW_RESTAURANT_NAME_TAG 2
 #define DISHTABLEVIEW_COST_TAG 3
+
 #define DISHTABLEVIEW_UPVOTES_TAG 4
+#define DISHTABLEVIEW_MEALTYPE_TAG 5
 #define DISHTABLEVIEW_DOWNVOTES_TAG 6
 #define DISHTABLEVIEW_IMAGE_TAG 8
 #define DISHTABLEVIEW_DIST_TAG 9

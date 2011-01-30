@@ -14,6 +14,7 @@
 #import "RestaurantDetailViewController.h"
 #import "AddNewDishViewController.h"
 #import "DishDetailViewController.h"
+#import "AppModel.h"
 
 @implementation BaseDishTableViewer
 
@@ -135,10 +136,19 @@
 	NSString *restaurantName = [[thisDish restaurant] objName];
 	resto.text = restaurantName;
 	
-	UILabel *cost;
-	cost = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_COST_TAG];
-	cost.text = @"$$$";
+	UILabel *mealType;
+	mealType = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_MEALTYPE_TAG];
+	mealType.text = @"$$$";
 
+	//TODO Ok this is a fail, I need to loop through tags
+	//to find the price and mealtype
+	for (NSDictionary *d in [[AppModel instance] mealTypeTags]) {		
+		if ([[d objectForKey:@"id"] intValue]== [[thisDish mealType] intValue]) {
+			mealType.text = [NSString stringWithFormat:@"%@", [d objectForKey:@"name"]];
+			continue;
+		}
+	}
+	
 	UILabel *distance;
 	distance = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_DIST_TAG];
 	if ([[[thisDish distance] stringValue] length] > 5) {
@@ -161,11 +171,17 @@
 	UILabel *priceNumber;
 	priceNumber = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_COST_TAG];
 	
-	NSMutableString *output = [NSMutableString stringWithCapacity:[[thisDish price] intValue]];
-	
-	for (int i = 0; i < [[thisDish price] intValue]; i++)
-		[output appendString:@"$"];
-	priceNumber.text = output;
+	//TODO Ok this is a fail, I need to loop through tags
+	//to find the price and mealtype
+	for (NSDictionary *d in [[AppModel instance] priceTags]) {
+		NSLog(@"%d vs %d", [[d objectForKey:@"id"] intValue], [[thisDish price] intValue]);
+
+		if ([[d objectForKey:@"id"] intValue]== [[thisDish price] intValue]) {
+			NSLog(@"good");
+			priceNumber.text = 	[NSString stringWithFormat:@"%@", [d objectForKey:@"name"]];
+			continue;
+		}
+	}
 	
 	UIImageView *imageView = (UIImageView *)[cell viewWithTag:DISHTABLEVIEW_IMAGE_TAG];
 	

@@ -55,18 +55,13 @@
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
-{
-	// Use when fetching text data
-	NSString *responseString = [request responseString];
-	
+{	
 	// Use when fetching binary data
 	//NSData *responseData = [request responseData];
 	NSString *responseText = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
-	NSLog(@"responseText = %@", responseText);
 	SBJSON *parser = [SBJSON new];
 	NSError *error = nil;
 	NSArray *responseAsArray = [parser objectWithString:responseText error:&error];	
-	
 	NSMutableArray *priceTypeTags = [NSMutableArray array];
 	NSMutableArray *mealTypeTags = [NSMutableArray array];
 	for (NSString *d in responseAsArray)
@@ -81,9 +76,9 @@
 	}
 	[parser release];
 
-	NSLog(@"tags %@, \n\n%@", mealTypeTags, priceTypeTags);
 	//priceTypeTags = [NSArray arrayWithObjects: @"none", @"under $5", @"$5-10", @"$10-$15", @"$15-$25", @"$25+", nil];	
 //	mealTypeTags = [NSArray arrayWithObjects:@"all", @"breakfast", @"lunch", @"dinner", @"dessert", @"appetizer", nil];
+	//TODO set randy's tags
 	//[[AppModel instance] setPriceTags:priceTypeTags];
 	//[[AppModel instance] setMealTypeTags:mealTypeTags];
 	
