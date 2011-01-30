@@ -182,11 +182,11 @@
 			switch (indexPath.row) {
 				case kMealTypeRow:
 					cell.textLabel.text = @"Meal";
-					cell.detailTextLabel.text = [[[AppModel instance] mealTypeTags] objectAtIndex:self.selectedMealType];
+					//cell.detailTextLabel.text = [[[AppModel instance] mealTypeTags] objectAtIndex:self.selectedMealType];
 					break;
 				case kPriceTypeRow:
 					cell.textLabel.text = kPriceTypeString;
-					cell.detailTextLabel.text = [[[AppModel instance] priceTags] objectAtIndex:self.selectedPriceType];
+					//cell.detailTextLabel.text = [[[AppModel instance] priceTags] objectAtIndex:self.selectedPriceType];
 				default:
 					break;
 			}
