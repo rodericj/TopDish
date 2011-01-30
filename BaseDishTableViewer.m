@@ -16,6 +16,7 @@
 #import "DishDetailViewController.h"
 #import "AppModel.h"
 
+#define kMinimumToShowPercentage 2
 @implementation BaseDishTableViewer
 
 @synthesize tvCell = mTvCell;
@@ -158,15 +159,31 @@
 		distance.text = [[thisDish distance] stringValue];
 	}
 
-	UILabel *upVotes;
-	upVotes = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_UPVOTES_TAG];
-	upVotes.text = [NSString stringWithFormat:@"+%@", 
-					[thisDish posReviews]];
-	
-	UILabel *downVotes;
-	downVotes = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_DOWNVOTES_TAG];
-	downVotes.text = [NSString stringWithFormat:@"-%@", 
-					  [thisDish negReviews]];
+	float pos = [[thisDish posReviews] intValue];
+	float neg = [[thisDish negReviews] intValue];
+	if (pos + neg >= kMinimumToShowPercentage) {
+		[cell viewWithTag:DISHTABLEVIEW_UPVOTES_TAG].hidden = YES;
+		[cell viewWithTag:DISHTABLEVIEW_DOWNVOTES_TAG].hidden = YES;
+		UILabel *percentage = (UILabel *)[cell viewWithTag:PERCENTAGE_TAG];
+		percentage.text = [NSString stringWithFormat:@"%.0f\%",
+						   pos / (pos+neg) * 100]; 
+		percentage.hidden = NO;
+		NSLog(@"percentage.text %@", percentage.text);
+	}
+	else{
+		[cell viewWithTag:PERCENTAGE_TAG].hidden = YES;
+		UILabel *upVotes;
+		upVotes = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_UPVOTES_TAG];
+		upVotes.text = [NSString stringWithFormat:@"+%@", 
+						[thisDish posReviews]];
+		upVotes.hidden = NO;
+		
+		UILabel *downVotes;
+		downVotes = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_DOWNVOTES_TAG];
+		downVotes.text = [NSString stringWithFormat:@"-%@", 
+						  [thisDish negReviews]];
+		downVotes.hidden = NO;
+	}
 	
 	UILabel *priceNumber;
 	priceNumber = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_COST_TAG];

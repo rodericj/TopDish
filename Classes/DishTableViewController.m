@@ -163,6 +163,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	//do we need to update the fetch when we come back?
+	if ([self.dishRestoSelector selectedSegmentIndex] == 0) {
+		[self updateFetch];
+	}
 	//[self updateFetch];
 	NSLog(@"filter on these %d, %d", [[AppModel instance] selectedMealType], [[AppModel instance] selectedPrice]);
 }
@@ -418,6 +421,7 @@
 											  inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
+	//Set up the filters that are stored in the AppModel
 	NSMutableArray *filterPredicateArray = [NSMutableArray array];
 	NSPredicate *filterPredicate;
 	
