@@ -16,6 +16,8 @@
 #import "AppModel.h"
 
 #define kTopDishBlue [UIColor colorWithRed:0 green:.3843 blue:.5725 alpha:1]
+#define buttonLightBlue [UIColor colorWithRed:0 green:.73 blue:.89 alpha:1 ]
+#define buttonLightBlueShine [UIColor colorWithRed:.53 green:.91 blue:.99 alpha:1]
 
 @interface DishTableViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -69,9 +71,10 @@
 	
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
+	
     // Set up the settings button
 	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] 
-								  initWithImage:[UIImage imageNamed:POSITIVE_REVIEW_IMAGE_NAME] 
+								  initWithImage:[UIImage imageNamed:FILTER_IMAGE_NAME] 
 								  style:UIBarButtonItemStylePlain 
 								  target:self 
 								  action:@selector(showSettings)];
@@ -85,7 +88,7 @@
 	
 	// Set up the map button
 	UIBarButtonItem *mapButton = [[UIBarButtonItem alloc] 
-								  initWithImage:[UIImage imageNamed:POSITIVE_REVIEW_IMAGE_NAME] 
+								  initWithImage:[UIImage imageNamed:GLOBAL_IMAGE_NAME] 
 								  style:UIBarButtonItemStylePlain 
 								  target:self 
 								  action:@selector(flipToMap)];
@@ -95,8 +98,9 @@
 	
 	// Set up the dish/restaurant selector
 	dishRestoSelector = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Dishes", @"Restaurants", nil]];
-	dishRestoSelector.segmentedControlStyle = UISegmentedControlStyleBar;
-	dishRestoSelector.selectedSegmentIndex = 0;	
+	[dishRestoSelector setSegmentedControlStyle:UISegmentedControlStyleBar];
+	[dishRestoSelector setSelectedSegmentIndex:0];
+	[dishRestoSelector setTintColor:buttonLightBlue];
 	
 	self.navigationItem.titleView = dishRestoSelector;
 	
