@@ -97,7 +97,6 @@
 		5F89F55A125C464900959D05 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F89F559125C464900959D05 /* MapKit.framework */; };
 		5F92A9A2126D4A41007D2451 /* MyCLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F92A9A1126D4A41007D2451 /* MyCLController.m */; };
 		5F92A9AB126D4B53007D2451 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F92A9AA126D4B53007D2451 /* CoreLocation.framework */; };
-		5F94EC281267F7570080CEDD /* CommentControllerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F94EC271267F7570080CEDD /* CommentControllerTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -243,7 +242,6 @@
 		5F92A9A0126D4A41007D2451 /* MyCLController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCLController.h; sourceTree = "<group>"; };
 		5F92A9A1126D4A41007D2451 /* MyCLController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCLController.m; sourceTree = "<group>"; };
 		5F92A9AA126D4B53007D2451 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		5F94EC271267F7570080CEDD /* CommentControllerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CommentControllerTableViewCell.xib; path = ../CommentControllerTableViewCell.xib; sourceTree = "<group>"; };
 		5FBB95F11262288E00141693 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* TopDish-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TopDish-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -574,8 +572,8 @@
 				5F92A9A0126D4A41007D2451 /* MyCLController.h */,
 				5F92A9A1126D4A41007D2451 /* MyCLController.m */,
 				28C286DF0D94DF7D0034E888 /* DishTableViewController.h */,
-				5F89F15C1259501800959D05 /* DishTableViewCell.xib */,
 				28C286E00D94DF7D0034E888 /* DishTableViewController.m */,
+				5F89F15C1259501800959D05 /* DishTableViewCell.xib */,
 			);
 			name = MainView;
 			sourceTree = "<group>";
@@ -598,7 +596,6 @@
 				17FA59A912ED53F900902FEE /* DishDetailViewController.h */,
 				17FA59AA12ED53F900902FEE /* DishDetailViewController.m */,
 				17FA59AB12ED53F900902FEE /* DishDetailViewController.xib */,
-				5F94EC271267F7570080CEDD /* CommentControllerTableViewCell.xib */,
 			);
 			name = DishDetailView;
 			sourceTree = "<group>";
@@ -660,7 +657,6 @@
 				5F89F27612597E8F00959D05 /* noPicWares.png in Resources */,
 				5F89F2E3125988C900959D05 /* tdlogo.png in Resources */,
 				5F7AA19A125D82CC00843F4A /* NearbyMapView.xib in Resources */,
-				5F94EC281267F7570080CEDD /* CommentControllerTableViewCell.xib in Resources */,
 				17B48AE612A033C200F43202 /* RestaurantDetailView.xib in Resources */,
 				1794422112A5B195008EE034 /* DetailButtonImage.png in Resources */,
 				17DE005512B43B01001F6907 /* RateDishViewController.xib in Resources */,
