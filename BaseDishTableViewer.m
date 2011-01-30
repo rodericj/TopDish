@@ -174,8 +174,6 @@
 	//TODO Ok this is a fail, I need to loop through tags
 	//to find the price and mealtype
 	for (NSDictionary *d in [[AppModel instance] priceTags]) {
-		NSLog(@"%d vs %d", [[d objectForKey:@"id"] intValue], [[thisDish price] intValue]);
-
 		if ([[d objectForKey:@"id"] intValue]== [[thisDish price] intValue]) {
 			NSLog(@"good");
 			priceNumber.text = 	[NSString stringWithFormat:@"%@", [d objectForKey:@"name"]];

@@ -421,8 +421,10 @@
 											  inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
+	NSMutableArray *filterPredicateArray = [NSMutableArray array];
 	NSPredicate *filterPredicate;
-	NSLog(@"current search term %@", currentSearchTerm);
+	
+	//Filter based on search
 	if (currentSearchTerm && [currentSearchTerm length] > 0) {
 		
 		NSString *attributeName = @"objName";
@@ -431,25 +433,42 @@
 			  attributeName, attributeValue,
 			  @"price", [[AppModel instance] selectedPrice]);
 		
-		filterPredicate = [NSPredicate predicateWithFormat:@"%K contains[cd] %@ AND %K == %@",
-										attributeName, attributeValue,
-										@"price", [NSNumber numberWithInt:[[AppModel instance] selectedPrice]]];
+		filterPredicate = [NSPredicate predicateWithFormat:@"%K contains[cd] %@",
+						   attributeName, attributeValue];
 		
 		NSLog(@"the real predicate is %@", filterPredicate);
+		[filterPredicateArray addObject:filterPredicate];
 	}
-	else {
+	
+	//Filter based on price
+	if ([[AppModel instance] selectedPrice] != 0) {
+		
+		
 		NSLog(@"the else predicate %@ == %d", 
 			  @"price", [[AppModel instance] selectedPrice]);
 		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
-								@"price", [NSNumber numberWithInt:[[AppModel instance] selectedPrice]]];
+						   @"price", [NSNumber numberWithInt:[[AppModel instance] selectedPrice]]];
 		
+		[filterPredicateArray addObject:filterPredicate];
 	}
-
+	
+	//Filter based on mealType
+	if ([[AppModel instance] selectedMealType] != 0) {
+		NSLog(@"the else predicate %@ == %d", 
+			  @"price", [[AppModel instance] selectedPrice]);
+		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
+						   @"mealType", [NSNumber numberWithInt:[[AppModel instance] selectedMealType]]];
 		
-	[fetchRequest setPredicate:filterPredicate];
+		[filterPredicateArray addObject:filterPredicate];
+	}
+	
+	
+	NSPredicate *fullPredicate = [NSCompoundPredicate 
+								  andPredicateWithSubpredicates:filterPredicateArray]; 
+	[fetchRequest setPredicate:fullPredicate];
 	
 	// Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
+	[fetchRequest setFetchBatchSize:20];
     
 	NSLog(@"sorting ascending %d", [selectedIndex intValue]==0);
     // Edit the sort key as appropriate.

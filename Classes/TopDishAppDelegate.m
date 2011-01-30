@@ -57,7 +57,6 @@
 - (void)requestFinished:(ASIHTTPRequest *)request
 {	
 	// Use when fetching binary data
-	//NSData *responseData = [request responseData];
 	NSString *responseText = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
 	SBJSON *parser = [SBJSON new];
 	NSError *error = nil;

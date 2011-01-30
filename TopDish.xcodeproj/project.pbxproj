@@ -564,8 +564,8 @@
 				17FCD5B212C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m */,
 				5F92A9A0126D4A41007D2451 /* MyCLController.h */,
 				5F92A9A1126D4A41007D2451 /* MyCLController.m */,
-				5F89F15C1259501800959D05 /* DishTableViewCell.xib */,
 				28C286DF0D94DF7D0034E888 /* DishTableViewController.h */,
+				5F89F15C1259501800959D05 /* DishTableViewCell.xib */,
 				28C286E00D94DF7D0034E888 /* DishTableViewController.m */,
 			);
 			name = MainView;
