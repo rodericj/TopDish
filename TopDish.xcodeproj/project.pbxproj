@@ -26,8 +26,7 @@
 		17AE812A12DA777C007B96EC /* default_user_300x300.png in Resources */ = {isa = PBXBuildFile; fileRef = 17AE812912DA777C007B96EC /* default_user_300x300.png */; };
 		17B48AE512A033C200F43202 /* RestaurantDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B48AE312A033C200F43202 /* RestaurantDetailViewController.m */; };
 		17B48AE612A033C200F43202 /* RestaurantDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B48AE412A033C200F43202 /* RestaurantDetailView.xib */; };
-		17C90D1412F4CF50006066EA /* Tags.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C90D1112F4CF50006066EA /* Tags.m */; };
-		17C90D1A12F4CF6B006066EA /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C90D1912F4CF6B006066EA /* Dish.m */; };
+		17C90E7D12F4DEA0006066EA /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C90E7C12F4DEA0006066EA /* Dish.m */; };
 		17DD22C312BD87610048C1A1 /* DishComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DD22C212BD87610048C1A1 /* DishComment.m */; };
 		17DD26E112BDBC760048C1A1 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DD26E012BDBC760048C1A1 /* ASIHTTPRequest.m */; };
 		17DD26E912BDBC880048C1A1 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DD26E612BDBC880048C1A1 /* ASIDataCompressor.m */; };
@@ -128,10 +127,8 @@
 		17B48AE212A033C200F43202 /* RestaurantDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDetailViewController.h; sourceTree = "<group>"; };
 		17B48AE312A033C200F43202 /* RestaurantDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantDetailViewController.m; sourceTree = "<group>"; };
 		17B48AE412A033C200F43202 /* RestaurantDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantDetailView.xib; sourceTree = "<group>"; };
-		17C90D1012F4CF50006066EA /* Tags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tags.h; sourceTree = "<group>"; };
-		17C90D1112F4CF50006066EA /* Tags.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tags.m; sourceTree = "<group>"; };
-		17C90D1812F4CF6B006066EA /* Dish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
-		17C90D1912F4CF6B006066EA /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
+		17C90E7B12F4DEA0006066EA /* Dish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
+		17C90E7C12F4DEA0006066EA /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
 		17DD22C112BD87610048C1A1 /* DishComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishComment.h; sourceTree = "<group>"; };
 		17DD22C212BD87610048C1A1 /* DishComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishComment.m; sourceTree = "<group>"; };
 		17DD26D512BDBC3B0048C1A1 /* ASIHTTPRequestConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIHTTPRequestConfig.h; path = Classes/ASIHTTPRequestConfig.h; sourceTree = SOURCE_ROOT; };
@@ -726,8 +723,7 @@
 				17FA59AC12ED53F900902FEE /* DishDetailViewController.m in Sources */,
 				178F1E9512EEB35600DE5B24 /* RateADishViewController.m in Sources */,
 				17134EEC12EFFE9F00A46B6B /* AddADishViewController.m in Sources */,
-				17C90D1412F4CF50006066EA /* Tags.m in Sources */,
-				17C90D1A12F4CF6B006066EA /* Dish.m in Sources */,
+				17C90E7D12F4DEA0006066EA /* Dish.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -823,10 +819,8 @@
 		28D3F201112F7DC200FD0661 /* TopDish.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				17C90D1812F4CF6B006066EA /* Dish.h */,
-				17C90D1912F4CF6B006066EA /* Dish.m */,
-				17C90D1012F4CF50006066EA /* Tags.h */,
-				17C90D1112F4CF50006066EA /* Tags.m */,
+				17C90E7B12F4DEA0006066EA /* Dish.h */,
+				17C90E7C12F4DEA0006066EA /* Dish.m */,
 				17DD22C112BD87610048C1A1 /* DishComment.h */,
 				17DD22C212BD87610048C1A1 /* DishComment.m */,
 				179B88D412A3719500730FAC /* ObjectWithImage.h */,

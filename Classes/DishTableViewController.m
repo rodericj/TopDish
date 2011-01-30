@@ -308,6 +308,15 @@
 						[thisRestaurant setObjName:[thisElement objectForKey:@"restaurantName"]];
 					}
 				}
+				
+				NSArray *tagsArray = [thisElement objectForKey:@"tags"];
+				for (NSDictionary *tag in tagsArray){
+					if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kMealTypeString] )
+						[thisDish setMealType:[tag objectForKey:@"id"]];
+					if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kPriceTypeString] )						
+						[thisDish setPrice:[tag objectForKey:@"id"]];
+				}
+				
 				//These will only change when it is a new dish
 				[thisDish setRestaurant:thisRestaurant];
 				[thisDish setLatitude:[thisElement objectForKey:@"latitude"]];
@@ -315,12 +324,11 @@
 				[thisDish setDish_id:[thisElement objectForKey:@"id"]];
 				[thisDish setObjName:[thisElement objectForKey:@"name"]];
 				
-				[thisDish setPrice:[NSNumber numberWithInt:(incomingCounter%4)+1]];
+				//[thisDish setPrice:[NSNumber numberWithInt:(incomingCounter%4)+1]];
 
 			}
 			else{
 				existingDishCounter++;
-				NSLog(@"we've already got this dish, we should update it");
 			}
 
 			//These will most likely change nearly every time, so we do this fo

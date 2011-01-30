@@ -10,7 +10,6 @@
 
 #import "DishComment.h"
 #import "Restaurant.h"
-#import "Tags.h"
 
 @implementation Dish 
 
@@ -19,9 +18,9 @@
 @dynamic distance;
 @dynamic price;
 @dynamic dish_description;
+@dynamic mealType;
 @dynamic negReviews;
 @dynamic comments;
 @dynamic restaurant;
-@dynamic tags;
 
 @end
