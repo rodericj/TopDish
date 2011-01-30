@@ -162,7 +162,8 @@
 // Implement viewWillAppear: to do additional setup before the view is presented.
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	[self updateFetch];
+	//do we need to update the fetch when we come back?
+	//[self updateFetch];
 	NSLog(@"filter on these %d, %d", [[AppModel instance] selectedMealType], [[AppModel instance] selectedPrice]);
 }
 

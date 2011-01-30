@@ -175,7 +175,6 @@
 	//to find the price and mealtype
 	for (NSDictionary *d in [[AppModel instance] priceTags]) {
 		if ([[d objectForKey:@"id"] intValue]== [[thisDish price] intValue]) {
-			NSLog(@"good");
 			priceNumber.text = 	[NSString stringWithFormat:@"%@", [d objectForKey:@"name"]];
 			continue;
 		}
@@ -186,8 +185,6 @@
 	AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[imageView frame]];
 	asyncImage.tag = 999;
 	if( [[thisDish photoURL] length] > 0 ){
-		NSLog(@"the dish photo URL is %@", [thisDish photoURL]);
-
 		NSString *urlString = [NSString stringWithFormat:@"%@%@&w=%d&h=%d", 
 							   NETWORKHOST, 
 							   [thisDish photoURL], 
