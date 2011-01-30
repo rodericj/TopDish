@@ -47,4 +47,6 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 -(IBAction)pushRateDishController;
+-(IBAction)pushRestaurantDetailController;
+
 @end

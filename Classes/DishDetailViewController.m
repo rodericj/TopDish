@@ -12,6 +12,7 @@
 #import "JSON.h"
 #import "RateDishViewController.h"
 #import "RateADishViewController.h"
+#import "RestaurantDetailViewController.h"
 
 #define kImageSection 0
 #define kDescriptionSection 1
@@ -240,12 +241,24 @@
 
 -(IBAction)pushRateDishController {
 	//RateADishViewController *rateDish = [[RateADishViewController alloc] init];
-	RateADishViewController *rateDish = [[RateADishViewController alloc] initWithNibName:@"RateADishViewController" bundle:nil];
+	RateADishViewController *rateDish = 
+	[[RateADishViewController alloc] initWithNibName:@"RateADishViewController" 
+											  bundle:nil];
 	[rateDish setThisDish:self.thisDish];
-	[self.navigationController pushViewController:rateDish animated:YES];
+	[self.navigationController pushViewController:rateDish 
+										 animated:YES];
 	
 	[rateDish release];
 	
+}
+-(IBAction)pushRestaurantDetailController {
+	RestaurantDetailViewController *restaurantController = 
+	[[RestaurantDetailViewController alloc] initWithNibName:@"RestaurantDetailView" 
+													 bundle:nil];
+	[restaurantController setManagedObjectContext:self.managedObjectContext];
+
+	[restaurantController setRestaurant:[self.thisDish restaurant]];
+	[self.navigationController pushViewController:restaurantController animated:YES];
 }
 
 
