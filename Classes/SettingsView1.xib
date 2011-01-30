@@ -109,7 +109,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<float key="IBUIValue">0.5</float>
-								<bool key="IBUIContinuous">NO</bool>
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 44}</string>
