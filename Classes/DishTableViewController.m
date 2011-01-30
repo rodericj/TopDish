@@ -206,10 +206,12 @@
 		return;
 	}
 	
+	//If we are showing restaurants
 	if([dishRestoSelector selectedSegmentIndex] == 0){
 		
+		//TODO remove blocks for backwards compatibility beyond iOS 4.2(?)
 		//Sort the inputted array
-		NSArray *sortedDishes = [responseAsArray sortedArrayUsingComparator: ^(id obj1, id obj2) {
+		NSArray *sortedDishesFromApi = [responseAsArray sortedArrayUsingComparator: ^(id obj1, id obj2) {
 			
 			if ([[obj1 objectForKey:@"id"] intValue] > [[obj2 objectForKey:@"id"] intValue]) {
 				return (NSComparisonResult)NSOrderedDescending;
@@ -258,22 +260,22 @@
 		
 		int existingDishCounter = 0;
 		int existingRestoCounter = 0;
-		for (int incomingCounter = 0; incomingCounter < [sortedDishes count]; incomingCounter++){
-			NSDictionary *newElement = [sortedDishes objectAtIndex:incomingCounter];
-			Dish *existingDish; 
+		for (int incomingCounter = 0; incomingCounter < [sortedDishesFromApi count]; incomingCounter++){
+			NSDictionary *newElement = [sortedDishesFromApi objectAtIndex:incomingCounter];
+			Dish *thisDish; 
 			Restaurant *thisRestaurant; 
 			if (existingDishCounter >= [dishesMatchingId count]){
-				existingDish = nil;
+				thisDish = nil;
 			}
 			else{
-				existingDish = [dishesMatchingId objectAtIndex:existingDishCounter];
+				thisDish = [dishesMatchingId objectAtIndex:existingDishCounter];
 			}			
-			
+			NSDictionary *thisElement = [sortedDishesFromApi objectAtIndex:incomingCounter];
+
 			//if the element we are looking at is not the current existing dish then we need to create a new one
-			if([[newElement objectForKey:@"id"] intValue] != [[existingDish dish_id] intValue]){
+			if([[newElement objectForKey:@"id"] intValue] != [[thisDish dish_id] intValue]){
 				//We've never seen this dish, so create it
-				NSDictionary *thisElement = [sortedDishes objectAtIndex:incomingCounter];
-				Dish *thisDish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" 
+				thisDish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" 
 																	   inManagedObjectContext:self.managedObjectContext];
 				
 				
@@ -310,25 +312,30 @@
 						[thisRestaurant setObjName:[thisElement objectForKey:@"restaurantName"]];
 					}
 				}
-				
-				[thisDish setDish_id:[thisElement objectForKey:@"id"]];
-				[thisDish setObjName:[thisElement objectForKey:@"name"]];
-				[thisDish setPrice:[NSNumber numberWithInt:(incomingCounter%4)+1]];
-				[thisDish setDish_description:[thisElement objectForKey:@"description"]];
-				[thisDish setPhotoURL:[thisElement objectForKey:@"photoURL"]];
+				//These will only change when it is a new dish
 				[thisDish setRestaurant:thisRestaurant];
 				[thisDish setLatitude:[thisElement objectForKey:@"latitude"]];
 				[thisDish setLongitude:[thisElement objectForKey:@"longitude"]];
-				[thisDish setPosReviews:[thisElement objectForKey:@"posReviews"]];
-				[thisDish setNegReviews:[thisElement objectForKey:@"negReviews"]];
 				[thisDish setDish_id:[thisElement objectForKey:@"id"]];
+				[thisDish setObjName:[thisElement objectForKey:@"name"]];
 				
-				[thisDish setDistance:[self calculateDishDistance:(id *)thisDish]];
+				[thisDish setPrice:[NSNumber numberWithInt:(incomingCounter%4)+1]];
+
 			}
 			else{
 				existingDishCounter++;
+				NSLog(@"we've already got this dish, we should update it");
 			}
+
+			//These will most likely change nearly every time, so we do this fo
+			//both new and existing dishes
+			[thisDish setDish_description:[thisElement objectForKey:@"description"]];
+			[thisDish setPhotoURL:[thisElement objectForKey:@"photoURL"]];
 			
+			[thisDish setPosReviews:[thisElement objectForKey:@"posReviews"]];
+			[thisDish setNegReviews:[thisElement objectForKey:@"negReviews"]];
+			
+			[thisDish setDistance:[self calculateDishDistance:(id *)thisDish]];
 			
 		}
 		
