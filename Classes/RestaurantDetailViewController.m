@@ -13,10 +13,16 @@
 #import "AddADishViewController.h"
 #import "ImagePickerViewController.h"
 
+#define kRestaurantHeader 0
+#define kDishesAtThisRestaurantSection 1
+
 @implementation RestaurantDetailViewController
 @synthesize restaurant;
-//@synthesize entityTypeString = mEntityTypeString;
-//@synthesize managedObjectContext = mManagedObjectContext;
+@synthesize restaurantHeader = mRestaurantHeader;
+@synthesize restaurantName = mRestaurantName;
+@synthesize restaurantAddress = mRestaurantAddress;
+@synthesize restaurantPhone = mRestaurantPhone;
+@synthesize restaurantImage = mRestaurantImage;
 
 #pragma mark -
 #pragma mark networking
@@ -26,7 +32,8 @@
 	
 	SBJSON *parser = [SBJSON new];
 	NSError *error = nil;
-	NSDictionary *responseAsDict = [parser objectWithString:responseText error:&error];	
+	NSDictionary *resp = [[parser objectWithString:responseText error:&error]
+						  objectAtIndex:0];	
 	[parser release];
 	
 	if(error != nil){
@@ -34,7 +41,16 @@
 		NSLog(@"%@", error);
 		NSLog(@"the text %@", responseText);
 	}
-	NSLog(@"the dict is %@", responseAsDict);
+	NSLog(@"the dict is %@", resp);
+	//[restaurant setObjName:[resp objectForKey:@"name"]];
+	[restaurant setCity:[resp objectForKey:@"city"]];
+	[restaurant setAddressLine1:[resp objectForKey:@"addressLine1"]];
+	[restaurant setAddressLine2:[resp objectForKey:@"addressLine2"]];
+	[restaurant setLatitude:[resp objectForKey:@"latitude"]];
+	[restaurant setLongitude:[resp objectForKey:@"longitude"]];
+	[restaurant setPhone:[resp objectForKey:@"phone"]];
+	[restaurant setState:[resp objectForKey:@"state"]];
+	[self.tableView reloadData];
 	
 }
 
@@ -63,37 +79,32 @@
 - (void)viewDidLoad {
 	self.entityTypeString = @"Dish";
     [super viewDidLoad];
-	NSLog(@"header %@", restaurantHeader);
-	[self.tableView setTableHeaderView:restaurantHeader];
 	[self networkQuery:[NSString stringWithFormat:@"%@/api/restaurantDetail?id[]=%@", NETWORKHOST, [restaurant restaurant_id]]];
-	[restaurantName setText:[restaurant objName]];
-	[restaurantPhone setText:[restaurant phone]];
-	[restaurantAddress setText:[restaurant addressLine1]];
-	AsyncImageView *asyncImage = [[AsyncImageView alloc] 
-								  initWithFrame:[restaurantImage frame]];
-	asyncImage.tag = 999;
-	if( [[restaurant photoURL] length] > 0 ){
-		NSLog(@"the restaurant photo URL is %@", [restaurant photoURL]);
-		NSString *urlString = [NSString stringWithFormat:@"%@%@&w=%d&h=%d", 
-							   NETWORKHOST, 
-							   [restaurant photoURL], 
-							   DISHDETAILIMAGECELLHEIGHT,
-							   DISHDETAILIMAGECELLHEIGHT];
-		NSLog(@"the url of the resto image %@", urlString);
-		NSURL *photoUrl = [NSURL URLWithString:urlString];
-		[asyncImage loadImageFromURL:photoUrl withImageView:restaurantImage 
-							 isThumb:NO showActivityIndicator:FALSE];
-		//[cell.contentView addSubview:asyncImage];
-		[restaurantHeader addSubview:asyncImage];
-	}
-	
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	self.view.backgroundColor = kTopDishBackground;
 }
 #pragma mark -
 #pragma mark Table view classes overridden 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	switch (indexPath.section) {
+		case kRestaurantHeader:
+			return self.restaurantHeader.bounds.size.height;
+			break;
+		default:
+			return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+			break;
+	}
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView{
+	return 2;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+	
+	if (section == kRestaurantHeader) {
+		return 1;
+	}
+	NSLog(@"sections is %@ and this sectin is ", self.fetchedResultsController.sections);
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section-1];
 	if (sectionInfo == nil){
 		return 0;
 	}
@@ -101,9 +112,50 @@
 	return [sectionInfo numberOfObjects] + 1;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == kRestaurantHeader) {
+		[self.restaurantName setText:[restaurant objName]];
+		
+		[self.restaurantPhone setTitle:[restaurant phone] 
+							  forState:UIControlStateNormal];
+		[self.restaurantAddress setText:[restaurant addressLine1]];
+		AsyncImageView *asyncImage = [[AsyncImageView alloc] 
+									  initWithFrame:[self.restaurantImage frame]];
+		asyncImage.tag = 999;
+		if( [[restaurant photoURL] length] > 0 ){
+			
+			NSString *urlString = [NSString stringWithFormat:@"%@%@&w=%d&h=%d", 
+								   NETWORKHOST, 
+								   [restaurant photoURL], 
+								   DISHDETAILIMAGECELLHEIGHT,
+								   DISHDETAILIMAGECELLHEIGHT];
+
+			NSURL *photoUrl = [NSURL URLWithString:urlString];
+			[asyncImage loadImageFromURL:photoUrl withImageView:self.restaurantImage 
+								 isThumb:NO showActivityIndicator:FALSE];
+			//[cell.contentView addSubview:asyncImage];
+			[self.restaurantHeader addSubview:asyncImage];
+		}
+		self.restaurantHeader.selectionStyle = UITableViewCellSelectionStyleNone;
+		return self.restaurantHeader;
+	}
 	
-	if (indexPath.row == [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]] numberOfObjects]) {
+	//Hack..since we added the entire section above the table for the header,
+	//we need to grab all of the fetched results from section 0. 
+	//Get it? just subtract one
+	return [super tableView:tableView 
+		dishCellAtIndexPath:[NSIndexPath
+							 indexPathForRow:indexPath.row 
+							 inSection:indexPath.section-1]];
+	
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == kRestaurantHeader) {
+		return;
+	}
+	if (indexPath.row == [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]-1] numberOfObjects]) {
 		AddADishViewController *addDishViewController = [[AddADishViewController alloc] initWithNibName:@"AddADishViewController" bundle:nil];
 		[addDishViewController setTitle:@"Add a Dish"];
 		[addDishViewController setRestaurant:restaurant];
@@ -113,9 +165,28 @@
 		
 	}	
 	else
-		[self pushDishViewController:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+		[self pushDishViewController:[self.fetchedResultsController 
+									  objectAtIndexPath:[NSIndexPath 
+														 indexPathForRow:indexPath.row 
+														 inSection:indexPath.section-1]]];
 }
 
+
+-(IBAction)callRestaurant{
+	NSLog(@"the phone number is %@", [NSString stringWithFormat:@"tel:%@", [restaurant phone]]);
+
+	NSString *phoneNumber = [NSString stringWithFormat:@"tel:%@", [restaurant phone]];
+	phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@"(" withString:@""];
+	phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
+	phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
+	
+	NSLog(@"phone number is %@", [restaurant phone]);
+	//phoneNumber=@"tel:585-802-0632";
+	NSURL *url = [NSURL URLWithString:phoneNumber];
+
+	[ [UIApplication sharedApplication] openURL:url];
+
+}
 #pragma mark -
 #pragma mark Memory management
 

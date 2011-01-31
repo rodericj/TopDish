@@ -34,6 +34,6 @@
 -(void) processIncomingNetworkText:(NSString *)responseText;
 -(void) decorateFetchRequest:(NSFetchRequest *)request;
 -(void) pushDishViewController:(ObjectWithImage *) selectedObject;
-//-(void) pushRestaurantViewController:(ObjectWithImage *) selectedObject;
+-(UITableViewCell *)tableView:(UITableView *)tableView dishCellAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

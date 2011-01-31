@@ -11,20 +11,21 @@
 #import "BaseDishTableViewer.h"
 
 @interface RestaurantDetailViewController : BaseDishTableViewer {
-	//NSString					*mEntityTypeString;
-
 	Restaurant *restaurant;
 	
-	IBOutlet UIView *restaurantHeader;
-	IBOutlet UILabel *restaurantName;
-	IBOutlet UILabel *restaurantAddress;
-	IBOutlet UILabel *restaurantPhone;
-	IBOutlet UIImageView *restaurantImage;
+	UITableViewCell *mRestaurantHeader;
+	UILabel *mRestaurantName;
+	UILabel *mRestaurantAddress;
+	UIButton *mRestaurantPhone;
+	UIImageView *mRestaurantImage;
 }
-//@property (nonatomic, retain) NSString *entityTypeString;
 
 @property (nonatomic, retain) Restaurant *restaurant;
-
-//@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) IBOutlet UITableViewCell *restaurantHeader;
+@property (nonatomic, retain) IBOutlet UILabel *restaurantName;
+@property (nonatomic, retain) IBOutlet UILabel *restaurantAddress;
+@property (nonatomic, retain) IBOutlet UIButton *restaurantPhone;
+@property (nonatomic, retain) IBOutlet UIImageView *restaurantImage;
+-(IBAction)callRestaurant;
 
 @end

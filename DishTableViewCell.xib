@@ -347,7 +347,7 @@
 				</object>
 				<string key="NSFrameSize">{320, 95}</string>
 				<reference key="NSSuperview"/>
-				<reference key="IBUIBackgroundColor" ref="405518842"/>
+				<reference key="IBUIBackgroundColor" ref="673961287"/>
 				<float key="IBUIScaleFactor">2</float>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUISeparatorStyle">1</int>
@@ -369,7 +369,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{20, 3}, {280, 41}}</string>
 								<reference key="NSSuperview" ref="629021751"/>
-								<reference key="IBUIBackgroundColor" ref="405518842"/>
+								<reference key="IBUIBackgroundColor" ref="673961287"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -397,10 +397,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 44}</string>
-				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
-				</object>
+				<reference key="IBUIBackgroundColor" ref="673961287"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUISeparatorStyle">1</int>
 				<reference key="IBUIContentView" ref="629021751"/>
@@ -606,7 +603,7 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABDigAAwrAAAA</bytes>
 					</object>
-					<string>{{322, 463}, {640, 190}}</string>
+					<string>{{101, 614}, {640, 190}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{329, 801}, {320, 44}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -765,12 +762,16 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>bgImage</string>
+							<string>mSearchHeader</string>
+							<string>mTheSearchBar</string>
 							<string>searchHeader</string>
 							<string>theSearchBar</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIImageView</string>
+							<string>UIView</string>
+							<string>UISearchBar</string>
 							<string>UIView</string>
 							<string>UISearchBar</string>
 						</object>
@@ -780,6 +781,8 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>bgImage</string>
+							<string>mSearchHeader</string>
+							<string>mTheSearchBar</string>
 							<string>searchHeader</string>
 							<string>theSearchBar</string>
 						</object>
@@ -788,6 +791,14 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">bgImage</string>
 								<string key="candidateClassName">UIImageView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">mSearchHeader</string>
+								<string key="candidateClassName">UIView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">mTheSearchBar</string>
+								<string key="candidateClassName">UISearchBar</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">searchHeader</string>
