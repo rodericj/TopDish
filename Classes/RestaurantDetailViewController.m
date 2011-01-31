@@ -13,17 +13,19 @@
 #import "AddADishViewController.h"
 #import "ImagePickerViewController.h"
 
-#define kRestaurantHeader 0
-#define kDishesAtThisRestaurantSection 1
+#define kRestaurantHeaderSection 0
+#define kMapSection 1
+#define kDishesAtThisRestaurantSection 2
 
 @implementation RestaurantDetailViewController
 @synthesize restaurant;
 @synthesize restaurantHeader = mRestaurantHeader;
+@synthesize mapRow = mMapRow;
 @synthesize restaurantName = mRestaurantName;
 @synthesize restaurantAddress = mRestaurantAddress;
 @synthesize restaurantPhone = mRestaurantPhone;
 @synthesize restaurantImage = mRestaurantImage;
-
+@synthesize mapView = mMapView;
 #pragma mark -
 #pragma mark networking
 
@@ -86,25 +88,29 @@
 #pragma mark Table view classes overridden 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	switch (indexPath.section) {
-		case kRestaurantHeader:
+		case kRestaurantHeaderSection:
 			return self.restaurantHeader.bounds.size.height;
 			break;
+		case kMapSection:
+			return self.mapRow.bounds.size.height;
 		default:
 			return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 			break;
 	}
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView{
-	return 2;
+	return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
-	if (section == kRestaurantHeader) {
+	if (section == kRestaurantHeaderSection || section == kMapSection) {
 		return 1;
 	}
 	NSLog(@"sections is %@ and this sectin is ", self.fetchedResultsController.sections);
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section-1];
+    id <NSFetchedResultsSectionInfo> sectionInfo = 
+		[[self.fetchedResultsController sections] 
+		 objectAtIndex:section-kDishesAtThisRestaurantSection];
 	if (sectionInfo == nil){
 		return 0;
 	}
@@ -114,7 +120,7 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == kRestaurantHeader) {
+	if (indexPath.section == kRestaurantHeaderSection) {
 		[self.restaurantName setText:[restaurant objName]];
 		
 		[self.restaurantPhone setTitle:[restaurant phone] 
@@ -140,19 +146,34 @@
 		self.restaurantHeader.selectionStyle = UITableViewCellSelectionStyleNone;
 		return self.restaurantHeader;
 	}
-	
+	if (indexPath.section == kMapSection) {
+		CLLocationCoordinate2D center;
+		center.latitude = [[self.restaurant latitude] floatValue];
+		center.longitude = [[self.restaurant longitude] floatValue];
+		MKCoordinateRegion m;
+		m.center = center;
+		
+		MKCoordinateSpan span;
+		span.latitudeDelta = .003;
+		span.longitudeDelta = .003;
+		
+		//Set up the span
+		m.span = span;
+		[self.mapView setRegion:m animated:YES];		
+		return self.mapRow;
+	}
 	//Hack..since we added the entire section above the table for the header,
 	//we need to grab all of the fetched results from section 0. 
 	//Get it? just subtract one
 	return [super tableView:tableView 
 		dishCellAtIndexPath:[NSIndexPath
 							 indexPathForRow:indexPath.row 
-							 inSection:indexPath.section-1]];
+							 inSection:indexPath.section-kDishesAtThisRestaurantSection]];
 	
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == kRestaurantHeader) {
+	if (indexPath.section == kRestaurantHeaderSection) {
 		return;
 	}
 	if (indexPath.row == [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]-1] numberOfObjects]) {
@@ -168,20 +189,17 @@
 		[self pushDishViewController:[self.fetchedResultsController 
 									  objectAtIndexPath:[NSIndexPath 
 														 indexPathForRow:indexPath.row 
-														 inSection:indexPath.section-1]]];
+														 inSection:indexPath.section-kDishesAtThisRestaurantSection]]];
 }
 
 
 -(IBAction)callRestaurant{
-	NSLog(@"the phone number is %@", [NSString stringWithFormat:@"tel:%@", [restaurant phone]]);
 
 	NSString *phoneNumber = [NSString stringWithFormat:@"tel:%@", [restaurant phone]];
 	phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@"(" withString:@""];
 	phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
 	phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
 	
-	NSLog(@"phone number is %@", [restaurant phone]);
-	//phoneNumber=@"tel:585-802-0632";
 	NSURL *url = [NSURL URLWithString:phoneNumber];
 
 	[ [UIApplication sharedApplication] openURL:url];

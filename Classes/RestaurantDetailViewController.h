@@ -9,10 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "Restaurant.h"
 #import "BaseDishTableViewer.h"
+#import <MapKit/MapKit.h>
 
 @interface RestaurantDetailViewController : BaseDishTableViewer {
 	Restaurant *restaurant;
-	
+
+	UITableViewCell *mMapRow;
+	MKMapView *mMapView;
+
 	UITableViewCell *mRestaurantHeader;
 	UILabel *mRestaurantName;
 	UILabel *mRestaurantAddress;
@@ -26,6 +30,10 @@
 @property (nonatomic, retain) IBOutlet UILabel *restaurantAddress;
 @property (nonatomic, retain) IBOutlet UIButton *restaurantPhone;
 @property (nonatomic, retain) IBOutlet UIImageView *restaurantImage;
+
+@property (nonatomic, retain) IBOutlet UITableViewCell *mapRow;
+@property (nonatomic, retain) IBOutlet MKMapView *mapView;
+
 -(IBAction)callRestaurant;
 
 @end
