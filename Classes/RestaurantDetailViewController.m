@@ -102,7 +102,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	//TODO RESTODISH SWITCH - The drilldown for restaurants and dishes are different in the detailviewcontroller
 	
 	if (indexPath.row == [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]] numberOfObjects]) {
 		AddADishViewController *addDishViewController = [[AddADishViewController alloc] initWithNibName:@"AddADishViewController" bundle:nil];
@@ -113,11 +112,8 @@
 		[addDishViewController release];
 		
 	}	
-	else{
+	else
 		[self pushDishViewController:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-
-//		[self pushDishViewControllerAtIndexPath:indexPath];
-	}
 }
 
 #pragma mark -

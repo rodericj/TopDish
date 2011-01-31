@@ -48,5 +48,6 @@
 
 -(IBAction)pushRateDishController;
 -(IBAction)pushRestaurantDetailController;
+-(IBAction)flagThisDish;
 
 @end

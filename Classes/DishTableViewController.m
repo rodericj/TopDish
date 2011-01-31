@@ -492,7 +492,7 @@
     [fetchRequest release];
     [sortDescriptor release];
     //[currentSearchTerm release];
-	self.currentSearchTerm = nil;
+	//self.currentSearchTerm = nil;
     NSError *error = nil;
     if (![mFetchedResultsController performFetch:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);

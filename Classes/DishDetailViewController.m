@@ -12,6 +12,8 @@
 #import "JSON.h"
 #import "RateADishViewController.h"
 #import "RestaurantDetailViewController.h"
+#import "ASIFormDataRequest.h"
+#import "AppModel.h"
 
 #define kImageSection 0
 #define kDescriptionSection 1
@@ -257,6 +259,34 @@
 	[restaurantController setRestaurant:[self.thisDish restaurant]];
 	[self.navigationController pushViewController:restaurantController animated:YES];
 	[restaurantController release];
+}
+
+-(IBAction)flagThisDish{
+	NSLog(@"flagging this dish");
+	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/flagDish"]];
+	
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[request setPostValue:[self.thisDish dish_id] forKey:@"dishId"];
+	[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+	
+	[request setDelegate:self];
+	[request startAsynchronous];
+}
+
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+	// Use when fetching text data
+	NSString *responseString = [request responseString];
+	
+	NSLog(@"response string %@", responseString);
+	
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+	NSError *error = [request error];
+	NSLog(@"error %@", error);
 }
 
 
