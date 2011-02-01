@@ -45,6 +45,7 @@
 		17DD271C12BDBDEE0048C1A1 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DD271B12BDBDEE0048C1A1 /* ASIInputStream.m */; };
 		17DD272B12BDBEC60048C1A1 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DD272A12BDBEC60048C1A1 /* libz.1.2.3.dylib */; };
 		17E67EE212F631A20010E6A9 /* red_flag.gif in Resources */ = {isa = PBXBuildFile; fileRef = 17E67EE112F631A20010E6A9 /* red_flag.gif */; };
+		17E6841B12F7EC090010E6A9 /* RestaurantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17E6841A12F7EC090010E6A9 /* RestaurantTableViewCell.xib */; };
 		17EEB69912D9A2550032E12B /* LoggedInLoggedOutGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EEB69712D9A2550032E12B /* LoggedInLoggedOutGate.m */; };
 		17EEB6AE12D9A3160032E12B /* SignInSignUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17EEB6AD12D9A3160032E12B /* SignInSignUp.xib */; };
 		17EEB6B312D9A3560032E12B /* SignInSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EEB6B212D9A3560032E12B /* SignInSignUpViewController.m */; };
@@ -58,11 +59,14 @@
 		17FA59AC12ED53F900902FEE /* DishDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FA59AA12ED53F900902FEE /* DishDetailViewController.m */; };
 		17FA59AD12ED53F900902FEE /* DishDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17FA59AB12ED53F900902FEE /* DishDetailViewController.xib */; };
 		17FCD5B412C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FCD5B212C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m */; };
-		17FCD78112C403120081D5EA /* RestaurantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17FCD78012C403120081D5EA /* RestaurantTableViewCell.xib */; };
 		1D3623260D0F684500981E51 /* TopDishAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* TopDishAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		20BF65FC12F7C8E1005DD037 /* no_rest_img.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 20BF65FB12F7C8E1005DD037 /* no_rest_img.jpg */; };
+		20BF660F12F7D7C8005DD037 /* add_dish_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 20BF660E12F7D7C8005DD037 /* add_dish_button.png */; };
+		20BF661112F7D7DB005DD037 /* yesOrno_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 20BF661012F7D7DB005DD037 /* yesOrno_button.png */; };
+		20BF661B12F7DA8D005DD037 /* submitadish_photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 20BF661A12F7DA8D005DD037 /* submitadish_photo.png */; };
 		20F29E0E12F4B06C001641B1 /* dishViewBoarder.png in Resources */ = {isa = PBXBuildFile; fileRef = 20F29E0D12F4B06C001641B1 /* dishViewBoarder.png */; };
 		20F29E1012F4BDF2001641B1 /* button_up_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 20F29E0F12F4BDF2001641B1 /* button_up_grey.png */; };
 		20F29E1212F4BE04001641B1 /* button_down_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 20F29E1112F4BE04001641B1 /* button_down_grey.png */; };
@@ -162,6 +166,7 @@
 		17DD271B12BDBDEE0048C1A1 /* ASIInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIInputStream.m; path = Classes/ASIInputStream.m; sourceTree = SOURCE_ROOT; };
 		17DD272A12BDBEC60048C1A1 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		17E67EE112F631A20010E6A9 /* red_flag.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = red_flag.gif; sourceTree = "<group>"; };
+		17E6841A12F7EC090010E6A9 /* RestaurantTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantTableViewCell.xib; sourceTree = "<group>"; };
 		17EEB69712D9A2550032E12B /* LoggedInLoggedOutGate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoggedInLoggedOutGate.m; path = ../LoggedInLoggedOutGate.m; sourceTree = "<group>"; };
 		17EEB69812D9A2550032E12B /* LoggedInLoggedOutGate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoggedInLoggedOutGate.h; path = ../LoggedInLoggedOutGate.h; sourceTree = "<group>"; };
 		17EEB6AD12D9A3160032E12B /* SignInSignUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInSignUp.xib; sourceTree = "<group>"; };
@@ -183,12 +188,15 @@
 		17FA59AB12ED53F900902FEE /* DishDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DishDetailViewController.xib; sourceTree = "<group>"; };
 		17FCD5B112C2F1CC0081D5EA /* RestaurantListTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListTableViewDelegate.h; sourceTree = "<group>"; };
 		17FCD5B212C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantListTableViewDelegate.m; sourceTree = "<group>"; };
-		17FCD78012C403120081D5EA /* RestaurantTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RestaurantTableViewCell.xib; path = ../RestaurantTableViewCell.xib; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* TopDishAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopDishAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* TopDishAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopDishAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* TopDish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopDish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		20BF65FB12F7C8E1005DD037 /* no_rest_img.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = no_rest_img.jpg; sourceTree = "<group>"; };
+		20BF660E12F7D7C8005DD037 /* add_dish_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_dish_button.png; sourceTree = "<group>"; };
+		20BF661012F7D7DB005DD037 /* yesOrno_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yesOrno_button.png; sourceTree = "<group>"; };
+		20BF661A12F7DA8D005DD037 /* submitadish_photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = submitadish_photo.png; sourceTree = "<group>"; };
 		20F29E0D12F4B06C001641B1 /* dishViewBoarder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dishViewBoarder.png; sourceTree = "<group>"; };
 		20F29E0F12F4BDF2001641B1 /* button_up_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_up_grey.png; sourceTree = "<group>"; };
 		20F29E1112F4BE04001641B1 /* button_down_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_down_grey.png; sourceTree = "<group>"; };
@@ -498,6 +506,10 @@
 				17C911B112F516B6006066EA /* bestSort.png */,
 				17C911B512F516F5006066EA /* distanceSort.png */,
 				17C911B312F516DD006066EA /* priceSort.png */,
+				20BF661A12F7DA8D005DD037 /* submitadish_photo.png */,
+				20BF661012F7D7DB005DD037 /* yesOrno_button.png */,
+				20BF660E12F7D7C8005DD037 /* add_dish_button.png */,
+				20BF65FB12F7C8E1005DD037 /* no_rest_img.jpg */,
 				20F29F0512F4F99E001641B1 /* globe-1.png */,
 				20F29F0312F4F995001641B1 /* filter.png */,
 				20F29E2F12F4D172001641B1 /* no_dish_img.png */,
@@ -545,7 +557,7 @@
 			children = (
 				179B854012A0727F00730FAC /* BaseDishTableViewer.h */,
 				179B854112A0727F00730FAC /* BaseDishTableViewer.m */,
-				17FCD78012C403120081D5EA /* RestaurantTableViewCell.xib */,
+				17E6841A12F7EC090010E6A9 /* RestaurantTableViewCell.xib */,
 				17FCD5B112C2F1CC0081D5EA /* RestaurantListTableViewDelegate.h */,
 				17FCD5B212C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m */,
 				5F92A9A0126D4A41007D2451 /* MyCLController.h */,
@@ -638,7 +650,6 @@
 				5F7AA19A125D82CC00843F4A /* NearbyMapView.xib in Resources */,
 				17B48AE612A033C200F43202 /* RestaurantDetailView.xib in Resources */,
 				1794422112A5B195008EE034 /* DetailButtonImage.png in Resources */,
-				17FCD78112C403120081D5EA /* RestaurantTableViewCell.xib in Resources */,
 				17EEB6AE12D9A3160032E12B /* SignInSignUp.xib in Resources */,
 				17EEB74712D9A8AD0032E12B /* SignIn.xib in Resources */,
 				17EEB75012D9A9550032E12B /* SignUp.xib in Resources */,
@@ -662,6 +673,11 @@
 				17C911B412F516DD006066EA /* priceSort.png in Resources */,
 				17C911B612F516F5006066EA /* distanceSort.png in Resources */,
 				17E67EE212F631A20010E6A9 /* red_flag.gif in Resources */,
+				17E6841B12F7EC090010E6A9 /* RestaurantTableViewCell.xib in Resources */,
+				20BF65FC12F7C8E1005DD037 /* no_rest_img.jpg in Resources */,
+				20BF660F12F7D7C8005DD037 /* add_dish_button.png in Resources */,
+				20BF661112F7D7DB005DD037 /* yesOrno_button.png in Resources */,
+				20BF661B12F7DA8D005DD037 /* submitadish_photo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
