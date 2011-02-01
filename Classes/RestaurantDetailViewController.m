@@ -176,7 +176,7 @@
 	if (indexPath.section == kRestaurantHeaderSection) {
 		return;
 	}
-	if (indexPath.row == [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]-1] numberOfObjects]) {
+	if (indexPath.row == [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]-kDishesAtThisRestaurantSection] numberOfObjects]) {
 		AddADishViewController *addDishViewController = [[AddADishViewController alloc] initWithNibName:@"AddADishViewController" bundle:nil];
 		[addDishViewController setTitle:@"Add a Dish"];
 		[addDishViewController setRestaurant:restaurant];
