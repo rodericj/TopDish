@@ -27,6 +27,9 @@
 #define NETWORKHOST @"http://randy-0125.topdish1.appspot.com"
 //#define NETWORKHOST @"http://10.0.1.11:8888"
 
+
+#define kFBAppId @"142175135835907"
+
 #define DISH_DETAIL_CELL_IDENTIFIER @"dishdetailimagecell"
 #define RATINGS_SORT @"posReviews"
 #define DISTANCE_SORT @"distance"

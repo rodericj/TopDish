@@ -51,7 +51,19 @@
     // Add the navigation controller's view to the window and display.
     [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
+	
+	[[AppModel instance] facebook];
+	
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+	NSLog(@"the url is");
+	NSLog(@"%@", url);
+	
+	[[[AppModel instance] facebook] handleOpenURL:url];
+	return YES;
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request

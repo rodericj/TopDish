@@ -14,8 +14,8 @@
 #import "ImagePickerViewController.h"
 
 #define kRestaurantHeaderSection 0
-#define kMapSection 1
-#define kDishesAtThisRestaurantSection 2
+#define kMapSection 2
+#define kDishesAtThisRestaurantSection 1
 
 @implementation RestaurantDetailViewController
 @synthesize restaurant;
@@ -99,7 +99,7 @@
 	}
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView{
-	return 3;
+	return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

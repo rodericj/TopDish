@@ -8,17 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import "LoggedInLoggedOutGate.h"
+#import "FBRequest.h"
 
-@interface AccountView : UITableViewController {
+@interface AccountView : UITableViewController <FBRequestDelegate> {
 	UILabel *mUserName;
 	UILabel *mUserSince;
 	UIView *mTableHeader;
+	UIImageView *mUserImage;
 	
+	FBRequest *mImageRequest;
 	NSMutableArray *mLifestyleTags;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *userName;
 @property (nonatomic, retain) IBOutlet UILabel *userSince;
 @property (nonatomic, retain) IBOutlet UIView *tableHeader;
+@property (nonatomic, retain) IBOutlet UIImageView *userImage;
 @property (nonatomic, retain)  NSMutableArray *lifestyleTags;
+@property (nonatomic, retain) FBRequest *imageRequest;
 @end

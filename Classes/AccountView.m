@@ -8,6 +8,8 @@
 
 #import "AccountView.h"
 #import "constants.h"
+#import "AppModel.h"
+#import "FBLoginButton.h"
 
 @implementation AccountView
 
@@ -15,6 +17,8 @@
 @synthesize userSince = mUserSince;
 @synthesize tableHeader = mTableHeader;
 @synthesize lifestyleTags = mLifestyleTags;
+@synthesize imageRequest = mImageRequest;
+@synthesize userImage = mUserImage;
 
 enum {
     kListAdderSectionIndexTotal = 0,
@@ -35,8 +39,22 @@ enum {
 	[self.tableView setTableHeaderView:self.tableHeader];
      self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
-	self.userName.text = @"Roderic Campbell";
-	self.userSince.text = @"User Since: Dec 12, 2010";
+	self.userName.text = @"";
+	self.userSince.text = @"";
+	
+	if ([[[AppModel instance] facebook] isSessionValid]) {
+		//call the facebook api
+		 [[[AppModel instance] facebook] 
+		  requestWithGraphPath:@"me" 
+		  andDelegate:self];
+		
+		//add the logout button
+		FBLoginButton *fbLoginButton = [[FBLoginButton alloc] init];
+		fbLoginButton.isLoggedIn = YES;
+		[self.view addSubview:fbLoginButton];
+
+	}
+	
 }
 
 
@@ -113,6 +131,77 @@ enum {
     
     // Configure the cell...
     return cell;
+}
+
+#pragma mark -
+#pragma mark Facebook Request Delegate calls
+/**
+ * Called just before the request is sent to the server.
+ */
+- (void)requestLoading:(FBRequest *)request
+{
+	NSLog(@"request loading");
+}
+
+/**
+ * Called when the server responds and begins to send back data.
+ */
+- (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response
+{
+	NSLog(@"did receieve response %@", response);
+}
+
+/**
+ * Called when an error prevents the request from completing successfully.
+ */
+- (void)request:(FBRequest *)request didFailWithError:(NSError *)error
+{
+	NSLog(@"did fail with error %@", error);
+}
+
+/**
+ * Called when a request returns and its response has been parsed into
+ * an object.
+ *
+ * The resulting object may be a dictionary, an array, a string, or a number,
+ * depending on thee format of the API response.
+ */
+- (void)request:(FBRequest *)request didLoad:(NSDictionary *)result
+{
+	NSLog(@"did load %@", result);
+	if (request == self.imageRequest) {
+		//do nothing
+	}
+	else{
+		NSLog(@"did load %@", result);
+
+	if ([result objectForKey:@"first_name"] && [result objectForKey:@"last_name"]) {
+		
+		self.userName.text = [NSString stringWithFormat:@"%@ %@",
+							  [result objectForKey:@"first_name"],
+							  [result objectForKey:@"last_name"]];
+	}
+	if ([result objectForKey:@"id"]) {
+		self.imageRequest = [[[AppModel instance] facebook] 
+							 requestWithGraphPath:[NSString stringWithFormat:@"%@/picture", 
+												   [result objectForKey:@"id"]] 
+							 andDelegate:self];
+	}
+	}
+}
+
+/**
+ * Called when a request returns a response.
+ *
+ * The result object is the raw response from the server of type NSData
+ */
+- (void)request:(FBRequest *)request didLoadRawResponse:(NSData *)data
+{
+	if (request == self.imageRequest){
+		//set the user image to this data
+		[self.userImage setImage:[UIImage imageWithData:data]];
+	}
+	NSLog(@"raw data %@", data);
 }
 
 #pragma mark -
