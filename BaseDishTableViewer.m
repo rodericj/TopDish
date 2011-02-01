@@ -12,17 +12,19 @@
 #import "Restaurant.h"
 #import "asyncimageview.h"
 #import "RestaurantDetailViewController.h"
-#import "AddNewDishViewController.h"
 #import "DishDetailViewController.h"
 #import "AppModel.h"
 
+#define kMinimumToShowPercentage 2
 @implementation BaseDishTableViewer
 
 @synthesize tvCell = mTvCell;
-@synthesize fetchedResultsController=fetchedResultsController_, managedObjectContext=managedObjectContext_;
-@synthesize _responseData;
+@synthesize fetchedResultsController = mFetchedResultsController;
+@synthesize managedObjectContext = mManagedObjectContext;
+@synthesize responseData = mResponseData;
 @synthesize addItemCell = mAddItemCell;
 @synthesize entityTypeString = mEntityTypeString;
+@synthesize conn = mConn;
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *c = [self tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -34,8 +36,8 @@
 #pragma mark Fetched results controller
 
 - (NSFetchedResultsController *)fetchedResultsController {
-    if (fetchedResultsController_ != nil) {
-        return fetchedResultsController_;
+    if (mFetchedResultsController != nil) {
+        return mFetchedResultsController;
     }
     
     /*
@@ -65,7 +67,10 @@
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
     //NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] 
+															 initWithFetchRequest:fetchRequest 
+															 managedObjectContext:self.managedObjectContext 
+															 sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
@@ -75,17 +80,21 @@
     [sortDescriptors release];
     
     NSError *error = nil;
-    if (![fetchedResultsController_ performFetch:&error]) {
+    if (![mFetchedResultsController performFetch:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
          //TODO remove auto generated abort
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+         abort() causes the application to generate a crash log and terminate. 
+		 You should not use this function in a shipping application, although
+		 it may be useful during development. If it is not possible to recover
+		 from the error, display an alert panel that instructs the user to quit 
+		 the application by pressing the Home button.
          */
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
     
-    return fetchedResultsController_;
+    return mFetchedResultsController;
 }   
 
 -(void)decorateFetchRequest:(NSFetchRequest *)request{
@@ -106,15 +115,12 @@
 	return [sectionInfo numberOfObjects];
 }
 
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
+-(UITableViewCell *)tableView:(UITableView *)tableView dishCellAtIndexPath:(NSIndexPath *)indexPath {
 	//Return the Descriptor cell for adding a new dish
 	if (indexPath.row == [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]] numberOfObjects])
 		return self.addItemCell;
-		
-	//TODO RESTODISH SWITCH - Show a different cell for restaurants vs dishs
-	
+
     static NSString *CellIdentifier = @"DishCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -133,8 +139,7 @@
 	UILabel *resto;
 	resto = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_RESTAURANT_NAME_TAG];
 	resto.text = @"Resto Name";
-	NSString *restaurantName = [[thisDish restaurant] objName];
-	resto.text = restaurantName;
+	resto.text = [[thisDish restaurant] objName];
 	
 	UILabel *mealType;
 	mealType = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_MEALTYPE_TAG];
@@ -158,15 +163,31 @@
 		distance.text = [[thisDish distance] stringValue];
 	}
 
+	//float pos = [[thisDish posReviews] intValue];
+//	float neg = [[thisDish negReviews] intValue];
+//	if (pos + neg >= kMinimumToShowPercentage) {
+//		[cell viewWithTag:DISHTABLEVIEW_UPVOTES_TAG].hidden = YES;
+//		[cell viewWithTag:DISHTABLEVIEW_DOWNVOTES_TAG].hidden = YES;
+//		UILabel *percentage = (UILabel *)[cell viewWithTag:PERCENTAGE_TAG];
+//		percentage.text = [NSString stringWithFormat:@"%.0f\%",
+//						   pos / (pos+neg) * 100]; 
+//		percentage.hidden = NO;
+//		NSLog(@"percentage.text %@", percentage.text);
+//	}
+	//	else{
+	[cell viewWithTag:PERCENTAGE_TAG].hidden = YES;
 	UILabel *upVotes;
 	upVotes = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_UPVOTES_TAG];
 	upVotes.text = [NSString stringWithFormat:@"+%@", 
 					[thisDish posReviews]];
+	upVotes.hidden = NO;
 	
 	UILabel *downVotes;
 	downVotes = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_DOWNVOTES_TAG];
 	downVotes.text = [NSString stringWithFormat:@"-%@", 
 					  [thisDish negReviews]];
+	downVotes.hidden = NO;
+	//}
 	
 	UILabel *priceNumber;
 	priceNumber = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_COST_TAG];
@@ -174,11 +195,8 @@
 	//TODO Ok this is a fail, I need to loop through tags
 	//to find the price and mealtype
 	for (NSDictionary *d in [[AppModel instance] priceTags]) {
-		NSLog(@"%d vs %d", [[d objectForKey:@"id"] intValue], [[thisDish price] intValue]);
-
 		if ([[d objectForKey:@"id"] intValue]== [[thisDish price] intValue]) {
-			NSLog(@"good");
-			priceNumber.text = 	[NSString stringWithFormat:@"%@", [d objectForKey:@"name"]];
+			priceNumber.text = 	[d objectForKey:@"name"];
 			continue;
 		}
 	}
@@ -188,8 +206,6 @@
 	AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[imageView frame]];
 	asyncImage.tag = 999;
 	if( [[thisDish photoURL] length] > 0 ){
-		NSLog(@"the dish photo URL is %@", [thisDish photoURL]);
-
 		NSString *urlString = [NSString stringWithFormat:@"%@%@&w=%d&h=%d", 
 							   NETWORKHOST, 
 							   [thisDish photoURL], 
@@ -211,6 +227,12 @@
     return cell;
 }
 
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return [self tableView:tableView dishCellAtIndexPath:indexPath];
+	
+}
 
 #pragma mark -
 #pragma mark other stuff
@@ -259,13 +281,17 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
-	NSLog(@"connection did finish loading");
-	NSString *responseText = [[NSString alloc] initWithData:_responseData encoding:NSASCIIStringEncoding];
-	NSLog(@"response text before replacing %@", responseText);
+	NSLog(@"didFinishLoading BaseDishTableViewController start");
+	NSString *responseText = [[NSString alloc] initWithData:self.responseData 
+												   encoding:NSASCIIStringEncoding];
 	
 	
-	responseText = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
-	[self processIncomingNetworkText:responseText];
+	NSString *responseTextStripped = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
+	[self processIncomingNetworkText:responseTextStripped];
+	self.conn = nil;
+	[responseText release];
+	NSLog(@"didFinishLoading BaseDishTableViewController end");
+
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
@@ -274,27 +300,42 @@
 #ifndef AirplaneMode
 	NSLog(@"connection did fail with error %@", error);
 	UIAlertView *alert;
-	alert = [[UIAlertView alloc] initWithTitle:@"NetworkError" message:@"There was a network issue. Try again later" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil]; 
+	alert = [[UIAlertView alloc] initWithTitle:@"NetworkError" 
+									   message:@"There was a network issue. Try again later" 
+									  delegate:self 
+							 cancelButtonTitle:@"Ok" 
+							 otherButtonTitles:nil]; 
 	[alert show];
+	[alert release];
 #else	
 	//Airplane mode must set _responseText
 	[self processIncomingNetworkText:DishSearchResponseText];
 #endif
+	self.conn = nil;
+	self.responseData = nil;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-	if(_responseData == nil){
-		_responseData = [[NSMutableData alloc] initWithData:data];
+	if(self.responseData == nil){
+		self.responseData = [[NSMutableData alloc] initWithData:data];
 	}
 	else{
 		if (data) {
-			[_responseData appendData:data];
+			[self.responseData appendData:data];
 		}
 	}
 }
 
 -(void)dealloc{
 	self.addItemCell = nil;
+	
+	self.entityTypeString = nil;
+	self.addItemCell = nil;
+	self.managedObjectContext = nil;
+	self.fetchedResultsController = nil;
+	self.responseData = nil;
+	self.conn = nil;
+	
 	[super dealloc];
 }
 	

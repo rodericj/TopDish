@@ -41,12 +41,18 @@ AppModel *gAppModelInstance = nil;
 	NSLog(@"response Array is %@", responseAsArray);
 	if (error)
 		NSLog(@"there was an error when jsoning in AppModel Init %@", error);
-	
-	NSMutableArray *priceTypeTags = [NSMutableArray array];
-	NSMutableArray *mealTypeTags = [NSMutableArray array];
+	NSArray *objectArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:0],
+							@"No Filter", [NSNumber numberWithInt:0],
+							@"No Filter", nil];
+	NSArray *keyArray = [NSArray arrayWithObjects:@"id", 
+						 @"name", @"order", @"type", nil];
+	NSDictionary *d = [NSDictionary dictionaryWithObjects:objectArray 
+												  forKeys:keyArray];
+	NSMutableArray *priceTypeTags = [NSMutableArray arrayWithObject:d];
+	NSMutableArray *mealTypeTags = [NSMutableArray arrayWithObject:d];
 	for (NSDictionary *thisDictionary in responseAsArray)
 	{
-		//NSDictionary *thisDictionary = [parser objectWithString:d];
+		NSLog(@"this dictionary %@", thisDictionary);
 		if ([[thisDictionary objectForKey:@"type"] isEqualToString:kMealTypeString])
 			[mealTypeTags addObject:thisDictionary];
 		
@@ -55,7 +61,6 @@ AppModel *gAppModelInstance = nil;
 		
 	}
 	[parser release];
-	NSLog(@"priceTypeTags = %@", priceTypeTags);
 	self.priceTags = priceTypeTags;
 	self.mealTypeTags = mealTypeTags;
 	

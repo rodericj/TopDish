@@ -19,6 +19,7 @@
 #define buttonLightBlue [UIColor colorWithRed:0 green:.73 blue:.89 alpha:1 ]
 #define buttonLightBlueShine [UIColor colorWithRed:.53 green:.91 blue:.99 alpha:1]
 
+#define sortStringArray [NSArray arrayWithObjects:DISTANCE_SORT, RATINGS_SORT, PRICE_SORT, nil]
 @interface DishTableViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
@@ -27,25 +28,20 @@
 
 @implementation DishTableViewController
 
-@synthesize bgImage;
-@synthesize theSearchBar;
-@synthesize dishRestoSelector;
-@synthesize currentLat;
-@synthesize currentLon;
-@synthesize currentSearchTerm;
-@synthesize settingsDict;
-@synthesize searchHeader;
+@synthesize bgImage = mBgImage;
+@synthesize theSearchBar = mTheSearchBar;
+@synthesize dishRestoSelector = mDishRestoSelector;
+@synthesize currentLat = mCurrentLat;
+@synthesize currentLon = mCurrentLon;
+@synthesize currentSearchTerm = mCurrentSearchTerm;
+@synthesize settingsDict = mSettingsDict;
+@synthesize searchHeader = mSearchHeader;
 @synthesize rltv = mrltv;
 //@synthesize entityTypeString = mEntityTypeString;
+
+
 #pragma mark -
 #pragma mark View lifecycle
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-	[searchBar resignFirstResponder];
-}
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-	[searchBar resignFirstResponder];
-	[self.tableView reloadData];
-}	
 
 - (void)viewDidLoad {
 	self.view.backgroundColor = kTopDishBackground;
@@ -53,16 +49,16 @@
 	self.entityTypeString = @"Dish";
 
     [super viewDidLoad];
-	[self.tableView setTableHeaderView:searchHeader];
+	[self.tableView setTableHeaderView:self.searchHeader];
 	self.tableView.delegate = self;
 	
 	self.navigationController.navigationBar.tintColor = kTopDishBlue;
 //	myBar.tintColor = [UIColor greenColor];
 	
-	[theSearchBar setPlaceholder:@"Search Dishes"];
-	[theSearchBar setShowsCancelButton:YES];
-	[theSearchBar setDelegate:self];
-	[theSearchBar setTintColor:kTopDishBlue];
+	[self.theSearchBar setPlaceholder:@"Search Dishes"];
+	[self.theSearchBar setShowsCancelButton:YES];
+	[self.theSearchBar setDelegate:self];
+	[self.theSearchBar setTintColor:kTopDishBlue];
 	
 	locationController = [[MyCLController alloc] init];
 	locationController.delegate = self;
@@ -80,8 +76,6 @@
 								  action:@selector(showSettings)];
 	
     self.navigationItem.leftBarButtonItem = settingsButton;
-	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:0] forKey:SORT_VALUE_LOCATION];
-
 	self.settingsDict = [[NSMutableDictionary alloc] init];
 	
 	// Set up the map button
@@ -95,14 +89,16 @@
 
 	
 	// Set up the dish/restaurant selector
-	dishRestoSelector = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Dishes", @"Restaurants", nil]];
-	[dishRestoSelector setSegmentedControlStyle:UISegmentedControlStyleBar];
-	[dishRestoSelector setSelectedSegmentIndex:0];
-	[dishRestoSelector setTintColor:buttonLightBlue];
+	self.dishRestoSelector = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Dishes", 
+																   @"Restaurants", 
+																   nil]];
+	[self.dishRestoSelector setSegmentedControlStyle:UISegmentedControlStyleBar];
+	[self.dishRestoSelector setSelectedSegmentIndex:0];
+	[self.dishRestoSelector setTintColor:buttonLightBlue];
 	
-	self.navigationItem.titleView = dishRestoSelector;
+	self.navigationItem.titleView = self.dishRestoSelector;
 	
-	[dishRestoSelector addTarget:self 
+	[self.dishRestoSelector addTarget:self 
 						 action:@selector(initiateNetworkBasedOnSegmentControl) 
 			   forControlEvents:UIControlEventValueChanged];
 	
@@ -114,12 +110,12 @@
 -(void) networkQuery:(NSString *)query{
 	NSURL *url;
 	NSURLRequest *request;
-	NSURLConnection *conn;
+	//NSURLConnection *conn;
 	url = [NSURL URLWithString:query];
 	NSLog(@"url is %@", query);
 	//Start up the networking
 	request = [NSURLRequest requestWithURL:url];
-	conn = [[[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE] autorelease];
+	self.conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE];
 	
 }
 
@@ -127,21 +123,22 @@
 	//TODO RESTODISH SWITCH - turn off the 'settings' button for restaurants
 
 	NSLog(@"Segmentedcontrol changed");
-	if([dishRestoSelector selectedSegmentIndex] == 0){
-		NSLog(@"we are switching to dishes %@ %@", currentLat, currentLon);
-		self.fetchedResultsController = nil;
+	if([self.dishRestoSelector selectedSegmentIndex] == 0){
+		//self.fetchedResultsController = nil;
 		self.entityTypeString = @"Dish";
-		if (currentSearchTerm != nil) {
-			[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=200000&limit=2&q=%@", NETWORKHOST, currentLat, currentLon, [currentSearchTerm lowercaseString]]];
-			
+		if (self.currentSearchTerm != nil) {
+			[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=200000&limit=2&q=%@",
+								NETWORKHOST,self.currentLat,
+								self.currentLon, 
+								[self.currentSearchTerm lowercaseString]]];
 		}
 		else
-			[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=200000&limit=2", NETWORKHOST, currentLat, currentLon]];
+			[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=200000&limit=2", 
+								NETWORKHOST, self.currentLat, self.currentLon]];
 		
 		[self.tableView setDataSource:self];
 	}
-	else if([dishRestoSelector selectedSegmentIndex] == 1){
-		NSLog(@"we are switching to restaurants %@ %@", currentLat, currentLon);
+	else if([self.dishRestoSelector selectedSegmentIndex] == 1){
 		NSLog(@"rltv is %@", self.rltv);
 		if(!self.rltv){
 			self.rltv = [[RestaurantListTableViewDelegate alloc] init];
@@ -150,7 +147,6 @@
 		}
 		
 		[self.tableView setDataSource:self.rltv];
-		//[self networkQuery:[NSString stringWithFormat:@"%@/api/restaurantSearch?lat=%@&lng=%@&distance=20000", NETWORKHOST, currentLat, currentLon]];
 	}
 	else {
 		NSLog(@"Wait...what did we just switch to?");
@@ -161,7 +157,11 @@
 // Implement viewWillAppear: to do additional setup before the view is presented.
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	[self updateFetch];
+	//do we need to update the fetch when we come back?
+	if ([self.dishRestoSelector selectedSegmentIndex] == 0) {
+		[self updateFetch];
+	}
+	//[self updateFetch];
 	NSLog(@"filter on these %d, %d", [[AppModel instance] selectedMealType], [[AppModel instance] selectedPrice]);
 }
 
@@ -174,15 +174,16 @@
 #pragma mark -
 #pragma mark flip the view 
 - (void) flipToMap {
-	NearbyMapViewController *map = [[NearbyMapViewController alloc] initWithNibName:@"NearbyMapView" 
+	NearbyMapViewController *map = [[NearbyMapViewController alloc] 
+									initWithNibName:@"NearbyMapView" 
 												 bundle:nil];
 	[map setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
 	[map setManagedObjectContext:self.managedObjectContext];
 	
 	NSArray *nearbyObjects = [self.fetchedResultsController fetchedObjects];
 	[map setNearbyObjects:nearbyObjects];
-	[nearbyObjects release];
 	[self.navigationController pushViewController:map animated:TRUE];
+	[map release];
 	//[self presentModalViewController:map animated:TRUE];
 }
 
@@ -205,7 +206,7 @@
 	}
 	
 	//If we are showing restaurants
-	if([dishRestoSelector selectedSegmentIndex] == 0){
+	if([self.dishRestoSelector selectedSegmentIndex] == 0){
 		
 		//TODO remove blocks for backwards compatibility beyond iOS 4.2(?)
 		//Sort the inputted array
@@ -232,28 +233,30 @@
 		
 		// make sure the results are sorted as well
 		[dishFetchRequest setSortDescriptors: [NSArray arrayWithObject:
-											   [[[NSSortDescriptor alloc] initWithKey: @"dish_id"
-																			ascending:YES] autorelease]]];
-		
+											   [NSSortDescriptor 
+												sortDescriptorWithKey:@"dish_id" 																			
+												ascending:YES]]];
 		NSError *error;
 		NSArray *dishesMatchingId = [self.managedObjectContext
 									 executeFetchRequest:dishFetchRequest error:&error];
 		
 		[dishFetchRequest release];
-		[dishIds release];
 		
 		NSFetchRequest *restaurantFetchRequest = [[NSFetchRequest alloc] init];
 		[restaurantFetchRequest setEntity:
 		 [NSEntityDescription entityForName:@"Restaurant" 
 					 inManagedObjectContext:self.managedObjectContext]];
-		[restaurantFetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(restaurant_id IN %@)", restaurantIds]];
+		[restaurantFetchRequest setPredicate:[NSPredicate 
+											  predicateWithFormat:@"(restaurant_id IN %@)", 
+											  restaurantIds]];
+		
 		[restaurantFetchRequest setSortDescriptors:[NSArray arrayWithObject:
-													[[[NSSortDescriptor alloc] initWithKey:@"restaurant_id" 
-																				 ascending:YES] autorelease]]];
+													[NSSortDescriptor 
+													 sortDescriptorWithKey:@"restaurant_id"
+													 ascending:YES]]];
 		
 		NSArray *restaurantsMatchingId = [self.managedObjectContext executeFetchRequest:restaurantFetchRequest error:&error];
 		
-		[restaurantIds release];
 		[restaurantFetchRequest release];
 		
 		int existingDishCounter = 0;
@@ -346,7 +349,7 @@
 		}
 		
 	}
-	else if([dishRestoSelector selectedSegmentIndex] == 1){
+	else if([self.dishRestoSelector selectedSegmentIndex] == 1){
 		
 		for (int i =0; i < [responseAsArray count]; i++){
 			//Restaurant *thisResto = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" inManagedObjectContext:self.managedObjectContext];
@@ -364,24 +367,22 @@
 		NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
 	}
 	
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish"  
-											  inManagedObjectContext:self.managedObjectContext];
-	
-	[fetchRequest setEntity:entity];
-	
-	[fetchRequest release];	
-	
-	[responseText release];
-	[_responseData release];
-	_responseData = nil;
+	//TODO again, this fetch happend and I don't know why
+	//NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish"  
+//											  inManagedObjectContext:self.managedObjectContext];
+//	
+//	[fetchRequest setEntity:entity];
+//	
+//	[fetchRequest release];	
+	self.responseData = nil;
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 -(NSArray *)getArrayOfIdsWithArray:(NSArray *)responseAsArray withKey:(NSString *)key{
 	NSEnumerator *enumerator = [responseAsArray objectEnumerator];
 	id anObject;
-	NSMutableArray *ret = [[NSMutableArray alloc] init];
+	NSMutableArray *ret = [NSMutableArray array];
 	while (anObject = (NSDictionary *)[enumerator nextObject]){
 		[ret addObject:[anObject objectForKey:key]];
 	}
@@ -390,30 +391,63 @@
 	return ret;
 }
 
-- (void) showSettings{
+- (void) showSettings {
 	SettingsView1 *settings = [[SettingsView1 alloc] initWithNibName:@"SettingsView1" bundle:nil];
-	//SettingsTableView *settings = [[SettingsTableView alloc] initWithStyle:UITableViewStyleGrouped];
-
-	//SettingsView *settings = [[SettingsView alloc] initWithNibName:@"SettingsView" bundle:nil];
 	[settings setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-	
 	[self.navigationController pushViewController:settings animated:TRUE];
-	//[self presentModalViewController:settings animated:TRUE];
-//	[settings setDelegate:self];
+	[settings release];
 }
-	 
--(void) updateFetch{
-		
-	//TODO....Ok this should all be in a function somewhere.
-	//Create array with sort params, then store in NSUserDefaults
-	NSNumber *selectedIndex = (NSNumber *)[[NSUserDefaults standardUserDefaults] objectForKey:SORT_VALUE_LOCATION];
-	NSString *sorter = [[NSArray arrayWithObjects:RATINGS_SORT, DISTANCE_SORT, nil] objectAtIndex:[selectedIndex intValue]];
 
+-(void) populatePredicateArray:(NSMutableArray *)filterPredicateArray{
+	NSPredicate *filterPredicate;
+
+	//Filter based on search
+	if (self.currentSearchTerm && [self.currentSearchTerm length] > 0) {
+		
+		NSString *attributeName = @"objName";
+		NSString *attributeValue = self.currentSearchTerm;
+		NSLog(@"the predicate we are sending: %@ contains(cd) %@ AND %@ == %d",
+			  attributeName, attributeValue,
+			  @"price", [[AppModel instance] selectedPrice]);
+		
+		filterPredicate = [NSPredicate predicateWithFormat:@"%K contains[cd] %@",
+						   attributeName, attributeValue];
+		
+		NSLog(@"the real predicate is %@", filterPredicate);
+		[filterPredicateArray addObject:filterPredicate];
+	}
+	
+	//Filter based on price
+	if ([[AppModel instance] selectedPrice] != 0) {
+		
+		
+		NSLog(@"the else predicate %@ == %d", 
+			  @"price", [[AppModel instance] selectedPrice]);
+		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
+						   @"price", [NSNumber numberWithInt:[[AppModel instance] selectedPrice]]];
+		
+		[filterPredicateArray addObject:filterPredicate];
+	}
+	
+	//Filter based on mealType
+	if ([[AppModel instance] selectedMealType] != 0) {
+		NSLog(@"the else predicate %@ == %d", 
+			  @"price", [[AppModel instance] selectedPrice]);
+		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
+						   @"mealType", [NSNumber numberWithInt:[[AppModel instance] selectedMealType]]];
+		
+		[filterPredicateArray addObject:filterPredicate];
+	}
+	
+}
+-(void) updateFetch {
+	
 	/*
      Set up the fetched results controller.
 	 */
     // Create the fetch request for the entity.
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	
     // Edit the entity name as appropriate.
 	NSLog(@"entity type string %@", self.entityTypeString);
 
@@ -421,66 +455,51 @@
 											  inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
-	NSPredicate *filterPredicate;
-	NSLog(@"current search term %@", currentSearchTerm);
-	if (currentSearchTerm && [currentSearchTerm length] > 0) {
-		
-		NSString *attributeName = @"objName";
-		NSString *attributeValue = currentSearchTerm;
-		NSLog(@"the predicate we are sending: %@ contains(cd) %@ AND %@ == %d",
-			  attributeName, attributeValue,
-			  @"price", [[AppModel instance] selectedPrice]);
-		
-		filterPredicate = [NSPredicate predicateWithFormat:@"%K contains[cd] %@ AND %K == %@",
-										attributeName, attributeValue,
-										@"price", [NSNumber numberWithInt:[[AppModel instance] selectedPrice]]];
-		
-		NSLog(@"the real predicate is %@", filterPredicate);
-	}
-	else {
-		NSLog(@"the else predicate %@ == %d", 
-			  @"price", [[AppModel instance] selectedPrice]);
-		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
-								@"price", [NSNumber numberWithInt:[[AppModel instance] selectedPrice]]];
-		
-	}
-
-		
-	[fetchRequest setPredicate:filterPredicate];
+	//Set up the filters that are stored in the AppModel
+	NSMutableArray *filterPredicateArray = [NSMutableArray array];
+	
+	[self populatePredicateArray:filterPredicateArray];
+	
+	NSPredicate *fullPredicate = [NSCompoundPredicate 
+								  andPredicateWithSubpredicates:filterPredicateArray]; 
+	[fetchRequest setPredicate:fullPredicate];
 	
 	// Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
+	[fetchRequest setFetchBatchSize:20];
     
-	NSLog(@"sorting ascending %d", [selectedIndex intValue]==0);
+	//Create array with sort params, then store in NSUserDefaults
+	NSString *sorter = [sortStringArray objectAtIndex:[[AppModel instance] sorter]];
+
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:sorter ascending:[selectedIndex intValue]==1];
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-    
+    NSSortDescriptor *sortDescriptor = 
+	[[NSSortDescriptor alloc] initWithKey:sorter 
+								ascending:FALSE];
+	
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     [fetchRequest setSortDescriptors:sortDescriptors];
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-   // NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+	self.fetchedResultsController = nil;
+
+    NSFetchedResultsController *aFetchedResultsController = 
+	[[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
+										managedObjectContext:self.managedObjectContext 
+										  sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
-    
     [aFetchedResultsController release];
     [fetchRequest release];
     [sortDescriptor release];
-    [sortDescriptors release];
-    [currentSearchTerm release];
-	currentSearchTerm = nil;
+    //[currentSearchTerm release];
+	//self.currentSearchTerm = nil;
     NSError *error = nil;
-    if (![fetchedResultsController_ performFetch:&error]) {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         //TODO remove auto generated abort
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-         */
+    if (![mFetchedResultsController performFetch:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+	
+	//Finally, reload the data with the latest fetch
 	[self.tableView reloadData];
 
 }
@@ -488,29 +507,14 @@
 
 - (NSNumber *) calculateDishDistance:(id *)dish{
 	Dish *thisDish = (Dish *)dish;
-	double a = [currentLat doubleValue];
+	double a = [self.currentLat doubleValue];
 	double b = [[thisDish latitude] doubleValue];
-	double c = (a-b)*(a-b);
-	a = [currentLon doubleValue];
+	a = [self.currentLon doubleValue];
 	b = [[thisDish longitude] doubleValue];
 	double d = (a-b)*(a-b);
-	NSLog(@"%f %f",c, d);
 	
-	NSNumber *ret = [[[NSNumber alloc] initWithDouble:d] autorelease];
-	
+	NSNumber *ret = [NSNumber numberWithDouble:d];
 	return ret;
-}
-
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-	NSLog(@"the search bar text changed %@", searchText);
-	
-	//Send the network request
-	currentSearchTerm = searchText;
-	[currentSearchTerm retain];
-	[self initiateNetworkBasedOnSegmentControl];
-	
-	//Limit the core data output
-	[self updateFetch];
 }
 
 #pragma mark -
@@ -524,11 +528,11 @@
 #pragma mark Table view data delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSLog(@"adding this didSelect");
-	[theSearchBar resignFirstResponder];
+	[self.theSearchBar resignFirstResponder];
 	ObjectWithImage *selectedObject;
-	self.fetchedResultsController = nil;
+	//self.fetchedResultsController = nil;
 
-	if([dishRestoSelector selectedSegmentIndex] == 0){
+	if([self.dishRestoSelector selectedSegmentIndex] == 0){
 		self.entityTypeString = @"Dish";
 		selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
 		[self pushDishViewController:selectedObject];
@@ -539,6 +543,26 @@
 		[self pushRestaurantViewController:selectedObject];
 	}
 	//[super tableView:tableView didSelectRowAtIndexPath:indexPath];
+}
+
+
+-(IBAction) sortByDistance
+{
+	NSLog(@"sort by distance");
+	[[AppModel instance] setSorter:kSortByDistance];
+	[self updateFetch];
+}
+-(IBAction) sortByRating
+{
+	NSLog(@"sort by Rating");
+	[[AppModel instance] setSorter:kSortByRating];
+	[self updateFetch];
+}
+-(IBAction) sortByPrice
+{
+	NSLog(@"sort by Price");
+	[[AppModel instance] setSorter:kSortByPrice];
+	[self updateFetch];
 }
 
 #pragma mark -
@@ -567,14 +591,14 @@
 							 stringByReplacingOccurrencesOfString:@">" withString:@""];
 		NSLog(@"the latlong is %@", latlong);
 		NSArray *chunks = [latlong componentsSeparatedByString:@" "];
-		if (currentLat != nil) {
-			currentLat = nil;
+		if (self.currentLat != nil) {
+			self.currentLat = nil;
 		}
-		if (currentLon != nil){
-			currentLon = nil;
+		if (self.currentLon != nil){
+			self.currentLon = nil;
 		}
-		currentLat =[[[chunks objectAtIndex:0] stringByReplacingOccurrencesOfString:@"," withString:@""] copy];
-		currentLon = [[chunks objectAtIndex:1] copy];
+		self.currentLat =[[[chunks objectAtIndex:0] stringByReplacingOccurrencesOfString:@"," withString:@""] copy];
+		self.currentLon = [[chunks objectAtIndex:1] copy];
 		[self initiateNetworkBasedOnSegmentControl];
 		
 	}
@@ -635,6 +659,28 @@
     [self.tableView endUpdates];
 }
 
+#pragma mark -
+#pragma mark Search delegate functions
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+	[searchBar resignFirstResponder];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+	[searchBar resignFirstResponder];
+	[self updateFetch];
+}	
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+	NSLog(@"the search bar text changed %@", searchText);
+	
+	//Send the network request
+	self.currentSearchTerm = searchText;
+	[self initiateNetworkBasedOnSegmentControl];
+	
+	//Limit the core data output
+	[self updateFetch];
+}
 
 #pragma mark -
 #pragma mark Memory management
@@ -654,9 +700,9 @@
 
 
 - (void)dealloc {
-    [fetchedResultsController_ release];
-    [managedObjectContext_ release];
-	[settingsDict release];
+    //self.mFetchedResultsController = nil;
+    self.managedObjectContext = nil;
+	self.settingsDict = nil;
     [super dealloc];
 }
 

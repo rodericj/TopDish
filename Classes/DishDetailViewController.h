@@ -23,7 +23,7 @@
 	UILabel *mRestaurantNameLabel;
 	
 	NSArray *mReviews;
-	NSData *mResponseText;
+	NSData *mResponseData;
 
 	NSManagedObjectContext *managedObjectContext_;
 
@@ -42,9 +42,12 @@
 @property (nonatomic, retain) IBOutlet UILabel *restaurantNameLabel;
 
 @property (nonatomic, retain) NSArray *reviews;
-@property (nonatomic, retain) NSData *responseText;
+@property (nonatomic, retain) NSData *responseData;
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 -(IBAction)pushRateDishController;
+-(IBAction)pushRestaurantDetailController;
+-(IBAction)flagThisDish;
+
 @end

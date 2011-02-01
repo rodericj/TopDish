@@ -65,9 +65,21 @@
 - (void)viewWillAppear:(BOOL)animated {
 	NSLog(@"and the pointer is %d", *pointer);
 	if (self.currentSelection == kMealTypeRow)
+	{
 		self.selectedMealType = *pointer;
+		NSArray *mealTags = [[AppModel instance] mealTypeTags];
+		NSLog(@"mealTags is %@", [mealTags objectAtIndex:*pointer]);
+		NSLog(@"the id is %@", [[mealTags objectAtIndex:*pointer] objectForKey:@"id"]);
+		self.selectedMealType = [[[mealTags objectAtIndex:*pointer] objectForKey:@"id"] intValue];
+	}
 	else
-		self.selectedPriceType = *pointer;
+	{
+		NSArray *priceTags = [[AppModel instance] priceTags];
+		NSLog(@"priceTags is %@", [priceTags objectAtIndex:*pointer]);
+		NSLog(@"the id is %@", [[priceTags objectAtIndex:*pointer] objectForKey:@"id"]);
+		self.selectedPriceType = [[[priceTags objectAtIndex:*pointer] objectForKey:@"id"] intValue];
+	}		
+		
 
     [super viewWillAppear:animated];
 	[self.tableView beginUpdates];
@@ -179,14 +191,32 @@
 			break;
 			
 		case kDishTagSection:
+			cell.detailTextLabel.text = @"Make a selection";
+			[cell.detailTextLabel setFont:[UIFont italicSystemFontOfSize:12]];
+			[cell.detailTextLabel setTextColor:[UIColor redColor]];
 			switch (indexPath.row) {
 				case kMealTypeRow:
 					cell.textLabel.text = @"Meal";
-					//cell.detailTextLabel.text = [[[AppModel instance] mealTypeTags] objectAtIndex:self.selectedMealType];
+				
+					if (self.selectedMealType)
+						for (NSDictionary *dict in [[AppModel instance] mealTypeTags])
+							if ([[dict objectForKey:@"id"] intValue] == self.selectedMealType) {
+								[cell.detailTextLabel setTextColor:[UIColor blackColor]];
+
+								cell.detailTextLabel.text = [dict objectForKey:@"name"];
+							}
+
 					break;
 				case kPriceTypeRow:
 					cell.textLabel.text = kPriceTypeString;
-					//cell.detailTextLabel.text = [[[AppModel instance] priceTags] objectAtIndex:self.selectedPriceType];
+					if (self.selectedPriceType)
+						//TODO, need a lookup for this
+						for (NSDictionary *dict in [[AppModel instance] priceTags]) 
+							if ([[dict objectForKey:@"id"] intValue] == self.selectedPriceType) {
+								[cell.detailTextLabel setTextColor:[UIColor blackColor]];
+								cell.detailTextLabel.text = [dict objectForKey:@"name"];
+							}
+					
 				default:
 					break;
 			}
@@ -209,10 +239,10 @@
 			break;
 	}
     // Configure the cell...
-	UIView *backView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
-	//backView.backgroundColor = [UIColor clearColor];
+	UIView *backView = [[UIView alloc] initWithFrame:CGRectZero];
 	cell.backgroundView = backView;
-
+	[backView release];
+	
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     return cell;

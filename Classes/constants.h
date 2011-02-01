@@ -28,9 +28,13 @@
 //#define NETWORKHOST @"http://10.0.1.11:8888"
 
 #define DISH_DETAIL_CELL_IDENTIFIER @"dishdetailimagecell"
-#define SORT_VALUE_LOCATION @"sortvaluelocation"
 #define RATINGS_SORT @"posReviews"
 #define DISTANCE_SORT @"distance"
+#define PRICE_SORT @"price"
+
+#define kSortByDistance 0
+#define kSortByRating 1
+#define kSortByPrice 2
 
 #pragma tags
 
@@ -44,6 +48,7 @@
 #define DISHTABLEVIEW_UPVOTES_TAG 4
 #define DISHTABLEVIEW_MEALTYPE_TAG 5
 #define DISHTABLEVIEW_DOWNVOTES_TAG 6
+#define PERCENTAGE_TAG 7
 #define DISHTABLEVIEW_IMAGE_TAG 8
 #define DISHTABLEVIEW_DIST_TAG 9
 

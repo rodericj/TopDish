@@ -16,9 +16,10 @@
 	UITableViewCell				*mTvCell;
 	UITableViewCell				*mAddItemCell;
 @protected
-    NSFetchedResultsController *fetchedResultsController_;
-    NSManagedObjectContext *managedObjectContext_;
-	NSMutableData *_responseData;
+    NSFetchedResultsController *mFetchedResultsController;
+    NSManagedObjectContext *mManagedObjectContext;
+	NSMutableData *mResponseData;
+	NSURLConnection *mConn;
 
 }
 
@@ -27,11 +28,12 @@
 @property (nonatomic, assign) IBOutlet UITableViewCell *tvCell;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, retain) NSMutableData *_responseData;
+@property (nonatomic, retain) NSMutableData *responseData;
+@property (nonatomic, retain) NSURLConnection *conn;
 
 -(void) processIncomingNetworkText:(NSString *)responseText;
 -(void) decorateFetchRequest:(NSFetchRequest *)request;
 -(void) pushDishViewController:(ObjectWithImage *) selectedObject;
-//-(void) pushRestaurantViewController:(ObjectWithImage *) selectedObject;
+-(UITableViewCell *)tableView:(UITableView *)tableView dishCellAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

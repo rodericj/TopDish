@@ -8,7 +8,7 @@
 - (id) init {
 	self = [super init];
 	if (self != nil) {
-		self.locationManager = [[[CLLocationManager alloc] init] autorelease];
+		self.locationManager = [[CLLocationManager alloc] init];
 		self.locationManager.delegate = self; // send loc updates to myself
 	}
 	return self;
@@ -33,7 +33,7 @@
 }
 
 - (void)dealloc {
-	[self.locationManager release];
+	self.locationManager = nil;
     [super dealloc];
 }
 

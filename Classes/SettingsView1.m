@@ -11,9 +11,8 @@
 #import "DishOptionPickerTableViewController.h"
 #import "constants.h"
 
-#define kMealTypeSection 2
-#define kPriceFilterSection 1
-#define kSortingSection 0
+#define kMealTypeSection 1
+#define kPriceFilterSection 0
 
 @implementation SettingsView1
 
@@ -36,13 +35,27 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:kMealTypeSection];
-	[self.tableView beginUpdates];
-	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationFade];
-	[self.tableView endUpdates];
+
 	NSLog(@"the price at pointer is %@", [[[AppModel instance] mealTypeTags] objectAtIndex:*pointer]);
 	int mealtype = [[[[[AppModel instance] mealTypeTags] objectAtIndex:*pointer] objectForKey:@"id"] intValue];
 	NSLog(@"the mealType id is %d", mealtype);
 	[[AppModel instance] setSelectedMealType:mealtype];
+	
+	[self.tableView beginUpdates];
+	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationFade];
+	[self.tableView endUpdates];
+	
+	int selectedPrice = [[AppModel instance] selectedPrice];
+	int count = 0;
+	for (NSDictionary *d in [[AppModel instance] priceTags]) {
+		if ([[d objectForKey:@"id"] intValue] == selectedPrice) {
+			NSLog(@"the selected price is %@", [d objectForKey:@"name"]);
+			[self.priceValue setText:[d objectForKey:@"name"]];
+			[self.priceSlider setValue:count];
+			continue;
+		}
+		count++;
+	}
 	
 }
 
@@ -62,8 +75,6 @@
 		case kPriceFilterSection:
 			return 2;
 			break;
-		case kSortingSection:
-			return 1;
 		default:
 			break;
 	}
@@ -79,8 +90,7 @@
 		case kPriceFilterSection:
 			return kPriceTypeString;
 			break;
-		case kSortingSection:
-			return @"Sort by";
+
 		default:
 			break;
 	}
@@ -115,6 +125,16 @@
 			NSLog(@"now set the meal type to %@", [[a mealTypeTags] objectAtIndex:*pointer]);
 			cell.detailTextLabel.text = [[[a mealTypeTags] objectAtIndex:*pointer] objectForKey:@"name"];
 		}
+		
+		for (NSDictionary *d in [a mealTypeTags]) {
+			if ([[d objectForKey:@"id"] intValue] == [a selectedMealType]) {
+				cell.detailTextLabel.text = [d objectForKey:@"name"];
+				continue;
+			}
+		}
+		
+		
+		
 		//cell.detailTextLabel.text = [[AppModel instance] pr
 	}
     // Configure the cell...
