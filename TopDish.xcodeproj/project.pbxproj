@@ -63,6 +63,10 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		20BF65FC12F7C8E1005DD037 /* no_rest_img.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 20BF65FB12F7C8E1005DD037 /* no_rest_img.jpg */; };
+		20BF660F12F7D7C8005DD037 /* add_dish_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 20BF660E12F7D7C8005DD037 /* add_dish_button.png */; };
+		20BF661112F7D7DB005DD037 /* yesOrno_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 20BF661012F7D7DB005DD037 /* yesOrno_button.png */; };
+		20BF661B12F7DA8D005DD037 /* submitadish_photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 20BF661A12F7DA8D005DD037 /* submitadish_photo.png */; };
 		20F29E0E12F4B06C001641B1 /* dishViewBoarder.png in Resources */ = {isa = PBXBuildFile; fileRef = 20F29E0D12F4B06C001641B1 /* dishViewBoarder.png */; };
 		20F29E1012F4BDF2001641B1 /* button_up_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 20F29E0F12F4BDF2001641B1 /* button_up_grey.png */; };
 		20F29E1212F4BE04001641B1 /* button_down_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 20F29E1112F4BE04001641B1 /* button_down_grey.png */; };
@@ -192,6 +196,10 @@
 		1D3623250D0F684500981E51 /* TopDishAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopDishAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* TopDish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopDish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		20BF65FB12F7C8E1005DD037 /* no_rest_img.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = no_rest_img.jpg; sourceTree = "<group>"; };
+		20BF660E12F7D7C8005DD037 /* add_dish_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_dish_button.png; sourceTree = "<group>"; };
+		20BF661012F7D7DB005DD037 /* yesOrno_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yesOrno_button.png; sourceTree = "<group>"; };
+		20BF661A12F7DA8D005DD037 /* submitadish_photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = submitadish_photo.png; sourceTree = "<group>"; };
 		20F29E0D12F4B06C001641B1 /* dishViewBoarder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dishViewBoarder.png; sourceTree = "<group>"; };
 		20F29E0F12F4BDF2001641B1 /* button_up_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_up_grey.png; sourceTree = "<group>"; };
 		20F29E1112F4BE04001641B1 /* button_down_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_down_grey.png; sourceTree = "<group>"; };
@@ -512,6 +520,10 @@
 		5F89F15E125951FE00959D05 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				20BF661A12F7DA8D005DD037 /* submitadish_photo.png */,
+				20BF661012F7D7DB005DD037 /* yesOrno_button.png */,
+				20BF660E12F7D7C8005DD037 /* add_dish_button.png */,
+				20BF65FB12F7C8E1005DD037 /* no_rest_img.jpg */,
 				20F29F0512F4F99E001641B1 /* globe-1.png */,
 				20F29F0312F4F995001641B1 /* filter.png */,
 				20F29E2F12F4D172001641B1 /* no_dish_img.png */,
@@ -676,6 +688,10 @@
 				20F29E3012F4D172001641B1 /* no_dish_img.png in Resources */,
 				20F29F0412F4F995001641B1 /* filter.png in Resources */,
 				20F29F0612F4F99E001641B1 /* globe-1.png in Resources */,
+				20BF65FC12F7C8E1005DD037 /* no_rest_img.jpg in Resources */,
+				20BF660F12F7D7C8005DD037 /* add_dish_button.png in Resources */,
+				20BF661112F7D7DB005DD037 /* yesOrno_button.png in Resources */,
+				20BF661B12F7DA8D005DD037 /* submitadish_photo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
