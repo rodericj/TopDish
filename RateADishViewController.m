@@ -219,17 +219,17 @@
 	[imagePicker setDelegate:self];
 	[imagePicker setAllowsEditing:YES];
 	
-	if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-		//then push the imagepicker
-		[imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
-		[imagePicker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModePhoto];
-		[imagePicker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
-
-		[imagePicker setCameraOverlayView:[UIButton buttonWithType:UIButtonTypeRoundedRect]];
-	}
-	else {
+	//if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+//		//then push the imagepicker
+//		[imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+//		[imagePicker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModePhoto];
+//		[imagePicker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
+//
+//		[imagePicker setCameraOverlayView:[UIButton buttonWithType:UIButtonTypeRoundedRect]];
+//	}
+//	else {
 		[imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-	}
+	//}
 	[self presentModalViewController:imagePicker animated:YES]; 
 	
 	
