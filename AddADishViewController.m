@@ -11,6 +11,7 @@
 #import "ASIFormDataRequest.h"
 #import "DishOptionPickerTableViewController.h"
 #import "AppModel.h"
+#import "TopDishAppDelegate.h"
 
 #define kRestaurantSection 0
 #define kDishNameSection 1
@@ -86,6 +87,15 @@
 	[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kDishTagSection] withRowAnimation:UITableViewRowAnimationFade];
 	[self.tableView endUpdates];
 	
+	
+	
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+	//Pop out if we aren't logged in
+	[super viewDidAppear:animated];
+	if ([[AppModel instance].user objectForKey:keyforauthorizing] == nil)
+		[[(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] tabBarController] setSelectedIndex:kAccountsTab];
 }
 
 #pragma mark -
@@ -291,17 +301,17 @@
 	[imagePicker setDelegate:self];
 	[imagePicker setAllowsEditing:YES];
 	
-	if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-		//then push the imagepicker
-		[imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
-		[imagePicker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModePhoto];
-		[imagePicker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
-		
-		[imagePicker setCameraOverlayView:[UIButton buttonWithType:UIButtonTypeRoundedRect]];
-	}
-	else {
+	//if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+//		//then push the imagepicker
+//		[imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+//		[imagePicker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModePhoto];
+//		[imagePicker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
+//		
+//		[imagePicker setCameraOverlayView:[UIButton buttonWithType:UIButtonTypeRoundedRect]];
+//	}
+//	else {
 		[imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-	}
+	//}
 	[self presentModalViewController:imagePicker animated:YES]; 
 }
 
@@ -327,14 +337,19 @@
 	[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
 	[request setPostValue:[NSNumber numberWithInt:self.selectedPriceType] forKey:@"price"];
 	[request setPostValue:[NSNumber numberWithInt:self.selectedMealType]	forKey:@"mealType"];
+	[request setPostValue:[NSNumber numberWithInt:self.rating] forKey:@"direction"];
 
-	//NSLog(@"posting to AddADish dish: %@\nadditional: %@\n restaurant_id\n%@auth_key: %@\nprice: %dmeal type: %d", 
-//		  self.dishTitle.text, self.additionalDetailsTextView.text, 
-//		  [[[AppModel instance] user] objectForKey:keyforauthorizing], 
-//		  self.selectedPriceType, self.selectedMealType);
+	NSLog(@"the restaurant id we are sending is %@", 
+		  [NSString stringWithFormat:@"%@",
+		   [self.restaurant restaurant_id]]);
+	NSLog(@"the auth key is %@", [[[AppModel instance] user] objectForKey:keyforauthorizing]);
+	NSLog(@"the price type key is %@", [NSNumber numberWithInt:self.selectedPriceType]);
+	NSLog(@"the meal type key is %@", [NSNumber numberWithInt:self.selectedMealType]);
+	NSLog(@"the name is %@", self.dishTitle.text);
+	NSLog(@"the direction is %@", [NSNumber numberWithInt:self.rating]);
+	
 	[request setDelegate:self];
 	[request startAsynchronous];
-	
 }
 
 
@@ -342,8 +357,30 @@
 {
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
+	NSLog(@"response string for this dish or photo is %@", responseString);
+
+	if (self.newPicture.image)
+	{
+		NSLog(@"setting up the url");
+		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
+		ASIFormDataRequest *Newrequest = [ASIFormDataRequest requestWithURL:url];
+
+		NSLog(@"setting the auth key, should be no problem");
+		[Newrequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+		
+		NSLog(@"setting the dishID which is the response we got from server");
+		[Newrequest setPostValue:responseString forKey:@"dishId"];
+		NSLog(@"and the photo which is %@ %@", self.newPicture, self.newPicture.image);
+		[Newrequest setData:UIImagePNGRepresentation(self.newPicture.image) forKey:@"photo"];
+		NSLog(@"past the photo");
+		NSLog(@"the post is %@", Newrequest);
+		[Newrequest setDelegate:self];
+		NSLog(@"sending");
+		[Newrequest startAsynchronous];
+		NSLog(@"sent");
+	}
+	self.newPicture.image = nil;
 	
-	NSLog(@"response string %@", responseString);
 	[self.navigationController popViewControllerAnimated:YES];
 	
 }

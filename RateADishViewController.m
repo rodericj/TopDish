@@ -265,8 +265,8 @@
 	[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
 
 	// Upload an NSData instance
-	//if (self.newPicture.image)
-	//	[request setData:UIImagePNGRepresentation(self.newPicture.image) forKey:@"photo"];
+	if (self.newPicture.image)
+		[request setData:UIImagePNGRepresentation(self.newPicture.image) forKey:@"photo"];
 	
 	NSLog(@"this is what we are sending for RATE a dish: url: %@\n, comment: %@\n, vote: %d\n, dish_id %@\n, apiKey: %@", 
 		  [url absoluteURL], 
