@@ -59,11 +59,9 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-	NSLog(@"the url is");
-	NSLog(@"%@", url);
+	NSLog(@"the url is %@", url);
 	
-	[[[AppModel instance] facebook] handleOpenURL:url];
-	return YES;
+	return [[[AppModel instance] facebook] handleOpenURL:url];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request

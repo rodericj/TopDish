@@ -2,7 +2,7 @@
 //  Dish.m
 //  TopDish
 //
-//  Created by roderic campbell on 1/29/11.
+//  Created by roderic campbell on 2/1/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -20,6 +20,7 @@
 @dynamic dish_description;
 @dynamic mealType;
 @dynamic negReviews;
+@dynamic calculated_rating;
 @dynamic comments;
 @dynamic restaurant;
 

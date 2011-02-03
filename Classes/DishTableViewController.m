@@ -345,6 +345,9 @@
 			[thisDish setNegReviews:[thisElement objectForKey:@"negReviews"]];
 			
 			[thisDish setDistance:[self calculateDishDistance:(id *)thisDish]];
+			float pos = [[thisElement objectForKey:@"posReviews"] intValue];
+			float neg = [[thisElement objectForKey:@"negReviews"] intValue];
+			[thisDish setCalculated_rating:[NSNumber numberWithInt:(int)(pos/(pos+neg)*100)]];
 			
 		}
 		

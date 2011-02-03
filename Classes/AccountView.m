@@ -19,6 +19,7 @@
 @synthesize lifestyleTags = mLifestyleTags;
 @synthesize imageRequest = mImageRequest;
 @synthesize userImage = mUserImage;
+@synthesize logoutButton = mLogoutButton;
 
 enum {
     kListAdderSectionIndexTotal = 0,
@@ -49,9 +50,9 @@ enum {
 		  andDelegate:self];
 		
 		//add the logout button
-		FBLoginButton *fbLoginButton = [[FBLoginButton alloc] init];
-		fbLoginButton.isLoggedIn = YES;
-		[self.view addSubview:fbLoginButton];
+		self.logoutButton = [[FBLoginButton alloc] init];
+		self.logoutButton.isLoggedIn = YES;
+		[self.logoutButton updateImage];
 
 	}
 	
