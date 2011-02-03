@@ -265,9 +265,6 @@
 	[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
 
 	// Upload an NSData instance
-	if (self.newPicture.image)
-		[request setData:UIImagePNGRepresentation(self.newPicture.image) forKey:@"photo"];
-	
 	NSLog(@"this is what we are sending for RATE a dish: url: %@\n, comment: %@\n, vote: %d\n, dish_id %@\n, apiKey: %@", 
 		  [url absoluteURL], 
 		  self.dishComment.text, 
@@ -286,6 +283,24 @@
 	NSString *responseString = [request responseString];
 	
 	NSLog(@"response string %@", responseString);
+	
+	NSLog(@"response string for this dish or photo is %@", responseString);
+	
+	if (self.newPicture.image)
+	{
+		NSLog(@"setting up the url");
+		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
+		ASIFormDataRequest *Newrequest = [ASIFormDataRequest requestWithURL:url];
+		
+		[Newrequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+		[Newrequest setPostValue:[self.thisDish dish_id] forKey:@"dishId"];
+		[Newrequest setData:UIImagePNGRepresentation(self.newPicture.image) forKey:@"photo"];
+		[Newrequest setDelegate:self];
+		[Newrequest startAsynchronous];
+	}
+	self.newPicture.image = nil;
+	
+	
 	[self.navigationController popViewControllerAnimated:YES];
 
 }

@@ -364,20 +364,11 @@
 		NSLog(@"setting up the url");
 		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
 		ASIFormDataRequest *Newrequest = [ASIFormDataRequest requestWithURL:url];
-
-		NSLog(@"setting the auth key, should be no problem");
 		[Newrequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-		
-		NSLog(@"setting the dishID which is the response we got from server");
 		[Newrequest setPostValue:responseString forKey:@"dishId"];
-		NSLog(@"and the photo which is %@ %@", self.newPicture, self.newPicture.image);
 		[Newrequest setData:UIImagePNGRepresentation(self.newPicture.image) forKey:@"photo"];
-		NSLog(@"past the photo");
-		NSLog(@"the post is %@", Newrequest);
 		[Newrequest setDelegate:self];
-		NSLog(@"sending");
 		[Newrequest startAsynchronous];
-		NSLog(@"sent");
 	}
 	self.newPicture.image = nil;
 	
