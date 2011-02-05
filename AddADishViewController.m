@@ -24,6 +24,8 @@
 #define kMealTypeRow 0
 #define kPriceTypeRow 1
 
+#define kAddDishViewTextColor [UIColor colorWithRed:.3019 green:.2588 blue:.1686 alpha:1]
+
 @implementation AddADishViewController
 
 @synthesize restaurant = mRestaurant;
