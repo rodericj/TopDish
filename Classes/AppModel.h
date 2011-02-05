@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Facebook.h"
 
 @interface AppModel : NSObject {
 	NSMutableDictionary *mUser;
@@ -17,6 +17,7 @@
 	int mSelectedMealType;
 	int mSorter;
 	NSNumber *mSelectedMealTypeObject;
+	Facebook *mFacebook;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *user;
@@ -26,6 +27,7 @@
 @property (nonatomic, assign) int selectedMealType;
 @property (nonatomic, assign) int sorter;
 @property (nonatomic, assign) NSNumber *selectedMealTypeObject;
+@property (nonatomic, assign) Facebook *facebook;
 
 
 +(AppModel *)instance;

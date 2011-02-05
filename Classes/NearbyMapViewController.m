@@ -96,7 +96,7 @@
 						action:@selector(showDetails:)
 			  forControlEvents:UIControlEventTouchUpInside];
 		//annotation = (DishAnnotation *)annotation;
-		rightButton.tag = [[[annotation thisDish] dish_id] intValue];
+		rightButton.tag = [[[(DishAnnotation*)annotation thisDish] dish_id] intValue];
 		annotationView.rightCalloutAccessoryView = rightButton;
 		
 		NSLog(@"about to return the annotation view %d, %@", [annotationView canShowCallout], [annotation title]);

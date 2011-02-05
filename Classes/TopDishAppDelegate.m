@@ -51,7 +51,17 @@
     // Add the navigation controller's view to the window and display.
     [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
+	
+	[[AppModel instance] facebook];
+	
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+	NSLog(@"the url is %@", url);
+	
+	return [[[AppModel instance] facebook] handleOpenURL:url];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
@@ -76,8 +86,8 @@
 	[parser release];
 	[responseText release];
 	//TODO set randy's tags
-	//[[AppModel instance] setPriceTags:priceTypeTags];
-	//[[AppModel instance] setMealTypeTags:mealTypeTags];
+	[[AppModel instance] setPriceTags:priceTypeTags];
+	[[AppModel instance] setMealTypeTags:mealTypeTags];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

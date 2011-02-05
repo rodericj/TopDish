@@ -17,6 +17,7 @@
 	NSString *mCurrentLat;
 	NSString *mCurrentLon;
 	NSString *mCurrentSearchTerm;
+	int mCurrentSearchDistance;
 	
 	NSMutableDictionary *mSettingsDict;
 	
@@ -29,6 +30,9 @@
 	
 	RestaurantListTableViewDelegate *mrltv;
 	
+	UILabel *mRatingTextLabel;
+	UILabel *mPriceTextLabel;
+	UILabel *mDistanceTextLabel;
 }
 
 - (NSNumber *) calculateDishDistance:(id *)dish;
@@ -46,11 +50,17 @@
 @property (nonatomic, retain) NSString *currentSearchTerm;
 @property (nonatomic, retain) NSString *currentLat;
 @property (nonatomic, retain) NSString *currentLon;
+@property (nonatomic, assign) int currentSearchDistance;
+
 @property (nonatomic, retain) UISegmentedControl *dishRestoSelector;
 @property (nonatomic, retain) IBOutlet UIImageView *bgImage;
 
 @property (nonatomic, retain) IBOutlet UISearchBar *theSearchBar;
 @property (nonatomic, retain) IBOutlet UIView *searchHeader;
+
+@property (nonatomic, retain) IBOutlet UILabel *ratingTextLabel;
+@property (nonatomic, retain) IBOutlet UILabel *priceTextLabel;
+@property (nonatomic, retain) IBOutlet UILabel *distanceTextLabel;
 
 
 @end
