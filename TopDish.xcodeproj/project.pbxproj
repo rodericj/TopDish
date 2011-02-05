@@ -59,6 +59,8 @@
 		17E6829612F7D2D20010E6A9 /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17E6829512F7D2D20010E6A9 /* FBConnect.bundle */; };
 		17E6841B12F7EC090010E6A9 /* RestaurantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17E6841A12F7EC090010E6A9 /* RestaurantTableViewCell.xib */; };
 		17E6857F12F943BF0010E6A9 /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E6857E12F943BF0010E6A9 /* Dish.m */; };
+		17E6871F12FA886D0010E6A9 /* quick_filter_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 17E6871E12FA886D0010E6A9 /* quick_filter_button.png */; };
+		17E6887412FAA8970010E6A9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 17E6887312FAA8970010E6A9 /* Default.png */; };
 		17EEB69912D9A2550032E12B /* LoggedInLoggedOutGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EEB69712D9A2550032E12B /* LoggedInLoggedOutGate.m */; };
 		17EEB6AE12D9A3160032E12B /* SignInSignUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17EEB6AD12D9A3160032E12B /* SignInSignUp.xib */; };
 		17EEB6B312D9A3560032E12B /* SignInSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EEB6B212D9A3560032E12B /* SignInSignUpViewController.m */; };
@@ -200,6 +202,8 @@
 		17E6841A12F7EC090010E6A9 /* RestaurantTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantTableViewCell.xib; sourceTree = "<group>"; };
 		17E6857D12F943BF0010E6A9 /* Dish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
 		17E6857E12F943BF0010E6A9 /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
+		17E6871E12FA886D0010E6A9 /* quick_filter_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quick_filter_button.png; sourceTree = "<group>"; };
+		17E6887312FAA8970010E6A9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		17EEB69712D9A2550032E12B /* LoggedInLoggedOutGate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoggedInLoggedOutGate.m; path = ../LoggedInLoggedOutGate.m; sourceTree = "<group>"; };
 		17EEB69812D9A2550032E12B /* LoggedInLoggedOutGate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoggedInLoggedOutGate.h; path = ../LoggedInLoggedOutGate.h; sourceTree = "<group>"; };
 		17EEB6AD12D9A3160032E12B /* SignInSignUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInSignUp.xib; sourceTree = "<group>"; };
@@ -543,6 +547,8 @@
 		5F89F15E125951FE00959D05 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				17E6887312FAA8970010E6A9 /* Default.png */,
+				17E6871E12FA886D0010E6A9 /* quick_filter_button.png */,
 				17E67EE112F631A20010E6A9 /* red_flag.gif */,
 				17C911B112F516B6006066EA /* bestSort.png */,
 				17C911B512F516F5006066EA /* distanceSort.png */,
@@ -721,6 +727,8 @@
 				20BF661B12F7DA8D005DD037 /* submitadish_photo.png in Resources */,
 				17E6820C12F7BD0B0010E6A9 /* FBDialog.bundle in Resources */,
 				17E6829612F7D2D20010E6A9 /* FBConnect.bundle in Resources */,
+				17E6871F12FA886D0010E6A9 /* quick_filter_button.png in Resources */,
+				17E6887412FAA8970010E6A9 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

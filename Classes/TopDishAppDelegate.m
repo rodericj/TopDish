@@ -86,8 +86,8 @@
 	[parser release];
 	[responseText release];
 	//TODO set randy's tags
-	//[[AppModel instance] setPriceTags:priceTypeTags];
-	//[[AppModel instance] setMealTypeTags:mealTypeTags];
+	[[AppModel instance] setPriceTags:priceTypeTags];
+	[[AppModel instance] setMealTypeTags:mealTypeTags];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

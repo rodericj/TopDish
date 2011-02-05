@@ -10,8 +10,6 @@
 
 
 @interface SettingsView1 : UITableViewController {
-	UISegmentedControl *mSegmentedControl;
-	UITableViewCell *mSegmentedControlCell;
 	UITableViewCell *mPriceSliderCell;
 	UISlider *mPriceSlider;
 	UITableViewCell *mPriceValueCell;
@@ -20,16 +18,11 @@
 	int *pointer;
 }
 
-@property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
-@property (nonatomic, retain) IBOutlet UITableViewCell *segmentedControlCell;
 @property (nonatomic, retain) IBOutlet UITableViewCell *priceSliderCell;
 @property (nonatomic, retain) IBOutlet UISlider *priceSlider;
 @property (nonatomic, retain) IBOutlet UITableViewCell *priceValueCell;
 @property (nonatomic, retain) IBOutlet UILabel *priceValue;
 @property (nonatomic, retain) IBOutlet UITableViewCell *mealTypeCell;
-
--(IBAction) changeSegmentedSelector;
-
 -(IBAction) updatePriceTags;
 
 @end

@@ -35,6 +35,8 @@
 	int mCurrentSelection;
 	
 	int *pointer;
+	
+	int mDishId;
 
 }
 
@@ -62,6 +64,9 @@
 @property (nonatomic, assign) int selectedMealType;
 @property (nonatomic, assign) int selectedPriceType;
 @property (nonatomic, assign) int currentSelection;
+
+@property (nonatomic, assign) int dishId;
+
 
 -(IBAction)takePicture;
 -(IBAction)submitDish;

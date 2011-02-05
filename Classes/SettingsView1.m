@@ -16,8 +16,6 @@
 
 @implementation SettingsView1
 
-@synthesize segmentedControl = mSegmentedControl;
-@synthesize segmentedControlCell = mSegmentedControlCell;
 @synthesize priceSliderCell = mPriceSliderCell;
 @synthesize priceValueCell = mPriceValueCell;
 @synthesize priceValue = mPriceValue;
@@ -107,9 +105,6 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
     }
     
-	if (indexPath.section == 0 && indexPath.row == 0) {
-		cell = self.segmentedControlCell;
-	}
 	if (indexPath.section == kPriceFilterSection && indexPath.row == 0) {
 		cell = self.priceSliderCell;
 	}
@@ -144,14 +139,6 @@
 }
 #pragma mark -
 #pragma mark IBActions
-
--(IBAction) changeSegmentedSelector {
-	[[AppModel instance] setSorter:[self.segmentedControl selectedSegmentIndex]];
-	
-	NSLog(@"price tags at pointer is %@", [[[AppModel instance] priceTags] objectAtIndex:*pointer]);
-	int priceTagId = [[[[[AppModel instance] priceTags] objectAtIndex:*pointer] objectForKey:@"id"] intValue];
-	[[AppModel instance] setSelectedPrice:priceTagId];
-}
 
 -(IBAction) updatePriceTags{
 	[self.priceSlider setValue:(int)[self.priceSlider value]];
@@ -193,14 +180,12 @@
 
 
 - (void)dealloc {
-    [super dealloc];
-	self.segmentedControl = nil;
-	self.segmentedControlCell = nil;
 	self.priceSliderCell = nil;
 	self.priceSlider = nil;
 	self.priceValueCell = nil;
 	self.priceValue = nil;
 	self.mealTypeCell = nil;
+	[super dealloc];
 }
 
 
