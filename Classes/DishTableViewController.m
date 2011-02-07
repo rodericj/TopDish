@@ -67,7 +67,7 @@
 	[locationController.locationManager startUpdatingLocation];	
 	
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	self.currentSearchDistance = 200;
+	self.currentSearchDistance = 20000;
 	
     // Set up the settings button
 	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] 
