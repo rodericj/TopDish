@@ -73,14 +73,21 @@
 	NSArray *responseAsArray = [parser objectWithString:responseText error:&error];	
 	NSMutableArray *priceTypeTags = [NSMutableArray array];
 	NSMutableArray *mealTypeTags = [NSMutableArray array];
-	for (NSString *d in responseAsArray)
+	NSMutableArray *allergenTypeTags = [NSMutableArray array];
+	NSMutableArray *lifestyleTags = [NSMutableArray array];
+	for (NSDictionary *d in responseAsArray)
 	{
-		NSDictionary *thisDictionary = [parser objectWithString:d];
-		if ([[thisDictionary objectForKey:@"type"] isEqualToString:kMealTypeString])
-			[mealTypeTags addObject:thisDictionary];
+		if ([[d objectForKey:@"type"] isEqualToString:kMealTypeString])
+			[mealTypeTags addObject:d];
 		
-		if ([[thisDictionary objectForKey:@"type"] isEqualToString:kPriceTypeString])
-			[priceTypeTags addObject:thisDictionary];
+		if ([[d objectForKey:@"type"] isEqualToString:kPriceTypeString])
+			[priceTypeTags addObject:d];
+		
+		if ([[d objectForKey:@"type"] isEqualToString:kAllergenTypeString])
+			[allergenTypeTags addObject:d];
+		
+		if ([[d objectForKey:@"type"] isEqualToString:kLifestyleTypeString])
+			[lifestyleTags addObject:d];
 		
 	}
 	[parser release];
@@ -88,6 +95,8 @@
 	//TODO set randy's tags
 	[[AppModel instance] setPriceTags:priceTypeTags];
 	[[AppModel instance] setMealTypeTags:mealTypeTags];
+	[[AppModel instance] setAllergenTags:allergenTypeTags];
+	[[AppModel instance] setLifestyleTags:allergenTypeTags];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

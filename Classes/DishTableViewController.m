@@ -55,7 +55,6 @@
 	self.tableView.delegate = self;
 	
 	self.navigationController.navigationBar.tintColor = kTopDishBlue;
-//	myBar.tintColor = [UIColor greenColor];
 	
 	[self.theSearchBar setPlaceholder:@"Search Dishes"];
 	[self.theSearchBar setShowsCancelButton:YES];
