@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Restaurant.h"
 
-@interface AddADishViewController : UITableViewController <UIImagePickerControllerDelegate> {
+@interface AddADishViewController : UITableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
 	Restaurant *mRestaurant;
 	
 	UITableViewCell *mRestaurantCell;
@@ -37,6 +37,9 @@
 	int *pointer;
 	
 	int mDishId;
+	
+	//We need to handle all of the outstanding requests before leaving view
+	int mOutstandingRequests;
 
 }
 
@@ -66,7 +69,6 @@
 @property (nonatomic, assign) int currentSelection;
 
 @property (nonatomic, assign) int dishId;
-
 
 -(IBAction)takePicture;
 -(IBAction)submitDish;

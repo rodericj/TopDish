@@ -341,10 +341,7 @@
 	[request setPostValue:[NSString stringWithFormat:@"%@", [self.restaurant restaurant_id]] forKey:@"restaurantId"];		
 	[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
 	[request setPostValue:[NSString stringWithFormat:@"%d,%d", self.selectedMealType, self.selectedPriceType] forKey:@"tags"];
-	
-//	[request setPostValue:[NSNumber numberWithInt:self.selectedPriceType] forKey:@"price"];
-//	[request setPostValue:[NSNumber numberWithInt:self.selectedMealType]	forKey:@"mealType"];
-	
+		
 	NSLog(@"the restaurant id we are sending is %@", 
 		  [NSString stringWithFormat:@"%@",
 		   [self.restaurant restaurant_id]]);
@@ -354,14 +351,14 @@
 	NSLog(@"the name is %@", self.dishTitle.text);
 	NSLog(@"the direction is %@", [NSNumber numberWithInt:self.rating]);
 	
+	mOutstandingRequests = 1;
 	[request setDelegate:self];
 	[request startAsynchronous];
 }
 
-
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-	
+	mOutstandingRequests -= 1; 
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
 	NSLog(@"response string for any of these calls %@", responseString);
@@ -383,31 +380,36 @@
 		[alertview show];
 		[alertview release];
 		return;
-		
 	}
 	if ([responseAsDict objectForKey:@"dishId"]) {
 		NSLog(@"we have the dish id, calling add photo");
 		self.dishId = [[responseAsDict objectForKey:@"dishId"] intValue];
-		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@", @"api/addPhoto"]];
+		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
+		NSLog(@"the url for add photo is %@", url);
 		newRequest = [ASIFormDataRequest requestWithURL:url];
 		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
 		[newRequest setPostValue:[NSString stringWithFormat:@"%d", self.dishId] forKey:@"dishId"];
 		[newRequest setDelegate:self];
 		[newRequest startAsynchronous];
+		mOutstandingRequests += 1;
 		
 		NSLog(@"done calling add photo, time to call rateDish");
 		url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/rateDish"]];
+		NSLog(@"the url for rate dish is %@", url);
+
 		newRequest = [ASIFormDataRequest requestWithURL:url];
 		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
 		[newRequest setPostValue:[NSString stringWithFormat:@"%d", self.dishId] forKey:@"dishId"];
 		[newRequest setPostValue:[NSNumber numberWithInt:self.rating] forKey:@"direction"];
 		[newRequest setDelegate:self];
 		[newRequest startAsynchronous];
+		mOutstandingRequests += 1;
 		NSLog(@"done calling rate Dish");
 		return;
 	}
 	if ([responseAsDict objectForKey:@"url"]) {
-		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@", NETWORKHOST, [responseAsDict objectForKey:@"url"]]];
+		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@", [responseAsDict objectForKey:@"url"]]];
+		NSLog(@"the url for sending the photo is %@", url);
 
 		newRequest = [ASIFormDataRequest requestWithURL:url];
 		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
@@ -415,54 +417,19 @@
 		[newRequest setPostValue:[NSString stringWithFormat:@"%d", self.dishId] forKey:@"dishId"];
 		[newRequest setDelegate:self];
 		[newRequest startAsynchronous];
+		mOutstandingRequests += 1;
 		return;
 
 	}
-	[self.navigationController popViewControllerAnimated:YES];
-
-	//
-	
-	//if (self.newPicture.image)
-//	{
-//		NSLog(@"setting up the url");
-//		//NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/rateDish"]];
-//		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, responseString]];
-//		
-//		ASIFormDataRequest *newRequest = [ASIFormDataRequest requestWithURL:url];
-//		[newRequest setPostValue:self.additionalDetailsTextView.text forKey:@"description"];
-//		[newRequest setPostValue:[NSString stringWithFormat:@"%@", [self.restaurant restaurant_id]] forKey:@"restaurantId"];		
-//		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-//		[newRequest setPostValue:[NSNumber numberWithInt:self.selectedPriceType] forKey:@"price"];
-//		[newRequest setPostValue:[NSNumber numberWithInt:self.selectedMealType]	forKey:@"mealType"];
-//		[newRequest setPostValue:[NSNumber numberWithInt:self.rating] forKey:@"direction"];
-//		
-//		//	[request setPostValue:[NSNumber numberWithInt:self.rating] forKey:@"direction"];
-//		
-//		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-//		[newRequest setPostValue:responseString forKey:@"dishId"];
-//		[newRequest setPostValue:[NSNumber numberWithInt:self.rating] forKey:@"direction"];
-//		[newRequest setDelegate:self];
-//		[newRequest startAsynchronous];
-//		
-//		//url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
-//		//		newRequest = [ASIFormDataRequest requestWithURL:url];
-//		//		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-//		//		[newRequest setPostValue:responseString forKey:@"dishId"];
-//		//		[newRequest setData:UIImagePNGRepresentation(self.newPicture.image) forKey:@"photo"];
-//		//		[newRequest setDelegate:self];
-//		//		[newRequest startAsynchronous];
-//		
-//		
-//		
-//		
-//	}
-	//self.newPicture.image = nil;
-	
-	
+	if (!mOutstandingRequests)
+		[self.navigationController popViewControllerAnimated:YES];	
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
+	mOutstandingRequests -= 1;
+	if (!mOutstandingRequests)
+		[self.navigationController popViewControllerAnimated:YES];	
 	NSError *error = [request error];
 	NSLog(@"error %@", error);
 }
