@@ -47,6 +47,8 @@
 
 @synthesize additionalDetailsCell = mAdditionalDetailsCell;
 @synthesize additionalDetailsTextView = mAdditionalDetailsTextView;
+@synthesize commentTextView = mCommentTextView;
+
 @synthesize submitButton = mSubmitButton;
 
 @synthesize selectedMealType = mSelectedMealType;
@@ -247,6 +249,7 @@
 		case kUploadPictureSection:
 			cell = self.uploadCell;
 			break;
+			
 		case kAdditionalDetailsSection:
 			cell = self.additionalDetailsCell;
 			break;
@@ -371,7 +374,6 @@
 	ASIFormDataRequest *newRequest;
 	
 	if ([[responseAsDict objectForKey:@"rc"] intValue]) {
-		NSLog(@"something went wrong");
 		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Request Failed" 
 															message:[responseAsDict objectForKey:@"message"]
 														   delegate:self 
@@ -382,18 +384,21 @@
 		return;
 	}
 	if ([responseAsDict objectForKey:@"dishId"]) {
-		NSLog(@"we have the dish id, calling add photo");
-		self.dishId = [[responseAsDict objectForKey:@"dishId"] intValue];
-		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
-		NSLog(@"the url for add photo is %@", url);
-		newRequest = [ASIFormDataRequest requestWithURL:url];
-		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-		[newRequest setPostValue:[NSString stringWithFormat:@"%d", self.dishId] forKey:@"dishId"];
-		[newRequest setDelegate:self];
-		[newRequest startAsynchronous];
-		mOutstandingRequests += 1;
+		NSURL *url;
+		if (self.newPicture.image) {
+			NSLog(@"we have the dish id, calling add photo");
+			self.dishId = [[responseAsDict objectForKey:@"dishId"] intValue];
+			url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
+			NSLog(@"the url for add photo is %@", url);
+			newRequest = [ASIFormDataRequest requestWithURL:url];
+			[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+			[newRequest setPostValue:[NSString stringWithFormat:@"%d", self.dishId] forKey:@"dishId"];
+			[newRequest setDelegate:self];
+			[newRequest startAsynchronous];
+			mOutstandingRequests += 1;
+			NSLog(@"done calling add photo, time to call rateDish");
+		}
 		
-		NSLog(@"done calling add photo, time to call rateDish");
 		url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/rateDish"]];
 		NSLog(@"the url for rate dish is %@", url);
 
@@ -401,6 +406,7 @@
 		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
 		[newRequest setPostValue:[NSString stringWithFormat:@"%d", self.dishId] forKey:@"dishId"];
 		[newRequest setPostValue:[NSNumber numberWithInt:self.rating] forKey:@"direction"];
+		[newRequest setPostValue:self.commentTextView.text forKey:@"comment"];
 		[newRequest setDelegate:self];
 		[newRequest startAsynchronous];
 		mOutstandingRequests += 1;

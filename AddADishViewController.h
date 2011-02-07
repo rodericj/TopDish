@@ -27,7 +27,9 @@
 	UIImageView *mNewPicture;
 
 	UITableViewCell *mAdditionalDetailsCell;
-	UITextView		*mAdditionalDetailsTextView;
+	UITextField		*mAdditionalDetailsTextView;
+	UITextField		*mCommentTextView;
+
 	UIButton		*mSubmitButton;
 	
 	int mSelectedPriceType;
@@ -61,7 +63,8 @@
 @property (nonatomic, retain) IBOutlet UIImageView *newPicture;
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *additionalDetailsCell;
-@property (nonatomic, retain) IBOutlet UITextView *additionalDetailsTextView;
+@property (nonatomic, retain) IBOutlet UITextField *additionalDetailsTextView;
+@property (nonatomic, retain) IBOutlet UITextField *commentTextView;
 @property (nonatomic, retain) IBOutlet UIButton	*submitButton;
 
 @property (nonatomic, assign) int selectedMealType;

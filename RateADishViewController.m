@@ -11,6 +11,7 @@
 #import "ASIFormDataRequest.h"
 #import "AppModel.h"
 #import "TopDishAppDelegate.h"
+#import "JSON.h"
 
 #define kDishHeaderSection 0
 #define kDishCommentSection 1
@@ -231,8 +232,7 @@
 		[imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
 	//}
 	[self presentModalViewController:imagePicker animated:YES]; 
-	
-	
+
 }
 -(IBAction)yesButtonClicked {
 	self.noImage.hidden = YES;
@@ -247,7 +247,6 @@
 
 -(IBAction)submitRating {
 	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/rateDish"]];
-	
 	if (!self.rating) {
 		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Error Rating Dish" 
 															message:@"Please select Yes or No" 
@@ -274,34 +273,66 @@
 	
 	[request setDelegate:self];
 	[request startAsynchronous];
+	mOutstandingRequests += 1;
 
+	//might as well send a picture if we've got it
+	if (self.newPicture.image) {
+		NSLog(@"we have the dish id, calling add photo");
+		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
+		NSLog(@"the url for add photo is %@", url);
+		request = [ASIFormDataRequest requestWithURL:url];
+		[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+		[request setPostValue:[NSString stringWithFormat:@"%d", [self.thisDish dish_id]] forKey:@"dishId"];
+		[request setDelegate:self];
+		[request startAsynchronous];
+		mOutstandingRequests += 1;
+		NSLog(@"done calling add photo, time to call rateDish");
+	}
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
+	mOutstandingRequests -= 1;
+
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
 	
 	NSLog(@"response string %@", responseString);
 	
 	NSLog(@"response string for this dish or photo is %@", responseString);
+	NSError *error;
+	SBJSON *parser = [SBJSON new];
+	NSDictionary *responseAsDict = [parser objectWithString:responseString error:&error];	
+	NSLog(@"the dictionary should be a %@", responseAsDict);
 	
-	if (self.newPicture.image)
+	if ([responseAsDict objectForKey:@"url"])
 	{
 		NSLog(@"setting up the url");
-		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
-		ASIFormDataRequest *Newrequest = [ASIFormDataRequest requestWithURL:url];
+		//NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
+		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@", [responseAsDict objectForKey:@"url"]]];
+		NSLog(@"the url for sending the photo is %@", url);
+		ASIFormDataRequest *imageRequest = [ASIFormDataRequest requestWithURL:url];
+
+		imageRequest = [ASIFormDataRequest requestWithURL:url];
+		[imageRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+		[imageRequest setData:UIImagePNGRepresentation(self.newPicture.image) forKey:@"photo"];
+		[imageRequest setPostValue:[NSString stringWithFormat:@"%d", [self.thisDish dish_id]] forKey:@"dishId"];
+		[imageRequest setDelegate:self];
+		[imageRequest startAsynchronous];
+		mOutstandingRequests += 1;
 		
-		[Newrequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-		[Newrequest setPostValue:[self.thisDish dish_id] forKey:@"dishId"];
-		[Newrequest setData:UIImagePNGRepresentation(self.newPicture.image) forKey:@"photo"];
-		[Newrequest setDelegate:self];
-		[Newrequest startAsynchronous];
+		
+		//ASIFormDataRequest *imageRequest = [ASIFormDataRequest requestWithURL:url];
+//		
+//		[imageRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+//		[imageRequest setPostValue:[self.thisDish dish_id] forKey:@"dishId"];
+//		[imageRequest setData:UIImagePNGRepresentation(self.newPicture.image) forKey:@"photo"];
+//		[imageRequest setDelegate:self];
+//		[imageRequest startAsynchronous];
 	}
-	self.newPicture.image = nil;
 	
-	
-	[self.navigationController popViewControllerAnimated:YES];
+	if(!mOutstandingRequests)
+		[self.navigationController popViewControllerAnimated:YES];
 
 }
 
