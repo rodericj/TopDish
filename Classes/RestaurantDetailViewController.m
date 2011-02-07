@@ -14,8 +14,8 @@
 #import "ImagePickerViewController.h"
 
 #define kRestaurantHeaderSection 0
-#define kMapSection 1
-#define kDishesAtThisRestaurantSection 2
+#define kMapSection 2
+#define kDishesAtThisRestaurantSection 1
 
 @implementation RestaurantDetailViewController
 @synthesize restaurant;
@@ -99,7 +99,7 @@
 	}
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView{
-	return 3;
+	return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -109,8 +109,8 @@
 	}
 	NSLog(@"sections is %@ and this sectin is ", self.fetchedResultsController.sections);
     id <NSFetchedResultsSectionInfo> sectionInfo = 
-		[[self.fetchedResultsController sections] 
-		 objectAtIndex:section-kDishesAtThisRestaurantSection];
+	[[self.fetchedResultsController sections] 
+	 objectAtIndex:section-kDishesAtThisRestaurantSection];
 	if (sectionInfo == nil){
 		return 0;
 	}
@@ -126,22 +126,25 @@
 		[self.restaurantPhone setTitle:[restaurant phone] 
 							  forState:UIControlStateNormal];
 		[self.restaurantAddress setText:[restaurant addressLine1]];
-		AsyncImageView *asyncImage = [[AsyncImageView alloc] 
-									  initWithFrame:[self.restaurantImage frame]];
-		asyncImage.tag = 999;
-		if( [[restaurant photoURL] length] > 0 ){
+		if (self.restaurantImage) {
 			
-			NSString *urlString = [NSString stringWithFormat:@"%@%@&w=%d&h=%d", 
-								   NETWORKHOST, 
-								   [restaurant photoURL], 
-								   DISHDETAILIMAGECELLHEIGHT,
-								   DISHDETAILIMAGECELLHEIGHT];
-
-			NSURL *photoUrl = [NSURL URLWithString:urlString];
-			[asyncImage loadImageFromURL:photoUrl withImageView:self.restaurantImage 
-								 isThumb:NO showActivityIndicator:FALSE];
-			//[cell.contentView addSubview:asyncImage];
-			[self.restaurantHeader addSubview:asyncImage];
+			AsyncImageView *asyncImage = [[AsyncImageView alloc] 
+										  initWithFrame:[self.restaurantImage frame]];
+			asyncImage.tag = 999;
+			if( [[restaurant photoURL] length] > 0 ){
+				
+				NSString *urlString = [NSString stringWithFormat:@"%@%@&w=%d&h=%d", 
+									   NETWORKHOST, 
+									   [restaurant photoURL], 
+									   DISHDETAILIMAGECELLHEIGHT,
+									   DISHDETAILIMAGECELLHEIGHT];
+				
+				NSURL *photoUrl = [NSURL URLWithString:urlString];
+				[asyncImage loadImageFromURL:photoUrl withImageView:self.restaurantImage 
+									 isThumb:NO showActivityIndicator:FALSE];
+				//[cell.contentView addSubview:asyncImage];
+				[self.restaurantHeader addSubview:asyncImage];
+			}
 		}
 		self.restaurantHeader.selectionStyle = UITableViewCellSelectionStyleNone;
 		return self.restaurantHeader;
@@ -194,16 +197,16 @@
 
 
 -(IBAction)callRestaurant{
-
+	
 	NSString *phoneNumber = [NSString stringWithFormat:@"tel:%@", [restaurant phone]];
 	phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@"(" withString:@""];
 	phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
 	phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
 	
 	NSURL *url = [NSURL URLWithString:phoneNumber];
-
+	
 	[ [UIApplication sharedApplication] openURL:url];
-
+	
 }
 #pragma mark -
 #pragma mark Memory management

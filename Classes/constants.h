@@ -6,7 +6,7 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#define NSZombiesEnabled YES
+//#define NSZombiesEnabled YES
 
 #define MAXRESTAURANTNAMELENGTH 26
 #define DISHDETAILIMAGECELLHEIGHT 88
@@ -24,11 +24,15 @@
 #pragma mark network constants
 //#define NETWORKHOST @"http://topdish1.appspot.com"
 //#define NETWORKHOST @"http://localhost:8888"
-#define NETWORKHOST @"http://randy-0125.topdish1.appspot.com"
-//#define NETWORKHOST @"http://10.0.1.11:8888"
+#define NETWORKHOST @"http://randy-0203.topdish1.appspot.com"
+//#define NETWORKHOST @"http://10.0.1.11:8888"   //randy
+//#define NETWORKHOST @"http://10.0.1.4:8888"  //rod
+
+
+#define kFBAppId @"142175135835907"
 
 #define DISH_DETAIL_CELL_IDENTIFIER @"dishdetailimagecell"
-#define RATINGS_SORT @"posReviews"
+#define RATINGS_SORT @"calculated_rating"
 #define DISTANCE_SORT @"distance"
 #define PRICE_SORT @"price"
 

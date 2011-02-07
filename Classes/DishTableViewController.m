@@ -37,8 +37,10 @@
 @synthesize settingsDict = mSettingsDict;
 @synthesize searchHeader = mSearchHeader;
 @synthesize rltv = mrltv;
-//@synthesize entityTypeString = mEntityTypeString;
-
+@synthesize ratingTextLabel = mRatingTextLabel;
+@synthesize priceTextLabel = mPriceTextLabel;
+@synthesize distanceTextLabel = mDistanceTextLabel;
+@synthesize currentSearchDistance = mCurrentSearchDistance;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -66,7 +68,7 @@
 	[locationController.locationManager startUpdatingLocation];	
 	
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-
+	self.currentSearchDistance = 200;
 	
     // Set up the settings button
 	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] 
@@ -127,14 +129,18 @@
 		//self.fetchedResultsController = nil;
 		self.entityTypeString = @"Dish";
 		if (self.currentSearchTerm != nil) {
-			[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=200000&limit=2&q=%@",
+			[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=%d&limit=2&q=%@",
 								NETWORKHOST,self.currentLat,
 								self.currentLon, 
+								self.currentSearchDistance,
 								[self.currentSearchTerm lowercaseString]]];
 		}
 		else
-			[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=200000&limit=2", 
-								NETWORKHOST, self.currentLat, self.currentLon]];
+			[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=%d&limit=2", 
+								NETWORKHOST, 
+								self.currentLat, 
+								self.currentLon,
+								self.currentSearchDistance]];
 		
 		[self.tableView setDataSource:self];
 	}
@@ -345,6 +351,9 @@
 			[thisDish setNegReviews:[thisElement objectForKey:@"negReviews"]];
 			
 			[thisDish setDistance:[self calculateDishDistance:(id *)thisDish]];
+			float pos = [[thisElement objectForKey:@"posReviews"] intValue];
+			float neg = [[thisElement objectForKey:@"negReviews"] intValue];
+			[thisDish setCalculated_rating:[NSNumber numberWithInt:(int)(pos/(pos+neg)*100)]];
 			
 		}
 		
@@ -544,7 +553,6 @@
 	}
 	//[super tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
-
 
 -(IBAction) sortByDistance
 {

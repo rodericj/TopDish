@@ -19,6 +19,7 @@
 @synthesize selectedPrice = mSelectedPrice;
 @synthesize sorter = mSorter;
 @synthesize selectedMealTypeObject = mSelectedMealTypeObject;
+@synthesize facebook = mFacebook;
 AppModel *gAppModelInstance = nil;
 
 +(AppModel *) instance{
@@ -63,7 +64,7 @@ AppModel *gAppModelInstance = nil;
 	[parser release];
 	self.priceTags = priceTypeTags;
 	self.mealTypeTags = mealTypeTags;
-	
+	self.facebook = [[Facebook alloc] initWithAppId:kFBAppId];
 	return self;
 }
 
