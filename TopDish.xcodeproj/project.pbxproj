@@ -26,6 +26,7 @@
 		17AE812A12DA777C007B96EC /* default_user_300x300.png in Resources */ = {isa = PBXBuildFile; fileRef = 17AE812912DA777C007B96EC /* default_user_300x300.png */; };
 		17B48AE512A033C200F43202 /* RestaurantDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B48AE312A033C200F43202 /* RestaurantDetailViewController.m */; };
 		17B48AE612A033C200F43202 /* RestaurantDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B48AE412A033C200F43202 /* RestaurantDetailView.xib */; };
+		17BBAFD81301AC2400705F1A /* CommentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17BBAFD71301AC2400705F1A /* CommentsCell.xib */; };
 		17C911B212F516B6006066EA /* bestSort.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C911B112F516B6006066EA /* bestSort.png */; };
 		17C911B412F516DD006066EA /* priceSort.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C911B312F516DD006066EA /* priceSort.png */; };
 		17C911B612F516F5006066EA /* distanceSort.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C911B512F516F5006066EA /* distanceSort.png */; };
@@ -144,6 +145,7 @@
 		17B48AE212A033C200F43202 /* RestaurantDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDetailViewController.h; sourceTree = "<group>"; };
 		17B48AE312A033C200F43202 /* RestaurantDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantDetailViewController.m; sourceTree = "<group>"; };
 		17B48AE412A033C200F43202 /* RestaurantDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantDetailView.xib; sourceTree = "<group>"; };
+		17BBAFD71301AC2400705F1A /* CommentsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsCell.xib; sourceTree = "<group>"; };
 		17C911B112F516B6006066EA /* bestSort.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bestSort.png; sourceTree = "<group>"; };
 		17C911B312F516DD006066EA /* priceSort.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priceSort.png; sourceTree = "<group>"; };
 		17C911B512F516F5006066EA /* distanceSort.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = distanceSort.png; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 				17DD270A12BDBD930048C1A1 /* SystemConfiguration.framework */,
 				17DD270C12BDBD970048C1A1 /* MobileCoreServices.framework */,
 				17DD272A12BDBEC60048C1A1 /* libz.1.2.3.dylib */,
+				17BBAFD71301AC2400705F1A /* CommentsCell.xib */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -741,6 +744,7 @@
 				20FDF61E12FFD3D0006A648E /* star.png in Resources */,
 				20FDF62112FFD664006A648E /* circle.png in Resources */,
 				20FDF62312FFD6B2006A648E /* circle_noboarder.png in Resources */,
+				17BBAFD81301AC2400705F1A /* CommentsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
