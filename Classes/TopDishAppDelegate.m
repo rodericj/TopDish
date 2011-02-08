@@ -75,12 +75,12 @@
 	NSMutableArray *mealTypeTags = [NSMutableArray array];
 	for (NSString *d in responseAsArray)
 	{
-		NSDictionary *thisDictionary = [parser objectWithString:d];
-		if ([[thisDictionary objectForKey:@"type"] isEqualToString:kMealTypeString])
-			[mealTypeTags addObject:thisDictionary];
+		//NSDictionary *thisDictionary = [parser objectWithString:d];
+		if ([[d objectForKey:@"type"] isEqualToString:kMealTypeString])
+			[mealTypeTags addObject:d];
 		
-		if ([[thisDictionary objectForKey:@"type"] isEqualToString:kPriceTypeString])
-			[priceTypeTags addObject:thisDictionary];
+		if ([[d objectForKey:@"type"] isEqualToString:kPriceTypeString])
+			[priceTypeTags addObject:d];
 		
 	}
 	[parser release];

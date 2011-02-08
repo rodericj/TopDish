@@ -107,6 +107,7 @@
 		5F89F55A125C464900959D05 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F89F559125C464900959D05 /* MapKit.framework */; };
 		5F92A9A2126D4A41007D2451 /* MyCLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F92A9A1126D4A41007D2451 /* MyCLController.m */; };
 		5F92A9AB126D4B53007D2451 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F92A9AA126D4B53007D2451 /* CoreLocation.framework */; };
+		C6D730A91300A2C000122D36 /* login_background.png in Resources */ = {isa = PBXBuildFile; fileRef = C6D730A81300A2C000122D36 /* login_background.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -268,6 +269,7 @@
 		5F92A9AA126D4B53007D2451 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5FBB95F11262288E00141693 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* TopDish-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TopDish-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		C6D730A81300A2C000122D36 /* login_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_background.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -555,6 +557,7 @@
 				17C911B312F516DD006066EA /* priceSort.png */,
 				20BF661A12F7DA8D005DD037 /* submitadish_photo.png */,
 				20BF661012F7D7DB005DD037 /* yesOrno_button.png */,
+				C6D730A81300A2C000122D36 /* login_background.png */,
 				20BF660E12F7D7C8005DD037 /* add_dish_button.png */,
 				20BF65FB12F7C8E1005DD037 /* no_rest_img.jpg */,
 				20F29F0512F4F99E001641B1 /* globe-1.png */,
@@ -729,6 +732,7 @@
 				17E6829612F7D2D20010E6A9 /* FBConnect.bundle in Resources */,
 				17E6871F12FA886D0010E6A9 /* quick_filter_button.png in Resources */,
 				17E6887412FAA8970010E6A9 /* Default.png in Resources */,
+				C6D730A91300A2C000122D36 /* login_background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

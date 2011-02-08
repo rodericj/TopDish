@@ -60,6 +60,8 @@
 #define COMMENT_TEXT_TAG 2
 #define COMMENT_DIRECTION_IMAGE_TAG 0
 
+#define SIGNIN_Y_COORD -100
+
 #define kTopDishBackground [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"background_tile.png"]]
 #define kTopDishBlue [UIColor colorWithRed:0 green:.3843 blue:.5725 alpha:1]
 
