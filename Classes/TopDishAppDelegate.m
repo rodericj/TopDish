@@ -66,15 +66,18 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {	
+	//{"id":217002,"name":"Breakfast","type":"Meal Type","order":0}
 	// Use when fetching binary data
 	NSString *responseText = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
 	SBJSON *parser = [SBJSON new];
 	NSError *error = nil;
 	NSArray *responseAsArray = [parser objectWithString:responseText error:&error];	
-	NSMutableArray *priceTypeTags = [NSMutableArray array];
-	NSMutableArray *mealTypeTags = [NSMutableArray array];
-	NSMutableArray *allergenTypeTags = [NSMutableArray array];
-	NSMutableArray *lifestyleTags = [NSMutableArray array];
+	NSDictionary *defaultObject = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"0", @"None", @"None", @"0", nil]
+															  forKeys:[NSArray arrayWithObjects:@"id", @"name", @"type", @"order", nil]];
+	NSMutableArray *priceTypeTags = [NSMutableArray arrayWithObject:defaultObject];
+	NSMutableArray *mealTypeTags = [NSMutableArray arrayWithObject:defaultObject];
+	NSMutableArray *allergenTypeTags = [NSMutableArray arrayWithObject:defaultObject];
+	NSMutableArray *lifestyleTags = [NSMutableArray arrayWithObject:defaultObject];
 	for (NSDictionary *d in responseAsArray)
 	{
 		if ([[d objectForKey:@"type"] isEqualToString:kMealTypeString])

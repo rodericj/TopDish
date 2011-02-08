@@ -28,7 +28,16 @@
 	[self.priceSlider setMaximumValue:[[[AppModel instance] priceTags] count] - 1];
 	[self.priceSlider setMinimumValue:0];
 	[self.priceSlider setValue:0];
-	*pointer = 0;
+	NSLog(@"loading and the selectedmeal type is %d", [[AppModel instance] selectedMealType]);
+	int count = 0;
+
+	for (NSDictionary *d in [[AppModel instance] mealTypeTags]) {
+		if ([[d objectForKey:@"id"] intValue] == [[AppModel instance] selectedMealType]) {
+			*pointer = count;
+			continue;
+		}
+		count++;
+	}
 }
 
 - (void)viewWillAppear:(BOOL)animated {
