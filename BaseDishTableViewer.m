@@ -205,7 +205,6 @@
 							   [thisDish photoURL], 
 							   DISHDETAILIMAGECELLHEIGHT, 
 							   DISHDETAILIMAGECELLHEIGHT];
-		NSLog(@"url string for thisDish's image in BaseDishTableViewer is %@", urlString);
 		
 		NSURL *photoUrl = [NSURL URLWithString:urlString];
 		[asyncImage setOwningObject:thisDish];
