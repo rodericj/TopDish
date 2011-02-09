@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Restaurant.h"
 
-@interface AddADishViewController : UITableViewController <UIImagePickerControllerDelegate> {
+@interface AddADishViewController : UITableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
 	Restaurant *mRestaurant;
 	
 	UITableViewCell *mRestaurantCell;
@@ -27,7 +27,9 @@
 	UIImageView *mNewPicture;
 
 	UITableViewCell *mAdditionalDetailsCell;
-	UITextView		*mAdditionalDetailsTextView;
+	UITextField		*mAdditionalDetailsTextView;
+	UITextField		*mCommentTextView;
+
 	UIButton		*mSubmitButton;
 	
 	int mSelectedPriceType;
@@ -37,6 +39,9 @@
 	int *pointer;
 	
 	int mDishId;
+	
+	//We need to handle all of the outstanding requests before leaving view
+	int mOutstandingRequests;
 
 }
 
@@ -58,7 +63,8 @@
 @property (nonatomic, retain) IBOutlet UIImageView *newPicture;
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *additionalDetailsCell;
-@property (nonatomic, retain) IBOutlet UITextView *additionalDetailsTextView;
+@property (nonatomic, retain) IBOutlet UITextField *additionalDetailsTextView;
+@property (nonatomic, retain) IBOutlet UITextField *commentTextView;
 @property (nonatomic, retain) IBOutlet UIButton	*submitButton;
 
 @property (nonatomic, assign) int selectedMealType;
@@ -66,7 +72,6 @@
 @property (nonatomic, assign) int currentSelection;
 
 @property (nonatomic, assign) int dishId;
-
 
 -(IBAction)takePicture;
 -(IBAction)submitDish;

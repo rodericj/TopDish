@@ -132,13 +132,19 @@
 										  initWithFrame:[self.restaurantImage frame]];
 			asyncImage.tag = 999;
 			if( [[restaurant photoURL] length] > 0 ){
-				
-				NSString *urlString = [NSString stringWithFormat:@"%@%@&w=%d&h=%d", 
-									   NETWORKHOST, 
+				NSRange aRange = [[restaurant photoURL] rangeOfString:@"http://"];
+				NSString *prefix = @"";
+				if (aRange.location ==NSNotFound)
+					prefix = NETWORKHOST;
+				//TODO, we are not getting dish height and width
+				NSString *urlString = [NSString stringWithFormat:@"%@%@", 
+									   prefix, 
 									   [restaurant photoURL], 
 									   DISHDETAILIMAGECELLHEIGHT,
 									   DISHDETAILIMAGECELLHEIGHT];
-				
+			
+				NSLog(@"url string for restaurant's image in RestaurantDetailViewController is %@", urlString);
+
 				NSURL *photoUrl = [NSURL URLWithString:urlString];
 				[asyncImage loadImageFromURL:photoUrl withImageView:self.restaurantImage 
 									 isThumb:NO showActivityIndicator:FALSE];

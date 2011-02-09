@@ -31,6 +31,7 @@
 	
 	UITableViewCell *mSubmitButtonCell;
 	UIButton		*mSubmitButton;
+	int mOutstandingRequests;
 }
 
 @property (nonatomic, retain) Dish *thisDish;

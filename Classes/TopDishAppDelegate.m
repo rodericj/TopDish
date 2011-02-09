@@ -66,21 +66,31 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {	
+	//{"id":217002,"name":"Breakfast","type":"Meal Type","order":0}
 	// Use when fetching binary data
 	NSString *responseText = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
 	SBJSON *parser = [SBJSON new];
 	NSError *error = nil;
 	NSArray *responseAsArray = [parser objectWithString:responseText error:&error];	
-	NSMutableArray *priceTypeTags = [NSMutableArray array];
-	NSMutableArray *mealTypeTags = [NSMutableArray array];
-	for (NSString *d in responseAsArray)
+	NSDictionary *defaultObject = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"0", @"None", @"None", @"0", nil]
+															  forKeys:[NSArray arrayWithObjects:@"id", @"name", @"type", @"order", nil]];
+	NSMutableArray *priceTypeTags = [NSMutableArray arrayWithObject:defaultObject];
+	NSMutableArray *mealTypeTags = [NSMutableArray arrayWithObject:defaultObject];
+	NSMutableArray *allergenTypeTags = [NSMutableArray arrayWithObject:defaultObject];
+	NSMutableArray *lifestyleTags = [NSMutableArray arrayWithObject:defaultObject];
+	for (NSDictionary *d in responseAsArray)
 	{
-		//NSDictionary *thisDictionary = [parser objectWithString:d];
 		if ([[d objectForKey:@"type"] isEqualToString:kMealTypeString])
 			[mealTypeTags addObject:d];
 		
 		if ([[d objectForKey:@"type"] isEqualToString:kPriceTypeString])
 			[priceTypeTags addObject:d];
+		
+		if ([[d objectForKey:@"type"] isEqualToString:kAllergenTypeString])
+			[allergenTypeTags addObject:d];
+		
+		if ([[d objectForKey:@"type"] isEqualToString:kLifestyleTypeString])
+			[lifestyleTags addObject:d];
 		
 	}
 	[parser release];
@@ -88,6 +98,8 @@
 	//TODO set randy's tags
 	[[AppModel instance] setPriceTags:priceTypeTags];
 	[[AppModel instance] setMealTypeTags:mealTypeTags];
+	[[AppModel instance] setAllergenTags:allergenTypeTags];
+	[[AppModel instance] setLifestyleTags:allergenTypeTags];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

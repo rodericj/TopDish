@@ -136,13 +136,19 @@
 
 	NSLog(@"view did load for %@", [self.thisDish objName]);
 	if( [[self.thisDish photoURL] length] > 0 ){
-		
-		NSString *urlString = [NSString stringWithFormat:@"%@%@&w=%d&h=%d", 
-							   NETWORKHOST,
+		NSRange aRange = [[self.thisDish photoURL] rangeOfString:@"http://"];
+		NSString *prefix = @"";
+		if (aRange.location ==NSNotFound)
+			prefix = NETWORKHOST;
+		//TODO we are not getting height and width
+		NSString *urlString = [NSString stringWithFormat:@"%@%@", 
+							   prefix,
 							   [self.thisDish photoURL], 
 							   self.dishImageView.bounds.size.width, 
 							   self.dishImageView.bounds.size.height]; 
-		
+
+		NSLog(@"url string for thisDish's image in DishDetailViewController is %@", urlString);
+
 		NSURL *photoUrl = [NSURL URLWithString:urlString];
 		AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[self.dishImageView frame]];
 		[asyncImage setOwningObject:self.thisDish];

@@ -193,11 +193,20 @@
 	AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[imageView frame]];
 	asyncImage.tag = 999;
 	if( [[thisDish photoURL] length] > 0 ){
-		NSString *urlString = [NSString stringWithFormat:@"%@%@&w=%d&h=%d", 
-							   NETWORKHOST, 
+		NSRange aRange = [[thisDish photoURL] rangeOfString:@"http://"];
+		NSString *prefix = @"";
+		if (aRange.location ==NSNotFound)
+			prefix = NETWORKHOST;
+		//TODO we are not getting height and width
+		//NSString *urlString = [NSString stringWithFormat:@"%@%@&w=%d&h=%d", 
+
+		NSString *urlString = [NSString stringWithFormat:@"%@%@", 
+							   prefix, 
 							   [thisDish photoURL], 
 							   DISHDETAILIMAGECELLHEIGHT, 
 							   DISHDETAILIMAGECELLHEIGHT];
+		NSLog(@"url string for thisDish's image in BaseDishTableViewer is %@", urlString);
+		
 		NSURL *photoUrl = [NSURL URLWithString:urlString];
 		[asyncImage setOwningObject:thisDish];
 		[asyncImage loadImageFromURL:photoUrl 
