@@ -79,6 +79,8 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		201DFE911307376B00BB53D2 /* 06-magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = 201DFE901307376B00BB53D2 /* 06-magnify.png */; };
+		201DFE931307377400BB53D2 /* 111-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 201DFE921307377400BB53D2 /* 111-user.png */; };
 		20BF65FC12F7C8E1005DD037 /* no_rest_img.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 20BF65FB12F7C8E1005DD037 /* no_rest_img.jpg */; };
 		20BF660F12F7D7C8005DD037 /* add_dish_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 20BF660E12F7D7C8005DD037 /* add_dish_button.png */; };
 		20BF661112F7D7DB005DD037 /* yesOrno_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 20BF661012F7D7DB005DD037 /* yesOrno_button.png */; };
@@ -235,6 +237,8 @@
 		1D3623250D0F684500981E51 /* TopDishAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopDishAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* TopDish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopDish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		201DFE901307376B00BB53D2 /* 06-magnify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "06-magnify.png"; sourceTree = "<group>"; };
+		201DFE921307377400BB53D2 /* 111-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "111-user.png"; sourceTree = "<group>"; };
 		20BF65FB12F7C8E1005DD037 /* no_rest_img.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = no_rest_img.jpg; sourceTree = "<group>"; };
 		20BF660E12F7D7C8005DD037 /* add_dish_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_dish_button.png; sourceTree = "<group>"; };
 		20BF661012F7D7DB005DD037 /* yesOrno_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yesOrno_button.png; sourceTree = "<group>"; };
@@ -556,6 +560,8 @@
 		5F89F15E125951FE00959D05 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				201DFE921307377400BB53D2 /* 111-user.png */,
+				201DFE901307376B00BB53D2 /* 06-magnify.png */,
 				20FDF62212FFD6B2006A648E /* circle_noboarder.png */,
 				20FDF62012FFD664006A648E /* circle.png */,
 				20FDF61D12FFD3D0006A648E /* star.png */,
@@ -745,6 +751,8 @@
 				20FDF62112FFD664006A648E /* circle.png in Resources */,
 				20FDF62312FFD6B2006A648E /* circle_noboarder.png in Resources */,
 				17BBAFD81301AC2400705F1A /* CommentsCell.xib in Resources */,
+				201DFE911307376B00BB53D2 /* 06-magnify.png in Resources */,
+				201DFE931307377400BB53D2 /* 111-user.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
