@@ -22,7 +22,8 @@
 
 -(IBAction)cancelClicked
 {
-	[self.navigationController popViewControllerAnimated:YES];
+	
+	//[self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)dealloc

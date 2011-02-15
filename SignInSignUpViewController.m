@@ -54,6 +54,7 @@
 {
 	[self.navigationController.navigationBar.backItem setHidesBackButton:YES];
 
+
 	SignInViewController *signIn = [[SignInViewController alloc] initWithNibName:@"SignIn" bundle:nil];
 	[self.navigationController pushViewController:signIn animated:YES];
 	[signIn release];	
