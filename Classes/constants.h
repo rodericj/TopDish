@@ -72,6 +72,7 @@
 #define kPriceTypeString @"Price"
 #define kAllergenTypeString @"Allergen"
 #define kLifestyleTypeString @"Lifestyle"
+#define kCuisineTypeString @"Cuisine"
 
 #define keyforauthorizing @"apiKey"
 

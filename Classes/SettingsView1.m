@@ -78,7 +78,7 @@
     // Return the number of rows in the section.
 	switch (section) {
 		case kMealTypeSection:
-			return 1;
+			return 3;
 		case kPriceFilterSection:
 			return 2;
 			break;
@@ -120,7 +120,7 @@
 	if (indexPath.section == kPriceFilterSection && indexPath.row == 1) {
 		cell = self.priceValueCell;
 	}
-	if (indexPath.section == kMealTypeSection) {
+	if (indexPath.section == kMealTypeSection && indexPath.row == 0) {
 		//cell = self.mealTypeCell;
 		AppModel *a = [AppModel instance];
 
@@ -141,6 +141,19 @@
 		
 		//cell.detailTextLabel.text = [[AppModel instance] pr
 	}
+	
+	if (indexPath.section == kMealTypeSection && indexPath.row == 1) {		
+		cell.textLabel.text = kCuisineTypeString;
+		
+		//TODO: something will happen when click.
+	}
+	
+	if (indexPath.section == kMealTypeSection && indexPath.row == 2) {
+		cell.textLabel.text = kLifestyleTypeString;
+		
+		//TODO: something will happen when click.
+	}
+	
     // Configure the cell...
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
