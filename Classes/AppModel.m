@@ -55,14 +55,14 @@ AppModel *gAppModelInstance = nil;
 												  forKeys:keyArray];
 	NSMutableArray *priceTypeTags = [NSMutableArray arrayWithObject:d];
 	NSMutableArray *mealTypeTags = [NSMutableArray arrayWithObject:d];
-	for (NSDictionary *thisDictionary in responseAsArray)
+	for (d in responseAsArray)
 	{
-		NSLog(@"this dictionary %@", thisDictionary);
-		if ([[thisDictionary objectForKey:@"type"] isEqualToString:kMealTypeString])
-			[mealTypeTags addObject:thisDictionary];
+		NSLog(@"this dictionary %@", d);
+		if ([[d objectForKey:@"type"] isEqualToString:kMealTypeString])
+			[mealTypeTags addObject:d];
 		
-		if ([[thisDictionary objectForKey:@"type"] isEqualToString:kPriceTypeString])
-			[priceTypeTags addObject:thisDictionary];
+		if ([[d objectForKey:@"type"] isEqualToString:kPriceTypeString])
+			[priceTypeTags addObject:d];
 		
 	}
 	[parser release];

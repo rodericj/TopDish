@@ -17,6 +17,16 @@
 	self.view.backgroundColor = kTopDishBackground;
 
 }
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    //[self animateTextField: textField up: YES];
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDelegate:self];
+	[UIView setAnimationDuration:0.5];
+	[UIView setAnimationBeginsFromCurrentState:YES];
+	self.view.frame = CGRectMake(self.view.frame.origin.x, SIGNIN_Y_COORD, self.view.frame.size.width, self.view.frame.size.height);
+	[UIView commitAnimations];
+}
 -(IBAction)submitClicked
 {	
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/login?email=%@", NETWORKHOST, self.userNameTextField.text]];
