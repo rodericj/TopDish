@@ -67,6 +67,8 @@
 
 #define kPriceType	1
 #define kMealType	2
+#define kCuisineType 3
+#define kLifestyleType 4
 
 #define kAccountsTab 1
 

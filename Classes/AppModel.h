@@ -12,6 +12,7 @@
 @interface AppModel : NSObject {
 	NSMutableDictionary *mUser;
 	NSArray *mMealTypeTags;
+	NSArray *mCuisineTypeTags;
 	NSArray *mPriceTags;
 	NSArray *mAllergenTags;
 	NSArray *mLifestyleTags;
@@ -26,6 +27,7 @@
 
 @property (nonatomic, retain) NSMutableDictionary *user;
 @property (nonatomic, retain) NSArray *mealTypeTags;
+@property (nonatomic, retain) NSArray *cuisineTypeTags;
 @property (nonatomic, retain) NSArray *priceTags;
 @property (nonatomic, retain) NSArray *allergenTags;
 @property (nonatomic, retain) NSArray *lifestyleTags;

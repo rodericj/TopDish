@@ -14,6 +14,7 @@
 
 @synthesize user = mUser;
 @synthesize mealTypeTags = mMealTypeTags;
+@synthesize cuisineTypeTags = mCuisineTypeTags;
 @synthesize priceTags = mPriceTags;
 @synthesize allergenTags = mAllergenTags;
 @synthesize lifestyleTags = mLifestyleTags;

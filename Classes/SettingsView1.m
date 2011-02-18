@@ -11,6 +11,11 @@
 #import "DishOptionPickerTableViewController.h"
 #import "constants.h"
 
+#define kNumberOfDifferentTypes 4
+
+#define kAllergenTypeSection 4
+#define kLifestyleTypeSection 3
+#define kCuisineTypeSection 2
 #define kMealTypeSection 1
 #define kPriceFilterSection 0
 
@@ -71,14 +76,17 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 3;
+    return kNumberOfDifferentTypes + 1; //+ 1 for the prices
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
 	switch (section) {
+		case kAllergenTypeSection:
+		case kLifestyleTypeSection:
+		case kCuisineTypeSection:
 		case kMealTypeSection:
-			return 3;
+			return 1;
 		case kPriceFilterSection:
 			return 2;
 			break;
@@ -91,12 +99,16 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
 	switch (section) {
+		case kAllergenTypeSection:
+			return kAllergenTypeString;
+		case kLifestyleTypeSection:
+			return kLifestyleTypeString;
+		case kCuisineTypeSection:
+			return kCuisineTypeString;
 		case kMealTypeSection:
 			return kMealTypeString;
-			break;
 		case kPriceFilterSection:
 			return kPriceTypeString;
-			break;
 
 		default:
 			break;
@@ -125,6 +137,7 @@
 		AppModel *a = [AppModel instance];
 
 		cell.textLabel.text = kMealTypeString;
+		
 		if (*pointer > 0 && *pointer < [[a mealTypeTags] count]) {
 			NSLog(@"now set the meal type to %@", [[a mealTypeTags] objectAtIndex:*pointer]);
 			cell.detailTextLabel.text = [[[a mealTypeTags] objectAtIndex:*pointer] objectForKey:@"name"];
@@ -142,18 +155,23 @@
 		//cell.detailTextLabel.text = [[AppModel instance] pr
 	}
 	
-	if (indexPath.section == kMealTypeSection && indexPath.row == 1) {		
+	if (indexPath.section == kCuisineTypeSection) {		
 		cell.textLabel.text = kCuisineTypeString;
 		
 		//TODO: something will happen when click.
 	}
 	
-	if (indexPath.section == kMealTypeSection && indexPath.row == 2) {
+	if (indexPath.section == kLifestyleTypeSection) {
 		cell.textLabel.text = kLifestyleTypeString;
 		
 		//TODO: something will happen when click.
 	}
 	
+	if (indexPath.section == kAllergenTypeSection) {
+		cell.textLabel.text = kAllergenTypeString;
+		
+		//TODO: something will happen when click.
+	}
     // Configure the cell...
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
@@ -175,14 +193,31 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == kMealTypeSection) {
 		DishOptionPickerTableViewController *d = [[DishOptionPickerTableViewController alloc] init];
-		[d setOptionValues:[[AppModel instance] mealTypeTags]];
-		[d setOptionType:kMealType];
-		[d useThisIntPointer:pointer];
-		[self.navigationController pushViewController:d animated:YES];
-		[d release];
+	
+	switch (indexPath.section) {
+		case kMealTypeSection:
+			[d setOptionValues:[[AppModel instance] mealTypeTags]];
+			[d setOptionType:kMealType];
+			break;
+			
+		case kLifestyleTypeSection:
+			[d setOptionValues:[[AppModel instance] lifestyleTags]];
+			[d setOptionType:kLifestyleType];
+			break;
+			
+		case kCuisineTypeSection:
+			[d setOptionValues:[[AppModel instance] cuisineTypeTags]];
+			[d setOptionType:kCuisineType];
+			break;
+			
+		default:
+			break;
 	}
+	[d useThisIntPointer:pointer];
+	[self.navigationController pushViewController:d animated:YES];
+	[d release];
+	
 }
 
 #pragma mark -
