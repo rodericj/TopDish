@@ -14,6 +14,8 @@
 #import "SBJSON.h"
 #import "SettingsView1.h"
 #import "AppModel.h"
+#import "asyncimageview.h"
+#import "DishDetailViewController.h"
 
 #define kTopDishBlue [UIColor colorWithRed:0 green:.3843 blue:.5725 alpha:1]
 #define buttonLightBlue [UIColor colorWithRed:0 green:.73 blue:.89 alpha:1 ]
@@ -28,6 +30,9 @@
 
 @implementation DishTableViewController
 
+@synthesize tvCell = mTvCell;
+@synthesize addItemCell = mAddItemCell;
+
 @synthesize bgImage = mBgImage;
 @synthesize theSearchBar = mTheSearchBar;
 @synthesize dishRestoSelector = mDishRestoSelector;
@@ -41,16 +46,29 @@
 @synthesize priceTextLabel = mPriceTextLabel;
 @synthesize distanceTextLabel = mDistanceTextLabel;
 @synthesize currentSearchDistance = mCurrentSearchDistance;
+@synthesize restaurantList = mRestaurantList;
+@synthesize managedObjectContext = mManagedObjectContext;
+@synthesize fetchedResultsController = mFetchedResultsController;
+
+@synthesize conn = mConn;
+@synthesize responseData = mResponseData;
 
 #pragma mark -
 #pragma mark View lifecycle
 
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle {
+    if (self = [super initWithNibName:nibName bundle:nibBundle]) {
+        self.title = @"Dishes";
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
+	[super viewDidLoad];
+
 	self.view.backgroundColor = kTopDishBackground;
 	self.tableView.backgroundColor = kTopDishBackground;
-	self.entityTypeString = @"Dish";
 
-    [super viewDidLoad];
 	[self.tableView setTableHeaderView:self.searchHeader];
 	self.tableView.delegate = self;
 	
@@ -67,7 +85,7 @@
 	[locationController.locationManager startUpdatingLocation];	
 	
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	self.currentSearchDistance = 20000;
+	self.currentSearchDistance = 20000000;
 	
     // Set up the settings button
 	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] 
@@ -90,22 +108,23 @@
 
 	
 	// Set up the dish/restaurant selector
-	self.dishRestoSelector = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Dishes", 
-																   @"Restaurants", 
-																   nil]];
-	[self.dishRestoSelector setSegmentedControlStyle:UISegmentedControlStyleBar];
-	[self.dishRestoSelector setSelectedSegmentIndex:0];
-	[self.dishRestoSelector setTintColor:buttonLightBlue];
-	
-	self.navigationItem.titleView = self.dishRestoSelector;
-	
-	[self.dishRestoSelector addTarget:self 
-						 action:@selector(initiateNetworkBasedOnSegmentControl) 
-			   forControlEvents:UIControlEventValueChanged];
+	//self.dishRestoSelector = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Dishes", 
+//																   @"Restaurants", 
+//																   nil]];
+//	[self.dishRestoSelector setSegmentedControlStyle:UISegmentedControlStyleBar];
+//	[self.dishRestoSelector setSelectedSegmentIndex:0];
+//	[self.dishRestoSelector setTintColor:buttonLightBlue];
+//	
+//	self.navigationItem.titleView = self.dishRestoSelector;
+//	
+//	[self.dishRestoSelector addTarget:self 
+//						 action:@selector(initiateNetworkBasedOnSegmentControl) 
+//			   forControlEvents:UIControlEventValueChanged];
 	
 	
 	[self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tdlogo.png"]]];
-	
+	self.title = @"Dishes";
+
 }
 
 -(void) networkQuery:(NSString *)query{
@@ -116,47 +135,44 @@
 	NSLog(@"url is %@", query);
 	//Start up the networking
 	request = [NSURLRequest requestWithURL:url];
-	self.conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE];
-	
+	self.conn = [[NSURLConnection alloc] initWithRequest:request 
+												delegate:self 
+										startImmediately:TRUE];
 }
 
 -(void)initiateNetworkBasedOnSegmentControl{
 	//TODO RESTODISH SWITCH - turn off the 'settings' button for restaurants
 
-	NSLog(@"Segmentedcontrol changed");
-	if([self.dishRestoSelector selectedSegmentIndex] == 0){
-		//self.fetchedResultsController = nil;
-		self.entityTypeString = @"Dish";
-		if (self.currentSearchTerm != nil) {
-			[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=%d&limit=2&q=%@",
-								NETWORKHOST,self.currentLat,
-								self.currentLon, 
-								self.currentSearchDistance,
-								[self.currentSearchTerm lowercaseString]]];
-		}
-		else
-			[self networkQuery:[NSString stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=%d&limit=2", 
-								NETWORKHOST, 
-								self.currentLat, 
-								self.currentLon,
-								self.currentSearchDistance]];
-		
-		[self.tableView setDataSource:self];
+	NSLog(@"Segmentedcontrol changed, the fetchedResults controller is %@", 
+		  self.fetchedResultsController);
+
+	NSString *urlString; 
+	
+	if (self.currentSearchTerm != nil)
+		urlString = [NSString 
+					 stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=%d&limit=2&q=%@",
+					 NETWORKHOST,self.currentLat,
+					 self.currentLon, 
+					 self.currentSearchDistance,
+					 [self.currentSearchTerm lowercaseString]];
+	
+	else
+		urlString = [NSString 
+					 stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=%d&limit=2", 
+					 NETWORKHOST, 
+					 self.currentLat, 
+					 self.currentLon,
+					 self.currentSearchDistance];
+	
+	[self networkQuery:urlString];
+	
+	if ([self.dishRestoSelector selectedSegmentIndex] == 1) {
+		NSMutableArray *views = [NSMutableArray arrayWithArray:
+								 [self.navigationController viewControllers]];
+		[views replaceObjectAtIndex:0 withObject:self.restaurantList];
+		[self.restaurantList setReturnView:self];
+		[self.navigationController setViewControllers:views animated:NO];
 	}
-	else if([self.dishRestoSelector selectedSegmentIndex] == 1){
-		NSLog(@"rltv is %@", self.rltv);
-		if(!self.rltv){
-			self.rltv = [[RestaurantListTableViewDelegate alloc] init];
-			[self.rltv setEntityTypeString:@"Restaurant"];
-			[self.rltv setManagedObjectContext:self.managedObjectContext];
-		}
-		
-		[self.tableView setDataSource:self.rltv];
-	}
-	else {
-		NSLog(@"Wait...what did we just switch to?");
-	}
-	[self.tableView reloadData];
 }
 
 // Implement viewWillAppear: to do additional setup before the view is presented.
@@ -166,16 +182,24 @@
 	if ([self.dishRestoSelector selectedSegmentIndex] == 0) {
 		[self updateFetch];
 	}
+	else {
+		[self.dishRestoSelector setSelectedSegmentIndex:0];
+	}
+
 	//[self updateFetch];
-	NSLog(@"filter on these %d, %d", [[AppModel instance] selectedMealType], [[AppModel instance] selectedPrice]);
+	NSLog(@"filter on these %d, %d", [[AppModel instance] selectedMealType], 
+		  [[AppModel instance] selectedPrice]);
 }
 
-
+-(void)viewDidAppear:(BOOL)animated {
+	if ([self.dishRestoSelector selectedSegmentIndex] == 1) {
+		[self.dishRestoSelector setSelectedSegmentIndex:0];
+	}
+}
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     //NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	//NSLog(@"here we are using the managed Object %@", managedObject);
 }
-
 #pragma mark -
 #pragma mark flip the view 
 - (void) flipToMap {
@@ -191,18 +215,269 @@
 	[map release];
 	//[self presentModalViewController:map animated:TRUE];
 }
+#pragma mark -
+#pragma mark network connection stuff
+
+- (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
+	NSLog(@"didFinishLoading BaseDishTableViewController start");
+	NSString *responseText = [[NSString alloc] initWithData:self.responseData 
+												   encoding:NSASCIIStringEncoding];
+	
+	
+	NSString *responseTextStripped = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
+	[self processIncomingNetworkText:responseTextStripped];
+	self.conn = nil;
+	[responseText release];
+	NSLog(@"didFinishLoading BaseDishTableViewController end");
+	
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	
+#ifndef AirplaneMode
+	NSLog(@"connection did fail with error %@", error);
+	UIAlertView *alert;
+	alert = [[UIAlertView alloc] initWithTitle:@"NetworkError" 
+									   message:@"There was a network issue. Try again later" 
+									  delegate:self 
+							 cancelButtonTitle:@"Ok" 
+							 otherButtonTitles:nil]; 
+	[alert show];
+	[alert release];
+#else	
+	//Airplane mode must set _responseText
+	[self processIncomingNetworkText:DishSearchResponseText];
+#endif
+	self.conn = nil;
+	self.responseData = nil;
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
+	if(self.responseData == nil){
+		self.responseData = [[NSMutableData alloc] initWithData:data];
+	}
+	else{
+		if (data) {
+			[self.responseData appendData:data];
+		}
+	}
+}
+
 
 #pragma mark -
 #pragma mark Util
+-(void)processIncomingDishesWithJsonArray:(NSArray *)dishesArray {
+	//we have a list of dishes, for each of them, query the datastore
+	//for each dish in the list
+	for (NSDictionary *dishDict in dishesArray) {
+		//   query the datastore
+		NSFetchRequest *dishFetchRequest = [[NSFetchRequest alloc] init];
+		NSEntityDescription *whichType = [NSEntityDescription entityForName:@"Dish" 
+													   inManagedObjectContext:self.managedObjectContext];
+		NSPredicate *dishFilter = [NSPredicate predicateWithFormat:@"(dish_id == %@)", 
+								   [dishDict objectForKey:@"id"]];
+		
+		[dishFetchRequest setEntity:whichType];
+		 
+		[dishFetchRequest setPredicate:dishFilter];
+		NSError *error;
+		NSArray *dishesMatching = [self.managedObjectContext
+										 executeFetchRequest:dishFetchRequest error:&error];
+		[dishFetchRequest release];
+	
+		Dish *dish;
+		//   if it exists, update
+		if ([dishesMatching count] == 1) {
+			dish = [dishesMatching objectAtIndex:0];
+		}		
+		//   else 
+		else if ([dishesMatching count] == 0) {
+			//       add it
+			dish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" 
+																	inManagedObjectContext:self.managedObjectContext];
+		}
+		else {
+			NSAssert(TRUE, @"There were %d dishes matching id %d", 
+				   [dishesMatching count],
+				   [dishDict objectForKey:@"id"]);
+		}
+		[dish setDish_id:[dishDict objectForKey:@"id"]];
+		
+		[dish setObjName:[NSString stringWithFormat:@"(1) %@", [dishDict objectForKey:@"name"]]];
+		[dish setDish_description:[dishDict objectForKey:@"description"]];
+		[dish setLatitude:[dishDict objectForKey:@"latitude"]];
+		[dish setLongitude:[dishDict objectForKey:@"longitude"]];
+		[dish setNegReviews:[dishDict objectForKey:@"negReviews"]];
+		[dish setPhotoURL:[dishDict objectForKey:@"photoURL"]];
+		[dish setPosReviews:[dishDict objectForKey:@"posReviews"]];
+		
+		NSLog(@"the dish we just created %@", dish);
+		
+		NSArray *tagsArray = [dishDict objectForKey:@"tags"];
+		for (NSDictionary *tag in tagsArray){
+			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kMealTypeString] )
+				[dish setMealType:[tag objectForKey:@"id"]];
+			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kPriceTypeString] )						
+				[dish setPrice:[tag objectForKey:@"id"]];
+		}	
+		
+		//query it's restaurant
+		NSFetchRequest *restoFetchRequest = [[NSFetchRequest alloc] init];
+		whichType = [NSEntityDescription entityForName:@"Restaurant" 
+								inManagedObjectContext:self.managedObjectContext];
+		NSPredicate *restaurantFilter = [NSPredicate predicateWithFormat:@"(restaurant_id == %@)", 
+								   [dishDict objectForKey:@"restaurantID"]];
+		
+		[restoFetchRequest setEntity:whichType];
+		
+		[restoFetchRequest setPredicate:restaurantFilter];
+		NSArray *restosMatching = [self.managedObjectContext
+								   executeFetchRequest:restoFetchRequest error:&error];
+		[restoFetchRequest release];
+		
+		Restaurant *restaurant;
+		//   if it exists, update
+		if ([restosMatching count] == 1) {
+			restaurant = [restosMatching objectAtIndex:0];
+		}		
+		//   else 
+		else if ([restosMatching count] == 0) {
+			restaurant = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" 
+														 inManagedObjectContext:self.managedObjectContext];		
+		}
+		else {
+			NSAssert(TRUE, @"There were %d restaurants matching id %d", 
+					 [restosMatching count],
+					 [dishDict objectForKey:@"restaurantID"]);
+		}
+		NSLog(@"this is the restaurant for this dish %@", 
+			  [dishDict objectForKey:@"restaurantName"]);
+		[restaurant setRestaurant_id:[dishDict objectForKey:@"restaurantID"]];
+		[restaurant setObjName:[NSString stringWithFormat:@"(2) %@", [dishDict objectForKey:@"restaurantName"]]];
+		[dish setRestaurant:restaurant];
+		NSLog(@"restaurant we just created is %@", restaurant);
+	}
+	NSError *error;
+	if(![self.managedObjectContext save:&error]){
+		NSLog(@"there was a core data error when saving");
+		NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
+	}
+	[self updateFetch];
+
+}
+
+-(void)processIncomingRestaurantsWithJsonArray:(NSArray *)restoArray {
+	//we have a list of dishes, for each of them, query the datastore
+	//for each dish in the list
+	for (NSDictionary *restoDict in restoArray) {
+		NSLog(@"we've got a restaurant array, lets make objects %@", restoDict);
+		//   query the datastore
+		NSFetchRequest *restoFetchRequest = [[NSFetchRequest alloc] init];
+		NSEntityDescription *whichType = [NSEntityDescription entityForName:@"Restaurant" 
+													 inManagedObjectContext:self.managedObjectContext];
+		NSPredicate *restoFilter = [NSPredicate predicateWithFormat:@"(restaurant_id == %@)", 
+								   [restoDict objectForKey:@"id"]];
+		
+		[restoFetchRequest setEntity:whichType];
+		
+		[restoFetchRequest setPredicate:restoFilter];
+		NSError *error;
+		NSArray *restoMatching = [self.managedObjectContext
+								   executeFetchRequest:restoFetchRequest error:&error];
+		[restoFetchRequest release];
+		
+		Restaurant *restaurant;
+		//   if it exists, update
+		if ([restoMatching count] == 1) {
+			restaurant = [restoMatching objectAtIndex:0];
+		}		
+		//   else 
+		else if ([restoMatching count] == 0) {
+			//       add it
+			restaurant = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" 
+														 inManagedObjectContext:self.managedObjectContext];
+		}
+		else {
+			NSAssert(TRUE, @"There were %d restaurants matching id %d", 
+					 [restoMatching count],
+					 [restoDict objectForKey:@"id"]);
+		}
+		//Do all of the restaurant data setting
+		
+		NSLog(@"setting the restaurant id %@", restoDict);
+		[restaurant setRestaurant_id:[restoDict objectForKey:@"id"]];
+		[restaurant setObjName:[NSString stringWithFormat:@"(1) %@", [restoDict objectForKey:@"name"]]];
+		[restaurant setLatitude:[restoDict objectForKey:@"latitude"]];
+		[restaurant setLongitude:[restoDict objectForKey:@"longitude"]];
+		[restaurant setPhone:[restoDict objectForKey:@"phone"]];
+		[restaurant setPhotoURL:[restoDict objectForKey:@"photoURL"]];
+		[restaurant setAddressLine1:[restoDict objectForKey:@"addressLine1"]];
+		[restaurant setAddressLine2:[restoDict objectForKey:@"addressLine2"]];
+		[restaurant setCity:[restoDict objectForKey:@"city"]];
+		[restaurant setState:[restoDict objectForKey:@"state"]];
+		
+		for (NSDictionary *restoDishesDict in [restoDict objectForKey:@"dishes"]) {
+			//query it's Dishes
+			NSFetchRequest *restoFetchRequest = [[NSFetchRequest alloc] init];
+			whichType = [NSEntityDescription entityForName:@"Dish" 
+									inManagedObjectContext:self.managedObjectContext];
+			NSPredicate *restosDishesFilter = [NSPredicate predicateWithFormat:@"(dish_id == %@)", 
+											 [restoDishesDict objectForKey:@"id"]];
+			
+			[restoFetchRequest setEntity:whichType];
+			
+			[restoFetchRequest setPredicate:restosDishesFilter];
+			NSArray *restosDishesMatching = [self.managedObjectContext
+									   executeFetchRequest:restoFetchRequest error:&error];
+			[restoFetchRequest release];
+			
+			Dish *dish;
+			//   if it exists, update
+			if ([restosDishesMatching count] == 1) {
+				dish = [restosDishesMatching objectAtIndex:0];
+			}		
+			//   else 
+			else if ([restosDishesMatching count] == 0) {
+				dish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" 
+																		 inManagedObjectContext:self.managedObjectContext];		
+			}
+			else {
+				NSAssert(TRUE, @"There were %d dishes matching id %d", 
+						 [restosDishesMatching count],
+						 [restoDishesDict objectForKey:@"id"]);
+			}
+			NSLog(@"the dish here is %@", restoDishesDict);
+			[dish setDish_description:[restoDishesDict objectForKey:@"description"]];
+			[dish setDish_id:[restoDishesDict objectForKey:@"id"]];
+			[dish setLatitude:[restoDishesDict objectForKey:@"latitude"]];
+			[dish setLongitude:[restoDishesDict objectForKey:@"longitude"]];
+			[dish setObjName:[NSString stringWithFormat:@"(2) %@", [restoDishesDict objectForKey:@"name"]]];
+			[dish setNegReviews:[restoDishesDict objectForKey:@"negReviews"]];
+			[dish setPhotoURL:[restoDishesDict objectForKey:@"photoURL"]];
+			[dish setPosReviews:[restoDishesDict objectForKey:@"posReviews"]];
+			[dish setRestaurant:restaurant];
+		}
+	}
+	NSError *error;
+	if(![self.managedObjectContext save:&error]){
+		NSLog(@"there was a core data error when saving");
+		NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
+	}
+	//[self.tableView reloadData];
+}
+
+
 -(void)processIncomingNetworkText:(NSString *)responseText{
 	SBJSON *parser = [SBJSON new];
 	NSError *error = nil;
 	NSArray *responseAsArray = [parser objectWithString:responseText error:&error];	
 	[parser release];
-	
+	NSLog(@"responseAsArray from DishTableViewController = %@", responseAsArray);
 	if(error != nil){
 		NSLog(@"there was an error when jsoning");
-		NSLog(@"%@", error);
+		NSLog(@"jsoning error %@", error);
+		NSLog(@"the offensive json %@", responseText);
 	}
 	
 	if(responseAsArray == nil){
@@ -210,179 +485,25 @@
 		return;
 	}
 	
-	//If we are showing restaurants
-	if([self.dishRestoSelector selectedSegmentIndex] == 0){
-		
-		//TODO remove blocks for backwards compatibility beyond iOS 4.2(?)
-		//Sort the inputted array
-		NSArray *sortedDishesFromApi = [responseAsArray sortedArrayUsingComparator: ^(id obj1, id obj2) {
-			
-			if ([[obj1 objectForKey:@"id"] intValue] > [[obj2 objectForKey:@"id"] intValue]) {
-				return (NSComparisonResult)NSOrderedDescending;
-			}
-			
-			if ([[obj1 objectForKey:@"id"] intValue] < [[obj2 objectForKey:@"id"] intValue]) {
-				return (NSComparisonResult)NSOrderedAscending;
-			}
-			return (NSComparisonResult)NSOrderedSame;
-		}];   
-		
-		NSArray *dishIds = [self getArrayOfIdsWithArray:responseAsArray withKey:@"id"];
-		NSArray *restaurantIds = [self getArrayOfIdsWithArray:responseAsArray withKey:@"restaurantID"];
-		
-		//Fetch the dishes
-		NSFetchRequest *dishFetchRequest = [[NSFetchRequest alloc] init];
-		[dishFetchRequest setEntity:
-		 [NSEntityDescription entityForName:@"Dish" inManagedObjectContext:self.managedObjectContext]];
-		[dishFetchRequest setPredicate: [NSPredicate predicateWithFormat: @"(dish_id IN %@)", dishIds]];
-		
-		// make sure the results are sorted as well
-		[dishFetchRequest setSortDescriptors: [NSArray arrayWithObject:
-											   [NSSortDescriptor 
-												sortDescriptorWithKey:@"dish_id" 																			
-												ascending:YES]]];
-		NSError *error;
-		NSArray *dishesMatchingId = [self.managedObjectContext
-									 executeFetchRequest:dishFetchRequest error:&error];
-		
-		[dishFetchRequest release];
-		
-		NSFetchRequest *restaurantFetchRequest = [[NSFetchRequest alloc] init];
-		[restaurantFetchRequest setEntity:
-		 [NSEntityDescription entityForName:@"Restaurant" 
-					 inManagedObjectContext:self.managedObjectContext]];
-		[restaurantFetchRequest setPredicate:[NSPredicate 
-											  predicateWithFormat:@"(restaurant_id IN %@)", 
-											  restaurantIds]];
-		
-		[restaurantFetchRequest setSortDescriptors:[NSArray arrayWithObject:
-													[NSSortDescriptor 
-													 sortDescriptorWithKey:@"restaurant_id"
-													 ascending:YES]]];
-		
-		NSArray *restaurantsMatchingId = [self.managedObjectContext executeFetchRequest:restaurantFetchRequest error:&error];
-		
-		[restaurantFetchRequest release];
-		
-		int existingDishCounter = 0;
-		int existingRestoCounter = 0;
-		for (int incomingCounter = 0; incomingCounter < [sortedDishesFromApi count]; incomingCounter++){
-			NSDictionary *newElement = [sortedDishesFromApi objectAtIndex:incomingCounter];
-			Dish *thisDish; 
-			Restaurant *thisRestaurant; 
-			if (existingDishCounter >= [dishesMatchingId count]){
-				thisDish = nil;
-			}
-			else{
-				thisDish = [dishesMatchingId objectAtIndex:existingDishCounter];
-			}			
-			NSDictionary *thisElement = [sortedDishesFromApi objectAtIndex:incomingCounter];
-
-			//if the element we are looking at is not the current existing dish then we need to create a new one
-			if([[newElement objectForKey:@"id"] intValue] != [[thisDish dish_id] intValue]){
-				//We've never seen this dish, so create it
-				thisDish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" 
-																	   inManagedObjectContext:self.managedObjectContext];
-				
-				
-				if (existingRestoCounter >= [restaurantsMatchingId count]){
-					thisRestaurant = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" 
-																				 inManagedObjectContext:self.managedObjectContext];
-					NSLog(@"adding %@", [thisElement objectForKey:@"restaurantID"]);
-					NSNumber *restaurant_id = [thisElement objectForKey:@"restaurantID"];
-					
-					[thisRestaurant setRestaurant_id:restaurant_id];
-					[thisRestaurant setObjName:[thisElement objectForKey:@"restaurantName"]];
-				}
-				else{
-					thisRestaurant = [restaurantsMatchingId objectAtIndex:existingRestoCounter];
-					
-					BOOL foundRestaurantInCoreDataForThisDish = FALSE;
-					//Then from the object determine if this restaurant is in the restaurantsMatchingId array
-					for (int i = existingRestoCounter; i < [restaurantsMatchingId count]; i++) {
-						NSNumber *restaurantID = [restaurantsMatchingId objectAtIndex:i];
-						if (restaurantID == [[thisDish restaurant] restaurant_id]) {
-							//set thisDish's restaurant to restaurantID
-							//set flag saying we've set the restaurant
-							foundRestaurantInCoreDataForThisDish = YES;
-						}
-					}
-					if (!foundRestaurantInCoreDataForThisDish) {
-						//create a new restaurant with this id and [thisElement objectForKey:@"restaurantName"]
-						thisRestaurant = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" 
-																					 inManagedObjectContext:self.managedObjectContext];
-						NSLog(@"adding %@", [thisElement objectForKey:@"restaurantID"]);
-						NSNumber *restaurant_id = [thisElement objectForKey:@"restaurantID"];
-						
-						[thisRestaurant setRestaurant_id:restaurant_id];
-						[thisRestaurant setObjName:[thisElement objectForKey:@"restaurantName"]];
-					}
-				}
-				
-				NSArray *tagsArray = [thisElement objectForKey:@"tags"];
-				for (NSDictionary *tag in tagsArray){
-					if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kMealTypeString] )
-						[thisDish setMealType:[tag objectForKey:@"id"]];
-					if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kPriceTypeString] )						
-						[thisDish setPrice:[tag objectForKey:@"id"]];
-				}
-				
-				//These will only change when it is a new dish
-				[thisDish setRestaurant:thisRestaurant];
-				[thisDish setLatitude:[thisElement objectForKey:@"latitude"]];
-				[thisDish setLongitude:[thisElement objectForKey:@"longitude"]];
-				[thisDish setDish_id:[thisElement objectForKey:@"id"]];
-				[thisDish setObjName:[thisElement objectForKey:@"name"]];
-				
-				//[thisDish setPrice:[NSNumber numberWithInt:(incomingCounter%4)+1]];
-
-			}
-			else{
-				existingDishCounter++;
-			}
-
-			//These will most likely change nearly every time, so we do this fo
-			//both new and existing dishes
-			[thisDish setDish_description:[thisElement objectForKey:@"description"]];
-			[thisDish setPhotoURL:[thisElement objectForKey:@"photoURL"]];
-			
-			[thisDish setPosReviews:[thisElement objectForKey:@"posReviews"]];
-			[thisDish setNegReviews:[thisElement objectForKey:@"negReviews"]];
-			
-			[thisDish setDistance:[self calculateDishDistance:(id *)thisDish]];
-			float pos = [[thisElement objectForKey:@"posReviews"] intValue];
-			float neg = [[thisElement objectForKey:@"negReviews"] intValue];
-			[thisDish setCalculated_rating:[NSNumber numberWithInt:(int)(pos/(pos+neg)*100)]];
-			
-		}
-		
+	if ([[responseAsArray objectAtIndex:0] objectForKey:@"reviews"]) {
+		NSLog(@"we have a dish");
+		[self processIncomingDishesWithJsonArray:responseAsArray];
 	}
-	else if([self.dishRestoSelector selectedSegmentIndex] == 1){
-		
-		for (int i =0; i < [responseAsArray count]; i++){
-			//Restaurant *thisResto = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" inManagedObjectContext:self.managedObjectContext];
-			NSDictionary *thisElement = [responseAsArray objectAtIndex:i];
-			NSLog(@"elemented at id: %@\nresto name: %@", [thisElement objectForKey:@"id"], [thisElement objectForKey:@"restaurantName"]);
-			//[thisDish setDish_id:[thisElement objectForKey:@"id"]];
-			//			[thisDish setDish_name:[thisElement objectForKey:@"name"]];
-		}
-		
+	else if ([[responseAsArray objectAtIndex:0] objectForKey:@"neighborhood"]) {
+		NSLog(@"we have a restaurant");
+		[self processIncomingRestaurantsWithJsonArray:responseAsArray];
 	}
-	
-	//TODO save all of the dishes or restaurants created here
+	else {
+		NSLog(@"I don't know what this is %@", [responseAsArray objectAtIndex:0]);
+		NSAssert(FALSE, @"This doesn't seem to be a dish or a restaurant");
+	}
+
 	if(![self.managedObjectContext save:&error]){
-		NSLog(@"there was an error when saving");
+		NSLog(@"there was a core data error when saving");
 		NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
 	}
 	
-	//TODO again, this fetch happend and I don't know why
-	//NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish"  
-//											  inManagedObjectContext:self.managedObjectContext];
-//	
-//	[fetchRequest setEntity:entity];
-//	
-//	[fetchRequest release];	
+	[self updateFetch];
 	self.responseData = nil;
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
@@ -457,9 +578,8 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	
     // Edit the entity name as appropriate.
-	NSLog(@"entity type string %@", self.entityTypeString);
 
-    NSEntityDescription *entity = [NSEntityDescription entityForName:self.entityTypeString 
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish" 
 											  inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
@@ -541,17 +661,173 @@
 	//self.fetchedResultsController = nil;
 
 	if([self.dishRestoSelector selectedSegmentIndex] == 0){
-		self.entityTypeString = @"Dish";
 		selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
 		[self pushDishViewController:selectedObject];
 	}
-	else {
-		self.entityTypeString = @"Restaurant";
-		selectedObject = [[self.rltv fetchedResultsController] objectAtIndexPath:indexPath];
-		[self pushRestaurantViewController:selectedObject];
-	}
+	//else {
+//		selectedObject = [[self.rltv fetchedResultsController] objectAtIndexPath:indexPath];
+//		[self pushRestaurantViewController:selectedObject];
+//	}
 	//[super tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
+
+-(void) pushDishViewController:(ObjectWithImage *) selectedObject{
+	NSLog(@"DishName from DishTableViewController %@", [selectedObject objName]);
+	
+	DishDetailViewController *detailViewController = [[DishDetailViewController alloc] initWithNibName:@"DishDetailViewController" bundle:nil];
+	[detailViewController setThisDish:(Dish*)selectedObject];
+	
+	//[detailViewController setDish:(Dish*)selectedObject];
+	[detailViewController setManagedObjectContext:self.managedObjectContext];
+	
+	[self.navigationController pushViewController:detailViewController animated:YES];
+	[detailViewController setTitle:[selectedObject objName]];
+	[detailViewController release];
+	
+}
+
+
+#pragma mark -
+#pragma mark table view
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	UITableViewCell *c = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+	return c.bounds.size.height;
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+	if (sectionInfo == nil){
+		return 0;
+	}
+	return [sectionInfo numberOfObjects];
+}
+
+
+-(UITableViewCell *)tableView:(UITableView *)tableView dishCellAtIndexPath:(NSIndexPath *)indexPath {
+	//Return the Descriptor cell for adding a new dish
+	if (indexPath.row == [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]] numberOfObjects])
+		return self.addItemCell;
+	
+    static NSString *CellIdentifier = @"DishCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        [[NSBundle mainBundle] loadNibNamed:@"DishTableViewCell" owner:self options:nil];
+		cell = self.tvCell;
+	}
+	
+	//Query the results controller
+	Dish *thisDish = [[self fetchedResultsController] objectAtIndexPath:indexPath];	
+	//Build the UIElements
+    UILabel *dishName;
+	dishName = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_DISH_NAME_TAG];
+	dishName.text = thisDish.objName;
+	
+	UILabel *resto;
+	resto = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_RESTAURANT_NAME_TAG];
+	resto.text = @"Resto Name";
+	resto.text = [[thisDish restaurant] objName];
+	
+	UILabel *mealType;
+	mealType = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_MEALTYPE_TAG];
+	mealType.text = @"$$$";
+	
+	//TODO Ok this is a fail, I need to loop through tags
+	//to find the price and mealtype
+	for (NSDictionary *d in [[AppModel instance] mealTypeTags]) {		
+		if ([[d objectForKey:@"id"] intValue]== [[thisDish mealType] intValue]) {
+			mealType.text = [NSString stringWithFormat:@"%@", [d objectForKey:@"name"]];
+			continue;
+		}
+	}
+	
+	UILabel *distance;
+	distance = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_DIST_TAG];
+	if ([[[thisDish distance] stringValue] length] > 5) {
+		distance.text = [[[thisDish distance] stringValue] substringToIndex:5];
+	}
+	else {
+		distance.text = [[thisDish distance] stringValue];
+	}
+	
+	UILabel *percentage = (UILabel *)[cell viewWithTag:PERCENTAGE_TAG];
+	percentage.text = [NSString stringWithFormat:@"%@%@", [thisDish calculated_rating], @"%"]; 
+	
+	UILabel *upVotes;
+	upVotes = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_UPVOTES_TAG];
+	upVotes.text = [NSString stringWithFormat:@"+%@", 
+					[thisDish posReviews]];
+	
+	UILabel *downVotes;
+	downVotes = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_DOWNVOTES_TAG];
+	downVotes.text = [NSString stringWithFormat:@"-%@", 
+					  [thisDish negReviews]];
+	
+	UILabel *priceNumber;
+	priceNumber = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_COST_TAG];
+	
+	//TODO Ok this is a fail, I need to loop through tags
+	//to find the price and mealtype
+	for (NSDictionary *d in [[AppModel instance] priceTags]) {
+		if ([[d objectForKey:@"id"] intValue]== [[thisDish price] intValue]) {
+			priceNumber.text = 	[d objectForKey:@"name"];
+			continue;
+		}
+	}
+	
+	UIImageView *imageView = (UIImageView *)[cell viewWithTag:DISHTABLEVIEW_IMAGE_TAG];
+	
+	AsyncImageView *asyncImage = [[[AsyncImageView alloc] initWithFrame:[imageView frame]] autorelease];
+	asyncImage.tag = 999;
+	if ([thisDish imageData]) {
+		NSLog(@"we've got this image, no need to load it");
+		//set the image with what we've got
+		imageView.image = [UIImage imageWithData:[thisDish imageData]];
+	}
+	else{
+		//NSLog(@"don't have this image, loading it %@", [thisDish photoURL]);
+		if( [[thisDish photoURL] length] > 0 ){
+			NSRange aRange = [[thisDish photoURL] rangeOfString:@"http://"];
+			NSString *prefix = @"";
+			if (aRange.location ==NSNotFound)
+				prefix = NETWORKHOST;
+			//TODO we are not getting height and width
+			//NSString *urlString = [NSString stringWithFormat:@"%@%@&w=%d&h=%d", 
+			
+			NSString *urlString = [NSString stringWithFormat:@"%@%@", 
+								   prefix, 
+								   [thisDish photoURL], 
+								   DISHDETAILIMAGECELLHEIGHT, 
+								   DISHDETAILIMAGECELLHEIGHT];
+			
+			NSURL *photoUrl = [NSURL URLWithString:urlString];
+			[asyncImage setOwningObject:thisDish];
+			[asyncImage loadImageFromURL:photoUrl 
+						   withImageView:imageView 
+								 isThumb:YES 
+				   showActivityIndicator:NO];
+			[cell.contentView addSubview:asyncImage];
+		}
+	}
+    // Configure the cell.
+	// [self configureCell:cell atIndexPath:indexPath];
+	//    }
+	[cell setOpaque:FALSE];
+	
+    return cell;
+}
+
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return [self tableView:tableView dishCellAtIndexPath:indexPath];
+	
+}
+
+#pragma mark -
 
 -(IBAction) sortByDistance
 {
@@ -651,6 +927,7 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
+			//I'm taking this out. It was an empty function call anyway
             [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
             
@@ -665,6 +942,70 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView endUpdates];
 }
+
+#pragma mark -
+#pragma mark Fetched results controller
+
+- (NSFetchedResultsController *)fetchedResultsController {
+    if (mFetchedResultsController != nil) {
+        return mFetchedResultsController;
+    }
+    
+    /*
+     Set up the fetched results controller.
+	 */
+    // Create the fetch request for the entity.
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+	
+   // [self decorateFetchRequest:fetchRequest];
+	
+    // Set the batch size to a suitable number.
+    [fetchRequest setFetchBatchSize:20];
+    
+    // Edit the sort key as appropriate.
+	
+	// taken out so we can show the restaurant table results
+    //NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"posReviews" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"objName" ascending:NO];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    // Edit the section name key path and cache name if appropriate.
+    // nil for section name key path means "no sections".
+    //NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] 
+															 initWithFetchRequest:fetchRequest 
+															 managedObjectContext:self.managedObjectContext 
+															 sectionNameKeyPath:nil cacheName:nil];
+    aFetchedResultsController.delegate = self;
+    self.fetchedResultsController = aFetchedResultsController;
+    
+    [aFetchedResultsController release];
+    [fetchRequest release];
+    [sortDescriptor release];
+    [sortDescriptors release];
+    
+    NSError *error = nil;
+    if (![mFetchedResultsController performFetch:&error]) {
+        /*
+         Replace this implementation with code to handle the error appropriately.
+         //TODO remove auto generated abort
+         abort() causes the application to generate a crash log and terminate. 
+		 You should not use this function in a shipping application, although
+		 it may be useful during development. If it is not possible to recover
+		 from the error, display an alert panel that instructs the user to quit 
+		 the application by pressing the Home button.
+         */
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    return mFetchedResultsController;
+}  
 
 #pragma mark -
 #pragma mark Search delegate functions
@@ -689,28 +1030,17 @@
 	[self updateFetch];
 }
 
-#pragma mark -
-#pragma mark Memory management
-
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Relinquish ownership any cached data, images, etc that aren't in use.
-}
-
-
-- (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
-}
-
-
 - (void)dealloc {
-    //self.mFetchedResultsController = nil;
+	[super dealloc];
+
     self.managedObjectContext = nil;
 	self.settingsDict = nil;
-    [super dealloc];
+	self.addItemCell = nil;
+	
+	self.managedObjectContext = nil;
+	self.fetchedResultsController = nil;
+	self.responseData = nil;
+	self.conn = nil;
 }
 
 

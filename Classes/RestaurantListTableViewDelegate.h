@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseDishTableViewer.h"
 
-@interface RestaurantListTableViewDelegate : UIViewController <UITableViewDelegate> {
-	NSString					*mEntityTypeString;
+@interface RestaurantListTableViewDelegate : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate> {
 
 	UITableViewCell				*tvCell;
 	UINavigationController		*mNavigationController;
@@ -19,7 +17,6 @@
     NSManagedObjectContext *managedObjectContext_;
 	
 }
-@property (nonatomic, retain) NSString *entityTypeString;
 @property (nonatomic, retain) UINavigationController *topNavigationController;
 @property (nonatomic, assign) IBOutlet UITableViewCell *tvCell;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;

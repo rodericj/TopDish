@@ -26,6 +26,7 @@
 @synthesize restaurantPhone = mRestaurantPhone;
 @synthesize restaurantImage = mRestaurantImage;
 @synthesize mapView = mMapView;
+
 #pragma mark -
 #pragma mark networking
 
@@ -40,7 +41,7 @@
 	
 	if(error != nil){
 		NSLog(@"there was an error when jsoning");
-		NSLog(@"%@", error);
+		NSLog(@"json error %@", error);
 		NSLog(@"the text %@", responseText);
 	}
 	NSLog(@"the dict is %@", resp);
@@ -63,7 +64,7 @@
 	NSLog(@"url is %@", query);
 	//Start up the networking
 	request = [NSURLRequest requestWithURL:url];
-	self.conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE]; 
+	[[[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE] autorelease]; 
 	
 }
 
@@ -79,7 +80,6 @@
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
-	self.entityTypeString = @"Dish";
     [super viewDidLoad];
 	[self networkQuery:[NSString stringWithFormat:@"%@/api/restaurantDetail?id[]=%@", NETWORKHOST, [restaurant restaurant_id]]];
 	self.view.backgroundColor = kTopDishBackground;

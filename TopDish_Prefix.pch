@@ -14,5 +14,6 @@
     #import <UIKit/UIKit.h>
     #import <CoreData/CoreData.h>
 	#import <CoreLocation/CoreLocation.h>
+	#import "NSArray+PerformSelector.h"
 
 #endif

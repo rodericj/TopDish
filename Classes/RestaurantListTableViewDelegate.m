@@ -16,7 +16,6 @@
 @synthesize tvCell;
 @synthesize fetchedResultsController=mFetchedResultsController;
 @synthesize managedObjectContext=managedObjectContext_;
-@synthesize entityTypeString = mEntityTypeString;
 @synthesize topNavigationController = mNavigationController;
 #pragma mark -
 #pragma mark Table view data source
@@ -29,17 +28,17 @@
 	if (sectionInfo == nil){
 		return 0;
 	}
-	NSLog(@"number of rows %d", [sectionInfo numberOfObjects]);
-
+	NSLog(@"there are this many rows in the restaurant view %d", [sectionInfo numberOfObjects]);
 	return [sectionInfo numberOfObjects];
 }
+
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"get a cell from the resto list view %@", indexPath);
     static NSString *CellIdentifier = @"RestaurantCell";
     
 	Restaurant *thisRestaurant = [[self fetchedResultsController] objectAtIndexPath:indexPath];	
-	NSLog(@"this restaurant is %@", thisRestaurant);
+	NSLog(@"this restaurant is %@, %d, %@", [thisRestaurant objName], [thisRestaurant restaurant_id], thisRestaurant);
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -51,14 +50,23 @@
 	restaurantName = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_DISH_NAME_TAG];
 	restaurantName.text = thisRestaurant.objName;
 	
+	NSLog(@"address is %@, phone is %@", thisRestaurant.addressLine1, thisRestaurant.phone);
+	UILabel *address;
+	address = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_ADDRESS_TAG];
+	address.text = thisRestaurant.addressLine1;
+	[thisRestaurant addressLine1];
+	
+	UILabel *phone;
+	phone = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_PHONE_TAG];
+	phone.text = thisRestaurant.phone;
+	
     // Configure the cell...
     return cell;
 }
 
 #pragma mark -
-#pragma mark fetchedResultsController
+#pragma mark Controller
 - (NSFetchedResultsController *)fetchedResultsController {
-	NSLog(@"entity type string %@", self.entityTypeString);
     if (mFetchedResultsController != nil) {
         return mFetchedResultsController;
     }
@@ -69,12 +77,9 @@
     // Create the fetch request for the entity.
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-	NSLog(@"entity type string %@ and Managed Object Context = %@", 
-		  self.entityTypeString, 
-		  self.managedObjectContext);
 	
     NSEntityDescription *entity = 
-	[NSEntityDescription entityForName:self.entityTypeString 
+	[NSEntityDescription entityForName:@"Restaurant"
 				inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
 
@@ -135,7 +140,6 @@
 
 - (void)dealloc {
     [super dealloc];
-	self.entityTypeString = nil;
 	self.topNavigationController = nil;
 	//self.tvCell = nil;
 	self.managedObjectContext = nil;

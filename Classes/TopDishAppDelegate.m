@@ -19,8 +19,8 @@
 @synthesize window;
 @synthesize navigationController;
 @synthesize tabBarController;
-
-
+@synthesize segmentsController = mSegmentsController;
+@synthesize segmentedControl = mSegmentedControl;
 #pragma mark -
 #pragma mark Application lifecycle
 
@@ -35,6 +35,7 @@
 	NSLog(@"switch view controllers");
 }
 
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     //execute mobile init
@@ -47,6 +48,23 @@
 	// Upload an NSData instance
 	[request setDelegate:self];
 	[request startAsynchronous];
+	
+	NSArray * navsviewControllers = self.navigationController.viewControllers;
+	NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:navsviewControllers];
+	
+	RestaurantList *restaurantList = [[RestaurantList alloc] init];
+	[restaurantList setManagedObjectContext:self.managedObjectContext];
+	[viewControllers addObject:restaurantList];
+    self.segmentsController = [[SegmentsController alloc] initWithNavigationController:self.navigationController viewControllers:viewControllers];
+    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:[viewControllers arrayByPerformingSelector:@selector(title)]];
+    self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    
+    [self.segmentedControl addTarget:self.segmentsController
+                              action:@selector(indexDidChangeForSegmentedControl:)
+                    forControlEvents:UIControlEventValueChanged];
+	
+	self.segmentedControl.selectedSegmentIndex = 0;
+    [self.segmentsController indexDidChangeForSegmentedControl:self.segmentedControl];
 	
     // Add the navigation controller's view to the window and display.
     [window addSubview:tabBarController.view];
