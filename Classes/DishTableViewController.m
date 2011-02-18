@@ -304,7 +304,7 @@
 		}
 		[dish setDish_id:[dishDict objectForKey:@"id"]];
 		
-		[dish setObjName:[NSString stringWithFormat:@"(1) %@", [dishDict objectForKey:@"name"]]];
+		[dish setObjName:[NSString stringWithFormat:@"%@", [dishDict objectForKey:@"name"]]];
 		[dish setDish_description:[dishDict objectForKey:@"description"]];
 		[dish setLatitude:[dishDict objectForKey:@"latitude"]];
 		[dish setLongitude:[dishDict objectForKey:@"longitude"]];
@@ -354,7 +354,7 @@
 		NSLog(@"this is the restaurant for this dish %@", 
 			  [dishDict objectForKey:@"restaurantName"]);
 		[restaurant setRestaurant_id:[dishDict objectForKey:@"restaurantID"]];
-		[restaurant setObjName:[NSString stringWithFormat:@"(2) %@", [dishDict objectForKey:@"restaurantName"]]];
+		[restaurant setObjName:[NSString stringWithFormat:@"%@", [dishDict objectForKey:@"restaurantName"]]];
 		[dish setRestaurant:restaurant];
 		NSLog(@"restaurant we just created is %@", restaurant);
 	}
@@ -407,7 +407,7 @@
 		
 		NSLog(@"setting the restaurant id %@", restoDict);
 		[restaurant setRestaurant_id:[restoDict objectForKey:@"id"]];
-		[restaurant setObjName:[NSString stringWithFormat:@"(1) %@", [restoDict objectForKey:@"name"]]];
+		[restaurant setObjName:[NSString stringWithFormat:@"%@", [restoDict objectForKey:@"name"]]];
 		[restaurant setLatitude:[restoDict objectForKey:@"latitude"]];
 		[restaurant setLongitude:[restoDict objectForKey:@"longitude"]];
 		[restaurant setPhone:[restoDict objectForKey:@"phone"]];
@@ -452,7 +452,7 @@
 			[dish setDish_id:[restoDishesDict objectForKey:@"id"]];
 			[dish setLatitude:[restoDishesDict objectForKey:@"latitude"]];
 			[dish setLongitude:[restoDishesDict objectForKey:@"longitude"]];
-			[dish setObjName:[NSString stringWithFormat:@"(2) %@", [restoDishesDict objectForKey:@"name"]]];
+			[dish setObjName:[NSString stringWithFormat:@"%@", [restoDishesDict objectForKey:@"name"]]];
 			[dish setNegReviews:[restoDishesDict objectForKey:@"negReviews"]];
 			[dish setPhotoURL:[restoDishesDict objectForKey:@"photoURL"]];
 			[dish setPosReviews:[restoDishesDict objectForKey:@"posReviews"]];
