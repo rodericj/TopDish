@@ -76,8 +76,6 @@
 	{
 		self.selectedMealType = *pointer;
 		NSArray *mealTags = [[AppModel instance] mealTypeTags];
-		NSLog(@"mealTags is %@", [mealTags objectAtIndex:*pointer]);
-		NSLog(@"the id is %@", [[mealTags objectAtIndex:*pointer] objectForKey:@"id"]);
 		self.selectedMealType = [[[mealTags objectAtIndex:*pointer] objectForKey:@"id"] intValue];
 	}
 	else
@@ -87,15 +85,11 @@
 		NSLog(@"the id is %@", [[priceTags objectAtIndex:*pointer] objectForKey:@"id"]);
 		self.selectedPriceType = [[[priceTags objectAtIndex:*pointer] objectForKey:@"id"] intValue];
 	}		
-	
-	
+
     [super viewWillAppear:animated];
 	[self.tableView beginUpdates];
 	[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kDishTagSection] withRowAnimation:UITableViewRowAnimationFade];
 	[self.tableView endUpdates];
-	
-	
-	
 }
 
 -(void)viewDidAppear:(BOOL)animated {

@@ -95,7 +95,8 @@
 	NSMutableArray *priceTypeTags = [NSMutableArray arrayWithObject:defaultObject];
 	NSMutableArray *mealTypeTags = [NSMutableArray arrayWithObject:defaultObject];
 	NSMutableArray *allergenTypeTags = [NSMutableArray arrayWithObject:defaultObject];
-	NSMutableArray *lifestyleTags = [NSMutableArray arrayWithObject:defaultObject];
+	NSMutableArray *lifestyleTypeTags = [NSMutableArray arrayWithObject:defaultObject];
+	NSMutableArray *cuisineTypeTags = [NSMutableArray arrayWithObject:defaultObject];
 	for (NSDictionary *d in responseAsArray)
 	{
 		if ([[d objectForKey:@"type"] isEqualToString:kMealTypeString])
@@ -108,7 +109,10 @@
 			[allergenTypeTags addObject:d];
 		
 		if ([[d objectForKey:@"type"] isEqualToString:kLifestyleTypeString])
-			[lifestyleTags addObject:d];
+			[lifestyleTypeTags addObject:d];		
+		
+		if ([[d objectForKey:@"type"] isEqualToString:kCuisineTypeString])
+			[cuisineTypeTags addObject:d];
 		
 	}
 	[parser release];
@@ -117,7 +121,8 @@
 	[[AppModel instance] setPriceTags:priceTypeTags];
 	[[AppModel instance] setMealTypeTags:mealTypeTags];
 	[[AppModel instance] setAllergenTags:allergenTypeTags];
-	[[AppModel instance] setLifestyleTags:allergenTypeTags];
+	[[AppModel instance] setLifestyleTags:lifestyleTypeTags];
+	[[AppModel instance] setLifestyleTags:cuisineTypeTags];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

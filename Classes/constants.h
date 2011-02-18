@@ -69,6 +69,8 @@
 
 #define kPriceType	1
 #define kMealType	2
+#define kCuisineType 3
+#define kLifestyleType 4
 
 #define kFlagINACCURATE = 0;
 #define kFlagSPAM = 1;
@@ -80,6 +82,7 @@
 #define kPriceTypeString @"Price"
 #define kAllergenTypeString @"Allergen"
 #define kLifestyleTypeString @"Lifestyle"
+#define kCuisineTypeString @"Cuisine"
 
 #define keyforauthorizing @"apiKey"
 

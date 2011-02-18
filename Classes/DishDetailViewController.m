@@ -19,6 +19,8 @@
 #define kDescriptionSection 1
 #define kCommentsSection 2
 
+#define kCommentHeight 14
+
 @implementation DishDetailViewController
 
 @synthesize thisDish = mThisDish;
@@ -36,6 +38,8 @@
 @synthesize reviews = mReviews;
 @synthesize responseData = mResponseData;
 @synthesize managedObjectContext;
+
+@synthesize tvCell = mTvCell;
 
 #pragma mark -
 #pragma mark Table view data source
@@ -71,11 +75,45 @@
 	}
     return 0;
 }
-
+- (UITableViewCell *)commentsCellForIndexPath:(NSIndexPath *)indexPath {
+	static NSString *MyIdentifier = @"CommentsCellIdentifier";
+	
+	NSString *comment = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"comment"];
+	NSString *creator = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"creator"];
+	
+	UITableViewCell *cell = (UITableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+	if (cell == nil) {
+		//CommentCell comes from the file name CommentsCell.xib
+		//self.tvCell = [[[CommentsCell alloc] init] autorelease];
+		[[NSBundle mainBundle] loadNibNamed:@"CommentsCell" owner:self options:nil];
+		cell = mTvCell;
+		self.tvCell = nil;
+	}
+	
+	UILabel *label;
+    label = (UILabel *)[cell viewWithTag:1];
+    label.text = comment;
+	
+    label = (UILabel *)[cell viewWithTag:2];
+    label.text = [NSString stringWithFormat:@"-%@",creator];
+	NSLog(@"the number of rows is %d", label.numberOfLines);
+	
+	//[cell.author setText:creator];
+//	[cell.comment setText:comment];
+	
+	//UILabel *label;
+//	label = (UILabel *)[cell viewWithTag:1];
+//	label.text = comment;
+//	
+//	label = (UILabel *)[cell viewWithTag:2];
+//	label.text = creator;
+	
+	return (UITableViewCell *)cell;
+}
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
-	
+
 	switch (indexPath.section) {
 		case kImageSection:
 			cell = self.dishImageCell;
@@ -86,16 +124,8 @@
 			break;
 
 		case kCommentsSection:
-			cell = [tableView dequeueReusableCellWithIdentifier:@"DishDetailCommentCell"];
-			if (!cell)
-				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DishDetailCommentCell"] autorelease];
+			return [self commentsCellForIndexPath:indexPath];
 
-			NSString *comment = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"comment"];
-			NSString *creator = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"creator"];
-			NSString *combined = [NSString stringWithFormat:@"%@ -%@", comment, creator];
-			[cell.textLabel setText:combined];
-			[cell.textLabel setNumberOfLines:4];
-			
 		default:
 			break;
 	}
@@ -118,6 +148,14 @@
 		//self.dishDescriptionCell.frame.size.height = [self.dishDescriptionLabel numberOfLines] * 25;
 		return self.dishDescriptionCell.bounds.size.height;
 	}
+	if (indexPath.section == kCommentsSection) {
+		NSString *s = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"comment"];
+		UIFont *f = [UIFont fontWithName:@"Helvetica" size:14];
+		CGSize expectedLabelSize = [s sizeWithFont:f forWidth:100 lineBreakMode:UILineBreakModeWordWrap];
+		NSLog(@"the size of %@ is %f %f", s, expectedLabelSize.height, expectedLabelSize.width);
+	}
+	
+	
 	return 100;
 }
 
