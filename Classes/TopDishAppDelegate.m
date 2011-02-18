@@ -36,21 +36,6 @@
 }
 
 
-#pragma mark -
-#pragma mark Segment Content
-
-//- (NSArray *)segmentViewControllers {
-//    UIViewController *dishTableView = [[DishTableViewController alloc] init];
-//    UIViewController *restaurantTableView = [[RestaurantList alloc] init];
-//    
-//    NSArray * viewControllers = [NSArray arrayWithObjects:dishTableView, restaurantTableView, nil];
-//    [dishTableView release]; 
-//	[restaurantTableView release];
-//    
-//    return viewControllers;
-//}
-
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     //execute mobile init
@@ -64,11 +49,12 @@
 	[request setDelegate:self];
 	[request startAsynchronous];
 	
-	
-	
 	NSArray * navsviewControllers = self.navigationController.viewControllers;
 	NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:navsviewControllers];
-	[viewControllers addObject:[[RestaurantList alloc] init]];
+	
+	RestaurantList *restaurantList = [[RestaurantList alloc] init];
+	[restaurantList setManagedObjectContext:self.managedObjectContext];
+	[viewControllers addObject:restaurantList];
     self.segmentsController = [[SegmentsController alloc] initWithNavigationController:self.navigationController viewControllers:viewControllers];
     self.segmentedControl = [[UISegmentedControl alloc] initWithItems:[viewControllers arrayByPerformingSelector:@selector(title)]];
     self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -79,8 +65,6 @@
 	
 	self.segmentedControl.selectedSegmentIndex = 0;
     [self.segmentsController indexDidChangeForSegmentedControl:self.segmentedControl];
-	
-	
 	
     // Add the navigation controller's view to the window and display.
     [window addSubview:tabBarController.view];

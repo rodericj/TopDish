@@ -7,13 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MyCLController.h"
 
+@interface RestaurantList : UITableViewController  <MyCLControllerDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate>{
 
-@interface RestaurantList : UIViewController {
-	UIViewController *mReturnView;
+    NSFetchedResultsController *mFetchedResultsController;
+	NSManagedObjectContext *mManagedObjectContext;
+	UITableViewCell				*mTvCell;
+
 }
 
-@property (nonatomic, retain) UIViewController *returnView;
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, assign) IBOutlet UITableViewCell *tvCell;
 
 
 @end

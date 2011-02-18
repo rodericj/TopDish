@@ -826,6 +826,7 @@
 	return [self tableView:tableView dishCellAtIndexPath:indexPath];
 	
 }
+
 #pragma mark -
 
 -(IBAction) sortByDistance

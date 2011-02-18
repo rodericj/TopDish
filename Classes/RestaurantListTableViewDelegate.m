@@ -79,7 +79,7 @@
     // Edit the entity name as appropriate.
 	
     NSEntityDescription *entity = 
-	[NSEntityDescription entityForName:@"Dish"
+	[NSEntityDescription entityForName:@"Restaurant"
 				inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
 
