@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Restaurant.h"
-#import "BaseDishTableViewer.h"
+#import "DishTableViewController.h"
 #import <MapKit/MapKit.h>
 
-@interface RestaurantDetailViewController : BaseDishTableViewer {
+@interface RestaurantDetailViewController : DishTableViewController {
 	Restaurant *restaurant;
 
 	UITableViewCell *mMapRow;
@@ -33,6 +33,7 @@
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *mapRow;
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
+
 
 -(IBAction)callRestaurant;
 

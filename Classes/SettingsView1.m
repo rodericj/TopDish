@@ -12,6 +12,8 @@
 #import "constants.h"
 
 #define kMealTypeSection 1
+#define kAllergenSection 2
+#define kLifestyleSection 3
 #define kPriceFilterSection 0
 
 @implementation SettingsView1
@@ -43,8 +45,12 @@
 - (void)viewWillAppear:(BOOL)animated {
 	NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:kMealTypeSection];
 
+	//NSIndexPath *selected = [self.tableView indexPathForSelectedRow];
+	
 	NSLog(@"the price at pointer is %@", [[[AppModel instance] mealTypeTags] objectAtIndex:*pointer]);
 	int mealtype = [[[[[AppModel instance] mealTypeTags] objectAtIndex:*pointer] objectForKey:@"id"] intValue];
+	
+	
 	NSLog(@"the mealType id is %d", mealtype);
 	[[AppModel instance] setSelectedMealType:mealtype];
 	
@@ -71,12 +77,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 3;
+    return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
 	switch (section) {
+		case kAllergenSection:
+			return 1;
 		case kMealTypeSection:
 			return 1;
 		case kPriceFilterSection:

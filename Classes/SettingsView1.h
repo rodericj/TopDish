@@ -15,6 +15,8 @@
 	UITableViewCell *mPriceValueCell;
 	UILabel *mPriceValue;
 	UITableViewCell *mMealTypeCell;
+	UITableViewCell *mAllergenCell;
+	UITableViewCell *mLifestyleCell;
 	int *pointer;
 }
 

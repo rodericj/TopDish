@@ -147,8 +147,6 @@
 							   self.dishImageView.bounds.size.width, 
 							   self.dishImageView.bounds.size.height]; 
 
-		NSLog(@"url string for thisDish's image in DishDetailViewController is %@", urlString);
-
 		NSURL *photoUrl = [NSURL URLWithString:urlString];
 		AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[self.dishImageView frame]];
 		[asyncImage setOwningObject:self.thisDish];

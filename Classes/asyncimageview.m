@@ -28,6 +28,8 @@
 
 
 - (void)loadImageFromURL:(NSURL*)url withImageView:(UIImageView *)imageView isThumb:(Boolean)isThumbNail showActivityIndicator:(Boolean)showIndicator {
+	//TODO must print out when we attempt to get an image, i think we get it a lot
+	//NSLog(@"attempting to load %@", url);
 	if (connection!=nil) { [connection release]; } //in case we are downloading a 2nd image
 	if (data!=nil) { [data release]; }
 	isThumb = isThumbNail;
@@ -70,7 +72,7 @@
 }
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
 #ifndef AirplaneMode
-	NSLog(@"%@", error);
+	NSLog(@"async image view failed with error: %@", error);
 #endif
 }
 
@@ -101,6 +103,7 @@
 	}
 
 	thisImageView.image = [UIImage imageWithData:data];
+	[thisImageView release];
 	//make sizing choices based on your needs, experiment with these. maybe not all the calls below are needed.
 	//imageView.contentMode = UIViewContentModeScaleAspectFit;
 //	imageView.autoresizingMask = ( UIViewAutoresizingFlexibleWidth || UIViewAutoresizingFlexibleHeight );
