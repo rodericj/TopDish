@@ -56,6 +56,13 @@
 #pragma mark -
 #pragma mark View lifecycle
 
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle {
+    if (self = [super initWithNibName:nibName bundle:nibBundle]) {
+        self.title = @"Dishes";
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
@@ -101,22 +108,23 @@
 
 	
 	// Set up the dish/restaurant selector
-	self.dishRestoSelector = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Dishes", 
-																   @"Restaurants", 
-																   nil]];
-	[self.dishRestoSelector setSegmentedControlStyle:UISegmentedControlStyleBar];
-	[self.dishRestoSelector setSelectedSegmentIndex:0];
-	[self.dishRestoSelector setTintColor:buttonLightBlue];
-	
-	self.navigationItem.titleView = self.dishRestoSelector;
-	
-	[self.dishRestoSelector addTarget:self 
-						 action:@selector(initiateNetworkBasedOnSegmentControl) 
-			   forControlEvents:UIControlEventValueChanged];
+	//self.dishRestoSelector = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Dishes", 
+//																   @"Restaurants", 
+//																   nil]];
+//	[self.dishRestoSelector setSegmentedControlStyle:UISegmentedControlStyleBar];
+//	[self.dishRestoSelector setSelectedSegmentIndex:0];
+//	[self.dishRestoSelector setTintColor:buttonLightBlue];
+//	
+//	self.navigationItem.titleView = self.dishRestoSelector;
+//	
+//	[self.dishRestoSelector addTarget:self 
+//						 action:@selector(initiateNetworkBasedOnSegmentControl) 
+//			   forControlEvents:UIControlEventValueChanged];
 	
 	
 	[self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tdlogo.png"]]];
-	
+	self.title = @"Dishes";
+
 }
 
 -(void) networkQuery:(NSString *)query{

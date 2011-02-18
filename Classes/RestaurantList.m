@@ -13,28 +13,23 @@
 
 @synthesize returnView = mReturnView;
 
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle {
+    if (self = [super initWithNibName:nibName bundle:nibBundle]) {
+        self.title = @"Restaurants";
+    }
+    return self;
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	UISegmentedControl *s = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Dishes", @"Restaurants", nil]];
-	[s setSegmentedControlStyle:UISegmentedControlStyleBar];
-	[s addTarget:self action:@selector(changeToDishes)
-					forControlEvents:UIControlEventValueChanged];	
-	self.navigationItem.titleView = s;
+
 	self.navigationController.navigationBar.tintColor = kTopDishBlue;
 
-	//[s release];
 }
 -(void)viewWillAppear:(BOOL)animated {
 	UISegmentedControl *s = (UISegmentedControl *) self.navigationItem.titleView;
 	[s setSelectedSegmentIndex:1];
-}
-
--(void)changeToDishes {
-	NSLog(@"change to dishes");
-	NSMutableArray *views = [NSMutableArray arrayWithArray:[self.navigationController viewControllers]];
-	[views replaceObjectAtIndex:0 withObject:self.returnView];
-	[self.navigationController setViewControllers:views animated:NO];
 }
 
 - (void)didReceiveMemoryWarning {

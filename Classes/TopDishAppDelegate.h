@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "SegmentsController.h"
 
 @interface TopDishAppDelegate : NSObject <UIApplicationDelegate> {
-    
+	SegmentsController     *mSegmentsController;
+    UISegmentedControl     *mSegmentedControl;
+
     UIWindow *window;
     UINavigationController *navigationController;
 	UITabBarController *tabBarController;
@@ -20,6 +23,8 @@
     NSManagedObjectModel *managedObjectModel_;
     NSPersistentStoreCoordinator *persistentStoreCoordinator_;
 }
+@property (nonatomic, retain) SegmentsController     *segmentsController;
+@property (nonatomic, retain) UISegmentedControl     * segmentedControl;
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;

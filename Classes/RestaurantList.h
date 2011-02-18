@@ -11,11 +11,9 @@
 
 @interface RestaurantList : UIViewController {
 	UIViewController *mReturnView;
-	UISegmentedControl *mSegmentedControl;
 }
 
 @property (nonatomic, retain) UIViewController *returnView;
 
--(void)changeToDishes;
 
 @end
