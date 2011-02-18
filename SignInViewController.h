@@ -9,8 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "SignInSignUpBaseViewController.h"
 
-@interface SignInViewController : SignInSignUpBaseViewController {
 
+@interface SignInViewController : SignInSignUpBaseViewController {
+	
+	FBLoginButton *mFbLoginButton;
 }
+
+- (IBAction)saveView:(id)sender;
 
 @end
