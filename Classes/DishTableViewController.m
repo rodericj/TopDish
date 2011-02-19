@@ -187,7 +187,7 @@
 	}
 
 	//[self updateFetch];
-	NSLog(@"filter on these %d, %d", [[AppModel instance] selectedMealType], 
+	NSLog(@"filter on these %d, %d", [[AppModel instance] selectedMeal], 
 		  [[AppModel instance] selectedPrice]);
 }
 
@@ -559,11 +559,11 @@
 	}
 	
 	//Filter based on mealType
-	if ([[AppModel instance] selectedMealType] != 0) {
+	if ([[AppModel instance] selectedMeal] != 0) {
 		NSLog(@"the else predicate %@ == %d", 
 			  @"price", [[AppModel instance] selectedPrice]);
 		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
-						   @"mealType", [NSNumber numberWithInt:[[AppModel instance] selectedMealType]]];
+						   @"mealType", [NSNumber numberWithInt:[[AppModel instance] selectedMeal]]];
 		
 		[filterPredicateArray addObject:filterPredicate];
 	}

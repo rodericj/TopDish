@@ -11,15 +11,7 @@
 #import "DishOptionPickerTableViewController.h"
 #import "constants.h"
 
-#define kNumberOfDifferentTypes 4
-
-#define kAllergenTypeSection 4
-#define kLifestyleTypeSection 3
-#define kCuisineTypeSection 2
-#define kMealTypeSection 1
-#define kAllergenSection 2
-#define kLifestyleSection 3
-#define kPriceFilterSection 0
+#define kNumberOfDifferentTypes 2
 
 @implementation SettingsView1
 
@@ -29,52 +21,25 @@
 @synthesize priceSlider = mPriceSlider;
 @synthesize mealTypeCell = mMealTypeCell;
 
+@synthesize pickerArray = mPickerArray;
+@synthesize pickerView = mPickerView;
+@synthesize pickerViewOverlay = mPickerViewOverlay;
+@synthesize pickerViewButton = mPickerViewButton;
+
 - (void)viewDidLoad {
-	pointer = malloc(sizeof(int));
 	self.view.backgroundColor = kTopDishBackground;
 	[self.priceSlider setMaximumValue:[[[AppModel instance] priceTags] count] - 1];
 	[self.priceSlider setMinimumValue:0];
 	[self.priceSlider setValue:0];
-	NSLog(@"loading and the selectedmeal type is %d", [[AppModel instance] selectedMealType]);
+	NSLog(@"loading and the selectedmeal type is %d", [[AppModel instance] selectedMeal]);
 	int count = 0;
 
 	for (NSDictionary *d in [[AppModel instance] mealTypeTags]) {
-		if ([[d objectForKey:@"id"] intValue] == [[AppModel instance] selectedMealType]) {
-			*pointer = count;
+		if ([[d objectForKey:@"id"] intValue] == [[AppModel instance] selectedMeal]) {
 			continue;
 		}
 		count++;
 	}
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-	NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:kMealTypeSection];
-
-	//NSIndexPath *selected = [self.tableView indexPathForSelectedRow];
-	
-	NSLog(@"the price at pointer is %@", [[[AppModel instance] mealTypeTags] objectAtIndex:*pointer]);
-	int mealtype = [[[[[AppModel instance] mealTypeTags] objectAtIndex:*pointer] objectForKey:@"id"] intValue];
-	
-	
-	NSLog(@"the mealType id is %d", mealtype);
-	[[AppModel instance] setSelectedMealType:mealtype];
-	
-	[self.tableView beginUpdates];
-	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationFade];
-	[self.tableView endUpdates];
-	
-	int selectedPrice = [[AppModel instance] selectedPrice];
-	int count = 0;
-	for (NSDictionary *d in [[AppModel instance] priceTags]) {
-		if ([[d objectForKey:@"id"] intValue] == selectedPrice) {
-			NSLog(@"the selected price is %@", [d objectForKey:@"name"]);
-			[self.priceValue setText:[d objectForKey:@"name"]];
-			[self.priceSlider setValue:count];
-			continue;
-		}
-		count++;
-	}
-	
 }
 
 #pragma mark -
@@ -88,12 +53,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
 	switch (section) {
-		case kAllergenTypeSection:
-		case kLifestyleTypeSection:
-		case kCuisineTypeSection:
-		case kMealTypeSection:
+		case kAllergenType:
+		case kLifestyleType:
+		case kCuisineType:
+		case kMealType:
 			return 1;
-		case kPriceFilterSection:
+		case kPriceType:
 			return 2;
 			break;
 		default:
@@ -105,15 +70,15 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
 	switch (section) {
-		case kAllergenTypeSection:
+		case kAllergenType:
 			return kAllergenTypeString;
-		case kLifestyleTypeSection:
+		case kLifestyleType:
 			return kLifestyleTypeString;
-		case kCuisineTypeSection:
+		case kCuisineType:
 			return kCuisineTypeString;
-		case kMealTypeSection:
+		case kMealType:
 			return kMealTypeString;
-		case kPriceFilterSection:
+		case kPriceType:
 			return kPriceTypeString;
 
 		default:
@@ -126,57 +91,41 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
-    
+    AppModel *a = [AppModel instance];
+	
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
     }
     
-	if (indexPath.section == kPriceFilterSection && indexPath.row == 0) {
+	if (indexPath.section == kPriceType && indexPath.row == 0) {
 		cell = self.priceSliderCell;
 	}
-	if (indexPath.section == kPriceFilterSection && indexPath.row == 1) {
+	if (indexPath.section == kPriceType && indexPath.row == 1) {
 		cell = self.priceValueCell;
 	}
-	if (indexPath.section == kMealTypeSection && indexPath.row == 0) {
-		//cell = self.mealTypeCell;
-		AppModel *a = [AppModel instance];
-
+	if (indexPath.section == kMealType) {		
 		cell.textLabel.text = kMealTypeString;
-		
-		if (*pointer > 0 && *pointer < [[a mealTypeTags] count]) {
-			NSLog(@"now set the meal type to %@", [[a mealTypeTags] objectAtIndex:*pointer]);
-			cell.detailTextLabel.text = [[[a mealTypeTags] objectAtIndex:*pointer] objectForKey:@"name"];
-		}
-		
-		for (NSDictionary *d in [a mealTypeTags]) {
-			if ([[d objectForKey:@"id"] intValue] == [a selectedMealType]) {
-				cell.detailTextLabel.text = [d objectForKey:@"name"];
-				continue;
-			}
-		}
-		
-		
-		
-		//cell.detailTextLabel.text = [[AppModel instance] pr
+		int whichMeal = [a selectedMeal];
+		cell.detailTextLabel.text = [[[a mealTypeTags] objectAtIndex:whichMeal] objectForKey:@"name"];
 	}
 	
-	if (indexPath.section == kCuisineTypeSection) {		
+	if (indexPath.section == kCuisineType) {		
 		cell.textLabel.text = kCuisineTypeString;
-		
-		//TODO: something will happen when click.
+		int whichCuisine = [a selectedCuisine];
+		cell.detailTextLabel.text = [[[a cuisineTypeTags] objectAtIndex:whichCuisine] objectForKey:@"name"];
 	}
 	
-	if (indexPath.section == kLifestyleTypeSection) {
+	if (indexPath.section == kLifestyleType) {
 		cell.textLabel.text = kLifestyleTypeString;
-		
-		//TODO: something will happen when click.
+		int whichLifestyle = [a selectedLifestyle];
+		cell.detailTextLabel.text = [[[a lifestyleTags] objectAtIndex:whichLifestyle] objectForKey:@"name"];
 	}
 	
-	if (indexPath.section == kAllergenTypeSection) {
+	if (indexPath.section == kAllergenType) {
 		cell.textLabel.text = kAllergenTypeString;
-		
-		//TODO: something will happen when click.
+		int whichAllergen = [a selectedAllergen];
+		cell.detailTextLabel.text = [[[a allergenTags] objectAtIndex:whichAllergen] objectForKey:@"name"];
 	}
     // Configure the cell...
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -185,45 +134,130 @@
 }
 #pragma mark -
 #pragma mark IBActions
+-(IBAction) pickerDone {
+	
+	[self.tableView setScrollEnabled:YES];
+	[self.tableView addSubview:self.pickerViewOverlay];
+	[UIView beginAnimations:@"animatePickerOn" context:NULL]; // Begin animation
+	[self.pickerViewOverlay setFrame:CGRectOffset([self.pickerViewOverlay frame], 0, self.pickerViewOverlay.frame.size.height)]; // Move imageView off screen
+	[UIView commitAnimations]; // End animations
+	[self.pickerViewOverlay setHidden:YES];
+	
+	NSIndexPath *selectedPath = [self.tableView indexPathForSelectedRow];
+	
+	AppModel *app = [AppModel instance];
+	
+	switch (selectedPath.section) {
+		case kMealType:
+			NSLog(@"we selected %@", [[app mealTypeTags] objectAtIndex:pickerSelected]);
+			[app setSelectedMeal:pickerSelected];
+			break;
+		case kAllergenType:
+			NSLog(@"we selected %@", [[app allergenTags] objectAtIndex:pickerSelected]);
+			[app setSelectedAllergen:pickerSelected];
+			break;
+		case kCuisineType:
+			NSLog(@"we selected %@", [[app cuisineTypeTags] objectAtIndex:pickerSelected]);
+			[app setSelectedCuisine:pickerSelected];
+			break;
+		case kLifestyleType:
+			NSLog(@"we selected %@", [[app lifestyleTags] objectAtIndex:pickerSelected]);
+			[app setSelectedLifestyle:pickerSelected];
+			break;
+		default:
+			break;
+	}
+	
+	[self.tableView beginUpdates];
+	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:selectedPath] 
+						  withRowAnimation:UITableViewRowAnimationLeft];
+	[self.tableView endUpdates];
+}
 
 -(IBAction) updatePriceTags{
+	
 	[self.priceSlider setValue:(int)[self.priceSlider value]];
 	NSDictionary *d = [[AppModel instance].priceTags objectAtIndex:[self.priceSlider value]];
 	[self.priceValue setText:[d objectForKey:@"name"]];
 	int priceTagId = [[[[[AppModel instance] priceTags] objectAtIndex: [self.priceSlider value]] objectForKey:@"id"] intValue];
-
 	[[AppModel instance] setSelectedPrice:priceTagId];
+	
 }
 
 #pragma mark -
+#pragma mark PickerView delegate
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+	NSLog(@"they picked %d", row);
+	pickerSelected = row;
+}
+
+#pragma mark -
+#pragma mark UIPickerViewDataSource
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+	return [[self.pickerArray objectAtIndex:row] objectForKey:@"name"];
+}
+
+
+#pragma mark -
 #pragma mark Table view delegate
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+	return 40.0;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+	return [self.pickerArray count];
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+	return 1;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-		DishOptionPickerTableViewController *d = [[DishOptionPickerTableViewController alloc] init];
+	
 	
 	switch (indexPath.section) {
-		case kMealTypeSection:
-			[d setOptionValues:[[AppModel instance] mealTypeTags]];
-			[d setOptionType:kMealType];
+		case kMealType:
+			self.pickerArray = [[AppModel instance] mealTypeTags];
 			break;
 			
-		case kLifestyleTypeSection:
-			[d setOptionValues:[[AppModel instance] lifestyleTags]];
-			[d setOptionType:kLifestyleType];
+		case kLifestyleType:
+			self.pickerArray = [[AppModel instance] lifestyleTags];
 			break;
 			
-		case kCuisineTypeSection:
-			[d setOptionValues:[[AppModel instance] cuisineTypeTags]];
-			[d setOptionType:kCuisineType];
+		case kCuisineType:
+			self.pickerArray = [[AppModel instance] cuisineTypeTags] ;
+			break;			
+			
+		case kAllergenType:
+			self.pickerArray = [[AppModel instance] allergenTags];
 			break;
 			
 		default:
 			break;
 	}
-	[d useThisIntPointer:pointer];
-	[self.navigationController pushViewController:d animated:YES];
-	[d release];
+
+	self.pickerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+	[self.pickerView reloadAllComponents];
 	
+	// add this picker to our view controller, initially hidden
+	NSIndexPath *top = [NSIndexPath indexPathForRow:0 inSection:0];
+	
+	//handle special needs for the tableView
+	[self.tableView scrollToRowAtIndexPath:top atScrollPosition:UITableViewScrollPositionTop animated:YES];
+	[self.tableView setScrollEnabled:NO];
+	[self.tableView addSubview:self.pickerViewOverlay];
+	
+	//animate
+	[UIView beginAnimations:@"animatePickerOn" context:NULL]; // Begin animation
+	[self.pickerViewOverlay setFrame:CGRectOffset([self.pickerViewOverlay frame], 0, -self.pickerViewOverlay.frame.size.height)]; // Move imageView off screen
+	[UIView commitAnimations]; // End animations
+	[self.pickerViewOverlay setHidden:NO];
 }
 
 #pragma mark -

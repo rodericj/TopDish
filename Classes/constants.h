@@ -67,10 +67,11 @@
 #define kTopDishBackground [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"background_tile.png"]]
 #define kTopDishBlue [UIColor colorWithRed:0 green:.3843 blue:.5725 alpha:1]
 
-#define kPriceType	1
-#define kMealType	2
-#define kCuisineType 3
-#define kLifestyleType 4
+#define kPriceType	0
+#define kMealType	1
+#define kAllergenType 2
+#define kLifestyleType 3
+#define kCuisineType 4
 
 #define kFlagINACCURATE = 0;
 #define kFlagSPAM = 1;

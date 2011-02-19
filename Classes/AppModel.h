@@ -17,9 +17,10 @@
 	NSArray *mAllergenTags;
 	NSArray *mLifestyleTags;
 	int mSelectedPrice;
-	int mSelectedMealType;
+	int mSelectedMeal;
 	int mSelectedAllergen;
 	int mSelectedLifestyle;
+	int mSelectedCuisine;
 	int mSorter;
 	NSNumber *mSelectedMealTypeObject;
 	Facebook *mFacebook;
@@ -32,11 +33,11 @@
 @property (nonatomic, retain) NSArray *allergenTags;
 @property (nonatomic, retain) NSArray *lifestyleTags;
 @property (nonatomic, assign) int selectedPrice;
-@property (nonatomic, assign) int selectedMealType;
+@property (nonatomic, assign) int selectedMeal;
 @property (nonatomic, assign) int selectedAllergen;
 @property (nonatomic, assign) int selectedLifestyle;
+@property (nonatomic, assign) int selectedCuisine;
 @property (nonatomic, assign) int sorter;
-@property (nonatomic, assign) NSNumber *selectedMealTypeObject;
 @property (nonatomic, assign) Facebook *facebook;
 
 

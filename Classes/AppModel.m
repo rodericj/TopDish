@@ -18,12 +18,13 @@
 @synthesize priceTags = mPriceTags;
 @synthesize allergenTags = mAllergenTags;
 @synthesize lifestyleTags = mLifestyleTags;
-@synthesize selectedMealType = mSelectedMealType;
+@synthesize selectedMeal = mSelectedMeal;
 @synthesize selectedPrice = mSelectedPrice;
 @synthesize selectedAllergen = mSelectedAllergen;
 @synthesize selectedLifestyle = mSelectedLifestyle;
+@synthesize selectedCuisine = mSelectedCuisine;
+
 @synthesize sorter = mSorter;
-@synthesize selectedMealTypeObject = mSelectedMealTypeObject;
 @synthesize facebook = mFacebook;
 AppModel *gAppModelInstance = nil;
 
