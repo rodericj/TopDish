@@ -482,7 +482,7 @@
 	}
 	else {
 		NSLog(@"I don't know what this is %@", [responseAsArray objectAtIndex:0]);
-		NSAssert(FALSE, @"This doesn't seem to be a dish or a restaurant");
+		//NSAssert(FALSE, @"This doesn't seem to be a dish or a restaurant");
 	}
 
 	if(![self.managedObjectContext save:&error]){
