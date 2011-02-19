@@ -78,12 +78,14 @@
 
 #pragma mark -
 #pragma mark View lifecycle
-
+- (void) setUpSpecificView {
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[self networkQuery:[NSString stringWithFormat:@"%@/api/restaurantDetail?id[]=%@", NETWORKHOST, [restaurant restaurant_id]]];
 	self.view.backgroundColor = kTopDishBackground;
 }
+
 #pragma mark -
 #pragma mark Table view classes overridden 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -98,6 +100,7 @@
 			break;
 	}
 }
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView{
 	return 2;
 }

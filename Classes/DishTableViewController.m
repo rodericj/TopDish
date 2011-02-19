@@ -62,17 +62,10 @@
     }
     return self;
 }
-
-- (void)viewDidLoad {
-	[super viewDidLoad];
-
-	self.view.backgroundColor = kTopDishBackground;
-	self.tableView.backgroundColor = kTopDishBackground;
-
+- (void) setUpSpecificView {
 	[self.tableView setTableHeaderView:self.searchHeader];
 	self.tableView.delegate = self;
 	
-	self.navigationController.navigationBar.tintColor = kTopDishBlue;
 	
 	[self.theSearchBar setPlaceholder:@"Search Dishes"];
 	[self.theSearchBar setShowsCancelButton:YES];
@@ -89,10 +82,10 @@
 	
     // Set up the settings button
 	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] 
-								  initWithImage:[UIImage imageNamed:FILTER_IMAGE_NAME] 
-								  style:UIBarButtonItemStylePlain 
-								  target:self 
-								  action:@selector(showSettings)];
+									   initWithImage:[UIImage imageNamed:FILTER_IMAGE_NAME] 
+									   style:UIBarButtonItemStylePlain 
+									   target:self 
+									   action:@selector(showSettings)];
 	
     self.navigationItem.leftBarButtonItem = settingsButton;
 	self.settingsDict = [[NSMutableDictionary alloc] init];
@@ -105,26 +98,20 @@
 								  action:@selector(flipToMap)];
 	
 	self.navigationItem.rightBarButtonItem = mapButton;
-
-	
-	// Set up the dish/restaurant selector
-	//self.dishRestoSelector = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Dishes", 
-//																   @"Restaurants", 
-//																   nil]];
-//	[self.dishRestoSelector setSegmentedControlStyle:UISegmentedControlStyleBar];
-//	[self.dishRestoSelector setSelectedSegmentIndex:0];
-//	[self.dishRestoSelector setTintColor:buttonLightBlue];
-//	
-//	self.navigationItem.titleView = self.dishRestoSelector;
-//	
-//	[self.dishRestoSelector addTarget:self 
-//						 action:@selector(initiateNetworkBasedOnSegmentControl) 
-//			   forControlEvents:UIControlEventValueChanged];
-	
 	
 	[self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tdlogo.png"]]];
 	self.title = @"Dishes";
+	
+}
 
+- (void)viewDidLoad {
+	[super viewDidLoad];
+
+	self.view.backgroundColor = kTopDishBackground;
+	self.tableView.backgroundColor = kTopDishBackground;
+	self.navigationController.navigationBar.tintColor = kTopDishBlue;
+	[self setUpSpecificView];
+	
 }
 
 -(void) networkQuery:(NSString *)query{
@@ -1031,7 +1018,6 @@
 }
 
 - (void)dealloc {
-	[super dealloc];
 
     self.managedObjectContext = nil;
 	self.settingsDict = nil;
@@ -1041,6 +1027,8 @@
 	self.fetchedResultsController = nil;
 	self.responseData = nil;
 	self.conn = nil;
+	[super dealloc];
+
 }
 
 
