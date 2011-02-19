@@ -11,7 +11,7 @@
 #import "DishOptionPickerTableViewController.h"
 #import "constants.h"
 
-#define kNumberOfDifferentTypes 2
+#define kNumberOfDifferentTypes 4
 
 @implementation SettingsView1
 
@@ -47,7 +47,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return kNumberOfDifferentTypes + 1; //+ 1 for the prices
+    return kNumberOfDifferentTypes;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -104,7 +104,8 @@
 	if (indexPath.section == kPriceType && indexPath.row == 1) {
 		cell = self.priceValueCell;
 	}
-	if (indexPath.section == kMealType) {		
+	if (indexPath.section == kMealType) {	
+		
 		cell.textLabel.text = kMealTypeString;
 		cell.detailTextLabel.text = [a selectedMealName];
 	}

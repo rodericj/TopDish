@@ -90,6 +90,7 @@
 	SBJSON *parser = [SBJSON new];
 	NSError *error = nil;
 	NSArray *responseAsArray = [parser objectWithString:responseText error:&error];	
+	NSLog(@"response from mobileInit is %@", responseAsArray);
 	NSDictionary *defaultObject = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"0", @"None", @"None", @"0", nil]
 															  forKeys:[NSArray arrayWithObjects:@"id", @"name", @"type", @"order", nil]];
 	NSMutableArray *priceTypeTags = [NSMutableArray arrayWithObject:defaultObject];
@@ -99,6 +100,7 @@
 	NSMutableArray *cuisineTypeTags = [NSMutableArray arrayWithObject:defaultObject];
 	for (NSDictionary *d in responseAsArray)
 	{
+		NSLog(@"the dictionary is %@", d);
 		if ([[d objectForKey:@"type"] isEqualToString:kMealTypeString])
 			[mealTypeTags addObject:d];
 		
@@ -122,7 +124,7 @@
 	[[AppModel instance] setMealTypeTags:mealTypeTags];
 	[[AppModel instance] setAllergenTags:allergenTypeTags];
 	[[AppModel instance] setLifestyleTags:lifestyleTypeTags];
-	[[AppModel instance] setLifestyleTags:cuisineTypeTags];
+	[[AppModel instance] setCuisineTypeTags:cuisineTypeTags];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

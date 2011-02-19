@@ -306,7 +306,14 @@
 			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kMealTypeString] )
 				[dish setMealType:[tag objectForKey:@"id"]];
 			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kPriceTypeString] )						
-				[dish setPrice:[tag objectForKey:@"id"]];
+				[dish setPrice:[tag objectForKey:@"id"]];			
+			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kLifestyleTypeString] )						
+				[dish setLifestyleType:[tag objectForKey:@"id"]];			
+			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kCuisineTypeString] )						
+				[dish setCuisineType:[tag objectForKey:@"id"]];
+			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kAllergenTypeString] )						
+				[dish setAllergenType:[tag objectForKey:@"id"]];
+			
 		}	
 		
 		//query it's restaurant
@@ -554,30 +561,29 @@
 		[filterPredicateArray addObject:filterPredicate];
 	}
 	
-	//TODO, add these in once I put them in the app model
 	//Filter based on cuisine
-//	if ([[AppModel instance] selectedMeal] != 0) {
-//		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
-//						   @"cuisine", [app selectedCuisineId]];
-//		
-//		[filterPredicateArray addObject:filterPredicate];
-//	}
-//	
-//	//Filter based on allergen
-//	if ([[AppModel instance] selectedMeal] != 0) {
-//		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
-//						   @"allergen", [app selectedAllergenId]];
-//		
-//		[filterPredicateArray addObject:filterPredicate];
-//	}
-//	
-//	//Filter based on lifestyle
-//	if ([[AppModel instance] selectedMeal] != 0) {
-//		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
-//						   @"lifestyle", [app selectedLifestyleId]];
-//		
-//		[filterPredicateArray addObject:filterPredicate];
-//	}
+	if ([[AppModel instance] selectedCuisineId] != 0) {
+		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
+						   @"cuisineType", [app selectedCuisineId]];
+		
+		[filterPredicateArray addObject:filterPredicate];
+	}
+	
+	//Filter based on allergen
+	if ([[AppModel instance] selectedAllergenId] != 0) {
+		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
+						   @"allergenType", [app selectedAllergenId]];
+		
+		[filterPredicateArray addObject:filterPredicate];
+	}
+	
+	//Filter based on lifestyle
+	if ([[AppModel instance] selectedLifestyleId] != 0) {
+		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
+						   @"lifestyleType", [app selectedLifestyleId]];
+		
+		[filterPredicateArray addObject:filterPredicate];
+	}
 	
 }
 -(void) updateFetch {

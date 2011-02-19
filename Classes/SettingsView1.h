@@ -24,6 +24,8 @@
 	UIPickerView *mPickerView;
 	UIView	*mPickerViewOverlay;
 	UIButton *mPickerViewButton;
+	
+	
 }
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *priceSliderCell;
