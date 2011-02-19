@@ -516,7 +516,8 @@
 
 -(void) populatePredicateArray:(NSMutableArray *)filterPredicateArray{
 	NSPredicate *filterPredicate;
-
+	AppModel *app = [AppModel instance];
+	
 	//Filter based on search
 	if (self.currentSearchTerm && [self.currentSearchTerm length] > 0) {
 		
@@ -547,13 +548,36 @@
 	
 	//Filter based on mealType
 	if ([[AppModel instance] selectedMeal] != 0) {
-		NSLog(@"the else predicate %@ == %d", 
-			  @"price", [[AppModel instance] selectedPrice]);
 		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
-						   @"mealType", [NSNumber numberWithInt:[[AppModel instance] selectedMeal]]];
+						   @"mealType", [app selectedMealId]];
 		
 		[filterPredicateArray addObject:filterPredicate];
 	}
+	
+	//TODO, add these in once I put them in the app model
+	//Filter based on cuisine
+//	if ([[AppModel instance] selectedMeal] != 0) {
+//		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
+//						   @"cuisine", [app selectedCuisineId]];
+//		
+//		[filterPredicateArray addObject:filterPredicate];
+//	}
+//	
+//	//Filter based on allergen
+//	if ([[AppModel instance] selectedMeal] != 0) {
+//		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
+//						   @"allergen", [app selectedAllergenId]];
+//		
+//		[filterPredicateArray addObject:filterPredicate];
+//	}
+//	
+//	//Filter based on lifestyle
+//	if ([[AppModel instance] selectedMeal] != 0) {
+//		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
+//						   @"lifestyle", [app selectedLifestyleId]];
+//		
+//		[filterPredicateArray addObject:filterPredicate];
+//	}
 	
 }
 -(void) updateFetch {

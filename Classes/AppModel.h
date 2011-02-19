@@ -17,10 +17,10 @@
 	NSArray *mAllergenTags;
 	NSArray *mLifestyleTags;
 	int mSelectedPrice;
-	int mSelectedMeal;
-	int mSelectedAllergen;
-	int mSelectedLifestyle;
-	int mSelectedCuisine;
+	NSNumber *mSelectedMeal;
+	NSNumber *mSelectedAllergen;
+	NSNumber *mSelectedLifestyle;
+	NSNumber *mSelectedCuisine;
 	int mSorter;
 	NSNumber *mSelectedMealTypeObject;
 	Facebook *mFacebook;
@@ -33,13 +33,26 @@
 @property (nonatomic, retain) NSArray *allergenTags;
 @property (nonatomic, retain) NSArray *lifestyleTags;
 @property (nonatomic, assign) int selectedPrice;
-@property (nonatomic, assign) int selectedMeal;
-@property (nonatomic, assign) int selectedAllergen;
-@property (nonatomic, assign) int selectedLifestyle;
-@property (nonatomic, assign) int selectedCuisine;
+@property (nonatomic, retain) NSNumber *selectedMeal;
+@property (nonatomic, retain) NSNumber *selectedAllergen;
+@property (nonatomic, retain) NSNumber *selectedLifestyle;
+@property (nonatomic, retain) NSNumber *selectedCuisine;
 @property (nonatomic, assign) int sorter;
 @property (nonatomic, assign) Facebook *facebook;
 
 
 +(AppModel *)instance;
+
+-(NSString *)selectedMealName;
+-(NSString *)selectedLifestyleName;
+-(NSString *)selectedCuisineName;
+-(NSString *)selectedAllergenName;
+-(NSNumber *)selectedMealId;
+-(NSNumber *)selectedLifestyleId;
+-(NSNumber *)selectedCuisineId;
+-(NSNumber *)selectedAllergenId;
+-(void)setMealTypeByIndex:(int)index;
+-(void)setLifestyleTypeByIndex:(int)index;
+-(void)setCuisineTypeByIndex:(int)index;
+-(void)setAllergenTypeByIndex:(int)index;
 @end

@@ -73,6 +73,98 @@ AppModel *gAppModelInstance = nil;
 	self.facebook = [[Facebook alloc] initWithAppId:kFBAppId];
 	return self;
 }
+-(NSString *)selectedMealName {
+	for (NSDictionary *meal in self.mealTypeTags) {
+		if ([meal objectForKey:@"id"] == self.selectedMeal) {
+			return [meal objectForKey:@"name"];
+		}
+	}
+	return nil;
+}
+
+-(NSString *)selectedLifestyleName {
+	for (NSDictionary *lifestyle in self.lifestyleTags) {
+		if ([lifestyle objectForKey:@"id"] == self.selectedLifestyle) {
+			return [lifestyle objectForKey:@"name"];
+		}
+	}
+	return nil;
+}
+
+-(NSString *)selectedCuisineName {
+	for (NSDictionary *cuisine in self.cuisineTypeTags) {
+		if ([cuisine objectForKey:@"id"] == self.selectedCuisine) {
+			return [cuisine objectForKey:@"name"];
+		}
+	}
+	return nil;
+}
+
+-(NSString *)selectedAllergenName {
+	for (NSDictionary *allergen in self.allergenTags) {
+		if ([allergen objectForKey:@"id"] == self.selectedAllergen) {
+			return [allergen objectForKey:@"name"];
+		}
+	}
+	return nil;
+}
+
+-(NSNumber *)selectedMealId {
+	for (NSDictionary *meal in self.mealTypeTags) {
+		if ([meal objectForKey:@"id"] == self.selectedMeal) {
+			return [meal objectForKey:@"id"];
+		}
+	}
+	return nil;
+}
+
+-(NSNumber *)selectedLifestyleId {
+	for (NSDictionary *lifestyle in self.lifestyleTags) {
+		if ([lifestyle objectForKey:@"id"] == self.selectedLifestyle) {
+			return [lifestyle objectForKey:@"id"];
+		}
+	}
+	return nil;
+}
+
+-(NSNumber *)selectedCuisineId {
+	for (NSDictionary *cuisine in self.cuisineTypeTags) {
+		if ([cuisine objectForKey:@"id"] == self.selectedCuisine) {
+			return [cuisine objectForKey:@"id"];
+		}
+	}
+	return nil;
+}
+
+-(NSNumber *)selectedAllergenId {
+	for (NSDictionary *allergen in self.allergenTags) {
+		if ([allergen objectForKey:@"id"] == self.selectedAllergen) {
+			return [allergen objectForKey:@"id"];
+		}
+	}
+	return nil;
+}
+
+
+-(void)setMealTypeByIndex:(int)index {
+	NSNumber *selected = [[self.mealTypeTags objectAtIndex:index] objectForKey:@"id"];
+	[self setSelectedMeal:selected];
+}
+
+-(void)setLifestyleTypeByIndex:(int)index {
+	NSNumber *selected = [[self.lifestyleTags objectAtIndex:index] objectForKey:@"id"];
+	[self setSelectedLifestyle:selected];
+}
+
+-(void)setCuisineTypeByIndex:(int)index {
+	NSNumber *selected = [[self.cuisineTypeTags objectAtIndex:index] objectForKey:@"id"];
+	[self setSelectedCuisine:selected];
+}
+
+-(void)setAllergenTypeByIndex:(int)index {
+	NSNumber *selected = [[self.allergenTags objectAtIndex:index] objectForKey:@"id"];
+	[self setSelectedAllergen:selected];
+}
 
 -(void) dealloc
 {

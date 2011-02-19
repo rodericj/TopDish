@@ -35,7 +35,7 @@
 	int count = 0;
 
 	for (NSDictionary *d in [[AppModel instance] mealTypeTags]) {
-		if ([[d objectForKey:@"id"] intValue] == [[AppModel instance] selectedMeal]) {
+		if ([d objectForKey:@"id"] == [[AppModel instance] selectedMeal]) {
 			continue;
 		}
 		count++;
@@ -106,26 +106,22 @@
 	}
 	if (indexPath.section == kMealType) {		
 		cell.textLabel.text = kMealTypeString;
-		int whichMeal = [a selectedMeal];
-		cell.detailTextLabel.text = [[[a mealTypeTags] objectAtIndex:whichMeal] objectForKey:@"name"];
+		cell.detailTextLabel.text = [a selectedMealName];
 	}
 	
 	if (indexPath.section == kCuisineType) {		
 		cell.textLabel.text = kCuisineTypeString;
-		int whichCuisine = [a selectedCuisine];
-		cell.detailTextLabel.text = [[[a cuisineTypeTags] objectAtIndex:whichCuisine] objectForKey:@"name"];
+		cell.detailTextLabel.text = [a selectedCuisineName];
 	}
 	
 	if (indexPath.section == kLifestyleType) {
 		cell.textLabel.text = kLifestyleTypeString;
-		int whichLifestyle = [a selectedLifestyle];
-		cell.detailTextLabel.text = [[[a lifestyleTags] objectAtIndex:whichLifestyle] objectForKey:@"name"];
+		cell.detailTextLabel.text = [a selectedLifestyleName];
 	}
 	
 	if (indexPath.section == kAllergenType) {
 		cell.textLabel.text = kAllergenTypeString;
-		int whichAllergen = [a selectedAllergen];
-		cell.detailTextLabel.text = [[[a allergenTags] objectAtIndex:whichAllergen] objectForKey:@"name"];
+		cell.detailTextLabel.text = [a selectedAllergenName];
 	}
     // Configure the cell...
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -146,23 +142,23 @@
 	NSIndexPath *selectedPath = [self.tableView indexPathForSelectedRow];
 	
 	AppModel *app = [AppModel instance];
-	
 	switch (selectedPath.section) {
 		case kMealType:
 			NSLog(@"we selected %@", [[app mealTypeTags] objectAtIndex:pickerSelected]);
-			[app setSelectedMeal:pickerSelected];
+			[app setMealTypeByIndex:pickerSelected];
+			
 			break;
 		case kAllergenType:
 			NSLog(@"we selected %@", [[app allergenTags] objectAtIndex:pickerSelected]);
-			[app setSelectedAllergen:pickerSelected];
+			[app setAllergenTypeByIndex:pickerSelected];
 			break;
 		case kCuisineType:
 			NSLog(@"we selected %@", [[app cuisineTypeTags] objectAtIndex:pickerSelected]);
-			[app setSelectedCuisine:pickerSelected];
+			[app setCuisineTypeByIndex:pickerSelected];
 			break;
 		case kLifestyleType:
 			NSLog(@"we selected %@", [[app lifestyleTags] objectAtIndex:pickerSelected]);
-			[app setSelectedLifestyle:pickerSelected];
+			[app setLifestyleTypeByIndex:pickerSelected];
 			break;
 		default:
 			break;
