@@ -27,6 +27,8 @@
 
 	NSManagedObjectContext *managedObjectContext_;
 	UITableViewCell *mTvCell;
+	
+	UIButton *mMoreButton;
 }
 
 @property (nonatomic, retain) Dish *thisDish;
@@ -47,6 +49,8 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *tvCell;
+
+@property (nonatomic, retain) IBOutlet UIButton *moreButton;
 
 -(IBAction)pushRateDishController;
 -(IBAction)pushRestaurantDetailController;

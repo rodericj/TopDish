@@ -13,8 +13,8 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="4"/>
-			<integer value="13"/>
 			<integer value="8"/>
+			<integer value="13"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -43,6 +43,7 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<string key="NSFrameSize">{320, 460}</string>
+				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor" id="178579316">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -217,7 +218,7 @@
 				<reference key="IBUITextColor" ref="178579316"/>
 			</object>
 			<object class="IBUITableViewCell" id="259512371">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -345,8 +346,8 @@
 							</object>
 							<object class="IBUIButton" id="916631435">
 								<reference key="NSNextResponder" ref="868773419"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{116, 150}, {75, 35}}</string>
+								<int key="NSvFlags">319</int>
+								<string key="NSFrame">{{13, 150}, {240, 35}}</string>
 								<reference key="NSSuperview" ref="868773419"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -357,6 +358,7 @@
 									<double key="NSSize">15</double>
 									<int key="NSfFlags">16</int>
 								</object>
+								<int key="IBUILineBreakMode">4</int>
 								<string key="IBUINormalTitle">More</string>
 								<reference key="IBUIHighlightedTitleColor" ref="178579316"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
@@ -405,6 +407,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{303, 195}</string>
+				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="367913605"/>
 				<bool key="IBUIOpaque">NO</bool>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -601,6 +604,14 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">36</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">moreButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="916631435"/>
+					</object>
+					<int key="connectionID">45</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -873,7 +884,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">44</int>
+			<int key="maxID">45</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -929,6 +940,7 @@
 							<string>dishImageCell</string>
 							<string>dishImageView</string>
 							<string>dishNameLabel</string>
+							<string>moreButton</string>
 							<string>negativeReviews</string>
 							<string>positiveReviews</string>
 							<string>restaurantNameLabel</string>
@@ -941,6 +953,7 @@
 							<string>UITableViewCell</string>
 							<string>UIImageView</string>
 							<string>UILabel</string>
+							<string>UIButton</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
@@ -956,6 +969,7 @@
 							<string>dishImageCell</string>
 							<string>dishImageView</string>
 							<string>dishNameLabel</string>
+							<string>moreButton</string>
 							<string>negativeReviews</string>
 							<string>positiveReviews</string>
 							<string>restaurantNameLabel</string>
@@ -982,6 +996,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">dishNameLabel</string>
 								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">moreButton</string>
+								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">negativeReviews</string>
