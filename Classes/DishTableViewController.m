@@ -35,8 +35,6 @@
 
 @synthesize bgImage = mBgImage;
 @synthesize theSearchBar = mTheSearchBar;
-@synthesize currentLat = mCurrentLat;
-@synthesize currentLon = mCurrentLon;
 @synthesize currentSearchTerm = mCurrentSearchTerm;
 @synthesize searchHeader = mSearchHeader;
 @synthesize ratingTextLabel = mRatingTextLabel;
@@ -128,12 +126,14 @@
 		  self.fetchedResultsController);
 
 	NSString *urlString; 
-	
+	CLLocation *l = [[AppModel instance] currentLocation];
+
 	if (self.currentSearchTerm != nil)
 		urlString = [NSString 
 					 stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=%d&limit=20&q=%@",
-					 NETWORKHOST,self.currentLat,
-					 self.currentLon, 
+					 NETWORKHOST,
+					 l.coordinate.latitude,
+					 l.coordinate.longitude, 
 					 self.currentSearchDistance,
 					 [self.currentSearchTerm lowercaseString]];
 	
@@ -141,8 +141,8 @@
 		urlString = [NSString 
 					 stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=%d&limit=20", 
 					 NETWORKHOST, 
-					 self.currentLat, 
-					 self.currentLon,
+					 l.coordinate.latitude, 
+					 l.coordinate.longitude,
 					 self.currentSearchDistance];
 	
 	[self networkQuery:urlString];
@@ -488,7 +488,6 @@
 	[parser release];
 	NSLog(@"responseAsArray from DishTableViewController = %@", responseAsArray);
 
-	//TODO fix this. it should not be looking for specific keys. Salil's new api is probably going to fix all of this
 	if(![self.managedObjectContext save:&error]){
 		NSLog(@"there was a core data error when saving");
 		NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
@@ -647,19 +646,6 @@
 
 }
 
-
-- (NSNumber *) calculateDishDistance:(id *)dish{
-	Dish *thisDish = (Dish *)dish;
-	double a = [self.currentLat doubleValue];
-	double b = [[thisDish latitude] doubleValue];
-	a = [self.currentLon doubleValue];
-	b = [[thisDish longitude] doubleValue];
-	double d = (a-b)*(a-b);
-	
-	NSNumber *ret = [NSNumber numberWithDouble:d];
-	return ret;
-}
-
 #pragma mark -
 #pragma mark Table view data source
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -744,18 +730,11 @@
 	resto.text = @"Resto Name";
 	resto.text = [[thisDish restaurant] objName];
 	
+	AppModel *app = [AppModel instance];
+	
 	UILabel *mealType;
 	mealType = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_MEALTYPE_TAG];
-	mealType.text = @"$$$";
-	
-	//TODO Ok this is a fail, I need to loop through tags
-	//to find the price and mealtype
-	for (NSDictionary *d in [[AppModel instance] mealTypeTags]) {		
-		if ([[d objectForKey:@"id"] intValue]== [[thisDish mealType] intValue]) {
-			mealType.text = [NSString stringWithFormat:@"%@", [d objectForKey:@"name"]];
-			continue;
-		}
-	}
+	mealType.text = [app selectedMealName];
 	
 	UILabel *distance;
 	distance = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_DIST_TAG];
@@ -785,15 +764,8 @@
 	
 	UILabel *priceNumber;
 	priceNumber = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_COST_TAG];
-	
-	//TODO Ok this is a fail, I need to loop through tags
-	//to find the price and mealtype
-	for (NSDictionary *d in [[AppModel instance] priceTags]) {
-		if ([[d objectForKey:@"id"] intValue]== [[thisDish price] intValue]) {
-			priceNumber.text = 	[d objectForKey:@"name"];
-			continue;
-		}
-	}
+
+	priceNumber.text = [app selectedPriceName];
 	
 	UIImageView *imageView = (UIImageView *)[cell viewWithTag:DISHTABLEVIEW_IMAGE_TAG];
 	
@@ -872,6 +844,7 @@
 }
 	
 - (void)locationUpdate:(CLLocation *)location {
+	//TODO should probably go through each of the dishes and update their distance (inefficient?)
 	[[AppModel instance] setCurrentLocation:location];
 	[self getNearbyItems:location];
 	locationController = [[MyCLController alloc] init];
@@ -882,26 +855,9 @@
 - (void)getNearbyItems:(CLLocation *)location {
 	NSLog(@"getNearbyItems Called %@. Accuracy: %d, %d", [location description], location.verticalAccuracy, location.horizontalAccuracy);
 	
-	if (location == NULL){
-		NSLog(@"the location was null which means that the thread is doing something intersting. Lets send this back.");
-	}
-	else{
-		//Make location string 2 separate lat/long
-		NSString *latlong = [[[location description] stringByReplacingOccurrencesOfString:@"<" withString:@""] 
-							 stringByReplacingOccurrencesOfString:@">" withString:@""];
-		NSLog(@"the latlong is %@", latlong);
-		NSArray *chunks = [latlong componentsSeparatedByString:@" "];
-		if (self.currentLat != nil) {
-			self.currentLat = nil;
-		}
-		if (self.currentLon != nil){
-			self.currentLon = nil;
-		}
-		self.currentLat =[[[chunks objectAtIndex:0] stringByReplacingOccurrencesOfString:@"," withString:@""] copy];
-		self.currentLon = [[chunks objectAtIndex:1] copy];
-		[self initiateNetworkBasedOnSegmentControl];
-		
-	}
+	NSAssert(location != NULL, @"the location was null which means that the thread is doing something intersting. Lets send this back.");
+	[self initiateNetworkBasedOnSegmentControl];
+	
 }
 
 #pragma mark -
@@ -1051,10 +1007,6 @@
 	self.tvCell = nil;
 	
 	self.currentSearchTerm = nil;
-	
-	//TODO can probably get rid of this in favor of the appmodel's current latlon
-	self.currentLat = nil;
-	self.currentLon = nil;
 	
 	self.bgImage = nil;
 	

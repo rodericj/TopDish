@@ -254,12 +254,6 @@
 	}
 	self.reviews = [[thisDishDetailDictionary objectForKey:@"reviews"] copy];
 	
-	//TODO, 1/30, for some reason this fetch request is happening, then nothing?
-	//NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish"  
-//											  inManagedObjectContext:self.managedObjectContext];
-//	[fetchRequest setEntity:entity];
-//	[fetchRequest release];	
 	[responseText release];
 	self.responseData = nil;
 	[self.tableView reloadData];
@@ -274,7 +268,7 @@
 	
 	//TODO when the server is in a bit better shape I'll have to 
 	//remove this default call as well as the hard coded data
-	[self connectionDidFinishLoading:connection];
+	//[self connectionDidFinishLoading:connection];
 	
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	

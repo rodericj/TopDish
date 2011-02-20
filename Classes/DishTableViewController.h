@@ -41,7 +41,6 @@
 
 }
 
-- (NSNumber *) calculateDishDistance:(id *)dish;
 - (void) updateFetch;
 - (void)getNearbyItems:(CLLocation *)location;
 - (NSArray *) getArrayOfIdsWithArray:(NSArray *)responseAsArray withKey:(NSString*) key;
@@ -53,8 +52,6 @@
 @property (nonatomic, assign) IBOutlet UITableViewCell *tvCell;
 
 @property (nonatomic, retain) NSString *currentSearchTerm;
-@property (nonatomic, retain) NSString *currentLat;
-@property (nonatomic, retain) NSString *currentLon;
 @property (nonatomic, assign) int currentSearchDistance;
 
 @property (nonatomic, retain) IBOutlet UIImageView *bgImage;

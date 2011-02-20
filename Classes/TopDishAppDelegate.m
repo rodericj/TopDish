@@ -126,7 +126,7 @@
 	}
 	[parser release];
 	[responseText release];
-	//TODO set randy's tags
+
 	[[AppModel instance] setPriceTags:priceTypeTags];
 	[[AppModel instance] setMealTypeTags:mealTypeTags];
 	[[AppModel instance] setAllergenTags:allergenTypeTags];
