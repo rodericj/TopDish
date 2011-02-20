@@ -276,9 +276,10 @@
 																	inManagedObjectContext:self.managedObjectContext];
 		}
 		else {
-			NSAssert(TRUE, @"There were %d dishes matching id %d", 
-				   [dishesMatching count],
-				   [dishDict objectForKey:@"id"]);
+			NSString *errorString = [NSString stringWithFormat:@"There were %d dishes matching id %d", 
+			 [dishesMatching count],
+			 [dishDict objectForKey:@"id"]];
+			NSAssert(TRUE, errorString);
 		}
 		[dish setDish_id:[dishDict objectForKey:@"id"]];
 		
@@ -849,7 +850,7 @@
 - (void)getNearbyItems:(CLLocation *)location {
 	NSLog(@"getNearbyItems Called %@. Accuracy: %d, %d", [location description], location.verticalAccuracy, location.horizontalAccuracy);
 	
-	NSAssert(location != NULL, @"the location was null which means that the thread is doing something intersting. Lets send this back.");
+	//NSAssert(location != NULL, @"the location was null which means that the thread is doing something intersting. Lets send this back.");
 	[self initiateNetworkBasedOnSegmentControl];
 	
 }
