@@ -47,11 +47,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return kNumberOfDifferentTypes;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
+	return kNumberOfDifferentTypes;
 	switch (section) {
 		case kAllergenType:
 		case kLifestyleType:
@@ -69,6 +70,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+	return @"Filters";
 	switch (section) {
 		case kAllergenType:
 			return kAllergenTypeString;
@@ -96,37 +98,38 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
+		[cell.textLabel setTextColor:kTopDishBlue];
     }
     
-	if (indexPath.section == kPriceType && indexPath.row == 0) {
-		cell = self.priceSliderCell;
+	if (indexPath.row == kPriceType) {	
+		
+		cell.textLabel.text = kPriceTypeString;
+		cell.detailTextLabel.text = [a selectedPriceName];
 	}
-	if (indexPath.section == kPriceType && indexPath.row == 1) {
-		cell = self.priceValueCell;
-	}
-	if (indexPath.section == kMealType) {	
+	if (indexPath.row == kMealType) {	
 		
 		cell.textLabel.text = kMealTypeString;
 		cell.detailTextLabel.text = [a selectedMealName];
 	}
 	
-	if (indexPath.section == kCuisineType) {		
+	if (indexPath.row == kCuisineType) {		
 		cell.textLabel.text = kCuisineTypeString;
 		cell.detailTextLabel.text = [a selectedCuisineName];
 	}
 	
-	if (indexPath.section == kLifestyleType) {
+	if (indexPath.row == kLifestyleType) {
 		cell.textLabel.text = kLifestyleTypeString;
 		cell.detailTextLabel.text = [a selectedLifestyleName];
 	}
 	
-	if (indexPath.section == kAllergenType) {
+	if (indexPath.row == kAllergenType) {
 		cell.textLabel.text = kAllergenTypeString;
 		cell.detailTextLabel.text = [a selectedAllergenName];
 	}
     // Configure the cell...
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
+	//[cell setBackgroundColor:[UIColor redColor]];
     return cell;
 }
 #pragma mark -
@@ -136,17 +139,24 @@
 	[self.tableView setScrollEnabled:YES];
 	[self.tableView addSubview:self.pickerViewOverlay];
 	[UIView beginAnimations:@"animatePickerOn" context:NULL]; // Begin animation
+	mPickerUp = NO;
 	[self.pickerViewOverlay setFrame:CGRectOffset([self.pickerViewOverlay frame], 0, self.pickerViewOverlay.frame.size.height)]; // Move imageView off screen
 	[UIView commitAnimations]; // End animations
 	[self.pickerViewOverlay setHidden:YES];
-	
+	[self.tableView setUserInteractionEnabled:YES];
+
 	NSIndexPath *selectedPath = [self.tableView indexPathForSelectedRow];
 	
 	AppModel *app = [AppModel instance];
-	switch (selectedPath.section) {
+	switch (selectedPath.row) {
 		case kMealType:
 			NSLog(@"we selected %@", [[app mealTypeTags] objectAtIndex:pickerSelected]);
 			[app setMealTypeByIndex:pickerSelected];
+			
+			break;
+		case kPriceType:
+			NSLog(@"we selected %@", [[app priceTags] objectAtIndex:pickerSelected]);
+			[app setPriceTypeByIndex:pickerSelected];
 			
 			break;
 		case kAllergenType:
@@ -167,18 +177,8 @@
 	
 	[self.tableView beginUpdates];
 	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:selectedPath] 
-						  withRowAnimation:UITableViewRowAnimationLeft];
+						  withRowAnimation:UITableViewRowAnimationFade];
 	[self.tableView endUpdates];
-}
-
--(IBAction) updatePriceTags{
-	
-	[self.priceSlider setValue:(int)[self.priceSlider value]];
-	NSDictionary *d = [[AppModel instance].priceTags objectAtIndex:[self.priceSlider value]];
-	[self.priceValue setText:[d objectForKey:@"name"]];
-	int priceTagId = [[[[[AppModel instance] priceTags] objectAtIndex: [self.priceSlider value]] objectForKey:@"id"] intValue];
-	[[AppModel instance] setSelectedPrice:priceTagId];
-	
 }
 
 #pragma mark -
@@ -218,7 +218,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	
-	switch (indexPath.section) {
+	switch (indexPath.row) {
 		case kMealType:
 			self.pickerArray = [[AppModel instance] mealTypeTags];
 			break;
@@ -233,6 +233,10 @@
 			
 		case kAllergenType:
 			self.pickerArray = [[AppModel instance] allergenTags];
+			break;
+			
+		case kPriceType:
+			self.pickerArray = [[AppModel instance] priceTags];
 			break;
 			
 		default:
@@ -251,10 +255,14 @@
 	[self.tableView addSubview:self.pickerViewOverlay];
 	
 	//animate
-	[UIView beginAnimations:@"animatePickerOn" context:NULL]; // Begin animation
-	[self.pickerViewOverlay setFrame:CGRectOffset([self.pickerViewOverlay frame], 0, -self.pickerViewOverlay.frame.size.height)]; // Move imageView off screen
-	[UIView commitAnimations]; // End animations
-	[self.pickerViewOverlay setHidden:NO];
+	if (!mPickerUp) {
+		
+		[UIView beginAnimations:@"animatePickerOn" context:NULL]; // Begin animation
+		[self.pickerViewOverlay setFrame:CGRectOffset([self.pickerViewOverlay frame], 0, -self.pickerViewOverlay.frame.size.height)]; // Move imageView off screen
+		mPickerUp = TRUE;
+		[UIView commitAnimations]; // End animations
+		[self.pickerViewOverlay setHidden:NO];
+	}
 }
 
 #pragma mark -

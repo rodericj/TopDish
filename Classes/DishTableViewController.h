@@ -29,8 +29,6 @@
 	IBOutlet UISearchBar *mTheSearchBar;
 
 	UIImageView *mBgImage;
-
-	UISegmentedControl *mDishRestoSelector;
 	
 	RestaurantListTableViewDelegate *mrltv;
 	
@@ -69,7 +67,6 @@
 @property (nonatomic, retain) NSString *currentLon;
 @property (nonatomic, assign) int currentSearchDistance;
 
-@property (nonatomic, retain) UISegmentedControl *dishRestoSelector;
 @property (nonatomic, retain) IBOutlet UIImageView *bgImage;
 
 @property (nonatomic, retain) IBOutlet UISearchBar *theSearchBar;
