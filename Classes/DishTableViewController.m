@@ -77,7 +77,7 @@
 	[locationController.locationManager startUpdatingLocation];	
 	
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	self.currentSearchDistance = 20000000;
+	self.currentSearchDistance = 20000;
 	
     // Set up the settings button
 	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] 
@@ -136,7 +136,7 @@
 	
 	if (self.currentSearchTerm != nil)
 		urlString = [NSString 
-					 stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=%d&limit=2&q=%@",
+					 stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=%d&limit=20&q=%@",
 					 NETWORKHOST,self.currentLat,
 					 self.currentLon, 
 					 self.currentSearchDistance,
@@ -144,7 +144,7 @@
 	
 	else
 		urlString = [NSString 
-					 stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=%d&limit=2", 
+					 stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=%d&limit=20", 
 					 NETWORKHOST, 
 					 self.currentLat, 
 					 self.currentLon,
@@ -187,7 +187,6 @@
 	NSLog(@"didFinishLoading BaseDishTableViewController start");
 	NSString *responseText = [[NSString alloc] initWithData:self.responseData 
 												   encoding:NSASCIIStringEncoding];
-	
 	
 	NSString *responseTextStripped = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
 	[self processIncomingNetworkText:responseTextStripped];
@@ -443,7 +442,15 @@
 -(void)processIncomingNetworkText:(NSString *)responseText{
 	SBJSON *parser = [SBJSON new];
 	NSError *error = nil;
-	NSArray *responseAsArray = [parser objectWithString:responseText error:&error];	
+
+	NSDictionary *responseAsDictionary = [parser objectWithString:responseText 
+															error:&error];
+	if ([[responseAsDictionary objectForKey:@"rc"] intValue] != 0) {
+		NSLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
+		return;
+	}
+	NSArray *responseAsArray = [responseAsDictionary objectForKey:@"dishes"];
+//	NSArray *responseAsArray = [parser objectWithString:responseText error:&error];	
 	[parser release];
 	NSLog(@"responseAsArray from DishTableViewController = %@", responseAsArray);
 	if(error != nil){
@@ -456,7 +463,7 @@
 		NSLog(@"the response is nil");
 		return;
 	}
-	
+
 	if ([[responseAsArray objectAtIndex:0] objectForKey:@"reviews"]) {
 		NSLog(@"we have a dish");
 		[self processIncomingDishesWithJsonArray:responseAsArray];
@@ -521,7 +528,6 @@
 	
 	//Filter based on price
 	if ([[[AppModel instance] selectedPrice] intValue] != 0) {
-		
 		
 		NSLog(@"the else predicate %@ == %d", 
 			  @"price", [[AppModel instance] selectedPrice]);

@@ -236,7 +236,16 @@
 	
 	SBJSON *parser = [SBJSON new];
 	NSError *error;
-	NSArray *responseAsArray = [parser objectWithString:responseText error:&error];
+	
+	NSDictionary *responseAsDictionary = [parser objectWithString:responseText 
+															error:&error];
+	
+	if ([[responseAsDictionary objectForKey:@"rc"] intValue] != 0) {
+		NSLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
+		return;
+	}
+	
+	NSArray *responseAsArray = [responseAsDictionary objectForKey:@"dishes"];
 	NSDictionary *thisDishDetailDictionary = [responseAsArray objectAtIndex:0];
 	//NSLog(@"%@", thisDishDetailDictionary);
 	[parser release];

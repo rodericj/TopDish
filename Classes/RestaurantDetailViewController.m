@@ -35,8 +35,16 @@
 	
 	SBJSON *parser = [SBJSON new];
 	NSError *error = nil;
-	NSDictionary *resp = [[parser objectWithString:responseText error:&error]
-						  objectAtIndex:0];	
+	
+	NSDictionary *responseAsDictionary = [parser objectWithString:responseText 
+															error:&error];
+	
+	if ([[responseAsDictionary objectForKey:@"rc"] intValue] != 0) {
+		NSLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
+		return;
+	}
+	
+	NSDictionary *resp = [[responseAsDictionary objectForKey:@"restaurants"] objectAtIndex:0];
 	[parser release];
 	
 	if(error != nil){

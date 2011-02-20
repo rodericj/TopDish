@@ -88,7 +88,15 @@
 	NSString *responseText = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
 	SBJSON *parser = [SBJSON new];
 	NSError *error = nil;
-	NSArray *responseAsArray = [parser objectWithString:responseText error:&error];	
+	
+	NSDictionary *responseAsDictionary = [parser objectWithString:responseText 
+															error:&error];
+	
+	if ([[responseAsDictionary objectForKey:@"rc"] intValue] != 0) {
+		NSLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
+		return;
+	}
+	NSArray *responseAsArray = [responseAsDictionary objectForKey:@"tags"];
 	NSDictionary *defaultObject = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"0", @"None", @"None", @"0", nil]
 															  forKeys:[NSArray arrayWithObjects:@"id", @"name", @"type", @"order", nil]];
 	NSMutableArray *priceTypeTags = [NSMutableArray arrayWithObject:defaultObject];
