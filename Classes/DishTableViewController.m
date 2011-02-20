@@ -77,7 +77,7 @@
 	[locationController.locationManager startUpdatingLocation];	
 	
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	self.currentSearchDistance = 20000;
+	self.currentSearchDistance = 200000000;
 	
     // Set up the settings button
 	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] 
@@ -127,7 +127,6 @@
 }
 
 -(void)initiateNetworkBasedOnSegmentControl{
-	//TODO RESTODISH SWITCH - turn off the 'settings' button for restaurants
 
 	NSLog(@"Segmentedcontrol changed, the fetchedResults controller is %@", 
 		  self.fetchedResultsController);
@@ -228,12 +227,31 @@
 	}
 }
 
-
+-(void)initiateGrabNewRestaurants:(NSArray *)newRestaurantIds {
+	NSMutableString *query = [NSMutableString stringWithFormat:@"%@%@", NETWORKHOST, @"/api/restaurantDetail?"];
+	
+	for (NSNumber *n in newRestaurantIds) {
+		[query appendString:[NSString stringWithFormat:@"id[]=%@&", n]];
+	}
+	NSLog(@"query is %@", query);
+	NSURL *url;
+	NSURLRequest *request;
+	//NSURLConnection *conn;
+	url = [NSURL URLWithString:query];
+	NSLog(@"url is %@", query);
+	//Start up the networking
+	request = [NSURLRequest requestWithURL:url];
+	self.conn = [[NSURLConnection alloc] initWithRequest:request 
+												delegate:self 
+										startImmediately:TRUE];
+	
+}
 #pragma mark -
 #pragma mark Util
 -(void)processIncomingDishesWithJsonArray:(NSArray *)dishesArray {
 	//we have a list of dishes, for each of them, query the datastore
 	//for each dish in the list
+	NSMutableArray *newRestaurantsWeNeedToGet = [NSMutableArray array];
 	for (NSDictionary *dishDict in dishesArray) {
 		//   query the datastore
 		NSFetchRequest *dishFetchRequest = [[NSFetchRequest alloc] init];
@@ -276,6 +294,11 @@
 		[dish setPhotoURL:[dishDict objectForKey:@"photoURL"]];
 		[dish setPosReviews:[dishDict objectForKey:@"posReviews"]];
 		
+		CLLocation *l = [[CLLocation alloc] initWithLatitude:[[dish latitude] floatValue] longitude:[[dish longitude] floatValue]];
+		CLLocationDistance dist = [l distanceFromLocation:[[AppModel instance] currentLocation]];
+		float distanceInMiles = dist/1609.344; 
+		[dish setDistance:[NSNumber numberWithFloat:distanceInMiles]];
+		
 		NSLog(@"the dish we just created %@", dish);
 		
 		NSArray *tagsArray = [dishDict objectForKey:@"tags"];
@@ -315,7 +338,8 @@
 		//   else 
 		else if ([restosMatching count] == 0) {
 			restaurant = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" 
-														 inManagedObjectContext:self.managedObjectContext];		
+														 inManagedObjectContext:self.managedObjectContext];	
+			[newRestaurantsWeNeedToGet addObject:[dishDict objectForKey:@"restaurantID"]];
 		}
 		else {
 			NSAssert(TRUE, @"There were %d restaurants matching id %d", 
@@ -333,6 +357,12 @@
 	if(![self.managedObjectContext save:&error]){
 		NSLog(@"there was a core data error when saving");
 		NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
+	}
+	
+	NSLog(@"we need to get these restaurants %@", newRestaurantsWeNeedToGet);
+	if ([newRestaurantsWeNeedToGet count] > 0) {
+		
+		[self initiateGrabNewRestaurants:newRestaurantsWeNeedToGet];
 	}
 	[self updateFetch];
 
@@ -449,34 +479,20 @@
 		NSLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
 		return;
 	}
-	NSArray *responseAsArray = [responseAsDictionary objectForKey:@"dishes"];
-//	NSArray *responseAsArray = [parser objectWithString:responseText error:&error];	
-	[parser release];
-	NSLog(@"responseAsArray from DishTableViewController = %@", responseAsArray);
+	
 	if(error != nil){
 		NSLog(@"there was an error when jsoning");
 		NSLog(@"jsoning error %@", error);
 		NSLog(@"the offensive json %@", responseText);
 	}
 	
-	if(responseAsArray == nil){
-		NSLog(@"the response is nil");
-		return;
-	}
+	NSArray *responseAsArray = [responseAsDictionary objectForKey:@"dishes"];
+	[self processIncomingDishesWithJsonArray:[responseAsDictionary objectForKey:@"dishes"]];
+	[self processIncomingRestaurantsWithJsonArray:[responseAsDictionary objectForKey:@"restaurants"]];
+	[parser release];
+	NSLog(@"responseAsArray from DishTableViewController = %@", responseAsArray);
 
-	if ([[responseAsArray objectAtIndex:0] objectForKey:@"reviews"]) {
-		NSLog(@"we have a dish");
-		[self processIncomingDishesWithJsonArray:responseAsArray];
-	}
-	else if ([[responseAsArray objectAtIndex:0] objectForKey:@"neighborhood"]) {
-		NSLog(@"we have a restaurant");
-		[self processIncomingRestaurantsWithJsonArray:responseAsArray];
-	}
-	else {
-		NSLog(@"I don't know what this is %@", [responseAsArray objectAtIndex:0]);
-		//NSAssert(FALSE, @"This doesn't seem to be a dish or a restaurant");
-	}
-
+	//TODO fix this. it should not be looking for specific keys. Salil's new api is probably going to fix all of this
 	if(![self.managedObjectContext save:&error]){
 		NSLog(@"there was a core data error when saving");
 		NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
@@ -745,12 +761,16 @@
 	
 	UILabel *distance;
 	distance = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_DIST_TAG];
-	if ([[[thisDish distance] stringValue] length] > 5) {
-		distance.text = [[[thisDish distance] stringValue] substringToIndex:5];
-	}
-	else {
-		distance.text = [[thisDish distance] stringValue];
-	}
+	
+	CLLocation *l = [[CLLocation alloc] initWithLatitude:[[thisDish latitude] floatValue] 
+											   longitude:[[thisDish longitude] floatValue]];
+	CLLocationDistance dist = [l distanceFromLocation:[[AppModel instance] currentLocation]];
+	
+	//convert from meters to miles
+	float distanceInMiles = dist/1609.344; 
+	
+	distance.text = [NSString stringWithFormat:@"%.1f mi", distanceInMiles];	
+	//[thisDish setDistance:[NSNumber numberWithFloat:distanceInMiles]];
 	
 	UILabel *percentage = (UILabel *)[cell viewWithTag:PERCENTAGE_TAG];
 	percentage.text = [NSString stringWithFormat:@"%@%@", [thisDish calculated_rating], @"%"]; 
@@ -854,7 +874,7 @@
 }
 	
 - (void)locationUpdate:(CLLocation *)location {
-	
+	[[AppModel instance] setCurrentLocation:location];
 	[self getNearbyItems:location];
 	locationController = [[MyCLController alloc] init];
 	locationController.delegate = self;

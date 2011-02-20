@@ -10,6 +10,8 @@
 #import "constants.h"
 #import "Restaurant.h"
 #import "RestaurantDetailViewController.h"
+#import "AppModel.h"
+#import "Dish.h"
 
 @implementation RestaurantList
 
@@ -84,14 +86,12 @@
 	phoneNumberLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_PHONE_TAG];
 	phoneNumberLabel.text = thisRestaurant.phone;
 	
-	
-//#define RESTAURANT_TABLEVIEW_DISTANCE_TAG 4
-//#define RESTAURANT_TABLEVIEW_POSREVIEWS_TAG 5
-//#define RESTAURANT_TABLEVIEW_NEGREVIEWS_TAG 6
-//#define RESTAURANT_TABLEVIEW_RESTAURENT_SCORE_TAG 6
 	UILabel *distanceLabel;
 	distanceLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_DISTANCE_TAG];
-	distanceLabel.text = @"TODO";
+	NSSet *dishes = [thisRestaurant restaurant_dish];
+	Dish *aDish = (Dish *)[dishes anyObject];
+	
+	distanceLabel.text = [NSString stringWithFormat:@"%.1f mi", [[aDish distance] floatValue]];	
 	
 	UILabel *positiveReviewsLabel;
 	positiveReviewsLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_POSREVIEWS_TAG];

@@ -96,6 +96,7 @@
 		NSLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
 		return;
 	}
+	
 	NSArray *responseAsArray = [responseAsDictionary objectForKey:@"tags"];
 	NSDictionary *defaultObject = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"0", @"None", @"None", @"0", nil]
 															  forKeys:[NSArray arrayWithObjects:@"id", @"name", @"type", @"order", nil]];

@@ -24,6 +24,8 @@
 @synthesize selectedLifestyle = mSelectedLifestyle;
 @synthesize selectedCuisine = mSelectedCuisine;
 
+@synthesize currentLocation = mCurrentLocation;
+
 @synthesize sorter = mSorter;
 @synthesize facebook = mFacebook;
 AppModel *gAppModelInstance = nil;

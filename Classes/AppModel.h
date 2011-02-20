@@ -24,6 +24,8 @@
 	int mSorter;
 	NSNumber *mSelectedMealTypeObject;
 	Facebook *mFacebook;
+	
+	CLLocation *mCurrentLocation;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *user;
@@ -40,7 +42,7 @@
 @property (nonatomic, assign) int sorter;
 @property (nonatomic, assign) Facebook *facebook;
 
-
+@property (nonatomic, retain) CLLocation *currentLocation;
 +(AppModel *)instance;
 
 -(NSString *)selectedMealName;
