@@ -99,7 +99,6 @@
 		rightButton.tag = [[[(DishAnnotation*)annotation thisDish] dish_id] intValue];
 		annotationView.rightCalloutAccessoryView = rightButton;
 		
-		NSLog(@"about to return the annotation view %d, %@", [annotationView canShowCallout], [annotation title]);
 		return annotationView;
 	}
 	NSLog(@"returned nil? hmmm");

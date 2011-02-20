@@ -359,24 +359,30 @@
 
 
 - (void)dealloc {
-    [super dealloc];
-	//self.thisDish = nil;
-//	self.dishHeaderCell = nil;
-//	self.dishTitle = nil;
-//	self.restaurantTitle = nil;
-//	self.dishImage = nil;
-//	
-//	self.dishCommentCell = nil;
-//	self.dishComment = nil;
-//	
-//	self.wouldYouCell = nil;
-// 	self.wouldYou = nil;
-//	
-// 	self.pictureCell = nil;
-//	self.newPicture = nil;
-//	
-//	self.submitButtonCell = nil;
-//	self.submitButton = nil;
+	self.thisDish = nil;
+	self.dishHeaderCell = nil;
+	self.dishTitle = nil;
+	self.restaurantTitle = nil;
+	self.dishImage = nil;
+	
+	self.positiveReviews = nil;
+	self.negativeReviews = nil;
+	
+	self.dishCommentCell = nil;
+	self.dishComment = nil;
+	
+	self.wouldYouCell = nil;
+ 	
+	self.noImage = nil;
+	self.yesImage = nil;
+	
+ 	self.pictureCell = nil;
+	self.newPicture = nil;
+	
+	self.submitButtonCell = nil;
+	self.submitButton = nil;
+	
+	[super dealloc];
 }
 
 

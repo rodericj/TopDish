@@ -15,6 +15,4 @@
 	FBLoginButton *mFbLoginButton;
 }
 
-- (IBAction)saveView:(id)sender;
-
 @end

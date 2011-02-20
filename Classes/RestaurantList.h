@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MyCLController.h"
 
-@interface RestaurantList : UITableViewController  <MyCLControllerDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate>{
+@interface RestaurantList : UITableViewController  <NSFetchedResultsControllerDelegate, UISearchBarDelegate>{
 
     NSFetchedResultsController *mFetchedResultsController;
 	NSManagedObjectContext *mManagedObjectContext;

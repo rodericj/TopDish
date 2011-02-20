@@ -258,6 +258,10 @@
 }
 
 - (void)dealloc {
+	self.fetchedResultsController = nil;
+	self.managedObjectContext = nil;
+	self.tvCell = nil;
+
     [super dealloc];
 }
 

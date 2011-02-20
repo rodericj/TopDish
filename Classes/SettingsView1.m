@@ -8,18 +8,11 @@
 
 #import "SettingsView1.h"
 #import "AppModel.h"
-#import "DishOptionPickerTableViewController.h"
 #import "constants.h"
 
 #define kNumberOfDifferentTypes 4
 
 @implementation SettingsView1
-
-@synthesize priceSliderCell = mPriceSliderCell;
-@synthesize priceValueCell = mPriceValueCell;
-@synthesize priceValue = mPriceValue;
-@synthesize priceSlider = mPriceSlider;
-@synthesize mealTypeCell = mMealTypeCell;
 
 @synthesize pickerArray = mPickerArray;
 @synthesize pickerView = mPickerView;
@@ -28,9 +21,7 @@
 
 - (void)viewDidLoad {
 	self.view.backgroundColor = kTopDishBackground;
-	[self.priceSlider setMaximumValue:[[[AppModel instance] priceTags] count] - 1];
-	[self.priceSlider setMinimumValue:0];
-	[self.priceSlider setValue:0];
+
 	NSLog(@"loading and the selectedmeal type is %d", [[AppModel instance] selectedMeal]);
 	int count = 0;
 
@@ -282,11 +273,10 @@
 
 
 - (void)dealloc {
-	self.priceSliderCell = nil;
-	self.priceSlider = nil;
-	self.priceValueCell = nil;
-	self.priceValue = nil;
-	self.mealTypeCell = nil;
+	self.pickerArray = nil;
+	self.pickerView = nil;
+	self.pickerViewOverlay = nil;
+	self.pickerViewButton = nil;
 	[super dealloc];
 }
 

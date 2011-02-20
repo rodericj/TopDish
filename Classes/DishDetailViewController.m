@@ -357,6 +357,26 @@
 
 
 - (void)dealloc {
+	self.thisDish = nil;
+	self.dishImageCell = nil;
+	self.dishImageView = nil;
+	self.negativeReviews = nil;
+	self.positiveReviews = nil;
+	
+	self.dishDescriptionCell = nil;
+	self.dishDescriptionLabel = nil;
+	
+	self.dishNameLabel = nil;
+	self.restaurantNameLabel = nil;
+	
+	self.reviews = nil;
+	self.responseData = nil;
+	
+	//TODO - in general, I need to get the moc from the app model
+	self.managedObjectContext = nil;
+	self.tvCell = nil;
+	self.moreButton = nil;
+	
     [super dealloc];
 }
 

@@ -38,14 +38,11 @@
 @synthesize currentLat = mCurrentLat;
 @synthesize currentLon = mCurrentLon;
 @synthesize currentSearchTerm = mCurrentSearchTerm;
-@synthesize settingsDict = mSettingsDict;
 @synthesize searchHeader = mSearchHeader;
-@synthesize rltv = mrltv;
 @synthesize ratingTextLabel = mRatingTextLabel;
 @synthesize priceTextLabel = mPriceTextLabel;
 @synthesize distanceTextLabel = mDistanceTextLabel;
 @synthesize currentSearchDistance = mCurrentSearchDistance;
-@synthesize restaurantList = mRestaurantList;
 @synthesize managedObjectContext = mManagedObjectContext;
 @synthesize fetchedResultsController = mFetchedResultsController;
 
@@ -87,7 +84,6 @@
 									   action:@selector(showSettings)];
 	
     self.navigationItem.leftBarButtonItem = settingsButton;
-	self.settingsDict = [[NSMutableDictionary alloc] init];
 	
 	// Set up the map button
 	UIBarButtonItem *mapButton = [[UIBarButtonItem alloc] 
@@ -1051,14 +1047,30 @@
 
 - (void)dealloc {
 
-    self.managedObjectContext = nil;
-	self.settingsDict = nil;
 	self.addItemCell = nil;
+	self.tvCell = nil;
+	
+	self.currentSearchTerm = nil;
+	
+	//TODO can probably get rid of this in favor of the appmodel's current latlon
+	self.currentLat = nil;
+	self.currentLon = nil;
+	
+	self.bgImage = nil;
+	
+	self.theSearchBar = nil;
+	self.searchHeader = nil;
+	
+	self.ratingTextLabel = nil;
+	self.priceTextLabel = nil;
+	self.distanceTextLabel = nil;
 	
 	self.managedObjectContext = nil;
 	self.fetchedResultsController = nil;
-	self.responseData = nil;
+	
 	self.conn = nil;
+	self.responseData = nil;
+
 	[super dealloc];
 
 }

@@ -211,7 +211,17 @@ AppModel *gAppModelInstance = nil;
 
 -(void) dealloc
 {
-	[super dealloc];
 	self.user = nil;
+	self.mealTypeTags = nil;
+	self.cuisineTypeTags = nil;
+	self.priceTags = nil;
+	self.allergenTags = nil;
+	self.lifestyleTags = nil;
+	self.selectedMeal = nil;
+	self.selectedPrice = nil;
+	self.selectedAllergen = nil;
+	self.selectedLifestyle = nil;
+	self.selectedCuisine = nil;
+	[super dealloc];
 }
 @end

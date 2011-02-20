@@ -226,6 +226,11 @@ enum {
 	self.userName = nil;
 	self.userSince = nil;
 	self.tableHeader = nil;
+	
+	self.userImage = nil;
+	self.imageRequest = nil;
+	self.logoutButton = nil;
+	self.lifestyleTags = nil;
 }
 
 

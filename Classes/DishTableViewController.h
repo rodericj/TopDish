@@ -9,10 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "MyCLController.h"
-//#import "BaseDishTableViewer.h"
 #import "ObjectWithImage.h"
-#import "RestaurantListTableViewDelegate.h"
-#import "RestaurantList.h"
 
 @interface DishTableViewController :UITableViewController <MyCLControllerDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate> {
 	MyCLController *locationController;
@@ -23,21 +20,16 @@
 	
 	IBOutlet UIImageView *dummyImage;
 	
-	NSMutableDictionary *mSettingsDict;
 	
 	IBOutlet UIView *mSearchHeader;
 	IBOutlet UISearchBar *mTheSearchBar;
 
 	UIImageView *mBgImage;
-	
-	RestaurantListTableViewDelegate *mrltv;
-	
+		
 	UILabel *mRatingTextLabel;
 	UILabel *mPriceTextLabel;
 	UILabel *mDistanceTextLabel;
-	
-	RestaurantList *mRestaurantList;
-	
+		
 	NSManagedObjectContext *mManagedObjectContext;
     NSFetchedResultsController *mFetchedResultsController;
 
@@ -57,11 +49,9 @@
 -(IBAction) sortByRating;
 -(IBAction) sortByPrice;
 
-@property (nonatomic, retain) RestaurantListTableViewDelegate *rltv;
 @property (nonatomic, retain) IBOutlet UITableViewCell *addItemCell;
 @property (nonatomic, assign) IBOutlet UITableViewCell *tvCell;
 
-@property (nonatomic, retain) NSMutableDictionary *settingsDict;
 @property (nonatomic, retain) NSString *currentSearchTerm;
 @property (nonatomic, retain) NSString *currentLat;
 @property (nonatomic, retain) NSString *currentLon;
@@ -75,8 +65,6 @@
 @property (nonatomic, retain) IBOutlet UILabel *ratingTextLabel;
 @property (nonatomic, retain) IBOutlet UILabel *priceTextLabel;
 @property (nonatomic, retain) IBOutlet UILabel *distanceTextLabel;
-
-@property (nonatomic, retain) IBOutlet RestaurantList *restaurantList;
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;

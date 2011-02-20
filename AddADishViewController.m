@@ -469,6 +469,21 @@
 
 
 - (void)dealloc {
+	self.restaurant = nil;
+	self.restaurantCell = nil;
+	self.restaurantTitle = nil;
+	self.dishNameCell = nil;
+	self.dishTitle = nil;
+	self.wouldYouCell = nil;
+	self.yesImage = nil;
+	self.noImage = nil;
+	self.uploadCell = nil;
+	self.newPicture = nil;
+	self.additionalDetailsCell = nil;
+	self.additionalDetailsTextView = nil;
+	self.commentTextView = nil;
+	self.submitButton = nil;
+	
     [super dealloc];
 	free(pointer);
 }

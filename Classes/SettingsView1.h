@@ -10,13 +10,6 @@
 
 
 @interface SettingsView1 : UITableViewController <UIPickerViewDelegate, UIPickerViewDataSource>{
-	UITableViewCell *mPriceSliderCell;
-	UISlider *mPriceSlider;
-	UITableViewCell *mPriceValueCell;
-	UILabel *mPriceValue;
-	UITableViewCell *mMealTypeCell;
-	UITableViewCell *mAllergenCell;
-	UITableViewCell *mLifestyleCell;
 	int *pointer;
 	int pickerSelected;
 	NSArray *mPickerArray;
@@ -29,11 +22,6 @@
 	
 }
 
-@property (nonatomic, retain) IBOutlet UITableViewCell *priceSliderCell;
-@property (nonatomic, retain) IBOutlet UISlider *priceSlider;
-@property (nonatomic, retain) IBOutlet UITableViewCell *priceValueCell;
-@property (nonatomic, retain) IBOutlet UILabel *priceValue;
-@property (nonatomic, retain) IBOutlet UITableViewCell *mealTypeCell;
 
 @property (nonatomic, retain) NSArray *pickerArray;
 @property (nonatomic, retain) IBOutlet UIPickerView *pickerView;

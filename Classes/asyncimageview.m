@@ -23,6 +23,10 @@
 	[connection cancel]; //in case the URL is still downloading
 	[connection release];
 	[data release]; 
+	
+	self.owningObject = nil;
+	self.managedObjectContext = nil;
+	
     [super dealloc];
 }
 

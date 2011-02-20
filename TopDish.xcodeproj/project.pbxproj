@@ -77,7 +77,6 @@
 		17FA587712ED14FD00902FEE /* SettingsView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17FA587512ED14FD00902FEE /* SettingsView1.xib */; };
 		17FA59AC12ED53F900902FEE /* DishDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FA59AA12ED53F900902FEE /* DishDetailViewController.m */; };
 		17FA59AD12ED53F900902FEE /* DishDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17FA59AB12ED53F900902FEE /* DishDetailViewController.xib */; };
-		17FCD5B412C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FCD5B212C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m */; };
 		1D3623260D0F684500981E51 /* TopDishAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* TopDishAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -243,8 +242,6 @@
 		17FA59A912ED53F900902FEE /* DishDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishDetailViewController.h; sourceTree = "<group>"; };
 		17FA59AA12ED53F900902FEE /* DishDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishDetailViewController.m; sourceTree = "<group>"; };
 		17FA59AB12ED53F900902FEE /* DishDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DishDetailViewController.xib; sourceTree = "<group>"; };
-		17FCD5B112C2F1CC0081D5EA /* RestaurantListTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListTableViewDelegate.h; sourceTree = "<group>"; };
-		17FCD5B212C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantListTableViewDelegate.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* TopDishAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopDishAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* TopDishAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopDishAppDelegate.m; sourceTree = "<group>"; };
@@ -647,8 +644,6 @@
 		5FBB975C126241F100141693 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				17FCD5B112C2F1CC0081D5EA /* RestaurantListTableViewDelegate.h */,
-				17FCD5B212C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m */,
 				5F92A9A0126D4A41007D2451 /* MyCLController.h */,
 				5F92A9A1126D4A41007D2451 /* MyCLController.m */,
 				28C286DF0D94DF7D0034E888 /* DishTableViewController.h */,
@@ -819,7 +814,6 @@
 				17DD26FD12BDBCDF0048C1A1 /* ASIAuthenticationDialog.m in Sources */,
 				17DD270412BDBCE80048C1A1 /* Reachability.m in Sources */,
 				17DD271C12BDBDEE0048C1A1 /* ASIInputStream.m in Sources */,
-				17FCD5B412C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m in Sources */,
 				17EEB69912D9A2550032E12B /* LoggedInLoggedOutGate.m in Sources */,
 				17EEB6B312D9A3560032E12B /* SignInSignUpViewController.m in Sources */,
 				17EEB74C12D9A9260032E12B /* SignInViewController.m in Sources */,
@@ -897,6 +891,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
@@ -910,6 +905,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.0;

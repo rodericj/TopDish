@@ -240,6 +240,16 @@
 }
 
 - (void)dealloc {
+	self.restaurant = nil;
+	self.restaurantHeader = nil;
+	self.restaurantName = nil;
+	self.restaurantAddress = nil;
+	self.restaurantPhone = nil;
+	self.restaurantImage = nil;
+	
+	self.mapRow = nil;
+	self.mapView = nil;
+	
     [super dealloc];
 }
 

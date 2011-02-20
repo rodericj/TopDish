@@ -73,10 +73,8 @@
 
 
 - (void)dealloc {
+	self.optionValues = nil;
     [super dealloc];
-	
-	//TODO, should I release this? Seems like I should, but it crashes
-	//self.optionValues = nil;
 }
 
 
