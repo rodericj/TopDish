@@ -45,9 +45,9 @@ AppModel *gAppModelInstance = nil;
 	
 	SBJSON *parser = [SBJSON new];
 	NSError *error = nil;
-	NSLog(@"mobileInitResponseText %@", mobileInitResponseText);
+	//NSLog(@"mobileInitResponseText %@", mobileInitResponseText);
 	NSArray *responseAsArray = [parser objectWithString:mobileInitResponseText error:&error];	
-	NSLog(@"response Array is %@", responseAsArray);
+	//NSLog(@"response Array is %@", responseAsArray);
 	if (error)
 		NSLog(@"there was an error when jsoning in AppModel Init %@", error);
 	NSArray *objectArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:0],
@@ -63,7 +63,6 @@ AppModel *gAppModelInstance = nil;
 	NSMutableArray *lifestyleTags = [NSMutableArray arrayWithObject:d];
 	for (d in responseAsArray)
 	{
-		NSLog(@"this dictionary %@", d);
 		if ([[d objectForKey:@"type"] isEqualToString:kMealTypeString])
 			[mealTypeTags addObject:d];
 		

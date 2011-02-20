@@ -128,18 +128,20 @@
 	NSString *urlString; 
 	CLLocation *l = [[AppModel instance] currentLocation];
 
-	if (self.currentSearchTerm != nil)
+	if (self.currentSearchTerm != nil) {
 		urlString = [NSString 
-					 stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=%d&limit=20&q=%@",
+					 stringWithFormat:@"%@/api/dishSearch?lat=%f&lng=%f&distance=%d&limit=20&q=%@",
 					 NETWORKHOST,
 					 l.coordinate.latitude,
 					 l.coordinate.longitude, 
 					 self.currentSearchDistance,
 					 [self.currentSearchTerm lowercaseString]];
+		urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+	}
 	
 	else
 		urlString = [NSString 
-					 stringWithFormat:@"%@/api/dishSearch?lat=%@&lng=%@&distance=%d&limit=20", 
+					 stringWithFormat:@"%@/api/dishSearch?lat=%f&lng=%f&distance=%d&limit=20", 
 					 NETWORKHOST, 
 					 l.coordinate.latitude, 
 					 l.coordinate.longitude,
@@ -179,7 +181,6 @@
 #pragma mark network connection stuff
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
-	NSLog(@"didFinishLoading BaseDishTableViewController start");
 	NSString *responseText = [[NSString alloc] initWithData:self.responseData 
 												   encoding:NSASCIIStringEncoding];
 	
@@ -187,7 +188,6 @@
 	[self processIncomingNetworkText:responseTextStripped];
 	self.conn = nil;
 	[responseText release];
-	NSLog(@"didFinishLoading BaseDishTableViewController end");
 	
 }
 
@@ -295,7 +295,7 @@
 		float distanceInMiles = dist/1609.344; 
 		[dish setDistance:[NSNumber numberWithFloat:distanceInMiles]];
 		
-		NSLog(@"the dish we just created %@", dish);
+		//NSLog(@"the dish we just created %@", dish);
 		
 		NSArray *tagsArray = [dishDict objectForKey:@"tags"];
 		for (NSDictionary *tag in tagsArray){
@@ -342,20 +342,18 @@
 					 [restosMatching count],
 					 [dishDict objectForKey:@"restaurantID"]);
 		}
-		NSLog(@"this is the restaurant for this dish %@", 
-			  [dishDict objectForKey:@"restaurantName"]);
+		
 		[restaurant setRestaurant_id:[dishDict objectForKey:@"restaurantID"]];
 		[restaurant setObjName:[NSString stringWithFormat:@"%@", [dishDict objectForKey:@"restaurantName"]]];
 		[dish setRestaurant:restaurant];
-		NSLog(@"restaurant we just created is %@", restaurant);
 	}
 	NSError *error;
 	if(![self.managedObjectContext save:&error]){
-		NSLog(@"there was a core data error when saving");
+		NSLog(@"there was a core data error when saving incoming dishes");
 		NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
 	}
-	
-	NSLog(@"we need to get these restaurants %@", newRestaurantsWeNeedToGet);
+
+	//For all of the new restaurants we just created, go fetch their data
 	if ([newRestaurantsWeNeedToGet count] > 0) {
 		
 		[self initiateGrabNewRestaurants:newRestaurantsWeNeedToGet];
@@ -367,8 +365,8 @@
 -(void)processIncomingRestaurantsWithJsonArray:(NSArray *)restoArray {
 	//we have a list of dishes, for each of them, query the datastore
 	//for each dish in the list
+	NSLog(@"got a bunch of new restaurants from DishTableViewController, creating those");
 	for (NSDictionary *restoDict in restoArray) {
-		NSLog(@"we've got a restaurant array, lets make objects %@", restoDict);
 		//   query the datastore
 		NSFetchRequest *restoFetchRequest = [[NSFetchRequest alloc] init];
 		NSEntityDescription *whichType = [NSEntityDescription entityForName:@"Restaurant" 
@@ -402,7 +400,6 @@
 		}
 		//Do all of the restaurant data setting
 		
-		NSLog(@"setting the restaurant id %@", restoDict);
 		[restaurant setRestaurant_id:[restoDict objectForKey:@"id"]];
 		[restaurant setObjName:[NSString stringWithFormat:@"%@", [restoDict objectForKey:@"name"]]];
 		[restaurant setLatitude:[restoDict objectForKey:@"latitude"]];
@@ -444,7 +441,6 @@
 						 [restosDishesMatching count],
 						 [restoDishesDict objectForKey:@"id"]);
 			}
-			NSLog(@"the dish here is %@", restoDishesDict);
 			[dish setDish_description:[restoDishesDict objectForKey:@"description"]];
 			[dish setDish_id:[restoDishesDict objectForKey:@"id"]];
 			[dish setLatitude:[restoDishesDict objectForKey:@"latitude"]];
@@ -458,7 +454,7 @@
 	}
 	NSError *error;
 	if(![self.managedObjectContext save:&error]){
-		NSLog(@"there was a core data error when saving");
+		NSLog(@"there was a core data error when saving incoming restaurants");
 		NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
 	}
 	//[self.tableView reloadData];
@@ -482,16 +478,14 @@
 		NSLog(@"the offensive json %@", responseText);
 	}
 	
-	NSArray *responseAsArray = [responseAsDictionary objectForKey:@"dishes"];
 	[self processIncomingDishesWithJsonArray:[responseAsDictionary objectForKey:@"dishes"]];
 	[self processIncomingRestaurantsWithJsonArray:[responseAsDictionary objectForKey:@"restaurants"]];
 	[parser release];
-	NSLog(@"responseAsArray from DishTableViewController = %@", responseAsArray);
 
-	if(![self.managedObjectContext save:&error]){
-		NSLog(@"there was a core data error when saving");
-		NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
-	}
+	//if(![self.managedObjectContext save:&error]){
+//		NSLog(@"there was a core data error when saving");
+//		NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
+//	}
 	
 	[self updateFetch];
 	self.responseData = nil;
@@ -746,7 +740,7 @@
 	//convert from meters to miles
 	float distanceInMiles = dist/1609.344; 
 	
-	distance.text = [NSString stringWithFormat:@"%.1f mi", distanceInMiles];	
+	distance.text = [NSString stringWithFormat:@"%.2f mi", distanceInMiles];	
 	//[thisDish setDistance:[NSNumber numberWithFloat:distanceInMiles]];
 	
 	UILabel *percentage = (UILabel *)[cell viewWithTag:PERCENTAGE_TAG];

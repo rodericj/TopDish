@@ -91,7 +91,7 @@
 	NSSet *dishes = [thisRestaurant restaurant_dish];
 	Dish *aDish = (Dish *)[dishes anyObject];
 	
-	distanceLabel.text = [NSString stringWithFormat:@"%.1f mi", [[aDish distance] floatValue]];	
+	distanceLabel.text = [NSString stringWithFormat:@"%.2f mi", [[aDish distance] floatValue]];	
 	
 	UILabel *positiveReviewsLabel;
 	positiveReviewsLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_POSREVIEWS_TAG];
