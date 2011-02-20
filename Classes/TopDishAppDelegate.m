@@ -84,13 +84,11 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {	
-	//{"id":217002,"name":"Breakfast","type":"Meal Type","order":0}
 	// Use when fetching binary data
 	NSString *responseText = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
 	SBJSON *parser = [SBJSON new];
 	NSError *error = nil;
 	NSArray *responseAsArray = [parser objectWithString:responseText error:&error];	
-	NSLog(@"response from mobileInit is %@", responseAsArray);
 	NSDictionary *defaultObject = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"0", @"None", @"None", @"0", nil]
 															  forKeys:[NSArray arrayWithObjects:@"id", @"name", @"type", @"order", nil]];
 	NSMutableArray *priceTypeTags = [NSMutableArray arrayWithObject:defaultObject];
@@ -100,7 +98,6 @@
 	NSMutableArray *cuisineTypeTags = [NSMutableArray arrayWithObject:defaultObject];
 	for (NSDictionary *d in responseAsArray)
 	{
-		NSLog(@"the dictionary is %@", d);
 		if ([[d objectForKey:@"type"] isEqualToString:kMealTypeString])
 			[mealTypeTags addObject:d];
 		

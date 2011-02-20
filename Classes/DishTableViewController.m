@@ -35,7 +35,6 @@
 
 @synthesize bgImage = mBgImage;
 @synthesize theSearchBar = mTheSearchBar;
-@synthesize dishRestoSelector = mDishRestoSelector;
 @synthesize currentLat = mCurrentLat;
 @synthesize currentLon = mCurrentLon;
 @synthesize currentSearchTerm = mCurrentSearchTerm;
@@ -152,37 +151,16 @@
 					 self.currentSearchDistance];
 	
 	[self networkQuery:urlString];
-	
-	if ([self.dishRestoSelector selectedSegmentIndex] == 1) {
-		NSMutableArray *views = [NSMutableArray arrayWithArray:
-								 [self.navigationController viewControllers]];
-		[views replaceObjectAtIndex:0 withObject:self.restaurantList];
-		[self.restaurantList setReturnView:self];
-		[self.navigationController setViewControllers:views animated:NO];
-	}
 }
 
 // Implement viewWillAppear: to do additional setup before the view is presented.
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
 	//do we need to update the fetch when we come back?
-	if ([self.dishRestoSelector selectedSegmentIndex] == 0) {
-		[self updateFetch];
-	}
-	else {
-		[self.dishRestoSelector setSelectedSegmentIndex:0];
-	}
-
-	//[self updateFetch];
-	NSLog(@"filter on these %d, %d", [[AppModel instance] selectedMeal], 
-		  [[AppModel instance] selectedPrice]);
+	NSLog(@"the view will appear, lets reload");
+	[self updateFetch];
+	[super viewWillAppear:animated];
 }
 
--(void)viewDidAppear:(BOOL)animated {
-	if ([self.dishRestoSelector selectedSegmentIndex] == 1) {
-		[self.dishRestoSelector setSelectedSegmentIndex:0];
-	}
-}
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     //NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	//NSLog(@"here we are using the managed Object %@", managedObject);
@@ -554,7 +532,7 @@
 	}
 	
 	//Filter based on mealType
-	if ([[AppModel instance] selectedMeal] != 0) {
+	if ([[[AppModel instance] selectedMeal] intValue] != 0) {
 		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
 						   @"mealType", [app selectedMealId]];
 		
@@ -562,7 +540,7 @@
 	}
 	
 	//Filter based on cuisine
-	if ([[AppModel instance] selectedCuisineId] != 0) {
+	if ([[[AppModel instance] selectedCuisineId] intValue] != 0) {
 		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
 						   @"cuisineType", [app selectedCuisineId]];
 		
@@ -570,7 +548,7 @@
 	}
 	
 	//Filter based on allergen
-	if ([[AppModel instance] selectedAllergenId] != 0) {
+	if ([[[AppModel instance] selectedAllergenId] intValue] != 0) {
 		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
 						   @"allergenType", [app selectedAllergenId]];
 		
@@ -578,7 +556,7 @@
 	}
 	
 	//Filter based on lifestyle
-	if ([[AppModel instance] selectedLifestyleId] != 0) {
+	if ([[[AppModel instance] selectedLifestyleId] intValue] != 0) {
 		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
 						   @"lifestyleType", [app selectedLifestyleId]];
 		
@@ -677,10 +655,8 @@
 	ObjectWithImage *selectedObject;
 	//self.fetchedResultsController = nil;
 
-	if([self.dishRestoSelector selectedSegmentIndex] == 0){
-		selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-		[self pushDishViewController:selectedObject];
-	}
+	selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+	[self pushDishViewController:selectedObject];
 	//else {
 //		selectedObject = [[self.rltv fetchedResultsController] objectAtIndexPath:indexPath];
 //		[self pushRestaurantViewController:selectedObject];
