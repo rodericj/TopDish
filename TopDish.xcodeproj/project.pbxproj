@@ -30,6 +30,7 @@
 		17BBAFD81301AC2400705F1A /* CommentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17BBAFD71301AC2400705F1A /* CommentsCell.xib */; };
 		17C078CB130E2A5800D19C96 /* SegmentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C078CA130E2A5800D19C96 /* SegmentsController.m */; };
 		17C078D6130E2AD500D19C96 /* NSArray+PerformSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C078D5130E2AD500D19C96 /* NSArray+PerformSelector.m */; };
+		17C07F2113108C3400D19C96 /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C07F2013108C3400D19C96 /* Dish.m */; };
 		17C911B212F516B6006066EA /* bestSort.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C911B112F516B6006066EA /* bestSort.png */; };
 		17C911B412F516DD006066EA /* priceSort.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C911B312F516DD006066EA /* priceSort.png */; };
 		17C911B612F516F5006066EA /* distanceSort.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C911B512F516F5006066EA /* distanceSort.png */; };
@@ -62,7 +63,6 @@
 		17E6827912F7D1D70010E6A9 /* FBLoginButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E6827812F7D1D70010E6A9 /* FBLoginButton.m */; };
 		17E6829612F7D2D20010E6A9 /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17E6829512F7D2D20010E6A9 /* FBConnect.bundle */; };
 		17E6841B12F7EC090010E6A9 /* RestaurantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17E6841A12F7EC090010E6A9 /* RestaurantTableViewCell.xib */; };
-		17E6857F12F943BF0010E6A9 /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E6857E12F943BF0010E6A9 /* Dish.m */; };
 		17E6871F12FA886D0010E6A9 /* quick_filter_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 17E6871E12FA886D0010E6A9 /* quick_filter_button.png */; };
 		17E6887412FAA8970010E6A9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 17E6887312FAA8970010E6A9 /* Default.png */; };
 		17EEB69912D9A2550032E12B /* LoggedInLoggedOutGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EEB69712D9A2550032E12B /* LoggedInLoggedOutGate.m */; };
@@ -161,6 +161,8 @@
 		17C078CA130E2A5800D19C96 /* SegmentsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentsController.m; sourceTree = "<group>"; };
 		17C078D4130E2AD500D19C96 /* NSArray+PerformSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PerformSelector.h"; sourceTree = "<group>"; };
 		17C078D5130E2AD500D19C96 /* NSArray+PerformSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PerformSelector.m"; sourceTree = "<group>"; };
+		17C07F1F13108C3400D19C96 /* Dish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
+		17C07F2013108C3400D19C96 /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
 		17C911B112F516B6006066EA /* bestSort.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bestSort.png; sourceTree = "<group>"; };
 		17C911B312F516DD006066EA /* priceSort.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priceSort.png; sourceTree = "<group>"; };
 		17C911B512F516F5006066EA /* distanceSort.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = distanceSort.png; sourceTree = "<group>"; };
@@ -220,8 +222,6 @@
 		17E6827812F7D1D70010E6A9 /* FBLoginButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginButton.m; sourceTree = "<group>"; };
 		17E6829512F7D2D20010E6A9 /* FBConnect.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBConnect.bundle; sourceTree = "<group>"; };
 		17E6841A12F7EC090010E6A9 /* RestaurantTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantTableViewCell.xib; sourceTree = "<group>"; };
-		17E6857D12F943BF0010E6A9 /* Dish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
-		17E6857E12F943BF0010E6A9 /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
 		17E6871E12FA886D0010E6A9 /* quick_filter_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quick_filter_button.png; sourceTree = "<group>"; };
 		17E6887312FAA8970010E6A9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		17EEB69712D9A2550032E12B /* LoggedInLoggedOutGate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoggedInLoggedOutGate.m; path = ../LoggedInLoggedOutGate.m; sourceTree = "<group>"; };
@@ -647,7 +647,6 @@
 		5FBB975C126241F100141693 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				17E6841A12F7EC090010E6A9 /* RestaurantTableViewCell.xib */,
 				17FCD5B112C2F1CC0081D5EA /* RestaurantListTableViewDelegate.h */,
 				17FCD5B212C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m */,
 				5F92A9A0126D4A41007D2451 /* MyCLController.h */,
@@ -655,6 +654,7 @@
 				28C286DF0D94DF7D0034E888 /* DishTableViewController.h */,
 				28C286E00D94DF7D0034E888 /* DishTableViewController.m */,
 				5F89F15C1259501800959D05 /* DishTableViewCell.xib */,
+				17E6841A12F7EC090010E6A9 /* RestaurantTableViewCell.xib */,
 				175BBF381307AB9300B5353C /* RestaurantList.h */,
 				175BBF391307AB9300B5353C /* RestaurantList.m */,
 				175BBF3A1307AB9300B5353C /* RestaurantList.xib */,
@@ -844,10 +844,10 @@
 				17E6821512F7BD0B0010E6A9 /* FBLoginDialog.m in Sources */,
 				17E6821612F7BD0B0010E6A9 /* FBDialog.m in Sources */,
 				17E6827912F7D1D70010E6A9 /* FBLoginButton.m in Sources */,
-				17E6857F12F943BF0010E6A9 /* Dish.m in Sources */,
 				175BBF3B1307AB9300B5353C /* RestaurantList.m in Sources */,
 				17C078CB130E2A5800D19C96 /* SegmentsController.m in Sources */,
 				17C078D6130E2AD500D19C96 /* NSArray+PerformSelector.m in Sources */,
+				17C07F2113108C3400D19C96 /* Dish.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -943,12 +943,12 @@
 		28D3F201112F7DC200FD0661 /* TopDish.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				17E6857D12F943BF0010E6A9 /* Dish.h */,
-				17E6857E12F943BF0010E6A9 /* Dish.m */,
 				17DD22C112BD87610048C1A1 /* DishComment.h */,
 				17DD22C212BD87610048C1A1 /* DishComment.m */,
 				179B88D412A3719500730FAC /* ObjectWithImage.h */,
 				179B88D512A3719500730FAC /* ObjectWithImage.m */,
+				17C07F1F13108C3400D19C96 /* Dish.h */,
+				17C07F2013108C3400D19C96 /* Dish.m */,
 				179B878C12A310E200730FAC /* Restaurant.h */,
 				179B878D12A310E200730FAC /* Restaurant.m */,
 				176A9E6612E2618900CC595C /* User.h */,

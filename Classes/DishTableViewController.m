@@ -35,7 +35,6 @@
 
 @synthesize bgImage = mBgImage;
 @synthesize theSearchBar = mTheSearchBar;
-@synthesize dishRestoSelector = mDishRestoSelector;
 @synthesize currentLat = mCurrentLat;
 @synthesize currentLon = mCurrentLon;
 @synthesize currentSearchTerm = mCurrentSearchTerm;
@@ -62,17 +61,10 @@
     }
     return self;
 }
-
-- (void)viewDidLoad {
-	[super viewDidLoad];
-
-	self.view.backgroundColor = kTopDishBackground;
-	self.tableView.backgroundColor = kTopDishBackground;
-
+- (void) setUpSpecificView {
 	[self.tableView setTableHeaderView:self.searchHeader];
 	self.tableView.delegate = self;
 	
-	self.navigationController.navigationBar.tintColor = kTopDishBlue;
 	
 	[self.theSearchBar setPlaceholder:@"Search Dishes"];
 	[self.theSearchBar setShowsCancelButton:YES];
@@ -89,10 +81,10 @@
 	
     // Set up the settings button
 	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] 
-								  initWithImage:[UIImage imageNamed:FILTER_IMAGE_NAME] 
-								  style:UIBarButtonItemStylePlain 
-								  target:self 
-								  action:@selector(showSettings)];
+									   initWithImage:[UIImage imageNamed:FILTER_IMAGE_NAME] 
+									   style:UIBarButtonItemStylePlain 
+									   target:self 
+									   action:@selector(showSettings)];
 	
     self.navigationItem.leftBarButtonItem = settingsButton;
 	self.settingsDict = [[NSMutableDictionary alloc] init];
@@ -105,26 +97,20 @@
 								  action:@selector(flipToMap)];
 	
 	self.navigationItem.rightBarButtonItem = mapButton;
-
-	
-	// Set up the dish/restaurant selector
-	//self.dishRestoSelector = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Dishes", 
-//																   @"Restaurants", 
-//																   nil]];
-//	[self.dishRestoSelector setSegmentedControlStyle:UISegmentedControlStyleBar];
-//	[self.dishRestoSelector setSelectedSegmentIndex:0];
-//	[self.dishRestoSelector setTintColor:buttonLightBlue];
-//	
-//	self.navigationItem.titleView = self.dishRestoSelector;
-//	
-//	[self.dishRestoSelector addTarget:self 
-//						 action:@selector(initiateNetworkBasedOnSegmentControl) 
-//			   forControlEvents:UIControlEventValueChanged];
-	
 	
 	[self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tdlogo.png"]]];
 	self.title = @"Dishes";
+	
+}
 
+- (void)viewDidLoad {
+	[super viewDidLoad];
+
+	self.view.backgroundColor = kTopDishBackground;
+	self.tableView.backgroundColor = kTopDishBackground;
+	self.navigationController.navigationBar.tintColor = kTopDishBlue;
+	[self setUpSpecificView];
+	
 }
 
 -(void) networkQuery:(NSString *)query{
@@ -165,37 +151,16 @@
 					 self.currentSearchDistance];
 	
 	[self networkQuery:urlString];
-	
-	if ([self.dishRestoSelector selectedSegmentIndex] == 1) {
-		NSMutableArray *views = [NSMutableArray arrayWithArray:
-								 [self.navigationController viewControllers]];
-		[views replaceObjectAtIndex:0 withObject:self.restaurantList];
-		[self.restaurantList setReturnView:self];
-		[self.navigationController setViewControllers:views animated:NO];
-	}
 }
 
 // Implement viewWillAppear: to do additional setup before the view is presented.
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
 	//do we need to update the fetch when we come back?
-	if ([self.dishRestoSelector selectedSegmentIndex] == 0) {
-		[self updateFetch];
-	}
-	else {
-		[self.dishRestoSelector setSelectedSegmentIndex:0];
-	}
-
-	//[self updateFetch];
-	NSLog(@"filter on these %d, %d", [[AppModel instance] selectedMealType], 
-		  [[AppModel instance] selectedPrice]);
+	NSLog(@"the view will appear, lets reload");
+	[self updateFetch];
+	[super viewWillAppear:animated];
 }
 
--(void)viewDidAppear:(BOOL)animated {
-	if ([self.dishRestoSelector selectedSegmentIndex] == 1) {
-		[self.dishRestoSelector setSelectedSegmentIndex:0];
-	}
-}
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     //NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	//NSLog(@"here we are using the managed Object %@", managedObject);
@@ -304,7 +269,7 @@
 		}
 		[dish setDish_id:[dishDict objectForKey:@"id"]];
 		
-		[dish setObjName:[NSString stringWithFormat:@"(1) %@", [dishDict objectForKey:@"name"]]];
+		[dish setObjName:[NSString stringWithFormat:@"%@", [dishDict objectForKey:@"name"]]];
 		[dish setDish_description:[dishDict objectForKey:@"description"]];
 		[dish setLatitude:[dishDict objectForKey:@"latitude"]];
 		[dish setLongitude:[dishDict objectForKey:@"longitude"]];
@@ -319,7 +284,14 @@
 			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kMealTypeString] )
 				[dish setMealType:[tag objectForKey:@"id"]];
 			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kPriceTypeString] )						
-				[dish setPrice:[tag objectForKey:@"id"]];
+				[dish setPrice:[tag objectForKey:@"id"]];			
+			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kLifestyleTypeString] )						
+				[dish setLifestyleType:[tag objectForKey:@"id"]];			
+			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kCuisineTypeString] )						
+				[dish setCuisineType:[tag objectForKey:@"id"]];
+			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kAllergenTypeString] )						
+				[dish setAllergenType:[tag objectForKey:@"id"]];
+			
 		}	
 		
 		//query it's restaurant
@@ -354,7 +326,7 @@
 		NSLog(@"this is the restaurant for this dish %@", 
 			  [dishDict objectForKey:@"restaurantName"]);
 		[restaurant setRestaurant_id:[dishDict objectForKey:@"restaurantID"]];
-		[restaurant setObjName:[NSString stringWithFormat:@"(2) %@", [dishDict objectForKey:@"restaurantName"]]];
+		[restaurant setObjName:[NSString stringWithFormat:@"%@", [dishDict objectForKey:@"restaurantName"]]];
 		[dish setRestaurant:restaurant];
 		NSLog(@"restaurant we just created is %@", restaurant);
 	}
@@ -407,7 +379,7 @@
 		
 		NSLog(@"setting the restaurant id %@", restoDict);
 		[restaurant setRestaurant_id:[restoDict objectForKey:@"id"]];
-		[restaurant setObjName:[NSString stringWithFormat:@"(1) %@", [restoDict objectForKey:@"name"]]];
+		[restaurant setObjName:[NSString stringWithFormat:@"%@", [restoDict objectForKey:@"name"]]];
 		[restaurant setLatitude:[restoDict objectForKey:@"latitude"]];
 		[restaurant setLongitude:[restoDict objectForKey:@"longitude"]];
 		[restaurant setPhone:[restoDict objectForKey:@"phone"]];
@@ -452,7 +424,7 @@
 			[dish setDish_id:[restoDishesDict objectForKey:@"id"]];
 			[dish setLatitude:[restoDishesDict objectForKey:@"latitude"]];
 			[dish setLongitude:[restoDishesDict objectForKey:@"longitude"]];
-			[dish setObjName:[NSString stringWithFormat:@"(2) %@", [restoDishesDict objectForKey:@"name"]]];
+			[dish setObjName:[NSString stringWithFormat:@"%@", [restoDishesDict objectForKey:@"name"]]];
 			[dish setNegReviews:[restoDishesDict objectForKey:@"negReviews"]];
 			[dish setPhotoURL:[restoDishesDict objectForKey:@"photoURL"]];
 			[dish setPosReviews:[restoDishesDict objectForKey:@"posReviews"]];
@@ -495,7 +467,7 @@
 	}
 	else {
 		NSLog(@"I don't know what this is %@", [responseAsArray objectAtIndex:0]);
-		NSAssert(FALSE, @"This doesn't seem to be a dish or a restaurant");
+		//NSAssert(FALSE, @"This doesn't seem to be a dish or a restaurant");
 	}
 
 	if(![self.managedObjectContext save:&error]){
@@ -529,7 +501,8 @@
 
 -(void) populatePredicateArray:(NSMutableArray *)filterPredicateArray{
 	NSPredicate *filterPredicate;
-
+	AppModel *app = [AppModel instance];
+	
 	//Filter based on search
 	if (self.currentSearchTerm && [self.currentSearchTerm length] > 0) {
 		
@@ -559,11 +532,33 @@
 	}
 	
 	//Filter based on mealType
-	if ([[AppModel instance] selectedMealType] != 0) {
-		NSLog(@"the else predicate %@ == %d", 
-			  @"price", [[AppModel instance] selectedPrice]);
+	if ([[[AppModel instance] selectedMeal] intValue] != 0) {
 		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
-						   @"mealType", [NSNumber numberWithInt:[[AppModel instance] selectedMealType]]];
+						   @"mealType", [app selectedMealId]];
+		
+		[filterPredicateArray addObject:filterPredicate];
+	}
+	
+	//Filter based on cuisine
+	if ([[[AppModel instance] selectedCuisineId] intValue] != 0) {
+		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
+						   @"cuisineType", [app selectedCuisineId]];
+		
+		[filterPredicateArray addObject:filterPredicate];
+	}
+	
+	//Filter based on allergen
+	if ([[[AppModel instance] selectedAllergenId] intValue] != 0) {
+		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
+						   @"allergenType", [app selectedAllergenId]];
+		
+		[filterPredicateArray addObject:filterPredicate];
+	}
+	
+	//Filter based on lifestyle
+	if ([[[AppModel instance] selectedLifestyleId] intValue] != 0) {
+		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
+						   @"lifestyleType", [app selectedLifestyleId]];
 		
 		[filterPredicateArray addObject:filterPredicate];
 	}
@@ -660,10 +655,8 @@
 	ObjectWithImage *selectedObject;
 	//self.fetchedResultsController = nil;
 
-	if([self.dishRestoSelector selectedSegmentIndex] == 0){
-		selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-		[self pushDishViewController:selectedObject];
-	}
+	selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+	[self pushDishViewController:selectedObject];
 	//else {
 //		selectedObject = [[self.rltv fetchedResultsController] objectAtIndexPath:indexPath];
 //		[self pushRestaurantViewController:selectedObject];
@@ -1031,7 +1024,6 @@
 }
 
 - (void)dealloc {
-	[super dealloc];
 
     self.managedObjectContext = nil;
 	self.settingsDict = nil;
@@ -1041,6 +1033,8 @@
 	self.fetchedResultsController = nil;
 	self.responseData = nil;
 	self.conn = nil;
+	[super dealloc];
+
 }
 
 

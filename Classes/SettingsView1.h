@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface SettingsView1 : UITableViewController {
+@interface SettingsView1 : UITableViewController <UIPickerViewDelegate, UIPickerViewDataSource>{
 	UITableViewCell *mPriceSliderCell;
 	UISlider *mPriceSlider;
 	UITableViewCell *mPriceValueCell;
@@ -18,6 +18,14 @@
 	UITableViewCell *mAllergenCell;
 	UITableViewCell *mLifestyleCell;
 	int *pointer;
+	int pickerSelected;
+	NSArray *mPickerArray;
+	
+	UIPickerView *mPickerView;
+	UIView	*mPickerViewOverlay;
+	UIButton *mPickerViewButton;
+	
+	
 }
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *priceSliderCell;
@@ -25,7 +33,13 @@
 @property (nonatomic, retain) IBOutlet UITableViewCell *priceValueCell;
 @property (nonatomic, retain) IBOutlet UILabel *priceValue;
 @property (nonatomic, retain) IBOutlet UITableViewCell *mealTypeCell;
--(IBAction) updatePriceTags;
 
+@property (nonatomic, retain) NSArray *pickerArray;
+@property (nonatomic, retain) IBOutlet UIPickerView *pickerView;
+@property (nonatomic, retain) IBOutlet UIView *pickerViewOverlay;
+@property (nonatomic, retain) IBOutlet UIButton *pickerViewButton;
+
+-(IBAction) updatePriceTags;
+-(IBAction) pickerDone;
 @end
 

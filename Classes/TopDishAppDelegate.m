@@ -84,7 +84,6 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {	
-	//{"id":217002,"name":"Breakfast","type":"Meal Type","order":0}
 	// Use when fetching binary data
 	NSString *responseText = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
 	SBJSON *parser = [SBJSON new];
@@ -122,7 +121,7 @@
 	[[AppModel instance] setMealTypeTags:mealTypeTags];
 	[[AppModel instance] setAllergenTags:allergenTypeTags];
 	[[AppModel instance] setLifestyleTags:lifestyleTypeTags];
-	[[AppModel instance] setLifestyleTags:cuisineTypeTags];
+	[[AppModel instance] setCuisineTypeTags:cuisineTypeTags];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -76,7 +76,35 @@
 	restaurantName = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_DISH_NAME_TAG];
 	restaurantName.text = thisRestaurant.objName;
 	
-    // Configure the cell...
+	UILabel *addressLabel;
+	addressLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_ADDRESS_TAG];
+	addressLabel.text = thisRestaurant.addressLine1;
+	
+	UILabel *phoneNumberLabel;
+	phoneNumberLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_PHONE_TAG];
+	phoneNumberLabel.text = thisRestaurant.phone;
+	
+	
+//#define RESTAURANT_TABLEVIEW_DISTANCE_TAG 4
+//#define RESTAURANT_TABLEVIEW_POSREVIEWS_TAG 5
+//#define RESTAURANT_TABLEVIEW_NEGREVIEWS_TAG 6
+//#define RESTAURANT_TABLEVIEW_RESTAURENT_SCORE_TAG 6
+	UILabel *distanceLabel;
+	distanceLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_DISTANCE_TAG];
+	distanceLabel.text = @"TODO";
+	
+	UILabel *positiveReviewsLabel;
+	positiveReviewsLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_POSREVIEWS_TAG];
+	positiveReviewsLabel.text = @"0";
+	
+	UILabel *negativeReviewsLabel;
+	negativeReviewsLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_NEGREVIEWS_TAG];
+	negativeReviewsLabel.text = @"0";	
+	
+	UILabel *restaurantScoreLabel;
+	restaurantScoreLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_RESTAURENT_SCORE_TAG];
+	restaurantScoreLabel.text = @"TODO";
+	
     return cell;
 }
 

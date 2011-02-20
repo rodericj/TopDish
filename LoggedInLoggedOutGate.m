@@ -6,7 +6,8 @@
 //
 
 #import "LoggedInLoggedOutGate.h"
-#import "SignInSignUpViewController.h"
+//#import "SignInSignUpViewController.h"
+#import "SignInViewController.h"
 #import "AccountView.h"
 #import "AppModel.h"
 #import "constants.h"
@@ -25,9 +26,16 @@
 		[accountView release];
 	}
 	else {
+		/*
 		SignInSignUpViewController *signInSignUp = [[SignInSignUpViewController alloc] initWithNibName:@"SignInSignUp" bundle:nil];
 		[self.navigationController setViewControllers:[NSArray arrayWithObject:signInSignUp]];
 		[signInSignUp release];
+		 */
+		
+		SignInViewController *signIn = [[SignInViewController alloc] initWithNibName:@"SignIn" bundle:nil];
+		//[self.navigationController pushViewController:signIn animated:NO];
+		[self.navigationController setViewControllers:[NSArray arrayWithObject:signIn]];
+		[signIn release];
 	}
 
 }

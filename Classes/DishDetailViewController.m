@@ -21,6 +21,7 @@
 
 #define kCommentHeight 14
 
+#define kMoreDishesAtString @"More Dishes At"
 @implementation DishDetailViewController
 
 @synthesize thisDish = mThisDish;
@@ -40,6 +41,8 @@
 @synthesize managedObjectContext;
 
 @synthesize tvCell = mTvCell;
+
+@synthesize moreButton = mMoreButton;
 
 #pragma mark -
 #pragma mark Table view data source
@@ -199,6 +202,12 @@
 	
 	[self.restaurantNameLabel setText:[[self.thisDish restaurant] objName]];
 	[self.restaurantNameLabel setTextColor:kTopDishBlue];
+	
+	NSString *buttonTitle = [NSString stringWithFormat:@"%@ %@", 
+							 kMoreDishesAtString,
+							 [[self.thisDish restaurant] objName]];
+	[self.moreButton setTitle:buttonTitle
+					 forState:UIControlStateNormal];
 	
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishDetail?id[]=%@", 
 									   NETWORKHOST, 
