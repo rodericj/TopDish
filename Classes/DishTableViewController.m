@@ -584,7 +584,9 @@
 		
 		[filterPredicateArray addObject:filterPredicate];
 	}
-	
+	if ([self respondsToSelector:@selector(restaurantDetailFilter)]) {
+		[filterPredicateArray addObject:[self restaurantDetailFilter]];
+	}
 }
 -(void) updateFetch {
 	
@@ -618,7 +620,7 @@
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = 
 	[[NSSortDescriptor alloc] initWithKey:sorter 
-								ascending:FALSE];
+								ascending:TRUE];
 	
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -978,9 +980,7 @@
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
-	
-   // [self decorateFetchRequest:fetchRequest];
-	
+		
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     

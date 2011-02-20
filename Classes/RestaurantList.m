@@ -180,6 +180,7 @@
 #pragma mark -
 #pragma mark Fetched results controller
 
+
 - (NSFetchedResultsController *)fetchedResultsController {
     if (mFetchedResultsController != nil) {
         return mFetchedResultsController;
@@ -193,9 +194,7 @@
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Restaurant" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
-	
-	// [self decorateFetchRequest:fetchRequest];
-	
+		
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     

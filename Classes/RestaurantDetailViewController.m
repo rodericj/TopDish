@@ -78,10 +78,9 @@
 
 #pragma mark -
 #pragma mark fetch handling
--(void)decorateFetchRequest:(NSFetchRequest *)request{
-	//NSLog(@"restaurant.restaurant_id = %@", [[restaurant restaurant_id] intValue]);
-	[request setPredicate: [NSPredicate predicateWithFormat: @"(restaurant.restaurant_id = %@)", [restaurant restaurant_id]]];
-	//[request setPredicate: [NSPredicate predicateWithFormat: @"Restaurant.restaurant_id < %@", [restaurant restaurant_id]]];
+-(NSPredicate *)restaurantDetailFilter {
+	return [NSPredicate predicateWithFormat: @"%K = %@", 
+			@"restaurant.restaurant_id", [restaurant restaurant_id]];
 }
 
 #pragma mark -
