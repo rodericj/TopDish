@@ -87,7 +87,7 @@ AppModel *gAppModelInstance = nil;
 			return [meal objectForKey:@"name"];
 		}
 	}
-	return nil;
+	return @"None";
 }
 
 -(NSString *)selectedLifestyleName {
@@ -96,7 +96,7 @@ AppModel *gAppModelInstance = nil;
 			return [lifestyle objectForKey:@"name"];
 		}
 	}
-	return nil;
+	return @"None";
 }
 
 -(NSString *)selectedCuisineName {
@@ -105,7 +105,7 @@ AppModel *gAppModelInstance = nil;
 			return [cuisine objectForKey:@"name"];
 		}
 	}
-	return nil;
+	return @"None";
 }
 
 -(NSString *)selectedAllergenName {
@@ -114,7 +114,7 @@ AppModel *gAppModelInstance = nil;
 			return [allergen objectForKey:@"name"];
 		}
 	}
-	return nil;
+	return @"None";
 }
 
 -(NSNumber *)selectedMealId {
