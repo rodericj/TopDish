@@ -16,7 +16,7 @@
 	NSArray *mPriceTags;
 	NSArray *mAllergenTags;
 	NSArray *mLifestyleTags;
-	int mSelectedPrice;
+	NSNumber *mSelectedPrice;
 	NSNumber *mSelectedMeal;
 	NSNumber *mSelectedAllergen;
 	NSNumber *mSelectedLifestyle;
@@ -32,8 +32,8 @@
 @property (nonatomic, retain) NSArray *priceTags;
 @property (nonatomic, retain) NSArray *allergenTags;
 @property (nonatomic, retain) NSArray *lifestyleTags;
-@property (nonatomic, assign) int selectedPrice;
 @property (nonatomic, retain) NSNumber *selectedMeal;
+@property (nonatomic, retain) NSNumber *selectedPrice;
 @property (nonatomic, retain) NSNumber *selectedAllergen;
 @property (nonatomic, retain) NSNumber *selectedLifestyle;
 @property (nonatomic, retain) NSNumber *selectedCuisine;
@@ -45,13 +45,16 @@
 
 -(NSString *)selectedMealName;
 -(NSString *)selectedLifestyleName;
+-(NSString *)selectedPriceName;
 -(NSString *)selectedCuisineName;
 -(NSString *)selectedAllergenName;
 -(NSNumber *)selectedMealId;
 -(NSNumber *)selectedLifestyleId;
 -(NSNumber *)selectedCuisineId;
 -(NSNumber *)selectedAllergenId;
+-(NSNumber *)selectedPriceId;
 -(void)setMealTypeByIndex:(int)index;
+-(void)setPriceTypeByIndex:(int)index;
 -(void)setLifestyleTypeByIndex:(int)index;
 -(void)setCuisineTypeByIndex:(int)index;
 -(void)setAllergenTypeByIndex:(int)index;

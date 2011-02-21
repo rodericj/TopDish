@@ -25,6 +25,7 @@
 	UIView	*mPickerViewOverlay;
 	UIButton *mPickerViewButton;
 	
+	BOOL mPickerUp;
 	
 }
 
@@ -39,7 +40,6 @@
 @property (nonatomic, retain) IBOutlet UIView *pickerViewOverlay;
 @property (nonatomic, retain) IBOutlet UIButton *pickerViewButton;
 
--(IBAction) updatePriceTags;
 -(IBAction) pickerDone;
 @end
 

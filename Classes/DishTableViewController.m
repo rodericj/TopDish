@@ -520,13 +520,13 @@
 	}
 	
 	//Filter based on price
-	if ([[AppModel instance] selectedPrice] != 0) {
+	if ([[[AppModel instance] selectedPrice] intValue] != 0) {
 		
 		
 		NSLog(@"the else predicate %@ == %d", 
 			  @"price", [[AppModel instance] selectedPrice]);
 		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
-						   @"price", [NSNumber numberWithInt:[[AppModel instance] selectedPrice]]];
+						   @"price", [app selectedPriceId]];
 		
 		[filterPredicateArray addObject:filterPredicate];
 	}

@@ -82,39 +82,67 @@ AppModel *gAppModelInstance = nil;
 	return self;
 }
 -(NSString *)selectedMealName {
+	if ([self.selectedMeal intValue] != 0) 
+
 	for (NSDictionary *meal in self.mealTypeTags) {
 		if ([meal objectForKey:@"id"] == self.selectedMeal) {
 			return [meal objectForKey:@"name"];
 		}
 	}
-	return @"None";
+	return nil;
+}
+
+-(NSString *)selectedPriceName {
+	if ([self.selectedPrice intValue] != 0) 
+
+	for (NSDictionary *price in self.priceTags) {
+		if ([price objectForKey:@"id"] == self.selectedPrice) {
+			return [price objectForKey:@"name"];
+		}
+	}
+	return nil;
 }
 
 -(NSString *)selectedLifestyleName {
+	if ([self.selectedLifestyle intValue] != 0) 
+
 	for (NSDictionary *lifestyle in self.lifestyleTags) {
 		if ([lifestyle objectForKey:@"id"] == self.selectedLifestyle) {
 			return [lifestyle objectForKey:@"name"];
 		}
 	}
-	return @"None";
+	return nil;
 }
 
 -(NSString *)selectedCuisineName {
+	if ([self.selectedCuisine intValue] != 0) 
+
 	for (NSDictionary *cuisine in self.cuisineTypeTags) {
 		if ([cuisine objectForKey:@"id"] == self.selectedCuisine) {
 			return [cuisine objectForKey:@"name"];
 		}
 	}
-	return @"None";
+	return nil;
 }
 
 -(NSString *)selectedAllergenName {
+	if ([self.selectedAllergen intValue] != 0) 
+
 	for (NSDictionary *allergen in self.allergenTags) {
 		if ([allergen objectForKey:@"id"] == self.selectedAllergen) {
 			return [allergen objectForKey:@"name"];
 		}
 	}
-	return @"None";
+	return nil;
+}
+
+-(NSNumber *)selectedPriceId {
+	for (NSDictionary *price in self.priceTags) {
+		if ([price objectForKey:@"id"] == self.selectedPrice) {
+			return [price objectForKey:@"id"];
+		}
+	}
+	return nil;
 }
 
 -(NSNumber *)selectedMealId {
@@ -123,7 +151,7 @@ AppModel *gAppModelInstance = nil;
 			return [meal objectForKey:@"id"];
 		}
 	}
-	return nil;
+	return 0;
 }
 
 -(NSNumber *)selectedLifestyleId {
@@ -132,25 +160,27 @@ AppModel *gAppModelInstance = nil;
 			return [lifestyle objectForKey:@"id"];
 		}
 	}
-	return nil;
+	return 0;
 }
 
 -(NSNumber *)selectedCuisineId {
+		
 	for (NSDictionary *cuisine in self.cuisineTypeTags) {
 		if ([cuisine objectForKey:@"id"] == self.selectedCuisine) {
 			return [cuisine objectForKey:@"id"];
 		}
 	}
-	return nil;
+	return 0;
 }
 
 -(NSNumber *)selectedAllergenId {
+		
 	for (NSDictionary *allergen in self.allergenTags) {
 		if ([allergen objectForKey:@"id"] == self.selectedAllergen) {
 			return [allergen objectForKey:@"id"];
 		}
 	}
-	return nil;
+	return 0;
 }
 
 
@@ -158,7 +188,10 @@ AppModel *gAppModelInstance = nil;
 	NSNumber *selected = [[self.mealTypeTags objectAtIndex:index] objectForKey:@"id"];
 	[self setSelectedMeal:selected];
 }
-
+-(void)setPriceTypeByIndex:(int)index {
+	NSNumber *selected = [[self.priceTags objectAtIndex:index] objectForKey:@"id"];
+	[self setSelectedPrice:selected];
+}
 -(void)setLifestyleTypeByIndex:(int)index {
 	NSNumber *selected = [[self.lifestyleTags objectAtIndex:index] objectForKey:@"id"];
 	[self setSelectedLifestyle:selected];
