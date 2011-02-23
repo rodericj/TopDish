@@ -137,7 +137,7 @@
 							<object class="IBUILabel" id="565710346">
 								<reference key="NSNextResponder" ref="648130166"/>
 								<int key="NSvFlags">1316</int>
-								<string key="NSFrame">{{287, 44}, {24, 31}}</string>
+								<string key="NSFrame">{{277, 39}, {33, 36}}</string>
 								<reference key="NSSuperview" ref="648130166"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -147,9 +147,9 @@
 								<float key="IBUIScaleFactor">2</float>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">-0</string>
-								<object class="NSFont" key="IBUIFont" id="604718203">
+								<object class="NSFont" key="IBUIFont" id="308367174">
 									<string key="NSName">HelveticaNeue-Bold</string>
-									<double key="NSSize">20</double>
+									<double key="NSSize">24</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<object class="NSColor" key="IBUITextColor">
@@ -174,11 +174,7 @@
 								<float key="IBUIScaleFactor">2</float>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">+1</string>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">HelveticaNeue-Bold</string>
-									<double key="NSSize">28</double>
-									<int key="NSfFlags">16</int>
-								</object>
+								<reference key="IBUIFont" ref="308367174"/>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MCAwLjU1Mjk0MTE3NjUgMC42NzA1ODgyMzUzAA</bytes>
@@ -191,7 +187,7 @@
 							<object class="IBUILabel" id="668177371">
 								<reference key="NSNextResponder" ref="648130166"/>
 								<int key="NSvFlags">1316</int>
-								<string key="NSFrame">{{269, 44}, {20, 31}}</string>
+								<string key="NSFrame">{{276, 43}, {10, 31}}</string>
 								<reference key="NSSuperview" ref="648130166"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -201,7 +197,11 @@
 								<float key="IBUIScaleFactor">2</float>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">/</string>
-								<reference key="IBUIFont" ref="604718203"/>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">HelveticaNeue-Bold</string>
+									<double key="NSSize">20</double>
+									<int key="NSfFlags">16</int>
+								</object>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MCAwLjU1Mjk0MTE3NjUgMC42NzA1ODgyMzUzAA</bytes>
@@ -270,7 +270,7 @@
 							<object class="IBUILabel" id="827051270">
 								<reference key="NSNextResponder" ref="648130166"/>
 								<int key="NSvFlags">1316</int>
-								<string key="NSFrame">{{141, 54}, {129, 15}}</string>
+								<string key="NSFrame">{{139, 54}, {129, 15}}</string>
 								<reference key="NSSuperview" ref="648130166"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -523,13 +523,13 @@
 							<reference ref="269231625"/>
 							<reference ref="683150458"/>
 							<reference ref="189456281"/>
-							<reference ref="827051270"/>
 							<reference ref="682835903"/>
 							<reference ref="319184700"/>
 							<reference ref="105629030"/>
 							<reference ref="565710346"/>
 							<reference ref="668177371"/>
 							<reference ref="796845591"/>
+							<reference ref="827051270"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -681,7 +681,7 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">AUK6AABCkAAAA</bytes>
 					</object>
-					<string>{{153, 245}, {640, 190}}</string>
+					<string>{{160, 510}, {640, 190}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{460, 404}, {320, 44}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -695,7 +695,7 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABC/AAAwooAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDDQAAwoYAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -712,7 +712,7 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDhQAAwpwAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDhoAAwpIAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">

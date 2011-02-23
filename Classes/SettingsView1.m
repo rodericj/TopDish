@@ -249,7 +249,7 @@
 	if (!mPickerUp) {
 		
 		[UIView beginAnimations:@"animatePickerOn" context:NULL]; // Begin animation
-		[self.pickerViewOverlay setFrame:CGRectOffset([self.pickerViewOverlay frame], 0, -self.pickerViewOverlay.frame.size.height)]; // Move imageView off screen
+		[self.pickerViewOverlay setFrame:CGRectOffset([self.pickerViewOverlay frame], 0, -self.pickerViewOverlay.frame.size.height-14)]; // Move imageView off screen
 		mPickerUp = TRUE;
 		[UIView commitAnimations]; // End animations
 		[self.pickerViewOverlay setHidden:NO];

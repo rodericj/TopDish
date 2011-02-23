@@ -101,9 +101,9 @@
 	negativeReviewsLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_NEGREVIEWS_TAG];
 	negativeReviewsLabel.text = @"0";	
 	
-	UILabel *restaurantScoreLabel;
-	restaurantScoreLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_RESTAURENT_SCORE_TAG];
-	restaurantScoreLabel.text = @"TODO";
+	//UILabel *restaurantScoreLabel;
+	//restaurantScoreLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_RESTAURENT_SCORE_TAG];
+	//restaurantScoreLabel.text = @"TODO";
 	
     return cell;
 }
