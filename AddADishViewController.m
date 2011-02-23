@@ -299,22 +299,41 @@
 
 -(IBAction)takePicture
 {
+	
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Camera or Library?" 
+															 delegate:self 
+													cancelButtonTitle:nil 
+											   destructiveButtonTitle:nil 
+													otherButtonTitles:nil];
+	[actionSheet addButtonWithTitle:@"Take a picture"];
+	[actionSheet addButtonWithTitle:@"Choose from Library"];
+	actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:@"Cancel"];
+	[actionSheet showInView:self.navigationController.tabBarController.view];
+
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == actionSheet.cancelButtonIndex) {
+        //cancelled
+        return;
+    }
+
 	NSLog(@"show the picture thing");
 	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 	[imagePicker setDelegate:self];
 	[imagePicker setAllowsEditing:YES];
 	
-	//if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-	//		//then push the imagepicker
-	//		[imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
-	//		[imagePicker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModePhoto];
-	//		[imagePicker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
-	//		
-	//		[imagePicker setCameraOverlayView:[UIButton buttonWithType:UIButtonTypeRoundedRect]];
-	//	}
-	//	else {
-	[imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-	//}
+	if(buttonIndex == 0 && [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+		//then push the imagepicker
+		[imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+		[imagePicker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModePhoto];
+		[imagePicker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
+		
+		[imagePicker setCameraOverlayView:[UIButton buttonWithType:UIButtonTypeRoundedRect]];
+	}
+	else {
+		[imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+	}
 	[self presentModalViewController:imagePicker animated:YES]; 
 }
 

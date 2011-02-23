@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Restaurant.h"
 
-@interface AddADishViewController : UITableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
+@interface AddADishViewController : UITableViewController <UINavigationControllerDelegate, 
+														UIImagePickerControllerDelegate,
+														UIActionSheetDelegate> {
 	Restaurant *mRestaurant;
 	
 	UITableViewCell *mRestaurantCell;
