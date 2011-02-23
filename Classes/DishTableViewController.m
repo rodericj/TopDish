@@ -77,7 +77,7 @@
 	[locationController.locationManager startUpdatingLocation];	
 	
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	self.currentSearchDistance = 20000000;
+	self.currentSearchDistance = 2000000000;
 	
     // Set up the settings button
 	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] 
@@ -758,6 +758,17 @@
 	downVotes = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_DOWNVOTES_TAG];
 	downVotes.text = [NSString stringWithFormat:@"-%@", 
 					  [thisDish negReviews]];
+	
+	if ([thisDish posReviews] > [thisDish negReviews]){
+		upVotes.font =[UIFont boldSystemFontOfSize:28.0];
+		downVotes.font =[UIFont boldSystemFontOfSize:20.0];
+	}else if([thisDish posReviews] < [thisDish negReviews]){
+		upVotes.font =[UIFont boldSystemFontOfSize:20.0];
+		downVotes.font =[UIFont boldSystemFontOfSize:28.0];
+	}else{
+		upVotes.font =[UIFont boldSystemFontOfSize:24.0];
+		downVotes.font =[UIFont boldSystemFontOfSize:24.0];
+	}
 	
 	UILabel *priceNumber;
 	priceNumber = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_COST_TAG];
