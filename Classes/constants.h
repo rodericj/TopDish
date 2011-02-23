@@ -24,8 +24,8 @@
 #pragma mark network constants
 //#define NETWORKHOST @"http://topdish1.appspot.com"
 //#define NETWORKHOST @"http://localhost:8888"
-//#define NETWORKHOST @"http://0221.latest.topdish1.appspot.com"
-#define NETWORKHOST @"192.168.0.185:8888"   //randy
+#define NETWORKHOST @"http://www.topdish.com"
+//#define NETWORKHOST @"http://192.168.0.185:8888"   //randy
 //#define NETWORKHOST @"http://10.0.1.4:8888"  //rod
 
 

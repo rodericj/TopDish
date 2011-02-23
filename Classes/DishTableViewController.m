@@ -72,7 +72,7 @@
 	[locationController.locationManager startUpdatingLocation];	
 	
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	self.currentSearchDistance = 20000;
+	self.currentSearchDistance = 20000000;
 	
     // Set up the settings button
 	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] 
@@ -781,7 +781,7 @@
 			//TODO we are not getting height and width
 			//NSString *urlString = [NSString stringWithFormat:@"%@%@&w=%d&h=%d", 
 			
-			NSString *urlString = [NSString stringWithFormat:@"%@%@", 
+			NSString *urlString = [NSString stringWithFormat:@"%@%@=s%d", 
 								   prefix, 
 								   [thisDish photoURL], 
 								   DISHDETAILIMAGECELLHEIGHT, 
@@ -844,7 +844,7 @@
 	[self getNearbyItems:location];
 	locationController = [[MyCLController alloc] init];
 	locationController.delegate = self;
-	//[locationController.locationManager stopUpdatingLocation];
+	[locationController.locationManager stopUpdatingLocation];
 }
 
 - (void)getNearbyItems:(CLLocation *)location {

@@ -151,12 +151,12 @@
 		//self.dishDescriptionCell.frame.size.height = [self.dishDescriptionLabel numberOfLines] * 25;
 		return self.dishDescriptionCell.bounds.size.height;
 	}
-	if (indexPath.section == kCommentsSection) {
-		NSString *s = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"comment"];
-		UIFont *f = [UIFont fontWithName:@"Helvetica" size:14];
-		CGSize expectedLabelSize = [s sizeWithFont:f forWidth:100 lineBreakMode:UILineBreakModeWordWrap];
-		NSLog(@"the size of %@ is %f %f", s, expectedLabelSize.height, expectedLabelSize.width);
-	}
+//	if (indexPath.section == kCommentsSection) {
+//		NSString *s = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"comment"];
+//		UIFont *f = [UIFont fontWithName:@"Helvetica" size:14];
+//		CGSize expectedLabelSize = [s sizeWithFont:f forWidth:100 lineBreakMode:UILineBreakModeWordWrap];
+//		NSLog(@"the size of %@ is %f %f", s, expectedLabelSize.height, expectedLabelSize.width);
+//	}
 	
 	
 	return 100;

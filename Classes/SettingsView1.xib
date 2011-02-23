@@ -342,55 +342,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">priceSliderCell</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="349059418"/>
-					</object>
-					<int key="connectionID">13</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">priceValue</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="281560933"/>
-					</object>
-					<int key="connectionID">16</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">priceValueCell</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="668648526"/>
-					</object>
-					<int key="connectionID">17</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">updatePriceTags</string>
-						<reference key="source" ref="269429840"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">13</int>
-					</object>
-					<int key="connectionID">18</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">priceSlider</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="269429840"/>
-					</object>
-					<int key="connectionID">20</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">mealTypeCell</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="682215071"/>
-					</object>
-					<int key="connectionID">24</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">pickerView</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="788223161"/>
@@ -663,81 +614,41 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<string key="className">SettingsView1</string>
 					<string key="superclassName">UITableViewController</string>
 					<object class="NSMutableDictionary" key="actions">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>pickerDone</string>
-							<string>updatePriceTags</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
-						</object>
+						<string key="NS.key.0">pickerDone</string>
+						<string key="NS.object.0">id</string>
 					</object>
 					<object class="NSMutableDictionary" key="actionInfosByName">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>pickerDone</string>
-							<string>updatePriceTags</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBActionInfo">
-								<string key="name">pickerDone</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">updatePriceTags</string>
-								<string key="candidateClassName">id</string>
-							</object>
+						<string key="NS.key.0">pickerDone</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">pickerDone</string>
+							<string key="candidateClassName">id</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>mealTypeCell</string>
 							<string>pickerView</string>
 							<string>pickerViewButton</string>
 							<string>pickerViewOverlay</string>
-							<string>priceSlider</string>
-							<string>priceSliderCell</string>
-							<string>priceValue</string>
-							<string>priceValueCell</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>UITableViewCell</string>
 							<string>UIPickerView</string>
 							<string>UIButton</string>
 							<string>UIView</string>
-							<string>UISlider</string>
-							<string>UITableViewCell</string>
-							<string>UILabel</string>
-							<string>UITableViewCell</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>mealTypeCell</string>
 							<string>pickerView</string>
 							<string>pickerViewButton</string>
 							<string>pickerViewOverlay</string>
-							<string>priceSlider</string>
-							<string>priceSliderCell</string>
-							<string>priceValue</string>
-							<string>priceValueCell</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBToOneOutletInfo">
-								<string key="name">mealTypeCell</string>
-								<string key="candidateClassName">UITableViewCell</string>
-							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">pickerView</string>
 								<string key="candidateClassName">UIPickerView</string>
@@ -749,22 +660,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<object class="IBToOneOutletInfo">
 								<string key="name">pickerViewOverlay</string>
 								<string key="candidateClassName">UIView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">priceSlider</string>
-								<string key="candidateClassName">UISlider</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">priceSliderCell</string>
-								<string key="candidateClassName">UITableViewCell</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">priceValue</string>
-								<string key="candidateClassName">UILabel</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">priceValueCell</string>
-								<string key="candidateClassName">UITableViewCell</string>
 							</object>
 						</object>
 					</object>

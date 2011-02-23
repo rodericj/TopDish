@@ -99,6 +99,7 @@
 	}
 	
 	NSArray *responseAsArray = [responseAsDictionary objectForKey:@"tags"];
+	NSLog(@"theh response from mobileInit %@", responseAsArray);
 	NSDictionary *defaultObject = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"0", @"None", @"None", @"0", nil]
 															  forKeys:[NSArray arrayWithObjects:@"id", @"name", @"type", @"order", nil]];
 	NSMutableArray *priceTypeTags = [NSMutableArray arrayWithObject:defaultObject];
