@@ -538,7 +538,7 @@
 		NSLog(@"the else predicate %@ == %d", 
 			  @"price", [[AppModel instance] selectedPrice]);
 		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
-						   @"price", [app selectedPriceId]];
+						   @"price", [app selectedPrice]];
 		
 		[filterPredicateArray addObject:filterPredicate];
 	}
@@ -546,31 +546,31 @@
 	//Filter based on mealType
 	if ([[[AppModel instance] selectedMeal] intValue] != 0) {
 		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
-						   @"mealType", [app selectedMealId]];
+						   @"mealType", [app selectedMeal]];
 		
 		[filterPredicateArray addObject:filterPredicate];
 	}
 	
 	//Filter based on cuisine
-	if ([[[AppModel instance] selectedCuisineId] intValue] != 0) {
+	if ([[[AppModel instance] selectedCuisine] intValue] != 0) {
 		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
-						   @"cuisineType", [app selectedCuisineId]];
+						   @"cuisineType", [app selectedCuisine]];
 		
 		[filterPredicateArray addObject:filterPredicate];
 	}
 	
 	//Filter based on allergen
-	if ([[[AppModel instance] selectedAllergenId] intValue] != 0) {
+	if ([[[AppModel instance] selectedAllergen] intValue] != 0) {
 		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
-						   @"allergenType", [app selectedAllergenId]];
+						   @"allergenType", [app selectedAllergen]];
 		
 		[filterPredicateArray addObject:filterPredicate];
 	}
 	
 	//Filter based on lifestyle
-	if ([[[AppModel instance] selectedLifestyleId] intValue] != 0) {
+	if ([[[AppModel instance] selectedLifestyle] intValue] != 0) {
 		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
-						   @"lifestyleType", [app selectedLifestyleId]];
+						   @"lifestyleType", [app selectedLifestyle]];
 		
 		[filterPredicateArray addObject:filterPredicate];
 	}
@@ -731,6 +731,13 @@
 	mealType = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_MEALTYPE_TAG];
 	mealType.text = [app selectedMealName];
 	
+	if ([thisDish mealType])
+		mealType.text = [app tagNameForTagId:[thisDish mealType]];
+	else {
+		NSLog(@"is something wrong with this dish's mealType %@", [thisDish mealType]);
+		NSAssert(NO, @"this dish has an invalid meal tag");
+	}
+	
 	UILabel *distance;
 	distance = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_DIST_TAG];
 	
@@ -739,13 +746,8 @@
 	CLLocationDistance dist = [l distanceFromLocation:[[AppModel instance] currentLocation]];
 	
 	//convert from meters to miles
-	float distanceInMiles = dist/1609.344; 
-	
-	distance.text = [NSString stringWithFormat:@"%.2f mi", distanceInMiles];	
-	//[thisDish setDistance:[NSNumber numberWithFloat:distanceInMiles]];
-	
-	UILabel *percentage = (UILabel *)[cell viewWithTag:PERCENTAGE_TAG];
-	percentage.text = [NSString stringWithFormat:@"%@%@", [thisDish calculated_rating], @"%"]; 
+	float distanceInMiles = dist/1609.344; 	
+	distance.text = [NSString stringWithFormat:@"%2.2f", distanceInMiles];	
 	
 	UILabel *upVotes;
 	upVotes = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_UPVOTES_TAG];
@@ -771,8 +773,21 @@
 	UILabel *priceNumber;
 	priceNumber = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_COST_TAG];
 
-	priceNumber.text = [app selectedPriceName];
-	
+	if ([thisDish price])
+		priceNumber.text = [app tagNameForTagId:[thisDish price]];
+	else {
+		NSLog(@"is something wrong with this dish's price %@", thisDish);
+		//NSString *n = [NSString stringWithFormat:@"This dish has no price %@", [thisDish dish_id]];
+//		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Login Failed" 
+//															message:n 
+//														   delegate:self 
+//												  cancelButtonTitle:@"OK"
+//												  otherButtonTitles:nil];
+//		[alertview show];
+//		[alertview release];
+	}
+
+
 	UIImageView *imageView = (UIImageView *)[cell viewWithTag:DISHTABLEVIEW_IMAGE_TAG];
 	
 	AsyncImageView *asyncImage = [[[AsyncImageView alloc] initWithFrame:[imageView frame]] autorelease];
@@ -789,9 +804,7 @@
 			NSString *prefix = @"";
 			if (aRange.location ==NSNotFound)
 				prefix = NETWORKHOST;
-			//TODO we are not getting height and width
-			//NSString *urlString = [NSString stringWithFormat:@"%@%@&w=%d&h=%d", 
-			
+						
 			NSString *urlString = [NSString stringWithFormat:@"%@%@=s%d", 
 								   prefix, 
 								   [thisDish photoURL], 

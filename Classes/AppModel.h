@@ -26,14 +26,13 @@
 	Facebook *mFacebook;
 	
 	CLLocation *mCurrentLocation;
+	
+	//private
+	NSMutableDictionary *mIdToTagLookup;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *user;
-@property (nonatomic, retain) NSArray *mealTypeTags;
-@property (nonatomic, retain) NSArray *cuisineTypeTags;
-@property (nonatomic, retain) NSArray *priceTags;
-@property (nonatomic, retain) NSArray *allergenTags;
-@property (nonatomic, retain) NSArray *lifestyleTags;
+
 @property (nonatomic, retain) NSNumber *selectedMeal;
 @property (nonatomic, retain) NSNumber *selectedPrice;
 @property (nonatomic, retain) NSNumber *selectedAllergen;
@@ -50,14 +49,29 @@
 -(NSString *)selectedPriceName;
 -(NSString *)selectedCuisineName;
 -(NSString *)selectedAllergenName;
--(NSNumber *)selectedMealId;
--(NSNumber *)selectedLifestyleId;
--(NSNumber *)selectedCuisineId;
--(NSNumber *)selectedAllergenId;
--(NSNumber *)selectedPriceId;
+
 -(void)setMealTypeByIndex:(int)index;
 -(void)setPriceTypeByIndex:(int)index;
 -(void)setLifestyleTypeByIndex:(int)index;
 -(void)setCuisineTypeByIndex:(int)index;
 -(void)setAllergenTypeByIndex:(int)index;
+
+-(NSString *)tagNameForTagId:(NSNumber *)tagId;
+-(void) updateTags:(NSArray *)tags;
+
+-(void) setPriceTags:(NSArray *)priceTags;
+-(NSArray *) priceTags;
+
+-(void) setAllergenTags:(NSArray *)tags;
+-(NSArray *) allergenTags;
+
+-(void) setMealTypeTags:(NSArray *)tags;
+-(NSArray *) mealTypeTags;
+
+-(void) setLifestyleTags:(NSArray *)tags;
+-(NSArray *) lifestyleTags;
+
+-(void) setCuisineTypeTags:(NSArray *)tags;
+-(NSArray *) cuisineTypeTags;
+
 @end

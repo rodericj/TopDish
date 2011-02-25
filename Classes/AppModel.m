@@ -13,11 +13,6 @@
 @implementation AppModel
 
 @synthesize user = mUser;
-@synthesize mealTypeTags = mMealTypeTags;
-@synthesize cuisineTypeTags = mCuisineTypeTags;
-@synthesize priceTags = mPriceTags;
-@synthesize allergenTags = mAllergenTags;
-@synthesize lifestyleTags = mLifestyleTags;
 @synthesize selectedMeal = mSelectedMeal;
 @synthesize selectedPrice = mSelectedPrice;
 @synthesize selectedAllergen = mSelectedAllergen;
@@ -38,57 +33,70 @@ AppModel *gAppModelInstance = nil;
 	return gAppModelInstance;
 }
 
+-(NSArray *) priceTags {
+	return mPriceTags;
+}
+-(void) setPriceTags:(NSArray *)tags {
+	mPriceTags = [tags retain];
+	[self updateTags:tags];
+}
+
+-(void) setMealTypeTags:(NSArray *)tags {
+	mMealTypeTags = [tags retain];
+	[self updateTags:tags];
+}
+-(NSArray *) mealTypeTags {
+	return mMealTypeTags;
+}
+
+-(void) setAllergenTags:(NSArray *)tags {
+	mAllergenTags = [tags retain];
+	[self updateTags:tags];
+}
+
+-(NSArray *) allergenTags {
+	return mAllergenTags;
+}
+-(void) setLifestyleTags:(NSArray *)tags {
+	mLifestyleTags = [tags retain];
+	[self updateTags:tags];
+}
+
+-(NSArray *) lifestyleTags {
+	return mLifestyleTags;
+}
+
+-(void) setCuisineTypeTags:(NSArray *)tags {
+	mCuisineTypeTags = [tags retain];
+	[self updateTags:tags];
+}
+
+-(NSArray *) cuisineTypeTags {
+	return mCuisineTypeTags;
+}
+
+-(void) updateTags:(NSArray *)tags {
+	if (!mIdToTagLookup) {
+		mIdToTagLookup = [[NSMutableDictionary dictionary] retain];
+	}
+	
+	for (NSDictionary *tag in tags) {
+		//NSLog(@"tag is %@", tag);
+		[mIdToTagLookup setObject:tag forKey:[tag objectForKey:@"id"]];
+	}
+	
+}
+
 -(id)init
 {
 	self = [super init];
 	self.user = [NSMutableDictionary new];
-	
-	SBJSON *parser = [SBJSON new];
-	NSError *error = nil;
-	//NSLog(@"mobileInitResponseText %@", mobileInitResponseText);
-	NSArray *responseAsArray = [parser objectWithString:mobileInitResponseText error:&error];	
-	//NSLog(@"response Array is %@", responseAsArray);
-	if (error)
-		NSLog(@"there was an error when jsoning in AppModel Init %@", error);
-	NSArray *objectArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:0],
-							@"No Filter", [NSNumber numberWithInt:0],
-							@"No Filter", nil];
-	NSArray *keyArray = [NSArray arrayWithObjects:@"id", 
-						 @"name", @"order", @"type", nil];
-	NSDictionary *d = [NSDictionary dictionaryWithObjects:objectArray 
-												  forKeys:keyArray];
-	NSMutableArray *priceTypeTags = [NSMutableArray arrayWithObject:d];
-	NSMutableArray *mealTypeTags = [NSMutableArray arrayWithObject:d];
-	NSMutableArray *allergenTags = [NSMutableArray arrayWithObject:d];
-	NSMutableArray *lifestyleTags = [NSMutableArray arrayWithObject:d];
-	for (d in responseAsArray)
-	{
-		if ([[d objectForKey:@"type"] isEqualToString:kMealTypeString])
-			[mealTypeTags addObject:d];
-		
-		if ([[d objectForKey:@"type"] isEqualToString:kPriceTypeString])
-			[priceTypeTags addObject:d];
-		
-		if ([[d objectForKey:@"type"] isEqualToString:kAllergenTypeString])
-			[allergenTags addObject:d];
-		
-		if ([[d objectForKey:@"type"] isEqualToString:kLifestyleTypeString])
-			[lifestyleTags addObject:d];
-		
-	}
-	[parser release];
-	self.priceTags = priceTypeTags;
-	self.mealTypeTags = mealTypeTags;
 	self.facebook = [[Facebook alloc] initWithAppId:kFBAppId];
 	return self;
 }
 -(NSString *)selectedMealName {
-	if ([self.selectedMeal intValue] != 0) 
-
-	for (NSDictionary *meal in self.mealTypeTags) {
-		if ([meal objectForKey:@"id"] == self.selectedMeal) {
-			return [meal objectForKey:@"name"];
-		}
+	if ([self.selectedMeal intValue] != 0) {
+		return [self tagNameForTagId:self.selectedMeal];
 	}
 	return nil;
 }
@@ -105,88 +113,27 @@ AppModel *gAppModelInstance = nil;
 }
 
 -(NSString *)selectedLifestyleName {
-	if ([self.selectedLifestyle intValue] != 0) 
-
-	for (NSDictionary *lifestyle in self.lifestyleTags) {
-		if ([lifestyle objectForKey:@"id"] == self.selectedLifestyle) {
-			return [lifestyle objectForKey:@"name"];
-		}
+	if ([self.selectedLifestyle intValue] != 0) {
+		return [self tagNameForTagId:self.selectedLifestyle];
 	}
 	return nil;
 }
 
 -(NSString *)selectedCuisineName {
-	if ([self.selectedCuisine intValue] != 0) 
-
-	for (NSDictionary *cuisine in self.cuisineTypeTags) {
-		if ([cuisine objectForKey:@"id"] == self.selectedCuisine) {
-			return [cuisine objectForKey:@"name"];
-		}
+	if ([self.selectedCuisine intValue] != 0) {
+		return [self tagNameForTagId:self.selectedCuisine];
 	}
 	return nil;
 }
 
 -(NSString *)selectedAllergenName {
 	if ([self.selectedAllergen intValue] != 0) 
-
-	for (NSDictionary *allergen in self.allergenTags) {
-		if ([allergen objectForKey:@"id"] == self.selectedAllergen) {
-			return [allergen objectForKey:@"name"];
-		}
-	}
+		return [self tagNameForTagId:self.selectedAllergen];
 	return nil;
 }
-
--(NSNumber *)selectedPriceId {
-	for (NSDictionary *price in self.priceTags) {
-		if ([price objectForKey:@"id"] == self.selectedPrice) {
-			return [price objectForKey:@"id"];
-		}
-	}
-	return nil;
-}
-
--(NSNumber *)selectedMealId {
-	for (NSDictionary *meal in self.mealTypeTags) {
-		if ([meal objectForKey:@"id"] == self.selectedMeal) {
-			return [meal objectForKey:@"id"];
-		}
-	}
-	return 0;
-}
-
--(NSNumber *)selectedLifestyleId {
-	for (NSDictionary *lifestyle in self.lifestyleTags) {
-		if ([lifestyle objectForKey:@"id"] == self.selectedLifestyle) {
-			return [lifestyle objectForKey:@"id"];
-		}
-	}
-	return 0;
-}
-
--(NSNumber *)selectedCuisineId {
-		
-	for (NSDictionary *cuisine in self.cuisineTypeTags) {
-		if ([cuisine objectForKey:@"id"] == self.selectedCuisine) {
-			return [cuisine objectForKey:@"id"];
-		}
-	}
-	return 0;
-}
-
--(NSNumber *)selectedAllergenId {
-		
-	for (NSDictionary *allergen in self.allergenTags) {
-		if ([allergen objectForKey:@"id"] == self.selectedAllergen) {
-			return [allergen objectForKey:@"id"];
-		}
-	}
-	return 0;
-}
-
 
 -(void)setMealTypeByIndex:(int)index {
-	NSNumber *selected = [[self.mealTypeTags objectAtIndex:index] objectForKey:@"id"];
+	NSNumber *selected = [[mMealTypeTags objectAtIndex:index] objectForKey:@"id"];
 	[self setSelectedMeal:selected];
 }
 -(void)setPriceTypeByIndex:(int)index {
@@ -194,33 +141,49 @@ AppModel *gAppModelInstance = nil;
 	[self setSelectedPrice:selected];
 }
 -(void)setLifestyleTypeByIndex:(int)index {
-	NSNumber *selected = [[self.lifestyleTags objectAtIndex:index] objectForKey:@"id"];
+	NSNumber *selected = [[mLifestyleTags objectAtIndex:index] objectForKey:@"id"];
 	[self setSelectedLifestyle:selected];
 }
 
 -(void)setCuisineTypeByIndex:(int)index {
-	NSNumber *selected = [[self.cuisineTypeTags objectAtIndex:index] objectForKey:@"id"];
+	NSNumber *selected = [[mCuisineTypeTags objectAtIndex:index] objectForKey:@"id"];
 	[self setSelectedCuisine:selected];
 }
 
 -(void)setAllergenTypeByIndex:(int)index {
-	NSNumber *selected = [[self.allergenTags objectAtIndex:index] objectForKey:@"id"];
+	NSNumber *selected = [[mAllergenTags objectAtIndex:index] objectForKey:@"id"];
 	[self setSelectedAllergen:selected];
+}
+
+-(NSString *)tagNameForTagId:(NSNumber *)tagId {
+	//we have a lookup for this very common task
+	if (!mIdToTagLookup) {
+		return nil;
+	}
+	//NSDictionary *d = [mIdToTagLookup objectForKey:tagId];
+	//NSString *a = [d objectForKey:@"name"];
+	//TODO figure out why i'm not getting anything here
+	//NSLog(@"at this point we are getting basically nothing out of the dictionary %@ %@", mIdToTagLookup, a);
+	return [[mIdToTagLookup objectForKey:tagId] objectForKey:@"name"];
 }
 
 -(void) dealloc
 {
 	self.user = nil;
-	self.mealTypeTags = nil;
-	self.cuisineTypeTags = nil;
-	self.priceTags = nil;
-	self.allergenTags = nil;
-	self.lifestyleTags = nil;
+	[mMealTypeTags release];
+	[mCuisineTypeTags release];
+	[mPriceTags release];
+	[mAllergenTags release];
+	[mLifestyleTags release];
 	self.selectedMeal = nil;
 	self.selectedPrice = nil;
 	self.selectedAllergen = nil;
 	self.selectedLifestyle = nil;
 	self.selectedCuisine = nil;
+	
+	//release the private
+	[mIdToTagLookup release];
+	
 	[super dealloc];
 }
 @end

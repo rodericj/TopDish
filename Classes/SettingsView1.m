@@ -22,15 +22,15 @@
 - (void)viewDidLoad {
 	self.view.backgroundColor = kTopDishBackground;
 
-	NSLog(@"loading and the selectedmeal type is %d", [[AppModel instance] selectedMeal]);
-	int count = 0;
+	//NSLog(@"loading and the selectedmeal type is %d", [[AppModel instance] selectedMeal]);
+	//int count = 0;
 
-	for (NSDictionary *d in [[AppModel instance] mealTypeTags]) {
-		if ([d objectForKey:@"id"] == [[AppModel instance] selectedMeal]) {
-			continue;
-		}
-		count++;
-	}
+	//for (NSDictionary *d in [[AppModel instance] mealTypeTags]) {
+//		if ([d objectForKey:@"id"] == [[AppModel instance] selectedMeal]) {
+//			continue;
+//		}
+//		count++;
+//	}
 }
 
 #pragma mark -
