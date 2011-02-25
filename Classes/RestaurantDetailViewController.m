@@ -82,7 +82,9 @@
 	return [NSPredicate predicateWithFormat: @"%K = %@", 
 			@"restaurant.restaurant_id", [restaurant restaurant_id]];
 }
-
+-(void) populatePredicateArray:(NSMutableArray *)filterPredicateArray{
+	//do nothing
+}
 #pragma mark -
 #pragma mark View lifecycle
 - (void) setUpSpecificView {

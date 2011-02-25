@@ -574,9 +574,7 @@
 		
 		[filterPredicateArray addObject:filterPredicate];
 	}
-	if ([self respondsToSelector:@selector(restaurantDetailFilter)]) {
-		[filterPredicateArray addObject:[self restaurantDetailFilter]];
-	}
+
 }
 -(void) updateFetch {
 	
@@ -596,11 +594,14 @@
 	NSMutableArray *filterPredicateArray = [NSMutableArray array];
 	
 	[self populatePredicateArray:filterPredicateArray];
-	
+	if ([self respondsToSelector:@selector(restaurantDetailFilter)]) {
+		[filterPredicateArray addObject:[self restaurantDetailFilter]];
+	}
 	NSPredicate *fullPredicate = [NSCompoundPredicate 
 								  andPredicateWithSubpredicates:filterPredicateArray]; 
+
 	[fetchRequest setPredicate:fullPredicate];
-	
+
 	// Set the batch size to a suitable number.
 	[fetchRequest setFetchBatchSize:20];
     
