@@ -22,6 +22,10 @@
 	UILabel *mRestaurantAddress;
 	UIButton *mRestaurantPhone;
 	UIImageView *mRestaurantImage;
+	UIView *mMapOverlay;
+	
+	UIButton *mMapButton;
+	BOOL mMapShowing;
 }
 
 @property (nonatomic, retain) Restaurant *restaurant;
@@ -33,8 +37,11 @@
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *mapRow;
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
-
+@property (nonatomic, retain) IBOutlet UIView *mapOverlay;
+@property (nonatomic, retain) UIButton *mapButton;
 
 -(IBAction)callRestaurant;
-
+-(IBAction)holdDownMapButton;
+-(IBAction)letGoOfMapButton;
+-(IBAction)dragMapButton;
 @end

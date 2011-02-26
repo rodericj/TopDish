@@ -26,7 +26,8 @@
 @synthesize restaurantPhone = mRestaurantPhone;
 @synthesize restaurantImage = mRestaurantImage;
 @synthesize mapView = mMapView;
-
+@synthesize mapOverlay = mMapOverlay;
+@synthesize mapButton = mMapButton;
 #pragma mark -
 #pragma mark networking
 
@@ -93,7 +94,34 @@
     [super viewDidLoad];
 	[self networkQuery:[NSString stringWithFormat:@"%@/api/restaurantDetail?id[]=%@", NETWORKHOST, [restaurant restaurant_id]]];
 	self.view.backgroundColor = kTopDishBackground;
-}
+	
+	[self.view addSubview:self.mapOverlay];
+	CGRect overlay = self.mapOverlay.frame;
+	overlay.origin.y = -overlay.size.height + 20;
+	self.mapOverlay.frame = overlay;
+	UITapGestureRecognizer *touchGesture = [[UITapGestureRecognizer alloc]
+										  initWithTarget:self action:@selector(handlePanGesture:)];
+    [self.mapOverlay addGestureRecognizer:touchGesture];
+    [touchGesture release];
+	
+	//Set up the map
+	CLLocationCoordinate2D center;
+	center.latitude = [[self.restaurant latitude] floatValue];
+	center.longitude = [[self.restaurant longitude] floatValue];
+	MKCoordinateRegion m;
+	m.center = center;
+	
+	MKCoordinateSpan span;
+	span.latitudeDelta = .003;
+	span.longitudeDelta = .003;
+	
+	//Set up the span
+	m.span = span;
+	[self.mapView setRegion:m animated:YES];
+	
+	[self.mapOverlay setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"restaurant_back.png"]]];
+
+	}
 
 #pragma mark -
 #pragma mark Table view classes overridden 
@@ -213,7 +241,8 @@
 														 inSection:indexPath.section-kDishesAtThisRestaurantSection]]];
 }
 
-
+#pragma mark -
+#pragma mark IBActions
 -(IBAction)callRestaurant{
 	
 	NSString *phoneNumber = [NSString stringWithFormat:@"tel:%@", [restaurant phone]];
@@ -226,20 +255,43 @@
 	[ [UIApplication sharedApplication] openURL:url];
 	
 }
+
+- (IBAction)handlePanGesture:(UITapGestureRecognizer *)sender {
+	NSLog(@"handle pan");
+	[UIView beginAnimations:@"" context:nil];
+	[UIView setAnimationDuration:0.5];
+
+	if (!mMapShowing)
+		[self.mapOverlay setFrame:CGRectOffset([self.mapOverlay frame], 
+											   0, 
+											   (self.mapOverlay.frame.size.height - 20))]; // Move imageView off screen
+	else
+		[self.mapOverlay setFrame:CGRectOffset([self.mapOverlay frame], 
+											   0, 
+											   -(self.mapOverlay.frame.size.height - 20))]; // Move imageView off screen
+
+	[UIView commitAnimations]; // End animations
+
+	mMapShowing = !mMapShowing;
+    //CGPoint translate = [sender translationInView:self.mapOverlay];
+//    CGRect newFrame = self.mapOverlay.frame;
+//	CGRect anotherFrame = self.mapOverlay.frame;
+//	NSLog(@"the translate is %f, the origin is %f", translate, newFrame.origin.y);
+//	NSLog(@"another frame %f", anotherFrame.origin.y);
+//	//if (newFrame.origin.y >= 0)
+//	newFrame.origin.y = translate.y;
+//	
+//	//else 
+////		newFrame.origin.y = 0;
+//	//sender.view.frame = newFrame;
+//
+//     //if (sender.state == UIGestureRecognizerStateEnded)
+//		self.mapOverlay.frame = newFrame;
+}
+
 #pragma mark -
 #pragma mark Memory management
 
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Relinquish ownership any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
-}
 
 - (void)dealloc {
 	self.restaurant = nil;
