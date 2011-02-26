@@ -339,9 +339,10 @@
 			[newRestaurantsWeNeedToGet addObject:[dishDict objectForKey:@"restaurantID"]];
 		}
 		else {
-			NSAssert(TRUE, @"There were %d restaurants matching id %d", 
-					 [restosMatching count],
-					 [dishDict objectForKey:@"restaurantID"]);
+			NSString *s = [NSString stringWithFormat:@"There were %d restaurants matching id %d", 
+			 [restosMatching count],
+			 [dishDict objectForKey:@"restaurantID"]];
+			NSAssert(TRUE, s);
 		}
 		
 		[restaurant setRestaurant_id:[dishDict objectForKey:@"restaurantID"]];
@@ -395,9 +396,10 @@
 														 inManagedObjectContext:self.managedObjectContext];
 		}
 		else {
-			NSAssert(TRUE, @"There were %d restaurants matching id %d", 
-					 [restoMatching count],
-					 [restoDict objectForKey:@"id"]);
+			NSString *s = [NSString stringWithFormat:@"There were %d restaurants matching id %d", 
+						   [restoMatching count],
+						   [restoDict objectForKey:@"id"]];
+			NSAssert(TRUE, s);
 		}
 		//Do all of the restaurant data setting
 		
@@ -438,9 +440,10 @@
 																		 inManagedObjectContext:self.managedObjectContext];		
 			}
 			else {
-				NSAssert(TRUE, @"There were %d dishes matching id %d", 
-						 [restosDishesMatching count],
-						 [restoDishesDict objectForKey:@"id"]);
+				NSString *s = [NSString stringWithFormat: @"There were %d dishes matching id %d", 
+				 [restosDishesMatching count],
+				 [restoDishesDict objectForKey:@"id"]];
+				NSAssert(TRUE, s);
 			}
 			[dish setDish_description:[restoDishesDict objectForKey:@"description"]];
 			[dish setDish_id:[restoDishesDict objectForKey:@"id"]];

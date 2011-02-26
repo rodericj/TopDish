@@ -6,7 +6,6 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-//#define NSZombiesEnabled YES
 
 #define MAXRESTAURANTNAMELENGTH 26
 #define DISHDETAILIMAGECELLHEIGHT 88
