@@ -53,7 +53,8 @@
 @property (nonatomic, retain) IBOutlet UIButton *moreButton;
 
 -(IBAction)pushRateDishController;
--(IBAction)pushRestaurantDetailController;
+-(IBAction)tapRestaurantButton;
 -(IBAction)flagThisDish;
+-(void)pushRestaurantDetailController;
 
 @end

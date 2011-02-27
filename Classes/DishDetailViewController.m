@@ -203,6 +203,12 @@
 	[self.restaurantNameLabel setText:[[self.thisDish restaurant] objName]];
 	[self.restaurantNameLabel setTextColor:kTopDishBlue];
 	
+	UITapGestureRecognizer *restaurantTouchGesture = [[UITapGestureRecognizer alloc]
+													  initWithTarget:self action:@selector(pushRestaurantDetailController)];
+    [self.restaurantNameLabel addGestureRecognizer:restaurantTouchGesture];
+    [restaurantTouchGesture release];
+	
+	
 	NSString *buttonTitle = [NSString stringWithFormat:@"%@ %@", 
 							 kMoreDishesAtString,
 							 [[self.thisDish restaurant] objName]];
@@ -225,6 +231,35 @@
 	[super viewWillAppear:animated];
 	self.negativeReviews.text = [NSString stringWithFormat:@"-%@",[self.thisDish negReviews]];
 	self.positiveReviews.text = [NSString stringWithFormat:@"+%@",[self.thisDish posReviews]];	
+}
+
+- (void)viewDidUnload {
+    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
+    // For example: self.myOutlet = nil;
+}
+
+- (void)dealloc {
+	self.thisDish = nil;
+	self.dishImageCell = nil;
+	self.dishImageView = nil;
+	self.negativeReviews = nil;
+	self.positiveReviews = nil;
+	
+	self.dishDescriptionCell = nil;
+	self.dishDescriptionLabel = nil;
+	
+	self.dishNameLabel = nil;
+	self.restaurantNameLabel = nil;
+	
+	self.reviews = nil;
+	self.responseData = nil;
+	
+	//TODO - in general, I need to get the moc from the app model
+	self.managedObjectContext = nil;
+	self.tvCell = nil;
+	self.moreButton = nil;
+	
+    [super dealloc];
 }
 
 #pragma mark -
@@ -292,42 +327,6 @@
 
 }
 
--(IBAction)pushRateDishController {
-	//RateADishViewController *rateDish = [[RateADishViewController alloc] init];
-	RateADishViewController *rateDish = 
-	[[RateADishViewController alloc] initWithNibName:@"RateADishViewController" 
-											  bundle:nil];
-	[rateDish setThisDish:self.thisDish];
-	[self.navigationController pushViewController:rateDish 
-										 animated:YES];
-	
-	[rateDish release];
-	
-}
--(IBAction)pushRestaurantDetailController {
-	RestaurantDetailViewController *restaurantController = 
-	[[RestaurantDetailViewController alloc] initWithNibName:@"RestaurantDetailView" 
-													 bundle:nil];
-	[restaurantController setManagedObjectContext:self.managedObjectContext];
-
-	[restaurantController setRestaurant:[self.thisDish restaurant]];
-	[self.navigationController pushViewController:restaurantController animated:YES];
-	[restaurantController release];
-}
-
--(IBAction)flagThisDish{
-	NSLog(@"flagging this dish");
-	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/flagDish"]];
-	
-	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-	[request setPostValue:[self.thisDish dish_id] forKey:@"dishId"];
-	[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-	
-	[request setDelegate:self];
-	[request startAsynchronous];
-}
-
-
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
 	// Use when fetching text data
@@ -343,35 +342,46 @@
 	NSLog(@"error %@", error);
 }
 
-
-- (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
+#pragma mark -
+#pragma mark IBActions
+-(IBAction)pushRateDishController {
+	//RateADishViewController *rateDish = [[RateADishViewController alloc] init];
+	RateADishViewController *rateDish = 
+	[[RateADishViewController alloc] initWithNibName:@"RateADishViewController" 
+											  bundle:nil];
+	[rateDish setThisDish:self.thisDish];
+	[self.navigationController pushViewController:rateDish 
+										 animated:YES];
+	
+	[rateDish release];
+	
 }
 
+-(void)pushRestaurantDetailController {
+	RestaurantDetailViewController *restaurantController = 
+	[[RestaurantDetailViewController alloc] initWithNibName:@"RestaurantDetailView" 
+													 bundle:nil];
+	[restaurantController setManagedObjectContext:self.managedObjectContext];
 
-- (void)dealloc {
-	self.thisDish = nil;
-	self.dishImageCell = nil;
-	self.dishImageView = nil;
-	self.negativeReviews = nil;
-	self.positiveReviews = nil;
+	[restaurantController setRestaurant:[self.thisDish restaurant]];
+	[self.navigationController pushViewController:restaurantController animated:YES];
+	[restaurantController release];
+}
+
+-(IBAction)tapRestaurantButton {
+	[self pushRestaurantDetailController];
+}
+
+-(IBAction)flagThisDish{
+	NSLog(@"flagging this dish");
+	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/flagDish"]];
 	
-	self.dishDescriptionCell = nil;
-	self.dishDescriptionLabel = nil;
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[request setPostValue:[self.thisDish dish_id] forKey:@"dishId"];
+	[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
 	
-	self.dishNameLabel = nil;
-	self.restaurantNameLabel = nil;
-	
-	self.reviews = nil;
-	self.responseData = nil;
-	
-	//TODO - in general, I need to get the moc from the app model
-	self.managedObjectContext = nil;
-	self.tvCell = nil;
-	self.moreButton = nil;
-	
-    [super dealloc];
+	[request setDelegate:self];
+	[request startAsynchronous];
 }
 
 
