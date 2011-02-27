@@ -100,7 +100,7 @@
 	overlay.origin.y = -overlay.size.height + 20;
 	self.mapOverlay.frame = overlay;
 	UITapGestureRecognizer *touchGesture = [[UITapGestureRecognizer alloc]
-										  initWithTarget:self action:@selector(handlePanGesture:)];
+										  initWithTarget:self action:@selector(handleTapGesture:)];
     [self.mapOverlay addGestureRecognizer:touchGesture];
     [touchGesture release];
 	
@@ -256,8 +256,7 @@
 	
 }
 
-- (IBAction)handlePanGesture:(UITapGestureRecognizer *)sender {
-	NSLog(@"handle pan");
+- (IBAction)handleTapGesture:(UITapGestureRecognizer *)sender {
 	[UIView beginAnimations:@"" context:nil];
 	[UIView setAnimationDuration:0.5];
 

@@ -41,7 +41,5 @@
 @property (nonatomic, retain) UIButton *mapButton;
 
 -(IBAction)callRestaurant;
--(IBAction)holdDownMapButton;
--(IBAction)letGoOfMapButton;
--(IBAction)dragMapButton;
+
 @end

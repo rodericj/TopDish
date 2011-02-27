@@ -95,9 +95,8 @@
 -(void)viewDidAppear:(BOOL)animated {
 	//Pop out if we aren't logged in
 	[super viewDidAppear:animated];
-	//TODO, but this back in. We need to ensure that the user is authenticated
-	//if ([[AppModel instance].user objectForKey:keyforauthorizing] == nil)
-//		[[(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] tabBarController] setSelectedIndex:kAccountsTab];
+	if ([[AppModel instance].user objectForKey:keyforauthorizing] == nil)
+		[[(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] tabBarController] setSelectedIndex:kAccountsTab];
 }
 
 #pragma mark -
