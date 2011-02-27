@@ -12,7 +12,7 @@
 #import "asyncimageview.h"
 #import "AddADishViewController.h"
 #import "ImagePickerViewController.h"
-
+#import "RestaurantAnnotation.h"
 #define kRestaurantHeaderSection 0
 #define kMapSection 2
 #define kDishesAtThisRestaurantSection 1
@@ -118,6 +118,12 @@
 	//Set up the span
 	m.span = span;
 	[self.mapView setRegion:m animated:YES];
+	
+	RestaurantAnnotation *thisAnnotation = [[RestaurantAnnotation alloc] initWithCoordinate:center];
+	
+	[self.mapView addAnnotation:thisAnnotation];
+	[thisAnnotation release];
+	
 	
 	[self.mapOverlay setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"restaurant_back.png"]]];
 
@@ -286,6 +292,41 @@
 //
 //     //if (sender.state == UIGestureRecognizerStateEnded)
 //		self.mapOverlay.frame = newFrame;
+}
+
+#pragma mark -
+#pragma mark map stuff
+- (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation{
+	
+	// if it's the user location, just return nil.
+	if ([annotation isKindOfClass:[MKUserLocation class]])
+		return nil;
+	
+	if([annotation isKindOfClass:[RestaurantAnnotation class]]){
+		static NSString *RestaurantAnnotationIdentifier = @"RestaurantMapAnnotationIdentifier";
+		
+		MKPinAnnotationView *annotationView = (MKPinAnnotationView *)
+		[self.mapView dequeueReusableAnnotationViewWithIdentifier:RestaurantAnnotationIdentifier];
+		
+		if(!annotationView){
+			annotationView = [[[MKPinAnnotationView alloc]
+							   initWithAnnotation:annotation  
+							   reuseIdentifier:RestaurantAnnotationIdentifier] autorelease];
+			annotationView.canShowCallout = YES;
+		}
+		
+		UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+		[rightButton addTarget:self
+						action:@selector(showDetails:)
+			  forControlEvents:UIControlEventTouchUpInside];
+		annotation = (RestaurantAnnotation *)annotation;
+		//rightButton.tag = [[[(RestaurantAnnotation*)annotation thisRestaurant] dish_id] intValue];
+		annotationView.rightCalloutAccessoryView = rightButton;
+		
+		return annotationView;
+	}
+	NSLog(@"returned nil? hmmm");
+	return nil;
 }
 
 #pragma mark -
