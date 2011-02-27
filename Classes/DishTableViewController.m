@@ -739,6 +739,15 @@
 		mealType.text = [app tagNameForTagId:[thisDish mealType]];
 	else {
 		NSLog(@"is something wrong with this dish's mealType %@", [thisDish mealType]);
+		NSString *n = [NSString stringWithFormat:@"This dish has a bad mealtype %@", [thisDish dish_id]];
+		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Data Error" 
+															message:n 
+														   delegate:self 
+												  cancelButtonTitle:@"OK"
+												  otherButtonTitles:nil];
+		[alertview show];
+		[alertview release];
+		
 		NSAssert(NO, @"this dish has an invalid meal tag");
 	}
 	
@@ -780,15 +789,17 @@
 	if ([thisDish price])
 		priceNumber.text = [app tagNameForTagId:[thisDish price]];
 	else {
-		NSLog(@"is something wrong with this dish's price %@", thisDish);
-		//NSString *n = [NSString stringWithFormat:@"This dish has no price %@", [thisDish dish_id]];
-//		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Login Failed" 
+		NSLog(@"is something wrong with this dish's price ");
+//#ifdef DEBUG
+	//	NSString *n = [NSString stringWithFormat:@"This dish has no price %@", [thisDish dish_id]];
+//		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Data Error" 
 //															message:n 
 //														   delegate:self 
 //												  cancelButtonTitle:@"OK"
 //												  otherButtonTitles:nil];
 //		[alertview show];
 //		[alertview release];
+//#endif
 	}
 
 
