@@ -183,9 +183,16 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 		 OSStatus error = SecItemAdd((CFDictionaryRef)query, NULL);
 		 */
 		NSString *responseString = [request responseString];
-
+		UINavigationController *c = self.navigationController;
 		[[AppModel instance].user setObject:responseString forKey:keyforauthorizing];
 		[self.navigationController popToRootViewControllerAnimated:YES];
+		
+		LoggedInLoggedOutGate *gate = [[LoggedInLoggedOutGate alloc] init];
+		//[self.navigationController pushViewController:signIn animated:NO];
+		[self.navigationController setViewControllers:[NSArray arrayWithObject:gate]];
+		[gatestarc release];
+		
+		
 	}
 }
 
