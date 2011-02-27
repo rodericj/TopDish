@@ -21,16 +21,16 @@ green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define kpermission  [NSArray arrayWithObjects:@"user_about_me", nil]
 
+#pragma mark -
+#pragma mark view lifetime stuff
 -(void) viewDidLoad {
 	[super viewDidLoad];
 	self.view.backgroundColor = kTopDishBackground;
 	self.fbLoginButton.isLoggedIn = [[[AppModel instance] facebook] isSessionValid];
 	
 	[self.fbLoginButton updateImage];
-	
-	
-	
 }
+
 -(void)viewDidAppear:(BOOL)animated
 {		
 	[super viewDidAppear:animated];
@@ -54,36 +54,19 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 	[[[AppModel instance] facebook] logout:self];
 }
 
-/**
- * Called on a login/logout button click.
- */
-- (IBAction)fbButtonClick:(id)sender {
-	if (self.fbLoginButton.isLoggedIn)
-		[self logout];
-	else
-		[self login];
-}
-- (void)fbDidLogin{	
-	NSLog(@"user logged in");
-	[self.fbLoginButton setIsLoggedIn:YES];
-	[self.fbLoginButton updateImage];
-	
-	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/facebookLogin", NETWORKHOST]];
-	NSLog(@"[[AppModel instance] facebook].accessToken %@", [[AppModel instance] facebook].accessToken);
-	//Call the topdish server to log in
-	mTopDishFBLoginRequest = [ASIFormDataRequest requestWithURL:url];
-	[mTopDishFBLoginRequest setPostValue:[[AppModel instance] facebook].accessToken forKey:@"facebookApiKey"];
-	[mTopDishFBLoginRequest setAllowCompressedResponse:NO];
-	[mTopDishFBLoginRequest setDelegate:self];
-	[mTopDishFBLoginRequest startSynchronous];
-	
-	[mTopDishFBLoginRequest startAsynchronous];
-	
-	//AccountView *accountView = [[AccountView alloc] initWithNibName:@"AccountView" bundle:nil];
-//	[self.navigationController setViewControllers:[NSArray arrayWithObject:accountView]];
-//	[accountView release];
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    //[self animateTextField: textField up: YES];
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDelegate:self];
+	[UIView setAnimationDuration:0.5];
+	[UIView setAnimationBeginsFromCurrentState:YES];
+	self.view.frame = CGRectMake(self.view.frame.origin.x, SIGNIN_Y_COORD, self.view.frame.size.width, self.view.frame.size.height);
+	[UIView commitAnimations];
 }
 
+#pragma mark -
+#pragma mark IBAction
 -(IBAction)signUpClicked
 {
 	[[[AppModel instance] facebook] setSessionDelegate:self];
@@ -95,16 +78,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 	//	[self.navigationController pushViewController:signUp animated:YES];
 	//	[signUp release];	
 }
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    //[self animateTextField: textField up: YES];
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationDelegate:self];
-	[UIView setAnimationDuration:0.5];
-	[UIView setAnimationBeginsFromCurrentState:YES];
-	self.view.frame = CGRectMake(self.view.frame.origin.x, SIGNIN_Y_COORD, self.view.frame.size.width, self.view.frame.size.height);
-	[UIView commitAnimations];
-}
+
 -(IBAction)submitClicked
 {	
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/login?email=%@", NETWORKHOST, self.userNameTextField.text]];
@@ -123,6 +97,40 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 }
 
 /**
+ * Called on a login/logout button click.
+ */
+- (IBAction)fbButtonClick:(id)sender {
+	if (self.fbLoginButton.isLoggedIn)
+		[self logout];
+	else
+		[self login];
+}
+
+#pragma mark -
+#pragma mark FBcallbacks
+- (void)fbDidLogin{	
+	NSLog(@"user logged in");
+	[self.fbLoginButton setIsLoggedIn:YES];
+	[self.fbLoginButton updateImage];
+	
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/facebookLogin", NETWORKHOST]];
+	NSLog(@"[[AppModel instance] facebook].accessToken %@", [[AppModel instance] facebook].accessToken);
+	//Call the topdish server to log in
+	mTopDishFBLoginRequest = [ASIFormDataRequest requestWithURL:url];
+	[mTopDishFBLoginRequest setPostValue:[[AppModel instance] facebook].accessToken forKey:@"facebookApiKey"];
+	[mTopDishFBLoginRequest setAllowCompressedResponse:NO];
+	[mTopDishFBLoginRequest setDelegate:self];
+	[mTopDishFBLoginRequest startSynchronous];
+	
+	[mTopDishFBLoginRequest startAsynchronous];
+	
+	//AccountView *accountView = [[AccountView alloc] initWithNibName:@"AccountView" bundle:nil];
+	//	[self.navigationController setViewControllers:[NSArray arrayWithObject:accountView]];
+	//	[accountView release];
+}
+
+
+/**
  * Called when the user dismissed the dialog without logging in.
  */
 - (void)fbDidNotLogin:(BOOL)cancelled
@@ -139,6 +147,9 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 	[self.fbLoginButton setIsLoggedIn:YES];
 	[self.fbLoginButton updateImage];
 }
+
+#pragma mark -
+#pragma mark network callback 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
 	// Use when fetching binary data
