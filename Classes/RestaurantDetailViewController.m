@@ -123,10 +123,10 @@
 	
 	[self.mapView addAnnotation:thisAnnotation];
 	[thisAnnotation release];
-	
-	
+		
 	[self.mapOverlay setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"restaurant_back.png"]]];
 
+	self.title = [self.restaurant objName];
 	}
 
 #pragma mark -

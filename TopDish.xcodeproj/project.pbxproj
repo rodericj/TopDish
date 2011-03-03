@@ -82,6 +82,7 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		200E5B13131E10F600B2920D /* resturant_back_no_boarder.png in Resources */ = {isa = PBXBuildFile; fileRef = 200E5B12131E10F600B2920D /* resturant_back_no_boarder.png */; };
 		201DFE911307376B00BB53D2 /* 06-magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = 201DFE901307376B00BB53D2 /* 06-magnify.png */; };
 		201DFE931307377400BB53D2 /* 111-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 201DFE921307377400BB53D2 /* 111-user.png */; };
 		2042E568130B9E4F00455CF3 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2042E567130B9E4F00455CF3 /* Icon.png */; };
@@ -250,6 +251,7 @@
 		1D3623250D0F684500981E51 /* TopDishAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopDishAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* TopDish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopDish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		200E5B12131E10F600B2920D /* resturant_back_no_boarder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resturant_back_no_boarder.png; sourceTree = "<group>"; };
 		201DFE901307376B00BB53D2 /* 06-magnify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "06-magnify.png"; sourceTree = "<group>"; };
 		201DFE921307377400BB53D2 /* 111-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "111-user.png"; sourceTree = "<group>"; };
 		2042E567130B9E4F00455CF3 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -584,6 +586,7 @@
 		5F89F15E125951FE00959D05 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				200E5B12131E10F600B2920D /* resturant_back_no_boarder.png */,
 				2042E569130B9E5D00455CF3 /* Icon@2x.png */,
 				2042E567130B9E4F00455CF3 /* Icon.png */,
 				20A7332C130A4E9F005EF56A /* filter_page_star.png */,
@@ -787,6 +790,7 @@
 				2042E568130B9E4F00455CF3 /* Icon.png in Resources */,
 				2042E56A130B9E5D00455CF3 /* Icon@2x.png in Resources */,
 				175BBF3C1307AB9300B5353C /* RestaurantList.xib in Resources */,
+				200E5B13131E10F600B2920D /* resturant_back_no_boarder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
