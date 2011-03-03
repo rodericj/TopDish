@@ -158,6 +158,10 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 	SBJSON *parser = [SBJSON new];
 	NSError *error = nil;
 	
+	NSString *userHasTDAccountLinked = @"{'origcall'='action=0', 'rc'=0, 'message':'Accounts are linked, good to go. No further action needed', 'TDAccessToken'='...'}";
+	NSString *userDoesNotHaveTDAccountLinked = @"{'origcall'='action=0', 'rc'=1, 'message':'No link found between this fbID and any TDUser. Client needs to ask if they have an account and send this info (action=1 with uname/Pass), or ask them to create an account (action=2 with uname/pass). '}";
+	
+	
 	NSDictionary *responseAsDictionary = [parser objectWithString:responseText 
 															error:&error];
 	
