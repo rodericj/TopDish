@@ -10,6 +10,7 @@
 #import "LoggedInLoggedOutGate.h"
 #import "FBConnect.h"
 #import "FBLoginButton.h"
+#import "constants.h"
 
 
 @interface SignInSignUpBaseViewController : UIViewController <UIAlertViewDelegate,

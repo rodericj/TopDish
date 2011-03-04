@@ -10,6 +10,7 @@
 #import "Dish.h"
 #import "Dish.h"
 #import "DishDetailViewController.h"
+#import "constants.h"
 
 @implementation NearbyMapViewController
 @synthesize mapView;
@@ -101,7 +102,7 @@
 		
 		return annotationView;
 	}
-	NSLog(@"returned nil? hmmm");
+	DLog(@"returned nil? hmmm");
 	return nil;
 }
 

@@ -32,7 +32,7 @@
 #pragma mark networking
 
 -(void)processIncomingNetworkText:(NSString *)responseText{
-	NSLog(@"processing incoming network text %@", responseText);
+	DLog(@"processing incoming network text %@", responseText);
 	
 	SBJSON *parser = [SBJSON new];
 	NSError *error = nil;
@@ -41,7 +41,7 @@
 															error:&error];
 	
 	if ([[responseAsDictionary objectForKey:@"rc"] intValue] != 0) {
-		NSLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
+		DLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
 		return;
 	}
 	
@@ -49,11 +49,11 @@
 	[parser release];
 	
 	if(error != nil){
-		NSLog(@"there was an error when jsoning");
-		NSLog(@"json error %@", error);
-		NSLog(@"the text %@", responseText);
+		DLog(@"there was an error when jsoning");
+		DLog(@"json error %@", error);
+		DLog(@"the text %@", responseText);
 	}
-	NSLog(@"the dict is %@", resp);
+	DLog(@"the dict is %@", resp);
 	//[restaurant setObjName:[resp objectForKey:@"name"]];
 	[restaurant setCity:[resp objectForKey:@"city"]];
 	[restaurant setAddressLine1:[resp objectForKey:@"addressLine1"]];
@@ -70,7 +70,7 @@
 	NSURL *url;
 	NSURLRequest *request;
 	url = [NSURL URLWithString:query];
-	NSLog(@"url is %@", query);
+	DLog(@"url is %@", query);
 	//Start up the networking
 	request = [NSURLRequest requestWithURL:url];
 	[[[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE] autorelease]; 
@@ -153,7 +153,7 @@
 	if (section == kRestaurantHeaderSection || section == kMapSection) {
 		return 1;
 	}
-	NSLog(@"sections is %@ and this sectin is ", self.fetchedResultsController.sections);
+	DLog(@"sections is %@ and this sectin is ", self.fetchedResultsController.sections);
     id <NSFetchedResultsSectionInfo> sectionInfo = 
 	[[self.fetchedResultsController sections] 
 	 objectAtIndex:section-kDishesAtThisRestaurantSection];
@@ -189,7 +189,7 @@
 									   DISHDETAILIMAGECELLHEIGHT,
 									   DISHDETAILIMAGECELLHEIGHT];
 			
-				NSLog(@"url string for restaurant's image in RestaurantDetailViewController is %@", urlString);
+				DLog(@"url string for restaurant's image in RestaurantDetailViewController is %@", urlString);
 
 				NSURL *photoUrl = [NSURL URLWithString:urlString];
 				[asyncImage loadImageFromURL:photoUrl withImageView:self.restaurantImage 
@@ -281,8 +281,8 @@
     //CGPoint translate = [sender translationInView:self.mapOverlay];
 //    CGRect newFrame = self.mapOverlay.frame;
 //	CGRect anotherFrame = self.mapOverlay.frame;
-//	NSLog(@"the translate is %f, the origin is %f", translate, newFrame.origin.y);
-//	NSLog(@"another frame %f", anotherFrame.origin.y);
+//	DLog(@"the translate is %f, the origin is %f", translate, newFrame.origin.y);
+//	DLog(@"another frame %f", anotherFrame.origin.y);
 //	//if (newFrame.origin.y >= 0)
 //	newFrame.origin.y = translate.y;
 //	
@@ -325,7 +325,7 @@
 		
 		return annotationView;
 	}
-	NSLog(@"returned nil? hmmm");
+	DLog(@"returned nil? hmmm");
 	return nil;
 }
 

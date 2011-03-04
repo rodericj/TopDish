@@ -49,7 +49,7 @@
 	if (sectionInfo == nil){
 		return 0;
 	}
-	NSLog(@"there are this many rows in the restaurant view %d", [sectionInfo numberOfObjects]);
+	DLog(@"there are this many rows in the restaurant view %d", [sectionInfo numberOfObjects]);
 	return [sectionInfo numberOfObjects];
 }
 
@@ -62,11 +62,11 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"get a cell from the resto list view %@", indexPath);
+    DLog(@"get a cell from the resto list view %@", indexPath);
     static NSString *CellIdentifier = @"RestaurantCell";
     
 	Restaurant *thisRestaurant = [[self fetchedResultsController] objectAtIndexPath:indexPath];	
-	NSLog(@"this restaurant is %@", thisRestaurant);
+	DLog(@"this restaurant is %@", thisRestaurant);
 	
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -233,7 +233,7 @@
 		 from the error, display an alert panel that instructs the user to quit 
 		 the application by pressing the Home button.
          */
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        DLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
     

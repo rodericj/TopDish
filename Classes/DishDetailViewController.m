@@ -99,7 +99,7 @@
 	
     label = (UILabel *)[cell viewWithTag:2];
     label.text = [NSString stringWithFormat:@"-%@",creator];
-	NSLog(@"the number of rows is %d", label.numberOfLines);
+	DLog(@"the number of rows is %d", label.numberOfLines);
 	
 	//[cell.author setText:creator];
 //	[cell.comment setText:comment];
@@ -155,7 +155,7 @@
 //		NSString *s = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"comment"];
 //		UIFont *f = [UIFont fontWithName:@"Helvetica" size:14];
 //		CGSize expectedLabelSize = [s sizeWithFont:f forWidth:100 lineBreakMode:UILineBreakModeWordWrap];
-//		NSLog(@"the size of %@ is %f %f", s, expectedLabelSize.height, expectedLabelSize.width);
+//		DLog(@"the size of %@ is %f %f", s, expectedLabelSize.height, expectedLabelSize.width);
 //	}
 	
 	
@@ -175,7 +175,7 @@
 - (void)viewDidLoad {
 	self.view.backgroundColor = kTopDishBackground;
 
-	NSLog(@"view did load for %@", [self.thisDish objName]);
+	DLog(@"view did load for %@", [self.thisDish objName]);
 	if( [[self.thisDish photoURL] length] > 0 ){
 		NSRange aRange = [[self.thisDish photoURL] rangeOfString:@"http://"];
 		NSString *prefix = @"";
@@ -219,7 +219,7 @@
 									   NETWORKHOST, 
 									   [self.thisDish dish_id]]];
 	//Start up the networking
-	NSLog(@"the comments url is %@", url);
+	DLog(@"the comments url is %@", url);
 	NSURLRequest *request = [NSURLRequest requestWithURL:url];
 	NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE]; 
 	[conn release];
@@ -266,7 +266,7 @@
 #pragma mark Network Delegate 
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
-	NSLog(@"didFinishLoading dishDetailViewController start");
+	DLog(@"didFinishLoading dishDetailViewController start");
 	NSString *responseText = [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding];
 	
 	SBJSON *parser = [SBJSON new];
@@ -276,13 +276,13 @@
 															error:&error];
 	
 	if ([[responseAsDictionary objectForKey:@"rc"] intValue] != 0) {
-		NSLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
+		DLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
 		return;
 	}
 	
 	NSArray *responseAsArray = [responseAsDictionary objectForKey:@"dishes"];
 	NSDictionary *thisDishDetailDictionary = [responseAsArray objectAtIndex:0];
-	//NSLog(@"%@", thisDishDetailDictionary);
+	//DLog(@"%@", thisDishDetailDictionary);
 	[parser release];
 	if(self.reviews == nil){
 		self.reviews = [NSArray alloc];
@@ -294,12 +294,12 @@
 	[self.tableView reloadData];
 	
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	NSLog(@"didFinishLoading dishDetailViewController end");
+	DLog(@"didFinishLoading dishDetailViewController end");
 
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-	NSLog(@"This is the dish detail error %@", error);
+	DLog(@"This is the dish detail error %@", error);
 	
 	//TODO when the server is in a bit better shape I'll have to 
 	//remove this default call as well as the hard coded data
@@ -322,24 +322,21 @@
 		//self.responseText = [[NSData alloc] initWithData:data];
 	}
 	else {
-		NSLog(@"a ha!, the response text was not null, which means we may be missing some data");
+		DLog(@"a ha!, the response text was not null, which means we may be missing some data");
 	}
 
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-	// Use when fetching text data
-	NSString *responseString = [request responseString];
-	
-	NSLog(@"response string %@", responseString);
+	// Use when fetching text data	
+	DLog(@"response string %@", [request responseString]);
 	
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
-	NSError *error = [request error];
-	NSLog(@"error %@", error);
+	DLog(@"error %@", [request error]);
 }
 
 #pragma mark -
@@ -373,7 +370,7 @@
 }
 
 -(IBAction)flagThisDish{
-	NSLog(@"flagging this dish");
+	DLog(@"flagging this dish");
 	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/flagDish"]];
 	
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];

@@ -206,7 +206,7 @@
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-	NSLog(@"cancelled, should we go back another level?");
+	DLog(@"cancelled, should we go back another level?");
 	[self dismissModalViewControllerAnimated:YES];
 	//[self.navigationController popViewControllerAnimated:YES];
 }
@@ -215,7 +215,7 @@
 #pragma mark IBActions
 
 -(IBAction)takePicture{
-	NSLog(@"show the picture thing");
+	DLog(@"show the picture thing");
 	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 	[imagePicker setDelegate:self];
 	[imagePicker setAllowsEditing:YES];
@@ -264,7 +264,7 @@
 	[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
 
 	// Upload an NSData instance
-	NSLog(@"this is what we are sending for RATE a dish: url: %@\n, comment: %@\n, vote: %d\n, dish_id %@\n, apiKey: %@", 
+	DLog(@"this is what we are sending for RATE a dish: url: %@\n, comment: %@\n, vote: %d\n, dish_id %@\n, apiKey: %@", 
 		  [url absoluteURL], 
 		  self.dishComment.text, 
 		  self.rating, 
@@ -277,16 +277,16 @@
 
 	//might as well send a picture if we've got it
 	if (self.newPicture.image) {
-		NSLog(@"we have the dish id, calling add photo");
+		DLog(@"we have the dish id, calling add photo");
 		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
-		NSLog(@"the url for add photo is %@", url);
+		DLog(@"the url for add photo is %@", url);
 		request = [ASIFormDataRequest requestWithURL:url];
 		[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
 		[request setPostValue:[NSString stringWithFormat:@"%d", [self.thisDish dish_id]] forKey:@"dishId"];
 		[request setDelegate:self];
 		[request startAsynchronous];
 		mOutstandingRequests += 1;
-		NSLog(@"done calling add photo, time to call rateDish");
+		DLog(@"done calling add photo, time to call rateDish");
 	}
 }
 
@@ -297,20 +297,20 @@
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
 	
-	NSLog(@"response string %@", responseString);
+	DLog(@"response string %@", responseString);
 	
-	NSLog(@"response string for this dish or photo is %@", responseString);
+	DLog(@"response string for this dish or photo is %@", responseString);
 	NSError *error;
 	SBJSON *parser = [SBJSON new];
 	NSDictionary *responseAsDict = [parser objectWithString:responseString error:&error];	
-	NSLog(@"the dictionary should be a %@", responseAsDict);
+	DLog(@"the dictionary should be a %@", responseAsDict);
 	
 	if ([responseAsDict objectForKey:@"url"])
 	{
-		NSLog(@"setting up the url");
+		DLog(@"setting up the url");
 		//NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
 		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@", [responseAsDict objectForKey:@"url"]]];
-		NSLog(@"the url for sending the photo is %@", url);
+		DLog(@"the url for sending the photo is %@", url);
 		ASIFormDataRequest *imageRequest = [ASIFormDataRequest requestWithURL:url];
 
 		imageRequest = [ASIFormDataRequest requestWithURL:url];
@@ -338,8 +338,7 @@
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
-	NSError *error = [request error];
-	NSLog(@"error %@", error);
+	DLog(@"error %@", [request error]);
 }
 
 #pragma mark -

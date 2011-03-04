@@ -20,6 +20,13 @@
 #define FILTER_IMAGE_NAME @"filter.png"
 #define GLOBAL_IMAGE_NAME @"globe-1.png"
 
+#ifdef DEBUG
+#define DLog(fmt, ...) DLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#define DLog(...)
+#endif
+
+
 #pragma mark network constants
 //#define NETWORKHOST @"http://topdish1.appspot.com"
 //#define NETWORKHOST @"http://localhost:8888"

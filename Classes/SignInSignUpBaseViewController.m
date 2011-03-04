@@ -16,7 +16,7 @@
 @synthesize userNameTextField = mUserNameTextField;
 
 -(IBAction)submitClicked{
-	NSLog(@"no-op submitClicked");
+	DLog(@"no-op submitClicked");
 }
 
 

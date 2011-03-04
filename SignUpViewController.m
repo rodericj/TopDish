@@ -17,7 +17,7 @@
 
 -(IBAction)submitClicked
 {
-	NSLog(@"username %@, password %@ %@", 
+	DLog(@"username %@, password %@ %@", 
 		  self.userNameTextField.text, 
 		  self.passwordTextField.text, 
 		  self.confirmPasswordTextField.text);

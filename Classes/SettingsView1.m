@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
 	self.view.backgroundColor = kTopDishBackground;
 
-	//NSLog(@"loading and the selectedmeal type is %d", [[AppModel instance] selectedMeal]);
+	//DLog(@"loading and the selectedmeal type is %d", [[AppModel instance] selectedMeal]);
 	//int count = 0;
 
 	//for (NSDictionary *d in [[AppModel instance] mealTypeTags]) {
@@ -141,25 +141,25 @@
 	AppModel *app = [AppModel instance];
 	switch (selectedPath.row) {
 		case kMealType:
-			NSLog(@"we selected %@", [[app mealTypeTags] objectAtIndex:pickerSelected]);
+			DLog(@"we selected %@", [[app mealTypeTags] objectAtIndex:pickerSelected]);
 			[app setMealTypeByIndex:pickerSelected];
 			
 			break;
 		case kPriceType:
-			NSLog(@"we selected %@", [[app priceTags] objectAtIndex:pickerSelected]);
+			DLog(@"we selected %@", [[app priceTags] objectAtIndex:pickerSelected]);
 			[app setPriceTypeByIndex:pickerSelected];
 			
 			break;
 		case kAllergenType:
-			NSLog(@"we selected %@", [[app allergenTags] objectAtIndex:pickerSelected]);
+			DLog(@"we selected %@", [[app allergenTags] objectAtIndex:pickerSelected]);
 			[app setAllergenTypeByIndex:pickerSelected];
 			break;
 		case kCuisineType:
-			NSLog(@"we selected %@", [[app cuisineTypeTags] objectAtIndex:pickerSelected]);
+			DLog(@"we selected %@", [[app cuisineTypeTags] objectAtIndex:pickerSelected]);
 			[app setCuisineTypeByIndex:pickerSelected];
 			break;
 		case kLifestyleType:
-			NSLog(@"we selected %@", [[app lifestyleTags] objectAtIndex:pickerSelected]);
+			DLog(@"we selected %@", [[app lifestyleTags] objectAtIndex:pickerSelected]);
 			[app setLifestyleTypeByIndex:pickerSelected];
 			break;
 		default:
@@ -176,7 +176,7 @@
 #pragma mark PickerView delegate
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-	NSLog(@"they picked %d", row);
+	DLog(@"they picked %d", row);
 	pickerSelected = row;
 }
 

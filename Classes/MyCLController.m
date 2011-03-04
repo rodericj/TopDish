@@ -1,4 +1,5 @@
 #import "MyCLController.h"
+#import "constants.h"
 
 @implementation MyCLController
 
@@ -28,7 +29,7 @@
 - (void)locationManager:(CLLocationManager *)manager
 	   didFailWithError:(NSError *)error
 {
-	NSLog(@"Got a location error");
+	DLog(@"Got a location error");
 	[self.delegate locationError:error];
 }
 

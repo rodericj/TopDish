@@ -141,7 +141,7 @@ enum {
  */
 - (void)requestLoading:(FBRequest *)request
 {
-	NSLog(@"request loading");
+	DLog(@"request loading");
 }
 
 /**
@@ -149,7 +149,7 @@ enum {
  */
 - (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response
 {
-	NSLog(@"did receieve response %@", response);
+	DLog(@"did receieve response %@", response);
 }
 
 /**
@@ -157,7 +157,7 @@ enum {
  */
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error
 {
-	NSLog(@"did fail with error %@", error);
+	DLog(@"did fail with error %@", error);
 }
 
 /**
@@ -169,12 +169,12 @@ enum {
  */
 - (void)request:(FBRequest *)request didLoad:(NSDictionary *)result
 {
-	NSLog(@"did load %@", result);
+	DLog(@"did load %@", result);
 	if (request == self.imageRequest) {
 		//do nothing
 	}
 	else{
-		NSLog(@"did load %@", result);
+		DLog(@"did load %@", result);
 
 	if ([result objectForKey:@"first_name"] && [result objectForKey:@"last_name"]) {
 		
@@ -202,7 +202,7 @@ enum {
 		//set the user image to this data
 		[self.userImage setImage:[UIImage imageWithData:data]];
 	}
-	NSLog(@"raw data %@", data);
+	DLog(@"raw data %@", data);
 }
 
 #pragma mark -

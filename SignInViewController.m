@@ -34,9 +34,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 -(void)viewDidAppear:(BOOL)animated
 {		
 	[super viewDidAppear:animated];
-	NSLog(@"the view will appear. If we have the key, go to the account page");
-	AppModel *a = [AppModel instance];
-	NSLog(@"the api key is %@", [a.user objectForKey:keyforauthorizing]);
+	DLog(@"the view will appear. If we have the key, go to the account page");
+	DLog(@"the api key is %@", [[AppModel instance].user objectForKey:keyforauthorizing]);
 	if ([[AppModel instance].user objectForKey:keyforauthorizing] != nil || [[[AppModel instance] facebook] isSessionValid]) {
 		AccountView *accountView = [[AccountView alloc] initWithNibName:@"AccountView" bundle:nil];
 		[self.navigationController setViewControllers:[NSArray arrayWithObject:accountView]];
@@ -86,7 +85,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 	//[request setUsername:self.userNameTextField.text];
 //	[request setPassword:self.passwordTextField.text];
 	
-	NSLog(@"username %@, password %@ \n%@", 
+	DLog(@"username %@, password %@ \n%@", 
 		  self.userNameTextField.text, 
 		  self.passwordTextField.text,
 		  [url absoluteURL]);
@@ -109,12 +108,12 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #pragma mark -
 #pragma mark FBcallbacks
 - (void)fbDidLogin{	
-	NSLog(@"user logged in");
+	DLog(@"user logged in");
 	[self.fbLoginButton setIsLoggedIn:YES];
 	[self.fbLoginButton updateImage];
 	
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/facebookLogin", NETWORKHOST]];
-	NSLog(@"[[AppModel instance] facebook].accessToken %@", [[AppModel instance] facebook].accessToken);
+	DLog(@"[[AppModel instance] facebook].accessToken %@", [[AppModel instance] facebook].accessToken);
 	//Call the topdish server to log in
 	mTopDishFBLoginRequest = [ASIFormDataRequest requestWithURL:url];
 	[mTopDishFBLoginRequest setPostValue:[[AppModel instance] facebook].accessToken forKey:@"facebookApiKey"];
@@ -135,7 +134,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
  */
 - (void)fbDidNotLogin:(BOOL)cancelled
 {
-	NSLog(@"the user canceled");
+	DLog(@"the user canceled");
 }
 
 /**
@@ -143,7 +142,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
  */
 - (void)fbDidLogout
 {
-	NSLog(@"user logged out");
+	DLog(@"user logged out");
 	[self.fbLoginButton setIsLoggedIn:YES];
 	[self.fbLoginButton updateImage];
 }
@@ -153,30 +152,25 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
 	// Use when fetching binary data
-	NSString *responseText = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
-	NSLog(@"response Text %@", responseText);
-	SBJSON *parser = [SBJSON new];
-	NSError *error = nil;
+	DLog(@"response Text %@", [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding]);
 	
-	NSString *userHasTDAccountLinked = @"{'origcall'='action=0', 'rc'=0, 'message':'Accounts are linked, good to go. No further action needed', 'TDAccessToken'='...'}";
-	NSString *userDoesNotHaveTDAccountLinked = @"{'origcall'='action=0', 'rc'=1, 'message':'No link found between this fbID and any TDUser. Client needs to ask if they have an account and send this info (action=1 with uname/Pass), or ask them to create an account (action=2 with uname/pass). '}";
+	//NSString *userHasTDAccountLinked = @"{'origcall'='action=0', 'rc'=0, 'message':'Accounts are linked, good to go. No further action needed', 'TDAccessToken'='...'}";
+//	NSString *userDoesNotHaveTDAccountLinked = @"{'origcall'='action=0', 'rc'=1, 'message':'No link found between this fbID and any TDUser. Client needs to ask if they have an account and send this info (action=1 with uname/Pass), or ask them to create an account (action=2 with uname/pass). '}";
+//	
 	
+	//NSDictionary *responseAsDictionary = [parser objectWithString:responseText 
+//															error:&error];
 	
-	NSDictionary *responseAsDictionary = [parser objectWithString:responseText 
-															error:&error];
-	
-	NSLog(@"dictionary %@", responseAsDictionary);
+	DLog(@"dictionary %@", responseAsDictionary);
 	//NSString *responseText = [[NSString alloc] initWithData:[request rawResponseData] encoding:NSUTF8StringEncoding];
-	NSLog(@"responseText = %@", responseText);
-	NSLog(@"request to get the auth key");
+	DLog(@"responseText = %@", responseText);
+	DLog(@"request to get the auth key");
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
 	
 	if (request == mTopDishFBLoginRequest) {
 		responseString = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
-		NSArray *m = (NSArray *)[request rawResponseData];
-		NSLog(@"m is %@", m);
-		NSLog(@"handle the facebook authentication stuff %@", responseString);
+		DLog(@"handle the facebook authentication stuff %@", responseString);
 		for (NSDictionary *responseItem in [request rawResponseData]) {
 			if ([[responseItem objectForKey:@"key"] isEqualToString:@"facebookApiKey"]) {
 				[[AppModel instance].user setObject:[responseItem objectForKey:@"value" forKey:keyforauthorizing]];

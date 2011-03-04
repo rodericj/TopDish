@@ -75,9 +75,8 @@
 -(void)viewDidAppear:(BOOL)animated
 {		
 	[super viewDidAppear:animated];
-	NSLog(@"the view will appear. If we have the key, go to the account page");
-	AppModel *a = [AppModel instance];
-	NSLog(@"the api key is %@", [a.user objectForKey:keyforauthorizing]);
+	DLog(@"the view will appear. If we have the key, go to the account page");
+	DLog(@"the api key is %@", [[AppModel instance].user objectForKey:keyforauthorizing]);
 	if ([[AppModel instance].user objectForKey:keyforauthorizing] != nil || [[[AppModel instance] facebook] isSessionValid]) {
 		AccountView *accountView = [[AccountView alloc] initWithNibName:@"AccountView" bundle:nil];
 		[self.navigationController setViewControllers:[NSArray arrayWithObject:accountView]];
@@ -86,7 +85,7 @@
 }
 
 - (void)fbDidLogin{	
-	NSLog(@"user logged in");
+	DLog(@"user logged in");
 	[self.fbLoginButton setIsLoggedIn:YES];
 	[self.fbLoginButton updateImage];
 	AccountView *accountView = [[AccountView alloc] initWithNibName:@"AccountView" bundle:nil];
@@ -99,7 +98,7 @@
  */
 - (void)fbDidNotLogin:(BOOL)cancelled
 {
-	NSLog(@"the user canceled");
+	DLog(@"the user canceled");
 }
 
 /**
@@ -107,7 +106,7 @@
  */
 - (void)fbDidLogout
 {
-	NSLog(@"user logged out");
+	DLog(@"user logged out");
 	[self.fbLoginButton updateImage];
 }
 

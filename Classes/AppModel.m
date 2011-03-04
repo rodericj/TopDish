@@ -81,7 +81,7 @@ AppModel *gAppModelInstance = nil;
 	}
 	
 	for (NSDictionary *tag in tags) {
-		//NSLog(@"tag is %@", tag);
+		//DLog(@"tag is %@", tag);
 		[mIdToTagLookup setObject:tag forKey:[tag objectForKey:@"id"]];
 	}
 	
@@ -163,7 +163,7 @@ AppModel *gAppModelInstance = nil;
 	//NSDictionary *d = [mIdToTagLookup objectForKey:tagId];
 	//NSString *a = [d objectForKey:@"name"];
 	//TODO figure out why i'm not getting anything here
-	//NSLog(@"at this point we are getting basically nothing out of the dictionary %@ %@", mIdToTagLookup, a);
+	//DLog(@"at this point we are getting basically nothing out of the dictionary %@ %@", mIdToTagLookup, a);
 	return [[mIdToTagLookup objectForKey:tagId] objectForKey:@"name"];
 }
 

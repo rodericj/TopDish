@@ -7,7 +7,7 @@
 //
 
 #import "ImagePickerViewController.h"
-
+#import "constants.h"
 
 @implementation ImagePickerViewController
 
@@ -25,16 +25,16 @@
     [super viewDidLoad];
 	[self.toolbar setBackgroundColor:[UIColor redColor]];
 	if([UIImagePickerController isCameraDeviceAvailable: UIImagePickerControllerCameraDeviceRear]){
-		NSLog(@"Back camera exists");
+		DLog(@"Back camera exists");
 	}
 	else{
-		NSLog(@"Back camera does not exist");
+		DLog(@"Back camera does not exist");
 	}
 	if([UIImagePickerController isCameraDeviceAvailable: UIImagePickerControllerCameraDeviceFront]){
-		NSLog(@"Front camera exists");
+		DLog(@"Front camera exists");
 	}
 	else{
-		NSLog(@"Front camera does not exist");
+		DLog(@"Front camera does not exist");
 	}
  //[self setSourceType:UIImagePickerControllerSourceTypeCamera];
 }
