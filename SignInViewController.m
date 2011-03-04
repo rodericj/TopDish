@@ -161,10 +161,6 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 	//NSDictionary *responseAsDictionary = [parser objectWithString:responseText 
 //															error:&error];
 	
-	DLog(@"dictionary %@", responseAsDictionary);
-	//NSString *responseText = [[NSString alloc] initWithData:[request rawResponseData] encoding:NSUTF8StringEncoding];
-	DLog(@"responseText = %@", responseText);
-	DLog(@"request to get the auth key");
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
 	

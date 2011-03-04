@@ -20,8 +20,8 @@
 #define FILTER_IMAGE_NAME @"filter.png"
 #define GLOBAL_IMAGE_NAME @"globe-1.png"
 
-#ifdef DEBUG
-#define DLog(fmt, ...) DLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#ifdef TARGET_IPHONE_SIMULATOR
+#define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
 #else
 #define DLog(...)
 #endif
