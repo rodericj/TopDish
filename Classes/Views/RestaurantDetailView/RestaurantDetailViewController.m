@@ -297,7 +297,7 @@
 		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
 		ASIFormDataRequest *newRequest = [ASIFormDataRequest requestWithURL:url];
 		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-		[newRequest setPostValue:[NSString stringWithFormat:@"%@", [self.restaurant restaurant_id]] forKey:@"restaurantId"];
+		[newRequest setPostValue:[NSString stringWithFormat:@"%d", [[self.restaurant restaurant_id] intValue]] forKey:@"restaurantId"];
 		[newRequest setDelegate:self];
 		[newRequest startAsynchronous];
 		DLog(@"done calling add photo, time to call rateDish");
@@ -342,7 +342,7 @@
 		newRequest = [ASIFormDataRequest requestWithURL:url];
 		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
 		[newRequest setData:UIImagePNGRepresentation(self.newPicture) forKey:@"photo"];
-		[newRequest setPostValue:[NSString stringWithFormat:@"%@", self.restaurant.restaurant_id] forKey:@"restaurantId"];
+		[newRequest setPostValue:[NSString stringWithFormat:@"%d", [[self.restaurant restaurant_id] intValue]] forKey:@"restaurantId"];
 		[newRequest setDelegate:self];
 		[newRequest startAsynchronous];
 		return;
