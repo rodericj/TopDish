@@ -8,77 +8,83 @@
 
 /* Begin PBXBuildFile section */
 		17134E7B12EFF0F600A46B6B /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 17134E7A12EFF0F600A46B6B /* check.png */; };
-		17134EEC12EFFE9F00A46B6B /* AddADishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17134EEA12EFFE9F00A46B6B /* AddADishViewController.m */; };
-		17134EED12EFFE9F00A46B6B /* AddADishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17134EEB12EFFE9F00A46B6B /* AddADishViewController.xib */; };
-		175BBF3B1307AB9300B5353C /* RestaurantList.m in Sources */ = {isa = PBXBuildFile; fileRef = 175BBF391307AB9300B5353C /* RestaurantList.m */; };
-		175BBF3C1307AB9300B5353C /* RestaurantList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 175BBF3A1307AB9300B5353C /* RestaurantList.xib */; };
 		176A9E6812E2618900CC595C /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 176A9E6712E2618900CC595C /* User.m */; };
-		176A9EEB12E2649600CC595C /* AppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 176A9EEA12E2649600CC595C /* AppModel.m */; };
-		178F1E9512EEB35600DE5B24 /* RateADishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 178F1E9312EEB35600DE5B24 /* RateADishViewController.m */; };
-		178F1E9612EEB35600DE5B24 /* RateADishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 178F1E9412EEB35600DE5B24 /* RateADishViewController.xib */; };
+		177B8AFE1314C63200FF7F97 /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 177B8AFD1314C63200FF7F97 /* Restaurant.m */; };
 		178F202512EECEBC00DE5B24 /* background_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 178F202412EECEBC00DE5B24 /* background_tile.png */; };
 		1794422112A5B195008EE034 /* DetailButtonImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 1794422012A5B195008EE034 /* DetailButtonImage.png */; };
-		179443FF12A60199008EE034 /* ImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 179443FE12A60199008EE034 /* ImagePickerViewController.m */; };
-		179B879212A310E200730FAC /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B878D12A310E200730FAC /* Restaurant.m */; };
 		179B88D612A3719500730FAC /* ObjectWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B88D512A3719500730FAC /* ObjectWithImage.m */; };
-		17AE7F6612D9AE74007B96EC /* SignInSignUpBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17AE7F6512D9AE74007B96EC /* SignInSignUpBaseViewController.m */; };
-		17AE80B912DA7231007B96EC /* AccountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17AE80B812DA7231007B96EC /* AccountView.m */; };
-		17AE80DE12DA7393007B96EC /* AccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17AE80DD12DA7393007B96EC /* AccountView.xib */; };
 		17AE812A12DA777C007B96EC /* default_user_300x300.png in Resources */ = {isa = PBXBuildFile; fileRef = 17AE812912DA777C007B96EC /* default_user_300x300.png */; };
-		17B48AE512A033C200F43202 /* RestaurantDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B48AE312A033C200F43202 /* RestaurantDetailViewController.m */; };
-		17B48AE612A033C200F43202 /* RestaurantDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B48AE412A033C200F43202 /* RestaurantDetailView.xib */; };
 		17BBAFD81301AC2400705F1A /* CommentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17BBAFD71301AC2400705F1A /* CommentsCell.xib */; };
-		17C078CB130E2A5800D19C96 /* SegmentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C078CA130E2A5800D19C96 /* SegmentsController.m */; };
-		17C078D6130E2AD500D19C96 /* NSArray+PerformSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C078D5130E2AD500D19C96 /* NSArray+PerformSelector.m */; };
 		17C07F2113108C3400D19C96 /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C07F2013108C3400D19C96 /* Dish.m */; };
 		17C911B212F516B6006066EA /* bestSort.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C911B112F516B6006066EA /* bestSort.png */; };
 		17C911B412F516DD006066EA /* priceSort.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C911B312F516DD006066EA /* priceSort.png */; };
 		17C911B612F516F5006066EA /* distanceSort.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C911B512F516F5006066EA /* distanceSort.png */; };
+		17DA5E411322BEDA00867B66 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5E351322BEDA00867B66 /* Facebook.m */; };
+		17DA5E421322BEDA00867B66 /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5E361322BEDA00867B66 /* FBConnect.bundle */; };
+		17DA5E431322BEDA00867B66 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5E381322BEDA00867B66 /* FBDialog.bundle */; };
+		17DA5E441322BEDA00867B66 /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5E3A1322BEDA00867B66 /* FBDialog.m */; };
+		17DA5E451322BEDA00867B66 /* FBLoginButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5E3C1322BEDA00867B66 /* FBLoginButton.m */; };
+		17DA5E461322BEDA00867B66 /* FBLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5E3E1322BEDA00867B66 /* FBLoginDialog.m */; };
+		17DA5E471322BEDA00867B66 /* FBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5E401322BEDA00867B66 /* FBRequest.m */; };
+		17DA5E751322BF2500867B66 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5E621322BF2500867B66 /* ASIAuthenticationDialog.m */; };
+		17DA5E761322BF2500867B66 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5E651322BF2500867B66 /* ASIDataCompressor.m */; };
+		17DA5E771322BF2500867B66 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5E671322BF2500867B66 /* ASIDataDecompressor.m */; };
+		17DA5E781322BF2500867B66 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5E691322BF2500867B66 /* ASIDownloadCache.m */; };
+		17DA5E791322BF2500867B66 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5E6B1322BF2500867B66 /* ASIFormDataRequest.m */; };
+		17DA5E7A1322BF2500867B66 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5E6D1322BF2500867B66 /* ASIHTTPRequest.m */; };
+		17DA5E7B1322BF2500867B66 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5E711322BF2500867B66 /* ASIInputStream.m */; };
+		17DA5E7C1322BF2500867B66 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5E731322BF2500867B66 /* ASINetworkQueue.m */; };
+		17DA5EA21322BF7700867B66 /* AppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5EA11322BF7700867B66 /* AppModel.m */; };
+		17DA5EAB1322BFF900867B66 /* LoggedInLoggedOutGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5EAA1322BFF900867B66 /* LoggedInLoggedOutGate.m */; };
+		17DA5EB21322C05200867B66 /* AccountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5EB01322C05200867B66 /* AccountView.m */; };
+		17DA5EB31322C05200867B66 /* AccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5EB11322C05200867B66 /* AccountView.xib */; };
+		17DA5EB91322C0FE00867B66 /* SignInSignUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5EB41322C0FE00867B66 /* SignInSignUp.xib */; };
+		17DA5EBA1322C0FE00867B66 /* SignInSignUpBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5EB61322C0FE00867B66 /* SignInSignUpBaseViewController.m */; };
+		17DA5EBB1322C0FE00867B66 /* SignInSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5EB81322C0FE00867B66 /* SignInSignUpViewController.m */; };
+		17DA5EC31322C4A100867B66 /* SignUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5EC01322C4A100867B66 /* SignUp.xib */; };
+		17DA5EC41322C4A100867B66 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5EC21322C4A100867B66 /* SignUpViewController.m */; };
+		17DA5EC81322C4D100867B66 /* SignIn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5EC51322C4D100867B66 /* SignIn.xib */; };
+		17DA5EC91322C4D100867B66 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5EC71322C4D100867B66 /* SignInViewController.m */; };
+		17DA5ED21322C57000867B66 /* AddADishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5ECB1322C57000867B66 /* AddADishViewController.m */; };
+		17DA5ED31322C57000867B66 /* AddADishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5ECC1322C57000867B66 /* AddADishViewController.xib */; };
+		17DA5ED41322C57000867B66 /* ImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5ECE1322C57000867B66 /* ImagePickerViewController.m */; };
+		17DA5ED51322C57000867B66 /* RateADishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5ED01322C57000867B66 /* RateADishViewController.m */; };
+		17DA5ED61322C57000867B66 /* RateADishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5ED11322C57000867B66 /* RateADishViewController.xib */; };
+		17DA5EE21322C5FD00867B66 /* RestaurantAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5EDE1322C5FD00867B66 /* RestaurantAnnotation.m */; };
+		17DA5EE31322C5FD00867B66 /* RestaurantDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5EDF1322C5FD00867B66 /* RestaurantDetailView.xib */; };
+		17DA5EE41322C5FD00867B66 /* RestaurantDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5EE11322C5FD00867B66 /* RestaurantDetailViewController.m */; };
+		17DA5EFF1322C68300867B66 /* DishAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5EFB1322C68300867B66 /* DishAnnotation.m */; };
+		17DA5F001322C68300867B66 /* NearbyMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5EFC1322C68300867B66 /* NearbyMapView.xib */; };
+		17DA5F011322C68300867B66 /* NearbyMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5EFE1322C68300867B66 /* NearbyMapViewController.m */; };
+		17DA5F0B1322C6DB00867B66 /* DishTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5F021322C6DB00867B66 /* DishTableViewCell.xib */; };
+		17DA5F0C1322C6DB00867B66 /* DishTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5F041322C6DB00867B66 /* DishTableViewController.m */; };
+		17DA5F0D1322C6DB00867B66 /* MyCLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5F061322C6DB00867B66 /* MyCLController.m */; };
+		17DA5F0E1322C6DB00867B66 /* RestaurantList.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5F081322C6DB00867B66 /* RestaurantList.m */; };
+		17DA5F0F1322C6DB00867B66 /* RestaurantList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5F091322C6DB00867B66 /* RestaurantList.xib */; };
+		17DA5F101322C6DB00867B66 /* RestaurantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5F0A1322C6DB00867B66 /* RestaurantTableViewCell.xib */; };
+		17DA5F141322C71900867B66 /* TopDishAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5F131322C71900867B66 /* TopDishAppDelegate.m */; };
+		17DA5F1A1322C76300867B66 /* DishDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5F181322C76300867B66 /* DishDetailViewController.m */; };
+		17DA5F1B1322C76300867B66 /* DishDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5F191322C76300867B66 /* DishDetailViewController.xib */; };
+		17DA5F211322C78B00867B66 /* SettingsView1.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5F1F1322C78B00867B66 /* SettingsView1.m */; };
+		17DA5F221322C78B00867B66 /* SettingsView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5F201322C78B00867B66 /* SettingsView1.xib */; };
+		17DA5F271322C7C500867B66 /* SegmentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5F261322C7C500867B66 /* SegmentsController.m */; };
+		17DA5F2A1322C7FB00867B66 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5F291322C7FB00867B66 /* Reachability.m */; };
+		17DA5F2F1322C82700867B66 /* asyncimageview.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5F2C1322C82700867B66 /* asyncimageview.m */; };
+		17DA5F301322C82700867B66 /* NSArray+PerformSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5F2E1322C82700867B66 /* NSArray+PerformSelector.m */; };
 		17DD22C312BD87610048C1A1 /* DishComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DD22C212BD87610048C1A1 /* DishComment.m */; };
-		17DD26E112BDBC760048C1A1 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DD26E012BDBC760048C1A1 /* ASIHTTPRequest.m */; };
-		17DD26E912BDBC880048C1A1 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DD26E612BDBC880048C1A1 /* ASIDataCompressor.m */; };
-		17DD26EA12BDBC880048C1A1 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DD26E812BDBC880048C1A1 /* ASIDataDecompressor.m */; };
-		17DD26EE12BDBC980048C1A1 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DD26ED12BDBC980048C1A1 /* ASIFormDataRequest.m */; };
-		17DD26F412BDBCB10048C1A1 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DD26F312BDBCB10048C1A1 /* ASINetworkQueue.m */; };
-		17DD26F912BDBCBF0048C1A1 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DD26F812BDBCBF0048C1A1 /* ASIDownloadCache.m */; };
-		17DD26FD12BDBCDF0048C1A1 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DD26FC12BDBCDF0048C1A1 /* ASIAuthenticationDialog.m */; };
-		17DD270412BDBCE80048C1A1 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DD270312BDBCE80048C1A1 /* Reachability.m */; };
 		17DD270912BDBD860048C1A1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DD270812BDBD860048C1A1 /* CFNetwork.framework */; };
 		17DD270B12BDBD930048C1A1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DD270A12BDBD930048C1A1 /* SystemConfiguration.framework */; };
 		17DD270D12BDBD970048C1A1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DD270C12BDBD970048C1A1 /* MobileCoreServices.framework */; };
-		17DD271C12BDBDEE0048C1A1 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DD271B12BDBDEE0048C1A1 /* ASIInputStream.m */; };
 		17DD272B12BDBEC60048C1A1 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DD272A12BDBEC60048C1A1 /* libz.1.2.3.dylib */; };
 		17E67EE212F631A20010E6A9 /* red_flag.gif in Resources */ = {isa = PBXBuildFile; fileRef = 17E67EE112F631A20010E6A9 /* red_flag.gif */; };
-		17E6820C12F7BD0B0010E6A9 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17E681F412F7BD0B0010E6A9 /* FBDialog.bundle */; };
 		17E6820D12F7BD0B0010E6A9 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E681F812F7BD0B0010E6A9 /* NSObject+SBJSON.m */; };
 		17E6820E12F7BD0B0010E6A9 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E681FA12F7BD0B0010E6A9 /* NSString+SBJSON.m */; };
 		17E6820F12F7BD0B0010E6A9 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E681FC12F7BD0B0010E6A9 /* SBJSON.m */; };
 		17E6821012F7BD0B0010E6A9 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E681FE12F7BD0B0010E6A9 /* SBJsonBase.m */; };
 		17E6821112F7BD0B0010E6A9 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E6820012F7BD0B0010E6A9 /* SBJsonParser.m */; };
 		17E6821212F7BD0B0010E6A9 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E6820212F7BD0B0010E6A9 /* SBJsonWriter.m */; };
-		17E6821312F7BD0B0010E6A9 /* FBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E6820512F7BD0B0010E6A9 /* FBRequest.m */; };
-		17E6821412F7BD0B0010E6A9 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E6820612F7BD0B0010E6A9 /* Facebook.m */; };
-		17E6821512F7BD0B0010E6A9 /* FBLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E6820912F7BD0B0010E6A9 /* FBLoginDialog.m */; };
-		17E6821612F7BD0B0010E6A9 /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E6820B12F7BD0B0010E6A9 /* FBDialog.m */; };
-		17E6827912F7D1D70010E6A9 /* FBLoginButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E6827812F7D1D70010E6A9 /* FBLoginButton.m */; };
-		17E6829612F7D2D20010E6A9 /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17E6829512F7D2D20010E6A9 /* FBConnect.bundle */; };
-		17E6841B12F7EC090010E6A9 /* RestaurantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17E6841A12F7EC090010E6A9 /* RestaurantTableViewCell.xib */; };
 		17E6871F12FA886D0010E6A9 /* quick_filter_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 17E6871E12FA886D0010E6A9 /* quick_filter_button.png */; };
 		17E6887412FAA8970010E6A9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 17E6887312FAA8970010E6A9 /* Default.png */; };
-		17EEB69912D9A2550032E12B /* LoggedInLoggedOutGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EEB69712D9A2550032E12B /* LoggedInLoggedOutGate.m */; };
-		17EEB6AE12D9A3160032E12B /* SignInSignUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17EEB6AD12D9A3160032E12B /* SignInSignUp.xib */; };
-		17EEB6B312D9A3560032E12B /* SignInSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EEB6B212D9A3560032E12B /* SignInSignUpViewController.m */; };
-		17EEB74712D9A8AD0032E12B /* SignIn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17EEB74612D9A8AD0032E12B /* SignIn.xib */; };
-		17EEB74C12D9A9260032E12B /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EEB74B12D9A9260032E12B /* SignInViewController.m */; };
-		17EEB75012D9A9550032E12B /* SignUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17EEB74F12D9A9550032E12B /* SignUp.xib */; };
-		17EEB75B12D9AA010032E12B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EEB75A12D9AA010032E12B /* SignUpViewController.m */; };
-		17FA55C512EBFBBF00902FEE /* DishOptionPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FA55C412EBFBBF00902FEE /* DishOptionPickerTableViewController.m */; };
-		17FA587612ED14FD00902FEE /* SettingsView1.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FA587412ED14FD00902FEE /* SettingsView1.m */; };
-		17FA587712ED14FD00902FEE /* SettingsView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17FA587512ED14FD00902FEE /* SettingsView1.xib */; };
-		17FA59AC12ED53F900902FEE /* DishDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FA59AA12ED53F900902FEE /* DishDetailViewController.m */; };
-		17FA59AD12ED53F900902FEE /* DishDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17FA59AB12ED53F900902FEE /* DishDetailViewController.xib */; };
-		17FCD5B412C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FCD5B212C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m */; };
-		1D3623260D0F684500981E51 /* TopDishAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* TopDishAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -108,95 +114,135 @@
 		28860BE50F44EE6400985440 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28860BE40F44EE6400985440 /* CoreData.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
-		28C286E10D94DF7D0034E888 /* DishTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* DishTableViewController.m */; };
 		28D3F202112F7DC200FD0661 /* TopDish.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* TopDish.xcdatamodeld */; };
-		5F7AA19A125D82CC00843F4A /* NearbyMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F7AA199125D82CC00843F4A /* NearbyMapView.xib */; };
-		5F7AA19E125D833200843F4A /* NearbyMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7AA19C125D833200843F4A /* NearbyMapViewController.m */; };
-		5F7AA284125D955500843F4A /* DishAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7AA282125D955500843F4A /* DishAnnotation.m */; };
-		5F89F15D1259501800959D05 /* DishTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F89F15C1259501800959D05 /* DishTableViewCell.xib */; };
 		5F89F1651259520700959D05 /* greenup.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5F89F1631259520700959D05 /* greenup.gif */; };
 		5F89F1661259520700959D05 /* reddown.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5F89F1641259520700959D05 /* reddown.gif */; };
 		5F89F27612597E8F00959D05 /* noPicWares.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F89F27512597E8F00959D05 /* noPicWares.png */; };
 		5F89F2E3125988C900959D05 /* tdlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F89F2E2125988C900959D05 /* tdlogo.png */; };
-		5F89F32C12598F9C00959D05 /* asyncimageview.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F89F32B12598F9C00959D05 /* asyncimageview.m */; };
 		5F89F55A125C464900959D05 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F89F559125C464900959D05 /* MapKit.framework */; };
-		5F92A9A2126D4A41007D2451 /* MyCLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F92A9A1126D4A41007D2451 /* MyCLController.m */; };
 		5F92A9AB126D4B53007D2451 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F92A9AA126D4B53007D2451 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		17134E7A12EFF0F600A46B6B /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
-		17134EE912EFFE9F00A46B6B /* AddADishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddADishViewController.h; sourceTree = "<group>"; };
-		17134EEA12EFFE9F00A46B6B /* AddADishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddADishViewController.m; sourceTree = "<group>"; };
-		17134EEB12EFFE9F00A46B6B /* AddADishViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddADishViewController.xib; sourceTree = "<group>"; };
-		175BBF381307AB9300B5353C /* RestaurantList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantList.h; sourceTree = "<group>"; };
-		175BBF391307AB9300B5353C /* RestaurantList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantList.m; sourceTree = "<group>"; };
-		175BBF3A1307AB9300B5353C /* RestaurantList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantList.xib; sourceTree = "<group>"; };
 		176A9E6612E2618900CC595C /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		176A9E6712E2618900CC595C /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		176A9EE912E2649600CC595C /* AppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppModel.h; sourceTree = "<group>"; };
-		176A9EEA12E2649600CC595C /* AppModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppModel.m; sourceTree = "<group>"; };
-		178F1E9212EEB35600DE5B24 /* RateADishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RateADishViewController.h; sourceTree = "<group>"; };
-		178F1E9312EEB35600DE5B24 /* RateADishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RateADishViewController.m; sourceTree = "<group>"; };
-		178F1E9412EEB35600DE5B24 /* RateADishViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateADishViewController.xib; sourceTree = "<group>"; };
+		177B8AFC1314C63200FF7F97 /* Restaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
+		177B8AFD1314C63200FF7F97 /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
 		178F202412EECEBC00DE5B24 /* background_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_tile.png; sourceTree = "<group>"; };
 		1794422012A5B195008EE034 /* DetailButtonImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DetailButtonImage.png; sourceTree = "<group>"; };
-		179443FD12A60199008EE034 /* ImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImagePickerViewController.h; path = Classes/ImagePickerViewController.h; sourceTree = "<group>"; };
-		179443FE12A60199008EE034 /* ImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImagePickerViewController.m; path = Classes/ImagePickerViewController.m; sourceTree = "<group>"; };
-		179B878C12A310E200730FAC /* Restaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
-		179B878D12A310E200730FAC /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
 		179B88D112A3716A00730FAC /* TopDish 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TopDish 2.xcdatamodel"; sourceTree = "<group>"; };
 		179B88D412A3719500730FAC /* ObjectWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectWithImage.h; sourceTree = "<group>"; };
 		179B88D512A3719500730FAC /* ObjectWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectWithImage.m; sourceTree = "<group>"; };
-		17AE7F6412D9AE74007B96EC /* SignInSignUpBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInSignUpBaseViewController.h; sourceTree = "<group>"; };
-		17AE7F6512D9AE74007B96EC /* SignInSignUpBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInSignUpBaseViewController.m; sourceTree = "<group>"; };
-		17AE80B712DA7231007B96EC /* AccountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountView.h; sourceTree = "<group>"; };
-		17AE80B812DA7231007B96EC /* AccountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountView.m; sourceTree = "<group>"; };
-		17AE80DD12DA7393007B96EC /* AccountView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountView.xib; sourceTree = "<group>"; };
 		17AE812912DA777C007B96EC /* default_user_300x300.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_user_300x300.png; sourceTree = "<group>"; };
-		17B48AE212A033C200F43202 /* RestaurantDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDetailViewController.h; sourceTree = "<group>"; };
-		17B48AE312A033C200F43202 /* RestaurantDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantDetailViewController.m; sourceTree = "<group>"; };
-		17B48AE412A033C200F43202 /* RestaurantDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantDetailView.xib; sourceTree = "<group>"; };
 		17BBAFD71301AC2400705F1A /* CommentsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsCell.xib; sourceTree = "<group>"; };
-		17C078C9130E2A5800D19C96 /* SegmentsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentsController.h; sourceTree = "<group>"; };
-		17C078CA130E2A5800D19C96 /* SegmentsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentsController.m; sourceTree = "<group>"; };
-		17C078D4130E2AD500D19C96 /* NSArray+PerformSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PerformSelector.h"; sourceTree = "<group>"; };
-		17C078D5130E2AD500D19C96 /* NSArray+PerformSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PerformSelector.m"; sourceTree = "<group>"; };
 		17C07F1F13108C3400D19C96 /* Dish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
 		17C07F2013108C3400D19C96 /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
 		17C911B112F516B6006066EA /* bestSort.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bestSort.png; sourceTree = "<group>"; };
 		17C911B312F516DD006066EA /* priceSort.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priceSort.png; sourceTree = "<group>"; };
 		17C911B512F516F5006066EA /* distanceSort.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = distanceSort.png; sourceTree = "<group>"; };
+		17DA5E341322BEDA00867B66 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Facebook.h; path = lib/FBConnect/Facebook.h; sourceTree = "<group>"; };
+		17DA5E351322BEDA00867B66 /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Facebook.m; path = lib/FBConnect/Facebook.m; sourceTree = "<group>"; };
+		17DA5E361322BEDA00867B66 /* FBConnect.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBConnect.bundle; path = lib/FBConnect/FBConnect.bundle; sourceTree = "<group>"; };
+		17DA5E371322BEDA00867B66 /* FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBConnect.h; path = lib/FBConnect/FBConnect.h; sourceTree = "<group>"; };
+		17DA5E381322BEDA00867B66 /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBDialog.bundle; path = lib/FBConnect/FBDialog.bundle; sourceTree = "<group>"; };
+		17DA5E391322BEDA00867B66 /* FBDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBDialog.h; path = lib/FBConnect/FBDialog.h; sourceTree = "<group>"; };
+		17DA5E3A1322BEDA00867B66 /* FBDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBDialog.m; path = lib/FBConnect/FBDialog.m; sourceTree = "<group>"; };
+		17DA5E3B1322BEDA00867B66 /* FBLoginButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBLoginButton.h; path = lib/FBConnect/FBLoginButton.h; sourceTree = "<group>"; };
+		17DA5E3C1322BEDA00867B66 /* FBLoginButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBLoginButton.m; path = lib/FBConnect/FBLoginButton.m; sourceTree = "<group>"; };
+		17DA5E3D1322BEDA00867B66 /* FBLoginDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBLoginDialog.h; path = lib/FBConnect/FBLoginDialog.h; sourceTree = "<group>"; };
+		17DA5E3E1322BEDA00867B66 /* FBLoginDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBLoginDialog.m; path = lib/FBConnect/FBLoginDialog.m; sourceTree = "<group>"; };
+		17DA5E3F1322BEDA00867B66 /* FBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBRequest.h; path = lib/FBConnect/FBRequest.h; sourceTree = "<group>"; };
+		17DA5E401322BEDA00867B66 /* FBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBRequest.m; path = lib/FBConnect/FBRequest.m; sourceTree = "<group>"; };
+		17DA5E611322BF2500867B66 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = lib/ASINetwork/ASIAuthenticationDialog.h; sourceTree = "<group>"; };
+		17DA5E621322BF2500867B66 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIAuthenticationDialog.m; path = lib/ASINetwork/ASIAuthenticationDialog.m; sourceTree = "<group>"; };
+		17DA5E631322BF2500867B66 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASICacheDelegate.h; path = lib/ASINetwork/ASICacheDelegate.h; sourceTree = "<group>"; };
+		17DA5E641322BF2500867B66 /* ASIDataCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIDataCompressor.h; path = lib/ASINetwork/ASIDataCompressor.h; sourceTree = "<group>"; };
+		17DA5E651322BF2500867B66 /* ASIDataCompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIDataCompressor.m; path = lib/ASINetwork/ASIDataCompressor.m; sourceTree = "<group>"; };
+		17DA5E661322BF2500867B66 /* ASIDataDecompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIDataDecompressor.h; path = lib/ASINetwork/ASIDataDecompressor.h; sourceTree = "<group>"; };
+		17DA5E671322BF2500867B66 /* ASIDataDecompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIDataDecompressor.m; path = lib/ASINetwork/ASIDataDecompressor.m; sourceTree = "<group>"; };
+		17DA5E681322BF2500867B66 /* ASIDownloadCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIDownloadCache.h; path = lib/ASINetwork/ASIDownloadCache.h; sourceTree = "<group>"; };
+		17DA5E691322BF2500867B66 /* ASIDownloadCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIDownloadCache.m; path = lib/ASINetwork/ASIDownloadCache.m; sourceTree = "<group>"; };
+		17DA5E6A1322BF2500867B66 /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIFormDataRequest.h; path = lib/ASINetwork/ASIFormDataRequest.h; sourceTree = "<group>"; };
+		17DA5E6B1322BF2500867B66 /* ASIFormDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIFormDataRequest.m; path = lib/ASINetwork/ASIFormDataRequest.m; sourceTree = "<group>"; };
+		17DA5E6C1322BF2500867B66 /* ASIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIHTTPRequest.h; path = lib/ASINetwork/ASIHTTPRequest.h; sourceTree = "<group>"; };
+		17DA5E6D1322BF2500867B66 /* ASIHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIHTTPRequest.m; path = lib/ASINetwork/ASIHTTPRequest.m; sourceTree = "<group>"; };
+		17DA5E6E1322BF2500867B66 /* ASIHTTPRequestConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIHTTPRequestConfig.h; path = lib/ASINetwork/ASIHTTPRequestConfig.h; sourceTree = "<group>"; };
+		17DA5E6F1322BF2500867B66 /* ASIHTTPRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIHTTPRequestDelegate.h; path = lib/ASINetwork/ASIHTTPRequestDelegate.h; sourceTree = "<group>"; };
+		17DA5E701322BF2500867B66 /* ASIInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIInputStream.h; path = lib/ASINetwork/ASIInputStream.h; sourceTree = "<group>"; };
+		17DA5E711322BF2500867B66 /* ASIInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIInputStream.m; path = lib/ASINetwork/ASIInputStream.m; sourceTree = "<group>"; };
+		17DA5E721322BF2500867B66 /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASINetworkQueue.h; path = lib/ASINetwork/ASINetworkQueue.h; sourceTree = "<group>"; };
+		17DA5E731322BF2500867B66 /* ASINetworkQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASINetworkQueue.m; path = lib/ASINetwork/ASINetworkQueue.m; sourceTree = "<group>"; };
+		17DA5E741322BF2500867B66 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIProgressDelegate.h; path = lib/ASINetwork/ASIProgressDelegate.h; sourceTree = "<group>"; };
+		17DA5EA01322BF7700867B66 /* AppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppModel.h; path = model/AppModel.h; sourceTree = "<group>"; };
+		17DA5EA11322BF7700867B66 /* AppModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppModel.m; path = model/AppModel.m; sourceTree = "<group>"; };
+		17DA5EA91322BFF900867B66 /* LoggedInLoggedOutGate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoggedInLoggedOutGate.h; path = Views/AccountSettings/LoggedInLoggedOutGate.h; sourceTree = "<group>"; };
+		17DA5EAA1322BFF900867B66 /* LoggedInLoggedOutGate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoggedInLoggedOutGate.m; path = Views/AccountSettings/LoggedInLoggedOutGate.m; sourceTree = "<group>"; };
+		17DA5EAF1322C05200867B66 /* AccountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountView.h; path = Views/AccountSettings/AccountViews/AccountView.h; sourceTree = "<group>"; };
+		17DA5EB01322C05200867B66 /* AccountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountView.m; path = Views/AccountSettings/AccountViews/AccountView.m; sourceTree = "<group>"; };
+		17DA5EB11322C05200867B66 /* AccountView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountView.xib; path = Views/AccountSettings/AccountViews/AccountView.xib; sourceTree = "<group>"; };
+		17DA5EB41322C0FE00867B66 /* SignInSignUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SignInSignUp.xib; path = Views/AccountSettings/SignInSignUp/SignInSignUp.xib; sourceTree = "<group>"; };
+		17DA5EB51322C0FE00867B66 /* SignInSignUpBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignInSignUpBaseViewController.h; path = Views/AccountSettings/SignInSignUp/SignInSignUpBaseViewController.h; sourceTree = "<group>"; };
+		17DA5EB61322C0FE00867B66 /* SignInSignUpBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignInSignUpBaseViewController.m; path = Views/AccountSettings/SignInSignUp/SignInSignUpBaseViewController.m; sourceTree = "<group>"; };
+		17DA5EB71322C0FE00867B66 /* SignInSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignInSignUpViewController.h; path = Views/AccountSettings/SignInSignUp/SignInSignUpViewController.h; sourceTree = "<group>"; };
+		17DA5EB81322C0FE00867B66 /* SignInSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignInSignUpViewController.m; path = Views/AccountSettings/SignInSignUp/SignInSignUpViewController.m; sourceTree = "<group>"; };
+		17DA5EC01322C4A100867B66 /* SignUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SignUp.xib; path = Views/AccountSettings/SignInSignUp/SignUp/SignUp.xib; sourceTree = "<group>"; };
+		17DA5EC11322C4A100867B66 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpViewController.h; path = Views/AccountSettings/SignInSignUp/SignUp/SignUpViewController.h; sourceTree = "<group>"; };
+		17DA5EC21322C4A100867B66 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpViewController.m; path = Views/AccountSettings/SignInSignUp/SignUp/SignUpViewController.m; sourceTree = "<group>"; };
+		17DA5EC51322C4D100867B66 /* SignIn.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SignIn.xib; path = Views/AccountSettings/SignInSignUp/SignIn/SignIn.xib; sourceTree = "<group>"; };
+		17DA5EC61322C4D100867B66 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignInViewController.h; path = Views/AccountSettings/SignInSignUp/SignIn/SignInViewController.h; sourceTree = "<group>"; };
+		17DA5EC71322C4D100867B66 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignInViewController.m; path = Views/AccountSettings/SignInSignUp/SignIn/SignInViewController.m; sourceTree = "<group>"; };
+		17DA5ECA1322C57000867B66 /* AddADishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddADishViewController.h; path = Classes/Views/RateDishView/AddADishViewController.h; sourceTree = "<group>"; };
+		17DA5ECB1322C57000867B66 /* AddADishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddADishViewController.m; path = Classes/Views/RateDishView/AddADishViewController.m; sourceTree = "<group>"; };
+		17DA5ECC1322C57000867B66 /* AddADishViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AddADishViewController.xib; path = Classes/Views/RateDishView/AddADishViewController.xib; sourceTree = "<group>"; };
+		17DA5ECD1322C57000867B66 /* ImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImagePickerViewController.h; path = Classes/Views/RateDishView/ImagePickerViewController.h; sourceTree = "<group>"; };
+		17DA5ECE1322C57000867B66 /* ImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImagePickerViewController.m; path = Classes/Views/RateDishView/ImagePickerViewController.m; sourceTree = "<group>"; };
+		17DA5ECF1322C57000867B66 /* RateADishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RateADishViewController.h; path = Classes/Views/RateDishView/RateADishViewController.h; sourceTree = "<group>"; };
+		17DA5ED01322C57000867B66 /* RateADishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RateADishViewController.m; path = Classes/Views/RateDishView/RateADishViewController.m; sourceTree = "<group>"; };
+		17DA5ED11322C57000867B66 /* RateADishViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RateADishViewController.xib; path = Classes/Views/RateDishView/RateADishViewController.xib; sourceTree = "<group>"; };
+		17DA5EDD1322C5FD00867B66 /* RestaurantAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestaurantAnnotation.h; path = Views/RestaurantDetailView/RestaurantAnnotation.h; sourceTree = "<group>"; };
+		17DA5EDE1322C5FD00867B66 /* RestaurantAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestaurantAnnotation.m; path = Views/RestaurantDetailView/RestaurantAnnotation.m; sourceTree = "<group>"; };
+		17DA5EDF1322C5FD00867B66 /* RestaurantDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RestaurantDetailView.xib; path = Views/RestaurantDetailView/RestaurantDetailView.xib; sourceTree = "<group>"; };
+		17DA5EE01322C5FD00867B66 /* RestaurantDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestaurantDetailViewController.h; path = Views/RestaurantDetailView/RestaurantDetailViewController.h; sourceTree = "<group>"; };
+		17DA5EE11322C5FD00867B66 /* RestaurantDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestaurantDetailViewController.m; path = Views/RestaurantDetailView/RestaurantDetailViewController.m; sourceTree = "<group>"; };
+		17DA5EFA1322C68300867B66 /* DishAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DishAnnotation.h; path = Views/NearbyMapView/DishAnnotation.h; sourceTree = "<group>"; };
+		17DA5EFB1322C68300867B66 /* DishAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DishAnnotation.m; path = Views/NearbyMapView/DishAnnotation.m; sourceTree = "<group>"; };
+		17DA5EFC1322C68300867B66 /* NearbyMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NearbyMapView.xib; path = Views/NearbyMapView/NearbyMapView.xib; sourceTree = "<group>"; };
+		17DA5EFD1322C68300867B66 /* NearbyMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NearbyMapViewController.h; path = Views/NearbyMapView/NearbyMapViewController.h; sourceTree = "<group>"; };
+		17DA5EFE1322C68300867B66 /* NearbyMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NearbyMapViewController.m; path = Views/NearbyMapView/NearbyMapViewController.m; sourceTree = "<group>"; };
+		17DA5F021322C6DB00867B66 /* DishTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DishTableViewCell.xib; path = Views/MainView/DishTableViewCell.xib; sourceTree = "<group>"; };
+		17DA5F031322C6DB00867B66 /* DishTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DishTableViewController.h; path = Views/MainView/DishTableViewController.h; sourceTree = "<group>"; };
+		17DA5F041322C6DB00867B66 /* DishTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DishTableViewController.m; path = Views/MainView/DishTableViewController.m; sourceTree = "<group>"; };
+		17DA5F051322C6DB00867B66 /* MyCLController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCLController.h; path = Views/MainView/MyCLController.h; sourceTree = "<group>"; };
+		17DA5F061322C6DB00867B66 /* MyCLController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCLController.m; path = Views/MainView/MyCLController.m; sourceTree = "<group>"; };
+		17DA5F071322C6DB00867B66 /* RestaurantList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestaurantList.h; path = Views/MainView/RestaurantList.h; sourceTree = "<group>"; };
+		17DA5F081322C6DB00867B66 /* RestaurantList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestaurantList.m; path = Views/MainView/RestaurantList.m; sourceTree = "<group>"; };
+		17DA5F091322C6DB00867B66 /* RestaurantList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RestaurantList.xib; path = Views/MainView/RestaurantList.xib; sourceTree = "<group>"; };
+		17DA5F0A1322C6DB00867B66 /* RestaurantTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RestaurantTableViewCell.xib; path = Views/MainView/RestaurantTableViewCell.xib; sourceTree = "<group>"; };
+		17DA5F111322C71900867B66 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = constants.h; path = model/constants.h; sourceTree = "<group>"; };
+		17DA5F121322C71900867B66 /* TopDishAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopDishAppDelegate.h; path = model/TopDishAppDelegate.h; sourceTree = "<group>"; };
+		17DA5F131322C71900867B66 /* TopDishAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopDishAppDelegate.m; path = model/TopDishAppDelegate.m; sourceTree = "<group>"; };
+		17DA5F171322C76300867B66 /* DishDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DishDetailViewController.h; path = Views/DishDetailView/DishDetailViewController.h; sourceTree = "<group>"; };
+		17DA5F181322C76300867B66 /* DishDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DishDetailViewController.m; path = Views/DishDetailView/DishDetailViewController.m; sourceTree = "<group>"; };
+		17DA5F191322C76300867B66 /* DishDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DishDetailViewController.xib; path = Views/DishDetailView/DishDetailViewController.xib; sourceTree = "<group>"; };
+		17DA5F1E1322C78B00867B66 /* SettingsView1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsView1.h; path = Views/SettingsView/SettingsView1.h; sourceTree = "<group>"; };
+		17DA5F1F1322C78B00867B66 /* SettingsView1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsView1.m; path = Views/SettingsView/SettingsView1.m; sourceTree = "<group>"; };
+		17DA5F201322C78B00867B66 /* SettingsView1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingsView1.xib; path = Views/SettingsView/SettingsView1.xib; sourceTree = "<group>"; };
+		17DA5F251322C7C500867B66 /* SegmentsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SegmentsController.h; path = Views/MainView/SegmentsController.h; sourceTree = "<group>"; };
+		17DA5F261322C7C500867B66 /* SegmentsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SegmentsController.m; path = Views/MainView/SegmentsController.m; sourceTree = "<group>"; };
+		17DA5F281322C7FB00867B66 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = lib/ASINetwork/Reachability.h; sourceTree = "<group>"; };
+		17DA5F291322C7FB00867B66 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = lib/ASINetwork/Reachability.m; sourceTree = "<group>"; };
+		17DA5F2B1322C82700867B66 /* asyncimageview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = asyncimageview.h; path = lib/asyncimageview.h; sourceTree = "<group>"; };
+		17DA5F2C1322C82700867B66 /* asyncimageview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = asyncimageview.m; path = lib/asyncimageview.m; sourceTree = "<group>"; };
+		17DA5F2D1322C82700867B66 /* NSArray+PerformSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+PerformSelector.h"; path = "lib/NSArray+PerformSelector.h"; sourceTree = "<group>"; };
+		17DA5F2E1322C82700867B66 /* NSArray+PerformSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+PerformSelector.m"; path = "lib/NSArray+PerformSelector.m"; sourceTree = "<group>"; };
 		17DD22C112BD87610048C1A1 /* DishComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishComment.h; sourceTree = "<group>"; };
 		17DD22C212BD87610048C1A1 /* DishComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishComment.m; sourceTree = "<group>"; };
-		17DD26D512BDBC3B0048C1A1 /* ASIHTTPRequestConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIHTTPRequestConfig.h; path = Classes/ASIHTTPRequestConfig.h; sourceTree = SOURCE_ROOT; };
-		17DD26D612BDBC460048C1A1 /* ASIHTTPRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIHTTPRequestDelegate.h; path = Classes/ASIHTTPRequestDelegate.h; sourceTree = SOURCE_ROOT; };
-		17DD26D812BDBC580048C1A1 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIProgressDelegate.h; path = Classes/ASIProgressDelegate.h; sourceTree = SOURCE_ROOT; };
-		17DD26DC12BDBC630048C1A1 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASICacheDelegate.h; path = Classes/ASICacheDelegate.h; sourceTree = SOURCE_ROOT; };
-		17DD26DF12BDBC760048C1A1 /* ASIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIHTTPRequest.h; path = Classes/ASIHTTPRequest.h; sourceTree = SOURCE_ROOT; };
-		17DD26E012BDBC760048C1A1 /* ASIHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIHTTPRequest.m; path = Classes/ASIHTTPRequest.m; sourceTree = SOURCE_ROOT; };
-		17DD26E512BDBC880048C1A1 /* ASIDataCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIDataCompressor.h; path = Classes/ASIDataCompressor.h; sourceTree = SOURCE_ROOT; };
-		17DD26E612BDBC880048C1A1 /* ASIDataCompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIDataCompressor.m; path = Classes/ASIDataCompressor.m; sourceTree = SOURCE_ROOT; };
-		17DD26E712BDBC880048C1A1 /* ASIDataDecompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIDataDecompressor.h; path = Classes/ASIDataDecompressor.h; sourceTree = SOURCE_ROOT; };
-		17DD26E812BDBC880048C1A1 /* ASIDataDecompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIDataDecompressor.m; path = Classes/ASIDataDecompressor.m; sourceTree = SOURCE_ROOT; };
-		17DD26EC12BDBC980048C1A1 /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIFormDataRequest.h; path = Classes/ASIFormDataRequest.h; sourceTree = SOURCE_ROOT; };
-		17DD26ED12BDBC980048C1A1 /* ASIFormDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIFormDataRequest.m; path = Classes/ASIFormDataRequest.m; sourceTree = SOURCE_ROOT; };
-		17DD26F212BDBCB10048C1A1 /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASINetworkQueue.h; path = Classes/ASINetworkQueue.h; sourceTree = SOURCE_ROOT; };
-		17DD26F312BDBCB10048C1A1 /* ASINetworkQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASINetworkQueue.m; path = Classes/ASINetworkQueue.m; sourceTree = SOURCE_ROOT; };
-		17DD26F712BDBCBF0048C1A1 /* ASIDownloadCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIDownloadCache.h; path = Classes/ASIDownloadCache.h; sourceTree = SOURCE_ROOT; };
-		17DD26F812BDBCBF0048C1A1 /* ASIDownloadCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIDownloadCache.m; path = Classes/ASIDownloadCache.m; sourceTree = SOURCE_ROOT; };
-		17DD26FB12BDBCDF0048C1A1 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = Classes/ASIAuthenticationDialog.h; sourceTree = SOURCE_ROOT; };
-		17DD26FC12BDBCDF0048C1A1 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIAuthenticationDialog.m; path = Classes/ASIAuthenticationDialog.m; sourceTree = SOURCE_ROOT; };
-		17DD270212BDBCE80048C1A1 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Classes/Reachability.h; sourceTree = SOURCE_ROOT; };
-		17DD270312BDBCE80048C1A1 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Classes/Reachability.m; sourceTree = SOURCE_ROOT; };
 		17DD270812BDBD860048C1A1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		17DD270A12BDBD930048C1A1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		17DD270C12BDBD970048C1A1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		17DD271A12BDBDEE0048C1A1 /* ASIInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIInputStream.h; path = Classes/ASIInputStream.h; sourceTree = SOURCE_ROOT; };
-		17DD271B12BDBDEE0048C1A1 /* ASIInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIInputStream.m; path = Classes/ASIInputStream.m; sourceTree = SOURCE_ROOT; };
 		17DD272A12BDBEC60048C1A1 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		17E67EE112F631A20010E6A9 /* red_flag.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = red_flag.gif; sourceTree = "<group>"; };
-		17E681F412F7BD0B0010E6A9 /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBDialog.bundle; sourceTree = "<group>"; };
 		17E681F612F7BD0B0010E6A9 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		17E681F712F7BD0B0010E6A9 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		17E681F812F7BD0B0010E6A9 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -210,45 +256,9 @@
 		17E6820012F7BD0B0010E6A9 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		17E6820112F7BD0B0010E6A9 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		17E6820212F7BD0B0010E6A9 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		17E6820312F7BD0B0010E6A9 /* FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBConnect.h; sourceTree = "<group>"; };
-		17E6820412F7BD0B0010E6A9 /* FBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBRequest.h; sourceTree = "<group>"; };
-		17E6820512F7BD0B0010E6A9 /* FBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBRequest.m; sourceTree = "<group>"; };
-		17E6820612F7BD0B0010E6A9 /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
-		17E6820712F7BD0B0010E6A9 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
-		17E6820812F7BD0B0010E6A9 /* FBLoginDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginDialog.h; sourceTree = "<group>"; };
-		17E6820912F7BD0B0010E6A9 /* FBLoginDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginDialog.m; sourceTree = "<group>"; };
-		17E6820A12F7BD0B0010E6A9 /* FBDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBDialog.h; sourceTree = "<group>"; };
-		17E6820B12F7BD0B0010E6A9 /* FBDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBDialog.m; sourceTree = "<group>"; };
-		17E6827712F7D1D70010E6A9 /* FBLoginButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginButton.h; sourceTree = "<group>"; };
-		17E6827812F7D1D70010E6A9 /* FBLoginButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginButton.m; sourceTree = "<group>"; };
-		17E6829512F7D2D20010E6A9 /* FBConnect.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBConnect.bundle; sourceTree = "<group>"; };
-		17E6841A12F7EC090010E6A9 /* RestaurantTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantTableViewCell.xib; sourceTree = "<group>"; };
 		17E6871E12FA886D0010E6A9 /* quick_filter_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quick_filter_button.png; sourceTree = "<group>"; };
 		17E6887312FAA8970010E6A9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		17EEB69712D9A2550032E12B /* LoggedInLoggedOutGate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoggedInLoggedOutGate.m; path = ../LoggedInLoggedOutGate.m; sourceTree = "<group>"; };
-		17EEB69812D9A2550032E12B /* LoggedInLoggedOutGate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoggedInLoggedOutGate.h; path = ../LoggedInLoggedOutGate.h; sourceTree = "<group>"; };
-		17EEB6AD12D9A3160032E12B /* SignInSignUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInSignUp.xib; sourceTree = "<group>"; };
-		17EEB6B112D9A3560032E12B /* SignInSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignInSignUpViewController.h; path = ../SignInSignUpViewController.h; sourceTree = "<group>"; };
-		17EEB6B212D9A3560032E12B /* SignInSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignInSignUpViewController.m; path = ../SignInSignUpViewController.m; sourceTree = "<group>"; };
-		17EEB74612D9A8AD0032E12B /* SignIn.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignIn.xib; sourceTree = "<group>"; };
-		17EEB74A12D9A9260032E12B /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignInViewController.h; path = ../SignInViewController.h; sourceTree = "<group>"; };
-		17EEB74B12D9A9260032E12B /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignInViewController.m; path = ../SignInViewController.m; sourceTree = "<group>"; };
-		17EEB74F12D9A9550032E12B /* SignUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUp.xib; sourceTree = "<group>"; };
-		17EEB75912D9AA010032E12B /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpViewController.h; path = ../SignUpViewController.h; sourceTree = "<group>"; };
-		17EEB75A12D9AA010032E12B /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpViewController.m; path = ../SignUpViewController.m; sourceTree = "<group>"; };
-		17FA55C312EBFBBF00902FEE /* DishOptionPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishOptionPickerTableViewController.h; sourceTree = "<group>"; };
-		17FA55C412EBFBBF00902FEE /* DishOptionPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishOptionPickerTableViewController.m; sourceTree = "<group>"; };
-		17FA587312ED14FD00902FEE /* SettingsView1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsView1.h; sourceTree = "<group>"; };
-		17FA587412ED14FD00902FEE /* SettingsView1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsView1.m; sourceTree = "<group>"; };
-		17FA587512ED14FD00902FEE /* SettingsView1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsView1.xib; sourceTree = "<group>"; };
-		17FA59A912ED53F900902FEE /* DishDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishDetailViewController.h; sourceTree = "<group>"; };
-		17FA59AA12ED53F900902FEE /* DishDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishDetailViewController.m; sourceTree = "<group>"; };
-		17FA59AB12ED53F900902FEE /* DishDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DishDetailViewController.xib; sourceTree = "<group>"; };
-		17FCD5B112C2F1CC0081D5EA /* RestaurantListTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListTableViewDelegate.h; sourceTree = "<group>"; };
-		17FCD5B212C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantListTableViewDelegate.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D3623240D0F684500981E51 /* TopDishAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopDishAppDelegate.h; sourceTree = "<group>"; };
-		1D3623250D0F684500981E51 /* TopDishAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopDishAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* TopDish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopDish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		200E5B12131E10F600B2920D /* resturant_back_no_boarder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resturant_back_no_boarder.png; sourceTree = "<group>"; };
@@ -279,26 +289,13 @@
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28A0AAE50D9B0CCF005BE974 /* TopDish_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopDish_Prefix.pch; sourceTree = "<group>"; };
 		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		28C286DF0D94DF7D0034E888 /* DishTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishTableViewController.h; sourceTree = "<group>"; };
-		28C286E00D94DF7D0034E888 /* DishTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishTableViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		5F7AA199125D82CC00843F4A /* NearbyMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NearbyMapView.xib; sourceTree = "<group>"; };
-		5F7AA19C125D833200843F4A /* NearbyMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyMapViewController.m; sourceTree = "<group>"; };
-		5F7AA19D125D833200843F4A /* NearbyMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyMapViewController.h; sourceTree = "<group>"; };
-		5F7AA282125D955500843F4A /* DishAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishAnnotation.m; sourceTree = "<group>"; };
-		5F7AA283125D955500843F4A /* DishAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishAnnotation.h; sourceTree = "<group>"; };
-		5F89F15C1259501800959D05 /* DishTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DishTableViewCell.xib; path = ../DishTableViewCell.xib; sourceTree = "<group>"; };
 		5F89F1631259520700959D05 /* greenup.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = greenup.gif; sourceTree = "<group>"; };
 		5F89F1641259520700959D05 /* reddown.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = reddown.gif; sourceTree = "<group>"; };
 		5F89F27512597E8F00959D05 /* noPicWares.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noPicWares.png; sourceTree = "<group>"; };
 		5F89F2E2125988C900959D05 /* tdlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tdlogo.png; sourceTree = "<group>"; };
-		5F89F32A12598F9C00959D05 /* asyncimageview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asyncimageview.h; sourceTree = "<group>"; };
-		5F89F32B12598F9C00959D05 /* asyncimageview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = asyncimageview.m; sourceTree = "<group>"; };
 		5F89F559125C464900959D05 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		5F92A9A0126D4A41007D2451 /* MyCLController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCLController.h; sourceTree = "<group>"; };
-		5F92A9A1126D4A41007D2451 /* MyCLController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCLController.m; sourceTree = "<group>"; };
 		5F92A9AA126D4B53007D2451 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		5FBB95F11262288E00141693 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* TopDish-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TopDish-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -327,9 +324,6 @@
 			isa = PBXGroup;
 			children = (
 				176A9EE812E2648900CC595C /* Model */,
-				5FBB95F11262288E00141693 /* constants.h */,
-				1D3623240D0F684500981E51 /* TopDishAppDelegate.h */,
-				1D3623250D0F684500981E51 /* TopDishAppDelegate.m */,
 				5F89F594125C4A0B00959D05 /* Views */,
 				5F89EFAF125930A300959D05 /* lib */,
 			);
@@ -339,9 +333,12 @@
 		176A9EE812E2648900CC595C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				17DA5F111322C71900867B66 /* constants.h */,
+				17DA5F121322C71900867B66 /* TopDishAppDelegate.h */,
+				17DA5F131322C71900867B66 /* TopDishAppDelegate.m */,
+				17DA5EA01322BF7700867B66 /* AppModel.h */,
+				17DA5EA11322BF7700867B66 /* AppModel.m */,
 				28D3F201112F7DC200FD0661 /* TopDish.xcdatamodeld */,
-				176A9EE912E2649600CC595C /* AppModel.h */,
-				176A9EEA12E2649600CC595C /* AppModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -349,13 +346,13 @@
 		17AE80B412DA71CF007B96EC /* SIgnInSignUp */ = {
 			isa = PBXGroup;
 			children = (
+				17DA5EB41322C0FE00867B66 /* SignInSignUp.xib */,
+				17DA5EB51322C0FE00867B66 /* SignInSignUpBaseViewController.h */,
+				17DA5EB61322C0FE00867B66 /* SignInSignUpBaseViewController.m */,
+				17DA5EB71322C0FE00867B66 /* SignInSignUpViewController.h */,
+				17DA5EB81322C0FE00867B66 /* SignInSignUpViewController.m */,
 				17EEB74E12D9A9470032E12B /* SignUp */,
 				17EEB74D12D9A93A0032E12B /* SignIn */,
-				17AE7F6412D9AE74007B96EC /* SignInSignUpBaseViewController.h */,
-				17AE7F6512D9AE74007B96EC /* SignInSignUpBaseViewController.m */,
-				17EEB6B112D9A3560032E12B /* SignInSignUpViewController.h */,
-				17EEB6B212D9A3560032E12B /* SignInSignUpViewController.m */,
-				17EEB6AD12D9A3160032E12B /* SignInSignUp.xib */,
 			);
 			name = SIgnInSignUp;
 			sourceTree = "<group>";
@@ -363,9 +360,9 @@
 		17AE80B612DA7204007B96EC /* AccountViews */ = {
 			isa = PBXGroup;
 			children = (
-				17AE80B712DA7231007B96EC /* AccountView.h */,
-				17AE80B812DA7231007B96EC /* AccountView.m */,
-				17AE80DD12DA7393007B96EC /* AccountView.xib */,
+				17DA5EAF1322C05200867B66 /* AccountView.h */,
+				17DA5EB01322C05200867B66 /* AccountView.m */,
+				17DA5EB11322C05200867B66 /* AccountView.xib */,
 			);
 			name = AccountViews;
 			sourceTree = "<group>";
@@ -373,9 +370,11 @@
 		17B48AD512A0337700F43202 /* RestaurantDetailView */ = {
 			isa = PBXGroup;
 			children = (
-				17B48AE412A033C200F43202 /* RestaurantDetailView.xib */,
-				17B48AE212A033C200F43202 /* RestaurantDetailViewController.h */,
-				17B48AE312A033C200F43202 /* RestaurantDetailViewController.m */,
+				17DA5EDD1322C5FD00867B66 /* RestaurantAnnotation.h */,
+				17DA5EDE1322C5FD00867B66 /* RestaurantAnnotation.m */,
+				17DA5EDF1322C5FD00867B66 /* RestaurantDetailView.xib */,
+				17DA5EE01322C5FD00867B66 /* RestaurantDetailViewController.h */,
+				17DA5EE11322C5FD00867B66 /* RestaurantDetailViewController.m */,
 			);
 			name = RestaurantDetailView;
 			sourceTree = "<group>";
@@ -383,28 +382,28 @@
 		17DD26D212BDBBEB0048C1A1 /* ASINetwork */ = {
 			isa = PBXGroup;
 			children = (
-				17DD26D512BDBC3B0048C1A1 /* ASIHTTPRequestConfig.h */,
-				17DD26D612BDBC460048C1A1 /* ASIHTTPRequestDelegate.h */,
-				17DD26D812BDBC580048C1A1 /* ASIProgressDelegate.h */,
-				17DD26DC12BDBC630048C1A1 /* ASICacheDelegate.h */,
-				17DD26DF12BDBC760048C1A1 /* ASIHTTPRequest.h */,
-				17DD26E012BDBC760048C1A1 /* ASIHTTPRequest.m */,
-				17DD26E512BDBC880048C1A1 /* ASIDataCompressor.h */,
-				17DD26E612BDBC880048C1A1 /* ASIDataCompressor.m */,
-				17DD26E712BDBC880048C1A1 /* ASIDataDecompressor.h */,
-				17DD26E812BDBC880048C1A1 /* ASIDataDecompressor.m */,
-				17DD26EC12BDBC980048C1A1 /* ASIFormDataRequest.h */,
-				17DD26ED12BDBC980048C1A1 /* ASIFormDataRequest.m */,
-				17DD26F212BDBCB10048C1A1 /* ASINetworkQueue.h */,
-				17DD26F312BDBCB10048C1A1 /* ASINetworkQueue.m */,
-				17DD26F712BDBCBF0048C1A1 /* ASIDownloadCache.h */,
-				17DD26F812BDBCBF0048C1A1 /* ASIDownloadCache.m */,
-				17DD26FB12BDBCDF0048C1A1 /* ASIAuthenticationDialog.h */,
-				17DD26FC12BDBCDF0048C1A1 /* ASIAuthenticationDialog.m */,
-				17DD270212BDBCE80048C1A1 /* Reachability.h */,
-				17DD270312BDBCE80048C1A1 /* Reachability.m */,
-				17DD271A12BDBDEE0048C1A1 /* ASIInputStream.h */,
-				17DD271B12BDBDEE0048C1A1 /* ASIInputStream.m */,
+				17DA5E611322BF2500867B66 /* ASIAuthenticationDialog.h */,
+				17DA5E621322BF2500867B66 /* ASIAuthenticationDialog.m */,
+				17DA5E631322BF2500867B66 /* ASICacheDelegate.h */,
+				17DA5E641322BF2500867B66 /* ASIDataCompressor.h */,
+				17DA5E651322BF2500867B66 /* ASIDataCompressor.m */,
+				17DA5E661322BF2500867B66 /* ASIDataDecompressor.h */,
+				17DA5E671322BF2500867B66 /* ASIDataDecompressor.m */,
+				17DA5E681322BF2500867B66 /* ASIDownloadCache.h */,
+				17DA5E691322BF2500867B66 /* ASIDownloadCache.m */,
+				17DA5E6A1322BF2500867B66 /* ASIFormDataRequest.h */,
+				17DA5E6B1322BF2500867B66 /* ASIFormDataRequest.m */,
+				17DA5E6C1322BF2500867B66 /* ASIHTTPRequest.h */,
+				17DA5E6D1322BF2500867B66 /* ASIHTTPRequest.m */,
+				17DA5E6E1322BF2500867B66 /* ASIHTTPRequestConfig.h */,
+				17DA5E6F1322BF2500867B66 /* ASIHTTPRequestDelegate.h */,
+				17DA5E701322BF2500867B66 /* ASIInputStream.h */,
+				17DA5E711322BF2500867B66 /* ASIInputStream.m */,
+				17DA5E721322BF2500867B66 /* ASINetworkQueue.h */,
+				17DA5E731322BF2500867B66 /* ASINetworkQueue.m */,
+				17DA5E741322BF2500867B66 /* ASIProgressDelegate.h */,
+				17DA5F281322C7FB00867B66 /* Reachability.h */,
+				17DA5F291322C7FB00867B66 /* Reachability.m */,
 			);
 			name = ASINetwork;
 			sourceTree = "<group>";
@@ -412,16 +411,14 @@
 		17DE013912B43EEB001F6907 /* RateDishView */ = {
 			isa = PBXGroup;
 			children = (
-				17134EE912EFFE9F00A46B6B /* AddADishViewController.h */,
-				17134EEA12EFFE9F00A46B6B /* AddADishViewController.m */,
-				17134EEB12EFFE9F00A46B6B /* AddADishViewController.xib */,
-				179443FD12A60199008EE034 /* ImagePickerViewController.h */,
-				179443FE12A60199008EE034 /* ImagePickerViewController.m */,
-				17FA55C312EBFBBF00902FEE /* DishOptionPickerTableViewController.h */,
-				17FA55C412EBFBBF00902FEE /* DishOptionPickerTableViewController.m */,
-				178F1E9212EEB35600DE5B24 /* RateADishViewController.h */,
-				178F1E9312EEB35600DE5B24 /* RateADishViewController.m */,
-				178F1E9412EEB35600DE5B24 /* RateADishViewController.xib */,
+				17DA5ECA1322C57000867B66 /* AddADishViewController.h */,
+				17DA5ECB1322C57000867B66 /* AddADishViewController.m */,
+				17DA5ECC1322C57000867B66 /* AddADishViewController.xib */,
+				17DA5ECD1322C57000867B66 /* ImagePickerViewController.h */,
+				17DA5ECE1322C57000867B66 /* ImagePickerViewController.m */,
+				17DA5ECF1322C57000867B66 /* RateADishViewController.h */,
+				17DA5ED01322C57000867B66 /* RateADishViewController.m */,
+				17DA5ED11322C57000867B66 /* RateADishViewController.xib */,
 			);
 			name = RateDishView;
 			path = ..;
@@ -430,20 +427,20 @@
 		17E681F312F7BD0B0010E6A9 /* FBConnect */ = {
 			isa = PBXGroup;
 			children = (
-				17E6829512F7D2D20010E6A9 /* FBConnect.bundle */,
-				17E681F412F7BD0B0010E6A9 /* FBDialog.bundle */,
+				17DA5E341322BEDA00867B66 /* Facebook.h */,
+				17DA5E351322BEDA00867B66 /* Facebook.m */,
+				17DA5E361322BEDA00867B66 /* FBConnect.bundle */,
+				17DA5E371322BEDA00867B66 /* FBConnect.h */,
+				17DA5E381322BEDA00867B66 /* FBDialog.bundle */,
+				17DA5E391322BEDA00867B66 /* FBDialog.h */,
+				17DA5E3A1322BEDA00867B66 /* FBDialog.m */,
+				17DA5E3B1322BEDA00867B66 /* FBLoginButton.h */,
+				17DA5E3C1322BEDA00867B66 /* FBLoginButton.m */,
+				17DA5E3D1322BEDA00867B66 /* FBLoginDialog.h */,
+				17DA5E3E1322BEDA00867B66 /* FBLoginDialog.m */,
+				17DA5E3F1322BEDA00867B66 /* FBRequest.h */,
+				17DA5E401322BEDA00867B66 /* FBRequest.m */,
 				17E681F512F7BD0B0010E6A9 /* JSON */,
-				17E6820312F7BD0B0010E6A9 /* FBConnect.h */,
-				17E6820412F7BD0B0010E6A9 /* FBRequest.h */,
-				17E6820512F7BD0B0010E6A9 /* FBRequest.m */,
-				17E6827712F7D1D70010E6A9 /* FBLoginButton.h */,
-				17E6827812F7D1D70010E6A9 /* FBLoginButton.m */,
-				17E6820612F7BD0B0010E6A9 /* Facebook.m */,
-				17E6820712F7BD0B0010E6A9 /* Facebook.h */,
-				17E6820812F7BD0B0010E6A9 /* FBLoginDialog.h */,
-				17E6820912F7BD0B0010E6A9 /* FBLoginDialog.m */,
-				17E6820A12F7BD0B0010E6A9 /* FBDialog.h */,
-				17E6820B12F7BD0B0010E6A9 /* FBDialog.m */,
 			);
 			name = FBConnect;
 			sourceTree = "<group>";
@@ -471,10 +468,10 @@
 		17EEB69D12D9A2720032E12B /* AccountSettings */ = {
 			isa = PBXGroup;
 			children = (
+				17DA5EA91322BFF900867B66 /* LoggedInLoggedOutGate.h */,
+				17DA5EAA1322BFF900867B66 /* LoggedInLoggedOutGate.m */,
 				17AE80B612DA7204007B96EC /* AccountViews */,
 				17AE80B412DA71CF007B96EC /* SIgnInSignUp */,
-				17EEB69812D9A2550032E12B /* LoggedInLoggedOutGate.h */,
-				17EEB69712D9A2550032E12B /* LoggedInLoggedOutGate.m */,
 			);
 			name = AccountSettings;
 			sourceTree = "<group>";
@@ -482,9 +479,9 @@
 		17EEB74D12D9A93A0032E12B /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
-				17EEB74612D9A8AD0032E12B /* SignIn.xib */,
-				17EEB74A12D9A9260032E12B /* SignInViewController.h */,
-				17EEB74B12D9A9260032E12B /* SignInViewController.m */,
+				17DA5EC51322C4D100867B66 /* SignIn.xib */,
+				17DA5EC61322C4D100867B66 /* SignInViewController.h */,
+				17DA5EC71322C4D100867B66 /* SignInViewController.m */,
 			);
 			name = SignIn;
 			sourceTree = "<group>";
@@ -492,9 +489,9 @@
 		17EEB74E12D9A9470032E12B /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				17EEB74F12D9A9550032E12B /* SignUp.xib */,
-				17EEB75912D9AA010032E12B /* SignUpViewController.h */,
-				17EEB75A12D9AA010032E12B /* SignUpViewController.m */,
+				17DA5EC01322C4A100867B66 /* SignUp.xib */,
+				17DA5EC11322C4A100867B66 /* SignUpViewController.h */,
+				17DA5EC21322C4A100867B66 /* SignUpViewController.m */,
 			);
 			name = SignUp;
 			sourceTree = "<group>";
@@ -559,9 +556,9 @@
 		5F08956912641F0000EDE197 /* SettingsView */ = {
 			isa = PBXGroup;
 			children = (
-				17FA587312ED14FD00902FEE /* SettingsView1.h */,
-				17FA587412ED14FD00902FEE /* SettingsView1.m */,
-				17FA587512ED14FD00902FEE /* SettingsView1.xib */,
+				17DA5F1E1322C78B00867B66 /* SettingsView1.h */,
+				17DA5F1F1322C78B00867B66 /* SettingsView1.m */,
+				17DA5F201322C78B00867B66 /* SettingsView1.xib */,
 			);
 			name = SettingsView;
 			sourceTree = "<group>";
@@ -569,14 +566,12 @@
 		5F89EFAF125930A300959D05 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				17E681F312F7BD0B0010E6A9 /* FBConnect */,
 				17DD26D212BDBBEB0048C1A1 /* ASINetwork */,
-				5F89F32A12598F9C00959D05 /* asyncimageview.h */,
-				5F89F32B12598F9C00959D05 /* asyncimageview.m */,
-				17C078C9130E2A5800D19C96 /* SegmentsController.h */,
-				17C078CA130E2A5800D19C96 /* SegmentsController.m */,
-				17C078D4130E2AD500D19C96 /* NSArray+PerformSelector.h */,
-				17C078D5130E2AD500D19C96 /* NSArray+PerformSelector.m */,
+				17E681F312F7BD0B0010E6A9 /* FBConnect */,
+				17DA5F2B1322C82700867B66 /* asyncimageview.h */,
+				17DA5F2C1322C82700867B66 /* asyncimageview.m */,
+				17DA5F2D1322C82700867B66 /* NSArray+PerformSelector.h */,
+				17DA5F2E1322C82700867B66 /* NSArray+PerformSelector.m */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -650,17 +645,17 @@
 		5FBB975C126241F100141693 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				17FCD5B112C2F1CC0081D5EA /* RestaurantListTableViewDelegate.h */,
-				17FCD5B212C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m */,
-				5F92A9A0126D4A41007D2451 /* MyCLController.h */,
-				5F92A9A1126D4A41007D2451 /* MyCLController.m */,
-				28C286DF0D94DF7D0034E888 /* DishTableViewController.h */,
-				28C286E00D94DF7D0034E888 /* DishTableViewController.m */,
-				5F89F15C1259501800959D05 /* DishTableViewCell.xib */,
-				17E6841A12F7EC090010E6A9 /* RestaurantTableViewCell.xib */,
-				175BBF381307AB9300B5353C /* RestaurantList.h */,
-				175BBF391307AB9300B5353C /* RestaurantList.m */,
-				175BBF3A1307AB9300B5353C /* RestaurantList.xib */,
+				17DA5F251322C7C500867B66 /* SegmentsController.h */,
+				17DA5F261322C7C500867B66 /* SegmentsController.m */,
+				17DA5F021322C6DB00867B66 /* DishTableViewCell.xib */,
+				17DA5F031322C6DB00867B66 /* DishTableViewController.h */,
+				17DA5F041322C6DB00867B66 /* DishTableViewController.m */,
+				17DA5F051322C6DB00867B66 /* MyCLController.h */,
+				17DA5F061322C6DB00867B66 /* MyCLController.m */,
+				17DA5F071322C6DB00867B66 /* RestaurantList.h */,
+				17DA5F081322C6DB00867B66 /* RestaurantList.m */,
+				17DA5F091322C6DB00867B66 /* RestaurantList.xib */,
+				17DA5F0A1322C6DB00867B66 /* RestaurantTableViewCell.xib */,
 			);
 			name = MainView;
 			sourceTree = "<group>";
@@ -668,11 +663,11 @@
 		5FBB975D1262420600141693 /* NearbyMapView */ = {
 			isa = PBXGroup;
 			children = (
-				5F7AA199125D82CC00843F4A /* NearbyMapView.xib */,
-				5F7AA283125D955500843F4A /* DishAnnotation.h */,
-				5F7AA282125D955500843F4A /* DishAnnotation.m */,
-				5F7AA19D125D833200843F4A /* NearbyMapViewController.h */,
-				5F7AA19C125D833200843F4A /* NearbyMapViewController.m */,
+				17DA5EFA1322C68300867B66 /* DishAnnotation.h */,
+				17DA5EFB1322C68300867B66 /* DishAnnotation.m */,
+				17DA5EFC1322C68300867B66 /* NearbyMapView.xib */,
+				17DA5EFD1322C68300867B66 /* NearbyMapViewController.h */,
+				17DA5EFE1322C68300867B66 /* NearbyMapViewController.m */,
 			);
 			name = NearbyMapView;
 			sourceTree = "<group>";
@@ -680,9 +675,9 @@
 		5FBB975E1262423C00141693 /* DishDetailView */ = {
 			isa = PBXGroup;
 			children = (
-				17FA59A912ED53F900902FEE /* DishDetailViewController.h */,
-				17FA59AA12ED53F900902FEE /* DishDetailViewController.m */,
-				17FA59AB12ED53F900902FEE /* DishDetailViewController.xib */,
+				17DA5F171322C76300867B66 /* DishDetailViewController.h */,
+				17DA5F181322C76300867B66 /* DishDetailViewController.m */,
+				17DA5F191322C76300867B66 /* DishDetailViewController.xib */,
 			);
 			name = DishDetailView;
 			sourceTree = "<group>";
@@ -738,25 +733,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
-				5F89F15D1259501800959D05 /* DishTableViewCell.xib in Resources */,
 				5F89F1651259520700959D05 /* greenup.gif in Resources */,
 				5F89F1661259520700959D05 /* reddown.gif in Resources */,
 				5F89F27612597E8F00959D05 /* noPicWares.png in Resources */,
 				5F89F2E3125988C900959D05 /* tdlogo.png in Resources */,
-				5F7AA19A125D82CC00843F4A /* NearbyMapView.xib in Resources */,
-				17B48AE612A033C200F43202 /* RestaurantDetailView.xib in Resources */,
 				1794422112A5B195008EE034 /* DetailButtonImage.png in Resources */,
-				17EEB6AE12D9A3160032E12B /* SignInSignUp.xib in Resources */,
-				17EEB74712D9A8AD0032E12B /* SignIn.xib in Resources */,
-				17EEB75012D9A9550032E12B /* SignUp.xib in Resources */,
-				17AE80DE12DA7393007B96EC /* AccountView.xib in Resources */,
 				17AE812A12DA777C007B96EC /* default_user_300x300.png in Resources */,
-				17FA587712ED14FD00902FEE /* SettingsView1.xib in Resources */,
-				17FA59AD12ED53F900902FEE /* DishDetailViewController.xib in Resources */,
-				178F1E9612EEB35600DE5B24 /* RateADishViewController.xib in Resources */,
 				178F202512EECEBC00DE5B24 /* background_tile.png in Resources */,
 				17134E7B12EFF0F600A46B6B /* check.png in Resources */,
-				17134EED12EFFE9F00A46B6B /* AddADishViewController.xib in Resources */,
 				20F29E0E12F4B06C001641B1 /* dishViewBoarder.png in Resources */,
 				20F29E1012F4BDF2001641B1 /* button_up_grey.png in Resources */,
 				20F29E1212F4BE04001641B1 /* button_down_grey.png in Resources */,
@@ -769,13 +753,10 @@
 				17C911B412F516DD006066EA /* priceSort.png in Resources */,
 				17C911B612F516F5006066EA /* distanceSort.png in Resources */,
 				17E67EE212F631A20010E6A9 /* red_flag.gif in Resources */,
-				17E6841B12F7EC090010E6A9 /* RestaurantTableViewCell.xib in Resources */,
 				20BF65FC12F7C8E1005DD037 /* no_rest_img.jpg in Resources */,
 				20BF660F12F7D7C8005DD037 /* add_dish_button.png in Resources */,
 				20BF661112F7D7DB005DD037 /* yesOrno_button.png in Resources */,
 				20BF661B12F7DA8D005DD037 /* submitadish_photo.png in Resources */,
-				17E6820C12F7BD0B0010E6A9 /* FBDialog.bundle in Resources */,
-				17E6829612F7D2D20010E6A9 /* FBConnect.bundle in Resources */,
 				17E6871F12FA886D0010E6A9 /* quick_filter_button.png in Resources */,
 				17E6887412FAA8970010E6A9 /* Default.png in Resources */,
 				20FDF61E12FFD3D0006A648E /* star.png in Resources */,
@@ -789,8 +770,22 @@
 				20A7332D130A4E9F005EF56A /* filter_page_star.png in Resources */,
 				2042E568130B9E4F00455CF3 /* Icon.png in Resources */,
 				2042E56A130B9E5D00455CF3 /* Icon@2x.png in Resources */,
-				175BBF3C1307AB9300B5353C /* RestaurantList.xib in Resources */,
 				200E5B13131E10F600B2920D /* resturant_back_no_boarder.png in Resources */,
+				17DA5E421322BEDA00867B66 /* FBConnect.bundle in Resources */,
+				17DA5E431322BEDA00867B66 /* FBDialog.bundle in Resources */,
+				17DA5EB31322C05200867B66 /* AccountView.xib in Resources */,
+				17DA5EB91322C0FE00867B66 /* SignInSignUp.xib in Resources */,
+				17DA5EC31322C4A100867B66 /* SignUp.xib in Resources */,
+				17DA5EC81322C4D100867B66 /* SignIn.xib in Resources */,
+				17DA5ED31322C57000867B66 /* AddADishViewController.xib in Resources */,
+				17DA5ED61322C57000867B66 /* RateADishViewController.xib in Resources */,
+				17DA5EE31322C5FD00867B66 /* RestaurantDetailView.xib in Resources */,
+				17DA5F001322C68300867B66 /* NearbyMapView.xib in Resources */,
+				17DA5F0B1322C6DB00867B66 /* DishTableViewCell.xib in Resources */,
+				17DA5F0F1322C6DB00867B66 /* RestaurantList.xib in Resources */,
+				17DA5F101322C6DB00867B66 /* RestaurantTableViewCell.xib in Resources */,
+				17DA5F1B1322C76300867B66 /* DishDetailViewController.xib in Resources */,
+				17DA5F221322C78B00867B66 /* SettingsView1.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -802,56 +797,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				1D3623260D0F684500981E51 /* TopDishAppDelegate.m in Sources */,
-				28C286E10D94DF7D0034E888 /* DishTableViewController.m in Sources */,
 				28D3F202112F7DC200FD0661 /* TopDish.xcdatamodeld in Sources */,
-				5F89F32C12598F9C00959D05 /* asyncimageview.m in Sources */,
-				5F7AA19E125D833200843F4A /* NearbyMapViewController.m in Sources */,
-				5F7AA284125D955500843F4A /* DishAnnotation.m in Sources */,
-				5F92A9A2126D4A41007D2451 /* MyCLController.m in Sources */,
-				17B48AE512A033C200F43202 /* RestaurantDetailViewController.m in Sources */,
-				179B879212A310E200730FAC /* Restaurant.m in Sources */,
 				179B88D612A3719500730FAC /* ObjectWithImage.m in Sources */,
-				179443FF12A60199008EE034 /* ImagePickerViewController.m in Sources */,
 				17DD22C312BD87610048C1A1 /* DishComment.m in Sources */,
-				17DD26E112BDBC760048C1A1 /* ASIHTTPRequest.m in Sources */,
-				17DD26E912BDBC880048C1A1 /* ASIDataCompressor.m in Sources */,
-				17DD26EA12BDBC880048C1A1 /* ASIDataDecompressor.m in Sources */,
-				17DD26EE12BDBC980048C1A1 /* ASIFormDataRequest.m in Sources */,
-				17DD26F412BDBCB10048C1A1 /* ASINetworkQueue.m in Sources */,
-				17DD26F912BDBCBF0048C1A1 /* ASIDownloadCache.m in Sources */,
-				17DD26FD12BDBCDF0048C1A1 /* ASIAuthenticationDialog.m in Sources */,
-				17DD270412BDBCE80048C1A1 /* Reachability.m in Sources */,
-				17DD271C12BDBDEE0048C1A1 /* ASIInputStream.m in Sources */,
-				17FCD5B412C2F1CC0081D5EA /* RestaurantListTableViewDelegate.m in Sources */,
-				17EEB69912D9A2550032E12B /* LoggedInLoggedOutGate.m in Sources */,
-				17EEB6B312D9A3560032E12B /* SignInSignUpViewController.m in Sources */,
-				17EEB74C12D9A9260032E12B /* SignInViewController.m in Sources */,
-				17EEB75B12D9AA010032E12B /* SignUpViewController.m in Sources */,
-				17AE7F6612D9AE74007B96EC /* SignInSignUpBaseViewController.m in Sources */,
-				17AE80B912DA7231007B96EC /* AccountView.m in Sources */,
 				176A9E6812E2618900CC595C /* User.m in Sources */,
-				176A9EEB12E2649600CC595C /* AppModel.m in Sources */,
-				17FA55C512EBFBBF00902FEE /* DishOptionPickerTableViewController.m in Sources */,
-				17FA587612ED14FD00902FEE /* SettingsView1.m in Sources */,
-				17FA59AC12ED53F900902FEE /* DishDetailViewController.m in Sources */,
-				178F1E9512EEB35600DE5B24 /* RateADishViewController.m in Sources */,
-				17134EEC12EFFE9F00A46B6B /* AddADishViewController.m in Sources */,
 				17E6820D12F7BD0B0010E6A9 /* NSObject+SBJSON.m in Sources */,
 				17E6820E12F7BD0B0010E6A9 /* NSString+SBJSON.m in Sources */,
 				17E6820F12F7BD0B0010E6A9 /* SBJSON.m in Sources */,
 				17E6821012F7BD0B0010E6A9 /* SBJsonBase.m in Sources */,
 				17E6821112F7BD0B0010E6A9 /* SBJsonParser.m in Sources */,
 				17E6821212F7BD0B0010E6A9 /* SBJsonWriter.m in Sources */,
-				17E6821312F7BD0B0010E6A9 /* FBRequest.m in Sources */,
-				17E6821412F7BD0B0010E6A9 /* Facebook.m in Sources */,
-				17E6821512F7BD0B0010E6A9 /* FBLoginDialog.m in Sources */,
-				17E6821612F7BD0B0010E6A9 /* FBDialog.m in Sources */,
-				17E6827912F7D1D70010E6A9 /* FBLoginButton.m in Sources */,
-				175BBF3B1307AB9300B5353C /* RestaurantList.m in Sources */,
-				17C078CB130E2A5800D19C96 /* SegmentsController.m in Sources */,
-				17C078D6130E2AD500D19C96 /* NSArray+PerformSelector.m in Sources */,
 				17C07F2113108C3400D19C96 /* Dish.m in Sources */,
+				177B8AFE1314C63200FF7F97 /* Restaurant.m in Sources */,
+				17DA5E411322BEDA00867B66 /* Facebook.m in Sources */,
+				17DA5E441322BEDA00867B66 /* FBDialog.m in Sources */,
+				17DA5E451322BEDA00867B66 /* FBLoginButton.m in Sources */,
+				17DA5E461322BEDA00867B66 /* FBLoginDialog.m in Sources */,
+				17DA5E471322BEDA00867B66 /* FBRequest.m in Sources */,
+				17DA5E751322BF2500867B66 /* ASIAuthenticationDialog.m in Sources */,
+				17DA5E761322BF2500867B66 /* ASIDataCompressor.m in Sources */,
+				17DA5E771322BF2500867B66 /* ASIDataDecompressor.m in Sources */,
+				17DA5E781322BF2500867B66 /* ASIDownloadCache.m in Sources */,
+				17DA5E791322BF2500867B66 /* ASIFormDataRequest.m in Sources */,
+				17DA5E7A1322BF2500867B66 /* ASIHTTPRequest.m in Sources */,
+				17DA5E7B1322BF2500867B66 /* ASIInputStream.m in Sources */,
+				17DA5E7C1322BF2500867B66 /* ASINetworkQueue.m in Sources */,
+				17DA5EA21322BF7700867B66 /* AppModel.m in Sources */,
+				17DA5EAB1322BFF900867B66 /* LoggedInLoggedOutGate.m in Sources */,
+				17DA5EB21322C05200867B66 /* AccountView.m in Sources */,
+				17DA5EBA1322C0FE00867B66 /* SignInSignUpBaseViewController.m in Sources */,
+				17DA5EBB1322C0FE00867B66 /* SignInSignUpViewController.m in Sources */,
+				17DA5EC41322C4A100867B66 /* SignUpViewController.m in Sources */,
+				17DA5EC91322C4D100867B66 /* SignInViewController.m in Sources */,
+				17DA5ED21322C57000867B66 /* AddADishViewController.m in Sources */,
+				17DA5ED41322C57000867B66 /* ImagePickerViewController.m in Sources */,
+				17DA5ED51322C57000867B66 /* RateADishViewController.m in Sources */,
+				17DA5EE21322C5FD00867B66 /* RestaurantAnnotation.m in Sources */,
+				17DA5EE41322C5FD00867B66 /* RestaurantDetailViewController.m in Sources */,
+				17DA5EFF1322C68300867B66 /* DishAnnotation.m in Sources */,
+				17DA5F011322C68300867B66 /* NearbyMapViewController.m in Sources */,
+				17DA5F0C1322C6DB00867B66 /* DishTableViewController.m in Sources */,
+				17DA5F0D1322C6DB00867B66 /* MyCLController.m in Sources */,
+				17DA5F0E1322C6DB00867B66 /* RestaurantList.m in Sources */,
+				17DA5F141322C71900867B66 /* TopDishAppDelegate.m in Sources */,
+				17DA5F1A1322C76300867B66 /* DishDetailViewController.m in Sources */,
+				17DA5F211322C78B00867B66 /* SettingsView1.m in Sources */,
+				17DA5F271322C7C500867B66 /* SegmentsController.m in Sources */,
+				17DA5F2A1322C7FB00867B66 /* Reachability.m in Sources */,
+				17DA5F2F1322C82700867B66 /* asyncimageview.m in Sources */,
+				17DA5F301322C82700867B66 /* NSArray+PerformSelector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -862,6 +856,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -873,6 +869,7 @@
 					"\"$(SRCROOT)/objectiveresource/samples/google_toolbar/TigerGcov\"",
 				);
 				PRODUCT_NAME = TopDish;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 			};
 			name = Debug;
 		};
@@ -880,6 +877,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TopDish_Prefix.pch;
@@ -889,6 +888,7 @@
 					"\"$(SRCROOT)/objectiveresource/samples/google_toolbar/TigerGcov\"",
 				);
 				PRODUCT_NAME = TopDish;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -899,9 +899,14 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
+				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -912,11 +917,14 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = NS_BLOCK_ASSERTIONS;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.0;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
@@ -947,14 +955,14 @@
 		28D3F201112F7DC200FD0661 /* TopDish.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				177B8AFC1314C63200FF7F97 /* Restaurant.h */,
+				177B8AFD1314C63200FF7F97 /* Restaurant.m */,
 				17DD22C112BD87610048C1A1 /* DishComment.h */,
 				17DD22C212BD87610048C1A1 /* DishComment.m */,
 				179B88D412A3719500730FAC /* ObjectWithImage.h */,
 				179B88D512A3719500730FAC /* ObjectWithImage.m */,
 				17C07F1F13108C3400D19C96 /* Dish.h */,
 				17C07F2013108C3400D19C96 /* Dish.m */,
-				179B878C12A310E200730FAC /* Restaurant.h */,
-				179B878D12A310E200730FAC /* Restaurant.m */,
 				176A9E6612E2618900CC595C /* User.h */,
 				176A9E6712E2618900CC595C /* User.m */,
 				28860B760F44E54D00985440 /* TopDish.xcdatamodel */,
