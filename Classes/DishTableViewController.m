@@ -153,7 +153,6 @@
 // Implement viewWillAppear: to do additional setup before the view is presented.
 - (void)viewWillAppear:(BOOL)animated {
 	//do we need to update the fetch when we come back?
-	DLog(@"the view will appear, lets reload");
 	[self updateFetch];
 	[super viewWillAppear:animated];
 }
@@ -229,18 +228,7 @@
 	for (NSNumber *n in newRestaurantIds) {
 		[query appendString:[NSString stringWithFormat:@"id[]=%@&", n]];
 	}
-	DLog(@"query is %@", query);
-	NSURL *url;
-	NSURLRequest *request;
-	//NSURLConnection *conn;
-	url = [NSURL URLWithString:query];
-	DLog(@"url is %@", query);
-	//Start up the networking
-	request = [NSURLRequest requestWithURL:url];
-	self.conn = [[NSURLConnection alloc] initWithRequest:request 
-												delegate:self 
-										startImmediately:TRUE];
-	
+	[self networkQuery:query];	
 }
 #pragma mark -
 #pragma mark Util
@@ -295,9 +283,7 @@
 		CLLocationDistance dist = [l distanceFromLocation:[[AppModel instance] currentLocation]];
 		float distanceInMiles = dist/1609.344; 
 		[dish setDistance:[NSNumber numberWithFloat:distanceInMiles]];
-		
-		//DLog(@"the dish we just created %@", dish);
-		
+				
 		NSArray *tagsArray = [dishDict objectForKey:@"tags"];
 		for (NSDictionary *tag in tagsArray){
 			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kMealTypeString] )
@@ -350,6 +336,8 @@
 		[dish setRestaurant:restaurant];
 	}
 	NSError *error;
+	DLog(@"saving the incoming dishes");
+
 	if(![self.managedObjectContext save:&error]){
 		DLog(@"there was a core data error when saving incoming dishes");
 		DLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
@@ -457,11 +445,11 @@
 		}
 	}
 	NSError *error;
+	DLog(@"saving the incoming restaurants");
 	if(![self.managedObjectContext save:&error]){
 		DLog(@"there was a core data error when saving incoming restaurants");
 		DLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
 	}
-	//[self.tableView reloadData];
 }
 
 
@@ -485,11 +473,6 @@
 	[self processIncomingDishesWithJsonArray:[responseAsDictionary objectForKey:@"dishes"]];
 	[self processIncomingRestaurantsWithJsonArray:[responseAsDictionary objectForKey:@"restaurants"]];
 	[parser release];
-
-	//if(![self.managedObjectContext save:&error]){
-//		DLog(@"there was a core data error when saving");
-//		DLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
-//	}
 	
 	[self updateFetch];
 	self.responseData = nil;
@@ -580,7 +563,7 @@
 
 }
 -(void) updateFetch {
-	
+	DLog(@"updating the fetch");
 	/*
      Set up the fetched results controller.
 	 */
@@ -789,7 +772,7 @@
 	if ([thisDish price])
 		priceNumber.text = [app tagNameForTagId:[thisDish price]];
 	else {
-		DLog(@"is something wrong with this dish's price ");
+		DLog(@"is something wrong with this dish's (%@) price ", [thisDish objName]);
 //#ifdef DEBUG
 	//	NSString *n = [NSString stringWithFormat:@"This dish has no price %@", [thisDish dish_id]];
 //		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Data Error" 
