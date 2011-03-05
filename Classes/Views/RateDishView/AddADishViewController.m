@@ -9,7 +9,6 @@
 #import "AddADishViewController.h"
 #import "constants.h"
 #import "ASIFormDataRequest.h"
-#import "DishOptionPickerTableViewController.h"
 #import "AppModel.h"
 #import "TopDishAppDelegate.h"
 #import "JSON.h"
@@ -267,17 +266,18 @@
 	
 	
 	if (indexPath.section == kDishTagSection) {
+		NSAssert(NO, @"need to implement selection again");
 		self.currentSelection = indexPath.row;
-		DishOptionPickerTableViewController *d;
-		d = [[DishOptionPickerTableViewController alloc] init];
-		[d useThisIntPointer:pointer];
-		if(indexPath.row == kMealTypeRow)
-			[d setOptionValues:[[AppModel instance] mealTypeTags]];
-		else 
-			[d setOptionValues:[[AppModel instance] priceTags]];
-		
-		[self.navigationController pushViewController:d animated:YES];
-		[d release];
+		//DishOptionPickerTableViewController *d;
+		//d = [[DishOptionPickerTableViewController alloc] init];
+		//[d useThisIntPointer:pointer];
+		//if(indexPath.row == kMealTypeRow)
+//			[d setOptionValues:[[AppModel instance] mealTypeTags]];
+//		else 
+//			[d setOptionValues:[[AppModel instance] priceTags]];
+//		
+//		[self.navigationController pushViewController:d animated:YES];
+//		[d release];
 	}
 	
 	
