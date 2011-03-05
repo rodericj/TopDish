@@ -13,6 +13,10 @@
 #import "AddADishViewController.h"
 #import "ImagePickerViewController.h"
 #import "RestaurantAnnotation.h"
+
+#import "ASIFormDataRequest.h"
+#import "AppModel.h"
+
 #define kRestaurantHeaderSection 0
 #define kMapSection 2
 #define kDishesAtThisRestaurantSection 1
@@ -28,6 +32,10 @@
 @synthesize mapView = mMapView;
 @synthesize mapOverlay = mMapOverlay;
 @synthesize mapButton = mMapButton;
+
+@synthesize cameraImage = mCameraImage;
+@synthesize newPicture = mNewPicture;
+
 #pragma mark -
 #pragma mark networking
 
@@ -103,6 +111,11 @@
 										  initWithTarget:self action:@selector(handleTapGesture:)];
     [self.mapOverlay addGestureRecognizer:touchGesture];
     [touchGesture release];
+	
+	UITapGestureRecognizer *takePictureTouchGesture = [[UITapGestureRecognizer alloc]
+											initWithTarget:self action:@selector(takePicture:)];
+    [self.cameraImage addGestureRecognizer:takePictureTouchGesture];
+    [takePictureTouchGesture release];
 	
 	//Set up the map
 	CLLocationCoordinate2D center;
@@ -186,8 +199,8 @@
 				NSString *urlString = [NSString stringWithFormat:@"%@%@", 
 									   prefix, 
 									   [restaurant photoURL], 
-									   DISHDETAILIMAGECELLHEIGHT,
-									   DISHDETAILIMAGECELLHEIGHT];
+									   OBJECTDETAILIMAGECELLHEIGHT,
+									   OBJECTDETAILIMAGECELLHEIGHT];
 			
 				DLog(@"url string for restaurant's image in RestaurantDetailViewController is %@", urlString);
 
@@ -246,9 +259,101 @@
 														 indexPathForRow:indexPath.row 
 														 inSection:indexPath.section-kDishesAtThisRestaurantSection]]];
 }
+#pragma mark -
+#pragma mark action sheet delegate
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == actionSheet.cancelButtonIndex) {
+        //cancelled
+        return;
+    }
+	
+	DLog(@"show the picture thing");
+	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+	[imagePicker setDelegate:self];
+	[imagePicker setAllowsEditing:YES];
+	
+	if(buttonIndex == 0 && [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+		//then push the imagepicker
+		[imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+		[imagePicker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModePhoto];
+		[imagePicker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
+		
+		[imagePicker setCameraOverlayView:[UIButton buttonWithType:UIButtonTypeRoundedRect]];
+	}
+	else {
+		[imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+	}
+	[self presentModalViewController:imagePicker animated:YES]; 
+}
 
 #pragma mark -
-#pragma mark IBActions
+#pragma mark Image Picker Delegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+	//self.dishImageFromPicker = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+	if ([info objectForKey:@"UIImagePickerControllerEditedImage"]) {
+		self.newPicture = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+
+		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
+		ASIFormDataRequest *newRequest = [ASIFormDataRequest requestWithURL:url];
+		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+		[newRequest setPostValue:[NSString stringWithFormat:@"%@", [self.restaurant restaurant_id]] forKey:@"restaurantId"];
+		[newRequest setDelegate:self];
+		[newRequest startAsynchronous];
+		DLog(@"done calling add photo, time to call rateDish");
+	}
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+	DLog(@"cancelled, should we go back another level?");
+	[self dismissModalViewControllerAnimated:YES];
+	//[self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark -
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+	// Use when fetching text data
+	NSString *responseString = [request responseString];
+	DLog(@"response string for any of these calls %@", responseString);
+	
+	NSError *error;
+	SBJSON *parser = [SBJSON new];
+	NSDictionary *responseAsDict = [parser objectWithString:responseString error:&error];	
+	DLog(@"the dictionary should be a %@", responseAsDict);
+	
+	ASIFormDataRequest *newRequest;
+	
+	if ([[responseAsDict objectForKey:@"rc"] intValue]) {
+		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Request Failed" 
+															message:[responseAsDict objectForKey:@"message"]
+														   delegate:self 
+												  cancelButtonTitle:@"OK"
+												  otherButtonTitles:nil];
+		[alertview show];
+		[alertview release];
+		return;
+	}
+	if ([responseAsDict objectForKey:@"url"]) {
+		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@", [responseAsDict objectForKey:@"url"]]];
+		DLog(@"the url for sending the photo is %@", url);
+		
+		newRequest = [ASIFormDataRequest requestWithURL:url];
+		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+		[newRequest setData:UIImagePNGRepresentation(self.newPicture) forKey:@"photo"];
+		[newRequest setPostValue:[NSString stringWithFormat:@"%@", self.restaurant.restaurant_id] forKey:@"restaurantId"];
+		[newRequest setDelegate:self];
+		[newRequest startAsynchronous];
+		return;
+		
+	}
+	NSLog(@"done!");
+}
+
+
+#pragma mark -
+#pragma mark actions 
 -(IBAction)callRestaurant{
 	
 	NSString *phoneNumber = [NSString stringWithFormat:@"tel:%@", [restaurant phone]];
@@ -260,6 +365,19 @@
 	
 	[ [UIApplication sharedApplication] openURL:url];
 	
+}
+-(void)takePicture:(UITapGestureRecognizer *)sender {
+	DLog(@"take a picture");
+	
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Camera or Library?" 
+															 delegate:self 
+													cancelButtonTitle:nil 
+											   destructiveButtonTitle:nil 
+													otherButtonTitles:nil];
+	[actionSheet addButtonWithTitle:@"Take a picture"];
+	[actionSheet addButtonWithTitle:@"Choose from Library"];
+	actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:@"Cancel"];
+	[actionSheet showInView:self.navigationController.tabBarController.view];	
 }
 
 - (IBAction)handleTapGesture:(UITapGestureRecognizer *)sender {

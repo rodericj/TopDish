@@ -773,16 +773,6 @@
 		priceNumber.text = [app tagNameForTagId:[thisDish price]];
 	else {
 		DLog(@"is something wrong with this dish's (%@) price ", [thisDish objName]);
-//#ifdef DEBUG
-	//	NSString *n = [NSString stringWithFormat:@"This dish has no price %@", [thisDish dish_id]];
-//		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Data Error" 
-//															message:n 
-//														   delegate:self 
-//												  cancelButtonTitle:@"OK"
-//												  otherButtonTitles:nil];
-//		[alertview show];
-//		[alertview release];
-//#endif
 	}
 
 
@@ -806,8 +796,8 @@
 			NSString *urlString = [NSString stringWithFormat:@"%@%@=s%d", 
 								   prefix, 
 								   [thisDish photoURL], 
-								   DISHDETAILIMAGECELLHEIGHT, 
-								   DISHDETAILIMAGECELLHEIGHT];
+								   OBJECTDETAILIMAGECELLHEIGHT, 
+								   OBJECTDETAILIMAGECELLHEIGHT];
 			
 			NSURL *photoUrl = [NSURL URLWithString:urlString];
 			[asyncImage setOwningObject:thisDish];

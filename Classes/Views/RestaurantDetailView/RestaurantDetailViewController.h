@@ -11,7 +11,7 @@
 #import "DishTableViewController.h"
 #import <MapKit/MapKit.h>
 
-@interface RestaurantDetailViewController : DishTableViewController {
+@interface RestaurantDetailViewController : DishTableViewController <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
 	Restaurant *restaurant;
 
 	UITableViewCell *mMapRow;
@@ -26,6 +26,9 @@
 	
 	UIButton *mMapButton;
 	BOOL mMapShowing;
+	
+	UIImageView *mCameraImage;
+	UIImage *mNewPicture;
 }
 
 @property (nonatomic, retain) Restaurant *restaurant;
@@ -39,6 +42,9 @@
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
 @property (nonatomic, retain) IBOutlet UIView *mapOverlay;
 @property (nonatomic, retain) UIButton *mapButton;
+
+@property (nonatomic, retain) IBOutlet UIImageView *cameraImage;
+@property (nonatomic, retain) UIImage *newPicture;
 
 -(IBAction)callRestaurant;
 

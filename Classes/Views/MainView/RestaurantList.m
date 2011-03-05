@@ -12,6 +12,7 @@
 #import "RestaurantDetailViewController.h"
 #import "AppModel.h"
 #import "Dish.h"
+#import "asyncimageview.h"
 
 @implementation RestaurantList
 
@@ -63,10 +64,10 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DLog(@"get a cell from the resto list view %@", indexPath);
-    static NSString *CellIdentifier = @"RestaurantCell";
+    static NSString *CellIdentifier = @"RestaurantTableViewCell";
     
 	Restaurant *thisRestaurant = [[self fetchedResultsController] objectAtIndexPath:indexPath];	
-	DLog(@"this restaurant is %@", thisRestaurant);
+	//DLog(@"this restaurant is %@", thisRestaurant);
 	
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -100,6 +101,41 @@
 	UILabel *negativeReviewsLabel;
 	negativeReviewsLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_NEGREVIEWS_TAG];
 	negativeReviewsLabel.text = @"0";	
+	
+	UIImageView *restaurantImageView;
+	restaurantImageView = (UIImageView *)[cell viewWithTag:RESTAURANT_TABLEVIEW_IMAGE_TAG];
+
+	AsyncImageView *asyncImage = [[[AsyncImageView alloc] initWithFrame:[restaurantImageView frame]] autorelease];
+	asyncImage.tag = 999;
+	if ([thisRestaurant imageData]) {
+		DLog(@"we've got this image, no need to load it");
+		//set the image with what we've got
+		restaurantImageView.image = [UIImage imageWithData:[thisRestaurant imageData]];
+	}
+	else{
+		if( [[thisRestaurant photoURL] length] > 0 ){
+			NSRange aRange = [[thisRestaurant photoURL] rangeOfString:@"http://"];
+			NSString *prefix = @"";
+			if (aRange.location ==NSNotFound)
+				prefix = NETWORKHOST;
+			
+			NSString *urlString = [NSString stringWithFormat:@"%@%@=s%d", 
+								   prefix, 
+								   [thisRestaurant photoURL], 
+								   OBJECTDETAILIMAGECELLHEIGHT, 
+								   OBJECTDETAILIMAGECELLHEIGHT];
+			
+			NSURL *photoUrl = [NSURL URLWithString:urlString];
+			[asyncImage setOwningObject:thisRestaurant];
+			[asyncImage loadImageFromURL:photoUrl 
+						   withImageView:restaurantImageView 
+								 isThumb:YES 
+				   showActivityIndicator:NO];
+			[cell.contentView addSubview:asyncImage];
+		}
+	}
+	
+	
 	
 	//UILabel *restaurantScoreLabel;
 	//restaurantScoreLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_RESTAURENT_SCORE_TAG];

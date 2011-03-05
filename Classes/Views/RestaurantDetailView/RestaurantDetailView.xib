@@ -12,9 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="4"/>
-			<integer value="23"/>
 			<integer value="17"/>
+			<integer value="23"/>
+			<integer value="4"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -186,6 +186,18 @@
 									<string key="NSResourceName">dishViewBoarder.png</string>
 								</object>
 							</object>
+							<object class="IBUIImageView" id="498186388">
+								<reference key="NSNextResponder" ref="914659159"/>
+								<int key="NSvFlags">1316</int>
+								<string key="NSFrame">{{263, 71}, {41, 32}}</string>
+								<reference key="NSSuperview" ref="914659159"/>
+								<float key="IBUIScaleFactor">2</float>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">submitadish_photo.png</string>
+								</object>
+							</object>
 						</object>
 						<string key="NSFrameSize">{323, 120}</string>
 						<reference key="NSSuperview" ref="138696115"/>
@@ -333,6 +345,22 @@
 					</object>
 					<int key="connectionID">26</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">cameraImage</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="498186388"/>
+					</object>
+					<int key="connectionID">30</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">restaurantImage</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="518879961"/>
+					</object>
+					<int key="connectionID">31</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -370,6 +398,7 @@
 							<reference ref="894342077"/>
 							<reference ref="518879961"/>
 							<reference ref="250093194"/>
+							<reference ref="498186388"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Restaurant Head Cell</string>
@@ -418,6 +447,11 @@
 						<reference key="object" ref="518879961"/>
 						<reference key="parent" ref="138696115"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">29</int>
+						<reference key="object" ref="498186388"/>
+						<reference key="parent" ref="138696115"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -441,6 +475,8 @@
 					<string>27.IBPluginDependency</string>
 					<string>27.IBViewBoundsToFrameTransform</string>
 					<string>28.IBPluginDependency</string>
+					<string>29.IBPluginDependency</string>
+					<string>29.IBViewBoundsToFrameTransform</string>
 					<string>4.IBEditorWindowLastContentRect</string>
 					<string>4.IBPluginDependency</string>
 					<string>9.IBPluginDependency</string>
@@ -458,7 +494,7 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABBYAAAwlAAAA</bytes>
 					</object>
-					<string>{{251, 486}, {646, 240}}</string>
+					<string>{{116, 486}, {646, 240}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -475,6 +511,10 @@
 						<bytes key="NSTransformStruct">AUEAAABBEAAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABDNwAAwsoAAA</bytes>
+					</object>
 					<string>{{329, 276}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -499,7 +539,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">28</int>
+			<int key="maxID">31</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -558,7 +598,6 @@
 							<string>mTheSearchBar</string>
 							<string>priceTextLabel</string>
 							<string>ratingTextLabel</string>
-							<string>restaurantList</string>
 							<string>searchHeader</string>
 							<string>theSearchBar</string>
 							<string>tvCell</string>
@@ -573,7 +612,6 @@
 							<string>UISearchBar</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
-							<string>RestaurantList</string>
 							<string>UIView</string>
 							<string>UISearchBar</string>
 							<string>UITableViewCell</string>
@@ -591,7 +629,6 @@
 							<string>mTheSearchBar</string>
 							<string>priceTextLabel</string>
 							<string>ratingTextLabel</string>
-							<string>restaurantList</string>
 							<string>searchHeader</string>
 							<string>theSearchBar</string>
 							<string>tvCell</string>
@@ -631,10 +668,6 @@
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">restaurantList</string>
-								<string key="candidateClassName">RestaurantList</string>
-							</object>
-							<object class="IBToOneOutletInfo">
 								<string key="name">searchHeader</string>
 								<string key="candidateClassName">UIView</string>
 							</object>
@@ -650,7 +683,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/DishTableViewController.h</string>
+						<string key="minorKey">Classes/Views/MainView/DishTableViewController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -685,6 +718,8 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>cameraImage</string>
+							<string>mapOverlay</string>
 							<string>mapRow</string>
 							<string>mapView</string>
 							<string>restaurantAddress</string>
@@ -695,6 +730,8 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIImageView</string>
+							<string>UIView</string>
 							<string>UITableViewCell</string>
 							<string>MKMapView</string>
 							<string>UILabel</string>
@@ -708,6 +745,8 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>cameraImage</string>
+							<string>mapOverlay</string>
 							<string>mapRow</string>
 							<string>mapView</string>
 							<string>restaurantAddress</string>
@@ -718,6 +757,14 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">cameraImage</string>
+								<string key="candidateClassName">UIImageView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">mapOverlay</string>
+								<string key="candidateClassName">UIView</string>
+							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">mapRow</string>
 								<string key="candidateClassName">UITableViewCell</string>
@@ -750,26 +797,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/RestaurantDetailViewController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">RestaurantList</string>
-					<string key="superclassName">UITableViewController</string>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">tvCell</string>
-						<string key="NS.object.0">UITableViewCell</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">tvCell</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
-							<string key="name">tvCell</string>
-							<string key="candidateClassName">UITableViewCell</string>
-						</object>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/RestaurantList.h</string>
+						<string key="minorKey">Classes/Views/RestaurantDetailView/RestaurantDetailViewController.h</string>
 					</object>
 				</object>
 			</object>
@@ -1030,7 +1058,7 @@
 			<integer value="3000" key="NS.object.0"/>
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
-		<string key="IBDocument.LastKnownRelativeProjectPath">../TopDish.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">../../../TopDish.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1039,12 +1067,14 @@
 				<string>dishViewBoarder.png</string>
 				<string>no_rest_img.jpg</string>
 				<string>resturant_back_no_boarder.png</string>
+				<string>submitadish_photo.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{100, 100}</string>
 				<string>{400, 400}</string>
 				<string>{305, 99}</string>
+				<string>{41, 32}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">132</string>
