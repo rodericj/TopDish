@@ -2,8 +2,8 @@
 //  DishComment.m
 //  TopDish
 //
-//  Created by roderic campbell on 12/18/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Created by roderic campbell on 3/5/11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import "DishComment.h"
