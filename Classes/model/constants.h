@@ -15,6 +15,8 @@
 #define DISHDETAILDEFAULCELLHEIGHT 40
 #define DISHLISTCELLHEIGHT 93
 
+#define kpermission  [NSArray arrayWithObjects:@"user_about_me", @"email", @"publish_stream", @"friends_about_me", nil]
+
 #define POSITIVE_REVIEW_IMAGE_NAME @"greenup.gif"
 #define NEGATIVE_REVIEW_IMAGE_NAME @"reddown.gif"
 #define FILTER_IMAGE_NAME @"filter.png"
@@ -28,9 +30,9 @@
 
 
 #pragma mark network constants
-//#define NETWORKHOST @"http://topdish1.appspot.com"
+#define NETWORKHOST @"http://0305.topdish1.appspot.com"
 //#define NETWORKHOST @"http://localhost:8888"
-#define NETWORKHOST @"http://www.topdish.com"
+//#define NETWORKHOST @"http://www.topdish.com"
 //#define NETWORKHOST @"http://192.168.0.185:8888"   //randy
 //#define NETWORKHOST @"http://10.0.1.4:8888"  //rod
 

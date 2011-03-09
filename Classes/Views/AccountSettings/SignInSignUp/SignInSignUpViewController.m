@@ -11,7 +11,7 @@
 #import "AppModel.h"
 #import "constants.h"
 #import "AccountView.h"
-#define kpermission  [NSArray arrayWithObjects:@"user_about_me", nil]
+
 
 @implementation SignInSignUpViewController
 @synthesize signInButton = mSignInButton;

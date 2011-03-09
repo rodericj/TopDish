@@ -19,7 +19,9 @@
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
-#define kpermission  [NSArray arrayWithObjects:@"user_about_me", nil]
+
+#define CREATE_NEW_ACTION 2
+
 
 #pragma mark -
 #pragma mark view lifetime stuff
@@ -113,21 +115,17 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 	[self.fbLoginButton updateImage];
 	
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/facebookLogin", NETWORKHOST]];
-	DLog(@"[[AppModel instance] facebook].accessToken %@", [[AppModel instance] facebook].accessToken);
+	DLog(@"[[AppModel instance] facebook].accessToken %@\n the url we are hitting is %@", 
+		 [[AppModel instance] facebook].accessToken, url);
+	
 	//Call the topdish server to log in
 	mTopDishFBLoginRequest = [ASIFormDataRequest requestWithURL:url];
 	[mTopDishFBLoginRequest setPostValue:[[AppModel instance] facebook].accessToken forKey:@"facebookApiKey"];
 	[mTopDishFBLoginRequest setAllowCompressedResponse:NO];
-	[mTopDishFBLoginRequest setDelegate:self];
-	[mTopDishFBLoginRequest startSynchronous];
-	
+	[mTopDishFBLoginRequest setDelegate:self];	
 	[mTopDishFBLoginRequest startAsynchronous];
 	
-	//AccountView *accountView = [[AccountView alloc] initWithNibName:@"AccountView" bundle:nil];
-	//	[self.navigationController setViewControllers:[NSArray arrayWithObject:accountView]];
-	//	[accountView release];
 }
-
 
 /**
  * Called when the user dismissed the dialog without logging in.
@@ -147,6 +145,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 	[self.fbLoginButton updateImage];
 }
 
+
 #pragma mark -
 #pragma mark network callback 
 - (void)requestFinished:(ASIHTTPRequest *)request
@@ -154,50 +153,33 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 	// Use when fetching binary data
 	DLog(@"response Text %@", [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding]);
 	
-	//NSString *userHasTDAccountLinked = @"{'origcall'='action=0', 'rc'=0, 'message':'Accounts are linked, good to go. No further action needed', 'TDAccessToken'='...'}";
-//	NSString *userDoesNotHaveTDAccountLinked = @"{'origcall'='action=0', 'rc'=1, 'message':'No link found between this fbID and any TDUser. Client needs to ask if they have an account and send this info (action=1 with uname/Pass), or ask them to create an account (action=2 with uname/pass). '}";
-//	
-	
-	//NSDictionary *responseAsDictionary = [parser objectWithString:responseText 
-//															error:&error];
-	
-	// Use when fetching text data
+	NSError *error;
+	SBJSON *parser = [SBJSON new];
 	NSString *responseString = [request responseString];
-	
+	NSDictionary *responseAsDict = [parser objectWithString:responseString error:&error];	
+	DLog(@"the dictionary should be a %@", responseAsDict);
+
 	if (request == mTopDishFBLoginRequest) {
-		responseString = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
+		//responseString = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
 		DLog(@"handle the facebook authentication stuff %@", responseString);
-		for (NSDictionary *responseItem in [request rawResponseData]) {
-			if ([[responseItem objectForKey:@"key"] isEqualToString:@"facebookApiKey"]) {
-				[[AppModel instance].user setObject:[responseItem objectForKey:@"value" forKey:keyforauthorizing]];
-				[mTopDishFBLoginRequest release];
-			}
+		if ([[responseAsDict objectForKey:@"rc"] intValue] == 1) {
+			//response returned with an error. Lets see what we got
+			NSLog(@"response from TD Server %@", responseAsDict);
+		}
+		else {
+			[responseAsDict objectForKey:keyforauthorizing];
+			[[AppModel instance].user setObject:[responseAsDict objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+			[self.navigationController popToRootViewControllerAnimated:YES];
 			
-		}	
+			LoggedInLoggedOutGate *gate = [[LoggedInLoggedOutGate alloc] init];
+			//[self.navigationController pushViewController:signIn animated:NO];
+			[self.navigationController setViewControllers:[NSArray arrayWithObject:gate]];
+			[gate release];
+		}
 
 	}
-	else {
-		/*
-		 NSMutableDictionary *query = [NSMutableDictionary dictionary];
-		 NSString *username = "username";
-		 [query setObject:(id)kSecClassGenericPassword forKey:(id)kSecClass];
-		 [query setObject:username forKey:(id)kSecAttrAccount];
-		 [query setObject:(id)kSecAttrAccessibleWhenUnlocked forKey:(id)kSecAttrAccessible];
-		 [query setObject:[self.userNameTextField.text dataUsingEncoding:NSUTF8StringEncoding] forKey:(id)kSecValueData];
-		 
-		 OSStatus error = SecItemAdd((CFDictionaryRef)query, NULL);
-		 */
-		NSString *responseString = [request responseString];
-		[[AppModel instance].user setObject:responseString forKey:keyforauthorizing];
-		[self.navigationController popToRootViewControllerAnimated:YES];
-		
-		LoggedInLoggedOutGate *gate = [[LoggedInLoggedOutGate alloc] init];
-		//[self.navigationController pushViewController:signIn animated:NO];
-		[self.navigationController setViewControllers:[NSArray arrayWithObject:gate]];
-		[gate release];
-		
-		
-	}
+	else 
+		NSLog(@"not really sure what we just returned %@", responseAsDict);
 }
 
 //see parent class for cancel clicked
