@@ -115,7 +115,7 @@
 }
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell;
+    UITableViewCell *cell = nil;
 
 	switch (indexPath.section) {
 		case kImageSection:
@@ -189,7 +189,7 @@
 							   self.dishImageView.bounds.size.height]; 
 
 		NSURL *photoUrl = [NSURL URLWithString:urlString];
-		AsyncImageView *asyncImage = [[AsyncImageView alloc] initWithFrame:[self.dishImageView frame]];
+		AsyncImageView *asyncImage = [[[AsyncImageView alloc] initWithFrame:[self.dishImageView frame]] autorelease];
 		[asyncImage setOwningObject:self.thisDish];
 		[asyncImage loadImageFromURL:photoUrl withImageView:self.dishImageView 
 							 isThumb:NO showActivityIndicator:FALSE];
@@ -277,6 +277,8 @@
 	
 	if ([[responseAsDictionary objectForKey:@"rc"] intValue] != 0) {
 		DLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
+		[responseText release];
+		[parser release];
 		return;
 	}
 	

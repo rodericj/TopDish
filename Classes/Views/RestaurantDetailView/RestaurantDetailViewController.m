@@ -50,6 +50,7 @@
 	
 	if ([[responseAsDictionary objectForKey:@"rc"] intValue] != 0) {
 		DLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
+		[parser release];
 		return;
 	}
 	
@@ -187,8 +188,8 @@
 		[self.restaurantAddress setText:[restaurant addressLine1]];
 		if (self.restaurantImage) {
 			
-			AsyncImageView *asyncImage = [[AsyncImageView alloc] 
-										  initWithFrame:[self.restaurantImage frame]];
+			AsyncImageView *asyncImage = [[[AsyncImageView alloc] 
+										  initWithFrame:[self.restaurantImage frame]] autorelease];
 			asyncImage.tag = 999;
 			if( [[restaurant photoURL] length] > 0 ){
 				NSRange aRange = [[restaurant photoURL] rangeOfString:@"http://"];
@@ -321,6 +322,8 @@
 	NSError *error;
 	SBJSON *parser = [SBJSON new];
 	NSDictionary *responseAsDict = [parser objectWithString:responseString error:&error];	
+	[parser release];
+	
 	DLog(@"the dictionary should be a %@", responseAsDict);
 	
 	ASIFormDataRequest *newRequest;
@@ -378,6 +381,7 @@
 	[actionSheet addButtonWithTitle:@"Choose from Library"];
 	actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:@"Cancel"];
 	[actionSheet showInView:self.navigationController.tabBarController.view];	
+	[actionSheet release];
 }
 
 - (IBAction)handleTapGesture:(UITapGestureRecognizer *)sender {

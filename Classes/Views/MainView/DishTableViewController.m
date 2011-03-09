@@ -281,6 +281,7 @@
 		
 		CLLocation *l = [[CLLocation alloc] initWithLatitude:[[dish latitude] floatValue] longitude:[[dish longitude] floatValue]];
 		CLLocationDistance dist = [l distanceFromLocation:[[AppModel instance] currentLocation]];
+		[l release];
 		float distanceInMiles = dist/1609.344; 
 		[dish setDistance:[NSNumber numberWithFloat:distanceInMiles]];
 				
@@ -461,6 +462,7 @@
 															error:&error];
 	if ([[responseAsDictionary objectForKey:@"rc"] intValue] != 0) {
 		DLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
+		[parser release];
 		return;
 	}
 	
@@ -740,6 +742,7 @@
 	CLLocation *l = [[CLLocation alloc] initWithLatitude:[[thisDish latitude] floatValue] 
 											   longitude:[[thisDish longitude] floatValue]];
 	CLLocationDistance dist = [l distanceFromLocation:[[AppModel instance] currentLocation]];
+	[l release];
 	
 	//convert from meters to miles
 	float distanceInMiles = dist/1609.344; 	

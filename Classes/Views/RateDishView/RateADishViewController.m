@@ -303,6 +303,8 @@
 	NSError *error;
 	SBJSON *parser = [SBJSON new];
 	NSDictionary *responseAsDict = [parser objectWithString:responseString error:&error];	
+	[parser release];
+	
 	DLog(@"the dictionary should be a %@", responseAsDict);
 	
 	if ([responseAsDict objectForKey:@"url"])

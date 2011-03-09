@@ -20,9 +20,6 @@ colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
-#define CREATE_NEW_ACTION 2
-
-
 #pragma mark -
 #pragma mark view lifetime stuff
 -(void) viewDidLoad {
@@ -151,12 +148,12 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
 	// Use when fetching binary data
-	DLog(@"response Text %@", [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding]);
 	
 	NSError *error;
 	SBJSON *parser = [SBJSON new];
 	NSString *responseString = [request responseString];
 	NSDictionary *responseAsDict = [parser objectWithString:responseString error:&error];	
+	[parser release];
 	DLog(@"the dictionary should be a %@", responseAsDict);
 
 	if (request == mTopDishFBLoginRequest) {

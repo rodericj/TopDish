@@ -308,7 +308,7 @@
 	[actionSheet addButtonWithTitle:@"Choose from Library"];
 	actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:@"Cancel"];
 	[actionSheet showInView:self.navigationController.tabBarController.view];
-
+	[actionSheet release];
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -381,7 +381,9 @@
 	
 	NSError *error;
 	SBJSON *parser = [SBJSON new];
-	NSDictionary *responseAsDict = [parser objectWithString:responseString error:&error];	
+	NSDictionary *responseAsDict = [parser objectWithString:responseString error:&error];
+	[parser release];
+	
 	DLog(@"the dictionary should be a %@", responseAsDict);
 	
 	ASIFormDataRequest *newRequest;

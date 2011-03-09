@@ -56,6 +56,8 @@
 	RestaurantList *restaurantList = [[RestaurantList alloc] init];
 	[restaurantList setManagedObjectContext:self.managedObjectContext];
 	[viewControllers addObject:restaurantList];
+	[restaurantList release];
+	
     self.segmentsController = [[SegmentsController alloc] initWithNavigationController:self.navigationController viewControllers:viewControllers];
     self.segmentedControl = [[UISegmentedControl alloc] initWithItems:[viewControllers arrayByPerformingSelector:@selector(title)]];
     self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -95,6 +97,8 @@
 	
 	if ([[responseAsDictionary objectForKey:@"rc"] intValue] != 0) {
 		DLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
+		[parser release];
+		[responseText release];
 		return;
 	}
 	
