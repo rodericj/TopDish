@@ -12,7 +12,6 @@
 #import "AccountView.h"
 
 @implementation SignInViewController
-@synthesize signUpButton = mSignUpButton;
 @synthesize fbLoginButton = mFbLoginButton;
 
 #define UIColorFromRGB(rgbValue) [UIColor \
@@ -67,32 +66,11 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #pragma mark IBAction
 -(IBAction)signUpClicked
 {
-	[[[AppModel instance] facebook] setSessionDelegate:self];
+	//[[[AppModel instance] facebook] setSessionDelegate:[AppModel instance]];
 	NSArray *permissions = [NSArray arrayWithObjects:@"user_about_me", nil];
 	[[[AppModel instance] facebook] authorize:permissions delegate:self];
-	
-	
-	//SignUpViewController *signUp = [[SignUpViewController alloc] initWithNibName:@"SignUp" bundle:nil];
-	//	[self.navigationController pushViewController:signUp animated:YES];
-	//	[signUp release];	
 }
 
--(IBAction)submitClicked
-{	
-	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/login?email=%@", NETWORKHOST, self.userNameTextField.text]];
-	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-	//[request setUsername:self.userNameTextField.text];
-//	[request setPassword:self.passwordTextField.text];
-	
-	DLog(@"username %@, password %@ \n%@", 
-		  self.userNameTextField.text, 
-		  self.passwordTextField.text,
-		  [url absoluteURL]);
-	
-	[request setDelegate:self];
-	[request startAsynchronous];
-	
-}
 
 /**
  * Called on a login/logout button click.

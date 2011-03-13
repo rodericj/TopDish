@@ -8,18 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "LoggedInLoggedOutGate.h"
-#import "FBRequest.h"
-#import "FBLoginButton.h"
+#import "Facebook.h"
 
-@interface AccountView : UITableViewController <FBRequestDelegate> {
+@interface AccountView : UITableViewController <FBRequestDelegate, FBSessionDelegate> {
 	UILabel *mUserName;
 	UILabel *mUserSince;
 	UIView *mTableHeader;
 	UIImageView *mUserImage;
 	
 	FBRequest *mImageRequest;
-	FBLoginButton *mLogoutButton;
-	
 	
 	NSMutableArray *mLifestyleTags;
 }
@@ -30,5 +27,4 @@
 @property (nonatomic, retain) IBOutlet UIImageView *userImage;
 @property (nonatomic, retain)  NSMutableArray *lifestyleTags;
 @property (nonatomic, retain) FBRequest *imageRequest;
-@property (nonatomic, retain) IBOutlet FBLoginButton *logoutButton;
 @end

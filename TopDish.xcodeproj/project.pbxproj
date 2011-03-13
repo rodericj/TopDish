@@ -29,9 +29,6 @@
 		17DA5EB31322C05200867B66 /* AccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5EB11322C05200867B66 /* AccountView.xib */; };
 		17DA5EB91322C0FE00867B66 /* SignInSignUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5EB41322C0FE00867B66 /* SignInSignUp.xib */; };
 		17DA5EBA1322C0FE00867B66 /* SignInSignUpBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5EB61322C0FE00867B66 /* SignInSignUpBaseViewController.m */; };
-		17DA5EBB1322C0FE00867B66 /* SignInSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5EB81322C0FE00867B66 /* SignInSignUpViewController.m */; };
-		17DA5EC31322C4A100867B66 /* SignUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5EC01322C4A100867B66 /* SignUp.xib */; };
-		17DA5EC41322C4A100867B66 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5EC21322C4A100867B66 /* SignUpViewController.m */; };
 		17DA5EC81322C4D100867B66 /* SignIn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5EC51322C4D100867B66 /* SignIn.xib */; };
 		17DA5EC91322C4D100867B66 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5EC71322C4D100867B66 /* SignInViewController.m */; };
 		17DA5ED21322C57000867B66 /* AddADishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5ECB1322C57000867B66 /* AddADishViewController.m */; };
@@ -169,11 +166,6 @@
 		17DA5EB41322C0FE00867B66 /* SignInSignUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SignInSignUp.xib; path = Views/AccountSettings/SignInSignUp/SignInSignUp.xib; sourceTree = "<group>"; };
 		17DA5EB51322C0FE00867B66 /* SignInSignUpBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignInSignUpBaseViewController.h; path = Views/AccountSettings/SignInSignUp/SignInSignUpBaseViewController.h; sourceTree = "<group>"; };
 		17DA5EB61322C0FE00867B66 /* SignInSignUpBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignInSignUpBaseViewController.m; path = Views/AccountSettings/SignInSignUp/SignInSignUpBaseViewController.m; sourceTree = "<group>"; };
-		17DA5EB71322C0FE00867B66 /* SignInSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignInSignUpViewController.h; path = Views/AccountSettings/SignInSignUp/SignInSignUpViewController.h; sourceTree = "<group>"; };
-		17DA5EB81322C0FE00867B66 /* SignInSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignInSignUpViewController.m; path = Views/AccountSettings/SignInSignUp/SignInSignUpViewController.m; sourceTree = "<group>"; };
-		17DA5EC01322C4A100867B66 /* SignUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SignUp.xib; path = Views/AccountSettings/SignInSignUp/SignUp/SignUp.xib; sourceTree = "<group>"; };
-		17DA5EC11322C4A100867B66 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpViewController.h; path = Views/AccountSettings/SignInSignUp/SignUp/SignUpViewController.h; sourceTree = "<group>"; };
-		17DA5EC21322C4A100867B66 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpViewController.m; path = Views/AccountSettings/SignInSignUp/SignUp/SignUpViewController.m; sourceTree = "<group>"; };
 		17DA5EC51322C4D100867B66 /* SignIn.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SignIn.xib; path = Views/AccountSettings/SignInSignUp/SignIn/SignIn.xib; sourceTree = "<group>"; };
 		17DA5EC61322C4D100867B66 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignInViewController.h; path = Views/AccountSettings/SignInSignUp/SignIn/SignInViewController.h; sourceTree = "<group>"; };
 		17DA5EC71322C4D100867B66 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignInViewController.m; path = Views/AccountSettings/SignInSignUp/SignIn/SignInViewController.m; sourceTree = "<group>"; };
@@ -351,9 +343,6 @@
 				17DA5EB41322C0FE00867B66 /* SignInSignUp.xib */,
 				17DA5EB51322C0FE00867B66 /* SignInSignUpBaseViewController.h */,
 				17DA5EB61322C0FE00867B66 /* SignInSignUpBaseViewController.m */,
-				17DA5EB71322C0FE00867B66 /* SignInSignUpViewController.h */,
-				17DA5EB81322C0FE00867B66 /* SignInSignUpViewController.m */,
-				17EEB74E12D9A9470032E12B /* SignUp */,
 				17EEB74D12D9A93A0032E12B /* SignIn */,
 			);
 			name = SIgnInSignUp;
@@ -486,16 +475,6 @@
 				17DA5EC71322C4D100867B66 /* SignInViewController.m */,
 			);
 			name = SignIn;
-			sourceTree = "<group>";
-		};
-		17EEB74E12D9A9470032E12B /* SignUp */ = {
-			isa = PBXGroup;
-			children = (
-				17DA5EC01322C4A100867B66 /* SignUp.xib */,
-				17DA5EC11322C4A100867B66 /* SignUpViewController.h */,
-				17DA5EC21322C4A100867B66 /* SignUpViewController.m */,
-			);
-			name = SignUp;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -741,7 +720,6 @@
 				17DA5E431322BEDA00867B66 /* FBDialog.bundle in Resources */,
 				17DA5EB31322C05200867B66 /* AccountView.xib in Resources */,
 				17DA5EB91322C0FE00867B66 /* SignInSignUp.xib in Resources */,
-				17DA5EC31322C4A100867B66 /* SignUp.xib in Resources */,
 				17DA5EC81322C4D100867B66 /* SignIn.xib in Resources */,
 				17DA5ED31322C57000867B66 /* AddADishViewController.xib in Resources */,
 				17DA5ED61322C57000867B66 /* RateADishViewController.xib in Resources */,
@@ -824,8 +802,6 @@
 				17DA5EAB1322BFF900867B66 /* LoggedInLoggedOutGate.m in Sources */,
 				17DA5EB21322C05200867B66 /* AccountView.m in Sources */,
 				17DA5EBA1322C0FE00867B66 /* SignInSignUpBaseViewController.m in Sources */,
-				17DA5EBB1322C0FE00867B66 /* SignInSignUpViewController.m in Sources */,
-				17DA5EC41322C4A100867B66 /* SignUpViewController.m in Sources */,
 				17DA5EC91322C4D100867B66 /* SignInViewController.m in Sources */,
 				17DA5ED21322C57000867B66 /* AddADishViewController.m in Sources */,
 				17DA5ED41322C57000867B66 /* ImagePickerViewController.m in Sources */,

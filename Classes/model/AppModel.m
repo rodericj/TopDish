@@ -86,12 +86,14 @@ AppModel *gAppModelInstance = nil;
 	}
 	
 }
-
+-(void)createFacebookObject {
+	self.facebook = [[Facebook alloc] initWithAppId:kFBAppId];	
+}
 -(id)init
 {
 	self = [super init];
 	self.user = [NSMutableDictionary new];
-	self.facebook = [[Facebook alloc] initWithAppId:kFBAppId];
+	[self createFacebookObject];
 	return self;
 }
 -(NSString *)selectedMealName {
@@ -167,6 +169,16 @@ AppModel *gAppModelInstance = nil;
 	return [[mIdToTagLookup objectForKey:tagId] objectForKey:@"name"];
 }
 
+-(void)logout {
+	[self.user removeObjectForKey:keyforauthorizing];
+	[self.facebook logout:self];
+}
+-(void)fbDidLogout {
+	NSLog(@"facebook = %@", self.facebook);
+	self.facebook = nil;
+	[self createFacebookObject];
+
+}
 -(void) dealloc
 {
 	self.user = nil;

@@ -37,9 +37,10 @@
 }
 
 - (void)dealloc {
-    [super dealloc];
     self.viewControllers = nil;
     self.navigationController = nil;
+	[super dealloc];
+
 }
 
 @end

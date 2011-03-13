@@ -19,7 +19,6 @@
 @synthesize lifestyleTags = mLifestyleTags;
 @synthesize imageRequest = mImageRequest;
 @synthesize userImage = mUserImage;
-@synthesize logoutButton = mLogoutButton;
 
 enum {
     kListAdderSectionIndexTotal = 0,
@@ -38,8 +37,7 @@ enum {
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
 	[self.tableView setTableHeaderView:self.tableHeader];
-     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-	
+	 
 	self.userName.text = @"";
 	self.userSince.text = @"";
 	
@@ -50,14 +48,28 @@ enum {
 		  andDelegate:self];
 		
 		//add the logout button
-		self.logoutButton = [[FBLoginButton alloc] init];
-		self.logoutButton.isLoggedIn = YES;
-		[self.logoutButton updateImage];
+		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
+										style:UIBarButtonItemStyleBordered
+										target:self 
+										action:@selector(logout)];
 
 	}
 	
 }
 
+-(void)logout{
+	NSLog(@"do the logout, right now this is just ending the fb session and sending us back to the gate");
+	[[[AppModel instance] facebook] logout:self];
+}
+
+- (void)fbDidLogout{
+	NSLog(@"Sucessful logout lets go to the gate");
+	LoggedInLoggedOutGate *gate = [[LoggedInLoggedOutGate alloc] init];
+	//[self.navigationController pushViewController:signIn animated:NO];
+	[self.navigationController setViewControllers:[NSArray arrayWithObject:gate]];
+	[[AppModel instance] logout];
+	[gate release];
+}
 
 #pragma mark -
 #pragma mark Table view data source
@@ -76,7 +88,7 @@ enum {
     // Return the number of sections.
 	//Individual settings
 	//dishes reviewed
-    return 2;
+    return 0;
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tv editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -169,7 +181,6 @@ enum {
  */
 - (void)request:(FBRequest *)request didLoad:(NSDictionary *)result
 {
-	DLog(@"did load %@", result);
 	if (request == self.imageRequest) {
 		//do nothing
 	}
@@ -202,7 +213,6 @@ enum {
 		//set the user image to this data
 		[self.userImage setImage:[UIImage imageWithData:data]];
 	}
-	DLog(@"raw data %@", data);
 }
 
 #pragma mark -
@@ -222,15 +232,15 @@ enum {
 
 
 - (void)dealloc {
-    [super dealloc];
 	self.userName = nil;
 	self.userSince = nil;
 	self.tableHeader = nil;
 	
 	self.userImage = nil;
 	self.imageRequest = nil;
-	self.logoutButton = nil;
 	self.lifestyleTags = nil;
+	[super dealloc];
+
 }
 
 

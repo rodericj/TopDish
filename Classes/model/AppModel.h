@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Facebook.h"
 
-@interface AppModel : NSObject {
+@interface AppModel : NSObject <FBSessionDelegate>{
 	NSMutableDictionary *mUser;
 	NSArray *mMealTypeTags;
 	NSArray *mCuisineTypeTags;
@@ -39,7 +39,7 @@
 @property (nonatomic, retain) NSNumber *selectedLifestyle;
 @property (nonatomic, retain) NSNumber *selectedCuisine;
 @property (nonatomic, assign) int sorter;
-@property (nonatomic, assign) Facebook *facebook;
+@property (nonatomic, retain) Facebook *facebook;
 
 @property (nonatomic, retain) CLLocation *currentLocation;
 +(AppModel *)instance;
@@ -56,6 +56,7 @@
 -(void)setCuisineTypeByIndex:(int)index;
 -(void)setAllergenTypeByIndex:(int)index;
 
+-(void)logout;
 -(NSString *)tagNameForTagId:(NSNumber *)tagId;
 -(void) updateTags:(NSArray *)tags;
 

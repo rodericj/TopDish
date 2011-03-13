@@ -14,22 +14,11 @@
 
 
 @interface SignInSignUpBaseViewController : UIViewController <UIAlertViewDelegate,
-											FBSessionDelegate, FBRequestDelegate, FBDialogDelegate>{
-	UITextField *mUserNameTextField;
-	UITextField *mPasswordTextField;
-	UITextField *mConfirmPasswordTextField;
-	
+											FBSessionDelegate, FBRequestDelegate, FBDialogDelegate>{	
 }
 
-@property (nonatomic, retain) IBOutlet UITextField *userNameTextField;
-@property (nonatomic, retain) IBOutlet UITextField *passwordTextField;
-@property (nonatomic, retain) IBOutlet UITextField *confirmPasswordTextField;
-@property (nonatomic, retain) IBOutlet UIButton *signUpButton;
 @property (nonatomic, retain) IBOutlet FBLoginButton *fbLoginButton;
 
--(IBAction)submitClicked;
--(IBAction)cancelClicked;
--(IBAction)signUpClicked;
 -(IBAction)fbButtonClick:(id)sender;
 
 @end

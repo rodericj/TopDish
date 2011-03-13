@@ -11,9 +11,7 @@
 
 @implementation SignInSignUpBaseViewController
 
-@synthesize passwordTextField = mPasswordTextField;
-@synthesize confirmPasswordTextField = mConfirmPasswordTextField;
-@synthesize userNameTextField = mUserNameTextField;
+
 
 -(IBAction)submitClicked{
 	DLog(@"no-op submitClicked");
