@@ -10,13 +10,13 @@
 #import "Restaurant.h"
 
 @interface AddADishViewController : UITableViewController <UINavigationControllerDelegate, 
-														UIImagePickerControllerDelegate,
-														UIActionSheetDelegate> {
+UIImagePickerControllerDelegate,
+UIActionSheetDelegate> {
 	Restaurant *mRestaurant;
 	
 	UITableViewCell *mRestaurantCell;
 	UILabel *mRestaurantTitle;
-
+	
 	UITableViewCell *mDishNameCell;
 	UITextField *mDishTitle;
 	
@@ -24,26 +24,31 @@
 	UIImageView *mYesImage;
 	UIImageView *mNoImage;
 	int mRating;
-
+	
 	UITableViewCell *mUploadCell;
 	UIImageView *mNewPicture;
-
+	
 	UITableViewCell *mAdditionalDetailsCell;
 	UITextField		*mAdditionalDetailsTextView;
 	UITextField		*mCommentTextView;
-
+	
 	UIButton		*mSubmitButton;
 	
 	int mSelectedPriceType;
 	int mSelectedMealType;
 	int mCurrentSelection;
 	
-	int *pointer;
-	
 	int mDishId;
 	
 	//We need to handle all of the outstanding requests before leaving view
 	int mOutstandingRequests;
+	
+	int pickerSelected;
+	NSArray *mPickerArray;
+	UIPickerView *mPickerView;
+	UIView	*mPickerViewOverlay;
+	UIButton *mPickerViewButton;
+	BOOL mPickerUp;
 
 }
 
@@ -75,9 +80,15 @@
 
 @property (nonatomic, assign) int dishId;
 
+@property (nonatomic, retain) NSArray *pickerArray;
+@property (nonatomic, retain) IBOutlet UIPickerView *pickerView;
+@property (nonatomic, retain) IBOutlet UIView *pickerViewOverlay;
+@property (nonatomic, retain) IBOutlet UIButton *pickerViewButton;
+
 -(IBAction)takePicture;
 -(IBAction)submitDish;
 -(IBAction)noButtonClicked;
 -(IBAction)yesButtonClicked;
+-(IBAction) pickerDone;
 
 @end

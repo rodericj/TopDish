@@ -20,9 +20,6 @@
 #define kUploadPictureSection 4
 #define kAdditionalDetailsSection 5
 
-#define kMealTypeRow 0
-#define kPriceTypeRow 1
-
 #define kAddDishViewTextColor [UIColor colorWithRed:.3019 green:.2588 blue:.1686 alpha:1]
 
 @implementation AddADishViewController
@@ -56,6 +53,10 @@
 
 @synthesize dishId = mDishId;
 
+@synthesize pickerArray = mPickerArray;
+@synthesize pickerView = mPickerView;
+@synthesize pickerViewOverlay = mPickerViewOverlay;
+@synthesize pickerViewButton = mPickerViewButton;
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -63,27 +64,11 @@
     [super viewDidLoad];
 	self.view.backgroundColor = kTopDishBackground;
 	self.restaurantTitle.text = [self.restaurant objName];
-	pointer = malloc(sizeof(int));
-	*pointer = 0;
 }
 
 
 
 - (void)viewWillAppear:(BOOL)animated {
-	DLog(@"and the pointer is %d", *pointer);
-	if (self.currentSelection == kMealTypeRow)
-	{
-		self.selectedMealType = *pointer;
-		NSArray *mealTags = [[AppModel instance] mealTypeTags];
-		self.selectedMealType = [[[mealTags objectAtIndex:*pointer] objectForKey:@"id"] intValue];
-	}
-	else
-	{
-		NSArray *priceTags = [[AppModel instance] priceTags];
-		DLog(@"priceTags is %@", [priceTags objectAtIndex:*pointer]);
-		DLog(@"the id is %@", [[priceTags objectAtIndex:*pointer] objectForKey:@"id"]);
-		self.selectedPriceType = [[[priceTags objectAtIndex:*pointer] objectForKey:@"id"] intValue];
-	}		
 
     [super viewWillAppear:animated];
 	[self.tableView beginUpdates];
@@ -94,9 +79,93 @@
 -(void)viewDidAppear:(BOOL)animated {
 	//Pop out if we aren't logged in
 	[super viewDidAppear:animated];
-	if ([[AppModel instance].user objectForKey:keyforauthorizing] == nil)
-		[[(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] tabBarController] setSelectedIndex:kAccountsTab];
+	//if ([[AppModel instance].user objectForKey:keyforauthorizing] == nil)
+//		[[(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] tabBarController] setSelectedIndex:kAccountsTab];
 }
+
+#pragma mark -
+#pragma mark PickerView delegate
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+	DLog(@"they picked %d", row);
+	pickerSelected = row;
+	
+	}
+
+#pragma mark -
+#pragma mark UIPickerViewDataSource
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+	return [[self.pickerArray objectAtIndex:row] objectForKey:@"name"];
+}
+
+
+#pragma mark -
+#pragma mark Picker view delegate
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+	return 40.0;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+	return [self.pickerArray count];
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+	return 1;
+}
+
+-(IBAction) pickerDone {
+	
+	[self.tableView setScrollEnabled:YES];
+	[self.tableView addSubview:self.pickerViewOverlay];
+	[UIView beginAnimations:@"animatePickerOn" context:NULL]; // Begin animation
+	mPickerUp = NO;
+	[self.pickerViewOverlay setFrame:CGRectOffset([self.pickerViewOverlay frame], 0, self.pickerViewOverlay.frame.size.height)]; // Move imageView off screen
+	[UIView commitAnimations]; // End animations
+	[self.pickerViewOverlay setHidden:YES];
+	[self.tableView setUserInteractionEnabled:YES];
+	
+	NSIndexPath *selectedPath = [self.tableView indexPathForSelectedRow];
+	
+	AppModel *app = [AppModel instance];
+	switch (selectedPath.row) {
+		case kMealType:
+			DLog(@"we selected %@", [[app mealTypeTags] objectAtIndex:pickerSelected]);
+			[app setMealTypeByIndex:pickerSelected];
+			
+			break;
+		case kPriceType:
+			DLog(@"we selected %@", [[app priceTags] objectAtIndex:pickerSelected]);
+			[app setPriceTypeByIndex:pickerSelected];
+			
+			break;
+		case kAllergenType:
+			DLog(@"we selected %@", [[app allergenTags] objectAtIndex:pickerSelected]);
+			[app setAllergenTypeByIndex:pickerSelected];
+			break;
+		case kCuisineType:
+			DLog(@"we selected %@", [[app cuisineTypeTags] objectAtIndex:pickerSelected]);
+			[app setCuisineTypeByIndex:pickerSelected];
+			break;
+		case kLifestyleType:
+			DLog(@"we selected %@", [[app lifestyleTags] objectAtIndex:pickerSelected]);
+			[app setLifestyleTypeByIndex:pickerSelected];
+			break;
+		default:
+			break;
+	}
+	
+	[self.tableView beginUpdates];
+	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:selectedPath] 
+						  withRowAnimation:UITableViewRowAnimationFade];
+	[self.tableView endUpdates];
+}
+
+
 
 #pragma mark -
 #pragma mark keyboard delegate
@@ -186,6 +255,8 @@
     
     static NSString *CellIdentifier = @"Cell";
     
+	AppModel *app = [AppModel instance];
+	
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
@@ -205,27 +276,30 @@
 			[cell.detailTextLabel setFont:[UIFont italicSystemFontOfSize:12]];
 			[cell.detailTextLabel setTextColor:[UIColor redColor]];
 			switch (indexPath.row) {
-				case kMealTypeRow:
+				case kMealType:
 					cell.textLabel.text = @"Meal";
-					
-					if (self.selectedMealType)
-						for (NSDictionary *dict in [[AppModel instance] mealTypeTags])
-							if ([[dict objectForKey:@"id"] intValue] == self.selectedMealType) {
-								[cell.detailTextLabel setTextColor:[UIColor blackColor]];
-								
-								cell.detailTextLabel.text = [dict objectForKey:@"name"];
-							}
-					
+					if ([[app selectedMeal] intValue] != 0) {
+						cell.detailTextLabel.text = [app selectedMealName];
+						cell.detailTextLabel.textColor = [UIColor blackColor];
+					}
+					else {
+						cell.detailTextLabel.text = @"Make a Selection";
+						cell.detailTextLabel.textColor = [UIColor redColor];
+						
+					}					
 					break;
-				case kPriceTypeRow:
+				case kPriceType:
+					
 					cell.textLabel.text = kPriceTypeString;
-					if (self.selectedPriceType)
-						//TODO, need a lookup for this
-						for (NSDictionary *dict in [[AppModel instance] priceTags]) 
-							if ([[dict objectForKey:@"id"] intValue] == self.selectedPriceType) {
-								[cell.detailTextLabel setTextColor:[UIColor blackColor]];
-								cell.detailTextLabel.text = [dict objectForKey:@"name"];
-							}
+					if ([[app selectedPrice] intValue] != 0) {
+						cell.detailTextLabel.text = [app selectedPriceName];
+						cell.detailTextLabel.textColor = [UIColor blackColor];
+					}
+					else {
+						cell.detailTextLabel.text = @"Make a Selection";
+						cell.detailTextLabel.textColor = [UIColor redColor];
+
+					}
 					
 				default:
 					break;
@@ -268,19 +342,54 @@
 	if (indexPath.section == kDishTagSection) {
 		NSAssert(NO, @"need to implement selection again");
 		self.currentSelection = indexPath.row;
-		//DishOptionPickerTableViewController *d;
-		//d = [[DishOptionPickerTableViewController alloc] init];
-		//[d useThisIntPointer:pointer];
-		//if(indexPath.row == kMealTypeRow)
-//			[d setOptionValues:[[AppModel instance] mealTypeTags]];
-//		else 
-//			[d setOptionValues:[[AppModel instance] priceTags]];
-//		
-//		[self.navigationController pushViewController:d animated:YES];
-//		[d release];
+		
+		switch (indexPath.row) {
+			case kMealType:
+				self.pickerArray = [[AppModel instance] mealTypeTags];
+				break;
+				
+			case kLifestyleType:
+				self.pickerArray = [[AppModel instance] lifestyleTags];
+				break;
+				
+			case kCuisineType:
+				self.pickerArray = [[AppModel instance] cuisineTypeTags] ;
+				break;			
+				
+			case kAllergenType:
+				self.pickerArray = [[AppModel instance] allergenTags];
+				break;
+				
+			case kPriceType:
+				self.pickerArray = [[AppModel instance] priceTags];
+				break;
+				
+			default:
+				break;
+		}
+		
+		self.pickerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+		[self.pickerView reloadAllComponents];
+		
+		// add this picker to our view controller, initially hidden
+		NSIndexPath *top = [NSIndexPath indexPathForRow:0 inSection:0];
+		
+		//handle special needs for the tableView
+		[self.tableView scrollToRowAtIndexPath:top atScrollPosition:UITableViewScrollPositionTop animated:YES];
+		[self.tableView setScrollEnabled:NO];
+		[self.tableView addSubview:self.pickerViewOverlay];
+		//[self.pickerViewOverlay setFrame:CGRectOffset([self.pickerViewOverlay frame], 0, self.pickerViewOverlay.frame.size.height)]; // Move imageView off screen
+
+		//animate
+		if (!mPickerUp) {
+			NSLog(@"the frame of the picker is %@", [self.pickerViewOverlay frame]);
+			[UIView beginAnimations:@"animatePickerOn" context:NULL]; // Begin animation
+			[self.pickerViewOverlay setFrame:CGRectOffset([self.pickerViewOverlay frame], 0, -self.pickerViewOverlay.frame.size.height)]; // Move imageView off screen
+			mPickerUp = TRUE;
+			[UIView commitAnimations]; // End animations
+			[self.pickerViewOverlay setHidden:NO];
+		}
 	}
-	
-	
 }
 #pragma mark -
 #pragma mark actions
@@ -504,7 +613,6 @@
 	self.submitButton = nil;
 	
     [super dealloc];
-	free(pointer);
 }
 
 
