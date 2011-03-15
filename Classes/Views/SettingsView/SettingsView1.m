@@ -12,16 +12,22 @@
 
 #define kNumberOfDifferentTypes 4
 
+#define kFilterRowsSection 0
+
 @implementation SettingsView1
 
 @synthesize pickerArray = mPickerArray;
 @synthesize pickerView = mPickerView;
 @synthesize pickerViewOverlay = mPickerViewOverlay;
 @synthesize pickerViewButton = mPickerViewButton;
+@synthesize footerView = mFooterView;
+
 
 - (void)viewDidLoad {
 	self.view.backgroundColor = kTopDishBackground;
+	self.tableView.tableFooterView = self.footerView;
 
+	
 	//DLog(@"loading and the selectedmeal type is %d", [[AppModel instance] selectedMeal]);
 	//int count = 0;
 
@@ -44,19 +50,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
 	return kNumberOfDifferentTypes;
-	switch (section) {
-		case kAllergenType:
-		case kLifestyleType:
-		case kCuisineType:
-		case kMealType:
-			return 1;
-		case kPriceType:
-			return 2;
-			break;
-		default:
-			break;
-	}
-	return 0;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -125,6 +118,10 @@
 }
 #pragma mark -
 #pragma mark IBActions
+-(IBAction) filtersDoneButtonPressed {
+	[self.navigationController popViewControllerAnimated:YES];
+}
+
 -(IBAction) pickerDone {
 	
 	[self.tableView setScrollEnabled:YES];

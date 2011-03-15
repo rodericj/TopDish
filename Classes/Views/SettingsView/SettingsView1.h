@@ -20,6 +20,7 @@
 	
 	BOOL mPickerUp;
 	
+	UIView *mFooterView;
 }
 
 
@@ -28,6 +29,8 @@
 @property (nonatomic, retain) IBOutlet UIView *pickerViewOverlay;
 @property (nonatomic, retain) IBOutlet UIButton *pickerViewButton;
 
+@property (nonatomic, retain) IBOutlet UIView *footerView;
 -(IBAction) pickerDone;
+-(IBAction) filtersDoneButtonPressed;
 @end
 
