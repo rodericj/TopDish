@@ -13,6 +13,7 @@
 #import "AppModel.h"
 #import "Dish.h"
 #import "asyncimageview.h"
+#import "NearbyMapViewController.h"
 
 @implementation RestaurantList
 
@@ -31,9 +32,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+	UIBarButtonItem *mapButton = [[UIBarButtonItem alloc] 
+								  initWithImage:[UIImage imageNamed:GLOBAL_IMAGE_NAME] 
+								  style:UIBarButtonItemStylePlain 
+								  target:self 
+								  action:@selector(flipToMap)];
+	self.navigationItem.rightBarButtonItem = mapButton;
+
 	self.navigationController.navigationBar.tintColor = kTopDishBlue;
 
 }
+
+#pragma mark -
+#pragma mark flip the view 
+- (void) flipToMap {
+	NearbyMapViewController *map = [[NearbyMapViewController alloc] 
+									initWithNibName:@"NearbyMapView" 
+									bundle:nil];
+	[map setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+	[map setManagedObjectContext:self.managedObjectContext];
+	
+	NSArray *nearbyObjects = [self.fetchedResultsController fetchedObjects];
+	[map setNearbyObjects:nearbyObjects];
+	[self.navigationController pushViewController:map animated:TRUE];
+	[map release];
+	//[self presentModalViewController:map animated:TRUE];
+}
+
 -(void)viewWillAppear:(BOOL)animated {
 	UISegmentedControl *s = (UISegmentedControl *) self.navigationItem.titleView;
 	[s setSelectedSegmentIndex:1];
@@ -60,6 +85,7 @@
 	//return 45;
 	
 }
+
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

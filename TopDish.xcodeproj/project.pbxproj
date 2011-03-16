@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1777A001133060A600E3F4B9 /* RestaurantOrDishAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A000133060A600E3F4B9 /* RestaurantOrDishAnnotation.m */; };
 		17BBAFD81301AC2400705F1A /* CommentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17BBAFD71301AC2400705F1A /* CommentsCell.xib */; };
 		17DA5E411322BEDA00867B66 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5E351322BEDA00867B66 /* Facebook.m */; };
 		17DA5E421322BEDA00867B66 /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5E361322BEDA00867B66 /* FBConnect.bundle */; };
@@ -39,7 +40,6 @@
 		17DA5EE21322C5FD00867B66 /* RestaurantAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5EDE1322C5FD00867B66 /* RestaurantAnnotation.m */; };
 		17DA5EE31322C5FD00867B66 /* RestaurantDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5EDF1322C5FD00867B66 /* RestaurantDetailView.xib */; };
 		17DA5EE41322C5FD00867B66 /* RestaurantDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5EE11322C5FD00867B66 /* RestaurantDetailViewController.m */; };
-		17DA5EFF1322C68300867B66 /* DishAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5EFB1322C68300867B66 /* DishAnnotation.m */; };
 		17DA5F001322C68300867B66 /* NearbyMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5EFC1322C68300867B66 /* NearbyMapView.xib */; };
 		17DA5F011322C68300867B66 /* NearbyMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5EFE1322C68300867B66 /* NearbyMapViewController.m */; };
 		17DA5F0B1322C6DB00867B66 /* DishTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5F021322C6DB00867B66 /* DishTableViewCell.xib */; };
@@ -122,6 +122,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		17779FFF133060A600E3F4B9 /* RestaurantOrDishAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantOrDishAnnotation.h; sourceTree = "<group>"; };
+		1777A000133060A600E3F4B9 /* RestaurantOrDishAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantOrDishAnnotation.m; sourceTree = "<group>"; };
 		17BBAFD71301AC2400705F1A /* CommentsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsCell.xib; sourceTree = "<group>"; };
 		17DA5E341322BEDA00867B66 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Facebook.h; path = lib/FBConnect/Facebook.h; sourceTree = "<group>"; };
 		17DA5E351322BEDA00867B66 /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Facebook.m; path = lib/FBConnect/Facebook.m; sourceTree = "<group>"; };
@@ -182,8 +184,6 @@
 		17DA5EDF1322C5FD00867B66 /* RestaurantDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RestaurantDetailView.xib; path = Views/RestaurantDetailView/RestaurantDetailView.xib; sourceTree = "<group>"; };
 		17DA5EE01322C5FD00867B66 /* RestaurantDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestaurantDetailViewController.h; path = Views/RestaurantDetailView/RestaurantDetailViewController.h; sourceTree = "<group>"; };
 		17DA5EE11322C5FD00867B66 /* RestaurantDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestaurantDetailViewController.m; path = Views/RestaurantDetailView/RestaurantDetailViewController.m; sourceTree = "<group>"; };
-		17DA5EFA1322C68300867B66 /* DishAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DishAnnotation.h; path = Views/NearbyMapView/DishAnnotation.h; sourceTree = "<group>"; };
-		17DA5EFB1322C68300867B66 /* DishAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DishAnnotation.m; path = Views/NearbyMapView/DishAnnotation.m; sourceTree = "<group>"; };
 		17DA5EFC1322C68300867B66 /* NearbyMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NearbyMapView.xib; path = Views/NearbyMapView/NearbyMapView.xib; sourceTree = "<group>"; };
 		17DA5EFD1322C68300867B66 /* NearbyMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NearbyMapViewController.h; path = Views/NearbyMapView/NearbyMapViewController.h; sourceTree = "<group>"; };
 		17DA5EFE1322C68300867B66 /* NearbyMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NearbyMapViewController.m; path = Views/NearbyMapView/NearbyMapViewController.m; sourceTree = "<group>"; };
@@ -645,8 +645,8 @@
 		5FBB975D1262420600141693 /* NearbyMapView */ = {
 			isa = PBXGroup;
 			children = (
-				17DA5EFA1322C68300867B66 /* DishAnnotation.h */,
-				17DA5EFB1322C68300867B66 /* DishAnnotation.m */,
+				17779FFF133060A600E3F4B9 /* RestaurantOrDishAnnotation.h */,
+				1777A000133060A600E3F4B9 /* RestaurantOrDishAnnotation.m */,
 				17DA5EFC1322C68300867B66 /* NearbyMapView.xib */,
 				17DA5EFD1322C68300867B66 /* NearbyMapViewController.h */,
 				17DA5EFE1322C68300867B66 /* NearbyMapViewController.m */,
@@ -808,7 +808,6 @@
 				17DA5ED51322C57000867B66 /* RateADishViewController.m in Sources */,
 				17DA5EE21322C5FD00867B66 /* RestaurantAnnotation.m in Sources */,
 				17DA5EE41322C5FD00867B66 /* RestaurantDetailViewController.m in Sources */,
-				17DA5EFF1322C68300867B66 /* DishAnnotation.m in Sources */,
 				17DA5F011322C68300867B66 /* NearbyMapViewController.m in Sources */,
 				17DA5F0C1322C6DB00867B66 /* DishTableViewController.m in Sources */,
 				17DA5F0D1322C6DB00867B66 /* MyCLController.m in Sources */,
@@ -826,12 +825,50 @@
 				17DA60A71323103900867B66 /* User.m in Sources */,
 				17DA60A81323103900867B66 /* DishComment.m in Sources */,
 				17DA60A91323103900867B66 /* ObjectWithImage.m in Sources */,
+				1777A001133060A600E3F4B9 /* RestaurantOrDishAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		17779D9A132DA08E00E3F4B9 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = NS_BLOCK_ASSERTIONS;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+			};
+			name = AdHoc;
+		};
+		17779D9B132DA08E00E3F4B9 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TopDish_Prefix.pch;
+				INFOPLIST_FILE = "TopDish-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/objectiveresource/samples/google_toolbar/TigerGcov\"",
+				);
+				PRODUCT_NAME = TopDish;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = AdHoc;
+		};
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -895,7 +932,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: roderic campbell";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = NS_BLOCK_ASSERTIONS;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -903,7 +940,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F8E671EF-A760-478E-BEA5-25F62DB3F556";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -916,6 +953,7 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+				17779D9B132DA08E00E3F4B9 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -925,6 +963,7 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+				17779D9A132DA08E00E3F4B9 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

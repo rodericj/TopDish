@@ -6,34 +6,39 @@
 //
 
 #import "NearbyMapViewController.h"
-#import "DishAnnotation.h"
-#import "Dish.h"
+#import "RestaurantOrDishAnnotation.h"
 #import "Dish.h"
 #import "DishDetailViewController.h"
+#import "RestaurantDetailViewController.h"
 #import "constants.h"
 
 @implementation NearbyMapViewController
 @synthesize mapView;
 @synthesize nearbyObjects;
-@synthesize dishMap;
+@synthesize objectMap = mObjectMap;
 @synthesize managedObjectContext=managedObjectContext_;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	DishAnnotation *thisAnnotation;
+	RestaurantOrDishAnnotation *thisAnnotation;
 	CLLocationCoordinate2D c;
 	float smallestLat=999, smallestLon = 999, largestLat=-999, largestLon=-999;
 	for (int i = 0; i < [nearbyObjects count]; i++) {
-		Dish *dish = [nearbyObjects objectAtIndex:i];
+		ObjectWithImage *restOrDishObject = [nearbyObjects objectAtIndex:i];
 		
 		//Add dish to this MapView's dish Dictionary
-		if(dishMap == nil){
-			dishMap = [[NSMutableDictionary alloc] init];
+		if(self.objectMap == nil){
+			self.objectMap = [[NSMutableDictionary alloc] init];
 		}
-		[dishMap setObject:dish forKey:[dish dish_id]];
+		if ([restOrDishObject respondsToSelector:@selector(dish_id)]) {
+			[self.objectMap setObject:restOrDishObject forKey:[(Dish*)restOrDishObject dish_id]];
+		}
+		else
+			[self.objectMap setObject:restOrDishObject forKey:[(Restaurant *)restOrDishObject restaurant_id]];
+
 		
-		float lat = [dish.latitude floatValue];
-		float lon = [dish.longitude floatValue];
+		float lat = [restOrDishObject.latitude floatValue];
+		float lon = [restOrDishObject.longitude floatValue];
 		
 		//Set up the center
 		if (lat > largestLat) {
@@ -51,9 +56,11 @@
 		c.latitude = lat;
 		c.longitude = lon;
 		
-		thisAnnotation = [[DishAnnotation alloc] initWithCoordinate:c];
-		[thisAnnotation setTitle:[dish objName]];
-		[thisAnnotation setThisDish:dish];
+		thisAnnotation = [[RestaurantOrDishAnnotation alloc] initWithCoordinate:c];
+		[thisAnnotation setTitle:[restOrDishObject objName]];
+		NSLog(@"restOrDishObject %@", restOrDishObject);
+		NSLog(@"annotation %@", thisAnnotation);
+		[thisAnnotation setThisObjectWithImage:restOrDishObject];
 		
 		[mapView addAnnotation:thisAnnotation];
 		[thisAnnotation release];
@@ -79,7 +86,7 @@
 	if ([annotation isKindOfClass:[MKUserLocation class]])
 		return nil;
 
-	if([annotation isKindOfClass:[DishAnnotation class]]){
+	if([annotation isKindOfClass:[RestaurantOrDishAnnotation class]]){
 		static NSString *DishAnnotationIdentifier = @"stringAnnotationIdentifier";
 
 		MKPinAnnotationView *annotationView = (MKPinAnnotationView *)
@@ -97,7 +104,16 @@
 						action:@selector(showDetails:)
 			  forControlEvents:UIControlEventTouchUpInside];
 		//annotation = (DishAnnotation *)annotation;
-		rightButton.tag = [[[(DishAnnotation*)annotation thisDish] dish_id] intValue];
+		ObjectWithImage *obj = [(RestaurantOrDishAnnotation *)annotation thisObjectWithImage];
+		if ([obj respondsToSelector:@selector(dish_id)]) {
+			rightButton.tag = [[(Dish *)obj dish_id] intValue];
+		}
+		else {
+			rightButton.tag = [[(Restaurant *)obj restaurant_id] intValue];
+
+		}
+
+		NSLog(@"just set the tag for this object %d %@", rightButton.tag, obj);
 		annotationView.rightCalloutAccessoryView = rightButton;
 		
 		return annotationView;
@@ -108,12 +124,23 @@
 
 - (void)showDetails:(id)sender
 {
-	NSNumber *clickedDishId = [NSNumber numberWithInt:[sender tag]];
-	Dish *selectedObject = [dishMap objectForKey:clickedDishId];
-	DishDetailViewController *detailViewController = [[DishDetailViewController alloc] 
-													  initWithNibName:@"DishDetailViewController" 
-													  bundle:nil];
-	[detailViewController setThisDish:selectedObject];
+	NSNumber *clickedObjectId = [NSNumber numberWithInt:[sender tag]];
+	ObjectWithImage *selectedObject = [self.objectMap objectForKey:clickedObjectId];
+	
+	UIViewController *detailViewController;
+	if ([selectedObject respondsToSelector:@selector(dish_id)]) {
+		detailViewController = [[DishDetailViewController alloc] 
+														  initWithNibName:@"DishDetailViewController" 
+														  bundle:nil];
+		[detailViewController setThisDish:selectedObject];
+	}
+	else {
+		detailViewController = [[RestaurantDetailViewController alloc] 
+								initWithNibName:@"RestaurantDetailView" 
+								bundle:nil];
+		[detailViewController setRestaurant:selectedObject];
+	}
+	
 	[detailViewController setManagedObjectContext:self.managedObjectContext];
 	[self.navigationController pushViewController:detailViewController animated:YES];
 	[detailViewController release];

@@ -1,16 +1,16 @@
 //
-//  BTVenueAnnotation.m
+//  RestaurantOrDishAnnotation.m
 //  Traps
 //
 //  Created by Roderic Campbell on 4/10/10.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "DishAnnotation.h"
+#import "RestaurantOrDishAnnotation.h"
 
 
-@implementation DishAnnotation
-@synthesize thisDish;
+@implementation RestaurantOrDishAnnotation
+@synthesize thisObjectWithImage;
 @synthesize coordinate;
 @synthesize title;
 
