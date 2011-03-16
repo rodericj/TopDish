@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1777A001133060A600E3F4B9 /* RestaurantOrDishAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A000133060A600E3F4B9 /* RestaurantOrDishAnnotation.m */; };
+		1777A18D13310A3B00E3F4B9 /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A18A13310A3B00E3F4B9 /* Dish.m */; };
+		1777A18E13310A3B00E3F4B9 /* ObjectWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A18C13310A3B00E3F4B9 /* ObjectWithImage.m */; };
 		17BBAFD81301AC2400705F1A /* CommentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17BBAFD71301AC2400705F1A /* CommentsCell.xib */; };
 		17DA5E411322BEDA00867B66 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5E351322BEDA00867B66 /* Facebook.m */; };
 		17DA5E421322BEDA00867B66 /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5E361322BEDA00867B66 /* FBConnect.bundle */; };
@@ -97,10 +99,8 @@
 		17DA608A13230F7300867B66 /* red_flag.gif in Resources */ = {isa = PBXBuildFile; fileRef = 17DA608713230F7300867B66 /* red_flag.gif */; };
 		17DA608B13230F7300867B66 /* reddown.gif in Resources */ = {isa = PBXBuildFile; fileRef = 17DA608813230F7300867B66 /* reddown.gif */; };
 		17DA60961323101300867B66 /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA60951323101300867B66 /* Restaurant.m */; };
-		17DA60A61323103900867B66 /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA609F1323103900867B66 /* Dish.m */; };
 		17DA60A71323103900867B66 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA60A11323103900867B66 /* User.m */; };
 		17DA60A81323103900867B66 /* DishComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA60A31323103900867B66 /* DishComment.m */; };
-		17DA60A91323103900867B66 /* ObjectWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA60A51323103900867B66 /* ObjectWithImage.m */; };
 		17DD270912BDBD860048C1A1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DD270812BDBD860048C1A1 /* CFNetwork.framework */; };
 		17DD270B12BDBD930048C1A1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DD270A12BDBD930048C1A1 /* SystemConfiguration.framework */; };
 		17DD270D12BDBD970048C1A1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DD270C12BDBD970048C1A1 /* MobileCoreServices.framework */; };
@@ -124,6 +124,10 @@
 /* Begin PBXFileReference section */
 		17779FFF133060A600E3F4B9 /* RestaurantOrDishAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantOrDishAnnotation.h; sourceTree = "<group>"; };
 		1777A000133060A600E3F4B9 /* RestaurantOrDishAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantOrDishAnnotation.m; sourceTree = "<group>"; };
+		1777A18913310A3B00E3F4B9 /* Dish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
+		1777A18A13310A3B00E3F4B9 /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
+		1777A18B13310A3B00E3F4B9 /* ObjectWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectWithImage.h; sourceTree = "<group>"; };
+		1777A18C13310A3B00E3F4B9 /* ObjectWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectWithImage.m; sourceTree = "<group>"; };
 		17BBAFD71301AC2400705F1A /* CommentsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsCell.xib; sourceTree = "<group>"; };
 		17DA5E341322BEDA00867B66 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Facebook.h; path = lib/FBConnect/Facebook.h; sourceTree = "<group>"; };
 		17DA5E351322BEDA00867B66 /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Facebook.m; path = lib/FBConnect/Facebook.m; sourceTree = "<group>"; };
@@ -255,14 +259,10 @@
 		17DA608813230F7300867B66 /* reddown.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = reddown.gif; path = images/reddown.gif; sourceTree = "<group>"; };
 		17DA60941323101300867B66 /* Restaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
 		17DA60951323101300867B66 /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
-		17DA609E1323103900867B66 /* Dish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
-		17DA609F1323103900867B66 /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
 		17DA60A01323103900867B66 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		17DA60A11323103900867B66 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		17DA60A21323103900867B66 /* DishComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishComment.h; sourceTree = "<group>"; };
 		17DA60A31323103900867B66 /* DishComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishComment.m; sourceTree = "<group>"; };
-		17DA60A41323103900867B66 /* ObjectWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectWithImage.h; sourceTree = "<group>"; };
-		17DA60A51323103900867B66 /* ObjectWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectWithImage.m; sourceTree = "<group>"; };
 		17DD270812BDBD860048C1A1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		17DD270A12BDBD930048C1A1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		17DD270C12BDBD970048C1A1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -821,11 +821,11 @@
 				17DA5F301322C82700867B66 /* NSArray+PerformSelector.m in Sources */,
 				17DA608313230F2200867B66 /* TopDish.xcdatamodeld in Sources */,
 				17DA60961323101300867B66 /* Restaurant.m in Sources */,
-				17DA60A61323103900867B66 /* Dish.m in Sources */,
 				17DA60A71323103900867B66 /* User.m in Sources */,
 				17DA60A81323103900867B66 /* DishComment.m in Sources */,
-				17DA60A91323103900867B66 /* ObjectWithImage.m in Sources */,
 				1777A001133060A600E3F4B9 /* RestaurantOrDishAnnotation.m in Sources */,
+				1777A18D13310A3B00E3F4B9 /* Dish.m in Sources */,
+				1777A18E13310A3B00E3F4B9 /* ObjectWithImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -974,14 +974,14 @@
 		17DA608013230F2200867B66 /* TopDish.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				17DA609E1323103900867B66 /* Dish.h */,
-				17DA609F1323103900867B66 /* Dish.m */,
+				1777A18913310A3B00E3F4B9 /* Dish.h */,
+				1777A18A13310A3B00E3F4B9 /* Dish.m */,
+				1777A18B13310A3B00E3F4B9 /* ObjectWithImage.h */,
+				1777A18C13310A3B00E3F4B9 /* ObjectWithImage.m */,
 				17DA60A01323103900867B66 /* User.h */,
 				17DA60A11323103900867B66 /* User.m */,
 				17DA60A21323103900867B66 /* DishComment.h */,
 				17DA60A31323103900867B66 /* DishComment.m */,
-				17DA60A41323103900867B66 /* ObjectWithImage.h */,
-				17DA60A51323103900867B66 /* ObjectWithImage.m */,
 				17DA608113230F2200867B66 /* TopDish 2.xcdatamodel */,
 				17DA608213230F2200867B66 /* TopDish.xcdatamodel */,
 				17DA60941323101300867B66 /* Restaurant.h */,

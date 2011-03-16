@@ -20,6 +20,9 @@
 @synthesize fetchedResultsController = mFetchedResultsController;
 @synthesize managedObjectContext = mManagedObjectContext;
 @synthesize tvCell = mTvCell;
+@synthesize tableHeaderView = mTableHeaderView;
+@synthesize searchBar = mSearchBar;
+@synthesize currentSearchTerm = mCurrentSearchTerm;
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle {
     if (self = [super initWithNibName:nibName bundle:nibBundle]) {
@@ -40,7 +43,13 @@
 	self.navigationItem.rightBarButtonItem = mapButton;
 
 	self.navigationController.navigationBar.tintColor = kTopDishBlue;
-
+	NSLog(@"tableview %@", self.tableView);
+	[self.tableView setTableHeaderView:self.tableHeaderView];
+	
+	[self.searchBar setPlaceholder:@"Search Dishes"];
+	[self.searchBar setShowsCancelButton:YES];
+	[self.searchBar setDelegate:self];
+	[self.searchBar setTintColor:kTopDishBlue];
 }
 
 #pragma mark -
@@ -302,6 +311,163 @@
     return mFetchedResultsController;
 }  
 
+#pragma mark -
+#pragma mark  the fetch and filters
+
+-(void) populatePredicateArray:(NSMutableArray *)filterPredicateArray{
+	NSPredicate *filterPredicate;
+	AppModel *app = [AppModel instance];
+	
+	//Filter based on search
+	if (self.currentSearchTerm && [self.currentSearchTerm length] > 0) {
+		
+		NSString *attributeName = @"objName";
+		NSString *attributeValue = self.currentSearchTerm;
+		DLog(@"the predicate we are sending: %@ contains(cd) %@ AND %@ == %d",
+			 attributeName, attributeValue,
+			 @"price", [[AppModel instance] selectedPrice]);
+		
+		filterPredicate = [NSPredicate predicateWithFormat:@"%K contains[cd] %@",
+						   attributeName, attributeValue];
+		
+		DLog(@"the real predicate is %@", filterPredicate);
+		[filterPredicateArray addObject:filterPredicate];
+	}
+	
+	//Filter based on price
+	//if ([[[AppModel instance] selectedPrice] intValue] != 0) {
+//		
+//		DLog(@"the else predicate %@ == %d", 
+//			 @"price", [[AppModel instance] selectedPrice]);
+//		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
+//						   @"price", [app selectedPrice]];
+//		
+//		[filterPredicateArray addObject:filterPredicate];
+//	}
+//	
+//	//Filter based on mealType
+//	if ([[[AppModel instance] selectedMeal] intValue] != 0) {
+//		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
+//						   @"mealType", [app selectedMeal]];
+//		
+//		[filterPredicateArray addObject:filterPredicate];
+//	}
+//	
+//	//Filter based on cuisine
+//	if ([[[AppModel instance] selectedCuisine] intValue] != 0) {
+//		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
+//						   @"cuisineType", [app selectedCuisine]];
+//		
+//		[filterPredicateArray addObject:filterPredicate];
+//	}
+//	
+//	//Filter based on allergen
+//	if ([[[AppModel instance] selectedAllergen] intValue] != 0) {
+//		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
+//						   @"allergenType", [app selectedAllergen]];
+//		
+//		[filterPredicateArray addObject:filterPredicate];
+//	}
+//	
+//	//Filter based on lifestyle
+//	if ([[[AppModel instance] selectedLifestyle] intValue] != 0) {
+//		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
+//						   @"lifestyleType", [app selectedLifestyle]];
+//		
+//		[filterPredicateArray addObject:filterPredicate];
+//	}
+	
+}
+
+
+-(void) updateFetch {
+	DLog(@"updating the restaurant fetch");
+	/*
+     Set up the fetched results controller.
+	 */
+    // Create the fetch request for the entity.
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	
+    // Edit the entity name as appropriate.
+	
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Restaurant" 
+											  inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+	//Set up the filters that are stored in the AppModel
+	NSMutableArray *filterPredicateArray = [NSMutableArray array];
+	
+	[self populatePredicateArray:filterPredicateArray];
+
+	NSPredicate *fullPredicate = [NSCompoundPredicate 
+								  andPredicateWithSubpredicates:filterPredicateArray]; 
+	
+	[fetchRequest setPredicate:fullPredicate];
+	
+	// Set the batch size to a suitable number.
+	[fetchRequest setFetchBatchSize:20];
+    
+	//Create array with sort params, then store in NSUserDefaults
+	
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor = 
+	[[NSSortDescriptor alloc] initWithKey:@"distance" 
+								ascending:TRUE];
+	
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    // Edit the section name key path and cache name if appropriate.
+    // nil for section name key path means "no sections".
+	self.fetchedResultsController = nil;
+	
+    NSFetchedResultsController *aFetchedResultsController = 
+	[[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
+										managedObjectContext:self.managedObjectContext 
+										  sectionNameKeyPath:nil cacheName:nil];
+    aFetchedResultsController.delegate = self;
+    self.fetchedResultsController = aFetchedResultsController;
+    [aFetchedResultsController release];
+    [fetchRequest release];
+    //[sortDescriptor release];
+    //[currentSearchTerm release];
+	//self.currentSearchTerm = nil;
+    NSError *error = nil;
+    if (![mFetchedResultsController performFetch:&error]) {
+        DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+	
+	//Finally, reload the data with the latest fetch
+	[self.tableView reloadData];
+	
+}
+
+
+#pragma mark -
+#pragma mark Search delegate functions
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+	[searchBar resignFirstResponder];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+	[searchBar resignFirstResponder];
+	[self updateFetch];
+}	
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+	DLog(@"the search bar text changed %@", searchText);
+	
+	//Send the network request
+	self.currentSearchTerm = searchText;
+	
+	//TODO, add the actual network search
+	//[self initiateNetworkBasedOnSegmentControl];
+	
+	//Limit the core data output
+	[self updateFetch];
+}
 
 #pragma mark -
 #pragma mark cleanup
@@ -323,7 +489,8 @@
 	self.fetchedResultsController = nil;
 	self.managedObjectContext = nil;
 	self.tvCell = nil;
-
+	self.tableHeaderView;
+	self.currentSearchTerm = nil;
     [super dealloc];
 }
 

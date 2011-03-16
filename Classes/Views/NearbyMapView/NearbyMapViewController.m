@@ -104,7 +104,7 @@
 						action:@selector(showDetails:)
 			  forControlEvents:UIControlEventTouchUpInside];
 		//annotation = (DishAnnotation *)annotation;
-		ObjectWithImage *obj = [(RestaurantOrDishAnnotation *)annotation thisObjectWithImage];
+		ObjectWithImage *obj = [annotation thisObjectWithImage];
 		if ([obj respondsToSelector:@selector(dish_id)]) {
 			rightButton.tag = [[(Dish *)obj dish_id] intValue];
 		}
@@ -113,9 +113,7 @@
 
 		}
 
-		NSLog(@"just set the tag for this object %d %@", rightButton.tag, obj);
-		annotationView.rightCalloutAccessoryView = rightButton;
-		
+		annotationView.rightCalloutAccessoryView = rightButton;		
 		return annotationView;
 	}
 	DLog(@"returned nil? hmmm");

@@ -53,7 +53,7 @@
 	NSArray * navsviewControllers = self.navigationController.viewControllers;
 	NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:navsviewControllers];
 	
-	RestaurantList *restaurantList = [[RestaurantList alloc] init];
+	RestaurantList *restaurantList = [[RestaurantList alloc] initWithNibName:@"RestaurantList" bundle:nil];
 	[restaurantList setManagedObjectContext:self.managedObjectContext];
 	[viewControllers addObject:restaurantList];
 	[restaurantList release];

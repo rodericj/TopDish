@@ -331,9 +331,15 @@
 			 [dishDict objectForKey:@"restaurantID"]];
 			NSAssert(TRUE, s);
 		}
-		
+
 		[restaurant setRestaurant_id:[dishDict objectForKey:@"restaurantID"]];
 		[restaurant setObjName:[NSString stringWithFormat:@"%@", [dishDict objectForKey:@"restaurantName"]]];
+		
+		//Should be no extra work setting lat/long and distance
+		[restaurant setLatitude:[dishDict objectForKey:@"latitude"]];
+		[restaurant setLongitude:[dishDict objectForKey:@"longitude"]];
+		[restaurant setDistance:[NSNumber numberWithFloat:distanceInMiles]];
+
 		[dish setRestaurant:restaurant];
 	}
 	NSError *error;

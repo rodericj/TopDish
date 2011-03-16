@@ -2,7 +2,7 @@
 //  Dish.h
 //  TopDish
 //
-//  Created by roderic campbell on 3/5/11.
+//  Created by roderic campbell on 3/16/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -25,7 +25,6 @@
 @property (nonatomic, retain) NSNumber * dish_id;
 @property (nonatomic, retain) NSNumber * negReviews;
 @property (nonatomic, retain) NSNumber * allergenType;
-@property (nonatomic, retain) NSNumber * distance;
 @property (nonatomic, retain) NSNumber * calculated_rating;
 @property (nonatomic, retain) NSSet* comments;
 @property (nonatomic, retain) Restaurant * restaurant;
