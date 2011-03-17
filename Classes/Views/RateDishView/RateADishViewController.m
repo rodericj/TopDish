@@ -333,9 +333,18 @@
 //		[imageRequest startAsynchronous];
 	}
 	
-	if(!mOutstandingRequests)
+	if(!mOutstandingRequests) {
+		
+		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Rating success!!" 
+															message:@"Thanks's for rating this dish. Would you like to try another?"
+														   delegate:self 
+												  cancelButtonTitle:@"OK"
+												  otherButtonTitles:nil];
+		[alertview show];
+		[alertview release];	
+		
 		[self.navigationController popViewControllerAnimated:YES];
-
+	}
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request

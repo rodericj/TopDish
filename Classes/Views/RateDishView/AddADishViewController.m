@@ -135,26 +135,26 @@
 	switch (selectedPath.row) {
 		case kMealType:
 			NSLog(@"we selected %@", [[app mealTypeTags] objectAtIndex:pickerSelected]);
-			[app setMealTypeByIndex:pickerSelected];
+			self.selectedMealType = [[[[app mealTypeTags] objectAtIndex:pickerSelected] objectForKey:@"id"] intValue];
 			
 			break;
 		case kPriceType:
 			NSLog(@"we selected %@", [[app priceTags] objectAtIndex:pickerSelected]);
-			[app setPriceTypeByIndex:pickerSelected];
+			self.selectedPriceType = [[[[app priceTags] objectAtIndex:pickerSelected] objectForKey:@"id"] intValue];			
+			break;
 			
-			break;
-		case kAllergenType:
-			NSLog(@"we selected %@", [[app allergenTags] objectAtIndex:pickerSelected]);
-			[app setAllergenTypeByIndex:pickerSelected];
-			break;
-		case kCuisineType:
-			NSLog(@"we selected %@", [[app cuisineTypeTags] objectAtIndex:pickerSelected]);
-			[app setCuisineTypeByIndex:pickerSelected];
-			break;
-		case kLifestyleType:
-			NSLog(@"we selected %@", [[app lifestyleTags] objectAtIndex:pickerSelected]);
-			[app setLifestyleTypeByIndex:pickerSelected];
-			break;
+		//case kAllergenType:
+//			NSLog(@"we selected %@", [[app allergenTags] objectAtIndex:pickerSelected]);
+//			self.selectedA
+//			break;
+//		case kCuisineType:
+//			NSLog(@"we selected %@", [[app cuisineTypeTags] objectAtIndex:pickerSelected]);
+//			[app setCuisineTypeByIndex:pickerSelected];
+//			break;
+//		case kLifestyleType:
+//			NSLog(@"we selected %@", [[app lifestyleTags] objectAtIndex:pickerSelected]);
+//			[app setLifestyleTypeByIndex:pickerSelected];
+//			break;
 		default:
 			break;
 	}
@@ -278,8 +278,13 @@
 			switch (indexPath.row) {
 				case kMealType:
 					cell.textLabel.text = @"Meal";
-					if ([[app selectedMeal] intValue] != 0) {
-						cell.detailTextLabel.text = [app selectedMealName];
+					if(self.selectedMealType != 0) {
+						for(NSDictionary *d in [app mealTypeTags]){
+							if ([[d objectForKey:@"id"] intValue] == self.selectedMealType) {
+								cell.detailTextLabel.text = [d objectForKey:@"name"];
+							}
+						}
+							
 						cell.detailTextLabel.textColor = [UIColor blackColor];
 					}
 					else {
@@ -291,10 +296,18 @@
 				case kPriceType:
 					
 					cell.textLabel.text = kPriceTypeString;
-					if ([[app selectedPrice] intValue] != 0) {
-						cell.detailTextLabel.text = [app selectedPriceName];
+					
+					if(self.selectedPriceType != 0) {
+						for(NSDictionary *d in [app priceTags]){
+							NSLog(@"this d is %@", d);
+							if ([[d objectForKey:@"id"] intValue] == self.selectedPriceType) {
+								NSLog(@"setting the price to %@", [d objectForKey:@"name"]);
+								cell.detailTextLabel.text = [d objectForKey:@"name"];
+							}
+						}
 						cell.detailTextLabel.textColor = [UIColor blackColor];
 					}
+					
 					else {
 						cell.detailTextLabel.text = @"Make a Selection";
 						cell.detailTextLabel.textColor = [UIColor redColor];
@@ -460,6 +473,39 @@
 		return;
 	}
 	
+	if ([self.dishTitle.text length] == 0 || !self.dishTitle.text) {
+		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Error Submitting Dish" 
+															message:@"Invalid Dish Title" 
+														   delegate:nil 
+												  cancelButtonTitle:@"OK"
+												  otherButtonTitles:nil];
+		[alertview show];
+		[alertview release];
+		return;
+	}
+	
+	if ([self.additionalDetailsTextView.text length] == 0 || !self.additionalDetailsTextView.text) {
+		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Error Submitting Dish" 
+															message:@"Invalid Description: This should be what you'd see on the menu" 
+														   delegate:nil 
+												  cancelButtonTitle:@"OK"
+												  otherButtonTitles:nil];
+		[alertview show];
+		[alertview release];
+		return;
+	}
+	
+	if ([self.commentTextView.text length] == 0 || !self.commentTextView.text) {
+		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Error Submitting Dish" 
+															message:@"Don't foget to leave your comment" 
+														   delegate:nil 
+												  cancelButtonTitle:@"OK"
+												  otherButtonTitles:nil];
+		[alertview show];
+		[alertview release];
+		return;
+	}
+	
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request setPostValue:self.dishTitle.text forKey:@"name"];
 	[request setPostValue:self.additionalDetailsTextView.text forKey:@"description"];
@@ -510,9 +556,10 @@
 	}
 	if ([responseAsDict objectForKey:@"dishId"]) {
 		NSURL *url;
+		self.dishId = [[responseAsDict objectForKey:@"dishId"] intValue];
+
 		if (self.newPicture.image) {
 			NSLog(@"we have the dish id, calling add photo");
-			self.dishId = [[responseAsDict objectForKey:@"dishId"] intValue];
 			url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
 			NSLog(@"the url for add photo is %@", url);
 			newRequest = [ASIFormDataRequest requestWithURL:url];
@@ -529,11 +576,18 @@
 
 		newRequest = [ASIFormDataRequest requestWithURL:url];
 		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-		[newRequest setPostValue:[NSString stringWithFormat:@"%d", self.dishId] forKey:@"dishId"];
+		
+		NSLog(@"The 2 in question are %@, %@", [NSNumber numberWithInt:self.rating], [NSString stringWithFormat:@"%d", self.dishId]);
 		[newRequest setPostValue:[NSNumber numberWithInt:self.rating] forKey:@"direction"];
+		[newRequest setPostValue:[NSString stringWithFormat:@"%d", self.dishId] forKey:@"dishId"];	
+		
+		//[newRequest setPostValue:[NSString stringWithFormat:@"%d", self.dishId] forKey:@"dishId"];
+//		[newRequest setPostValue:[NSString stringWithFormat:@"%d", self.rating] forKey:@"direction"];
 		[newRequest setPostValue:self.commentTextView.text forKey:@"comment"];
 		[newRequest setDelegate:self];
 		[newRequest startAsynchronous];
+		
+		//NSLog(@"the dish id is %d %d", self.dishId, self.rating);
 		mOutstandingRequests += 1;
 		NSLog(@"done calling rate Dish");
 		return;
@@ -552,8 +606,18 @@
 		return;
 
 	}
-	if (!mOutstandingRequests)
+	if ([responseAsDict objectForKey:@"dish"]) {
+		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Successfully added a dish!!" 
+															message:@"Thanks for the new dish. Have you tried anything else here?"
+														   delegate:self 
+												  cancelButtonTitle:@"OK"
+												  otherButtonTitles:nil];
+		[alertview show];
+		[alertview release];
+	}
+	if (!mOutstandingRequests) {
 		[self.navigationController popViewControllerAnimated:YES];	
+	}
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
