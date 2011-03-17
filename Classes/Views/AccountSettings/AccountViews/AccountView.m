@@ -153,7 +153,7 @@ enum {
  */
 - (void)requestLoading:(FBRequest *)request
 {
-	DLog(@"request loading");
+	NSLog(@"request loading");
 }
 
 /**
@@ -161,7 +161,7 @@ enum {
  */
 - (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response
 {
-	DLog(@"did receieve response %@", response);
+	NSLog(@"did receieve response %@", response);
 }
 
 /**
@@ -169,7 +169,7 @@ enum {
  */
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error
 {
-	DLog(@"did fail with error %@", error);
+	NSLog(@"did fail with error %@", error);
 }
 
 /**
@@ -185,7 +185,7 @@ enum {
 		//do nothing
 	}
 	else{
-		DLog(@"did load %@", result);
+		NSLog(@"did load %@", result);
 
 	if ([result objectForKey:@"first_name"] && [result objectForKey:@"last_name"]) {
 		

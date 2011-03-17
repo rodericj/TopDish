@@ -18,6 +18,9 @@
 	UIView						*mTableHeaderView;
 	UISearchBar					*mSearchBar;
 	NSString					*mCurrentSearchTerm;
+	int							mCurrentSearchDistance;
+	
+	NSMutableData *mResponseData;
 }
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
@@ -27,5 +30,8 @@
 @property (nonatomic, retain) IBOutlet UIView *tableHeaderView;
 @property (nonatomic, retain) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, retain) NSString *currentSearchTerm;
+@property (nonatomic, assign) int currentSearchDistance;
+
+@property (nonatomic, retain) NSMutableData *responseData;
 
 @end

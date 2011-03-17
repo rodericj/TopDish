@@ -33,7 +33,7 @@
 }
 
 - (void)switchViewControllers {
-	DLog(@"switch view controllers");
+	NSLog(@"switch view controllers");
 }
 
 
@@ -80,7 +80,7 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-	DLog(@"the url is %@", url);
+	NSLog(@"the url is %@", url);
 	
 	return [[[AppModel instance] facebook] handleOpenURL:url];
 }
@@ -96,7 +96,7 @@
 															error:&error];
 	
 	if ([[responseAsDictionary objectForKey:@"rc"] intValue] != 0) {
-		DLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
+		NSLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
 		[parser release];
 		[responseText release];
 		return;
@@ -181,7 +181,7 @@
              
              abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
              */
-            DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         } 
     }
@@ -264,7 +264,7 @@
          Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
          
          */
-        DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }    
     

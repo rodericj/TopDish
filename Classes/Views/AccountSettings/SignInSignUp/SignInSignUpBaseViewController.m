@@ -14,7 +14,7 @@
 
 
 -(IBAction)submitClicked{
-	DLog(@"no-op submitClicked");
+	NSLog(@"no-op submitClicked");
 }
 
 

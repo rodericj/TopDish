@@ -75,4 +75,7 @@
 -(void) setCuisineTypeTags:(NSArray *)tags;
 -(NSArray *) cuisineTypeTags;
 
++(NSNumber *)extractTag:(NSString *)key fromArrayOfTags:(NSArray *)tagsArray;
+
+
 @end

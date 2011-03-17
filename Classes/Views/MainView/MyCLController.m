@@ -29,7 +29,7 @@
 - (void)locationManager:(CLLocationManager *)manager
 	   didFailWithError:(NSError *)error
 {
-	DLog(@"Got a location error");
+	NSLog(@"Got a location error");
 	[self.delegate locationError:error];
 }
 

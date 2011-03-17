@@ -58,8 +58,6 @@
 		
 		thisAnnotation = [[RestaurantOrDishAnnotation alloc] initWithCoordinate:c];
 		[thisAnnotation setTitle:[restOrDishObject objName]];
-		NSLog(@"restOrDishObject %@", restOrDishObject);
-		NSLog(@"annotation %@", thisAnnotation);
 		[thisAnnotation setThisObjectWithImage:restOrDishObject];
 		
 		[mapView addAnnotation:thisAnnotation];
@@ -116,7 +114,7 @@
 		annotationView.rightCalloutAccessoryView = rightButton;		
 		return annotationView;
 	}
-	DLog(@"returned nil? hmmm");
+	NSLog(@"returned nil? hmmm");
 	return nil;
 }
 

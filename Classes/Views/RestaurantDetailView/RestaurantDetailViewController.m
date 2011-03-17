@@ -40,7 +40,7 @@
 #pragma mark networking
 
 -(void)processIncomingNetworkText:(NSString *)responseText{
-	DLog(@"processing incoming network text %@", responseText);
+	NSLog(@"processing incoming network text %@", responseText);
 	
 	SBJSON *parser = [SBJSON new];
 	NSError *error = nil;
@@ -49,7 +49,7 @@
 															error:&error];
 	
 	if ([[responseAsDictionary objectForKey:@"rc"] intValue] != 0) {
-		DLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
+		NSLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
 		[parser release];
 		return;
 	}
@@ -58,11 +58,11 @@
 	[parser release];
 	
 	if(error != nil){
-		DLog(@"there was an error when jsoning");
-		DLog(@"json error %@", error);
-		DLog(@"the text %@", responseText);
+		NSLog(@"there was an error when jsoning");
+		NSLog(@"json error %@", error);
+		NSLog(@"the text %@", responseText);
 	}
-	DLog(@"the dict is %@", resp);
+	NSLog(@"the dict is %@", resp);
 	//[restaurant setObjName:[resp objectForKey:@"name"]];
 	[restaurant setCity:[resp objectForKey:@"city"]];
 	[restaurant setAddressLine1:[resp objectForKey:@"addressLine1"]];
@@ -79,7 +79,7 @@
 	NSURL *url;
 	NSURLRequest *request;
 	url = [NSURL URLWithString:query];
-	DLog(@"url is %@", query);
+	NSLog(@"url is %@", query);
 	//Start up the networking
 	request = [NSURLRequest requestWithURL:url];
 	[[[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE] autorelease]; 
@@ -167,7 +167,7 @@
 	if (section == kRestaurantHeaderSection || section == kMapSection) {
 		return 1;
 	}
-	DLog(@"sections is %@ and this sectin is ", self.fetchedResultsController.sections);
+	NSLog(@"sections is %@ and this sectin is ", self.fetchedResultsController.sections);
     id <NSFetchedResultsSectionInfo> sectionInfo = 
 	[[self.fetchedResultsController sections] 
 	 objectAtIndex:section-kDishesAtThisRestaurantSection];
@@ -203,7 +203,7 @@
 									   OBJECTDETAILIMAGECELLHEIGHT,
 									   OBJECTDETAILIMAGECELLHEIGHT];
 			
-				DLog(@"url string for restaurant's image in RestaurantDetailViewController is %@", urlString);
+				NSLog(@"url string for restaurant's image in RestaurantDetailViewController is %@", urlString);
 
 				NSURL *photoUrl = [NSURL URLWithString:urlString];
 				[asyncImage loadImageFromURL:photoUrl withImageView:self.restaurantImage 
@@ -268,7 +268,7 @@
         return;
     }
 	
-	DLog(@"show the picture thing");
+	NSLog(@"show the picture thing");
 	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 	[imagePicker setDelegate:self];
 	[imagePicker setAllowsEditing:YES];
@@ -301,13 +301,13 @@
 		[newRequest setPostValue:[NSString stringWithFormat:@"%d", [[self.restaurant restaurant_id] intValue]] forKey:@"restaurantId"];
 		[newRequest setDelegate:self];
 		[newRequest startAsynchronous];
-		DLog(@"done calling add photo, time to call rateDish");
+		NSLog(@"done calling add photo, time to call rateDish");
 	}
 	[self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-	DLog(@"cancelled, should we go back another level?");
+	NSLog(@"cancelled, should we go back another level?");
 	[self dismissModalViewControllerAnimated:YES];
 	//[self.navigationController popViewControllerAnimated:YES];
 }
@@ -317,14 +317,14 @@
 {
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
-	DLog(@"response string for any of these calls %@", responseString);
+	NSLog(@"response string for any of these calls %@", responseString);
 	
 	NSError *error;
 	SBJSON *parser = [SBJSON new];
 	NSDictionary *responseAsDict = [parser objectWithString:responseString error:&error];	
 	[parser release];
 	
-	DLog(@"the dictionary should be a %@", responseAsDict);
+	NSLog(@"the dictionary should be a %@", responseAsDict);
 	
 	ASIFormDataRequest *newRequest;
 	
@@ -340,7 +340,7 @@
 	}
 	if ([responseAsDict objectForKey:@"url"]) {
 		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@", [responseAsDict objectForKey:@"url"]]];
-		DLog(@"the url for sending the photo is %@", url);
+		NSLog(@"the url for sending the photo is %@", url);
 		
 		newRequest = [ASIFormDataRequest requestWithURL:url];
 		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
@@ -370,7 +370,7 @@
 	
 }
 -(void)takePicture:(UITapGestureRecognizer *)sender {
-	DLog(@"take a picture");
+	NSLog(@"take a picture");
 	
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Camera or Library?" 
 															 delegate:self 
@@ -403,8 +403,8 @@
     //CGPoint translate = [sender translationInView:self.mapOverlay];
 //    CGRect newFrame = self.mapOverlay.frame;
 //	CGRect anotherFrame = self.mapOverlay.frame;
-//	DLog(@"the translate is %f, the origin is %f", translate, newFrame.origin.y);
-//	DLog(@"another frame %f", anotherFrame.origin.y);
+//	NSLog(@"the translate is %f, the origin is %f", translate, newFrame.origin.y);
+//	NSLog(@"another frame %f", anotherFrame.origin.y);
 //	//if (newFrame.origin.y >= 0)
 //	newFrame.origin.y = translate.y;
 //	
@@ -447,7 +447,7 @@
 		
 		return annotationView;
 	}
-	DLog(@"returned nil? hmmm");
+	NSLog(@"returned nil? hmmm");
 	return nil;
 }
 

@@ -22,11 +22,12 @@
 #define FILTER_IMAGE_NAME @"filter.png"
 #define GLOBAL_IMAGE_NAME @"globe-1.png"
 
-#ifdef TARGET_IPHONE_SIMULATOR
-#define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-#else
-#define DLog(...)
-#endif
+//#ifdef TARGET_IPHONE_SIMULATOR
+////#define NSLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+//#define NSLog(fmt) NSLog(fmt);
+//#else
+//#define NSLog(...)
+//#endif
 
 
 #pragma mark network constants
@@ -41,13 +42,14 @@
 #define kFBAppId @"142175135835907"
 
 #define DISH_DETAIL_CELL_IDENTIFIER @"dishdetailimagecell"
-#define RATINGS_SORT @"calculated_rating"
+//#define RATINGS_SORT @"calculated_rating"
+#define RATINGS_SORT @"posReviews"
 #define DISTANCE_SORT @"distance"
 #define PRICE_SORT @"price"
 
-#define kSortByDistance 0
-#define kSortByRating 1
-#define kSortByPrice 2
+#define kSortByDistance 1
+#define kSortByRating 2
+#define kSortByPrice 3
 
 #pragma tags
 

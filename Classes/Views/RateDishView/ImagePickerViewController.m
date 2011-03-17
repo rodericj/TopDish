@@ -25,16 +25,16 @@
     [super viewDidLoad];
 	[self.toolbar setBackgroundColor:[UIColor redColor]];
 	if([UIImagePickerController isCameraDeviceAvailable: UIImagePickerControllerCameraDeviceRear]){
-		DLog(@"Back camera exists");
+		NSLog(@"Back camera exists");
 	}
 	else{
-		DLog(@"Back camera does not exist");
+		NSLog(@"Back camera does not exist");
 	}
 	if([UIImagePickerController isCameraDeviceAvailable: UIImagePickerControllerCameraDeviceFront]){
-		DLog(@"Front camera exists");
+		NSLog(@"Front camera exists");
 	}
 	else{
-		DLog(@"Front camera does not exist");
+		NSLog(@"Front camera does not exist");
 	}
  //[self setSourceType:UIImagePickerControllerSourceTypeCamera];
 }

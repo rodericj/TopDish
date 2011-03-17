@@ -17,7 +17,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	DLog(@"setting the view for logged in logged out");
+	NSLog(@"setting the view for logged in logged out");
 
 	if ([[AppModel instance].user objectForKey:keyforauthorizing] != nil || [[[AppModel instance] facebook] isSessionValid]) {
 		AccountView *accountView = [[AccountView alloc] initWithNibName:@"AccountView" bundle:nil];

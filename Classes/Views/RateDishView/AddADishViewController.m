@@ -87,7 +87,7 @@
 #pragma mark PickerView delegate
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-	DLog(@"they picked %d", row);
+	NSLog(@"they picked %d", row);
 	pickerSelected = row;
 	
 	}
@@ -134,25 +134,25 @@
 	AppModel *app = [AppModel instance];
 	switch (selectedPath.row) {
 		case kMealType:
-			DLog(@"we selected %@", [[app mealTypeTags] objectAtIndex:pickerSelected]);
+			NSLog(@"we selected %@", [[app mealTypeTags] objectAtIndex:pickerSelected]);
 			[app setMealTypeByIndex:pickerSelected];
 			
 			break;
 		case kPriceType:
-			DLog(@"we selected %@", [[app priceTags] objectAtIndex:pickerSelected]);
+			NSLog(@"we selected %@", [[app priceTags] objectAtIndex:pickerSelected]);
 			[app setPriceTypeByIndex:pickerSelected];
 			
 			break;
 		case kAllergenType:
-			DLog(@"we selected %@", [[app allergenTags] objectAtIndex:pickerSelected]);
+			NSLog(@"we selected %@", [[app allergenTags] objectAtIndex:pickerSelected]);
 			[app setAllergenTypeByIndex:pickerSelected];
 			break;
 		case kCuisineType:
-			DLog(@"we selected %@", [[app cuisineTypeTags] objectAtIndex:pickerSelected]);
+			NSLog(@"we selected %@", [[app cuisineTypeTags] objectAtIndex:pickerSelected]);
 			[app setCuisineTypeByIndex:pickerSelected];
 			break;
 		case kLifestyleType:
-			DLog(@"we selected %@", [[app lifestyleTags] objectAtIndex:pickerSelected]);
+			NSLog(@"we selected %@", [[app lifestyleTags] objectAtIndex:pickerSelected]);
 			[app setLifestyleTypeByIndex:pickerSelected];
 			break;
 		default:
@@ -426,7 +426,7 @@
         return;
     }
 
-	DLog(@"show the picture thing");
+	NSLog(@"show the picture thing");
 	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 	[imagePicker setDelegate:self];
 	[imagePicker setAllowsEditing:YES];
@@ -467,15 +467,16 @@
 	[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
 	[request setPostValue:[NSString stringWithFormat:@"%d,%d", self.selectedMealType, self.selectedPriceType] forKey:@"tags"];
 		
-	DLog(@"the restaurant id we are sending is %@", 
+	NSLog(@"the restaurant id we are sending is %@", 
 		  [NSString stringWithFormat:@"%@",
 		   [self.restaurant restaurant_id]]);
-	DLog(@"the auth key is %@", [[[AppModel instance] user] objectForKey:keyforauthorizing]);
-	DLog(@"the price type key is %@", [NSNumber numberWithInt:self.selectedPriceType]);
-	DLog(@"the meal type key is %@", [NSNumber numberWithInt:self.selectedMealType]);
-	DLog(@"the name is %@", self.dishTitle.text);
-	DLog(@"the direction is %@", [NSNumber numberWithInt:self.rating]);
-	
+	NSLog(@"the auth key is %@", [[[AppModel instance] user] objectForKey:keyforauthorizing]);
+	NSLog(@"the price type key is %@", [NSNumber numberWithInt:self.selectedPriceType]);
+	NSLog(@"the meal type key is %@", [NSNumber numberWithInt:self.selectedMealType]);
+	NSLog(@"the name is %@", self.dishTitle.text);
+	NSLog(@"the direction is %@", [NSNumber numberWithInt:self.rating]);
+	NSLog(@"request to add dish %@", request);
+	NSLog(@"request url is %@", url);
 	mOutstandingRequests = 1;
 	[request setDelegate:self];
 	[request startAsynchronous];
@@ -486,14 +487,14 @@
 	mOutstandingRequests -= 1; 
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
-	DLog(@"response string for any of these calls %@", responseString);
+	NSLog(@"response string for any of these calls %@", responseString);
 	
 	NSError *error;
 	SBJSON *parser = [SBJSON new];
 	NSDictionary *responseAsDict = [parser objectWithString:responseString error:&error];
 	[parser release];
 	
-	DLog(@"the dictionary should be a %@", responseAsDict);
+	NSLog(@"the dictionary should be a %@", responseAsDict);
 	
 	ASIFormDataRequest *newRequest;
 	
@@ -510,21 +511,21 @@
 	if ([responseAsDict objectForKey:@"dishId"]) {
 		NSURL *url;
 		if (self.newPicture.image) {
-			DLog(@"we have the dish id, calling add photo");
+			NSLog(@"we have the dish id, calling add photo");
 			self.dishId = [[responseAsDict objectForKey:@"dishId"] intValue];
 			url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
-			DLog(@"the url for add photo is %@", url);
+			NSLog(@"the url for add photo is %@", url);
 			newRequest = [ASIFormDataRequest requestWithURL:url];
 			[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
 			[newRequest setPostValue:[NSString stringWithFormat:@"%d", self.dishId] forKey:@"dishId"];
 			[newRequest setDelegate:self];
 			[newRequest startAsynchronous];
 			mOutstandingRequests += 1;
-			DLog(@"done calling add photo, time to call rateDish");
+			NSLog(@"done calling add photo, time to call rateDish");
 		}
 		
 		url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/rateDish"]];
-		DLog(@"the url for rate dish is %@", url);
+		NSLog(@"the url for rate dish is %@", url);
 
 		newRequest = [ASIFormDataRequest requestWithURL:url];
 		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
@@ -534,12 +535,12 @@
 		[newRequest setDelegate:self];
 		[newRequest startAsynchronous];
 		mOutstandingRequests += 1;
-		DLog(@"done calling rate Dish");
+		NSLog(@"done calling rate Dish");
 		return;
 	}
 	if ([responseAsDict objectForKey:@"url"]) {
 		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@", [responseAsDict objectForKey:@"url"]]];
-		DLog(@"the url for sending the photo is %@", url);
+		NSLog(@"the url for sending the photo is %@", url);
 
 		newRequest = [ASIFormDataRequest requestWithURL:url];
 		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
@@ -560,7 +561,7 @@
 	mOutstandingRequests -= 1;
 	if (!mOutstandingRequests)
 		[self.navigationController popViewControllerAnimated:YES];	
-	DLog(@"error %@", [request error]);
+	NSLog(@"error %@", [request error]);
 }
 
 #pragma mark -
@@ -575,7 +576,7 @@
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-	DLog(@"cancelled, should we go back another level?");
+	NSLog(@"cancelled, should we go back another level?");
 	[self dismissModalViewControllerAnimated:YES];
 	//[self.navigationController popViewControllerAnimated:YES];
 }

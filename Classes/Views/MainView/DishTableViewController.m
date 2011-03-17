@@ -21,7 +21,7 @@
 #define buttonLightBlue [UIColor colorWithRed:0 green:.73 blue:.89 alpha:1 ]
 #define buttonLightBlueShine [UIColor colorWithRed:.53 green:.91 blue:.99 alpha:1]
 
-#define sortStringArray [NSArray arrayWithObjects:DISTANCE_SORT, RATINGS_SORT, PRICE_SORT, nil]
+#define sortStringArray [NSArray arrayWithObjects:@"nothing", DISTANCE_SORT, RATINGS_SORT, PRICE_SORT, nil]
 @interface DishTableViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
@@ -112,7 +112,7 @@
 	NSURLRequest *request;
 	//NSURLConnection *conn;
 	url = [NSURL URLWithString:query];
-	DLog(@"url is %@", query);
+	NSLog(@"url is %@", query);
 	//Start up the networking
 	request = [NSURLRequest requestWithURL:url];
 	self.conn = [[NSURLConnection alloc] initWithRequest:request 
@@ -122,30 +122,25 @@
 
 -(void)initiateNetworkBasedOnSegmentControl{
 
-	DLog(@"Segmentedcontrol changed, the fetchedResults controller is %@", 
+	NSLog(@"Segmentedcontrol changed, the fetchedResults controller is %@", 
 		  self.fetchedResultsController);
 
 	NSString *urlString; 
 	CLLocation *l = [[AppModel instance] currentLocation];
-
-	if (self.currentSearchTerm != nil) {
-		urlString = [NSString 
-					 stringWithFormat:@"%@/api/dishSearch?lat=%f&lng=%f&distance=%d&limit=20&q=%@",
-					 NETWORKHOST,
-					 l.coordinate.latitude,
-					 l.coordinate.longitude, 
-					 self.currentSearchDistance,
-					 [self.currentSearchTerm lowercaseString]];
-		urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+	
+	if (self.currentSearchTerm == nil) {
+		self.currentSearchTerm = @"";
 	}
 	
-	else
-		urlString = [NSString 
-					 stringWithFormat:@"%@/api/dishSearch?lat=%f&lng=%f&distance=%d&limit=20", 
-					 NETWORKHOST, 
-					 l.coordinate.latitude, 
-					 l.coordinate.longitude,
-					 self.currentSearchDistance];
+	urlString = [NSString 
+				 stringWithFormat:@"%@/api/dishSearch?lat=%f&lng=%f&distance=%d&limit=20&q=%@",
+				 NETWORKHOST,
+				 l.coordinate.latitude,
+				 l.coordinate.longitude, 
+				 self.currentSearchDistance,
+				 [self.currentSearchTerm lowercaseString]];
+	urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+	
 	
 	[self networkQuery:urlString];
 }
@@ -159,7 +154,7 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     //NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-	//DLog(@"here we are using the managed Object %@", managedObject);
+	//NSLog(@"here we are using the managed Object %@", managedObject);
 }
 #pragma mark -
 #pragma mark flip the view 
@@ -194,7 +189,7 @@
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	
 #ifndef AirplaneMode
-	DLog(@"connection did fail with error %@", error);
+	NSLog(@"connection did fail with error %@", error);
 	UIAlertView *alert;
 	alert = [[UIAlertView alloc] initWithTitle:@"NetworkError" 
 									   message:@"There was a network issue. Try again later" 
@@ -230,6 +225,7 @@
 	}
 	[self networkQuery:query];	
 }
+
 #pragma mark -
 #pragma mark Util
 -(void)processIncomingDishesWithJsonArray:(NSArray *)dishesArray {
@@ -343,11 +339,11 @@
 		[dish setRestaurant:restaurant];
 	}
 	NSError *error;
-	DLog(@"saving the incoming dishes");
+	NSLog(@"saving the incoming dishes");
 
 	if(![self.managedObjectContext save:&error]){
-		DLog(@"there was a core data error when saving incoming dishes");
-		DLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
+		NSLog(@"there was a core data error when saving incoming dishes");
+		NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
 	}
 
 	//For all of the new restaurants we just created, go fetch their data
@@ -362,7 +358,7 @@
 -(void)processIncomingRestaurantsWithJsonArray:(NSArray *)restoArray {
 	//we have a list of dishes, for each of them, query the datastore
 	//for each dish in the list
-	DLog(@"got a bunch of new restaurants from DishTableViewController, creating those");
+	NSLog(@"got a bunch of new restaurants from DishTableViewController, creating those");
 	for (NSDictionary *restoDict in restoArray) {
 		//   query the datastore
 		NSFetchRequest *restoFetchRequest = [[NSFetchRequest alloc] init];
@@ -452,10 +448,10 @@
 		}
 	}
 	NSError *error;
-	DLog(@"saving the incoming restaurants");
+	NSLog(@"saving the incoming restaurants");
 	if(![self.managedObjectContext save:&error]){
-		DLog(@"there was a core data error when saving incoming restaurants");
-		DLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
+		NSLog(@"there was a core data error when saving incoming restaurants");
+		NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
 	}
 }
 
@@ -467,15 +463,15 @@
 	NSDictionary *responseAsDictionary = [parser objectWithString:responseText 
 															error:&error];
 	if ([[responseAsDictionary objectForKey:@"rc"] intValue] != 0) {
-		DLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
+		NSLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
 		[parser release];
 		return;
 	}
 	
 	if(error != nil){
-		DLog(@"there was an error when jsoning");
-		DLog(@"jsoning error %@", error);
-		DLog(@"the offensive json %@", responseText);
+		NSLog(@"there was an error when jsoning");
+		NSLog(@"jsoning error %@", error);
+		NSLog(@"the offensive json %@", responseText);
 	}
 	
 	[self processIncomingDishesWithJsonArray:[responseAsDictionary objectForKey:@"dishes"]];
@@ -494,7 +490,7 @@
 	while (anObject = (NSDictionary *)[enumerator nextObject]){
 		[ret addObject:[anObject objectForKey:key]];
 	}
-	//DLog(@"At the end of all that, the return is %@", ret);
+	//NSLog(@"At the end of all that, the return is %@", ret);
 	[ret sortUsingSelector:@selector(compare:)];
 	return ret;
 }
@@ -515,21 +511,21 @@
 		
 		NSString *attributeName = @"objName";
 		NSString *attributeValue = self.currentSearchTerm;
-		DLog(@"the predicate we are sending: %@ contains(cd) %@ AND %@ == %d",
+		NSLog(@"the predicate we are sending: %@ contains(cd) %@ AND %@ == %d",
 			  attributeName, attributeValue,
 			  @"price", [[AppModel instance] selectedPrice]);
 		
 		filterPredicate = [NSPredicate predicateWithFormat:@"%K contains[cd] %@",
 						   attributeName, attributeValue];
 		
-		DLog(@"the real predicate is %@", filterPredicate);
+		NSLog(@"the real predicate is %@", filterPredicate);
 		[filterPredicateArray addObject:filterPredicate];
 	}
 	
 	//Filter based on price
 	if ([[[AppModel instance] selectedPrice] intValue] != 0) {
 		
-		DLog(@"the else predicate %@ == %d", 
+		NSLog(@"the else predicate %@ == %d", 
 			  @"price", [[AppModel instance] selectedPrice]);
 		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
 						   @"price", [app selectedPrice]];
@@ -571,7 +567,7 @@
 
 }
 -(void) updateFetch {
-	DLog(@"updating the fetch");
+	NSLog(@"updating the fetch");
 	/*
      Set up the fetched results controller.
 	 */
@@ -588,9 +584,10 @@
 	NSMutableArray *filterPredicateArray = [NSMutableArray array];
 	
 	[self populatePredicateArray:filterPredicateArray];
-	if ([self respondsToSelector:@selector(restaurantDetailFilter)]) {
+	
+	if ([self respondsToSelector:@selector(restaurantDetailFilter)])
 		[filterPredicateArray addObject:[self restaurantDetailFilter]];
-	}
+	
 	NSPredicate *fullPredicate = [NSCompoundPredicate 
 								  andPredicateWithSubpredicates:filterPredicateArray]; 
 
@@ -600,12 +597,19 @@
 	[fetchRequest setFetchBatchSize:20];
     
 	//Create array with sort params, then store in NSUserDefaults
-	NSString *sorter = [sortStringArray objectAtIndex:[[AppModel instance] sorter]];
-
+	BOOL ascending = TRUE;
+	int sorterValue = [[AppModel instance] sorter];
+	if (sorterValue < 0) {
+		ascending = FALSE;
+		sorterValue = -sorterValue;
+	}
+	
+	NSString *sorter = [sortStringArray objectAtIndex:sorterValue];
+	NSLog(@"sorter is %@", sorter);
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = 
 	[[NSSortDescriptor alloc] initWithKey:sorter 
-								ascending:TRUE];
+								ascending:ascending];
 	
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -627,7 +631,7 @@
 	//self.currentSearchTerm = nil;
     NSError *error = nil;
     if (![mFetchedResultsController performFetch:&error]) {
-        DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
 	
@@ -646,7 +650,7 @@
 #pragma mark -
 #pragma mark Table view data delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	DLog(@"adding this didSelect");
+	NSLog(@"adding this didSelect");
 	[self.theSearchBar resignFirstResponder];
 	ObjectWithImage *selectedObject;
 	//self.fetchedResultsController = nil;
@@ -661,7 +665,7 @@
 }
 
 -(void) pushDishViewController:(ObjectWithImage *) selectedObject{
-	DLog(@"DishName from DishTableViewController %@", [selectedObject objName]);
+	NSLog(@"DishName from DishTableViewController %@", [selectedObject objName]);
 	
 	DishDetailViewController *detailViewController = [[DishDetailViewController alloc] initWithNibName:@"DishDetailViewController" bundle:nil];
 	[detailViewController setThisDish:(Dish*)selectedObject];
@@ -729,7 +733,7 @@
 	if ([thisDish mealType])
 		mealType.text = [app tagNameForTagId:[thisDish mealType]];
 	else {
-		DLog(@"is something wrong with this dish's mealType %@", [thisDish mealType]);
+		NSLog(@"is something wrong with this dish's mealType %@", [thisDish mealType]);
 		NSString *n = [NSString stringWithFormat:@"This dish has a bad mealtype %@", [thisDish dish_id]];
 		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Data Error" 
 															message:n 
@@ -781,7 +785,8 @@
 	if ([thisDish price])
 		priceNumber.text = [app tagNameForTagId:[thisDish price]];
 	else {
-		DLog(@"is something wrong with this dish's (%@) price ", [thisDish objName]);
+		NSLog(@"this dish is %@", thisDish);
+		NSLog(@"is something wrong with this dish's (%@) price ", [thisDish objName]);
 	}
 
 
@@ -790,12 +795,12 @@
 	AsyncImageView *asyncImage = [[[AsyncImageView alloc] initWithFrame:[imageView frame]] autorelease];
 	asyncImage.tag = 999;
 	if ([thisDish imageData]) {
-		DLog(@"we've got this image, no need to load it");
+		NSLog(@"we've got this image, no need to load it");
 		//set the image with what we've got
 		imageView.image = [UIImage imageWithData:[thisDish imageData]];
 	}
 	else{
-		//DLog(@"don't have this image, loading it %@", [thisDish photoURL]);
+		//NSLog(@"don't have this image, loading it %@", [thisDish photoURL]);
 		if( [[thisDish photoURL] length] > 0 ){
 			NSRange aRange = [[thisDish photoURL] rangeOfString:@"http://"];
 			NSString *prefix = @"";
@@ -836,27 +841,44 @@
 
 -(IBAction) sortByDistance
 {
-	DLog(@"sort by distance");
-	[[AppModel instance] setSorter:kSortByDistance];
+	NSLog(@"sort by distance");
+	
+	if ([[AppModel instance] sorter] == kSortByDistance)
+		[[AppModel instance] setSorter:-kSortByDistance];
+	else {
+		[[AppModel instance] setSorter:kSortByDistance];
+	}
+	
 	[self updateFetch];
 }
 -(IBAction) sortByRating
 {
-	DLog(@"sort by Rating");
-	[[AppModel instance] setSorter:kSortByRating];
+	NSLog(@"sort by Rating %d", [[AppModel instance] sorter]);
+	if ([[AppModel instance] sorter] == kSortByRating)
+		[[AppModel instance] setSorter:-kSortByRating];
+	else {
+		[[AppModel instance] setSorter:kSortByRating];
+	}
+
 	[self updateFetch];
 }
 -(IBAction) sortByPrice
 {
-	DLog(@"sort by Price");
-	[[AppModel instance] setSorter:kSortByPrice];
+	NSLog(@"sort by Price");
+	
+	if ([[AppModel instance] sorter] == kSortByPrice)
+		[[AppModel instance] setSorter:-kSortByPrice];
+	else {
+		[[AppModel instance] setSorter:kSortByPrice];
+	}
+	
 	[self updateFetch];
 }
 
 #pragma mark -
 #pragma mark Location
 - (void)locationError:(NSError *)error {
-	DLog(@"Error getting location %@", error);
+	NSLog(@"Error getting location %@", error);
 }
 	
 - (void)locationUpdate:(CLLocation *)location {
@@ -869,7 +891,7 @@
 }
 
 - (void)getNearbyItems:(CLLocation *)location {
-	DLog(@"getNearbyItems Called %@. Accuracy: %d, %d", [location description], location.verticalAccuracy, location.horizontalAccuracy);
+	NSLog(@"getNearbyItems Called %@. Accuracy: %d, %d", [location description], location.verticalAccuracy, location.horizontalAccuracy);
 	
 	//NSAssert(location != NULL, @"the location was null which means that the thread is doing something intersting. Lets send this back.");
 	[self initiateNetworkBasedOnSegmentControl];
@@ -987,7 +1009,7 @@
 		 from the error, display an alert panel that instructs the user to quit 
 		 the application by pressing the Home button.
          */
-        DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
     
@@ -1007,7 +1029,7 @@
 }	
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-	DLog(@"the search bar text changed %@", searchText);
+	NSLog(@"the search bar text changed %@", searchText);
 	
 	//Send the network request
 	self.currentSearchTerm = searchText;

@@ -29,6 +29,7 @@ AppModel *gAppModelInstance = nil;
 	
 	if (!gAppModelInstance) {
 		gAppModelInstance = [[AppModel alloc] init];
+		gAppModelInstance.sorter = 1;
 	}
 	return gAppModelInstance;
 }
@@ -81,7 +82,7 @@ AppModel *gAppModelInstance = nil;
 	}
 	
 	for (NSDictionary *tag in tags) {
-		//DLog(@"tag is %@", tag);
+		//NSLog(@"tag is %@", tag);
 		[mIdToTagLookup setObject:tag forKey:[tag objectForKey:@"id"]];
 	}
 	
@@ -165,7 +166,7 @@ AppModel *gAppModelInstance = nil;
 	//NSDictionary *d = [mIdToTagLookup objectForKey:tagId];
 	//NSString *a = [d objectForKey:@"name"];
 	//TODO figure out why i'm not getting anything here
-	//DLog(@"at this point we are getting basically nothing out of the dictionary %@ %@", mIdToTagLookup, a);
+	//NSLog(@"at this point we are getting basically nothing out of the dictionary %@ %@", mIdToTagLookup, a);
 	return [[mIdToTagLookup objectForKey:tagId] objectForKey:@"name"];
 }
 
@@ -179,6 +180,15 @@ AppModel *gAppModelInstance = nil;
 	[self createFacebookObject];
 
 }
++(NSNumber *)extractTag:(NSString *)key fromArrayOfTags:(NSArray *)tagsArray {
+	for (NSDictionary *tagDict in tagsArray){
+		if ([[tagDict objectForKey:@"type"] isEqualToString:key]) {
+			return [tagDict objectForKey:@"id"];
+		}
+	}
+	return nil;
+}
+
 -(void) dealloc
 {
 	self.user = nil;
