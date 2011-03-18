@@ -10,7 +10,7 @@
 #import "AppModel.h"
 #import "constants.h"
 
-#define kNumberOfDifferentTypes 4
+#define kNumberOfDifferentTypes 5
 
 #define kFilterRowsSection 0
 
@@ -26,17 +26,6 @@
 - (void)viewDidLoad {
 	self.view.backgroundColor = kTopDishBackground;
 	self.tableView.tableFooterView = self.footerView;
-
-	
-	//NSLog(@"loading and the selectedmeal type is %d", [[AppModel instance] selectedMeal]);
-	//int count = 0;
-
-	//for (NSDictionary *d in [[AppModel instance] mealTypeTags]) {
-//		if ([d objectForKey:@"id"] == [[AppModel instance] selectedMeal]) {
-//			continue;
-//		}
-//		count++;
-//	}
 }
 
 #pragma mark -
