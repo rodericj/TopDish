@@ -12,6 +12,8 @@ iPhoneSDKCertificates/*
 build
 *.mode1v3
 
+distribution/
+
 # osx noise
 .DS_Store
 
