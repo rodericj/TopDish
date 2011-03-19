@@ -11,11 +11,11 @@
 #import "Restaurant.h"
 #import "NearbyMapViewController.h"
 #import "constants.h"
-#import "SBJSON.h"
 #import "SettingsView1.h"
 #import "AppModel.h"
 #import "asyncimageview.h"
 #import "DishDetailViewController.h"
+#import "IncomingProcessor.h"
 
 #define kTopDishBlue [UIColor colorWithRed:0 green:.3843 blue:.5725 alpha:1]
 #define buttonLightBlue [UIColor colorWithRed:0 green:.73 blue:.89 alpha:1 ]
@@ -44,7 +44,6 @@
 @synthesize managedObjectContext = mManagedObjectContext;
 @synthesize fetchedResultsController = mFetchedResultsController;
 
-@synthesize conn = mConn;
 @synthesize responseData = mResponseData;
 
 #pragma mark -
@@ -115,9 +114,10 @@
 	NSLog(@"url is %@", query);
 	//Start up the networking
 	request = [NSURLRequest requestWithURL:url];
-	self.conn = [[NSURLConnection alloc] initWithRequest:request 
+	NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request 
 												delegate:self 
 										startImmediately:TRUE];
+	[conn release];
 }
 
 -(void)initiateNetworkBasedOnSegmentControl{
@@ -179,8 +179,13 @@
 												   encoding:NSASCIIStringEncoding];
 	
 	NSString *responseTextStripped = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
-	[self processIncomingNetworkText:responseTextStripped];
-	self.conn = nil;
+	
+	//Send this incoming content to the IncomingProcessor Object
+
+	
+	IncomingProcessor *proc = [[IncomingProcessor alloc] init];
+	[proc taskWithData:responseTextStripped];
+	[proc release];
 	[responseText release];
 	
 }
@@ -202,7 +207,6 @@
 	//Airplane mode must set _responseText
 	[self processIncomingNetworkText:DishSearchResponseText];
 #endif
-	self.conn = nil;
 	self.responseData = nil;
 }
 
@@ -217,271 +221,6 @@
 	}
 }
 
--(void)initiateGrabNewRestaurants:(NSArray *)newRestaurantIds {
-	NSMutableString *query = [NSMutableString stringWithFormat:@"%@%@", NETWORKHOST, @"/api/restaurantDetail?"];
-	
-	for (NSNumber *n in newRestaurantIds) {
-		[query appendString:[NSString stringWithFormat:@"id[]=%@&", n]];
-	}
-	[self networkQuery:query];	
-}
-
-#pragma mark -
-#pragma mark Util
--(void)processIncomingDishesWithJsonArray:(NSArray *)dishesArray {
-	//we have a list of dishes, for each of them, query the datastore
-	//for each dish in the list
-	NSMutableArray *newRestaurantsWeNeedToGet = [NSMutableArray array];
-	for (NSDictionary *dishDict in dishesArray) {
-		//   query the datastore
-		NSFetchRequest *dishFetchRequest = [[NSFetchRequest alloc] init];
-		NSEntityDescription *whichType = [NSEntityDescription entityForName:@"Dish" 
-													   inManagedObjectContext:self.managedObjectContext];
-		NSPredicate *dishFilter = [NSPredicate predicateWithFormat:@"(dish_id == %@)", 
-								   [dishDict objectForKey:@"id"]];
-		
-		[dishFetchRequest setEntity:whichType];
-		 
-		[dishFetchRequest setPredicate:dishFilter];
-		NSError *error;
-		NSArray *dishesMatching = [self.managedObjectContext
-										 executeFetchRequest:dishFetchRequest error:&error];
-		[dishFetchRequest release];
-	
-		Dish *dish;
-		//   if it exists, update
-		if ([dishesMatching count] == 1) {
-			dish = [dishesMatching objectAtIndex:0];
-		}		
-		//   else 
-		else if ([dishesMatching count] == 0) {
-			//       add it
-			dish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" 
-																	inManagedObjectContext:self.managedObjectContext];
-		}
-		else {
-			NSString *errorString = [NSString stringWithFormat:@"There were %d dishes matching id %d", 
-			 [dishesMatching count],
-			 [dishDict objectForKey:@"id"]];
-			NSAssert(TRUE, errorString);
-		}
-		[dish setDish_id:[dishDict objectForKey:@"id"]];
-		
-		[dish setObjName:[NSString stringWithFormat:@"%@", [dishDict objectForKey:@"name"]]];
-		[dish setDish_description:[dishDict objectForKey:@"description"]];
-		[dish setLatitude:[dishDict objectForKey:@"latitude"]];
-		[dish setLongitude:[dishDict objectForKey:@"longitude"]];
-		[dish setNegReviews:[dishDict objectForKey:@"negReviews"]];
-		[dish setPhotoURL:[dishDict objectForKey:@"photoURL"]];
-		[dish setPosReviews:[dishDict objectForKey:@"posReviews"]];
-		
-		CLLocation *l = [[CLLocation alloc] initWithLatitude:[[dish latitude] floatValue] longitude:[[dish longitude] floatValue]];
-		CLLocationDistance dist = [l distanceFromLocation:[[AppModel instance] currentLocation]];
-		[l release];
-		float distanceInMiles = dist/1609.344; 
-		[dish setDistance:[NSNumber numberWithFloat:distanceInMiles]];
-				
-		NSArray *tagsArray = [dishDict objectForKey:@"tags"];
-		for (NSDictionary *tag in tagsArray){
-			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kMealTypeString] )
-				[dish setMealType:[tag objectForKey:@"id"]];
-			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kPriceTypeString] )						
-				[dish setPrice:[tag objectForKey:@"id"]];			
-			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kLifestyleTypeString] )						
-				[dish setLifestyleType:[tag objectForKey:@"id"]];			
-			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kCuisineTypeString] )						
-				[dish setCuisineType:[tag objectForKey:@"id"]];
-			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kAllergenTypeString] )						
-				[dish setAllergenType:[tag objectForKey:@"id"]];
-			
-		}	
-		
-		//query it's restaurant
-		NSFetchRequest *restoFetchRequest = [[NSFetchRequest alloc] init];
-		whichType = [NSEntityDescription entityForName:@"Restaurant" 
-								inManagedObjectContext:self.managedObjectContext];
-		NSPredicate *restaurantFilter = [NSPredicate predicateWithFormat:@"(restaurant_id == %@)", 
-								   [dishDict objectForKey:@"restaurantID"]];
-		
-		[restoFetchRequest setEntity:whichType];
-		
-		[restoFetchRequest setPredicate:restaurantFilter];
-		NSArray *restosMatching = [self.managedObjectContext
-								   executeFetchRequest:restoFetchRequest error:&error];
-		[restoFetchRequest release];
-		
-		Restaurant *restaurant;
-		//   if it exists, update
-		if ([restosMatching count] == 1) {
-			restaurant = [restosMatching objectAtIndex:0];
-		}		
-		//   else 
-		else if ([restosMatching count] == 0) {
-			restaurant = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" 
-														 inManagedObjectContext:self.managedObjectContext];	
-			[newRestaurantsWeNeedToGet addObject:[dishDict objectForKey:@"restaurantID"]];
-		}
-		else {
-			NSString *s = [NSString stringWithFormat:@"There were %d restaurants matching id %d", 
-			 [restosMatching count],
-			 [dishDict objectForKey:@"restaurantID"]];
-			NSAssert(TRUE, s);
-		}
-
-		[restaurant setRestaurant_id:[dishDict objectForKey:@"restaurantID"]];
-		[restaurant setObjName:[NSString stringWithFormat:@"%@", [dishDict objectForKey:@"restaurantName"]]];
-		
-		//Should be no extra work setting lat/long and distance
-		[restaurant setLatitude:[dishDict objectForKey:@"latitude"]];
-		[restaurant setLongitude:[dishDict objectForKey:@"longitude"]];
-		[restaurant setDistance:[NSNumber numberWithFloat:distanceInMiles]];
-
-		[dish setRestaurant:restaurant];
-	}
-	NSError *error;
-	NSLog(@"saving the incoming dishes");
-
-	if(![self.managedObjectContext save:&error]){
-		NSLog(@"there was a core data error when saving incoming dishes");
-		NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
-	}
-
-	//For all of the new restaurants we just created, go fetch their data
-	if ([newRestaurantsWeNeedToGet count] > 0) {
-		
-		[self initiateGrabNewRestaurants:newRestaurantsWeNeedToGet];
-	}
-	[self updateFetch];
-
-}
-
--(void)processIncomingRestaurantsWithJsonArray:(NSArray *)restoArray {
-	//we have a list of dishes, for each of them, query the datastore
-	//for each dish in the list
-	NSLog(@"got a bunch of new restaurants from DishTableViewController, creating those");
-	for (NSDictionary *restoDict in restoArray) {
-		//   query the datastore
-		NSFetchRequest *restoFetchRequest = [[NSFetchRequest alloc] init];
-		NSEntityDescription *whichType = [NSEntityDescription entityForName:@"Restaurant" 
-													 inManagedObjectContext:self.managedObjectContext];
-		NSPredicate *restoFilter = [NSPredicate predicateWithFormat:@"(restaurant_id == %@)", 
-								   [restoDict objectForKey:@"id"]];
-		
-		[restoFetchRequest setEntity:whichType];
-		
-		[restoFetchRequest setPredicate:restoFilter];
-		NSError *error;
-		NSArray *restoMatching = [self.managedObjectContext
-								   executeFetchRequest:restoFetchRequest error:&error];
-		[restoFetchRequest release];
-		
-		Restaurant *restaurant;
-		//   if it exists, update
-		if ([restoMatching count] == 1) {
-			restaurant = [restoMatching objectAtIndex:0];
-		}		
-		//   else 
-		else if ([restoMatching count] == 0) {
-			//       add it
-			restaurant = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" 
-														 inManagedObjectContext:self.managedObjectContext];
-		}
-		else {
-			NSString *s = [NSString stringWithFormat:@"There were %d restaurants matching id %d", 
-						   [restoMatching count],
-						   [restoDict objectForKey:@"id"]];
-			NSAssert(TRUE, s);
-		}
-		//Do all of the restaurant data setting
-		
-		[restaurant setRestaurant_id:[restoDict objectForKey:@"id"]];
-		[restaurant setObjName:[NSString stringWithFormat:@"%@", [restoDict objectForKey:@"name"]]];
-		[restaurant setLatitude:[restoDict objectForKey:@"latitude"]];
-		[restaurant setLongitude:[restoDict objectForKey:@"longitude"]];
-		[restaurant setPhone:[restoDict objectForKey:@"phone"]];
-		[restaurant setPhotoURL:[restoDict objectForKey:@"photoURL"]];
-		[restaurant setAddressLine1:[restoDict objectForKey:@"addressLine1"]];
-		[restaurant setAddressLine2:[restoDict objectForKey:@"addressLine2"]];
-		[restaurant setCity:[restoDict objectForKey:@"city"]];
-		[restaurant setState:[restoDict objectForKey:@"state"]];
-		
-		for (NSDictionary *restoDishesDict in [restoDict objectForKey:@"dishes"]) {
-			//query it's Dishes
-			NSFetchRequest *restoFetchRequest = [[NSFetchRequest alloc] init];
-			whichType = [NSEntityDescription entityForName:@"Dish" 
-									inManagedObjectContext:self.managedObjectContext];
-			NSPredicate *restosDishesFilter = [NSPredicate predicateWithFormat:@"(dish_id == %@)", 
-											 [restoDishesDict objectForKey:@"id"]];
-			
-			[restoFetchRequest setEntity:whichType];
-			
-			[restoFetchRequest setPredicate:restosDishesFilter];
-			NSArray *restosDishesMatching = [self.managedObjectContext
-									   executeFetchRequest:restoFetchRequest error:&error];
-			[restoFetchRequest release];
-			
-			Dish *dish;
-			//   if it exists, update
-			if ([restosDishesMatching count] == 1) {
-				dish = [restosDishesMatching objectAtIndex:0];
-			}		
-			//   else 
-			else if ([restosDishesMatching count] == 0) {
-				dish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" 
-																		 inManagedObjectContext:self.managedObjectContext];		
-			}
-			else {
-				NSString *s = [NSString stringWithFormat: @"There were %d dishes matching id %d", 
-				 [restosDishesMatching count],
-				 [restoDishesDict objectForKey:@"id"]];
-				NSAssert(TRUE, s);
-			}
-			[dish setDish_description:[restoDishesDict objectForKey:@"description"]];
-			[dish setDish_id:[restoDishesDict objectForKey:@"id"]];
-			[dish setLatitude:[restoDishesDict objectForKey:@"latitude"]];
-			[dish setLongitude:[restoDishesDict objectForKey:@"longitude"]];
-			[dish setObjName:[NSString stringWithFormat:@"%@", [restoDishesDict objectForKey:@"name"]]];
-			[dish setNegReviews:[restoDishesDict objectForKey:@"negReviews"]];
-			[dish setPhotoURL:[restoDishesDict objectForKey:@"photoURL"]];
-			[dish setPosReviews:[restoDishesDict objectForKey:@"posReviews"]];
-			[dish setRestaurant:restaurant];
-		}
-	}
-	NSError *error;
-	NSLog(@"saving the incoming restaurants");
-	if(![self.managedObjectContext save:&error]){
-		NSLog(@"there was a core data error when saving incoming restaurants");
-		NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
-	}
-}
-
-
--(void)processIncomingNetworkText:(NSString *)responseText{
-	SBJSON *parser = [SBJSON new];
-	NSError *error = nil;
-
-	NSDictionary *responseAsDictionary = [parser objectWithString:responseText 
-															error:&error];
-	if ([[responseAsDictionary objectForKey:@"rc"] intValue] != 0) {
-		NSLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
-		[parser release];
-		return;
-	}
-	
-	if(error != nil){
-		NSLog(@"there was an error when jsoning");
-		NSLog(@"jsoning error %@", error);
-		NSLog(@"the offensive json %@", responseText);
-	}
-	
-	[self processIncomingDishesWithJsonArray:[responseAsDictionary objectForKey:@"dishes"]];
-	[self processIncomingRestaurantsWithJsonArray:[responseAsDictionary objectForKey:@"restaurants"]];
-	[parser release];
-	
-	[self updateFetch];
-	self.responseData = nil;
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-}
 
 -(NSArray *)getArrayOfIdsWithArray:(NSArray *)responseAsArray withKey:(NSString *)key{
 	NSEnumerator *enumerator = [responseAsArray objectEnumerator];
@@ -639,13 +378,6 @@
 	[self.tableView reloadData];
 
 }
-
-#pragma mark -
-#pragma mark Table view data source
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // The table view should not be re-orderable.
-    return NO;
-}
  
 #pragma mark -
 #pragma mark Table view data delegate
@@ -785,8 +517,7 @@
 	if ([thisDish price])
 		priceNumber.text = [app tagNameForTagId:[thisDish price]];
 	else {
-		NSLog(@"this dish is %@", thisDish);
-		NSLog(@"is something wrong with this dish's (%@) price ", [thisDish objName]);
+		NSLog(@"is something wrong with this dish's (%@) price (%@) ", [thisDish objName], [thisDish objName]);
 	}
 
 
@@ -985,7 +716,6 @@
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    //NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] 
 															 initWithFetchRequest:fetchRequest 
 															 managedObjectContext:self.managedObjectContext 
@@ -1058,7 +788,6 @@
 	self.managedObjectContext = nil;
 	self.fetchedResultsController = nil;
 	
-	self.conn = nil;
 	self.responseData = nil;
 
 	[super dealloc];

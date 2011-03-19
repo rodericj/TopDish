@@ -66,7 +66,6 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
-@property (nonatomic, retain) NSURLConnection *conn;
 @property (nonatomic, retain) NSMutableData *responseData;
 
 -(void) networkQuery:(NSString *)query;

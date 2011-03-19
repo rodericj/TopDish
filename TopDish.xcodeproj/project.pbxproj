@@ -11,6 +11,7 @@
 		1777A18D13310A3B00E3F4B9 /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A18A13310A3B00E3F4B9 /* Dish.m */; };
 		1777A18E13310A3B00E3F4B9 /* ObjectWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A18C13310A3B00E3F4B9 /* ObjectWithImage.m */; };
 		17BBAFD81301AC2400705F1A /* CommentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17BBAFD71301AC2400705F1A /* CommentsCell.xib */; };
+		17C4A5B813353E7E005D950B /* IncomingProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C4A5B713353E7E005D950B /* IncomingProcessor.m */; };
 		17DA5E411322BEDA00867B66 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5E351322BEDA00867B66 /* Facebook.m */; };
 		17DA5E421322BEDA00867B66 /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5E361322BEDA00867B66 /* FBConnect.bundle */; };
 		17DA5E431322BEDA00867B66 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5E381322BEDA00867B66 /* FBDialog.bundle */; };
@@ -129,6 +130,8 @@
 		1777A18B13310A3B00E3F4B9 /* ObjectWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectWithImage.h; sourceTree = "<group>"; };
 		1777A18C13310A3B00E3F4B9 /* ObjectWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectWithImage.m; sourceTree = "<group>"; };
 		17BBAFD71301AC2400705F1A /* CommentsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsCell.xib; sourceTree = "<group>"; };
+		17C4A5B613353E7E005D950B /* IncomingProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IncomingProcessor.h; path = lib/IncomingProcessor.h; sourceTree = "<group>"; };
+		17C4A5B713353E7E005D950B /* IncomingProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IncomingProcessor.m; path = lib/IncomingProcessor.m; sourceTree = "<group>"; };
 		17DA5E341322BEDA00867B66 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Facebook.h; path = lib/FBConnect/Facebook.h; sourceTree = "<group>"; };
 		17DA5E351322BEDA00867B66 /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Facebook.m; path = lib/FBConnect/Facebook.m; sourceTree = "<group>"; };
 		17DA5E361322BEDA00867B66 /* FBConnect.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBConnect.bundle; path = lib/FBConnect/FBConnect.bundle; sourceTree = "<group>"; };
@@ -553,6 +556,8 @@
 				17DA5F2C1322C82700867B66 /* asyncimageview.m */,
 				17DA5F2D1322C82700867B66 /* NSArray+PerformSelector.h */,
 				17DA5F2E1322C82700867B66 /* NSArray+PerformSelector.m */,
+				17C4A5B613353E7E005D950B /* IncomingProcessor.h */,
+				17C4A5B713353E7E005D950B /* IncomingProcessor.m */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -826,6 +831,7 @@
 				1777A001133060A600E3F4B9 /* RestaurantOrDishAnnotation.m in Sources */,
 				1777A18D13310A3B00E3F4B9 /* Dish.m in Sources */,
 				1777A18E13310A3B00E3F4B9 /* ObjectWithImage.m in Sources */,
+				17C4A5B813353E7E005D950B /* IncomingProcessor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

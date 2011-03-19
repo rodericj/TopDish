@@ -317,7 +317,6 @@
 
 -(void) populatePredicateArray:(NSMutableArray *)filterPredicateArray{
 	NSPredicate *filterPredicate;
-	AppModel *app = [AppModel instance];
 	
 	//Filter based on search
 	if (self.currentSearchTerm && [self.currentSearchTerm length] > 0) {

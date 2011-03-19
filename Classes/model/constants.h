@@ -5,7 +5,9 @@
 //  Created by Roderic Campbell on 10/10/10.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
+#import "TopDishAppDelegate.h"
 
+#define kManagedObjectContect [(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext]
 
 #define MAXRESTAURANTNAMELENGTH 26
 #define OBJECTDETAILIMAGECELLHEIGHT 88
