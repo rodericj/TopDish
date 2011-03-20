@@ -44,8 +44,6 @@
 @synthesize managedObjectContext = mManagedObjectContext;
 @synthesize fetchedResultsController = mFetchedResultsController;
 
-@synthesize responseData = mResponseData;
-
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -117,6 +115,10 @@
 	NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request 
 												delegate:self 
 										startImmediately:TRUE];
+	if (!mConnectionLookup) {
+		mConnectionLookup = [[NSMutableDictionary dictionary] retain];
+	}
+	[mConnectionLookup setObject:[NSMutableData data] forKey:[conn description]];
 	[conn release];
 }
 
@@ -175,14 +177,17 @@
 #pragma mark network connection stuff
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
-	NSString *responseText = [[NSString alloc] initWithData:self.responseData 
+	NSData *thisResponseData = [mConnectionLookup objectForKey:[theConnection description]];
+
+	
+	NSString *responseText = [[NSString alloc] initWithData:thisResponseData 
 												   encoding:NSASCIIStringEncoding];
 	
 	NSString *responseTextStripped = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
 	
 	//Send this incoming content to the IncomingProcessor Object
 
-	
+	NSLog(@"responseTextStripped %@", responseTextStripped);
 	IncomingProcessor *proc = [[IncomingProcessor alloc] init];
 	[proc taskWithData:responseTextStripped];
 	[proc release];
@@ -192,7 +197,8 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	
+	[mConnectionLookup removeObjectForKey:[connection description]];
+
 #ifndef AirplaneMode
 	NSLog(@"connection did fail with error %@", error);
 	UIAlertView *alert;
@@ -207,18 +213,12 @@
 	//Airplane mode must set _responseText
 	[self processIncomingNetworkText:DishSearchResponseText];
 #endif
-	self.responseData = nil;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-	if(self.responseData == nil){
-		self.responseData = [[NSMutableData alloc] initWithData:data];
-	}
-	else{
-		if (data) {
-			[self.responseData appendData:data];
-		}
-	}
+	NSMutableData *thisResponseData = [mConnectionLookup objectForKey:[connection description]];
+	if (data)
+		[thisResponseData appendData:data];
 }
 
 
@@ -613,7 +613,6 @@
 }
 	
 - (void)locationUpdate:(CLLocation *)location {
-	//TODO should probably go through each of the dishes and update their distance (inefficient?)
 	[[AppModel instance] setCurrentLocation:location];
 	[self getNearbyItems:location];
 	locationController = [[MyCLController alloc] init];
@@ -788,8 +787,7 @@
 	self.managedObjectContext = nil;
 	self.fetchedResultsController = nil;
 	
-	self.responseData = nil;
-
+	[mConnectionLookup release];
 	[super dealloc];
 
 }

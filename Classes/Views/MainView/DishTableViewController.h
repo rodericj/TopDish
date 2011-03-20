@@ -34,11 +34,11 @@
     NSFetchedResultsController *mFetchedResultsController;
 
 	NSURLConnection *mConn;
-	NSMutableData *mResponseData;
 
 	UITableViewCell				*mAddItemCell;
 	UITableViewCell				*mTvCell;
 
+	NSMutableDictionary *mConnectionLookup;
 }
 
 - (void) updateFetch;
@@ -66,7 +66,6 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
-@property (nonatomic, retain) NSMutableData *responseData;
 
 -(void) networkQuery:(NSString *)query;
 -(void)processIncomingNetworkText:(NSString *)responseText;
