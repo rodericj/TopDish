@@ -75,17 +75,6 @@
 	
 }
 
--(void) networkQuery:(NSString *)query{
-	NSURL *url;
-	NSURLRequest *request;
-	url = [NSURL URLWithString:query];
-	NSLog(@"url is %@", query);
-	//Start up the networking
-	request = [NSURLRequest requestWithURL:url];
-	[[[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE] autorelease]; 
-	
-}
-
 #pragma mark -
 #pragma mark fetch handling
 -(NSPredicate *)restaurantDetailFilter {
