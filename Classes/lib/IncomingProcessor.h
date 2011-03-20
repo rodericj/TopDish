@@ -11,7 +11,7 @@
 
 @interface IncomingProcessor : NSObject {
 	NSMutableData *mResponseData;
-
+	NSMutableDictionary *mConnectionLookup;
 }
 
 @property (nonatomic, retain) NSMutableData *responseData;

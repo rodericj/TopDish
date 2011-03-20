@@ -17,7 +17,6 @@
 
 @synthesize responseData = mResponseData;
 
-
 #pragma mark -
 #pragma mark Util
 
@@ -35,7 +34,9 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
-	NSString *responseText = [[NSString alloc] initWithData:self.responseData 
+	NSData *thisResponseData = [mConnectionLookup objectForKey:[theConnection description]];
+	
+	NSString *responseText = [[NSString alloc] initWithData:thisResponseData 
 												   encoding:NSASCIIStringEncoding];
 	
 	NSString *responseTextStripped = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
@@ -43,15 +44,15 @@
 	//Send this incoming content to the IncomingProcessor Object	
 	[self processIncomingNetworkText:responseTextStripped];
 	[responseText release];
-	self.responseData = nil;
 	
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
+
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	
+	[mConnectionLookup removeObjectForKey:[connection description]];
+
 #ifndef AirplaneMode
-	NSLog(@"connection did fail with error %@", error);
 	UIAlertView *alert;
 	alert = [[UIAlertView alloc] initWithTitle:@"NetworkError" 
 									   message:@"There was a network issue. Try again later" 
@@ -64,25 +65,20 @@
 	//Airplane mode must set _responseText
 	[self processIncomingNetworkText:DishSearchResponseText];
 #endif
-	self.responseData = nil;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-	if(self.responseData == nil){
-		self.responseData = [[NSMutableData alloc] initWithData:data];
-	}
-	else{
-		if (data) {
-			[self.responseData appendData:data];
-		}
-	}
+	NSMutableData *thisResponseData = [mConnectionLookup objectForKey:[connection description]];
+	
+	if (data)
+		[thisResponseData appendData:data];
 }
 
 
 -(void) networkQuery:(NSString *)query{
+
 	NSURL *url;
 	NSURLRequest *request;
-	//NSURLConnection *conn;
 	url = [NSURL URLWithString:query];
 	NSLog(@"url is %@", query);
 	//Start up the networking
@@ -90,6 +86,11 @@
 	NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request 
 												delegate:self 
 										startImmediately:TRUE];
+	if (!mConnectionLookup) {
+		mConnectionLookup = [[NSMutableDictionary dictionary] retain];
+	}
+	[mConnectionLookup setObject:[NSMutableData data] forKey:[conn description]];
+	
 	[conn release];
 }
 
@@ -103,6 +104,7 @@
 }
 
 -(void)processIncomingDishesWithJsonArray:(NSArray *)dishesArray {
+
 	//we have a list of dishes, for each of them, query the datastore
 	//for each dish in the list
 	NSMutableArray *newRestaurantsWeNeedToGet = [NSMutableArray array];
@@ -206,7 +208,6 @@
 		[dish setRestaurant:restaurant];
 	}
 	NSError *error;
-	NSLog(@"saving the incoming dishes");
 	
 	//Only if we have new dishes (we won't if we only got restaurants
 	if ([dishesArray count]) {
@@ -230,7 +231,6 @@
 -(void)processIncomingRestaurantsWithJsonArray:(NSArray *)restoArray {
 	//we have a list of dishes, for each of them, query the datastore
 	//for each dish in the list
-	NSLog(@"got a bunch of new restaurants from DishTableViewController, creating those");
 	for (NSDictionary *restoDict in restoArray) {
 		//   query the datastore
 		NSFetchRequest *restoFetchRequest = [[NSFetchRequest alloc] init];
@@ -328,7 +328,6 @@
 		}
 	}
 	NSError *error;
-	NSLog(@"saving the incoming restaurants");
 	if(![kManagedObjectContect save:&error]){
 		NSLog(@"there was a core data error when saving incoming restaurants");
 		NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
@@ -338,7 +337,7 @@
 
 
 -(void)processIncomingNetworkText:(NSString *)responseText {
-	
+
 	//TODO in AddDishViewController, we are already parsing to JSON #optimization
 	SBJSON *parser = [SBJSON new];
 	NSError *error = nil;
@@ -352,9 +351,9 @@
 	}
 	
 	if(error != nil){
-		NSLog(@"there was an error when jsoning");
 		NSLog(@"jsoning error %@", error);
 		NSLog(@"the offensive json %@", responseText);
+		NSAssert(NO, @"bad json");
 	}
 	
 	[self processIncomingDishesWithJsonArray:[responseAsDictionary objectForKey:@"dishes"]];
@@ -366,7 +365,7 @@
 }
 
 -(void)dealloc {
-	self.responseData = nil;
+	[mConnectionLookup release];
 	[super dealloc];
 }
 
