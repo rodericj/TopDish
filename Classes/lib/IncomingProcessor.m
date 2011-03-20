@@ -43,6 +43,7 @@
 	//Send this incoming content to the IncomingProcessor Object	
 	[self processIncomingNetworkText:responseTextStripped];
 	[responseText release];
+	self.responseData = nil;
 	
 }
 
@@ -155,17 +156,17 @@
 		for (NSDictionary *tag in tagsArray){
 			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kMealTypeString] )
 				[dish setMealType:[tag objectForKey:@"id"]];
-			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kPriceTypeString] )						
+			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kPriceTypeString] )
 				[dish setPrice:[tag objectForKey:@"id"]];			
-			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kLifestyleTypeString] )						
+			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kLifestyleTypeString] )
 				[dish setLifestyleType:[tag objectForKey:@"id"]];			
-			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kCuisineTypeString] )						
+			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kCuisineTypeString] )
 				[dish setCuisineType:[tag objectForKey:@"id"]];
-			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kAllergenTypeString] )						
+			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kAllergenTypeString] )
 				[dish setAllergenType:[tag objectForKey:@"id"]];
-			
 		}	
-		
+		NSAssert([dish price], @"price must not be null");
+
 		//query it's restaurant
 		NSFetchRequest *restoFetchRequest = [[NSFetchRequest alloc] init];
 		whichType = [NSEntityDescription entityForName:@"Restaurant" 
@@ -309,6 +310,21 @@
 			[dish setPhotoURL:[restoDishesDict objectForKey:@"photoURL"]];
 			[dish setPosReviews:[restoDishesDict objectForKey:@"posReviews"]];
 			[dish setRestaurant:restaurant];
+			
+			NSArray *tagsArray = [restoDishesDict objectForKey:@"tags"];
+			for (NSDictionary *tag in tagsArray){
+				if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kMealTypeString] )
+					[dish setMealType:[tag objectForKey:@"id"]];
+				if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kPriceTypeString] )
+					[dish setPrice:[tag objectForKey:@"id"]];			
+				if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kLifestyleTypeString] )
+					[dish setLifestyleType:[tag objectForKey:@"id"]];			
+				if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kCuisineTypeString] )
+					[dish setCuisineType:[tag objectForKey:@"id"]];
+				if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kAllergenTypeString] )
+					[dish setAllergenType:[tag objectForKey:@"id"]];
+			}	
+			NSAssert([dish price], @"price must not be null");
 		}
 	}
 	NSError *error;
