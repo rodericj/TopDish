@@ -17,10 +17,6 @@
 #import "ASIFormDataRequest.h"
 #import "AppModel.h"
 
-#define kRestaurantHeaderSection 0
-#define kMapSection 2
-#define kDishesAtThisRestaurantSection 1
-
 @implementation RestaurantDetailViewController
 @synthesize restaurant;
 @synthesize restaurantHeader = mRestaurantHeader;
@@ -35,6 +31,7 @@
 
 @synthesize cameraImage = mCameraImage;
 @synthesize newPicture = mNewPicture;
+@synthesize footerView = mFooterView;
 
 #pragma mark -
 #pragma mark networking
@@ -87,10 +84,85 @@
 #pragma mark -
 #pragma mark View lifecycle
 - (void) setUpSpecificView {
+	
+	[self.restaurantName setText:[restaurant objName]];
+	
+	[self.restaurantPhone setTitle:[restaurant phone] 
+						  forState:UIControlStateNormal];
+	[self.restaurantAddress setText:[restaurant addressLine1]];
+	if (self.restaurantImage) {
+		
+		AsyncImageView *asyncImage = [[[AsyncImageView alloc] 
+									   initWithFrame:[self.restaurantImage frame]] autorelease];
+		asyncImage.tag = 999;
+		if( [[restaurant photoURL] length] > 0 ){
+			NSRange aRange = [[restaurant photoURL] rangeOfString:@"http://"];
+			NSString *prefix = @"";
+			if (aRange.location ==NSNotFound)
+				prefix = NETWORKHOST;
+			//TODO, we are not getting dish height and width
+			NSString *urlString = [NSString stringWithFormat:@"%@%@", 
+								   prefix, 
+								   [restaurant photoURL], 
+								   OBJECTDETAILIMAGECELLHEIGHT,
+								   OBJECTDETAILIMAGECELLHEIGHT];
+			
+			NSLog(@"url string for restaurant's image in RestaurantDetailViewController is %@", urlString);
+			
+			NSURL *photoUrl = [NSURL URLWithString:urlString];
+			[asyncImage loadImageFromURL:photoUrl withImageView:self.restaurantImage 
+								 isThumb:NO showActivityIndicator:FALSE];
+			//[cell.contentView addSubview:asyncImage];
+			[self.restaurantHeader addSubview:asyncImage];
+		}
+	}
+	self.restaurantHeader.selectionStyle = UITableViewCellSelectionStyleNone;
+	self.tableView.tableHeaderView = self.restaurantHeader;
+	
+}
+
+-(void)setUpHeader {
+
+	[self.restaurantName setText:[restaurant objName]];
+	
+	[self.restaurantPhone setTitle:[restaurant phone] 
+						  forState:UIControlStateNormal];
+	[self.restaurantAddress setText:[restaurant addressLine1]];
+	if (self.restaurantImage) {
+		
+		AsyncImageView *asyncImage = [[[AsyncImageView alloc] 
+									   initWithFrame:[self.restaurantImage frame]] autorelease];
+		asyncImage.tag = 999;
+		if( [[restaurant photoURL] length] > 0 ){
+			NSRange aRange = [[restaurant photoURL] rangeOfString:@"http://"];
+			NSString *prefix = @"";
+			if (aRange.location ==NSNotFound)
+				prefix = NETWORKHOST;
+			//TODO, we are not getting dish height and width
+			NSString *urlString = [NSString stringWithFormat:@"%@%@", 
+								   prefix, 
+								   [restaurant photoURL], 
+								   OBJECTDETAILIMAGECELLHEIGHT,
+								   OBJECTDETAILIMAGECELLHEIGHT];
+			
+			NSLog(@"url string for restaurant's image in RestaurantDetailViewController is %@", urlString);
+			
+			NSURL *photoUrl = [NSURL URLWithString:urlString];
+			[asyncImage loadImageFromURL:photoUrl withImageView:self.restaurantImage 
+								 isThumb:NO showActivityIndicator:FALSE];
+			//[cell.contentView addSubview:asyncImage];
+			[self.restaurantHeader addSubview:asyncImage];
+		}
+	}
+	self.restaurantHeader.selectionStyle = UITableViewCellSelectionStyleNone;
+	
+	
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[self networkQuery:[NSString stringWithFormat:@"%@/api/restaurantDetail?id[]=%@", NETWORKHOST, [restaurant restaurant_id]]];
+	[self networkQuery:[NSString stringWithFormat:@"%@/api/restaurantDetail?id[]=%@", NETWORKHOST, [restaurant restaurant_id]]];	
+
+	//[self networkQuery:[NSString stringWithFormat:@"%@/api/restaurantDetail?id[]=%@", NETWORKHOST, [restaurant restaurant_id]]];
 	self.view.backgroundColor = kTopDishBackground;
 	
 	[self.view addSubview:self.mapOverlay];
@@ -130,124 +202,44 @@
 	[self.mapOverlay setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"restaurant_back.png"]]];
 
 	self.title = [self.restaurant objName];
+	[self setUpHeader];
+	self.tableView.tableFooterView = self.footerView;
+
 	}
 
 #pragma mark -
 #pragma mark Table view classes overridden 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (indexPath.section) {
-		case kRestaurantHeaderSection:
-			return self.restaurantHeader.bounds.size.height;
-			break;
-		case kMapSection:
-			return self.mapRow.bounds.size.height;
-		default:
-			return [super tableView:tableView heightForRowAtIndexPath:indexPath];
-			break;
-	}
+	return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView{
-	return 2;
+	return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	
-	if (section == kRestaurantHeaderSection || section == kMapSection) {
-		return 1;
-	}
-	NSLog(@"sections is %@ and this sectin is ", self.fetchedResultsController.sections);
+	NSLog(@"section is %@", section);
     id <NSFetchedResultsSectionInfo> sectionInfo = 
 	[[self.fetchedResultsController sections] 
-	 objectAtIndex:section-kDishesAtThisRestaurantSection];
+	 objectAtIndex:section];
 	if (sectionInfo == nil){
 		return 0;
 	}
 	//Add 1 for the "Add a new dish cell"
-	return [sectionInfo numberOfObjects] + 1;
+	return [sectionInfo numberOfObjects];
 }
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == kRestaurantHeaderSection) {
-		[self.restaurantName setText:[restaurant objName]];
-		
-		[self.restaurantPhone setTitle:[restaurant phone] 
-							  forState:UIControlStateNormal];
-		[self.restaurantAddress setText:[restaurant addressLine1]];
-		if (self.restaurantImage) {
-			
-			AsyncImageView *asyncImage = [[[AsyncImageView alloc] 
-										  initWithFrame:[self.restaurantImage frame]] autorelease];
-			asyncImage.tag = 999;
-			if( [[restaurant photoURL] length] > 0 ){
-				NSRange aRange = [[restaurant photoURL] rangeOfString:@"http://"];
-				NSString *prefix = @"";
-				if (aRange.location ==NSNotFound)
-					prefix = NETWORKHOST;
-				//TODO, we are not getting dish height and width
-				NSString *urlString = [NSString stringWithFormat:@"%@%@", 
-									   prefix, 
-									   [restaurant photoURL], 
-									   OBJECTDETAILIMAGECELLHEIGHT,
-									   OBJECTDETAILIMAGECELLHEIGHT];
-			
-				NSLog(@"url string for restaurant's image in RestaurantDetailViewController is %@", urlString);
-
-				NSURL *photoUrl = [NSURL URLWithString:urlString];
-				[asyncImage loadImageFromURL:photoUrl withImageView:self.restaurantImage 
-									 isThumb:NO showActivityIndicator:FALSE];
-				//[cell.contentView addSubview:asyncImage];
-				[self.restaurantHeader addSubview:asyncImage];
-			}
-		}
-		self.restaurantHeader.selectionStyle = UITableViewCellSelectionStyleNone;
-		return self.restaurantHeader;
-	}
-	if (indexPath.section == kMapSection) {
-		CLLocationCoordinate2D center;
-		center.latitude = [[self.restaurant latitude] floatValue];
-		center.longitude = [[self.restaurant longitude] floatValue];
-		MKCoordinateRegion m;
-		m.center = center;
-		
-		MKCoordinateSpan span;
-		span.latitudeDelta = .003;
-		span.longitudeDelta = .003;
-		
-		//Set up the span
-		m.span = span;
-		[self.mapView setRegion:m animated:YES];		
-		return self.mapRow;
-	}
-	//Hack..since we added the entire section above the table for the header,
-	//we need to grab all of the fetched results from section 0. 
-	//Get it? just subtract one
-	return [super tableView:tableView 
-		dishCellAtIndexPath:[NSIndexPath
-							 indexPathForRow:indexPath.row 
-							 inSection:indexPath.section-kDishesAtThisRestaurantSection]];
-	
+	return [self tableView:tableView dishCellAtIndexPath:indexPath];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == kRestaurantHeaderSection) {
-		return;
-	}
-	if (indexPath.row == [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]-kDishesAtThisRestaurantSection] numberOfObjects]) {
-		AddADishViewController *addDishViewController = [[AddADishViewController alloc] initWithNibName:@"AddADishViewController" bundle:nil];
-		[addDishViewController setTitle:@"Add a Dish"];
-		[addDishViewController setRestaurant:restaurant];
-		[addDishViewController setManagedObjectContext:self.managedObjectContext];
-		[self.navigationController pushViewController:addDishViewController animated:YES];
-		[addDishViewController release];
-		
-	}	
-	else
-		[self pushDishViewController:[self.fetchedResultsController 
-									  objectAtIndexPath:[NSIndexPath 
-														 indexPathForRow:indexPath.row 
-														 inSection:indexPath.section-kDishesAtThisRestaurantSection]]];
+	
+	[self pushDishViewController:[self.fetchedResultsController 
+								  objectAtIndexPath:[NSIndexPath 
+													 indexPathForRow:indexPath.row 
+													 inSection:indexPath.section]]];
 }
 #pragma mark -
 #pragma mark action sheet delegate
@@ -346,6 +338,17 @@
 
 #pragma mark -
 #pragma mark actions 
+
+-(IBAction) pushAddDishViewController {
+	AddADishViewController *addDishViewController = [[AddADishViewController alloc] initWithNibName:@"AddADishViewController" bundle:nil];
+	[addDishViewController setTitle:@"Add a Dish"];
+	[addDishViewController setRestaurant:restaurant];
+	[addDishViewController setManagedObjectContext:self.managedObjectContext];
+	[self.navigationController pushViewController:addDishViewController animated:YES];
+	[addDishViewController release];
+	
+}
+
 -(IBAction)callRestaurant{
 	
 	NSString *phoneNumber = [NSString stringWithFormat:@"tel:%@", [restaurant phone]];

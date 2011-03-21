@@ -12,6 +12,7 @@
 #import "AppModel.h"
 #import "TopDishAppDelegate.h"
 #import "JSON.h"
+#import "Dish.h"
 
 #define kRestaurantSection 0
 #define kDishNameSection 1
@@ -301,7 +302,6 @@
 						for(NSDictionary *d in [app priceTags]){
 							NSLog(@"this d is %@", d);
 							if ([[d objectForKey:@"id"] intValue] == self.selectedPriceType) {
-								NSLog(@"setting the price to %@", [d objectForKey:@"name"]);
 								cell.detailTextLabel.text = [d objectForKey:@"name"];
 							}
 						}
@@ -353,7 +353,7 @@
 	
 	
 	if (indexPath.section == kDishTagSection) {
-		NSAssert(NO, @"need to implement selection again");
+		//NSAssert(NO, @"need to implement selection again");
 		self.currentSelection = indexPath.row;
 		
 		switch (indexPath.row) {
@@ -540,7 +540,7 @@
 	NSDictionary *responseAsDict = [parser objectWithString:responseString error:&error];
 	[parser release];
 	
-	NSLog(@"the dictionary should be a %@", responseAsDict);
+	NSLog(@"the dictionary is %@", responseAsDict);
 	
 	ASIFormDataRequest *newRequest;
 	
@@ -554,10 +554,13 @@
 		[alertview release];
 		return;
 	}
+	
+	//The dish has been added, now we optionally add the photo and always send a rating
 	if ([responseAsDict objectForKey:@"dishId"]) {
 		NSURL *url;
 		self.dishId = [[responseAsDict objectForKey:@"dishId"] intValue];
 
+		//if a photo was submitted.
 		if (self.newPicture.image) {
 			NSLog(@"we have the dish id, calling add photo");
 			url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
@@ -571,6 +574,7 @@
 			NSLog(@"done calling add photo, time to call rateDish");
 		}
 		
+		//rate the new dish
 		url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/rateDish"]];
 		NSLog(@"the url for rate dish is %@", url);
 
@@ -592,6 +596,8 @@
 		NSLog(@"done calling rate Dish");
 		return;
 	}
+	
+	//When we return from the add a dish call we are given a url, submit the image here
 	if ([responseAsDict objectForKey:@"url"]) {
 		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@", [responseAsDict objectForKey:@"url"]]];
 		NSLog(@"the url for sending the photo is %@", url);
@@ -606,7 +612,46 @@
 		return;
 
 	}
+	//if we get a dish object back, add it.
 	if ([responseAsDict objectForKey:@"dish"]) {
+		NSDictionary *dishDict = [responseAsDict objectForKey:@"dish"];
+		
+		//Need to add just one dish
+		Dish *newlyCreatedDish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" 
+													 inManagedObjectContext:self.managedObjectContext];
+		
+		[newlyCreatedDish setDish_id:[dishDict objectForKey:@"id"]];
+		[newlyCreatedDish setObjName:[NSString stringWithFormat:@"%@", [dishDict objectForKey:@"name"]]];
+		[newlyCreatedDish setDish_description:[dishDict objectForKey:@"description"]];
+		[newlyCreatedDish setLatitude:[dishDict objectForKey:@"latitude"]];
+		[newlyCreatedDish setLongitude:[dishDict objectForKey:@"longitude"]];
+		[newlyCreatedDish setNegReviews:[dishDict objectForKey:@"negReviews"]];
+		[newlyCreatedDish setPhotoURL:[dishDict objectForKey:@"photoURL"]];
+		[newlyCreatedDish setPosReviews:[dishDict objectForKey:@"posReviews"]];
+		
+		//Add this dish to the restaurant
+		[newlyCreatedDish setRestaurant:self.restaurant];
+		
+		NSArray *tagsArray = [dishDict objectForKey:@"tags"];
+		for (NSDictionary *tag in tagsArray){
+			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kMealTypeString] )
+				[newlyCreatedDish setMealType:[tag objectForKey:@"id"]];
+			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kPriceTypeString] )						
+				[newlyCreatedDish setPrice:[tag objectForKey:@"id"]];			
+			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kLifestyleTypeString] )						
+				[newlyCreatedDish setLifestyleType:[tag objectForKey:@"id"]];			
+			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kCuisineTypeString] )						
+				[newlyCreatedDish setCuisineType:[tag objectForKey:@"id"]];
+			if ([(NSString *)[tag objectForKey:@"type"] isEqualToString:kAllergenTypeString] )						
+				[newlyCreatedDish setAllergenType:[tag objectForKey:@"id"]];
+			
+		}	
+		
+		if(![self.managedObjectContext save:&error]){
+			NSLog(@"there was a core data error when saving a single dish");
+			NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
+		}
+		
 		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Successfully added a dish!!" 
 															message:@"Thanks for the new dish. Have you tried anything else here?"
 														   delegate:self 

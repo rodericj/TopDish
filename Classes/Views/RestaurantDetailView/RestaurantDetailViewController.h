@@ -18,6 +18,9 @@
 	MKMapView *mMapView;
 
 	UITableViewCell *mRestaurantHeader;
+	UIView *mFooter;
+	
+	
 	UILabel *mRestaurantName;
 	UILabel *mRestaurantAddress;
 	UIButton *mRestaurantPhone;
@@ -32,7 +35,11 @@
 }
 
 @property (nonatomic, retain) Restaurant *restaurant;
+
 @property (nonatomic, retain) IBOutlet UITableViewCell *restaurantHeader;
+@property (nonatomic, retain) IBOutlet UIView *footerView;
+
+
 @property (nonatomic, retain) IBOutlet UILabel *restaurantName;
 @property (nonatomic, retain) IBOutlet UILabel *restaurantAddress;
 @property (nonatomic, retain) IBOutlet UIButton *restaurantPhone;
@@ -47,5 +54,5 @@
 @property (nonatomic, retain) UIImage *newPicture;
 
 -(IBAction)callRestaurant;
-
+-(IBAction) pushAddDishViewController;
 @end
