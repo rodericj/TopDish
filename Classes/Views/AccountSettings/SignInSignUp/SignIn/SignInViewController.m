@@ -23,6 +23,23 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #pragma mark view lifetime stuff
 -(void) viewDidLoad {
 	[super viewDidLoad];
+	Facebook *facebook = [[AppModel instance] facebook];
+	if ([facebook isSessionValid]) {
+		//call the facebook api
+		[facebook requestWithGraphPath:@"me" andDelegate:self];
+		
+		//add the logout button
+		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
+																				  style:UIBarButtonItemStyleBordered
+																				 target:self 
+																				 action:@selector(logout)];
+		
+	}
+	else {
+		[facebook authorize:kpermission delegate:self];
+	}
+
+	
 	self.view.backgroundColor = kTopDishBackground;
 	self.fbLoginButton.isLoggedIn = [[[AppModel instance] facebook] isSessionValid];
 	
