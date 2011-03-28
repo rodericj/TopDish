@@ -46,7 +46,7 @@
 	self.navigationItem.rightBarButtonItem = mapButton;
 
 	self.navigationController.navigationBar.tintColor = kTopDishBlue;
-	NSLog(@"tableview %@", self.tableView);
+	DLog(@"tableview %@", self.tableView);
 	[self.tableView setTableHeaderView:self.tableHeaderView];
 	
 	[self.searchBar setPlaceholder:@"Search Restaurants"];
@@ -103,7 +103,7 @@
     static NSString *CellIdentifier = @"RestaurantTableViewCell";
     
 	Restaurant *thisRestaurant = [[self fetchedResultsController] objectAtIndexPath:indexPath];	
-	//NSLog(@"this restaurant is %@", thisRestaurant);
+	//DLog(@"this restaurant is %@", thisRestaurant);
 	
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -144,7 +144,7 @@
 	AsyncImageView *asyncImage = [[[AsyncImageView alloc] initWithFrame:[restaurantImageView frame]] autorelease];
 	asyncImage.tag = 999;
 	if ([thisRestaurant imageData]) {
-		NSLog(@"we've got this image, no need to load it");
+		DLog(@"we've got this image, no need to load it");
 		//set the image with what we've got
 		restaurantImageView.image = [UIImage imageWithData:[thisRestaurant imageData]];
 	}
@@ -305,7 +305,7 @@
 		 from the error, display an alert panel that instructs the user to quit 
 		 the application by pressing the Home button.
          */
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        DLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
     
@@ -323,21 +323,21 @@
 		
 		NSString *attributeName = @"objName";
 		NSString *attributeValue = self.currentSearchTerm;
-		NSLog(@"the predicate we are sending: %@ contains(cd) %@ AND %@ == %d",
+		DLog(@"the predicate we are sending: %@ contains(cd) %@ AND %@ == %d",
 			 attributeName, attributeValue,
 			 @"price", [[AppModel instance] selectedPrice]);
 		
 		filterPredicate = [NSPredicate predicateWithFormat:@"%K contains[cd] %@",
 						   attributeName, attributeValue];
 		
-		NSLog(@"the real predicate is %@", filterPredicate);
+		DLog(@"the real predicate is %@", filterPredicate);
 		[filterPredicateArray addObject:filterPredicate];
 	}
 	
 	//Filter based on price
 	//if ([[[AppModel instance] selectedPrice] intValue] != 0) {
 //		
-//		NSLog(@"the else predicate %@ == %d", 
+//		DLog(@"the else predicate %@ == %d", 
 //			 @"price", [[AppModel instance] selectedPrice]);
 //		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
 //						   @"price", [app selectedPrice]];
@@ -381,7 +381,7 @@
 
 
 -(void) updateFetch {
-	NSLog(@"updating the restaurant fetch");
+	DLog(@"updating the restaurant fetch");
 	/*
      Set up the fetched results controller.
 	 */
@@ -434,7 +434,7 @@
 	//self.currentSearchTerm = nil;
     NSError *error = nil;
     if (![mFetchedResultsController performFetch:&error]) {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        DLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
 	
@@ -448,7 +448,7 @@
 	NSURLRequest *request;
 	//NSURLConnection *conn;
 	url = [NSURL URLWithString:query];
-	NSLog(@"url from restaurantlist is %@", query);
+	DLog(@"url from restaurantlist is %@", query);
 	//Start up the networking
 	request = [NSURLRequest requestWithURL:url];
 	[[NSURLConnection connectionWithRequest:request delegate:self] start];
@@ -456,7 +456,7 @@
 
 -(void)initiateNetworkBasedOnSegmentControl{
 	
-	NSLog(@"Segmentedcontrol changed, the fetchedResults controller is %@", 
+	DLog(@"Segmentedcontrol changed, the fetchedResults controller is %@", 
 		 self.fetchedResultsController);
 	
 	NSString *urlString; 
@@ -594,11 +594,11 @@
 		[dish setRestaurant:restaurant];
 	}
 	NSError *error;
-	NSLog(@"saving the incoming dishes");
+	DLog(@"saving the incoming dishes");
 	
 	if(![self.managedObjectContext save:&error]){
-		NSLog(@"there was a core data error when saving incoming dishes");
-		NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
+		DLog(@"there was a core data error when saving incoming dishes");
+		DLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
 	}
 	
 	//For all of the new restaurants we just created, go fetch their data
@@ -613,7 +613,7 @@
 -(void)processIncomingRestaurantsWithJsonArray:(NSArray *)restoArray {
 	//we have a list of dishes, for each of them, query the datastore
 	//for each dish in the list
-	NSLog(@"got a bunch of new restaurants from DishTableViewController, creating those");
+	DLog(@"got a bunch of new restaurants from DishTableViewController, creating those");
 	for (NSDictionary *restoDict in restoArray) {
 		//   query the datastore
 		NSFetchRequest *restoFetchRequest = [[NSFetchRequest alloc] init];
@@ -696,7 +696,7 @@
 			[dish setPrice:[restoDishesDict objectForKey:@"price"]];
 			
 			NSNumber *price = [AppModel extractTag:@"Price" fromArrayOfTags:[restoDishesDict objectForKey:@"tags"]];
-			//NSLog(@"price is %@", price);
+			//DLog(@"price is %@", price);
 			[dish setPrice:price];
 			[dish setLatitude:[restoDishesDict objectForKey:@"latitude"]];
 			[dish setLongitude:[restoDishesDict objectForKey:@"longitude"]];
@@ -708,10 +708,10 @@
 		}
 	}
 	NSError *error;
-	NSLog(@"saving the incoming restaurants");
+	DLog(@"saving the incoming restaurants");
 	if(![self.managedObjectContext save:&error]){
-		NSLog(@"there was a core data error when saving incoming restaurants");
-		NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
+		DLog(@"there was a core data error when saving incoming restaurants");
+		DLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
 	}
 }
 
@@ -722,18 +722,18 @@
 	NSDictionary *responseAsDictionary = [parser objectWithString:responseText 
 															error:&error];
 	if ([[responseAsDictionary objectForKey:@"rc"] intValue] != 0) {
-		NSLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
+		DLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
 		[parser release];
 		return;
 	}
 	
 	if(error != nil){
-		NSLog(@"there was an error when jsoning");
-		NSLog(@"jsoning error %@", error);
-		NSLog(@"the offensive json %@", responseText);
+		DLog(@"there was an error when jsoning");
+		DLog(@"jsoning error %@", error);
+		DLog(@"the offensive json %@", responseText);
 	}
 	
-	NSLog(@"we've got new dishes and or restaurants %@", responseAsDictionary);
+	DLog(@"we've got new dishes and or restaurants %@", responseAsDictionary);
 	
 	[self processIncomingDishesWithJsonArray:[responseAsDictionary objectForKey:@"dishes"]];
 	[self processIncomingRestaurantsWithJsonArray:[responseAsDictionary objectForKey:@"restaurants"]];
@@ -761,7 +761,7 @@
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	
 #ifndef AirplaneMode
-	NSLog(@"connection did fail with error %@", error);
+	DLog(@"connection did fail with error %@", error);
 	UIAlertView *alert;
 	alert = [[UIAlertView alloc] initWithTitle:@"NetworkError" 
 									   message:@"There was a network issue. Try again later" 
@@ -802,7 +802,7 @@
 }	
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-	NSLog(@"the search bar text changed %@", searchText);
+	DLog(@"the search bar text changed %@", searchText);
 	
 	//Send the network request
 	self.currentSearchTerm = searchText;

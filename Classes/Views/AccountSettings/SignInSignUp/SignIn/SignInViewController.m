@@ -49,8 +49,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 -(void)viewDidAppear:(BOOL)animated
 {		
 	[super viewDidAppear:animated];
-	NSLog(@"the view will appear. If we have the key, go to the account page");
-	NSLog(@"the api key is %@", [[AppModel instance].user objectForKey:keyforauthorizing]);
+	DLog(@"the view will appear. If we have the key, go to the account page");
+	DLog(@"the api key is %@", [[AppModel instance].user objectForKey:keyforauthorizing]);
 	if ([[AppModel instance].user objectForKey:keyforauthorizing] != nil || [[[AppModel instance] facebook] isSessionValid]) {
 		AccountView *accountView = [[AccountView alloc] initWithNibName:@"AccountView" bundle:nil];
 		[self.navigationController setViewControllers:[NSArray arrayWithObject:accountView]];
@@ -102,12 +102,12 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #pragma mark -
 #pragma mark FBcallbacks
 - (void)fbDidLogin{	
-	NSLog(@"user logged in");
+	DLog(@"user logged in");
 	[self.fbLoginButton setIsLoggedIn:YES];
 	[self.fbLoginButton updateImage];
 	
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/facebookLogin", NETWORKHOST]];
-	NSLog(@"[[AppModel instance] facebook].accessToken %@\n the url we are hitting is %@", 
+	DLog(@"[[AppModel instance] facebook].accessToken %@\n the url we are hitting is %@", 
 		 [[AppModel instance] facebook].accessToken, url);
 	
 	//Call the topdish server to log in
@@ -124,7 +124,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
  */
 - (void)fbDidNotLogin:(BOOL)cancelled
 {
-	NSLog(@"the user canceled");
+	DLog(@"the user canceled");
 }
 
 /**
@@ -132,7 +132,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
  */
 - (void)fbDidLogout
 {
-	NSLog(@"user logged out");
+	DLog(@"user logged out");
 	[self.fbLoginButton setIsLoggedIn:YES];
 	[self.fbLoginButton updateImage];
 }
@@ -149,14 +149,14 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 	NSString *responseString = [request responseString];
 	NSDictionary *responseAsDict = [parser objectWithString:responseString error:&error];	
 	[parser release];
-	NSLog(@"the dictionary should be a %@", responseAsDict);
+	DLog(@"the dictionary should be a %@", responseAsDict);
 
 	if (request == mTopDishFBLoginRequest) {
 		//responseString = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
-		NSLog(@"handle the facebook authentication stuff %@", responseString);
+		DLog(@"handle the facebook authentication stuff %@", responseString);
 		if ([[responseAsDict objectForKey:@"rc"] intValue] == 1) {
 			//response returned with an error. Lets see what we got
-			NSLog(@"response from TD Server %@", responseAsDict);
+			DLog(@"response from TD Server %@", responseAsDict);
 		}
 		else {
 			[responseAsDict objectForKey:keyforauthorizing];
@@ -171,7 +171,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 	}
 	else 
-		NSLog(@"not really sure what we just returned %@", responseAsDict);
+		DLog(@"not really sure what we just returned %@", responseAsDict);
 }
 
 //see parent class for cancel clicked

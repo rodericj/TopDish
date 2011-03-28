@@ -58,12 +58,10 @@ enum {
 }
 
 -(void)logout{
-	NSLog(@"do the logout, right now this is just ending the fb session and sending us back to the gate");
 	[[[AppModel instance] facebook] logout:self];
 }
 
 - (void)fbDidLogout{
-	NSLog(@"Sucessful logout lets go to the gate");
 	LoggedInLoggedOutGate *gate = [[LoggedInLoggedOutGate alloc] init];
 	//[self.navigationController pushViewController:signIn animated:NO];
 	[self.navigationController setViewControllers:[NSArray arrayWithObject:gate]];
@@ -153,7 +151,6 @@ enum {
  */
 - (void)requestLoading:(FBRequest *)request
 {
-	NSLog(@"request loading");
 }
 
 /**
@@ -161,7 +158,6 @@ enum {
  */
 - (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response
 {
-	NSLog(@"did receieve response %@", response);
 }
 
 /**
@@ -169,7 +165,7 @@ enum {
  */
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error
 {
-	NSLog(@"did fail with error %@", error);
+	DLog(@"did fail with error %@", error);
 }
 
 /**
@@ -185,7 +181,7 @@ enum {
 		//do nothing
 	}
 	else{
-		NSLog(@"did load %@", result);
+		DLog(@"did load %@", result);
 
 	if ([result objectForKey:@"first_name"] && [result objectForKey:@"last_name"]) {
 		

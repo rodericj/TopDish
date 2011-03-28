@@ -114,7 +114,7 @@
 		annotationView.rightCalloutAccessoryView = rightButton;		
 		return annotationView;
 	}
-	NSLog(@"returned nil? hmmm");
+	DLog(@"returned nil? hmmm");
 	return nil;
 }
 

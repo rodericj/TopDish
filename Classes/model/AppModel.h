@@ -29,6 +29,8 @@
 	
 	//private
 	NSMutableDictionary *mIdToTagLookup;
+	
+	NSOperationQueue *mQueue;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *user;
@@ -40,6 +42,8 @@
 @property (nonatomic, retain) NSNumber *selectedCuisine;
 @property (nonatomic, assign) int sorter;
 @property (nonatomic, retain) Facebook *facebook;
+
+@property (nonatomic, retain) NSOperationQueue *queue;
 
 @property (nonatomic, retain) CLLocation *currentLocation;
 +(AppModel *)instance;

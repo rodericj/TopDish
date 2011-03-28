@@ -24,13 +24,11 @@
 #define FILTER_IMAGE_NAME @"filter.png"
 #define GLOBAL_IMAGE_NAME @"globe-1.png"
 
-//#ifdef TARGET_IPHONE_SIMULATOR
-////#define NSLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-//#define NSLog(fmt) NSLog(fmt);
-//#else
-//#define NSLog(...)
-//#endif
-
+#ifdef TARGET_IPHONE_SIMULATOR
+#define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#define DLog(...)
+#endif
 
 #pragma mark network constants
 //#define NETWORKHOST @"http://0305.topdish1.appspot.com"

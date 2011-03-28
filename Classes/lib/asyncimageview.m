@@ -33,7 +33,7 @@
 
 - (void)loadImageFromURL:(NSURL*)url withImageView:(UIImageView *)imageView isThumb:(Boolean)isThumbNail showActivityIndicator:(Boolean)showIndicator {
 	//TODO must print out when we attempt to get an image, i think we get it a lot
-	//NSLog(@"attempting to load %@", url);
+	//DLog(@"attempting to load %@", url);
 	if (connection!=nil) { [connection release]; } //in case we are downloading a 2nd image
 	if (data!=nil) { [data release]; }
 	isThumb = isThumbNail;
@@ -76,7 +76,7 @@
 }
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
 #ifndef AirplaneMode
-	NSLog(@"async image view failed with error: %@", error);
+	DLog(@"async image view failed with error: %@", error);
 #endif
 }
 
@@ -103,7 +103,7 @@
 	}
 	//make an image view for the image
 	if(thisImageView.image == NULL){
-		NSLog(@"ok, the image view's image is nil");
+		DLog(@"ok, the image view's image is nil");
 	}
 
 	thisImageView.image = [UIImage imageWithData:data];
@@ -126,7 +126,7 @@
 		NSError *error;
 
 		if([self.managedObjectContext save:&error]){
-			NSLog(@"error saving: %@",error);
+			DLog(@"error saving: %@",error);
 		}
 	}
 	[data release]; //don't need this any more, its in the UIImageView now

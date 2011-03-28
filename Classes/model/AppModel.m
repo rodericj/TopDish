@@ -23,6 +23,9 @@
 
 @synthesize sorter = mSorter;
 @synthesize facebook = mFacebook;
+
+@synthesize queue = mQueue;
+
 AppModel *gAppModelInstance = nil;
 
 +(AppModel *) instance{
@@ -30,6 +33,7 @@ AppModel *gAppModelInstance = nil;
 	if (!gAppModelInstance) {
 		gAppModelInstance = [[AppModel alloc] init];
 		gAppModelInstance.sorter = 1;
+		[gAppModelInstance setQueue:[[NSOperationQueue alloc] init]];
 	}
 	return gAppModelInstance;
 }
@@ -82,7 +86,7 @@ AppModel *gAppModelInstance = nil;
 	}
 	
 	for (NSDictionary *tag in tags) {
-		//NSLog(@"tag is %@", tag);
+		//DLog(@"tag is %@", tag);
 		[mIdToTagLookup setObject:tag forKey:[tag objectForKey:@"id"]];
 	}
 	
@@ -166,7 +170,7 @@ AppModel *gAppModelInstance = nil;
 	//NSDictionary *d = [mIdToTagLookup objectForKey:tagId];
 	//NSString *a = [d objectForKey:@"name"];
 	//TODO figure out why i'm not getting anything here
-	//NSLog(@"at this point we are getting basically nothing out of the dictionary %@ %@", mIdToTagLookup, a);
+	//DLog(@"at this point we are getting basically nothing out of the dictionary %@ %@", mIdToTagLookup, a);
 	return [[mIdToTagLookup objectForKey:tagId] objectForKey:@"name"];
 }
 
@@ -175,7 +179,6 @@ AppModel *gAppModelInstance = nil;
 	[self.facebook logout:self];
 }
 -(void)fbDidLogout {
-	NSLog(@"facebook = %@", self.facebook);
 	self.facebook = nil;
 	[self createFacebookObject];
 

@@ -29,7 +29,7 @@
 - (NSOperation*)taskWithData:(id)data {
     NSInvocationOperation* theOp = [[[NSInvocationOperation alloc] initWithTarget:self
 																		 selector:@selector(processIncomingNetworkText:) object:data] autorelease];
-	[theOp start];
+	//[theOp start];
 	return theOp;
 }
 
@@ -80,7 +80,7 @@
 	NSURL *url;
 	NSURLRequest *request;
 	url = [NSURL URLWithString:query];
-	NSLog(@"url is %@", query);
+	DLog(@"url is %@", query);
 	//Start up the networking
 	request = [NSURLRequest requestWithURL:url];
 	NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request 
@@ -105,6 +105,7 @@
 
 -(void)processIncomingDishesWithJsonArray:(NSArray *)dishesArray {
 
+	DLog(@"PROCESSOR processIncomingDishes hopefully in another thread");
 	//we have a list of dishes, for each of them, query the datastore
 	//for each dish in the list
 	NSMutableArray *newRestaurantsWeNeedToGet = [NSMutableArray array];
@@ -212,8 +213,8 @@
 	//Only if we have new dishes (we won't if we only got restaurants
 	if ([dishesArray count]) {
 		if(![kManagedObjectContect save:&error]){
-			NSLog(@"there was a core data error when saving incoming dishes");
-			NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
+			DLog(@"there was a core data error when saving incoming dishes");
+			DLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
 		}
 	}
 	
@@ -329,8 +330,8 @@
 	}
 	NSError *error;
 	if(![kManagedObjectContect save:&error]){
-		NSLog(@"there was a core data error when saving incoming restaurants");
-		NSLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
+		DLog(@"there was a core data error when saving incoming restaurants");
+		DLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
 	}
 }
 
@@ -345,14 +346,14 @@
 	NSDictionary *responseAsDictionary = [parser objectWithString:responseText 
 															error:&error];
 	if ([[responseAsDictionary objectForKey:@"rc"] intValue] != 0) {
-		NSLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
+		DLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
 		[parser release];
 		return;
 	}
 	
 	if(error != nil){
-		NSLog(@"jsoning error %@", error);
-		NSLog(@"the offensive json %@", responseText);
+		DLog(@"jsoning error %@", error);
+		DLog(@"the offensive json %@", responseText);
 		NSAssert(NO, @"bad json");
 	}
 	
