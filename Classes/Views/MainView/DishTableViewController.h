@@ -10,8 +10,9 @@
 #import <CoreData/CoreData.h>
 #import "MyCLController.h"
 #import "ObjectWithImage.h"
+#import "IncomingProcessor.h"
 
-@interface DishTableViewController :UITableViewController <MyCLControllerDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate> {
+@interface DishTableViewController :UITableViewController <MyCLControllerDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate, IncomingProcessorDelegate> {
 	MyCLController *locationController;
 	NSString *mCurrentLat;
 	NSString *mCurrentLon;
@@ -68,7 +69,6 @@
 
 
 -(void) networkQuery:(NSString *)query;
--(void)processIncomingNetworkText:(NSString *)responseText;
 -(void) pushDishViewController:(ObjectWithImage *) selectedObject;
 -(UITableViewCell *)tableView:(UITableView *)tableView dishCellAtIndexPath:(NSIndexPath *)indexPath;
 

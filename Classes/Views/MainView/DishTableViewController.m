@@ -15,7 +15,6 @@
 #import "AppModel.h"
 #import "asyncimageview.h"
 #import "DishDetailViewController.h"
-#import "IncomingProcessor.h"
 
 #define kTopDishBlue [UIColor colorWithRed:0 green:.3843 blue:.5725 alpha:1]
 #define buttonLightBlue [UIColor colorWithRed:0 green:.73 blue:.89 alpha:1 ]
@@ -69,7 +68,7 @@
 	[locationController.locationManager startUpdatingLocation];	
 	
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	self.currentSearchDistance = 20000000;
+	self.currentSearchDistance = 2000;
 	
     // Set up the settings button
 	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] 
@@ -166,7 +165,7 @@
 												 bundle:nil];
 	[map setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
 	[map setManagedObjectContext:self.managedObjectContext];
-	
+		
 	NSArray *nearbyObjects = [self.fetchedResultsController fetchedObjects];
 	[map setNearbyObjects:nearbyObjects];
 	[self.navigationController pushViewController:map animated:TRUE];
@@ -177,6 +176,7 @@
 #pragma mark network connection stuff
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
+	DLog(@"request complete ---------------------");
 	NSData *thisResponseData = [mConnectionLookup objectForKey:[theConnection description]];
 
 	
@@ -186,8 +186,14 @@
 	NSString *responseTextStripped = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
 	
 	//Send this incoming content to the IncomingProcessor Object
-	IncomingProcessor *proc = [[IncomingProcessor alloc] init];
+	IncomingProcessor *proc = [[IncomingProcessor alloc] initWithProcessorDelegate:self];
 	DLog(@"PROCESSOR the processor is set up");
+		
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(buildRestaurantNetworkGrab:) 
+												 name:NSNotificationStringDoneProcessingDishes 
+											   object:nil];
+	
 	[[[AppModel instance] queue] addOperation:[proc taskWithData:responseTextStripped]];
 	DLog(@"PROCESSOR  proc task is set up");
 	[proc release];
@@ -196,25 +202,31 @@
 	[responseText release];
 	
 }
+-(void)saveComplete {
+	DLog(@"the save is complete");
+	[self updateFetch];
+}
+
+-(void)buildRestaurantNetworkGrab:(NSNotification *)notification {
+	DLog(@"begin the network request to get the restaurants");
+	DLog(@"the notification is %@", [notification userInfo]);
+	
+	if ([[[notification userInfo] objectForKey:@"restaurantIds"] count]) {
+		
+		NSMutableString *query = [NSMutableString stringWithFormat:@"%@%@", NETWORKHOST, @"/api/restaurantDetail?"];
+		
+		for (NSNumber *n in [[notification userInfo] objectForKey:@"restaurantIds"]) {
+			[query appendString:[NSString stringWithFormat:@"id[]=%@&", n]];
+		}
+		[self performSelectorOnMainThread:@selector(networkQuery:) 
+							   withObject:query
+							waitUntilDone:NO];
+	}
+}
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	[mConnectionLookup removeObjectForKey:[connection description]];
-
-#ifndef AirplaneMode
-	DLog(@"connection did fail with error %@", error);
-	UIAlertView *alert;
-	alert = [[UIAlertView alloc] initWithTitle:@"NetworkError" 
-									   message:@"There was a network issue. Try again later" 
-									  delegate:self 
-							 cancelButtonTitle:@"Ok" 
-							 otherButtonTitles:nil]; 
-	[alert show];
-	[alert release];
-#else	
-	//Airplane mode must set _responseText
-	[self processIncomingNetworkText:DishSearchResponseText];
-#endif
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{

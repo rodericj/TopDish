@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "MyCLController.h"
+#import "IncomingProcessor.h"
 
-@interface RestaurantList : UITableViewController  <NSFetchedResultsControllerDelegate, UISearchBarDelegate, UISearchBarDelegate>{
+@interface RestaurantList : UITableViewController  <NSFetchedResultsControllerDelegate, UISearchBarDelegate, UISearchBarDelegate, IncomingProcessorDelegate>{
 
     NSFetchedResultsController	*mFetchedResultsController;
 	NSManagedObjectContext		*mManagedObjectContext;
@@ -21,6 +22,9 @@
 	int							mCurrentSearchDistance;
 	
 	NSMutableData *mResponseData;
+	
+	NSMutableDictionary *mConnectionLookup;
+
 }
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;

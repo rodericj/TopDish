@@ -20,9 +20,10 @@
 #pragma mark -
 #pragma mark Util
 
--(id)init
+-(id)initWithProcessorDelegate:(<IncomingProcessorDelegate>)delegate
 {
 	self = [super init];
+	mIncomingProcessorDelegate = delegate;
 	return self;
 }
 
@@ -33,79 +34,24 @@
 	return theOp;
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
-	NSData *thisResponseData = [mConnectionLookup objectForKey:[theConnection description]];
-	
-	NSString *responseText = [[NSString alloc] initWithData:thisResponseData 
-												   encoding:NSASCIIStringEncoding];
-	
-	NSString *responseTextStripped = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
-	
-	//Send this incoming content to the IncomingProcessor Object	
-	[self processIncomingNetworkText:responseTextStripped];
-	[responseText release];
-	
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	[mConnectionLookup removeObjectForKey:[connection description]];
-
-#ifndef AirplaneMode
-	UIAlertView *alert;
-	alert = [[UIAlertView alloc] initWithTitle:@"NetworkError" 
-									   message:@"There was a network issue. Try again later" 
-									  delegate:self 
-							 cancelButtonTitle:@"Ok" 
-							 otherButtonTitles:nil]; 
-	[alert show];
-	[alert release];
-#else	
-	//Airplane mode must set _responseText
-	[self processIncomingNetworkText:DishSearchResponseText];
-#endif
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-	NSMutableData *thisResponseData = [mConnectionLookup objectForKey:[connection description]];
-	
-	if (data)
-		[thisResponseData appendData:data];
-}
-
-
--(void) networkQuery:(NSString *)query{
-
-	NSURL *url;
-	NSURLRequest *request;
-	url = [NSURL URLWithString:query];
-	DLog(@"url is %@", query);
-	//Start up the networking
-	request = [NSURLRequest requestWithURL:url];
-	NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request 
-												delegate:self 
-										startImmediately:TRUE];
-	if (!mConnectionLookup) {
-		mConnectionLookup = [[NSMutableDictionary dictionary] retain];
-	}
-	[mConnectionLookup setObject:[NSMutableData data] forKey:[conn description]];
-	
-	[conn release];
-}
-
 -(void)initiateGrabNewRestaurants:(NSArray *)newRestaurantIds {
 	NSMutableString *query = [NSMutableString stringWithFormat:@"%@%@", NETWORKHOST, @"/api/restaurantDetail?"];
 	
 	for (NSNumber *n in newRestaurantIds) {
 		[query appendString:[NSString stringWithFormat:@"id[]=%@&", n]];
 	}
-	[self networkQuery:query];	
+	DLog(@"(************************************ %@", mManagedObjectContext);
+	DLog(@"Need to notify the main thread that we are done processing the dishes and that it's time to now hit the API to get restaurant detail for our list of new restaurants");
+	//[[NSNotificationCenter defaultCenter] postNotification:NSNotificationStringDoneProcessingDishes];
+	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:newRestaurantIds forKey:@"restaurantIds"];
+	[[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationStringDoneProcessingDishes object:self userInfo:userInfo];
+
+	//[self networkQuery:query];	
 }
 
 -(void)processIncomingDishesWithJsonArray:(NSArray *)dishesArray {
 
-	DLog(@"PROCESSOR processIncomingDishes hopefully in another thread");
+	DLog(@"PROCESSOR processIncomingDishes hopefully in another thread. There are %d dishes", [dishesArray count]);
 	//we have a list of dishes, for each of them, query the datastore
 	//for each dish in the list
 	NSMutableArray *newRestaurantsWeNeedToGet = [NSMutableArray array];
@@ -113,7 +59,7 @@
 		//   query the datastore
 		NSFetchRequest *dishFetchRequest = [[NSFetchRequest alloc] init];
 		NSEntityDescription *whichType = [NSEntityDescription entityForName:@"Dish" 
-													 inManagedObjectContext:kManagedObjectContect];
+													 inManagedObjectContext:mManagedObjectContext];
 		NSPredicate *dishFilter = [NSPredicate predicateWithFormat:@"(dish_id == %@)", 
 								   [dishDict objectForKey:@"id"]];
 		
@@ -121,7 +67,7 @@
 		
 		[dishFetchRequest setPredicate:dishFilter];
 		NSError *error;
-		NSArray *dishesMatching = [kManagedObjectContect
+		NSArray *dishesMatching = [mManagedObjectContext
 								   executeFetchRequest:dishFetchRequest error:&error];
 		[dishFetchRequest release];
 		
@@ -134,7 +80,7 @@
 		else if ([dishesMatching count] == 0) {
 			//       add it
 			dish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" 
-														 inManagedObjectContext:kManagedObjectContect];
+														 inManagedObjectContext:mManagedObjectContext];
 		}
 		else
 			NSAssert(TRUE, @"Too many dishes matched a query which should have returned 1");
@@ -173,14 +119,14 @@
 		//query it's restaurant
 		NSFetchRequest *restoFetchRequest = [[NSFetchRequest alloc] init];
 		whichType = [NSEntityDescription entityForName:@"Restaurant" 
-								inManagedObjectContext:kManagedObjectContect];
+								inManagedObjectContext:mManagedObjectContext];
 		NSPredicate *restaurantFilter = [NSPredicate predicateWithFormat:@"(restaurant_id == %@)", 
 										 [dishDict objectForKey:@"restaurantID"]];
 		
 		[restoFetchRequest setEntity:whichType];
 		
 		[restoFetchRequest setPredicate:restaurantFilter];
-		NSArray *restosMatching = [kManagedObjectContect
+		NSArray *restosMatching = [mManagedObjectContext
 								   executeFetchRequest:restoFetchRequest error:&error];
 		[restoFetchRequest release];
 		
@@ -192,7 +138,7 @@
 		//   else 
 		else if ([restosMatching count] == 0) {
 			restaurant = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" 
-																	 inManagedObjectContext:kManagedObjectContect];	
+																	 inManagedObjectContext:mManagedObjectContext];	
 			[newRestaurantsWeNeedToGet addObject:[dishDict objectForKey:@"restaurantID"]];
 		}
 		else
@@ -212,31 +158,41 @@
 	
 	//Only if we have new dishes (we won't if we only got restaurants
 	if ([dishesArray count]) {
-		if(![kManagedObjectContect save:&error]){
+		if(![mManagedObjectContext save:&error]){
 			DLog(@"there was a core data error when saving incoming dishes");
 			DLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
 		}
+		else {
+			[mIncomingProcessorDelegate performSelectorOnMainThread:@selector(saveComplete) 
+								   withObject:nil
+								waitUntilDone:NO];
+		}
+
 	}
 	
-	
+	DLog(@"PROCESSOR done processing dishes, given list of new restaurants...");
+
 	//For all of the new restaurants we just created, go fetch their data
 	if ([newRestaurantsWeNeedToGet count] > 0) {
+		DLog(@"PROCESSOR we have dishes. Do something with them...Currently do nothing");
+
 		[self initiateGrabNewRestaurants:newRestaurantsWeNeedToGet];
 	}
-	
-	//TODO, send the update fetch to the receiving object
-	//[self updateFetch];
-	
+	else {
+		DLog(@"PROCESSOR no new restaurants");
+	}
 }
 
 -(void)processIncomingRestaurantsWithJsonArray:(NSArray *)restoArray {
+	DLog(@"PROCESSOR processIncomingRestaurants hopefully in another thread. There are %d restaurants", [restoArray count]);
+
 	//we have a list of dishes, for each of them, query the datastore
 	//for each dish in the list
 	for (NSDictionary *restoDict in restoArray) {
 		//   query the datastore
 		NSFetchRequest *restoFetchRequest = [[NSFetchRequest alloc] init];
 		NSEntityDescription *whichType = [NSEntityDescription entityForName:@"Restaurant" 
-													 inManagedObjectContext:kManagedObjectContect];
+													 inManagedObjectContext:mManagedObjectContext];
 		NSPredicate *restoFilter = [NSPredicate predicateWithFormat:@"(restaurant_id == %@)", 
 									[restoDict objectForKey:@"id"]];
 		
@@ -244,7 +200,7 @@
 		
 		[restoFetchRequest setPredicate:restoFilter];
 		NSError *error;
-		NSArray *restoMatching = [kManagedObjectContect
+		NSArray *restoMatching = [mManagedObjectContext
 								  executeFetchRequest:restoFetchRequest error:&error];
 		[restoFetchRequest release];
 		
@@ -257,7 +213,7 @@
 		else if ([restoMatching count] == 0) {
 			//       add it
 			restaurant = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" 
-																	 inManagedObjectContext:kManagedObjectContect];
+																	 inManagedObjectContext:mManagedObjectContext];
 		}
 		else
 			NSAssert(TRUE, @"There were too many restaurants matching a dish");
@@ -278,14 +234,14 @@
 			//query it's Dishes
 			NSFetchRequest *restoFetchRequest = [[NSFetchRequest alloc] init];
 			whichType = [NSEntityDescription entityForName:@"Dish" 
-									inManagedObjectContext:kManagedObjectContect];
+									inManagedObjectContext:mManagedObjectContext];
 			NSPredicate *restosDishesFilter = [NSPredicate predicateWithFormat:@"(dish_id == %@)", 
 											   [restoDishesDict objectForKey:@"id"]];
 			
 			[restoFetchRequest setEntity:whichType];
 			
 			[restoFetchRequest setPredicate:restosDishesFilter];
-			NSArray *restosDishesMatching = [kManagedObjectContect
+			NSArray *restosDishesMatching = [mManagedObjectContext
 											 executeFetchRequest:restoFetchRequest error:&error];
 			[restoFetchRequest release];
 			
@@ -297,7 +253,7 @@
 			//   else 
 			else if ([restosDishesMatching count] == 0) {
 				dish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" 
-															 inManagedObjectContext:kManagedObjectContect];		
+															 inManagedObjectContext:mManagedObjectContext];		
 			}
 			else 
 				NSAssert(TRUE, @"Too many dishes matching a given restaurant");
@@ -329,16 +285,36 @@
 		}
 	}
 	NSError *error;
-	if(![kManagedObjectContect save:&error]){
+	DLog(@"saving restaurants with all of their dishes");
+	if(![mManagedObjectContext save:&error]){
 		DLog(@"there was a core data error when saving incoming restaurants");
 		DLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
 	}
+	else {
+		DLog(@"successful save, notify on the main thread");
+		[mIncomingProcessorDelegate performSelectorOnMainThread:@selector(saveComplete) 
+													 withObject:nil
+												  waitUntilDone:NO];
+	}
 }
-
-
 
 -(void)processIncomingNetworkText:(NSString *)responseText {
 
+	//First thing is first, create the managed object context:
+	//One managed object context per thread. Since Incoming Processor represents a thread,
+	//then it gets its own managed object context
+	
+	//We must create this in the new thread AFTER the init. Not within the init. AFTER the init. 
+	//It seems that the init is happening in the main thread, we are not in the new thread until here
+	//reference http://www.duckrowing.com/2010/03/11/using-core-data-on-multiple-threads/
+	NSPersistentStoreCoordinator *coordinator = [(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] persistentStoreCoordinator];
+    if (coordinator != nil) {
+        mManagedObjectContext = [[NSManagedObjectContext alloc] init];
+        [mManagedObjectContext setPersistentStoreCoordinator:coordinator];
+		[mManagedObjectContext setMergePolicy:NSOverwriteMergePolicy];
+
+    }
+	
 	//TODO in AddDishViewController, we are already parsing to JSON #optimization
 	SBJSON *parser = [SBJSON new];
 	NSError *error = nil;
@@ -367,6 +343,7 @@
 
 -(void)dealloc {
 	[mConnectionLookup release];
+	[mManagedObjectContext release];
 	[super dealloc];
 }
 
