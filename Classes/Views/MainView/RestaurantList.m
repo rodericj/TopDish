@@ -53,7 +53,7 @@
 	[self.searchBar setShowsCancelButton:YES];
 	[self.searchBar setDelegate:self];
 	[self.searchBar setTintColor:kTopDishBlue];
-	self.currentSearchDistance = 2000;
+	self.currentSearchDistance = kOneMileInMeters;
 }
 
 #pragma mark -
@@ -84,7 +84,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	//DLog(@"number of rows in section defined by %@", [self.fetchedResultsController fetchedObjects]);
+	DLog(@"number of rows in section %d", [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects]);
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
 	if (sectionInfo == nil){
 		return 0;
@@ -129,7 +129,6 @@
 	distanceLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_DISTANCE_TAG];
 	
 	NSAssert(thisRestaurant.distance > 0, @"the resto distance is not > 0");
-
 	distanceLabel.text = [NSString stringWithFormat:@"%.2f mi", [[thisRestaurant distance] floatValue]];	
 	
 	UILabel *positiveReviewsLabel;

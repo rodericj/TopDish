@@ -40,13 +40,13 @@
 	for (NSNumber *n in newRestaurantIds) {
 		[query appendString:[NSString stringWithFormat:@"id[]=%@&", n]];
 	}
+	
 	DLog(@"(************************************ %@", mManagedObjectContext);
 	DLog(@"Need to notify the main thread that we are done processing the dishes and that it's time to now hit the API to get restaurant detail for our list of new restaurants");
 	//[[NSNotificationCenter defaultCenter] postNotification:NSNotificationStringDoneProcessingDishes];
 	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:newRestaurantIds forKey:@"restaurantIds"];
 	[[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationStringDoneProcessingDishes object:self userInfo:userInfo];
 
-	//[self networkQuery:query];	
 }
 
 -(void)processIncomingDishesWithJsonArray:(NSArray *)dishesArray {
@@ -98,7 +98,7 @@
 		CLLocation *l = [[CLLocation alloc] initWithLatitude:[[dish latitude] floatValue] longitude:[[dish longitude] floatValue]];
 		CLLocationDistance dist = [l distanceFromLocation:[[AppModel instance] currentLocation]];
 		[l release];
-		float distanceInMiles = dist/1609.344; 
+		float distanceInMiles = dist/kOneMileInMeters; 
 		NSAssert(distanceInMiles > 0, @"the distance is not > 0");
 
 		[dish setDistance:[NSNumber numberWithFloat:distanceInMiles]];
@@ -235,7 +235,7 @@
 		CLLocation *l = [[CLLocation alloc] initWithLatitude:[[restaurant latitude] floatValue] longitude:[[restaurant longitude] floatValue]];
 		CLLocationDistance dist = [l distanceFromLocation:[[AppModel instance] currentLocation]];
 		[l release];
-		float distanceInMiles = dist/1609.344; 
+		float distanceInMiles = dist/kOneMileInMeters; 
 		NSAssert(distanceInMiles > 0, @"the distance is not > 0");
 		
 		[restaurant setDistance:[NSNumber numberWithFloat:distanceInMiles]];

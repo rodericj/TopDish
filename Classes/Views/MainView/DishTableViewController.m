@@ -15,10 +15,15 @@
 #import "AppModel.h"
 #import "asyncimageview.h"
 #import "DishDetailViewController.h"
+#import "JSON.h"
 
 #define kTopDishBlue [UIColor colorWithRed:0 green:.3843 blue:.5725 alpha:1]
 #define buttonLightBlue [UIColor colorWithRed:0 green:.73 blue:.89 alpha:1 ]
 #define buttonLightBlueShine [UIColor colorWithRed:.53 green:.91 blue:.99 alpha:1]
+
+#define kSearchCountLimit 10
+#define kMinimumDishesToShow 10
+#define kMaxDistance kOneMileInMeters * 25
 
 #define sortStringArray [NSArray arrayWithObjects:@"nothing", DISTANCE_SORT, RATINGS_SORT, PRICE_SORT, nil]
 @interface DishTableViewController ()
@@ -68,7 +73,7 @@
 	[locationController.locationManager startUpdatingLocation];	
 	
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	self.currentSearchDistance = 2000;
+	self.currentSearchDistance = kOneMileInMeters;
 	
     // Set up the settings button
 	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] 
@@ -134,11 +139,12 @@
 	}
 	
 	urlString = [NSString 
-				 stringWithFormat:@"%@/api/dishSearch?lat=%f&lng=%f&distance=%d&limit=20&q=%@",
+				 stringWithFormat:@"%@/api/dishSearch?lat=%f&lng=%f&distance=%d&limit=%d&q=%@",
 				 NETWORKHOST,
 				 l.coordinate.latitude,
 				 l.coordinate.longitude, 
 				 self.currentSearchDistance,
+				 kSearchCountLimit,
 				 [self.currentSearchTerm lowercaseString]];
 	urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
 	
@@ -187,7 +193,7 @@
 	
 	//Send this incoming content to the IncomingProcessor Object
 	IncomingProcessor *proc = [[IncomingProcessor alloc] initWithProcessorDelegate:self];
-	DLog(@"PROCESSOR the processor is set up");
+	DLog(@"PROCESSOR the processor is set up. Register for notifications");
 		
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(buildRestaurantNetworkGrab:) 
@@ -199,6 +205,31 @@
 	[proc release];
 	DLog(@"PROCESSOR the proc is released");
 	DLog(@"out of incoming processor");
+	
+	//Hate to do this, but I need to parse the JSON to figure out how many results we got back
+	SBJSON *parser = [SBJSON new];
+	NSError *error = nil;
+	
+	NSDictionary *responseAsDictionary = [parser objectWithString:responseText 
+															error:&error];
+	
+	DLog(@"we got %d dishes.", [[responseAsDictionary objectForKey:@"dishes"] count]);
+	
+		if ([[responseAsDictionary objectForKey:@"dishes"] count] < kMinimumDishesToShow && self.currentSearchDistance < kMaxDistance) {
+			DLog(@"Need to resend with a larger radius: %d -> %d. UnRegister for notifications",
+				 [[responseAsDictionary objectForKey:@"dishes"] count], 
+				 self.currentSearchDistance, 
+				 self.currentSearchDistance*5);
+			
+			self.currentSearchDistance *= 5;
+			
+			//Need to remove self from the observer list so we don't get redundant notifications
+			[[NSNotificationCenter defaultCenter] removeObserver:self];
+			[self initiateNetworkBasedOnSegmentControl];
+		}
+	
+	[parser release];
+	
 	[responseText release];
 	
 }
@@ -210,6 +241,10 @@
 -(void)buildRestaurantNetworkGrab:(NSNotification *)notification {
 	DLog(@"begin the network request to get the restaurants");
 	DLog(@"the notification is %@", [notification userInfo]);
+	
+	//remove myself
+	DLog(@"UnRegister for notifications in buildRestaurantNetworkGrab");
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	
 	if ([[[notification userInfo] objectForKey:@"restaurantIds"] count]) {
 		
@@ -500,10 +535,16 @@
 	CLLocationDistance dist = [l distanceFromLocation:[[AppModel instance] currentLocation]];
 	[l release];
 	
-	//convert from meters to miles
-	float distanceInMiles = dist/1609.344; 
-	NSAssert(distanceInMiles > 0, @"the distance is not > 0");
-	distance.text = [NSString stringWithFormat:@"%2.2f", distanceInMiles];	
+	if (dist != -1) {
+		//convert from meters to miles
+		float distanceInMiles = dist/kOneMileInMeters; 
+		NSAssert(distanceInMiles > 0, @"the distance is not > 0");
+		distance.text = [NSString stringWithFormat:@"%2.2f", distanceInMiles];	
+	}
+	else
+		//Let's just set the text to blank until the current location is determined, at which 
+		//point, we'll update the fetch, which will update the cell
+		distance.text = @"";
 	
 	UILabel *upVotes;
 	upVotes = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_UPVOTES_TAG];
@@ -550,7 +591,7 @@
 		if( [[thisDish photoURL] length] > 0 ){
 			NSRange aRange = [[thisDish photoURL] rangeOfString:@"http://"];
 			NSString *prefix = @"";
-			if (aRange.location ==NSNotFound)
+			if (aRange.location == NSNotFound)
 				prefix = NETWORKHOST;
 						
 			NSString *urlString = [NSString stringWithFormat:@"%@%@=s%d", 
@@ -630,7 +671,9 @@
 - (void)locationUpdate:(CLLocation *)location {
 	[[AppModel instance] setCurrentLocation:location];
 	[self getNearbyItems:location];
-	locationController = [[MyCLController alloc] init];
+	if (!locationController) {
+		locationController = [[MyCLController alloc] init];
+	}
 	locationController.delegate = self;
 	[locationController.locationManager stopUpdatingLocation];
 }
@@ -803,6 +846,7 @@
 	self.fetchedResultsController = nil;
 	
 	[mConnectionLookup release];
+	[locationController release];
 	[super dealloc];
 
 }
