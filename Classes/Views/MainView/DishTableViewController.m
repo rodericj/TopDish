@@ -501,7 +501,8 @@
 	[l release];
 	
 	//convert from meters to miles
-	float distanceInMiles = dist/1609.344; 	
+	float distanceInMiles = dist/1609.344; 
+	NSAssert(distanceInMiles > 0, @"the distance is not > 0");
 	distance.text = [NSString stringWithFormat:@"%2.2f", distanceInMiles];	
 	
 	UILabel *upVotes;

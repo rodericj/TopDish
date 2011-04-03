@@ -99,6 +99,8 @@
 		CLLocationDistance dist = [l distanceFromLocation:[[AppModel instance] currentLocation]];
 		[l release];
 		float distanceInMiles = dist/1609.344; 
+		NSAssert(distanceInMiles > 0, @"the distance is not > 0");
+
 		[dish setDistance:[NSNumber numberWithFloat:distanceInMiles]];
 		
 		NSArray *tagsArray = [dishDict objectForKey:@"tags"];
@@ -230,6 +232,15 @@
 		[restaurant setCity:[restoDict objectForKey:@"city"]];
 		[restaurant setState:[restoDict objectForKey:@"state"]];
 		
+		CLLocation *l = [[CLLocation alloc] initWithLatitude:[[restaurant latitude] floatValue] longitude:[[restaurant longitude] floatValue]];
+		CLLocationDistance dist = [l distanceFromLocation:[[AppModel instance] currentLocation]];
+		[l release];
+		float distanceInMiles = dist/1609.344; 
+		NSAssert(distanceInMiles > 0, @"the distance is not > 0");
+		
+		[restaurant setDistance:[NSNumber numberWithFloat:distanceInMiles]];
+
+		
 		for (NSDictionary *restoDishesDict in [restoDict objectForKey:@"dishes"]) {
 			//query it's Dishes
 			NSFetchRequest *restoFetchRequest = [[NSFetchRequest alloc] init];
@@ -267,6 +278,8 @@
 			[dish setPhotoURL:[restoDishesDict objectForKey:@"photoURL"]];
 			[dish setPosReviews:[restoDishesDict objectForKey:@"posReviews"]];
 			[dish setRestaurant:restaurant];
+			[dish setDistance:restaurant.distance];
+			dish.distance = restaurant.distance;
 			
 			NSArray *tagsArray = [restoDishesDict objectForKey:@"tags"];
 			for (NSDictionary *tag in tagsArray){
@@ -332,8 +345,10 @@
 		DLog(@"the offensive json %@", responseText);
 		NSAssert(NO, @"bad json");
 	}
-	
+	DLog(@"1) the retain count for self is %d, responseAsDict %d", [self retainCount], [responseAsDictionary retainCount]);
+
 	[self processIncomingDishesWithJsonArray:[responseAsDictionary objectForKey:@"dishes"]];
+	DLog(@"2) the retain count for self is %d, responseAsDict %d", [self retainCount], [responseAsDictionary retainCount]);
 	[self processIncomingRestaurantsWithJsonArray:[responseAsDictionary objectForKey:@"restaurants"]];
 	[parser release];
 	
@@ -342,7 +357,6 @@
 }
 
 -(void)dealloc {
-	[mConnectionLookup release];
 	[mManagedObjectContext release];
 	[super dealloc];
 }

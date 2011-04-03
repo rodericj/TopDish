@@ -14,7 +14,6 @@
 
 @interface IncomingProcessor : NSObject {
 	NSMutableData *mResponseData;
-	NSMutableDictionary *mConnectionLookup;
 	
 	NSManagedObjectContext *mManagedObjectContext;
 	id	mIncomingProcessorDelegate;

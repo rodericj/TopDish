@@ -84,7 +84,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	DLog(@"number of rows in section defined by %@", [self.fetchedResultsController fetchedObjects]);
+	//DLog(@"number of rows in section defined by %@", [self.fetchedResultsController fetchedObjects]);
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
 	if (sectionInfo == nil){
 		return 0;
@@ -127,10 +127,10 @@
 	
 	UILabel *distanceLabel;
 	distanceLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_DISTANCE_TAG];
-	NSSet *dishes = [thisRestaurant restaurant_dish];
-	Dish *aDish = (Dish *)[dishes anyObject];
 	
-	distanceLabel.text = [NSString stringWithFormat:@"%.2f mi", [[aDish distance] floatValue]];	
+	NSAssert(thisRestaurant.distance > 0, @"the resto distance is not > 0");
+
+	distanceLabel.text = [NSString stringWithFormat:@"%.2f mi", [[thisRestaurant distance] floatValue]];	
 	
 	UILabel *positiveReviewsLabel;
 	positiveReviewsLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_POSREVIEWS_TAG];
@@ -278,7 +278,7 @@
 	
 	// taken out so we can show the restaurant table results
     //NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"posReviews" ascending:NO];
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"objName" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:DISTANCE_SORT ascending:NO];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -370,7 +370,7 @@
 	
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = 
-	[[NSSortDescriptor alloc] initWithKey:@"distance" 
+	[[NSSortDescriptor alloc] initWithKey:DISTANCE_SORT 
 								ascending:TRUE];
 	
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
