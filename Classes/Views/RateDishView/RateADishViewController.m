@@ -134,7 +134,8 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-    
+	UIView *backView;
+
 	switch (indexPath.section) {
 		case kDishHeaderSection:
 			//we don't want this one to be clear for now
@@ -144,22 +145,24 @@
 			break;
 		case kWouldYouRecommend:
 			cell = self.wouldYouCell;
+			backView = [[UIView alloc] initWithFrame:CGRectZero];
+			cell.backgroundView = backView;
+			[backView release];
 			break;
 		case kPictureCell:
 			cell = self.pictureCell;
 			break;
 		case kSubmitButtonCell:
 			cell = self.submitButtonCell;
+			backView = [[UIView alloc] initWithFrame:CGRectZero];
+			cell.backgroundView = backView;
+			[backView release];
 			break;
 		default:
 			break;
 	}
 	
 	// Configure the cell...
-    UIView *backView = [[UIView alloc] initWithFrame:CGRectZero];
-	backView.backgroundColor = [UIColor clearColor];
-	cell.backgroundView = backView;
-	[backView release];
     return cell;
 }
 

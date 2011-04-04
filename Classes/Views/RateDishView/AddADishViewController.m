@@ -21,6 +21,11 @@
 #define kUploadPictureSection 4
 #define kAdditionalDetailsSection 5
 
+#define kTextViewRect CGRectMake(11, 5, 280, 70)
+
+#define kAdditionalDetailsDefaultText @"Please enter a detailed description of the dish here as you would see on a menu."
+#define kPleaseCommentDefaultText @"Please add your own comments here."
+
 #define kAddDishViewTextColor [UIColor colorWithRed:.3019 green:.2588 blue:.1686 alpha:1]
 
 @implementation AddADishViewController
@@ -65,6 +70,16 @@
     [super viewDidLoad];
 	self.view.backgroundColor = kTopDishBackground;
 	self.restaurantTitle.text = [self.restaurant objName];
+	self.tableView.tableFooterView = self.additionalDetailsCell;
+	
+	self.additionalDetailsTextView = [[UITextView alloc] initWithFrame:kTextViewRect];
+	self.additionalDetailsTextView.delegate = self;
+	self.additionalDetailsTextView.text = kAdditionalDetailsDefaultText;
+
+	self.commentTextView = [[UITextView alloc] initWithFrame:kTextViewRect];
+	self.commentTextView.delegate = self;
+	self.commentTextView.text = kPleaseCommentDefaultText;
+
 }
 
 
@@ -91,7 +106,7 @@
 	DLog(@"they picked %d", row);
 	pickerSelected = row;
 	
-	}
+}
 
 #pragma mark -
 #pragma mark UIPickerViewDataSource
@@ -170,6 +185,12 @@
 
 #pragma mark -
 #pragma mark keyboard delegate
+
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+	textView.text = @"";
+}
+
+
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range 
  replacementText:(NSString *)text
 {
@@ -202,7 +223,8 @@
 		case kUploadPictureSection:
 			return self.uploadCell.bounds.size.height;
 		case kAdditionalDetailsSection:
-			return self.additionalDetailsCell.bounds.size.height;
+//			return self.additionalDetailsCell.bounds.size.height;
+			return 80;
 		default:
 			break;
 	}
@@ -244,9 +266,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-	if (section == kDishTagSection) {
+	if (section == kDishTagSection || section == kAdditionalDetailsSection) {
 		return 2;
 	}
+
     return 1;
 }
 
@@ -261,15 +284,28 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
-		cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+	
+	NSArray *subViews = cell.subviews;
+	for (UIView *v in subViews)
+		if ([v class] == [UITextView class])
+			[v removeFromSuperview];
+	
+	// Configure the cell...
+	UIView *backView;
 	switch (indexPath.section) {
 		case kRestaurantSection:
 			cell = self.restaurantCell;
+			backView = [[UIView alloc] initWithFrame:CGRectZero];
+			cell.backgroundView = backView;
+			[backView release];
 			break;
 			
 		case kDishNameSection:
 			cell = self.dishNameCell;
+			backView = [[UIView alloc] initWithFrame:CGRectZero];
+			cell.backgroundView = backView;
+			[backView release];
 			break;
 			
 		case kDishTagSection:
@@ -324,25 +360,34 @@
 			
 		case kWouldYouRecommendSection:
 			cell = self.wouldYouCell;
+			backView = [[UIView alloc] initWithFrame:CGRectZero];
+			cell.backgroundView = backView;
+			[backView release];
 			break;
 			
 		case kUploadPictureSection:
 			cell = self.uploadCell;
 			break;
 			
-		case kAdditionalDetailsSection:
-			cell = self.additionalDetailsCell;
+		case kAdditionalDetailsSection: {
+			cell.accessoryType = UITableViewCellAccessoryNone;
+
+			switch (indexPath.row) {
+				case 0:
+					[cell addSubview:self.additionalDetailsTextView];
+					break;
+				case 1:
+					[cell addSubview:self.commentTextView];
+					break;
+			}
+		}
 			break;
 		default:
 			break;
 	}
-    // Configure the cell...
-	UIView *backView = [[UIView alloc] initWithFrame:CGRectZero];
-	cell.backgroundView = backView;
-	[backView release];
-	
+
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
-	
+
     return cell;
 }
 
@@ -484,7 +529,9 @@
 		return;
 	}
 	
-	if ([self.additionalDetailsTextView.text length] == 0 || !self.additionalDetailsTextView.text) {
+	if ([self.additionalDetailsTextView.text length] == 0 || 
+		!self.additionalDetailsTextView.text || 
+		([self.additionalDetailsTextView.text isEqualToString:kAdditionalDetailsDefaultText])) {
 		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Error Submitting Dish" 
 															message:@"Invalid Description: This should be what you'd see on the menu" 
 														   delegate:nil 
@@ -495,7 +542,9 @@
 		return;
 	}
 	
-	if ([self.commentTextView.text length] == 0 || !self.commentTextView.text) {
+	if ([self.commentTextView.text length] == 0 || 
+		!self.commentTextView.text || 
+		([self.commentTextView.text isEqualToString:kPleaseCommentDefaultText])) {
 		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Error Submitting Dish" 
 															message:@"Don't foget to leave your comment" 
 														   delegate:nil 

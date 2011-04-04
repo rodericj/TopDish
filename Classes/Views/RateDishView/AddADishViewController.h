@@ -11,7 +11,8 @@
 
 @interface AddADishViewController : UITableViewController <UINavigationControllerDelegate, 
 UIImagePickerControllerDelegate,
-UIActionSheetDelegate> {
+UIActionSheetDelegate,
+UITextViewDelegate> {
 	Restaurant *mRestaurant;
 	
 	UITableViewCell *mRestaurantCell;
@@ -28,9 +29,9 @@ UIActionSheetDelegate> {
 	UITableViewCell *mUploadCell;
 	UIImageView *mNewPicture;
 	
-	UITableViewCell *mAdditionalDetailsCell;
-	UITextField		*mAdditionalDetailsTextView;
-	UITextField		*mCommentTextView;
+	UIView *mAdditionalDetailsCell;
+	UITextView		*mAdditionalDetailsTextView;
+	UITextView		*mCommentTextView;
 	
 	UIButton		*mSubmitButton;
 	
@@ -69,9 +70,9 @@ UIActionSheetDelegate> {
 @property (nonatomic, retain) IBOutlet UITableViewCell *uploadCell;
 @property (nonatomic, retain) IBOutlet UIImageView *newPicture;
 
-@property (nonatomic, retain) IBOutlet UITableViewCell *additionalDetailsCell;
-@property (nonatomic, retain) IBOutlet UITextField *additionalDetailsTextView;
-@property (nonatomic, retain) IBOutlet UITextField *commentTextView;
+@property (nonatomic, retain) IBOutlet UIView *additionalDetailsCell;
+@property (nonatomic, retain) UITextView *additionalDetailsTextView;
+@property (nonatomic, retain) UITextView *commentTextView;
 @property (nonatomic, retain) IBOutlet UIButton	*submitButton;
 
 @property (nonatomic, assign) int selectedMealType;
