@@ -73,9 +73,9 @@
 
 #define kPriceType	0
 #define kMealType	1
-#define kAllergenType 2
+#define kAllergenType 4
 #define kLifestyleType 3
-#define kCuisineType 4
+#define kCuisineType 2
 
 #define kFlagINACCURATE = 0;
 #define kFlagSPAM = 1;

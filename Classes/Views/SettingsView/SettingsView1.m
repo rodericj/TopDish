@@ -10,7 +10,7 @@
 #import "AppModel.h"
 #import "constants.h"
 
-#define kNumberOfDifferentTypes 5
+#define kNumberOfDifferentTypes 4
 
 #define kFilterRowsSection 0
 
@@ -117,7 +117,7 @@
 	[self.tableView addSubview:self.pickerViewOverlay];
 	[UIView beginAnimations:@"animatePickerOn" context:NULL]; // Begin animation
 	mPickerUp = NO;
-	[self.pickerViewOverlay setFrame:CGRectOffset([self.pickerViewOverlay frame], 0, self.pickerViewOverlay.frame.size.height)]; // Move imageView off screen
+	[self.pickerViewOverlay setFrame:CGRectOffset([self.pickerViewOverlay frame], 0, self.pickerViewOverlay.frame.size.height+10)]; // Move imageView off screen
 	[UIView commitAnimations]; // End animations
 	[self.pickerViewOverlay setHidden:YES];
 	[self.tableView setUserInteractionEnabled:YES];
@@ -235,7 +235,7 @@
 	if (!mPickerUp) {
 		
 		[UIView beginAnimations:@"animatePickerOn" context:NULL]; // Begin animation
-		[self.pickerViewOverlay setFrame:CGRectOffset([self.pickerViewOverlay frame], 0, -self.pickerViewOverlay.frame.size.height-14)]; // Move imageView off screen
+		[self.pickerViewOverlay setFrame:CGRectOffset([self.pickerViewOverlay frame], 0, -self.pickerViewOverlay.frame.size.height-10)]; // Move imageView off screen
 		mPickerUp = TRUE;
 		[UIView commitAnimations]; // End animations
 		[self.pickerViewOverlay setHidden:NO];
