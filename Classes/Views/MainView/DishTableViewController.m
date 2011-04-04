@@ -641,10 +641,10 @@
 -(IBAction) sortByRating
 {
 	DLog(@"sort by Rating %d", [[AppModel instance] sorter]);
-	if ([[AppModel instance] sorter] == kSortByRating)
-		[[AppModel instance] setSorter:-kSortByRating];
-	else {
+	if ([[AppModel instance] sorter] == -kSortByRating)
 		[[AppModel instance] setSorter:kSortByRating];
+	else {
+		[[AppModel instance] setSorter:-kSortByRating];
 	}
 
 	[self updateFetch];
