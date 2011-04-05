@@ -19,12 +19,15 @@
 #define kDishTagSection 2
 #define kWouldYouRecommendSection 3
 #define kUploadPictureSection 4
-#define kAdditionalDetailsSection 5
+#define kDishDescriptionSection 5
+#define kUserCommentSection 6
+
+#define kNumberOfSections 7
 
 #define kTextViewRect CGRectMake(11, 5, 280, 70)
 
-#define kAdditionalDetailsDefaultText @"Please enter a detailed description of the dish here as you would see on a menu."
-#define kPleaseCommentDefaultText @"Please add your own comments here."
+#define kAdditionalDetailsDefaultText @"Include as many ingredients as possible, descriptions from menus are ok. Eg. Cheese-filled thin pancakes, served with house-made apple sauce and sour cream"
+#define kPleaseCommentDefaultText @"The more descriptive your review the more helpful it will be to future users and restaurants"
 
 #define kAddDishViewTextColor [UIColor colorWithRed:.3019 green:.2588 blue:.1686 alpha:1]
 
@@ -81,8 +84,6 @@
 	self.commentTextView.text = kPleaseCommentDefaultText;
 
 }
-
-
 
 - (void)viewWillAppear:(BOOL)animated {
 
@@ -222,7 +223,10 @@
 			return self.dishNameCell.bounds.size.height;
 		case kUploadPictureSection:
 			return self.uploadCell.bounds.size.height;
-		case kAdditionalDetailsSection:
+			
+		//intentional dropthrough
+		case kDishDescriptionSection:
+		case kUserCommentSection:
 //			return self.additionalDetailsCell.bounds.size.height;
 			return 80;
 		default:
@@ -249,9 +253,11 @@
 		case kUploadPictureSection:
 			return @"Upload Picture";
 			
-		case kAdditionalDetailsSection:
-			return @"Additional Details";
+		case kDishDescriptionSection:
+			return @"What's in the dish?";
 			
+		case kUserCommentSection:
+			return @"What do you think of the dish?";
 		default:
 			break;
 	}
@@ -260,13 +266,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 6;
+    return kNumberOfSections;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-	if (section == kDishTagSection || section == kAdditionalDetailsSection) {
+	if (section == kDishTagSection) {
 		return 2;
 	}
 
@@ -369,19 +375,16 @@
 			cell = self.uploadCell;
 			break;
 			
-		case kAdditionalDetailsSection: {
+		case kDishDescriptionSection:
 			cell.accessoryType = UITableViewCellAccessoryNone;
-
-			switch (indexPath.row) {
-				case 0:
-					[cell addSubview:self.additionalDetailsTextView];
-					break;
-				case 1:
-					[cell addSubview:self.commentTextView];
-					break;
-			}
-		}
+			[cell addSubview:self.additionalDetailsTextView];
 			break;
+			
+		case kUserCommentSection:
+			cell.accessoryType = UITableViewCellAccessoryNone;
+			[cell addSubview:self.commentTextView];
+			break;
+
 		default:
 			break;
 	}
