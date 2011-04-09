@@ -12,6 +12,8 @@
 #define NSNotificationStringDoneProcessingDishes @"DONEPROCESSINGDISHES"
 #define NSNotificationStringDoneProcessingRestaurants @"DONEPROCESSINGRESTAURANTS"
 
+#define NSNotificationStringDoneLogin @"DONELOGIN"
+
 #pragma mark -
 #pragma mark NSManagedObjectContext
 #define kManagedObjectContect [(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext]
@@ -90,6 +92,9 @@
 #define kCuisineTypeString @"Cuisine"
 
 #define keyforauthorizing @"apiKey"
+#define kFBUserDefaultsAuthKey @"tdfacebookAuthKey"
+#define TD_FB_ACCESS_TOKEN_KEY @"TD_FB_ACCESS_TOKEN_KEY"
+#define TD_FB_EXPIRATION_DATE_KEY @"TD_FB_EXPIRATION_DATE_KEY"
 
 #pragma mark tags
 

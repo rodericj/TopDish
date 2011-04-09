@@ -151,6 +151,7 @@ enum {
  */
 - (void)requestLoading:(FBRequest *)request
 {
+	NSLog(@"fb request loading");
 }
 
 /**
@@ -158,6 +159,7 @@ enum {
  */
 - (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response
 {
+	NSLog(@"request did receive response");
 }
 
 /**

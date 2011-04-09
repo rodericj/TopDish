@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Facebook.h"
+#import "ASIFormDataRequest.h"
 
 @interface AppModel : NSObject <FBSessionDelegate>{
 	NSMutableDictionary *mUser;
@@ -31,6 +32,9 @@
 	NSMutableDictionary *mIdToTagLookup;
 	
 	NSOperationQueue *mQueue;
+	
+	ASIFormDataRequest *mTopDishFBLoginRequest;
+	BOOL	mUserDelayedLogin;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *user;
@@ -46,6 +50,9 @@
 @property (nonatomic, retain) NSOperationQueue *queue;
 
 @property (nonatomic, retain) CLLocation *currentLocation;
+
+@property (nonatomic, assign) BOOL userDelayedLogin;
+
 +(AppModel *)instance;
 
 -(NSString *)selectedMealName;

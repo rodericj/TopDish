@@ -8,10 +8,8 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "SignInSignUpBaseViewController.h"
-#import "ASIFormDataRequest.h"
 
 @interface SignInViewController : SignInSignUpBaseViewController {
-	ASIFormDataRequest *mTopDishFBLoginRequest;
 	FBLoginButton *mFbLoginButton;
 }
 

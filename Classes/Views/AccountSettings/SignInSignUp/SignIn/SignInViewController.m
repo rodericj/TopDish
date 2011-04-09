@@ -23,6 +23,16 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #pragma mark view lifetime stuff
 -(void) viewDidLoad {
 	[super viewDidLoad];
+	
+	self.view.backgroundColor = kTopDishBackground;
+	self.fbLoginButton.isLoggedIn = [[[AppModel instance] facebook] isSessionValid];
+	
+	[self.fbLoginButton updateImage];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{		
+	
 	Facebook *facebook = [[AppModel instance] facebook];
 	if ([facebook isSessionValid]) {
 		//call the facebook api
@@ -38,34 +48,28 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 	else {
 		[facebook authorize:kpermission delegate:self];
 	}
-
 	
-	self.view.backgroundColor = kTopDishBackground;
-	self.fbLoginButton.isLoggedIn = [[[AppModel instance] facebook] isSessionValid];
 	
-	[self.fbLoginButton updateImage];
-}
-
--(void)viewDidAppear:(BOOL)animated
-{		
+	
+	
 	[super viewDidAppear:animated];
 	DLog(@"the view will appear. If we have the key, go to the account page");
 	DLog(@"the api key is %@", [[AppModel instance].user objectForKey:keyforauthorizing]);
-	if ([[AppModel instance].user objectForKey:keyforauthorizing] != nil || [[[AppModel instance] facebook] isSessionValid]) {
-		AccountView *accountView = [[AccountView alloc] initWithNibName:@"AccountView" bundle:nil];
-		[self.navigationController setViewControllers:[NSArray arrayWithObject:accountView]];
-		[accountView release];
-	}
+	//if ([[AppModel instance].user objectForKey:keyforauthorizing] != nil || [[[AppModel instance] facebook] isSessionValid]) {
+//		AccountView *accountView = [[AccountView alloc] initWithNibName:@"AccountView" bundle:nil];
+//		[self.navigationController setViewControllers:[NSArray arrayWithObject:accountView]];
+//		[accountView release];
+//	}
 }
 /**
  * Show the authorization dialog.
  */
 - (void)login {
-	[[[AppModel instance] facebook] authorize:kpermission delegate:self];
+	[[[AppModel instance] facebook] authorize:kpermission delegate:[AppModel instance]];
 }
 
 -(void)logout{
-	[[[AppModel instance] facebook] logout:self];
+	[[[AppModel instance] facebook] logout:[AppModel instance]];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
@@ -99,25 +103,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 		[self login];
 }
 
-#pragma mark -
-#pragma mark FBcallbacks
-- (void)fbDidLogin{	
-	DLog(@"user logged in");
-	[self.fbLoginButton setIsLoggedIn:YES];
-	[self.fbLoginButton updateImage];
-	
-	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/facebookLogin", NETWORKHOST]];
-	DLog(@"[[AppModel instance] facebook].accessToken %@\n the url we are hitting is %@", 
-		 [[AppModel instance] facebook].accessToken, url);
-	
-	//Call the topdish server to log in
-	mTopDishFBLoginRequest = [ASIFormDataRequest requestWithURL:url];
-	[mTopDishFBLoginRequest setPostValue:[[AppModel instance] facebook].accessToken forKey:@"facebookApiKey"];
-	[mTopDishFBLoginRequest setAllowCompressedResponse:NO];
-	[mTopDishFBLoginRequest setDelegate:self];	
-	[mTopDishFBLoginRequest startAsynchronous];
-	
-}
+
 
 /**
  * Called when the user dismissed the dialog without logging in.
@@ -138,41 +124,6 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 }
 
 
-#pragma mark -
-#pragma mark network callback 
-- (void)requestFinished:(ASIHTTPRequest *)request
-{
-	// Use when fetching binary data
-	
-	NSError *error;
-	SBJSON *parser = [SBJSON new];
-	NSString *responseString = [request responseString];
-	NSDictionary *responseAsDict = [parser objectWithString:responseString error:&error];	
-	[parser release];
-	DLog(@"the dictionary should be a %@", responseAsDict);
-
-	if (request == mTopDishFBLoginRequest) {
-		//responseString = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
-		DLog(@"handle the facebook authentication stuff %@", responseString);
-		if ([[responseAsDict objectForKey:@"rc"] intValue] == 1) {
-			//response returned with an error. Lets see what we got
-			DLog(@"response from TD Server %@", responseAsDict);
-		}
-		else {
-			[responseAsDict objectForKey:keyforauthorizing];
-			[[AppModel instance].user setObject:[responseAsDict objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-			[self.navigationController popToRootViewControllerAnimated:YES];
-			
-			LoggedInLoggedOutGate *gate = [[LoggedInLoggedOutGate alloc] init];
-			//[self.navigationController pushViewController:signIn animated:NO];
-			[self.navigationController setViewControllers:[NSArray arrayWithObject:gate]];
-			[gate release];
-		}
-
-	}
-	else 
-		DLog(@"not really sure what we just returned %@", responseAsDict);
-}
 
 //see parent class for cancel clicked
 

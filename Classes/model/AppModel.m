@@ -25,6 +25,7 @@
 @synthesize facebook = mFacebook;
 
 @synthesize queue = mQueue;
+@synthesize userDelayedLogin = mUserDelayedLogin;
 
 AppModel *gAppModelInstance = nil;
 
@@ -92,7 +93,16 @@ AppModel *gAppModelInstance = nil;
 	
 }
 -(void)createFacebookObject {
-	self.facebook = [[Facebook alloc] initWithAppId:kFBAppId];	
+	NSLog(@"facebook in defaults is %@", [[NSUserDefaults standardUserDefaults] objectForKey:kFBUserDefaultsAuthKey]);
+	if ([[NSUserDefaults standardUserDefaults] objectForKey:kFBUserDefaultsAuthKey]) {
+		self.facebook = [[NSUserDefaults standardUserDefaults] objectForKey:kFBUserDefaultsAuthKey];
+		//self.facebook.accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:TD_FB_ACCESS_TOKEN_KEY];
+		//self.facebook.expirationDate = [[NSUserDefaults standardUserDefaults] objectForKey:TD_FB_EXPIRATION_DATE_KEY];
+	}
+	else {
+		self.facebook = [[Facebook alloc] initWithAppId:kFBAppId];	
+	}
+
 }
 
 -(id)init
@@ -179,11 +189,78 @@ AppModel *gAppModelInstance = nil;
 	[self.user removeObjectForKey:keyforauthorizing];
 	[self.facebook logout:self];
 }
+
+#pragma mark -
+#pragma mark network callback 
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+	// Use when fetching binary data
+	
+	NSError *error;
+	SBJSON *parser = [SBJSON new];
+	NSString *responseString = [request responseString];
+	NSDictionary *responseAsDict = [parser objectWithString:responseString error:&error];	
+	[parser release];
+	DLog(@"the dictionary should be a %@", responseAsDict);
+	
+	if (request == mTopDishFBLoginRequest) {
+		//responseString = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
+		DLog(@"handle the facebook authentication stuff %@", responseString);
+		if ([[responseAsDict objectForKey:@"rc"] intValue] == 1) {
+			//response returned with an error. Lets see what we got
+			DLog(@"response from TD Server %@", responseAsDict);
+		}
+		else {
+			[responseAsDict objectForKey:keyforauthorizing];
+			[[AppModel instance].user setObject:[responseAsDict objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+			
+			//send notification that we have logged in
+			[[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationStringDoneLogin object:nil];
+			//[self.navigationController popToRootViewControllerAnimated:YES];
+
+			//LoggedInLoggedOutGate *gate = [[LoggedInLoggedOutGate alloc] init];
+//			//[self.navigationController pushViewController:signIn animated:NO];
+//			[self.navigationController setViewControllers:[NSArray arrayWithObject:gate]];
+//			[gate release];
+		}
+		
+	}
+	else 
+		DLog(@"not really sure what we just returned %@", responseAsDict);
+}
+
+#pragma mark -
+#pragma mark FBcallbacks
+
 -(void)fbDidLogout {
 	self.facebook = nil;
 	[self createFacebookObject];
 
 }
+
+- (void)fbDidLogin{	
+	DLog(@"fb logged in");
+	
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/facebookLogin", NETWORKHOST]];
+	DLog(@"[[AppModel instance] facebook].accessToken %@\n the url we are hitting is %@", 
+		 [[AppModel instance] facebook].accessToken, url);
+	
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //[defaults setObject:self.facebook.accessToken forKey:TD_FB_ACCESS_TOKEN_KEY];
+    //[defaults setObject:self.facebook.expirationDate forKey:TD_FB_EXPIRATION_DATE_KEY];
+    
+	[defaults setObject:[AppModel instance].facebook 
+											 forKey:kFBUserDefaultsAuthKey];
+	[defaults synchronize];
+	//Call the topdish server to log in
+	mTopDishFBLoginRequest = [ASIFormDataRequest requestWithURL:url];
+	[mTopDishFBLoginRequest setPostValue:[[AppModel instance] facebook].accessToken forKey:@"facebookApiKey"];
+	[mTopDishFBLoginRequest setAllowCompressedResponse:NO];
+	[mTopDishFBLoginRequest setDelegate:self];	
+	[mTopDishFBLoginRequest startAsynchronous];
+	
+}
+
 +(NSNumber *)extractTag:(NSString *)key fromArrayOfTags:(NSArray *)tagsArray {
 	for (NSDictionary *tagDict in tagsArray){
 		if ([[tagDict objectForKey:@"type"] isEqualToString:key]) {

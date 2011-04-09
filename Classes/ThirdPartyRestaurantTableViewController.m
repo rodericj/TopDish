@@ -7,7 +7,7 @@
 //
 
 #import "ThirdPartyRestaurantTableViewController.h"
-
+#import "constants.h"
 
 @implementation ThirdPartyRestaurantTableViewController
 
@@ -21,8 +21,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.restaurants = [NSArray arrayWithObjects:@"hi", @"bye", nil];
+	//self.restaurants = [NSArray arrayWithObjects:@"hi", @"bye", nil];
+	
+		
+	
  }
+
+-(void)viewWillAppear:(BOOL)animated {
+	//initiate network
+	NSMutableString *query = [NSMutableString stringWithFormat:@"%@%@", 
+							  NETWORKHOST, 
+							  @"/api/restaurantSearch?lat=123&long=35"];
+	
+	
+	NSURLRequest *request = [NSURLRequest requestWithURL:query];
+	[[[NSURLConnection alloc] initWithRequest:request 
+									 delegate:self 
+							 startImmediately:TRUE] autorelease];	
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
+
+}
+
+
 
 +(ThirdPartyRestaurantTableViewController *) viewControllerWithDelegate:(id)delegate {
 	ThirdPartyRestaurantTableViewController *tvController = [[[ThirdPartyRestaurantTableViewController alloc] 

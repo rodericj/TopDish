@@ -109,14 +109,14 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == kMoreRestaurantsSection ) {
-		UITableViewCell *moreCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-		moreCell.textLabel.text = @"More Restaurants";
+		UITableViewCell *moreCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+		moreCell.textLabel.text = @"Can't find your restaurant?";
+		moreCell.detailTextLabel.text = @"Click here";
 		return moreCell;
 	}
     static NSString *CellIdentifier = @"RestaurantTableViewCell";
     
 	Restaurant *thisRestaurant = [[self fetchedResultsController] objectAtIndexPath:indexPath];	
-	//DLog(@"this restaurant is %@", thisRestaurant);
 	
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {

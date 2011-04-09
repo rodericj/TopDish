@@ -16,6 +16,7 @@
 #import "asyncimageview.h"
 #import "DishDetailViewController.h"
 #import "JSON.h"
+#import "LoginModalView.h"
 
 #define kTopDishBlue [UIColor colorWithRed:0 green:.3843 blue:.5725 alpha:1]
 #define buttonLightBlue [UIColor colorWithRed:0 green:.73 blue:.89 alpha:1 ]
@@ -106,6 +107,17 @@
 	self.navigationController.navigationBar.tintColor = kTopDishBlue;
 	[self setUpSpecificView];
 	
+}
+-(void)viewDidAppear:(BOOL)animated {
+	AppModel *app = [AppModel instance];
+	if (![app.facebook isSessionValid] && !app.userDelayedLogin) {
+		LoginModalView *loginModal = [[LoginModalView alloc] initWithNibName:@"LoginModalView" 
+																	  bundle:nil];
+		
+		[self presentModalViewController:loginModal 
+								animated:YES];
+		[loginModal release];
+	}
 }
 
 -(void) networkQuery:(NSString *)query{

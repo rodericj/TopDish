@@ -57,6 +57,10 @@
 	NSMutableArray *newRestaurantsWeNeedToGet = [NSMutableArray array];
 	for (NSDictionary *dishDict in dishesArray) {
 		//   query the datastore
+		DLog(@"set up a fetch for dish %d:%@", 
+			  [dishDict objectForKey:@"id"], 
+			  [dishDict objectForKey:@"name"]);
+
 		NSFetchRequest *dishFetchRequest = [[NSFetchRequest alloc] init];
 		NSEntityDescription *whichType = [NSEntityDescription entityForName:@"Dish" 
 													 inManagedObjectContext:mManagedObjectContext];
@@ -71,6 +75,8 @@
 								   executeFetchRequest:dishFetchRequest error:&error];
 		[dishFetchRequest release];
 		
+		DLog(@"dish fetch done");
+		
 		Dish *dish;
 		//   if it exists, update
 		if ([dishesMatching count] == 1) {
@@ -79,12 +85,16 @@
 		//   else 
 		else if ([dishesMatching count] == 0) {
 			//       add it
+			DLog(@"create the dish since it's the first time we've seen it");
 			dish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" 
 														 inManagedObjectContext:mManagedObjectContext];
+			DLog(@"done creating dish");
+
 		}
 		else
 			NSAssert(TRUE, @"Too many dishes matched a query which should have returned 1");
 
+		DLog(@"associate this dish with it's data from JSON");
 		[dish setDish_id:[dishDict objectForKey:@"id"]];
 		
 		[dish setObjName:[NSString stringWithFormat:@"%@", [dishDict objectForKey:@"name"]]];
@@ -118,6 +128,8 @@
 		}	
 		NSAssert([dish price], @"price must not be null");
 
+		DLog(@"dish is all set up, now fetch for restaurant %d", [dishDict objectForKey:@"restaurantID"]);
+		
 		//query it's restaurant
 		NSFetchRequest *restoFetchRequest = [[NSFetchRequest alloc] init];
 		whichType = [NSEntityDescription entityForName:@"Restaurant" 
@@ -132,6 +144,8 @@
 								   executeFetchRequest:restoFetchRequest error:&error];
 		[restoFetchRequest release];
 		
+		DLog(@"restaurnat fetch done");
+		
 		Restaurant *restaurant;
 		//   if it exists, update
 		if ([restosMatching count] == 1) {
@@ -139,9 +153,11 @@
 		}		
 		//   else 
 		else if ([restosMatching count] == 0) {
+			DLog(@"create a new restaurant since it's the first time we've seen it");
 			restaurant = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" 
 																	 inManagedObjectContext:mManagedObjectContext];	
 			[newRestaurantsWeNeedToGet addObject:[dishDict objectForKey:@"restaurantID"]];
+			DLog(@"done creating the new restaurant");
 		}
 		else
 			NSAssert(TRUE, @"Too many restaurants for a given dish when queried");
@@ -155,19 +171,23 @@
 		[restaurant setDistance:[NSNumber numberWithFloat:distanceInMiles]];
 		
 		[dish setRestaurant:restaurant];
+		DLog(@"done linking the restaurant and the dish");
 	}
 	NSError *error;
 	
 	//Only if we have new dishes (we won't if we only got restaurants
 	if ([dishesArray count]) {
+		DLog(@"save the restaurant");
 		if(![mManagedObjectContext save:&error]){
 			DLog(@"there was a core data error when saving incoming dishes");
 			DLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
 		}
 		else {
+			DLog(@"the save was successful, notify the main thread that the save worked, not waiting until done");
 			[mIncomingProcessorDelegate performSelectorOnMainThread:@selector(saveComplete) 
 								   withObject:nil
 								waitUntilDone:NO];
+			DLog(@"done notifying the main thread");
 		}
 
 	}
@@ -192,6 +212,7 @@
 	//for each dish in the list
 	for (NSDictionary *restoDict in restoArray) {
 		//   query the datastore
+		DLog(@"set up a fetch for restaurant %d:%@", [restoDict objectForKey:@"id"], [restoDict objectForKey:@"name"]);
 		NSFetchRequest *restoFetchRequest = [[NSFetchRequest alloc] init];
 		NSEntityDescription *whichType = [NSEntityDescription entityForName:@"Restaurant" 
 													 inManagedObjectContext:mManagedObjectContext];
@@ -205,7 +226,7 @@
 		NSArray *restoMatching = [mManagedObjectContext
 								  executeFetchRequest:restoFetchRequest error:&error];
 		[restoFetchRequest release];
-		
+		DLog(@"done with the fetch");
 		Restaurant *restaurant;
 		//   if it exists, update
 		if ([restoMatching count] == 1) {
@@ -214,11 +235,14 @@
 		//   else 
 		else if ([restoMatching count] == 0) {
 			//       add it
+			DLog(@"create this new restaurant, we've never seen it before aka fetch was empty");
 			restaurant = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" 
 																	 inManagedObjectContext:mManagedObjectContext];
+			DLog(@"done creating restaurant");
 		}
 		else
 			NSAssert(TRUE, @"There were too many restaurants matching a dish");
+		DLog(@"populate the restaurant with data");
 		
 		//Do all of the restaurant data setting
 		[restaurant setRestaurant_id:[restoDict objectForKey:@"id"]];
@@ -239,10 +263,14 @@
 		NSAssert(distanceInMiles > 0, @"the distance is not > 0");
 		
 		[restaurant setDistance:[NSNumber numberWithFloat:distanceInMiles]];
-
+		DLog(@"done setting up the restaurant with it's data");
 		
 		for (NSDictionary *restoDishesDict in [restoDict objectForKey:@"dishes"]) {
 			//query it's Dishes
+			DLog(@"for each dish at this restaurant: fetch this dish %d:%@", 
+				  [restoDishesDict objectForKey:@"id"], 
+				  [restoDishesDict objectForKey:@"name"]);
+			
 			NSFetchRequest *restoFetchRequest = [[NSFetchRequest alloc] init];
 			whichType = [NSEntityDescription entityForName:@"Dish" 
 									inManagedObjectContext:mManagedObjectContext];
@@ -256,6 +284,8 @@
 											 executeFetchRequest:restoFetchRequest error:&error];
 			[restoFetchRequest release];
 			
+			DLog(@"The fetch is done");
+			
 			Dish *dish;
 			//   if it exists, update
 			if ([restosDishesMatching count] == 1) {
@@ -263,12 +293,15 @@
 			}		
 			//   else 
 			else if ([restosDishesMatching count] == 0) {
+				DLog(@"the dish did not exist, create it");
 				dish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" 
 															 inManagedObjectContext:mManagedObjectContext];		
+				DLog(@"dish creation done");
 			}
 			else 
 				NSAssert(TRUE, @"Too many dishes matching a given restaurant");
 
+			DLog(@"populate/update the dish");
 			[dish setDish_description:[restoDishesDict objectForKey:@"description"]];
 			[dish setDish_id:[restoDishesDict objectForKey:@"id"]];
 			[dish setLatitude:[restoDishesDict objectForKey:@"latitude"]];
@@ -308,6 +341,7 @@
 		[mIncomingProcessorDelegate performSelectorOnMainThread:@selector(saveComplete) 
 													 withObject:nil
 												  waitUntilDone:NO];
+		DLog(@"done notifying the main thread, we didn't wait for it");
 	}
 }
 
