@@ -16,6 +16,9 @@
 #import "NearbyMapViewController.h"
 #import "JSON.h"
 
+#define kNumberOfSections 2
+#define kRestaurantSection 0
+#define kMoreRestaurantsSection 1
 @implementation RestaurantList
 
 @synthesize fetchedResultsController = mFetchedResultsController;
@@ -80,10 +83,15 @@
 #pragma mark -
 #pragma mark Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView{
-	return 1;
+	return kNumberOfSections;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	
+	if (section == kMoreRestaurantsSection) {
+		return 1;
+	}
+	
 	DLog(@"number of rows in section %d", [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects]);
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
 	if (sectionInfo == nil){
@@ -94,14 +102,17 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *c = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-	return c.bounds.size.height;
-	//return 45;
-	
+	return c.bounds.size.height;	
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == kMoreRestaurantsSection ) {
+		UITableViewCell *moreCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+		moreCell.textLabel.text = @"More Restaurants";
+		return moreCell;
+	}
     static NSString *CellIdentifier = @"RestaurantTableViewCell";
     
 	Restaurant *thisRestaurant = [[self fetchedResultsController] objectAtIndexPath:indexPath];	
@@ -174,16 +185,17 @@
 		}
 	}
 	
-	
-	
-	//UILabel *restaurantScoreLabel;
-	//restaurantScoreLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_RESTAURENT_SCORE_TAG];
-	//restaurantScoreLabel.text = @"TODO";
-	
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == kMoreRestaurantsSection) {
+		ThirdPartyRestaurantTableViewController *t = [ThirdPartyRestaurantTableViewController 
+													  viewControllerWithDelegate:self];
+		[self.navigationController pushViewController:t
+											 animated:YES];
+		return;
+	}
 	Restaurant *thisRestaurant = [[self fetchedResultsController] objectAtIndexPath:indexPath];	
 
 	RestaurantDetailViewController *viewController = 
@@ -194,6 +206,13 @@
 	[self.navigationController pushViewController:viewController animated:YES];
 	[viewController release];
 	
+}
+
+#pragma mark -
+#pragma mark ThirdPartyRestaurantsListDelegate
+-(void)restaurantSelected {
+	NSLog(@"restaurant Selected");
+	[self.tableView reloadData];
 }
 
 #pragma mark -

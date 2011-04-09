@@ -94,6 +94,7 @@ AppModel *gAppModelInstance = nil;
 -(void)createFacebookObject {
 	self.facebook = [[Facebook alloc] initWithAppId:kFBAppId];	
 }
+
 -(id)init
 {
 	self = [super init];
