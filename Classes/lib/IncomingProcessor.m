@@ -16,15 +16,15 @@
 @implementation IncomingProcessor
 
 @synthesize responseData = mResponseData;
-
+@synthesize incomingProcessorDelegate = mIncomingProcessorDelegate;
 #pragma mark -
 #pragma mark Util
 
--(id)initWithProcessorDelegate:(<IncomingProcessorDelegate>)delegate
++(IncomingProcessor *)processorWithDelegate:(id<IncomingProcessorDelegate>)delegate
 {
-	self = [super init];
-	mIncomingProcessorDelegate = delegate;
-	return self;
+	IncomingProcessor *processor = [[IncomingProcessor alloc] init];
+	processor.incomingProcessorDelegate = delegate;
+	return processor;
 }
 
 - (NSOperation*)taskWithData:(id)data {
@@ -94,7 +94,7 @@
 		else
 			NSAssert(TRUE, @"Too many dishes matched a query which should have returned 1");
 
-		DLog(@"associate this dish with it's data from JSON");
+		DLog(@"associate this dish with it's data from JSON %@");
 		[dish setDish_id:[dishDict objectForKey:@"id"]];
 		
 		[dish setObjName:[NSString stringWithFormat:@"%@", [dishDict objectForKey:@"name"]]];
@@ -184,10 +184,7 @@
 		}
 		else {
 			DLog(@"the save was successful, notify the main thread that the save worked, not waiting until done");
-			[mIncomingProcessorDelegate performSelectorOnMainThread:@selector(saveComplete) 
-								   withObject:nil
-								waitUntilDone:NO];
-			DLog(@"done notifying the main thread");
+			[self.incomingProcessorDelegate saveComplete];
 		}
 
 	}
@@ -338,9 +335,14 @@
 	}
 	else {
 		DLog(@"successful save, notify on the main thread");
-		[mIncomingProcessorDelegate performSelectorOnMainThread:@selector(saveComplete) 
-													 withObject:nil
-												  waitUntilDone:NO];
+		
+		[self.incomingProcessorDelegate saveComplete];
+		//I don't think this is the best solution, but it certainly covers it up.
+		//if([mIncomingProcessorDelegate respondsToSelector:@selector(saveComplete)]) {
+//			[mIncomingProcessorDelegate performSelectorOnMainThread:@selector(saveComplete) 
+//														 withObject:nil
+//													  waitUntilDone:NO];
+//		}
 		DLog(@"done notifying the main thread, we didn't wait for it");
 	}
 }

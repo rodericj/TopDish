@@ -10,8 +10,6 @@
 		1777A001133060A600E3F4B9 /* RestaurantOrDishAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A000133060A600E3F4B9 /* RestaurantOrDishAnnotation.m */; };
 		1777A18D13310A3B00E3F4B9 /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A18A13310A3B00E3F4B9 /* Dish.m */; };
 		1777A18E13310A3B00E3F4B9 /* ObjectWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A18C13310A3B00E3F4B9 /* ObjectWithImage.m */; };
-		1797EF9A135042C200E89A96 /* ThirdPartyRestaurantTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1797EF98135042C200E89A96 /* ThirdPartyRestaurantTableViewController.m */; };
-		1797EF9B135042C200E89A96 /* ThirdPartyRestaurantTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1797EF99135042C200E89A96 /* ThirdPartyRestaurantTableViewController.xib */; };
 		179A8DA6134C29B20072CAF0 /* LoginModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 179A8DA4134C29B20072CAF0 /* LoginModalView.m */; };
 		179A8DA7134C29B20072CAF0 /* LoginModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 179A8DA5134C29B20072CAF0 /* LoginModalView.xib */; };
 		17BBAFD81301AC2400705F1A /* CommentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17BBAFD71301AC2400705F1A /* CommentsCell.xib */; };
@@ -133,9 +131,6 @@
 		1777A18A13310A3B00E3F4B9 /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
 		1777A18B13310A3B00E3F4B9 /* ObjectWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectWithImage.h; sourceTree = "<group>"; };
 		1777A18C13310A3B00E3F4B9 /* ObjectWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectWithImage.m; sourceTree = "<group>"; };
-		1797EF97135042C200E89A96 /* ThirdPartyRestaurantTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdPartyRestaurantTableViewController.h; sourceTree = "<group>"; };
-		1797EF98135042C200E89A96 /* ThirdPartyRestaurantTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdPartyRestaurantTableViewController.m; sourceTree = "<group>"; };
-		1797EF99135042C200E89A96 /* ThirdPartyRestaurantTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThirdPartyRestaurantTableViewController.xib; sourceTree = "<group>"; };
 		179A8DA3134C29B20072CAF0 /* LoginModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModalView.h; sourceTree = "<group>"; };
 		179A8DA4134C29B20072CAF0 /* LoginModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModalView.m; sourceTree = "<group>"; };
 		179A8DA5134C29B20072CAF0 /* LoginModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginModalView.xib; sourceTree = "<group>"; };
@@ -656,9 +651,6 @@
 				17DA5F081322C6DB00867B66 /* RestaurantList.m */,
 				17DA5F091322C6DB00867B66 /* RestaurantList.xib */,
 				17DA5F0A1322C6DB00867B66 /* RestaurantTableViewCell.xib */,
-				1797EF97135042C200E89A96 /* ThirdPartyRestaurantTableViewController.h */,
-				1797EF98135042C200E89A96 /* ThirdPartyRestaurantTableViewController.m */,
-				1797EF99135042C200E89A96 /* ThirdPartyRestaurantTableViewController.xib */,
 			);
 			name = MainView;
 			sourceTree = "<group>";
@@ -789,7 +781,6 @@
 				17DA608913230F7300867B66 /* greenup.gif in Resources */,
 				17DA608A13230F7300867B66 /* red_flag.gif in Resources */,
 				17DA608B13230F7300867B66 /* reddown.gif in Resources */,
-				1797EF9B135042C200E89A96 /* ThirdPartyRestaurantTableViewController.xib in Resources */,
 				179A8DA7134C29B20072CAF0 /* LoginModalView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -850,7 +841,6 @@
 				1777A18D13310A3B00E3F4B9 /* Dish.m in Sources */,
 				1777A18E13310A3B00E3F4B9 /* ObjectWithImage.m in Sources */,
 				17C4A5B813353E7E005D950B /* IncomingProcessor.m in Sources */,
-				1797EF9A135042C200E89A96 /* ThirdPartyRestaurantTableViewController.m in Sources */,
 				179A8DA6134C29B20072CAF0 /* LoginModalView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -980,7 +970,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;

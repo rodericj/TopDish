@@ -16,11 +16,13 @@
 	NSMutableData *mResponseData;
 	
 	NSManagedObjectContext *mManagedObjectContext;
-	id	mIncomingProcessorDelegate;
+	id<IncomingProcessorDelegate> mIncomingProcessorDelegate;
 }
 
 @property (nonatomic, retain) NSMutableData *responseData;
--(id)initWithProcessorDelegate:(<IncomingProcessorDelegate>)delegate;
+@property (nonatomic, assign) id<IncomingProcessorDelegate> incomingProcessorDelegate;
+
++(IncomingProcessor *)processorWithDelegate:(id<IncomingProcessorDelegate>)delegate;
 
 -(void)processIncomingNetworkText:(NSString *)responseText;
 - (NSOperation*)taskWithData:(id)data;

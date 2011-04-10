@@ -9,13 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "MyCLController.h"
 #import "IncomingProcessor.h"
-#import "ThirdPartyRestaurantTableViewController.h"
 
 @interface RestaurantList : UITableViewController  <NSFetchedResultsControllerDelegate, 
 UISearchBarDelegate,
 UISearchBarDelegate,
-IncomingProcessorDelegate,
-ThirdPartyRestaurantsListDelegate>{
+IncomingProcessorDelegate>{
 
     NSFetchedResultsController	*mFetchedResultsController;
 	NSManagedObjectContext		*mManagedObjectContext;

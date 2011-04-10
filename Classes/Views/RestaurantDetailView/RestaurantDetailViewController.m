@@ -84,7 +84,8 @@
 #pragma mark -
 #pragma mark View lifecycle
 - (void) setUpSpecificView {
-	
+	self.currentSearchDistance = kOneMileInMeters;
+
 	[self.restaurantName setText:[restaurant objName]];
 	
 	[self.restaurantPhone setTitle:[restaurant phone] 

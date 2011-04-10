@@ -189,13 +189,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == kMoreRestaurantsSection) {
-		ThirdPartyRestaurantTableViewController *t = [ThirdPartyRestaurantTableViewController 
-													  viewControllerWithDelegate:self];
-		[self.navigationController pushViewController:t
-											 animated:YES];
-		return;
-	}
 	Restaurant *thisRestaurant = [[self fetchedResultsController] objectAtIndexPath:indexPath];	
 
 	RestaurantDetailViewController *viewController = 
@@ -206,13 +199,6 @@
 	[self.navigationController pushViewController:viewController animated:YES];
 	[viewController release];
 	
-}
-
-#pragma mark -
-#pragma mark ThirdPartyRestaurantsListDelegate
--(void)restaurantSelected {
-	NSLog(@"restaurant Selected");
-	[self.tableView reloadData];
 }
 
 #pragma mark -
@@ -422,7 +408,9 @@
 
 -(void)saveComplete {
 	DLog(@"the save is complete");
-	[self updateFetch];
+	[self performSelectorOnMainThread:@selector(updateFetch) withObject:nil waitUntilDone:NO];
+
+	//[self updateFetch];
 }
 
 -(void) networkQuery:(NSString *)query{	
@@ -478,7 +466,8 @@
 	NSString *responseTextStripped = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
 	
 	//Send this incoming content to the IncomingProcessor Object
-	IncomingProcessor *proc = [[IncomingProcessor alloc] initWithProcessorDelegate:self];
+	IncomingProcessor *proc = [IncomingProcessor processorWithDelegate:self];
+//	IncomingProcessor *proc = [[IncomingProcessor alloc] initWithProcessorDelegate:self];
 	DLog(@"PROCESSOR the processor is set up");
 	
 	[[[AppModel instance] queue] addOperation:[proc taskWithData:responseTextStripped]];

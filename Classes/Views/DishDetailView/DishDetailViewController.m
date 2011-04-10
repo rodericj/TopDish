@@ -80,9 +80,11 @@
 }
 - (UITableViewCell *)commentsCellForIndexPath:(NSIndexPath *)indexPath {
 	static NSString *MyIdentifier = @"CommentsCellIdentifier";
-	
+	NSLog(@"review is %@", self.reviews);
 	NSString *comment = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"comment"];
 	NSString *creator = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"creator"];
+	NSInteger *voteDirection = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"direction"];
+	int *a = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"direction"];
 	
 	UITableViewCell *cell = (UITableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:MyIdentifier];
 	if (cell == nil) {
@@ -110,7 +112,13 @@
 //	
 //	label = (UILabel *)[cell viewWithTag:2];
 //	label.text = creator;
-	
+	if ([voteDirection intValue] == 1) {
+		NSLog(@"thumbs up");
+	}
+	else {
+		NSLog(@"thumbs down");
+	}
+
 	return (UITableViewCell *)cell;
 }
 // Customize the appearance of table view cells.

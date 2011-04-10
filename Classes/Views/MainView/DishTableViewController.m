@@ -22,6 +22,7 @@
 #define buttonLightBlue [UIColor colorWithRed:0 green:.73 blue:.89 alpha:1 ]
 #define buttonLightBlueShine [UIColor colorWithRed:.53 green:.91 blue:.99 alpha:1]
 
+#define kDishSection 0
 #define kSearchCountLimit 10
 #define kMinimumDishesToShow 10
 #define kMaxDistance kOneMileInMeters * 25
@@ -178,16 +179,19 @@
 #pragma mark -
 #pragma mark flip the view 
 - (void) flipToMap {
-	NearbyMapViewController *map = [[NearbyMapViewController alloc] 
-									initWithNibName:@"NearbyMapView" 
-												 bundle:nil];
-	[map setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-	[map setManagedObjectContext:self.managedObjectContext];
+	if ([self.tableView numberOfRowsInSection:kDishSection] > 0) {
 		
-	NSArray *nearbyObjects = [self.fetchedResultsController fetchedObjects];
-	[map setNearbyObjects:nearbyObjects];
-	[self.navigationController pushViewController:map animated:TRUE];
-	[map release];
+		NearbyMapViewController *map = [[NearbyMapViewController alloc] 
+										initWithNibName:@"NearbyMapView" 
+										bundle:nil];
+		[map setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+		[map setManagedObjectContext:self.managedObjectContext];
+		
+		NSArray *nearbyObjects = [self.fetchedResultsController fetchedObjects];
+		[map setNearbyObjects:nearbyObjects];
+		[self.navigationController pushViewController:map animated:TRUE];
+		[map release];
+	}
 	//[self presentModalViewController:map animated:TRUE];
 }
 #pragma mark -
@@ -204,7 +208,9 @@
 	NSString *responseTextStripped = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
 	
 	//Send this incoming content to the IncomingProcessor Object
-	IncomingProcessor *proc = [[IncomingProcessor alloc] initWithProcessorDelegate:self];
+	
+	IncomingProcessor *proc = [IncomingProcessor processorWithDelegate:self];
+	//IncomingProcessor *proc = [[IncomingProcessor alloc] initWithProcessorDelegate:self];
 	DLog(@"PROCESSOR the processor is set up. Register for notifications");
 		
 	[[NSNotificationCenter defaultCenter] addObserver:self
@@ -247,7 +253,8 @@
 }
 -(void)saveComplete {
 	DLog(@"the save is complete");
-	[self updateFetch];
+	[self performSelectorOnMainThread:@selector(updateFetch) withObject:nil waitUntilDone:NO];
+	//[self updateFetch];
 }
 
 -(void)buildRestaurantNetworkGrab:(NSNotification *)notification {
