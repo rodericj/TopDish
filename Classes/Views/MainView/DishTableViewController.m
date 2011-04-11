@@ -190,7 +190,17 @@
 }
 
 #pragma mark -
-#pragma mark flip the view 
+#pragma mark nav bar buttons
+- (void) showSettings {
+	AppModel *app = [AppModel instance];
+	if ([app priceTags] && [app cuisineTypeTags] && [app mealTypeTags]) {
+		SettingsView1 *settings = [[SettingsView1 alloc] initWithNibName:@"SettingsView1" bundle:nil];
+		[settings setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+		[self.navigationController pushViewController:settings animated:TRUE];
+		[settings release];
+	}
+}
+
 - (void) flipToMap {
 	
 	if ([self.tableView numberOfRowsInSection:kDishSection] > 0) {
@@ -312,13 +322,6 @@
 	//DLog(@"At the end of all that, the return is %@", ret);
 	[ret sortUsingSelector:@selector(compare:)];
 	return ret;
-}
-
-- (void) showSettings {
-	SettingsView1 *settings = [[SettingsView1 alloc] initWithNibName:@"SettingsView1" bundle:nil];
-	[settings setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-	[self.navigationController pushViewController:settings animated:TRUE];
-	[settings release];
 }
 
 -(void) populatePredicateArray:(NSMutableArray *)filterPredicateArray{
