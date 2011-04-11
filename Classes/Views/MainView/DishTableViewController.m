@@ -188,6 +188,7 @@
     //NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	//DLog(@"here we are using the managed Object %@", managedObject);
 }
+
 #pragma mark -
 #pragma mark flip the view 
 - (void) flipToMap {
@@ -197,15 +198,15 @@
 		NearbyMapViewController *map = [[NearbyMapViewController alloc] 
 										initWithNibName:@"NearbyMapView" 
 										bundle:nil];
-		[map setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-		[map setManagedObjectContext:self.managedObjectContext];
+		map.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+		map.managedObjectContext = self.managedObjectContext;
 		
-		NSArray *nearbyObjects = [self.fetchedResultsController fetchedObjects];
-		[map setNearbyObjects:nearbyObjects];
+		map.nearbyObjects = [self.fetchedResultsController fetchedObjects];
 		[self.navigationController pushViewController:map animated:TRUE];
 		[map release];
 	}
 }
+
 #pragma mark -
 #pragma mark network connection stuff
 
@@ -396,8 +397,7 @@
 
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish" 
 											  inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    
+    fetchRequest.entity = entity;
 	//Set up the filters that are stored in the AppModel
 	NSMutableArray *filterPredicateArray = [NSMutableArray array];
 	
@@ -412,8 +412,8 @@
 	[fetchRequest setPredicate:fullPredicate];
 
 	// Set the batch size to a suitable number.
-	[fetchRequest setFetchBatchSize:20];
-    
+	fetchRequest.fetchLimit = 10;
+	
 	//Create array with sort params, then store in NSUserDefaults
 	BOOL ascending = TRUE;
 	int sorterValue = [[AppModel instance] sorter];
@@ -445,8 +445,6 @@
     [aFetchedResultsController release];
     [fetchRequest release];
     [sortDescriptor release];
-    //[currentSearchTerm release];
-	//self.currentSearchTerm = nil;
     NSError *error = nil;
     if (![mFetchedResultsController performFetch:&error]) {
         DLog(@"Unresolved error %@, %@", error, [error userInfo]);
@@ -790,8 +788,8 @@
     [fetchRequest setEntity:entity];
 		
     // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
-    
+	fetchRequest.fetchLimit = 10;
+
     // Edit the sort key as appropriate.
 	
 	// taken out so we can show the restaurant table results

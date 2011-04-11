@@ -114,7 +114,6 @@
 		annotationView.rightCalloutAccessoryView = rightButton;		
 		return annotationView;
 	}
-	DLog(@"returned nil? hmmm");
 	return nil;
 }
 
@@ -123,23 +122,25 @@
 	NSNumber *clickedObjectId = [NSNumber numberWithInt:[sender tag]];
 	ObjectWithImage *selectedObject = [self.objectMap objectForKey:clickedObjectId];
 	
-	UIViewController *detailViewController;
 	if ([selectedObject respondsToSelector:@selector(dish_id)]) {
-		detailViewController = [[DishDetailViewController alloc] 
-														  initWithNibName:@"DishDetailViewController" 
-														  bundle:nil];
-		[detailViewController setThisDish:selectedObject];
+		DishDetailViewController *dishDetailViewController = [[DishDetailViewController alloc] 
+															 initWithNibName:@"DishDetailViewController" 
+															 bundle:nil];
+		dishDetailViewController.thisDish = (Dish *)selectedObject;
+		dishDetailViewController.managedObjectContext = self.managedObjectContext;
+		[self.navigationController pushViewController:dishDetailViewController animated:YES];
+		[dishDetailViewController release];
 	}
 	else {
-		detailViewController = [[RestaurantDetailViewController alloc] 
-								initWithNibName:@"RestaurantDetailView" 
-								bundle:nil];
-		[detailViewController setRestaurant:selectedObject];
+		RestaurantDetailViewController *restaurantDetailViewController = [[RestaurantDetailViewController alloc] 
+																		  initWithNibName:@"RestaurantDetailView" 
+																		  bundle:nil];
+		
+		restaurantDetailViewController.restaurant = (Restaurant *)selectedObject;
+		restaurantDetailViewController.managedObjectContext = self.managedObjectContext;
+		[self.navigationController pushViewController:restaurantDetailViewController animated:YES];
+		[restaurantDetailViewController release];
 	}
-	
-	[detailViewController setManagedObjectContext:self.managedObjectContext];
-	[self.navigationController pushViewController:detailViewController animated:YES];
-	[detailViewController release];
 }
 
 @end

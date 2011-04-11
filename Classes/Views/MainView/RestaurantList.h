@@ -12,7 +12,6 @@
 
 @interface RestaurantList : UITableViewController  <NSFetchedResultsControllerDelegate, 
 UISearchBarDelegate,
-UISearchBarDelegate,
 IncomingProcessorDelegate>{
 
     NSFetchedResultsController	*mFetchedResultsController;
