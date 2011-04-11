@@ -149,6 +149,7 @@
 		Restaurant *restaurant;
 		//   if it exists, update
 		if ([restosMatching count] == 1) {
+			DLog(@"we have this restaurant");
 			restaurant = [restosMatching objectAtIndex:0];
 		}		
 		//   else 
@@ -227,6 +228,8 @@
 		Restaurant *restaurant;
 		//   if it exists, update
 		if ([restoMatching count] == 1) {
+			DLog(@"restomatching count is 1, good sign");
+			DLog(@"restomatching %@", restoMatching);
 			restaurant = [restoMatching objectAtIndex:0];
 		}		
 		//   else 
@@ -240,7 +243,7 @@
 		else
 			NSAssert(TRUE, @"There were too many restaurants matching a dish");
 		DLog(@"populate the restaurant with data");
-		
+		DLog(@"restaurant %@, %@", restaurant, restoDict);
 		//Do all of the restaurant data setting
 		[restaurant setRestaurant_id:[restoDict objectForKey:@"id"]];
 		[restaurant setObjName:[NSString stringWithFormat:@"%@", [restoDict objectForKey:@"name"]]];

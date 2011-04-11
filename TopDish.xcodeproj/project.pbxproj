@@ -12,6 +12,7 @@
 		1777A18E13310A3B00E3F4B9 /* ObjectWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A18C13310A3B00E3F4B9 /* ObjectWithImage.m */; };
 		179A8DA6134C29B20072CAF0 /* LoginModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 179A8DA4134C29B20072CAF0 /* LoginModalView.m */; };
 		179A8DA7134C29B20072CAF0 /* LoginModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 179A8DA5134C29B20072CAF0 /* LoginModalView.xib */; };
+		17A636831352795C00ED8842 /* CustomNSURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A636821352795C00ED8842 /* CustomNSURLConnection.m */; };
 		17BBAFD81301AC2400705F1A /* CommentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17BBAFD71301AC2400705F1A /* CommentsCell.xib */; };
 		17C4A5B813353E7E005D950B /* IncomingProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C4A5B713353E7E005D950B /* IncomingProcessor.m */; };
 		17DA5E411322BEDA00867B66 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5E351322BEDA00867B66 /* Facebook.m */; };
@@ -134,6 +135,8 @@
 		179A8DA3134C29B20072CAF0 /* LoginModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModalView.h; sourceTree = "<group>"; };
 		179A8DA4134C29B20072CAF0 /* LoginModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModalView.m; sourceTree = "<group>"; };
 		179A8DA5134C29B20072CAF0 /* LoginModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginModalView.xib; sourceTree = "<group>"; };
+		17A636811352795C00ED8842 /* CustomNSURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNSURLConnection.h; sourceTree = "<group>"; };
+		17A636821352795C00ED8842 /* CustomNSURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNSURLConnection.m; sourceTree = "<group>"; };
 		17BBAFD71301AC2400705F1A /* CommentsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsCell.xib; sourceTree = "<group>"; };
 		17C4A5B613353E7E005D950B /* IncomingProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IncomingProcessor.h; path = lib/IncomingProcessor.h; sourceTree = "<group>"; };
 		17C4A5B713353E7E005D950B /* IncomingProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IncomingProcessor.m; path = lib/IncomingProcessor.m; sourceTree = "<group>"; };
@@ -651,6 +654,8 @@
 				17DA5F081322C6DB00867B66 /* RestaurantList.m */,
 				17DA5F091322C6DB00867B66 /* RestaurantList.xib */,
 				17DA5F0A1322C6DB00867B66 /* RestaurantTableViewCell.xib */,
+				17A636811352795C00ED8842 /* CustomNSURLConnection.h */,
+				17A636821352795C00ED8842 /* CustomNSURLConnection.m */,
 			);
 			name = MainView;
 			sourceTree = "<group>";
@@ -842,6 +847,7 @@
 				1777A18E13310A3B00E3F4B9 /* ObjectWithImage.m in Sources */,
 				17C4A5B813353E7E005D950B /* IncomingProcessor.m in Sources */,
 				179A8DA6134C29B20072CAF0 /* LoginModalView.m in Sources */,
+				17A636831352795C00ED8842 /* CustomNSURLConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

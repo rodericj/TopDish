@@ -135,7 +135,7 @@
 	if (!mConnectionLookup) {
 		mConnectionLookup = [[NSMutableDictionary dictionary] retain];
 	}
-	[mConnectionLookup setObject:[NSMutableData data] forKey:[conn description]];
+	[mConnectionLookup setObject:[NSMutableData data] forKey:conn];
 	[conn release];
 }
 
@@ -171,7 +171,19 @@
 	[self updateFetch];
 	[super viewWillAppear:animated];
 }
-
+-(void)viewWillDisappear:(BOOL)animated {
+	NSEnumerator *enumerator = [mConnectionLookup keyEnumerator];
+	id key;
+	
+	while ((key = [enumerator nextObject])) {
+		/* code that uses the returned key */
+		NSLog(@"cancel this connection");
+		NSURLConnection *conn = (NSURLConnection *)key;
+		[conn cancel];
+	}	
+	
+	[super viewWillDisappear:animated];
+}
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     //NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	//DLog(@"here we are using the managed Object %@", managedObject);
@@ -179,6 +191,7 @@
 #pragma mark -
 #pragma mark flip the view 
 - (void) flipToMap {
+	
 	if ([self.tableView numberOfRowsInSection:kDishSection] > 0) {
 		
 		NearbyMapViewController *map = [[NearbyMapViewController alloc] 
@@ -192,14 +205,13 @@
 		[self.navigationController pushViewController:map animated:TRUE];
 		[map release];
 	}
-	//[self presentModalViewController:map animated:TRUE];
 }
 #pragma mark -
 #pragma mark network connection stuff
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
 	DLog(@"request complete ---------------------");
-	NSData *thisResponseData = [mConnectionLookup objectForKey:[theConnection description]];
+	NSData *thisResponseData = [mConnectionLookup objectForKey:theConnection];
 
 	
 	NSString *responseText = [[NSString alloc] initWithData:thisResponseData 
@@ -208,7 +220,6 @@
 	NSString *responseTextStripped = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
 	
 	//Send this incoming content to the IncomingProcessor Object
-	
 	IncomingProcessor *proc = [IncomingProcessor processorWithDelegate:self];
 	//IncomingProcessor *proc = [[IncomingProcessor alloc] initWithProcessorDelegate:self];
 	DLog(@"PROCESSOR the processor is set up. Register for notifications");
@@ -280,11 +291,11 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	[mConnectionLookup removeObjectForKey:[connection description]];
+	[mConnectionLookup removeObjectForKey:connection];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-	NSMutableData *thisResponseData = [mConnectionLookup objectForKey:[connection description]];
+	NSMutableData *thisResponseData = [mConnectionLookup objectForKey:connection];
 	if (data)
 		[thisResponseData appendData:data];
 }

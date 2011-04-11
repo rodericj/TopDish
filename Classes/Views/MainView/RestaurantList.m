@@ -80,6 +80,20 @@
 	[s setSelectedSegmentIndex:1];
 }
 
+-(void)viewWillDisappear:(BOOL)animated {
+	NSEnumerator *enumerator = [mConnectionLookup keyEnumerator];
+	id key;
+	
+	while ((key = [enumerator nextObject])) {
+		/* code that uses the returned key */
+		NSLog(@"cancel this connection");
+		NSURLConnection *conn = (NSURLConnection *)key;
+		[conn cancel];
+	}	
+	
+	[super viewWillDisappear:animated];
+}
+
 #pragma mark -
 #pragma mark Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView{
@@ -424,7 +438,7 @@
 	if (!mConnectionLookup) {
 		mConnectionLookup = [[NSMutableDictionary dictionary] retain];
 	}
-	[mConnectionLookup setObject:[NSMutableData data] forKey:[conn description]];
+	[mConnectionLookup setObject:[NSMutableData data] forKey:conn];
 	[conn release];
 }
 
@@ -455,7 +469,7 @@
 #pragma mark network connection stuff
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
-	NSData *thisResponseData = [mConnectionLookup objectForKey:[theConnection description]];
+	NSData *thisResponseData = [mConnectionLookup objectForKey:theConnection];
 
 	NSString *responseText = [[NSString alloc] initWithData:thisResponseData 
 												   encoding:NSASCIIStringEncoding];
@@ -478,12 +492,12 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	[mConnectionLookup removeObjectForKey:[connection description]];
+	[mConnectionLookup removeObjectForKey:connection];
 
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-	NSMutableData *thisResponseData = [mConnectionLookup objectForKey:[connection description]];
+	NSMutableData *thisResponseData = [mConnectionLookup objectForKey:connection];
 	if (data)
 		[thisResponseData appendData:data];
 }
@@ -497,6 +511,7 @@
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+	self.currentSearchTerm = nil;
 	[searchBar resignFirstResponder];
 	[self updateFetch];
 }	
