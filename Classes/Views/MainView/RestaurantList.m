@@ -85,7 +85,7 @@
 	
 	while ((key = [enumerator nextObject])) {
 		/* code that uses the returned key */
-		NSLog(@"cancel this connection");
+		DLog(@"cancel this connection");
 		NSURLConnection *conn = (NSURLConnection *)key;
 		[conn cancel];
 	}	

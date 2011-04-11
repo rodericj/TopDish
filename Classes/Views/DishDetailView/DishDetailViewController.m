@@ -80,16 +80,13 @@
 }
 - (UITableViewCell *)commentsCellForIndexPath:(NSIndexPath *)indexPath {
 	static NSString *MyIdentifier = @"CommentsCellIdentifier";
-	NSLog(@"review is %@", self.reviews);
 	NSString *comment = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"comment"];
 	NSString *creator = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"creator"];
-	NSInteger *voteDirection = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"direction"];
-	int *a = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"direction"];
+	NSNumber *voteDirection = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"direction"];
 	
 	UITableViewCell *cell = (UITableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:MyIdentifier];
 	if (cell == nil) {
 		//CommentCell comes from the file name CommentsCell.xib
-		//self.tvCell = [[[CommentsCell alloc] init] autorelease];
 		[[NSBundle mainBundle] loadNibNamed:@"CommentsCell" owner:self options:nil];
 		cell = mTvCell;
 		self.tvCell = nil;
@@ -112,13 +109,16 @@
 //	
 //	label = (UILabel *)[cell viewWithTag:2];
 //	label.text = creator;
+	UIImageView *voteDirectionImage = (UIImageView *)[cell viewWithTag:3];
 	if ([voteDirection intValue] == 1) {
+		voteDirectionImage.image = [UIImage imageNamed:@"thumbsup.jpg"];
 		NSLog(@"thumbs up");
 	}
 	else {
+		voteDirectionImage.image = [UIImage imageNamed:@"thumbsdown.jpg"];
 		NSLog(@"thumbs down");
 	}
-
+	
 	return (UITableViewCell *)cell;
 }
 // Customize the appearance of table view cells.
@@ -282,7 +282,7 @@
 	
 	NSDictionary *responseAsDictionary = [parser objectWithString:responseText 
 															error:&error];
-	
+	DLog(@"responseAsDictionary %@", responseAsDictionary);		
 	if ([[responseAsDictionary objectForKey:@"rc"] intValue] != 0) {
 		DLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
 		[responseText release];
