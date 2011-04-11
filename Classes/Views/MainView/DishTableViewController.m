@@ -842,6 +842,7 @@
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
 	[searchBar resignFirstResponder];
+	self.currentSearchTerm = nil;
 	[self updateFetch];
 }	
 
