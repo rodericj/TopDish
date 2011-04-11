@@ -16,9 +16,8 @@
 #import "NearbyMapViewController.h"
 #import "JSON.h"
 
-#define kNumberOfSections 2
+#define kNumberOfSections 1
 #define kRestaurantSection 0
-#define kMoreRestaurantsSection 1
 @implementation RestaurantList
 
 @synthesize fetchedResultsController = mFetchedResultsController;
@@ -102,10 +101,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
-	if (section == kMoreRestaurantsSection) {
-		return 1;
-	}
-	
 	DLog(@"number of rows in section %d", [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects]);
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
 	if (sectionInfo == nil){
@@ -122,12 +117,7 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == kMoreRestaurantsSection ) {
-		UITableViewCell *moreCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-		moreCell.textLabel.text = @"Can't find your restaurant?";
-		moreCell.detailTextLabel.text = @"Click here";
-		return moreCell;
-	}
+
     static NSString *CellIdentifier = @"RestaurantTableViewCell";
     
 	Restaurant *thisRestaurant = [[self fetchedResultsController] objectAtIndexPath:indexPath];	
