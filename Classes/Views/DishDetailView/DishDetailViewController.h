@@ -19,6 +19,8 @@
 	UITableViewCell *mDishDescriptionCell;
 	UILabel	*mDishDescriptionLabel;
 	
+	UILabel *mDishTagsLabel;
+	
 	UILabel *mDishNameLabel;
 	UILabel *mRestaurantNameLabel;
 	
@@ -39,6 +41,7 @@
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *dishDescriptionCell;
 @property (nonatomic, retain) IBOutlet UILabel *dishDescriptionLabel;
+@property (nonatomic, retain) IBOutlet UILabel *dishTagsLabel;
 
 @property (nonatomic, retain) IBOutlet UILabel *dishNameLabel;
 @property (nonatomic, retain) IBOutlet UILabel *restaurantNameLabel;

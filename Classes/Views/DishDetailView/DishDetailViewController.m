@@ -29,6 +29,9 @@
 @synthesize dishImageView = mDishImageView;
 @synthesize dishDescriptionCell = mDishDescriptionCell;
 @synthesize dishDescriptionLabel = mDishDescriptionLabel;
+
+@synthesize dishTagsLabel = mDishTagsLabel;
+
 @synthesize negativeReviews = mNegativeReviews;
 @synthesize positiveReviews = mPositiveReviews;
 
@@ -100,15 +103,6 @@
     label.text = [NSString stringWithFormat:@"-%@",creator];
 	DLog(@"the number of rows is %d", label.numberOfLines);
 	
-	//[cell.author setText:creator];
-//	[cell.comment setText:comment];
-	
-	//UILabel *label;
-//	label = (UILabel *)[cell viewWithTag:1];
-//	label.text = comment;
-//	
-//	label = (UILabel *)[cell viewWithTag:2];
-//	label.text = creator;
 	UIImageView *voteDirectionImage = (UIImageView *)[cell viewWithTag:3];
 	if ([voteDirection intValue] == 1) {
 		voteDirectionImage.image = [UIImage imageNamed:@"thumbsup.jpg"];
@@ -204,6 +198,15 @@
 	}
 	[self.dishDescriptionLabel setText:[self.thisDish dish_description]];
 	[self.dishDescriptionLabel numberOfLines];
+	
+	AppModel *app = [AppModel instance];
+	Dish *d = self.thisDish;
+	NSString *tagString = [NSString stringWithFormat:@"%@, %@, %@, %@",
+						   [app tagNameForTagId:d.cuisineType],
+						   [app tagNameForTagId:d.mealType],
+						   [app tagNameForTagId:d.price],
+						   [app tagNameForTagId:d.lifestyleType] ? [app tagNameForTagId:d.lifestyleType]:@""];
+	self.dishTagsLabel.text = tagString;
 	
 	[self.dishNameLabel setText:[self.thisDish objName]];
 	[self.dishNameLabel setTextColor:kTopDishBlue];
