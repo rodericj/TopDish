@@ -287,8 +287,7 @@
     [fetchRequest setEntity:entity];
 		
     // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
-    
+	fetchRequest.fetchLimit = 10;
     // Edit the sort key as appropriate.
 	
 	// taken out so we can show the restaurant table results
@@ -297,7 +296,7 @@
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
-    
+
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
     //NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
@@ -379,8 +378,7 @@
 	[fetchRequest setPredicate:fullPredicate];
 	
 	// Set the batch size to a suitable number.
-	[fetchRequest setFetchBatchSize:20];
-    
+	fetchRequest.fetchLimit = 10;
 	//Create array with sort params, then store in NSUserDefaults
 	
     // Edit the sort key as appropriate.
@@ -478,14 +476,10 @@
 	
 	//Send this incoming content to the IncomingProcessor Object
 	IncomingProcessor *proc = [IncomingProcessor processorWithDelegate:self];
-//	IncomingProcessor *proc = [[IncomingProcessor alloc] initWithProcessorDelegate:self];
-	DLog(@"PROCESSOR the processor is set up");
 	
 	[[[AppModel instance] queue] addOperation:[proc taskWithData:responseTextStripped]];
 	DLog(@"PROCESSOR  proc task is set up");
 	[proc release];
-
-	
 	[responseText release];
 	
 }
@@ -493,7 +487,6 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	[mConnectionLookup removeObjectForKey:connection];
-
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
