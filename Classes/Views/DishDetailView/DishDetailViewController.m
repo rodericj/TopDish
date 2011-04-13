@@ -47,6 +47,8 @@
 
 @synthesize moreButton = mMoreButton;
 
+@synthesize newPicture = mNewPicture;
+
 #pragma mark -
 #pragma mark Table view data source
 
@@ -340,20 +342,138 @@
 
 }
 
-- (void)requestFinished:(ASIHTTPRequest *)request
-{
-	// Use when fetching text data	
-	DLog(@"response string %@", [request responseString]);
-	
-}
-
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
 	DLog(@"error %@", [request error]);
 }
 
 #pragma mark -
+#pragma mark Image Picker Delegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+	//self.dishImageFromPicker = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+	if ([info objectForKey:@"UIImagePickerControllerEditedImage"]) {
+		self.newPicture = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+		
+		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
+		ASIFormDataRequest *newRequest = [ASIFormDataRequest requestWithURL:url];
+		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+		[newRequest setPostValue:[NSString stringWithFormat:@"%d", [[self.thisDish dish_id] intValue]] forKey:@"dishId"];
+		[newRequest setDelegate:self];
+		[newRequest startAsynchronous];
+		DLog(@"done calling add photo, time to call rateDish");
+	}
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark -
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+	// Use when fetching text data
+	NSString *responseString = [request responseString];
+	DLog(@"response string for any of these calls %@", responseString);
+	
+	NSError *error;
+	SBJSON *parser = [SBJSON new];
+	NSDictionary *responseAsDict = [parser objectWithString:responseString error:&error];	
+	[parser release];
+	
+	DLog(@"the dictionary should be a %@", responseAsDict);
+	
+	ASIFormDataRequest *newRequest;
+	
+	if ([[responseAsDict objectForKey:@"rc"] intValue]) {
+		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Request Failed" 
+															message:[responseAsDict objectForKey:@"message"]
+														   delegate:self 
+												  cancelButtonTitle:@"OK"
+												  otherButtonTitles:nil];
+		[alertview show];
+		[alertview release];
+		return;
+	}
+	if ([responseAsDict objectForKey:@"url"]) {
+		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@", [responseAsDict objectForKey:@"url"]]];
+		DLog(@"the url for sending the photo is %@", url);
+		
+		newRequest = [ASIFormDataRequest requestWithURL:url];
+		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+		[newRequest setData:UIImagePNGRepresentation(self.newPicture) forKey:@"photo"];
+		[newRequest setPostValue:[NSString stringWithFormat:@"%d", [[self.thisDish dish_id] intValue]] forKey:@"dishId"];
+		[newRequest setDelegate:self];
+		[newRequest startAsynchronous];
+		return;
+		
+	}
+	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Upload Success"
+														message:@"Successfully submitted the image" 
+													   delegate:nil
+											  cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[alertView show];
+	[alertView release];
+	DLog(@"done!");
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+	DLog(@"cancelled, should we go back another level?");
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark -
+#pragma mark UIActionSheet
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == actionSheet.cancelButtonIndex) {
+        //cancelled
+        return;
+    }
+	
+	DLog(@"show the picture thing");
+	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+	[imagePicker setDelegate:self];
+	[imagePicker setAllowsEditing:YES];
+	
+	if(buttonIndex == 0 && [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+		//then push the imagepicker
+		[imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+		[imagePicker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModePhoto];
+		[imagePicker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
+		
+		[imagePicker setCameraOverlayView:[UIButton buttonWithType:UIButtonTypeRoundedRect]];
+	}
+	else {
+		[imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+	}
+	[self presentModalViewController:imagePicker animated:YES]; 
+}
+
+#pragma mark -
 #pragma mark IBActions
+-(IBAction)takePicture
+{
+	if ([[[AppModel instance] user] objectForKey:keyforauthorizing] ) {
+		
+		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Camera or Library?" 
+																 delegate:self 
+														cancelButtonTitle:nil 
+												   destructiveButtonTitle:nil 
+														otherButtonTitles:nil];
+		[actionSheet addButtonWithTitle:@"Take a picture"];
+		[actionSheet addButtonWithTitle:@"Choose from Library"];
+		actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:@"Cancel"];
+		[actionSheet showInView:self.navigationController.tabBarController.view];
+		[actionSheet release];
+	}
+	else {
+		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Not logged in"
+															message:@"Must log into submit an image" 
+														   delegate:nil
+												  cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[alertView show];
+		[alertView release];
+	}
+
+}
+
 -(IBAction)pushRateDishController {
 	//RateADishViewController *rateDish = [[RateADishViewController alloc] init];
 	RateADishViewController *rateDish = 

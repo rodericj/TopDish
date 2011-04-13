@@ -455,6 +455,8 @@
 	self.restaurantPhone = nil;
 	self.restaurantImage = nil;
 	
+	self.newPicture = nil;
+	
 	self.mapRow = nil;
 	self.mapView = nil;
 	
