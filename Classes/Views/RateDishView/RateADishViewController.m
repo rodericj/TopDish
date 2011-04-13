@@ -198,6 +198,33 @@
 }
 
 #pragma mark -
+#pragma mark action sheet delegate
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == actionSheet.cancelButtonIndex) {
+        //cancelled
+        return;
+    }
+	
+	DLog(@"show the picture thing");
+	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+	[imagePicker setDelegate:self];
+	[imagePicker setAllowsEditing:YES];
+	
+	if(buttonIndex == 0 && [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+		//then push the imagepicker
+		[imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+		[imagePicker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModePhoto];
+		[imagePicker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
+		
+		[imagePicker setCameraOverlayView:[UIButton buttonWithType:UIButtonTypeRoundedRect]];
+	}
+	else {
+		[imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+	}
+	[self presentModalViewController:imagePicker animated:YES]; 
+}
+
+#pragma mark -
 #pragma mark Image Picker Delegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
@@ -218,25 +245,20 @@
 #pragma mark IBActions
 
 -(IBAction)takePicture{
-	DLog(@"show the picture thing");
-	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-	[imagePicker setDelegate:self];
-	[imagePicker setAllowsEditing:YES];
+	DLog(@"take a picture");
 	
-	//if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-//		//then push the imagepicker
-//		[imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
-//		[imagePicker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModePhoto];
-//		[imagePicker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
-//
-//		[imagePicker setCameraOverlayView:[UIButton buttonWithType:UIButtonTypeRoundedRect]];
-//	}
-//	else {
-		[imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-	//}
-	[self presentModalViewController:imagePicker animated:YES]; 
-
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Camera or Library?" 
+															 delegate:self 
+													cancelButtonTitle:nil 
+											   destructiveButtonTitle:nil 
+													otherButtonTitles:nil];
+	[actionSheet addButtonWithTitle:@"Take a picture"];
+	[actionSheet addButtonWithTitle:@"Choose from Library"];
+	actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:@"Cancel"];
+	[actionSheet showInView:self.navigationController.tabBarController.view];	
+	[actionSheet release];
 }
+
 -(IBAction)yesButtonClicked {
 	self.noImage.hidden = YES;
 	self.yesImage.hidden = NO;
