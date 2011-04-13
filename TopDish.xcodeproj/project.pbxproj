@@ -42,7 +42,6 @@
 		17DA5EC91322C4D100867B66 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5EC71322C4D100867B66 /* SignInViewController.m */; };
 		17DA5ED21322C57000867B66 /* AddADishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5ECB1322C57000867B66 /* AddADishViewController.m */; };
 		17DA5ED31322C57000867B66 /* AddADishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5ECC1322C57000867B66 /* AddADishViewController.xib */; };
-		17DA5ED41322C57000867B66 /* ImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5ECE1322C57000867B66 /* ImagePickerViewController.m */; };
 		17DA5ED51322C57000867B66 /* RateADishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5ED01322C57000867B66 /* RateADishViewController.m */; };
 		17DA5ED61322C57000867B66 /* RateADishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5ED11322C57000867B66 /* RateADishViewController.xib */; };
 		17DA5EE21322C5FD00867B66 /* RestaurantAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5EDE1322C5FD00867B66 /* RestaurantAnnotation.m */; };
@@ -193,8 +192,6 @@
 		17DA5ECA1322C57000867B66 /* AddADishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddADishViewController.h; path = Classes/Views/RateDishView/AddADishViewController.h; sourceTree = "<group>"; };
 		17DA5ECB1322C57000867B66 /* AddADishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddADishViewController.m; path = Classes/Views/RateDishView/AddADishViewController.m; sourceTree = "<group>"; };
 		17DA5ECC1322C57000867B66 /* AddADishViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AddADishViewController.xib; path = Classes/Views/RateDishView/AddADishViewController.xib; sourceTree = "<group>"; };
-		17DA5ECD1322C57000867B66 /* ImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImagePickerViewController.h; path = Classes/Views/RateDishView/ImagePickerViewController.h; sourceTree = "<group>"; };
-		17DA5ECE1322C57000867B66 /* ImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImagePickerViewController.m; path = Classes/Views/RateDishView/ImagePickerViewController.m; sourceTree = "<group>"; };
 		17DA5ECF1322C57000867B66 /* RateADishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RateADishViewController.h; path = Classes/Views/RateDishView/RateADishViewController.h; sourceTree = "<group>"; };
 		17DA5ED01322C57000867B66 /* RateADishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RateADishViewController.m; path = Classes/Views/RateDishView/RateADishViewController.m; sourceTree = "<group>"; };
 		17DA5ED11322C57000867B66 /* RateADishViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RateADishViewController.xib; path = Classes/Views/RateDishView/RateADishViewController.xib; sourceTree = "<group>"; };
@@ -420,8 +417,6 @@
 				17DA5ECA1322C57000867B66 /* AddADishViewController.h */,
 				17DA5ECB1322C57000867B66 /* AddADishViewController.m */,
 				17DA5ECC1322C57000867B66 /* AddADishViewController.xib */,
-				17DA5ECD1322C57000867B66 /* ImagePickerViewController.h */,
-				17DA5ECE1322C57000867B66 /* ImagePickerViewController.m */,
 				17DA5ECF1322C57000867B66 /* RateADishViewController.h */,
 				17DA5ED01322C57000867B66 /* RateADishViewController.m */,
 				17DA5ED11322C57000867B66 /* RateADishViewController.xib */,
@@ -831,7 +826,6 @@
 				17DA5EBA1322C0FE00867B66 /* SignInSignUpBaseViewController.m in Sources */,
 				17DA5EC91322C4D100867B66 /* SignInViewController.m in Sources */,
 				17DA5ED21322C57000867B66 /* AddADishViewController.m in Sources */,
-				17DA5ED41322C57000867B66 /* ImagePickerViewController.m in Sources */,
 				17DA5ED51322C57000867B66 /* RateADishViewController.m in Sources */,
 				17DA5EE21322C5FD00867B66 /* RestaurantAnnotation.m in Sources */,
 				17DA5EE41322C5FD00867B66 /* RestaurantDetailViewController.m in Sources */,

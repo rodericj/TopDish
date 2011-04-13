@@ -11,7 +11,6 @@
 #import "JSON.h"
 #import "asyncimageview.h"
 #import "AddADishViewController.h"
-#import "ImagePickerViewController.h"
 #import "RestaurantAnnotation.h"
 
 #import "ASIFormDataRequest.h"
