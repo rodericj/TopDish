@@ -364,7 +364,7 @@
 -(void)takePicture:(UITapGestureRecognizer *)sender {
 	DLog(@"take a picture");
 	
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Camera or Library?" 
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil//@"Camera or Library?" 
 															 delegate:self 
 													cancelButtonTitle:nil 
 											   destructiveButtonTitle:nil 

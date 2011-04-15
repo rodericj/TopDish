@@ -452,7 +452,7 @@
 {
 	if ([[[AppModel instance] user] objectForKey:keyforauthorizing] ) {
 		
-		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Camera or Library?" 
+		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil//@"Camera or Library?" 
 																 delegate:self 
 														cancelButtonTitle:nil 
 												   destructiveButtonTitle:nil 
