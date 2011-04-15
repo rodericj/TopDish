@@ -102,7 +102,7 @@
 	}
 	
 	NSArray *responseAsArray = [responseAsDictionary objectForKey:@"tags"];
-	NSDictionary *defaultObject = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"0", @"None", @"None", @"0", nil]
+	NSDictionary *defaultObject = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"0", @"", @"None", @"0", nil]
 															  forKeys:[NSArray arrayWithObjects:@"id", @"name", @"type", @"order", nil]];
 	NSMutableArray *priceTypeTags = [NSMutableArray arrayWithObject:defaultObject];
 	NSMutableArray *mealTypeTags = [NSMutableArray arrayWithObject:defaultObject];
