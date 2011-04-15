@@ -35,7 +35,6 @@
 @synthesize negativeReviews = mNegativeReviews;
 @synthesize positiveReviews = mPositiveReviews;
 
-
 @synthesize dishNameLabel = mDishNameLabel;
 @synthesize restaurantNameLabel = mRestaurantNameLabel;
 
@@ -44,10 +43,12 @@
 @synthesize managedObjectContext;
 
 @synthesize tvCell = mTvCell;
-
 @synthesize moreButton = mMoreButton;
-
 @synthesize newPicture = mNewPicture;
+
+@synthesize tableView = mTableView;
+
+@synthesize interactionOverlay = mInteractionOverlay;
 
 #pragma mark -
 #pragma mark Table view data source
@@ -138,6 +139,7 @@
 	}
 	// Configure the cell...
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+	cell.backgroundColor = [UIColor whiteColor];
     return cell;
 }
 
@@ -177,8 +179,8 @@
 }
 
 - (void)viewDidLoad {
-	self.view.backgroundColor = kTopDishBackground;
-
+		
+	self.tableView.backgroundColor = [UIColor clearColor];
 	DLog(@"view did load for %@", [self.thisDish objName]);
 	if( [[self.thisDish photoURL] length] > 0 ){
 		NSRange aRange = [[self.thisDish photoURL] rangeOfString:@"http://"];
@@ -244,6 +246,24 @@
 	[super viewWillAppear:animated];
 	self.negativeReviews.text = [NSString stringWithFormat:@"-%@",[self.thisDish negReviews]];
 	self.positiveReviews.text = [NSString stringWithFormat:@"+%@",[self.thisDish posReviews]];	
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+	
+	[UIView beginAnimations:@"animateOverlay" context:NULL]; // Begin animation
+	[self.interactionOverlay setFrame:CGRectOffset([self.interactionOverlay frame], 
+												   0, 
+												   self.interactionOverlay.frame.size.height)]; // Move imageView off screen
+	[UIView commitAnimations]; // End animations
+	
+}
+-(void)viewWillDisappear:(BOOL)animated {
+	[UIView beginAnimations:@"animateOverlay" context:NULL]; // Begin animation
+	[self.interactionOverlay setFrame:CGRectOffset([self.interactionOverlay frame], 
+												   0, 
+												   -self.interactionOverlay.frame.size.height)]; // Move imageView off screen
+	[UIView commitAnimations]; // End animations
+	
 }
 
 - (void)viewDidUnload {

@@ -37,8 +37,7 @@
 }
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    	
     //execute mobile init
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/mobileInit", NETWORKHOST]];	
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];

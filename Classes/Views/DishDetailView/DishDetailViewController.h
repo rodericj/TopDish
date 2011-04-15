@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Dish.h"
 
-@interface DishDetailViewController : UITableViewController <UINavigationControllerDelegate, 
+@interface DishDetailViewController : UIViewController <UINavigationControllerDelegate, 
 UIImagePickerControllerDelegate, 
 UIActionSheetDelegate>{
 	Dish *mThisDish;
@@ -35,6 +35,10 @@ UIActionSheetDelegate>{
 	UIButton *mMoreButton;
 	
 	UIImage *mNewPicture;
+	
+	UITableView *mTableView;
+	
+	UIView *mInteractionOverlay;
 }
 
 @property (nonatomic, retain) Dish *thisDish;
@@ -60,6 +64,10 @@ UIActionSheetDelegate>{
 @property (nonatomic, retain) IBOutlet UIButton *moreButton;
 
 @property (nonatomic, retain) UIImage *newPicture;
+
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
+
+@property (nonatomic, retain) IBOutlet UIView *interactionOverlay;
 
 -(IBAction)pushRateDishController;
 -(IBAction)tapRestaurantButton;

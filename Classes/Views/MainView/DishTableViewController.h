@@ -19,9 +19,6 @@
 	NSString *mCurrentSearchTerm;
 	int mCurrentSearchDistance;
 	
-	IBOutlet UIImageView *dummyImage;
-	
-	
 	IBOutlet UIView *mSearchHeader;
 	IBOutlet UISearchBar *mTheSearchBar;
 

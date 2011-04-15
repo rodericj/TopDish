@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1056</int>
-		<string key="IBDocument.SystemVersion">10J567</string>
+		<string key="IBDocument.SystemVersion">10J869</string>
 		<string key="IBDocument.InterfaceBuilderVersion">823</string>
 		<string key="IBDocument.AppKitVersion">1038.35</string>
-		<string key="IBDocument.HIToolboxVersion">462.00</string>
+		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">132</string>
@@ -137,7 +137,7 @@
 							<object class="IBUILabel" id="565710346">
 								<reference key="NSNextResponder" ref="648130166"/>
 								<int key="NSvFlags">1316</int>
-								<string key="NSFrame">{{277, 39}, {33, 36}}</string>
+								<string key="NSFrame">{{261, 29}, {33, 36}}</string>
 								<reference key="NSSuperview" ref="648130166"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -164,7 +164,7 @@
 							<object class="IBUILabel" id="105629030">
 								<reference key="NSNextResponder" ref="648130166"/>
 								<int key="NSvFlags">1316</int>
-								<string key="NSFrame">{{246, 39}, {33, 36}}</string>
+								<string key="NSFrame">{{230, 29}, {33, 36}}</string>
 								<reference key="NSSuperview" ref="648130166"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -187,7 +187,7 @@
 							<object class="IBUILabel" id="668177371">
 								<reference key="NSNextResponder" ref="648130166"/>
 								<int key="NSvFlags">1316</int>
-								<string key="NSFrame">{{276, 43}, {10, 31}}</string>
+								<string key="NSFrame">{{260, 33}, {10, 31}}</string>
 								<reference key="NSSuperview" ref="648130166"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -214,7 +214,7 @@
 							<object class="IBUILabel" id="683150458">
 								<reference key="NSNextResponder" ref="648130166"/>
 								<int key="NSvFlags">1316</int>
-								<string key="NSFrame">{{265, 74}, {44, 16}}</string>
+								<string key="NSFrame">{{249, 59}, {44, 16}}</string>
 								<reference key="NSSuperview" ref="648130166"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -328,7 +328,7 @@
 							<object class="IBUILabel" id="682835903">
 								<reference key="NSNextResponder" ref="648130166"/>
 								<int key="NSvFlags">1316</int>
-								<string key="NSFrame">{{126.5, 72.5}, {57, 16}}</string>
+								<string key="NSFrame">{{126, 72}, {57, 16}}</string>
 								<reference key="NSSuperview" ref="648130166"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -380,7 +380,7 @@
 								</object>
 							</object>
 						</object>
-						<string key="NSFrameSize">{320, 95}</string>
+						<string key="NSFrameSize">{300, 95}</string>
 						<reference key="NSSuperview" ref="950657856"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="405518842">
 							<int key="NSColorSpace">3</int>
@@ -399,6 +399,7 @@
 				<float key="IBUIScaleFactor">2</float>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUISeparatorStyle">1</int>
+				<int key="IBUIAccessoryType">1</int>
 				<reference key="IBUIContentView" ref="648130166"/>
 				<string key="IBUIReuseIdentifier">DishTableCell</string>
 			</object>
@@ -521,15 +522,15 @@
 							<reference ref="378355298"/>
 							<reference ref="1052764423"/>
 							<reference ref="269231625"/>
-							<reference ref="683150458"/>
 							<reference ref="189456281"/>
 							<reference ref="682835903"/>
 							<reference ref="319184700"/>
-							<reference ref="105629030"/>
-							<reference ref="565710346"/>
-							<reference ref="668177371"/>
 							<reference ref="796845591"/>
 							<reference ref="827051270"/>
+							<reference ref="565710346"/>
+							<reference ref="105629030"/>
+							<reference ref="668177371"/>
+							<reference ref="683150458"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -708,11 +709,11 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDhIAAwqIAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDYQAAwpoAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDhoAAwpIAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDbAAAwoQAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -732,11 +733,11 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDeAAAwjgAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDbQAAwoYAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDZwAAwqAAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDTgAAwoYAAA</bytes>
 					</object>
 				</object>
 			</object>
@@ -756,7 +757,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">51</int>
+			<int key="maxID">52</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -900,7 +901,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/DishTableViewController.h</string>
+						<string key="minorKey">Classes/Views/MainView/DishTableViewController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -1135,7 +1136,7 @@
 			<integer value="3100" key="NS.object.0"/>
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
-		<string key="IBDocument.LastKnownRelativeProjectPath">TopDish.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">../../../TopDish.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<bool key="EncodedWithXMLCoder">YES</bool>
