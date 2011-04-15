@@ -181,6 +181,8 @@
 - (void)viewDidLoad {
 		
 	self.tableView.backgroundColor = [UIColor clearColor];
+	self.tableView.tableFooterView = [[[UIView alloc] initWithFrame:self.interactionOverlay.frame] autorelease];
+	
 	DLog(@"view did load for %@", [self.thisDish objName]);
 	if( [[self.thisDish photoURL] length] > 0 ){
 		NSRange aRange = [[self.thisDish photoURL] rangeOfString:@"http://"];
@@ -224,9 +226,8 @@
     [restaurantTouchGesture release];
 	
 	
-	NSString *buttonTitle = [NSString stringWithFormat:@"%@ %@", 
-							 kMoreDishesAtString,
-							 [[self.thisDish restaurant] objName]];
+	NSString *buttonTitle = @"More Dishes Here";
+	
 	[self.moreButton setTitle:buttonTitle
 					 forState:UIControlStateNormal];
 	
@@ -253,7 +254,7 @@
 	[UIView beginAnimations:@"animateOverlay" context:NULL]; // Begin animation
 	[self.interactionOverlay setFrame:CGRectOffset([self.interactionOverlay frame], 
 												   0, 
-												   self.interactionOverlay.frame.size.height)]; // Move imageView off screen
+												   -self.interactionOverlay.frame.size.height)]; // Move imageView off screen
 	[UIView commitAnimations]; // End animations
 	
 }
@@ -261,7 +262,7 @@
 	[UIView beginAnimations:@"animateOverlay" context:NULL]; // Begin animation
 	[self.interactionOverlay setFrame:CGRectOffset([self.interactionOverlay frame], 
 												   0, 
-												   -self.interactionOverlay.frame.size.height)]; // Move imageView off screen
+												   self.interactionOverlay.frame.size.height)]; // Move imageView off screen
 	[UIView commitAnimations]; // End animations
 	
 }
