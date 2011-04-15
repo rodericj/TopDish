@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Dish.h"
+#import "RateADishViewController.h"
 
 @interface DishDetailViewController : UIViewController <UINavigationControllerDelegate, 
 UIImagePickerControllerDelegate, 
-UIActionSheetDelegate>{
+UIActionSheetDelegate,
+RateDishProtocolDelegate>{
 	Dish *mThisDish;
 	UITableViewCell *mDishImageCell;
 	UIImageView *mDishImageView;

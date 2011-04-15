@@ -9,7 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "Dish.h"
 
-@interface RateADishViewController : UITableViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>{
+@protocol RateDishProtocolDelegate
+@required
+-(void)doneRatingDish;
+
+@end
+
+@interface RateADishViewController : UITableViewController <UIImagePickerControllerDelegate, 
+UINavigationControllerDelegate,
+UIActionSheetDelegate>{
 	Dish *mThisDish;
 	UITableViewCell *mDishHeaderCell;
 	UILabel *mDishTitle;
@@ -32,6 +40,8 @@
 	UITableViewCell *mSubmitButtonCell;
 	UIButton		*mSubmitButton;
 	int mOutstandingRequests;
+	
+	id<RateDishProtocolDelegate> mDelegate;
 }
 
 @property (nonatomic, retain) Dish *thisDish;
@@ -55,6 +65,8 @@
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *submitButtonCell;
 @property (nonatomic, retain) IBOutlet UIButton	*submitButton;
+
+@property (nonatomic, assign)  id<RateDishProtocolDelegate>	delegate;
 
 -(IBAction)takePicture;
 -(IBAction)submitRating;

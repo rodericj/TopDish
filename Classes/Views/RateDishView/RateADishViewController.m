@@ -43,6 +43,8 @@
 @synthesize submitButtonCell = mSubmitButtonCell;
 @synthesize submitButton = mSubmitButton;
 
+@synthesize delegate = mDelegate;
+
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -252,6 +254,7 @@
 													cancelButtonTitle:nil 
 											   destructiveButtonTitle:nil 
 													otherButtonTitles:nil];
+	
 	[actionSheet addButtonWithTitle:@"Take a picture"];
 	[actionSheet addButtonWithTitle:@"Choose from Library"];
 	actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:@"Cancel"];
@@ -347,15 +350,6 @@
 		[imageRequest setDelegate:self];
 		[imageRequest startAsynchronous];
 		mOutstandingRequests += 1;
-		
-		
-		//ASIFormDataRequest *imageRequest = [ASIFormDataRequest requestWithURL:url];
-//		
-//		[imageRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-//		[imageRequest setPostValue:[self.thisDish dish_id] forKey:@"dishId"];
-//		[imageRequest setData:UIImagePNGRepresentation(self.newPicture.image) forKey:@"photo"];
-//		[imageRequest setDelegate:self];
-//		[imageRequest startAsynchronous];
 	}
 	
 	if(!mOutstandingRequests) {
@@ -367,8 +361,8 @@
 												  otherButtonTitles:nil];
 		[alertview show];
 		[alertview release];	
-		
-		[self.navigationController popViewControllerAnimated:YES];
+		[self.delegate doneRatingDish];
+		//[self.navigationController popViewControllerAnimated:YES];
 	}
 }
 

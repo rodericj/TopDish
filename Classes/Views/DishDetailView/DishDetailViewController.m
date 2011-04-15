@@ -10,7 +10,6 @@
 #import "asyncimageview.h"
 #import "constants.h"
 #import "JSON.h"
-#import "RateADishViewController.h"
 #import "RestaurantDetailViewController.h"
 #import "ASIFormDataRequest.h"
 #import "AppModel.h"
@@ -49,6 +48,19 @@
 @synthesize tableView = mTableView;
 
 @synthesize interactionOverlay = mInteractionOverlay;
+
+
+-(void)refreshFromNetwork {
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishDetail?id[]=%@", 
+									   NETWORKHOST, 
+									   [self.thisDish dish_id]]];
+	//Start up the networking
+	DLog(@"the comments url is %@", url);
+	NSURLRequest *request = [NSURLRequest requestWithURL:url];
+	NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE]; 
+	[conn release];
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
 
 #pragma mark -
 #pragma mark Table view data source
@@ -230,17 +242,10 @@
 	
 	[self.moreButton setTitle:buttonTitle
 					 forState:UIControlStateNormal];
+
+	[self refreshFromNetwork];
 	
-	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishDetail?id[]=%@", 
-									   NETWORKHOST, 
-									   [self.thisDish dish_id]]];
-	//Start up the networking
-	DLog(@"the comments url is %@", url);
-	NSURLRequest *request = [NSURLRequest requestWithURL:url];
-	NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE]; 
-	[conn release];
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	
+		
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -323,8 +328,15 @@
 	if(self.reviews == nil){
 		self.reviews = [NSArray alloc];
 	}
+	
 	self.reviews = [[thisDishDetailDictionary objectForKey:@"reviews"] copy];
 	
+	self.thisDish.posReviews = [thisDishDetailDictionary objectForKey:@"posReviews"];
+	self.thisDish.negReviews = [thisDishDetailDictionary objectForKey:@"negReviews"];
+	
+	self.negativeReviews.text = [NSString stringWithFormat:@"-%@",self.thisDish.negReviews];
+	self.positiveReviews.text = [NSString stringWithFormat:@"+%@",self.thisDish.posReviews];
+
 	[responseText release];
 	self.responseData = nil;
 	[self.tableView reloadData];
@@ -501,6 +513,7 @@
 	[[RateADishViewController alloc] initWithNibName:@"RateADishViewController" 
 											  bundle:nil];
 	[rateDish setThisDish:self.thisDish];
+	[rateDish setDelegate:self];
 	[self.navigationController pushViewController:rateDish 
 										 animated:YES];
 	
@@ -535,6 +548,9 @@
 	[request startAsynchronous];
 }
 
-
+-(void)doneRatingDish {
+	[self refreshFromNetwork];
+	[self.navigationController popViewControllerAnimated:YES];
+}
 @end
 
