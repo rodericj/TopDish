@@ -34,7 +34,10 @@ AppModel *gAppModelInstance = nil;
 	if (!gAppModelInstance) {
 		gAppModelInstance = [[AppModel alloc] init];
 		gAppModelInstance.sorter = 1;
-		[gAppModelInstance setQueue:[[NSOperationQueue alloc] init]];
+		NSOperationQueue *q = [[NSOperationQueue alloc] init];
+		[q setMaxConcurrentOperationCount:1];
+		[gAppModelInstance setQueue:q];
+		[q release];
 	}
 	return gAppModelInstance;
 }
