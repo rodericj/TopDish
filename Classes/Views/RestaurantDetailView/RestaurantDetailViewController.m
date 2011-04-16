@@ -16,6 +16,8 @@
 #import "ASIFormDataRequest.h"
 #import "AppModel.h"
 
+#define kFlagRequestObject 0
+
 @implementation RestaurantDetailViewController
 @synthesize restaurant;
 @synthesize restaurantHeader = mRestaurantHeader;
@@ -294,11 +296,18 @@
 }
 
 #pragma mark -
+#pragma mark network
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
 	DLog(@"response string for any of these calls %@", responseString);
+	
+	if ([[[request.url pathComponents] objectAtIndex:[[request.url pathComponents] count] - 1] isEqualToString:@"flagRestaurant"] ) {
+		//TODO handle the flag successfully or unsuccessfully happening
+		NSLog(@"this is a flag restaurant call, do something different");
+		return;
+	}
 	
 	NSError *error;
 	SBJSON *parser = [SBJSON new];
@@ -338,6 +347,17 @@
 
 #pragma mark -
 #pragma mark actions 
+-(IBAction)flagThisRestaurant{
+	DLog(@"flagging this restaurant");
+	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/flagRestaurant"]];
+	
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[request setPostValue:[self.restaurant restaurant_id] forKey:@"restaurantId"];
+	[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+	
+	[request setDelegate:self];
+	[request startAsynchronous];
+}
 
 -(IBAction) pushAddDishViewController {
 	AddADishViewController *addDishViewController = [[AddADishViewController alloc] initWithNibName:@"AddADishViewController" bundle:nil];

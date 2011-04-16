@@ -55,4 +55,6 @@
 
 -(IBAction)callRestaurant;
 -(IBAction) pushAddDishViewController;
+-(IBAction)flagThisRestaurant;
+
 @end

@@ -380,31 +380,18 @@
 	DLog(@"error %@", [request error]);
 }
 
-#pragma mark -
-#pragma mark Image Picker Delegate
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-	//self.dishImageFromPicker = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-	if ([info objectForKey:@"UIImagePickerControllerEditedImage"]) {
-		self.newPicture = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-		
-		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
-		ASIFormDataRequest *newRequest = [ASIFormDataRequest requestWithURL:url];
-		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-		[newRequest setPostValue:[NSString stringWithFormat:@"%d", [[self.thisDish dish_id] intValue]] forKey:@"dishId"];
-		[newRequest setDelegate:self];
-		[newRequest startAsynchronous];
-		DLog(@"done calling add photo, time to call rateDish");
-	}
-	[self dismissModalViewControllerAnimated:YES];
-}
-
-#pragma mark -
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
 	DLog(@"response string for any of these calls %@", responseString);
+	
+	if ([[[request.url pathComponents] objectAtIndex:[[request.url pathComponents] count] - 1] isEqualToString:@"flagDish"] ) {
+		//TODO handle the flag successfully or unsuccessfully happening
+		NSLog(@"this is a flag dish call, do something different");
+		return;
+	}
 	
 	NSError *error;
 	SBJSON *parser = [SBJSON new];
@@ -446,6 +433,27 @@
 	[alertView release];
 	DLog(@"done!");
 }
+
+
+#pragma mark -
+#pragma mark Image Picker Delegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+	//self.dishImageFromPicker = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+	if ([info objectForKey:@"UIImagePickerControllerEditedImage"]) {
+		self.newPicture = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+		
+		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
+		ASIFormDataRequest *newRequest = [ASIFormDataRequest requestWithURL:url];
+		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+		[newRequest setPostValue:[NSString stringWithFormat:@"%d", [[self.thisDish dish_id] intValue]] forKey:@"dishId"];
+		[newRequest setDelegate:self];
+		[newRequest startAsynchronous];
+		DLog(@"done calling add photo, time to call rateDish");
+	}
+	[self dismissModalViewControllerAnimated:YES];
+}
+
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
 	DLog(@"cancelled, should we go back another level?");

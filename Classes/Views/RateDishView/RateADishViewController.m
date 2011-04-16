@@ -362,7 +362,6 @@
 		[alertview show];
 		[alertview release];	
 		[self.delegate doneRatingDish];
-		//[self.navigationController popViewControllerAnimated:YES];
 	}
 }
 
