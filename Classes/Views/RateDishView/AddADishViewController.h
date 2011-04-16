@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "Restaurant.h"
 
+@protocol AddADishProtocolDelegate
+
+@required
+-(void)addDishDone;
+
+@end
+
+
 @interface AddADishViewController : UITableViewController <UINavigationControllerDelegate, 
 UIImagePickerControllerDelegate,
 UIActionSheetDelegate,
@@ -51,6 +59,7 @@ UITextViewDelegate> {
 	UIButton *mPickerViewButton;
 	BOOL mPickerUp;
 
+	id<AddADishProtocolDelegate> mDelegate;
 }
 
 @property (nonatomic, retain) Restaurant *restaurant;
@@ -86,6 +95,7 @@ UITextViewDelegate> {
 @property (nonatomic, retain) IBOutlet UIView *pickerViewOverlay;
 @property (nonatomic, retain) IBOutlet UIButton *pickerViewButton;
 
+@property (nonatomic, assign) id<AddADishProtocolDelegate> delegate;
 -(IBAction)takePicture;
 -(IBAction)submitDish;
 -(IBAction)noButtonClicked;

@@ -10,7 +10,6 @@
 #import "constants.h"
 #import "JSON.h"
 #import "asyncimageview.h"
-#import "AddADishViewController.h"
 #import "RestaurantAnnotation.h"
 
 #import "ASIFormDataRequest.h"
@@ -52,24 +51,12 @@
 		return;
 	}
 	
-	NSDictionary *resp = [[responseAsDictionary objectForKey:@"restaurants"] objectAtIndex:0];
-	[parser release];
+	NSString *responseTextStripped = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
+
+	IncomingProcessor *proc = [IncomingProcessor processorWithDelegate:self];
+	[[[AppModel instance] queue] addOperation:[proc taskWithData:responseTextStripped]];
 	
-	if(error != nil){
-		DLog(@"there was an error when jsoning");
-		DLog(@"json error %@", error);
-		DLog(@"the text %@", responseText);
-	}
-	DLog(@"the dict is %@", resp);
-	//[restaurant setObjName:[resp objectForKey:@"name"]];
-	[restaurant setCity:[resp objectForKey:@"city"]];
-	[restaurant setAddressLine1:[resp objectForKey:@"addressLine1"]];
-	[restaurant setAddressLine2:[resp objectForKey:@"addressLine2"]];
-	[restaurant setLatitude:[resp objectForKey:@"latitude"]];
-	[restaurant setLongitude:[resp objectForKey:@"longitude"]];
-	[restaurant setPhone:[resp objectForKey:@"phone"]];
-	[restaurant setState:[resp objectForKey:@"state"]];
-	[self.tableView reloadData];
+	[parser release];
 	
 }
 
@@ -160,11 +147,17 @@
 	
 	
 }
+
+-(void)reloadView {
+	[self networkQuery:[NSString stringWithFormat:@"%@/api/restaurantDetail?id[]=%@", NETWORKHOST, [restaurant restaurant_id]]];	
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[self networkQuery:[NSString stringWithFormat:@"%@/api/restaurantDetail?id[]=%@", NETWORKHOST, [restaurant restaurant_id]]];	
 
-	//[self networkQuery:[NSString stringWithFormat:@"%@/api/restaurantDetail?id[]=%@", NETWORKHOST, [restaurant restaurant_id]]];
+	//hit the network and refresh our data
+	[self reloadView];
+	
 	self.view.backgroundColor = kTopDishBackground;
 	
 	[self.view addSubview:self.mapOverlay];
@@ -296,6 +289,12 @@
 }
 
 #pragma mark -
+#pragma mark AddADishProtocolDelegate method
+-(void)addDishDone {
+	[self.navigationController popViewControllerAnimated:YES];
+	[self reloadView];
+}
+#pragma mark -
 #pragma mark network
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
@@ -361,9 +360,10 @@
 
 -(IBAction) pushAddDishViewController {
 	AddADishViewController *addDishViewController = [[AddADishViewController alloc] initWithNibName:@"AddADishViewController" bundle:nil];
-	[addDishViewController setTitle:@"Add a Dish"];
-	[addDishViewController setRestaurant:restaurant];
-	[addDishViewController setManagedObjectContext:self.managedObjectContext];
+	addDishViewController.title = @"Add a Dish";
+	addDishViewController.delegate = self;
+	addDishViewController.restaurant = restaurant;
+	addDishViewController.managedObjectContext = self.managedObjectContext;
 	[self.navigationController pushViewController:addDishViewController animated:YES];
 	[addDishViewController release];
 	
@@ -461,6 +461,14 @@
 	}
 	DLog(@"returned nil? hmmm");
 	return nil;
+}
+
+#pragma mark -
+#pragma mark IncomingProcessorDelegate
+-(void)saveComplete {
+	[self.tableView performSelectorOnMainThread:@selector(reloadData) 
+						   withObject:nil 
+						waitUntilDone:NO];
 }
 
 #pragma mark -

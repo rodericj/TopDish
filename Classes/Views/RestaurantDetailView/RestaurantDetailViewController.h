@@ -10,8 +10,16 @@
 #import "Restaurant.h"
 #import "DishTableViewController.h"
 #import <MapKit/MapKit.h>
+#import "AddADishViewController.h"
+#import "IncomingProcessor.h"
 
-@interface RestaurantDetailViewController : DishTableViewController <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
+@interface RestaurantDetailViewController : DishTableViewController 
+<UIActionSheetDelegate, 
+UINavigationControllerDelegate, 
+UIImagePickerControllerDelegate,
+AddADishProtocolDelegate,
+IncomingProcessorDelegate> {
+	
 	Restaurant *restaurant;
 
 	UITableViewCell *mMapRow;

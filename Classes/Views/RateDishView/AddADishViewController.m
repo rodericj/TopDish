@@ -66,6 +66,8 @@
 @synthesize pickerView = mPickerView;
 @synthesize pickerViewOverlay = mPickerViewOverlay;
 @synthesize pickerViewButton = mPickerViewButton;
+@synthesize delegate = mDelegate;
+
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -580,6 +582,8 @@
 	[request startAsynchronous];
 }
 
+#pragma mark -
+#pragma mark network request
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
 	mOutstandingRequests -= 1; 
@@ -606,9 +610,10 @@
 		[alertview release];
 		return;
 	}
-	
+
 	//The dish has been added, now we optionally add the photo and always send a rating
-	if ([responseAsDict objectForKey:@"dishId"]) {
+	//The request for submitting the photo returns the dishId and the photoId, 
+	if ([responseAsDict objectForKey:@"dishId"] && ![responseAsDict objectForKey:@"photoId"]) {
 		NSURL *url;
 		self.dishId = [[responseAsDict objectForKey:@"dishId"] intValue];
 
@@ -713,7 +718,7 @@
 		[alertview release];
 	}
 	if (!mOutstandingRequests) {
-		[self.navigationController popViewControllerAnimated:YES];	
+		[self.delegate addDishDone];
 	}
 }
 
@@ -739,7 +744,6 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
 	DLog(@"cancelled, should we go back another level?");
 	[self dismissModalViewControllerAnimated:YES];
-	//[self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -
