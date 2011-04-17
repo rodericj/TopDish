@@ -192,6 +192,11 @@ AppModel *gAppModelInstance = nil;
 	[self.user removeObjectForKey:keyforauthorizing];
 	[self.facebook logout:self];
 }
+#pragma mark -
+#pragma mark login stuff
+-(BOOL)isLoggedIn {
+	return [self.user objectForKey:keyforauthorizing] != nil;
+}
 
 #pragma mark -
 #pragma mark network callback 

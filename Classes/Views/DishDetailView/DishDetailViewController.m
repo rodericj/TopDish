@@ -116,7 +116,6 @@
 	
     label = (UILabel *)[cell viewWithTag:2];
     label.text = [NSString stringWithFormat:@"-%@",creator];
-	DLog(@"the number of rows is %d", label.numberOfLines);
 	
 	UIImageView *voteDirectionImage = (UIImageView *)[cell viewWithTag:3];
 	if ([voteDirection intValue] == 1) {
@@ -491,7 +490,8 @@
 #pragma mark IBActions
 -(IBAction)takePicture
 {
-	if ([[[AppModel instance] user] objectForKey:keyforauthorizing] ) {
+
+	if ([[AppModel instance] isLoggedIn] ) {
 		
 		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil//@"Camera or Library?" 
 																 delegate:self 
@@ -505,28 +505,30 @@
 		[actionSheet release];
 	}
 	else {
-		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Not logged in"
-															message:@"Must log into submit an image" 
-														   delegate:nil
-												  cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[alertView show];
-		[alertView release];
+		mPostLoginAction = @selector(takePicture);
+		[self presentModalViewController:[LoginModalView viewControllerWithDelegate:self] 
+								animated:YES];
 	}
-
 }
 
 -(IBAction)pushRateDishController {
 	//RateADishViewController *rateDish = [[RateADishViewController alloc] init];
-	RateADishViewController *rateDish = 
-	[[RateADishViewController alloc] initWithNibName:@"RateADishViewController" 
-											  bundle:nil];
-	[rateDish setThisDish:self.thisDish];
-	[rateDish setDelegate:self];
-	[self.navigationController pushViewController:rateDish 
-										 animated:YES];
-	
-	[rateDish release];
-	
+	if ([[AppModel instance] isLoggedIn]) {
+		RateADishViewController *rateDish = 
+		[[RateADishViewController alloc] initWithNibName:@"RateADishViewController" 
+												  bundle:nil];
+		[rateDish setThisDish:self.thisDish];
+		[rateDish setDelegate:self];
+		[self.navigationController pushViewController:rateDish 
+											 animated:YES];
+		
+		[rateDish release];
+	}
+	else {
+		mPostLoginAction = @selector(pushRateDishController);
+		[self presentModalViewController:[LoginModalView viewControllerWithDelegate:self] 
+								animated:YES];
+	}
 }
 
 -(void)pushRestaurantDetailController {
@@ -556,9 +558,37 @@
 	[request startAsynchronous];
 }
 
+#pragma mark -
+#pragma mark LoginModalViewDelegate
+-(void)loginFailed {
+	DLog(@"dish detail login failed");
+}
+
+-(void)loginStarted {
+	DLog(@"the login started");
+}
+
+-(void)loginComplete {
+	DLog(@"the login is fully completed");
+	[self dismissModalViewControllerAnimated:YES];
+	[self performSelector:mPostLoginAction];
+}
+
+-(void)notNowButtonPressed {
+	DLog(@"do nothing but just dismiss the modal");
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)facebookLoginComplete {
+	DLog(@"ok, the facebook login is complete for the DishDetailViewController");
+}
+
+#pragma mark -
+#pragma mark RateDishProtocolDelegate
 -(void)doneRatingDish {
 	[self refreshFromNetwork];
 	[self.navigationController popViewControllerAnimated:YES];
 }
+
 @end
 

@@ -12,13 +12,15 @@
 #import <MapKit/MapKit.h>
 #import "AddADishViewController.h"
 #import "IncomingProcessor.h"
+#import "LoginModalView.h"
 
 @interface RestaurantDetailViewController : DishTableViewController 
 <UIActionSheetDelegate, 
 UINavigationControllerDelegate, 
 UIImagePickerControllerDelegate,
 AddADishProtocolDelegate,
-IncomingProcessorDelegate> {
+IncomingProcessorDelegate,
+LoginModalViewDelegate> {
 	
 	Restaurant *restaurant;
 
@@ -40,6 +42,8 @@ IncomingProcessorDelegate> {
 	
 	UIImageView *mCameraImage;
 	UIImage *mNewPicture;
+	
+	SEL mPostLoginAction;
 }
 
 @property (nonatomic, retain) Restaurant *restaurant;

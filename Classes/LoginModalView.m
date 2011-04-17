@@ -24,6 +24,7 @@
  * Show the authorization dialog.
  */
 - (void)login {
+	[[[AppModel instance] facebook] authorize:kpermission delegate:[AppModel instance]];
 	[self.delegate loginStarted];
 }
 
@@ -50,15 +51,35 @@
     // Release any cached data, images, etc. that aren't in use.
 }
 
++(LoginModalView *)viewControllerWithDelegate:(id<LoginModalViewDelegate>)delegate {
+	LoginModalView *lmv = [[[LoginModalView alloc] initWithNibName:@"LoginModalView"
+														   bundle:nil] autorelease];
+	lmv.delegate = delegate;
+	return lmv;
+}
+
 -(void)viewDidLoad {
 	self.view.backgroundColor = kTopDishBackground;
-	
 }
 
 -(void)viewDidAppear:(BOOL)animated {
 	self.fbLoginButton.isLoggedIn = [[[AppModel instance] facebook] isSessionValid];
 	
 	[self.fbLoginButton updateImage];
+	
+	//setup the delegate notifications
+	[[NSNotificationCenter defaultCenter] addObserver:self.delegate
+											 selector:@selector(loginComplete)
+												 name:NSNotificationStringDoneLogin 
+											   object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self.delegate
+											 selector:@selector(facebookLoginComplete)
+												 name:NSNotificationStringDoneFacebookLogin 
+											   object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self.delegate
+											 selector:@selector(loginFailed)
+												 name:NSNotificationStringFailedLogin 
+											   object:nil];
 }
 
 - (void)viewDidUnload {

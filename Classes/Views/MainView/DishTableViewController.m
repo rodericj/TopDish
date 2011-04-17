@@ -112,12 +112,10 @@
 -(void)viewDidAppear:(BOOL)animated {
 	AppModel *app = [AppModel instance];
 	if (![app.facebook isSessionValid] && !app.userDelayedLogin) {
-		LoginModalView *loginModal = [[LoginModalView alloc] initWithNibName:@"LoginModalView" 
-																	  bundle:nil];
-		loginModal.delegate = self;
-		[self presentModalViewController:loginModal 
+		//register for 
+				
+		[self presentModalViewController:[LoginModalView viewControllerWithDelegate:self] 
 								animated:YES];
-		[loginModal release];
 	}
 }
 
@@ -723,22 +721,8 @@
 #pragma mark LoginModalView Delegate
 -(void)loginStarted {
 	NSLog(@"the login started");
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(loginComplete)
-												 name:NSNotificationStringDoneLogin 
-											   object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(facebookLoginComplete)
-												 name:NSNotificationStringDoneFacebookLogin 
-											   object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(loginFailed)
-												 name:NSNotificationStringFailedLogin 
-											   object:nil];
-	
-	[[[AppModel instance] facebook] authorize:kpermission delegate:[AppModel instance]];
-	
 }
+
 -(void)facebookLoginComplete {
 	NSLog(@"facebook login complete, waiting for TD login, lets move forward");
 	[self dismissModalViewControllerAnimated:YES];

@@ -88,5 +88,6 @@
 
 +(NSNumber *)extractTag:(NSString *)key fromArrayOfTags:(NSArray *)tagsArray;
 
+-(BOOL)isLoggedIn;
 
 @end

@@ -359,14 +359,21 @@
 }
 
 -(IBAction) pushAddDishViewController {
-	AddADishViewController *addDishViewController = [[AddADishViewController alloc] initWithNibName:@"AddADishViewController" bundle:nil];
-	addDishViewController.title = @"Add a Dish";
-	addDishViewController.delegate = self;
-	addDishViewController.restaurant = restaurant;
-	addDishViewController.managedObjectContext = self.managedObjectContext;
-	[self.navigationController pushViewController:addDishViewController animated:YES];
-	[addDishViewController release];
-	
+	if ([[AppModel instance] isLoggedIn]) {
+		AddADishViewController *addDishViewController = [[AddADishViewController alloc] initWithNibName:@"AddADishViewController" bundle:nil];
+		addDishViewController.title = @"Add a Dish";
+		addDishViewController.delegate = self;
+		addDishViewController.restaurant = restaurant;
+		addDishViewController.managedObjectContext = self.managedObjectContext;
+		[self.navigationController pushViewController:addDishViewController animated:YES];
+		[addDishViewController release];
+	}
+	else {
+		NSLog(@"show the modal login thing");
+		mPostLoginAction = @selector(pushAddDishViewController);
+		[self presentModalViewController:[LoginModalView viewControllerWithDelegate:self] animated:YES];
+	}
+
 }
 
 -(IBAction)callRestaurant{
@@ -383,17 +390,24 @@
 }
 -(void)takePicture:(UITapGestureRecognizer *)sender {
 	DLog(@"take a picture");
-	
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil//@"Camera or Library?" 
-															 delegate:self 
-													cancelButtonTitle:nil 
-											   destructiveButtonTitle:nil 
-													otherButtonTitles:nil];
-	[actionSheet addButtonWithTitle:@"Take a picture"];
-	[actionSheet addButtonWithTitle:@"Choose from Library"];
-	actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:@"Cancel"];
-	[actionSheet showInView:self.navigationController.tabBarController.view];	
-	[actionSheet release];
+	if ([[AppModel instance] isLoggedIn]) {
+		
+		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil//@"Camera or Library?" 
+																 delegate:self 
+														cancelButtonTitle:nil 
+												   destructiveButtonTitle:nil 
+														otherButtonTitles:nil];
+		[actionSheet addButtonWithTitle:@"Take a picture"];
+		[actionSheet addButtonWithTitle:@"Choose from Library"];
+		actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:@"Cancel"];
+		[actionSheet showInView:self.navigationController.tabBarController.view];	
+		[actionSheet release];
+	}
+	else {
+		mPostLoginAction = @selector(pushRateDishController);
+		[self presentModalViewController:[LoginModalView viewControllerWithDelegate:self] 
+								animated:YES];
+	}
 }
 
 - (IBAction)handleTapGesture:(UITapGestureRecognizer *)sender {
@@ -461,6 +475,31 @@
 	}
 	DLog(@"returned nil? hmmm");
 	return nil;
+}
+
+#pragma mark -
+#pragma mark LoginModalViewDelegate
+-(void)loginFailed {
+	NSLog(@"login failed");
+}
+
+-(void)loginStarted {
+	NSLog(@"login started");
+}
+
+-(void)loginComplete {
+	DLog(@"the login is fully completed");
+	[self dismissModalViewControllerAnimated:YES];
+	[self performSelector:mPostLoginAction];
+}
+
+-(void)notNowButtonPressed {
+	NSLog(@"not now pressed");
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)facebookLoginComplete {
+	
 }
 
 #pragma mark -

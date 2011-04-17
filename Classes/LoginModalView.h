@@ -15,6 +15,9 @@
 -(void)notNowButtonPressed;
 -(void)loginComplete;
 -(void)loginStarted;
+
+-(void)facebookLoginComplete;
+-(void)loginFailed;
 @end
 
 @interface LoginModalView : UIViewController {
@@ -24,6 +27,8 @@
 
 @property (nonatomic, retain) IBOutlet FBLoginButton *fbLoginButton;
 @property (nonatomic, assign) id<LoginModalViewDelegate> delegate;
+
++(LoginModalView *)viewControllerWithDelegate:(id<LoginModalViewDelegate>)delegate;
 
 -(IBAction)notNowButtonPressed;
 -(IBAction)fbButtonClick:(id)sender;

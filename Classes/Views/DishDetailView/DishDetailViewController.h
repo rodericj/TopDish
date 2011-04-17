@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "Dish.h"
 #import "RateADishViewController.h"
+#import "LoginModalView.h"
 
 @interface DishDetailViewController : UIViewController <UINavigationControllerDelegate, 
 UIImagePickerControllerDelegate, 
 UIActionSheetDelegate,
-RateDishProtocolDelegate>{
+RateDishProtocolDelegate,
+LoginModalViewDelegate>{
 	Dish *mThisDish;
 	UITableViewCell *mDishImageCell;
 	UIImageView *mDishImageView;
@@ -41,6 +43,8 @@ RateDishProtocolDelegate>{
 	UITableView *mTableView;
 	
 	UIView *mInteractionOverlay;
+	
+	SEL mPostLoginAction;
 }
 
 @property (nonatomic, retain) Dish *thisDish;
