@@ -13,32 +13,25 @@
 @implementation LoginModalView
 
 @synthesize fbLoginButton = mFbLoginButton;
+@synthesize delegate = mDelegate;
 
--(IBAction)okButtonPressed {
+-(IBAction)notNowButtonPressed {
 	[AppModel instance].userDelayedLogin = YES;
-	[self dismissModalViewControllerAnimated:YES];
-
+	[self.delegate notNowButtonPressed];
 }
 
 /**
  * Show the authorization dialog.
  */
 - (void)login {
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(loginComplete:)
-												 name:NSNotificationStringDoneLogin 
-											   object:nil];
-	[[[AppModel instance] facebook] authorize:kpermission delegate:[AppModel instance]];
+	[self.delegate loginStarted];
 }
 
 -(void)logout{
 	[[[AppModel instance] facebook] logout:[AppModel instance]];
 }
 
--(void)loginComplete:(NSNotification *)notification {
-	NSLog(@"the notification is finished");
-	[self dismissModalViewControllerAnimated:YES];
-}
+
 /**
  * Called on a login/logout button click.
  */

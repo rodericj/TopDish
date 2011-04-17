@@ -212,6 +212,8 @@ AppModel *gAppModelInstance = nil;
 		if ([[responseAsDict objectForKey:@"rc"] intValue] == 1) {
 			//response returned with an error. Lets see what we got
 			DLog(@"response from TD Server %@", responseAsDict);
+			[[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationStringFailedLogin object:nil];
+
 		}
 		else {
 			[responseAsDict objectForKey:keyforauthorizing];
@@ -219,12 +221,6 @@ AppModel *gAppModelInstance = nil;
 			
 			//send notification that we have logged in
 			[[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationStringDoneLogin object:nil];
-			//[self.navigationController popToRootViewControllerAnimated:YES];
-
-			//LoggedInLoggedOutGate *gate = [[LoggedInLoggedOutGate alloc] init];
-//			//[self.navigationController pushViewController:signIn animated:NO];
-//			[self.navigationController setViewControllers:[NSArray arrayWithObject:gate]];
-//			[gate release];
 		}
 		
 	}
@@ -243,6 +239,9 @@ AppModel *gAppModelInstance = nil;
 
 - (void)fbDidLogin{	
 	DLog(@"fb logged in");
+	
+	//Notify someone
+	[[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationStringDoneFacebookLogin object:nil];
 	
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/facebookLogin", NETWORKHOST]];
 	DLog(@"[[AppModel instance] facebook].accessToken %@\n the url we are hitting is %@", 

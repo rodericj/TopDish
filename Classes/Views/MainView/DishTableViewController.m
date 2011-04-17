@@ -114,7 +114,7 @@
 	if (![app.facebook isSessionValid] && !app.userDelayedLogin) {
 		LoginModalView *loginModal = [[LoginModalView alloc] initWithNibName:@"LoginModalView" 
 																	  bundle:nil];
-		
+		loginModal.delegate = self;
 		[self presentModalViewController:loginModal 
 								animated:YES];
 		[loginModal release];
@@ -124,9 +124,11 @@
 -(void) networkQuery:(NSString *)query{
 	NSURL *url;
 	NSURLRequest *request;
+	
 	//NSURLConnection *conn;
 	url = [NSURL URLWithString:query];
 	DLog(@"url is %@", query);
+	
 	//Start up the networking
 	request = [NSURLRequest requestWithURL:url];
 	NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request 
@@ -715,6 +717,50 @@
 	//NSAssert(location != NULL, @"the location was null which means that the thread is doing something intersting. Lets send this back.");
 	[self initiateNetworkBasedOnSegmentControl];
 	
+}
+
+#pragma mark -
+#pragma mark LoginModalView Delegate
+-(void)loginStarted {
+	NSLog(@"the login started");
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(loginComplete)
+												 name:NSNotificationStringDoneLogin 
+											   object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(facebookLoginComplete)
+												 name:NSNotificationStringDoneFacebookLogin 
+											   object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(loginFailed)
+												 name:NSNotificationStringFailedLogin 
+											   object:nil];
+	
+	[[[AppModel instance] facebook] authorize:kpermission delegate:[AppModel instance]];
+	
+}
+-(void)facebookLoginComplete {
+	NSLog(@"facebook login complete, waiting for TD login, lets move forward");
+	[self dismissModalViewControllerAnimated:YES];
+}
+-(void)loginFailed {
+	NSLog(@"the login failed");
+	UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Login To TopDish Failed" 
+												 message:@"Please try again later" 
+												delegate:nil 
+									   cancelButtonTitle:@"Ok" 
+									   otherButtonTitles:nil];
+	[av show];
+	[av release];
+	[[AppModel instance].facebook logout:[AppModel instance]];
+}
+-(void)loginComplete {
+	NSLog(@"the login from the LoginModalView was complete");
+}
+
+-(void)notNowButtonPressed {
+	NSLog(@"the not now button was pressed");
+	[self dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark -

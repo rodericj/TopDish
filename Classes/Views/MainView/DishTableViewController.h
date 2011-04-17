@@ -11,8 +11,14 @@
 #import "MyCLController.h"
 #import "ObjectWithImage.h"
 #import "IncomingProcessor.h"
+#import "LoginModalView.h"
 
-@interface DishTableViewController :UITableViewController <MyCLControllerDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate, IncomingProcessorDelegate> {
+@interface DishTableViewController :UITableViewController 
+<MyCLControllerDelegate, 
+NSFetchedResultsControllerDelegate, 
+UISearchBarDelegate, 
+IncomingProcessorDelegate,
+LoginModalViewDelegate> {
 	MyCLController *locationController;
 	NSString *mCurrentLat;
 	NSString *mCurrentLon;

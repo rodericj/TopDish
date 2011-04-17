@@ -13,6 +13,8 @@
 #define NSNotificationStringDoneProcessingRestaurants @"DONEPROCESSINGRESTAURANTS"
 
 #define NSNotificationStringDoneLogin @"DONELOGIN"
+#define NSNotificationStringDoneFacebookLogin @"DONEFACEBOOKLOGIN"
+#define NSNotificationStringFailedLogin @"FAILEDLOGIN"
 
 #pragma mark -
 #pragma mark NSManagedObjectContext

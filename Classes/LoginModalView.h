@@ -9,12 +9,22 @@
 #import <UIKit/UIKit.h>
 #import "FBLoginButton.h"
 
+@protocol LoginModalViewDelegate
+
+@required
+-(void)notNowButtonPressed;
+-(void)loginComplete;
+-(void)loginStarted;
+@end
+
 @interface LoginModalView : UIViewController {
 	FBLoginButton *mFbLoginButton;
+	id<LoginModalViewDelegate> mDelegate;
 }
 
 @property (nonatomic, retain) IBOutlet FBLoginButton *fbLoginButton;
+@property (nonatomic, assign) id<LoginModalViewDelegate> delegate;
 
--(IBAction)okButtonPressed;
+-(IBAction)notNowButtonPressed;
 -(IBAction)fbButtonClick:(id)sender;
 @end
