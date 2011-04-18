@@ -218,11 +218,15 @@
 	
 	AppModel *app = [AppModel instance];
 	Dish *d = self.thisDish;
-	NSString *tagString = [NSString stringWithFormat:@"%@, %@, %@, %@",
-						   [app tagNameForTagId:d.cuisineType],
-						   [app tagNameForTagId:d.mealType],
-						   [app tagNameForTagId:d.price],
-						   [app tagNameForTagId:d.lifestyleType] ? [app tagNameForTagId:d.lifestyleType]:@""];
+	NSMutableString *tagString = [[NSMutableString alloc] initWithCapacity:20];
+	[tagString appendString:[app tagNameForTagId:d.cuisineType] ? [app tagNameForTagId:d.cuisineType] : @""];
+	[tagString appendString:@" "];
+	[tagString appendString:[app tagNameForTagId:d.mealType] ? [app tagNameForTagId:d.mealType] : @""];
+	[tagString appendString:@" "];
+	[tagString appendString:[app tagNameForTagId:d.price] ? [app tagNameForTagId:d.price] : @""];
+	[tagString appendString:@" "];
+	[tagString appendString:[app tagNameForTagId:d.lifestyleType] ? [app tagNameForTagId:d.lifestyleType] : @""];
+	
 	self.dishTagsLabel.text = tagString;
 	
 	[self.dishNameLabel setText:[self.thisDish objName]];

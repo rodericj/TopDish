@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LoggedInLoggedOutGate.h"
 #import "Facebook.h"
 #import "LoginModalView.h"
 
