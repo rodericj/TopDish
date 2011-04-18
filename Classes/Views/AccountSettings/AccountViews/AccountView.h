@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "LoggedInLoggedOutGate.h"
 #import "Facebook.h"
+#import "LoginModalView.h"
 
-@interface AccountView : UITableViewController <FBRequestDelegate, FBSessionDelegate> {
+@interface AccountView : UITableViewController <FBRequestDelegate, FBSessionDelegate, LoginModalViewDelegate> {
 	UILabel *mUserName;
 	UILabel *mUserSince;
 	UIView *mTableHeader;
@@ -19,6 +20,10 @@
 	FBRequest *mImageRequest;
 	
 	NSMutableArray *mLifestyleTags;
+	
+	BOOL mPendingLogin;
+	
+	FBLoginButton *mFBLoginButton;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *userName;
@@ -27,4 +32,8 @@
 @property (nonatomic, retain) IBOutlet UIImageView *userImage;
 @property (nonatomic, retain)  NSMutableArray *lifestyleTags;
 @property (nonatomic, retain) FBRequest *imageRequest;
+@property (nonatomic, retain) IBOutlet FBLoginButton *fBLoginButton;
+
+- (IBAction)fbButtonClick:(id)sender;
+
 @end

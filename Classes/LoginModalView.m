@@ -80,6 +80,10 @@
 											 selector:@selector(loginFailed)
 												 name:NSNotificationStringFailedLogin 
 											   object:nil];
+	
+	//in the off chance that we've logged in since we loaded
+	if (self.fbLoginButton.isLoggedIn)
+		[self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)viewDidUnload {

@@ -239,7 +239,6 @@ AppModel *gAppModelInstance = nil;
 -(void)fbDidLogout {
 	self.facebook = nil;
 	[self createFacebookObject];
-
 }
 
 - (void)fbDidLogin{	

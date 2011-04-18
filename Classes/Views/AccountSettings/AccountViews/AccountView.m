@@ -11,6 +11,9 @@
 #import "AppModel.h"
 #import "FBLoginButton.h"
 
+#define kNumberOfSections 1
+#define kDishesReviewedSection 0
+
 @implementation AccountView
 
 @synthesize userName = mUserName;
@@ -19,54 +22,59 @@
 @synthesize lifestyleTags = mLifestyleTags;
 @synthesize imageRequest = mImageRequest;
 @synthesize userImage = mUserImage;
+@synthesize fBLoginButton = mFBLoginButton;
 
-enum {
-    kListAdderSectionIndexTotal = 0,
-    kAddLifestyleTags,
-    kLifestyleTagsList,
-    kListAdderSectionIndexCount
-};
-
+-(void)fetchFacebookMe {
+	[[[AppModel instance] facebook] 
+	 requestWithGraphPath:@"me" 
+	 andDelegate:self];
+}
 #pragma mark -
 #pragma mark View lifecycle
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.view.backgroundColor = kTopDishBackground;
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-	[self.tableView setTableHeaderView:self.tableHeader];
-	 
+	self.tableView.tableHeaderView = self.tableHeader;
 	self.userName.text = @"";
 	self.userSince.text = @"";
 	
 	if ([[[AppModel instance] facebook] isSessionValid]) {
 		//call the facebook api
-		 [[[AppModel instance] facebook] 
-		  requestWithGraphPath:@"me" 
-		  andDelegate:self];
+		[self fetchFacebookMe];
 		
 		//add the logout button
 		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
 										style:UIBarButtonItemStyleBordered
 										target:self 
 										action:@selector(logout)];
-
 	}
-	
+	mPendingLogin = FALSE;
 }
 
--(void)logout{
-	[[[AppModel instance] facebook] logout:self];
+-(void)viewDidAppear:(BOOL)animated {
+	self.fBLoginButton.isLoggedIn = [[[AppModel instance] facebook] isSessionValid];
+	[self.fBLoginButton updateImage];
+
+	if ([[AppModel instance] isLoggedIn]) {
+		NSLog(@"do some things");
+	}
+	else if(!mPendingLogin)
+		[self presentModalViewController:[LoginModalView viewControllerWithDelegate:self] 
+								animated:YES];
+	mPendingLogin = TRUE;
 }
+
+- (void)viewDidUnload {
+    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
+    // For example: self.myOutlet = nil;
+}
+
+#pragma mark -
+#pragma mark Logout
 
 - (void)fbDidLogout{
-	LoggedInLoggedOutGate *gate = [[LoggedInLoggedOutGate alloc] init];
-	//[self.navigationController pushViewController:signIn animated:NO];
-	[self.navigationController setViewControllers:[NSArray arrayWithObject:gate]];
 	[[AppModel instance] logout];
-	[gate release];
+	[self.tabBarController setSelectedIndex:0];
 }
 
 #pragma mark -
@@ -74,58 +82,41 @@ enum {
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
 	switch (section) {
-		case kLifestyleTagsList:
-			return @"Cuisines";
-		case kAddLifestyleTags:
-			return @"";
-		default:
+		case kDishesReviewedSection:
 			return @"Dishes Reviewed";
+		default:
+			return nil;
 	}
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+	switch (indexPath.section) {
+		case kDishesReviewedSection:
+			return 20;
+		default:
+			break;
+	}
+	return 0;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
 	//Individual settings
 	//dishes reviewed
-    return 0;
-}
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tv editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCellEditingStyle result;
-	
-#pragma unused(tv)
-    assert(tv == self.tableView);
-    assert(indexPath.section < kListAdderSectionIndexCount);
-    assert(indexPath.row < ((indexPath.section == kLifestyleTagsList) ? [self.lifestyleTags count] : 1));
-    
-    switch (indexPath.section) {
-        default:
-            assert(NO);
-            // fall through
-        case kListAdderSectionIndexTotal: {
-            result = UITableViewCellEditingStyleNone;
-        } break;
-        case kAddLifestyleTags: {
-            result = UITableViewCellEditingStyleInsert;
-        } break;
-        case kLifestyleTagsList: {
-            // We don't allow the user to delete the last cell.
-            if ([self.lifestyleTags count] == 1) {
-                result = UITableViewCellEditingStyleNone;
-            } else {
-                result = UITableViewCellEditingStyleDelete;
-            }
-        } break;
-    }
-    return result;
+    return kNumberOfSections;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-	if (section == kLifestyleTagsList) {
-		return [self.lifestyleTags count];
+	switch (section) {
+		case kDishesReviewedSection:
+			return 0;
+			break;
+		default:
+			break;
 	}
-	return 1;
+
+	return 0;
 }
 
 
@@ -139,7 +130,7 @@ enum {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
 									   reuseIdentifier:CellIdentifier] autorelease];
     }
-    
+    [cell addSubview:self.tableHeader];
     // Configure the cell...
     return cell;
 }
@@ -213,6 +204,24 @@ enum {
 	}
 }
 
+#pragma mark fb button
+/**
+ * Show the authorization dialog.
+ */
+- (void)login {
+	[[[AppModel instance] facebook] authorize:kpermission delegate:self];
+}
+
+/**
+ * Called on a login/logout button click.
+ */
+- (IBAction)fbButtonClick:(id)sender {
+	if (self.fBLoginButton.isLoggedIn)
+		[[[AppModel instance] facebook] logout:self];
+	else
+		[self login];
+}
+
 #pragma mark -
 #pragma mark Memory management
 
@@ -223,12 +232,6 @@ enum {
     // Relinquish ownership any cached data, images, etc. that aren't in use.
 }
 
-- (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
-}
-
-
 - (void)dealloc {
 	self.userName = nil;
 	self.userSince = nil;
@@ -237,8 +240,33 @@ enum {
 	self.userImage = nil;
 	self.imageRequest = nil;
 	self.lifestyleTags = nil;
+	self.fBLoginButton = nil;
+	
 	[super dealloc];
+}
 
+#pragma mark -
+#pragma mark LoginModalViewDelegate
+-(void)notNowButtonPressed {
+	mPendingLogin = NO;
+	[self dismissModalViewControllerAnimated:YES];
+	[self.tabBarController setSelectedIndex:0];
+}
+
+-(void)loginComplete {
+
+}
+
+-(void)loginStarted {
+}
+
+-(void)facebookLoginComplete {
+	[self fetchFacebookMe];
+	self.fBLoginButton.isLoggedIn = [[[AppModel instance] facebook] isSessionValid];
+	[self.fBLoginButton updateImage];
+}
+
+-(void)loginFailed {
 }
 
 
