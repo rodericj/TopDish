@@ -72,6 +72,7 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
 		[cell.textLabel setTextColor:kTopDishBlue];
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
 	if (indexPath.row == kPriceType) {	
