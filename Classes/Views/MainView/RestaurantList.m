@@ -18,6 +18,9 @@
 
 #define kNumberOfSections 1
 #define kRestaurantSection 0
+#define kMinimumDishesToShow 10
+#define kMaxDistance kOneMileInMeters * 25
+
 @implementation RestaurantList
 
 @synthesize fetchedResultsController = mFetchedResultsController;
@@ -462,6 +465,27 @@
 	NSString *responseText = [[NSString alloc] initWithData:thisResponseData 
 												   encoding:NSASCIIStringEncoding];
 	
+	
+	//************Increase the search radius
+	SBJSON *parser = [SBJSON new];
+	NSError *error = nil;
+	
+	NSDictionary *responseAsDictionary = [parser objectWithString:responseText 
+															error:&error];
+	if ([[responseAsDictionary objectForKey:@"dishes"] count] < kMinimumDishesToShow && self.currentSearchDistance < kMaxDistance) {
+		DLog(@"Need to resend with a larger radius: %d -> %d. UnRegister for notifications",
+			 [[responseAsDictionary objectForKey:@"dishes"] count], 
+			 self.currentSearchDistance, 
+			 self.currentSearchDistance*5);
+		
+		self.currentSearchDistance *= 5;
+		
+		//Need to remove self from the observer list so we don't get redundant notifications
+		[[NSNotificationCenter defaultCenter] removeObserver:self];
+		[self buildAndSendNetworkString];
+	}
+	//*************
+	
 	NSString *responseTextStripped = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
 	
 	//Send this incoming content to the IncomingProcessor Object
@@ -471,7 +495,6 @@
 	DLog(@"PROCESSOR  proc task is set up");
 	[proc release];
 	[responseText release];
-	
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{

@@ -139,7 +139,7 @@
 	[conn release];
 }
 
--(void)initiateNetworkBasedOnSegmentControl{
+-(void)buildAndSendNetworkString{
 
 	DLog(@"Segmentedcontrol changed, the fetchedResults controller is %@", 
 		  self.fetchedResultsController);
@@ -246,6 +246,8 @@
 	DLog(@"PROCESSOR the proc is released");
 	DLog(@"out of incoming processor");
 	
+	
+	//************Increase the search radius
 	//Hate to do this, but I need to parse the JSON to figure out how many results we got back
 	SBJSON *parser = [SBJSON new];
 	NSError *error = nil;
@@ -265,11 +267,12 @@
 			
 			//Need to remove self from the observer list so we don't get redundant notifications
 			[[NSNotificationCenter defaultCenter] removeObserver:self];
-			[self initiateNetworkBasedOnSegmentControl];
+			[self buildAndSendNetworkString];
 		}
 	
 	[parser release];
-	
+	//*************
+
 	[responseText release];
 	
 }
@@ -713,7 +716,7 @@
 	DLog(@"getNearbyItems Called %@. Accuracy: %d, %d", [location description], location.verticalAccuracy, location.horizontalAccuracy);
 	
 	//NSAssert(location != NULL, @"the location was null which means that the thread is doing something intersting. Lets send this back.");
-	[self initiateNetworkBasedOnSegmentControl];
+	[self buildAndSendNetworkString];
 	
 }
 
@@ -882,7 +885,7 @@
 	
 	//Send the network request
 	self.currentSearchTerm = searchText;
-	[self initiateNetworkBasedOnSegmentControl];
+	[self buildAndSendNetworkString];
 	
 	//Limit the core data output
 	[self updateFetch];
