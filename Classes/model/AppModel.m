@@ -96,16 +96,24 @@ AppModel *gAppModelInstance = nil;
 	
 }
 -(void)createFacebookObject {
-	NSLog(@"facebook in defaults is %@", [[NSUserDefaults standardUserDefaults] objectForKey:kFBUserDefaultsAuthKey]);
-	if ([[NSUserDefaults standardUserDefaults] objectForKey:kFBUserDefaultsAuthKey]) {
-		self.facebook = [[NSUserDefaults standardUserDefaults] objectForKey:kFBUserDefaultsAuthKey];
-		//self.facebook.accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:TD_FB_ACCESS_TOKEN_KEY];
-		//self.facebook.expirationDate = [[NSUserDefaults standardUserDefaults] objectForKey:TD_FB_EXPIRATION_DATE_KEY];
-	}
-	else {
-		self.facebook = [[Facebook alloc] initWithAppId:kFBAppId];	
-	}
+	
+	self.facebook = [[Facebook alloc] initWithAppId:kFBAppId];	
 
+	if ([[NSUserDefaults standardUserDefaults] objectForKey:TD_FB_ACCESS_TOKEN_KEY]) {
+		self.facebook.accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:TD_FB_ACCESS_TOKEN_KEY];
+		self.facebook.expirationDate = [[NSUserDefaults standardUserDefaults] objectForKey:TD_FB_EXPIRATION_DATE_KEY];
+		
+		//If the facebook session is valid, call fbDidLogin
+		if([self.facebook  isSessionValid]) {
+			NSLog(@"session is valid");
+			[self fbDidLogin];
+		}
+		//otherwise, attempt to login
+		else {
+			NSLog(@"session is not valid");
+			[self.facebook authorize:kpermission delegate:self];
+		}
+	}
 }
 
 -(id)init
@@ -187,13 +195,21 @@ AppModel *gAppModelInstance = nil;
 	//DLog(@"at this point we are getting basically nothing out of the dictionary %@ %@", mIdToTagLookup, a);
 	return [[mIdToTagLookup objectForKey:tagId] objectForKey:@"name"];
 }
+#pragma mark -
+#pragma mark login stuff
 
--(void)logout {
+-(void)logoutWithDelegate:(id<AppModelLogoutDelegate>)logoutDelegate {
+	mLogoutDelegate = logoutDelegate;
+
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	[defaults removeObjectForKey:TD_FB_ACCESS_TOKEN_KEY];
+	[defaults removeObjectForKey:TD_FB_EXPIRATION_DATE_KEY];
+	[defaults synchronize];
+	
 	[self.user removeObjectForKey:keyforauthorizing];
 	[self.facebook logout:self];
 }
-#pragma mark -
-#pragma mark login stuff
+
 -(BOOL)isLoggedIn {
 	return [self.user objectForKey:keyforauthorizing] != nil;
 }
@@ -222,7 +238,7 @@ AppModel *gAppModelInstance = nil;
 		}
 		else {
 			[responseAsDict objectForKey:keyforauthorizing];
-			[[AppModel instance].user setObject:[responseAsDict objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+			[self.user setObject:[responseAsDict objectForKey:keyforauthorizing] forKey:keyforauthorizing];
 			
 			//send notification that we have logged in
 			[[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationStringDoneLogin object:nil];
@@ -239,6 +255,7 @@ AppModel *gAppModelInstance = nil;
 -(void)fbDidLogout {
 	self.facebook = nil;
 	[self createFacebookObject];
+	[mLogoutDelegate appModelDidLogout];
 }
 
 - (void)fbDidLogin{	
@@ -249,18 +266,16 @@ AppModel *gAppModelInstance = nil;
 	
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/facebookLogin", NETWORKHOST]];
 	DLog(@"[[AppModel instance] facebook].accessToken %@\n the url we are hitting is %@", 
-		 [[AppModel instance] facebook].accessToken, url);
+		 self.facebook.accessToken, url);
 	
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    //[defaults setObject:self.facebook.accessToken forKey:TD_FB_ACCESS_TOKEN_KEY];
-    //[defaults setObject:self.facebook.expirationDate forKey:TD_FB_EXPIRATION_DATE_KEY];
-    
-	[defaults setObject:[AppModel instance].facebook 
-											 forKey:kFBUserDefaultsAuthKey];
+    [defaults setObject:self.facebook.accessToken forKey:TD_FB_ACCESS_TOKEN_KEY];
+    [defaults setObject:self.facebook.expirationDate forKey:TD_FB_EXPIRATION_DATE_KEY];    
 	[defaults synchronize];
+	
 	//Call the topdish server to log in
 	mTopDishFBLoginRequest = [ASIFormDataRequest requestWithURL:url];
-	[mTopDishFBLoginRequest setPostValue:[[AppModel instance] facebook].accessToken forKey:@"facebookApiKey"];
+	[mTopDishFBLoginRequest setPostValue:self.facebook.accessToken forKey:@"facebookApiKey"];
 	[mTopDishFBLoginRequest setAllowCompressedResponse:NO];
 	[mTopDishFBLoginRequest setDelegate:self];	
 	[mTopDishFBLoginRequest startAsynchronous];

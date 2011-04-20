@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Facebook.h"
 #import "LoginModalView.h"
+#import "AppModel.h"
 
-@interface AccountView : UITableViewController <FBRequestDelegate, FBSessionDelegate, LoginModalViewDelegate> {
+@interface AccountView : UITableViewController <FBRequestDelegate, FBSessionDelegate, LoginModalViewDelegate, AppModelLogoutDelegate> {
 	UILabel *mUserName;
 	UILabel *mUserSince;
 	UIView *mTableHeader;

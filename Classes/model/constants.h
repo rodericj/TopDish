@@ -20,7 +20,7 @@
 #pragma mark NSManagedObjectContext
 #define kManagedObjectContect [(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext]
 
-#define kpermission  [NSArray arrayWithObjects:@"user_about_me", @"email", @"publish_stream", @"friends_about_me", nil]
+#define kpermission  [NSArray arrayWithObjects:@"user_about_me", @"offline_access", @"email", @"publish_stream", @"friends_about_me", nil]
 
 #pragma mark -
 #pragma mark image constants
@@ -96,7 +96,6 @@
 #define kCuisineTypeString @"Cuisine"
 
 #define keyforauthorizing @"apiKey"
-#define kFBUserDefaultsAuthKey @"tdfacebookAuthKey"
 #define TD_FB_ACCESS_TOKEN_KEY @"TD_FB_ACCESS_TOKEN_KEY"
 #define TD_FB_EXPIRATION_DATE_KEY @"TD_FB_EXPIRATION_DATE_KEY"
 

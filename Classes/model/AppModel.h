@@ -10,6 +10,13 @@
 #import "Facebook.h"
 #import "ASIFormDataRequest.h"
 
+@protocol AppModelLogoutDelegate
+
+-(void)appModelDidLogout;
+
+@end
+
+
 @interface AppModel : NSObject <FBSessionDelegate>{
 	NSMutableDictionary *mUser;
 	NSArray *mMealTypeTags;
@@ -35,6 +42,8 @@
 	
 	ASIFormDataRequest *mTopDishFBLoginRequest;
 	BOOL	mUserDelayedLogin;
+	
+	id<AppModelLogoutDelegate> mLogoutDelegate;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *user;
@@ -67,7 +76,6 @@
 -(void)setCuisineTypeByIndex:(int)index;
 -(void)setAllergenTypeByIndex:(int)index;
 
--(void)logout;
 -(NSString *)tagNameForTagId:(NSNumber *)tagId;
 -(void) updateTags:(NSArray *)tags;
 
@@ -89,5 +97,6 @@
 +(NSNumber *)extractTag:(NSString *)key fromArrayOfTags:(NSArray *)tagsArray;
 
 -(BOOL)isLoggedIn;
+-(void)logoutWithDelegate:(id<AppModelLogoutDelegate>)logoutDelegate;
 
 @end

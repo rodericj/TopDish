@@ -72,12 +72,16 @@
 	[super viewWillAppear:animated];
 	self.negativeReviews.text = [NSString stringWithFormat:@"-%@",[self.thisDish negReviews]];
 	self.positiveReviews.text = [NSString stringWithFormat:@"+%@",[self.thisDish posReviews]];	
+
 }
 
 -(void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-	if ([[AppModel instance].user objectForKey:keyforauthorizing] == nil)
-		[[(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] tabBarController] setSelectedIndex:kAccountsTab];
+	
+	//if not logged in, pop out
+	if (![[AppModel instance] isLoggedIn]) 
+		[self.navigationController popViewControllerAnimated:YES];
+	
 
 }
 #pragma mark -

@@ -8,7 +8,6 @@
 
 #import "AccountView.h"
 #import "constants.h"
-#import "AppModel.h"
 #import "FBLoginButton.h"
 
 #define kNumberOfSections 1
@@ -58,10 +57,11 @@
 	if ([[AppModel instance] isLoggedIn]) {
 		NSLog(@"do some things");
 	}
-	else if(!mPendingLogin)
+	else if(!mPendingLogin) {
 		[self presentModalViewController:[LoginModalView viewControllerWithDelegate:self] 
 								animated:YES];
-	mPendingLogin = TRUE;
+		mPendingLogin = TRUE;
+	}
 }
 
 - (void)viewDidUnload {
@@ -72,9 +72,14 @@
 #pragma mark -
 #pragma mark Logout
 
-- (void)fbDidLogout{
-	[[AppModel instance] logout];
+- (void)appModelDidLogout{
+	self.fBLoginButton.isLoggedIn = [[[AppModel instance] facebook] isSessionValid];
+	[self.fBLoginButton updateImage];
+	self.userName.text = @"";
+	self.userImage.image = [UIImage imageNamed:@"default_user_300x300.png"];
+	self.userSince.text = @"";
 	[self.tabBarController setSelectedIndex:0];
+	
 }
 
 #pragma mark -
@@ -217,7 +222,7 @@
  */
 - (IBAction)fbButtonClick:(id)sender {
 	if (self.fBLoginButton.isLoggedIn)
-		[[[AppModel instance] facebook] logout:self];
+		[[AppModel instance] logoutWithDelegate:self];
 	else
 		[self login];
 }
@@ -250,6 +255,7 @@
 -(void)notNowButtonPressed {
 	mPendingLogin = NO;
 	[self dismissModalViewControllerAnimated:YES];
+
 	[self.tabBarController setSelectedIndex:0];
 }
 

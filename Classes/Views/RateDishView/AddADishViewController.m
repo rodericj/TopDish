@@ -98,8 +98,8 @@
 -(void)viewDidAppear:(BOOL)animated {
 	//Pop out if we aren't logged in
 	[super viewDidAppear:animated];
-	if ([[AppModel instance].user objectForKey:keyforauthorizing] == nil)
-		[[(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] tabBarController] setSelectedIndex:kAccountsTab];
+	if (![[AppModel instance] isLoggedIn])
+		[self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -

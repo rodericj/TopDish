@@ -115,7 +115,7 @@
 		//register for 
 				
 		[self presentModalViewController:[LoginModalView viewControllerWithDelegate:self] 
-								animated:YES];
+								animated:NO];
 	}
 }
 
