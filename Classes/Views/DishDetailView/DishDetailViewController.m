@@ -553,9 +553,12 @@
 -(IBAction)flagThisDish{
 	DLog(@"flagging this dish");
 	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/flagDish"]];
-	
+	NSLog(@"url for flagging. %@ %@ %@, dish id is %@", url, keyforauthorizing, [[[AppModel instance] user] objectForKey:keyforauthorizing], [self.thisDish dish_id]);
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request setPostValue:[self.thisDish dish_id] forKey:@"dishId"];
+	
+	//inaccurate 0  spam  1 inappropriate 2
+	[request setPostValue:@"0" forKey:@"type"];
 	[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
 	
 	[request setDelegate:self];

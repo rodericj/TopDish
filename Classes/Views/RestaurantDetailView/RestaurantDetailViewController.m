@@ -352,6 +352,7 @@
 	
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request setPostValue:[self.restaurant restaurant_id] forKey:@"restaurantId"];
+	[request setPostValue:@"0" forKey:@"type"];
 	[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
 	
 	[request setDelegate:self];
