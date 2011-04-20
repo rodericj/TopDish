@@ -102,7 +102,14 @@
 		[dish setLatitude:[dishDict objectForKey:@"latitude"]];
 		[dish setLongitude:[dishDict objectForKey:@"longitude"]];
 		[dish setNegReviews:[dishDict objectForKey:@"negReviews"]];
-		[dish setPhotoURL:[dishDict objectForKey:@"photoURL"]];
+		
+		//https://projects.topdish.com/redmine/issues/90
+		//TODO: i'm currently only taking the first image. It's the 90% rule.
+		NSArray *photoURLArray = [dishDict objectForKey:@"photoURL"];
+		
+		[dish setPhotoURL:[photoURLArray count] > 0 ? [photoURLArray objectAtIndex:0]: @""];
+		///////
+		
 		[dish setPosReviews:[dishDict objectForKey:@"posReviews"]];
 		
 		CLLocation *l = [[CLLocation alloc] initWithLatitude:[[dish latitude] floatValue] longitude:[[dish longitude] floatValue]];
@@ -250,7 +257,14 @@
 		[restaurant setLatitude:[restoDict objectForKey:@"latitude"]];
 		[restaurant setLongitude:[restoDict objectForKey:@"longitude"]];
 		[restaurant setPhone:[restoDict objectForKey:@"phone"]];
-		[restaurant setPhotoURL:[restoDict objectForKey:@"photoURL"]];
+		
+		
+		//https://projects.topdish.com/redmine/issues/90
+		//TODO: i'm currently only taking the first image. It's the 90% rule.
+		NSArray *photoURLArray = [restoDict objectForKey:@"photoURL"];
+		[restaurant setPhotoURL:[photoURLArray count] > 0 ? [photoURLArray objectAtIndex:0]: @""];
+		///////
+		
 		[restaurant setAddressLine1:[restoDict objectForKey:@"addressLine1"]];
 		[restaurant setAddressLine2:[restoDict objectForKey:@"addressLine2"]];
 		[restaurant setCity:[restoDict objectForKey:@"city"]];
@@ -308,7 +322,14 @@
 			[dish setLongitude:[restoDishesDict objectForKey:@"longitude"]];
 			[dish setObjName:[NSString stringWithFormat:@"%@", [restoDishesDict objectForKey:@"name"]]];
 			[dish setNegReviews:[restoDishesDict objectForKey:@"negReviews"]];
-			[dish setPhotoURL:[restoDishesDict objectForKey:@"photoURL"]];
+			
+			//https://projects.topdish.com/redmine/issues/90
+			//TODO: i'm currently only taking the first image. It's the 90% rule.
+			NSArray *photoURLArray = [restoDishesDict objectForKey:@"photoURL"];
+			
+			[dish setPhotoURL:[photoURLArray count] > 0 ? [photoURLArray objectAtIndex:0]: @""];
+			///////
+			
 			[dish setPosReviews:[restoDishesDict objectForKey:@"posReviews"]];
 			[dish setRestaurant:restaurant];
 			[dish setDistance:restaurant.distance];

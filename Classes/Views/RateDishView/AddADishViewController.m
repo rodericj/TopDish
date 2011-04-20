@@ -683,7 +683,14 @@
 		[newlyCreatedDish setLatitude:[dishDict objectForKey:@"latitude"]];
 		[newlyCreatedDish setLongitude:[dishDict objectForKey:@"longitude"]];
 		[newlyCreatedDish setNegReviews:[dishDict objectForKey:@"negReviews"]];
-		[newlyCreatedDish setPhotoURL:[dishDict objectForKey:@"photoURL"]];
+		
+		//https://projects.topdish.com/redmine/issues/90
+		//TODO: i'm currently only taking the first image. It's the 90% rule.
+		NSArray *photoURLArray = [dishDict objectForKey:@"photoURL"];
+		
+		[newlyCreatedDish setPhotoURL:[photoURLArray count] > 0 ? [photoURLArray objectAtIndex:0]: @""];
+		///////
+
 		[newlyCreatedDish setPosReviews:[dishDict objectForKey:@"posReviews"]];
 		
 		//Add this dish to the restaurant
