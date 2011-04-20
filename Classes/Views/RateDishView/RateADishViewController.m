@@ -103,7 +103,7 @@
 	
 	switch (section) {
 		case kDishCommentSection:
-			return @"Additional Food For Thought?";
+			return @"What did you think of this dish?";
 		case kWouldYouRecommend:
 			return @"Would you recommend this Dish?";
 		case kPictureCell:
