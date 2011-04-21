@@ -22,6 +22,8 @@
 @synthesize tabBarController;
 @synthesize segmentsController = mSegmentsController;
 @synthesize segmentedControl = mSegmentedControl;
+
+
 #pragma mark -
 #pragma mark Application lifecycle
 
@@ -84,6 +86,18 @@
 	return [[[AppModel instance] facebook] handleOpenURL:url];
 }
 
+NSInteger intSort(id num1, id num2, void *context)
+{
+    int v1 = [[num1 objectForKey:@"order"] intValue];
+    int v2 = [[num2 objectForKey:@"order"] intValue];
+    if (v1 < v2)
+        return NSOrderedAscending;
+    else if (v1 > v2)
+        return NSOrderedDescending;
+    else
+        return NSOrderedSame;
+}
+
 - (void)requestFinished:(ASIHTTPRequest *)request
 {	
 	// Use when fetching binary data
@@ -127,10 +141,13 @@
 			[cuisineTypeTags addObject:d];
 		
 	}
+	NSArray *sortedArray; 
+	sortedArray = [priceTypeTags sortedArrayUsingFunction:intSort context:NULL];
+
 	[parser release];
 	[responseText release];
 
-	[[AppModel instance] setPriceTags:priceTypeTags];
+	[[AppModel instance] setPriceTags:sortedArray];
 	[[AppModel instance] setMealTypeTags:mealTypeTags];
 	[[AppModel instance] setAllergenTags:allergenTypeTags];
 	[[AppModel instance] setLifestyleTags:lifestyleTypeTags];

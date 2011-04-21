@@ -77,11 +77,11 @@
 	self.restaurantTitle.text = [self.restaurant objName];
 	self.tableView.tableFooterView = self.additionalDetailsCell;
 	
-	self.additionalDetailsTextView = [[UITextView alloc] initWithFrame:kTextViewRect];
+	self.additionalDetailsTextView = [[[UITextView alloc] initWithFrame:kTextViewRect] autorelease];
 	self.additionalDetailsTextView.delegate = self;
 	self.additionalDetailsTextView.text = kAdditionalDetailsDefaultText;
 
-	self.commentTextView = [[UITextView alloc] initWithFrame:kTextViewRect];
+	self.commentTextView = [[[UITextView alloc] initWithFrame:kTextViewRect] autorelease];
 	self.commentTextView.delegate = self;
 	self.commentTextView.text = kPleaseCommentDefaultText;
 
@@ -426,7 +426,7 @@
 			case kPriceType:
 				self.pickerArray = [[AppModel instance] priceTags];
 				break;
-				
+
 			default:
 				break;
 		}
