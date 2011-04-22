@@ -9,6 +9,8 @@
 #import "AccountView.h"
 #import "constants.h"
 #import "FBLoginButton.h"
+#import "GDataOAuthViewControllerTouch.h"
+
 
 #define kNumberOfSections 1
 #define kDishesReviewedSection 0
@@ -62,11 +64,37 @@
 								animated:YES];
 		mPendingLogin = TRUE;
 	}
+	
+	//static NSString *const kAppServiceName = @"My Application: Google Contacts";
+//	
+//	NSString *scope = @"http://www.google.com/m8/feeds/"; // scope for Google Contacts API
+//	
+//	GDataOAuthViewControllerTouch *viewController;
+//	viewController = [[[GDataOAuthViewControllerTouch alloc] initWithScope:scope
+//																  language:nil
+//															appServiceName:kAppServiceName
+//																  delegate:self
+//														  finishedSelector:@selector(viewController:finishedWithAuth:error:)] autorelease];
+//	
+//	[[self navigationController] pushViewController:viewController animated:YES];
 }
 
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
+}
+
+- (void)viewController:(GDataOAuthViewControllerTouch *)viewController
+      finishedWithAuth:(GDataOAuthAuthentication *)auth
+                 error:(NSError *)error {
+	NSLog(@"auth %@", auth);
+	if (error != nil) {
+		// Authentication failed
+		NSLog(@"auth failed %@", error);
+	} else {
+		// Authentication succeeded
+		NSLog(@"auth succeeded");
+	}
 }
 
 #pragma mark -
