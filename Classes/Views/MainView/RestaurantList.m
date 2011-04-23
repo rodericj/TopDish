@@ -21,6 +21,11 @@
 #define kMinimumDishesToShow 10
 #define kMaxDistance kOneMileInMeters * 25
 
+@interface RestaurantList (Private)
+-(void)updateFetch;
+@end
+
+
 @implementation RestaurantList
 
 @synthesize fetchedResultsController = mFetchedResultsController;
@@ -80,6 +85,7 @@
 -(void)viewWillAppear:(BOOL)animated {
 	UISegmentedControl *s = (UISegmentedControl *) self.navigationItem.titleView;
 	[s setSelectedSegmentIndex:1];
+	[self updateFetch];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -269,7 +275,6 @@
     if (mFetchedResultsController != nil) {
         return mFetchedResultsController;
     }
-    
     /*
      Set up the fetched results controller.
 	 */

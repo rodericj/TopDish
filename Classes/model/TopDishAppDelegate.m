@@ -221,8 +221,8 @@ NSInteger intSort(id num1, id num2, void *context)
     if (coordinator != nil) {
         managedObjectContext_ = [[NSManagedObjectContext alloc] init];
         [managedObjectContext_ setPersistentStoreCoordinator:coordinator];
-		[managedObjectContext_ setMergePolicy:NSOverwriteMergePolicy];
-    }
+		[managedObjectContext_ setMergePolicy: NSMergeByPropertyStoreTrumpMergePolicy];// NSOverwriteMergePolicy];
+	}
     return managedObjectContext_;
 }
 

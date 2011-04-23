@@ -349,6 +349,7 @@
 					[dish setAllergenType:[tag objectForKey:@"id"]];
 			}	
 			NSAssert([dish price], @"price must not be null");
+			NSLog(@"this restaurant is %@", restaurant);
 		}
 	}
 	NSError *error;
@@ -358,7 +359,7 @@
 		DLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
 	}
 	else {
-		DLog(@"successful save, notify on the main thread");
+		DLog(@"successful save, notify on the main thread: ");
 		
 		[self.incomingProcessorDelegate saveComplete];
 		//I don't think this is the best solution, but it certainly covers it up.
