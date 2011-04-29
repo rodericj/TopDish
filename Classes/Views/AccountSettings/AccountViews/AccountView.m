@@ -12,8 +12,9 @@
 #import "GDataOAuthViewControllerTouch.h"
 
 
-#define kNumberOfSections 1
+#define kNumberOfSections 2
 #define kDishesReviewedSection 0
+#define kFeedbackSection 1
 
 @implementation AccountView
 
@@ -64,19 +65,6 @@
 								animated:YES];
 		mPendingLogin = TRUE;
 	}
-	
-	//static NSString *const kAppServiceName = @"My Application: Google Contacts";
-//	
-//	NSString *scope = @"http://www.google.com/m8/feeds/"; // scope for Google Contacts API
-//	
-//	GDataOAuthViewControllerTouch *viewController;
-//	viewController = [[[GDataOAuthViewControllerTouch alloc] initWithScope:scope
-//																  language:nil
-//															appServiceName:kAppServiceName
-//																  delegate:self
-//														  finishedSelector:@selector(viewController:finishedWithAuth:error:)] autorelease];
-//	
-//	[[self navigationController] pushViewController:viewController animated:YES];
 }
 
 - (void)viewDidUnload {
@@ -117,19 +105,25 @@
 	switch (section) {
 		case kDishesReviewedSection:
 			return @"Dishes Reviewed";
+
 		default:
 			return nil;
 	}
 }
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-	switch (indexPath.section) {
-		case kDishesReviewedSection:
-			return 20;
-		default:
-			break;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+
+	if (indexPath.section == kFeedbackSection) {
+		NSLog(@"leave feedback");
+		LeaveFeedbackViewController *feedback = [LeaveFeedbackViewController viewControllerWithDelegate:self];
+		[self presentModalViewController:feedback animated:YES];
+		
 	}
-	return 0;
+	
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return 40;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -145,6 +139,9 @@
 		case kDishesReviewedSection:
 			return 0;
 			break;
+		case kFeedbackSection:
+			return 1;
+			break;
 		default:
 			break;
 	}
@@ -152,7 +149,18 @@
 	return 0;
 }
 
+-(UITableViewCell *) feedBackCell:(UITableViewCell *)cell {
+	cell.textLabel.text = @"Leave Feedback";
+	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	cell.selectionStyle = UITableViewCellSelectionStyleNone;
+	return cell;
+}
 
+-(UITableViewCell *) ratedDishesCells:(UITableViewCell *)cell {
+	cell.textLabel.text = @"This is a dish rated";
+	return cell;
+}
+	
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -163,8 +171,16 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
 									   reuseIdentifier:CellIdentifier] autorelease];
     }
-    [cell addSubview:self.tableHeader];
+	
     // Configure the cell...
+	if (indexPath.section == kFeedbackSection) {
+		return [self feedBackCell:cell];
+	}
+	
+	if (indexPath.section == kDishesReviewedSection) {
+		
+	}
+	
     return cell;
 }
 
@@ -276,6 +292,16 @@
 	self.fBLoginButton = nil;
 	
 	[super dealloc];
+}
+
+#pragma mark -
+#pragma mark LeaveFeedbackViewControllerDelegate
+-(void)feedbackCancelled {
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)feedbackSubmitted {
+	[self dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark -

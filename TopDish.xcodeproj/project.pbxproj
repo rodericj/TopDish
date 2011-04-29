@@ -10,6 +10,8 @@
 		1777A001133060A600E3F4B9 /* RestaurantOrDishAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A000133060A600E3F4B9 /* RestaurantOrDishAnnotation.m */; };
 		1777A18D13310A3B00E3F4B9 /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A18A13310A3B00E3F4B9 /* Dish.m */; };
 		1777A18E13310A3B00E3F4B9 /* ObjectWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A18C13310A3B00E3F4B9 /* ObjectWithImage.m */; };
+		1792A832136A65D10058B8B7 /* LeaveFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1792A830136A65D10058B8B7 /* LeaveFeedbackViewController.m */; };
+		1792A833136A65D10058B8B7 /* LeaveFeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1792A831136A65D10058B8B7 /* LeaveFeedbackViewController.xib */; };
 		179A8DA6134C29B20072CAF0 /* LoginModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 179A8DA4134C29B20072CAF0 /* LoginModalView.m */; };
 		179A8DA7134C29B20072CAF0 /* LoginModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 179A8DA5134C29B20072CAF0 /* LoginModalView.xib */; };
 		17A636831352795C00ED8842 /* CustomNSURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A636821352795C00ED8842 /* CustomNSURLConnection.m */; };
@@ -208,6 +210,9 @@
 		1777A18A13310A3B00E3F4B9 /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
 		1777A18B13310A3B00E3F4B9 /* ObjectWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectWithImage.h; sourceTree = "<group>"; };
 		1777A18C13310A3B00E3F4B9 /* ObjectWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectWithImage.m; sourceTree = "<group>"; };
+		1792A82F136A65D10058B8B7 /* LeaveFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaveFeedbackViewController.h; sourceTree = "<group>"; };
+		1792A830136A65D10058B8B7 /* LeaveFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaveFeedbackViewController.m; sourceTree = "<group>"; };
+		1792A831136A65D10058B8B7 /* LeaveFeedbackViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaveFeedbackViewController.xib; sourceTree = "<group>"; };
 		179A8DA3134C29B20072CAF0 /* LoginModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModalView.h; sourceTree = "<group>"; };
 		179A8DA4134C29B20072CAF0 /* LoginModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModalView.m; sourceTree = "<group>"; };
 		179A8DA5134C29B20072CAF0 /* LoginModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginModalView.xib; sourceTree = "<group>"; };
@@ -582,6 +587,16 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		1792A82E136A65C20058B8B7 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				1792A82F136A65D10058B8B7 /* LeaveFeedbackViewController.h */,
+				1792A830136A65D10058B8B7 /* LeaveFeedbackViewController.m */,
+				1792A831136A65D10058B8B7 /* LeaveFeedbackViewController.xib */,
+			);
+			name = Feedback;
+			sourceTree = "<group>";
+		};
 		17A6479A1361399D00ED8842 /* GData Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -845,6 +860,7 @@
 		17AE80B612DA7204007B96EC /* AccountViews */ = {
 			isa = PBXGroup;
 			children = (
+				1792A82E136A65C20058B8B7 /* Feedback */,
 				17DA5EAF1322C05200867B66 /* AccountView.h */,
 				17DA5EB01322C05200867B66 /* AccountView.m */,
 				17DA5EB11322C05200867B66 /* AccountView.xib */,
@@ -1261,6 +1277,7 @@
 				17A637981352AB4300ED8842 /* thumbsdown.jpg in Resources */,
 				17A64A771361399E00ED8842 /* GDataOAuthViewTouch.xib in Resources */,
 				17A64A791361399E00ED8842 /* GDataOAuthWindow.xib in Resources */,
+				1792A833136A65D10058B8B7 /* LeaveFeedbackViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1395,6 +1412,7 @@
 				17A64A821361399E00ED8842 /* GDataAtomCollection.m in Sources */,
 				17A64A831361399E00ED8842 /* GDataAtomWorkspace.m in Sources */,
 				17A64A841361399E00ED8842 /* GDataAtomServiceDocument.m in Sources */,
+				1792A832136A65D10058B8B7 /* LeaveFeedbackViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
