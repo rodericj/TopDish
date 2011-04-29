@@ -218,6 +218,18 @@ AppModel *gAppModelInstance = nil;
 #pragma mark network callback 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
+	if ([[request.url absoluteString] rangeOfString:@"api/feedback"].location != NSNotFound) {
+		NSLog(@"this is a feedback one");
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Feedback"
+														message:request.responseStatusMessage 
+													   delegate:nil 
+											  cancelButtonTitle:@"Ok" 
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+		return;
+	}
+	
 	// Use when fetching binary data
 	
 	NSError *error;
