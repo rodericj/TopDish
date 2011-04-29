@@ -23,8 +23,8 @@
 #define buttonLightBlueShine [UIColor colorWithRed:.53 green:.91 blue:.99 alpha:1]
 
 #define kDishSection 0
-#define kSearchCountLimit 10
-#define kMinimumDishesToShow 10
+#define kSearchCountLimit 25
+#define kMinimumDishesToShow 25
 #define kMaxDistance kOneMileInMeters * 25
 
 #define sortStringArray [NSArray arrayWithObjects:@"nothing", DISTANCE_SORT, RATINGS_SORT, PRICE_SORT, nil]
@@ -418,7 +418,7 @@
 	[fetchRequest setPredicate:fullPredicate];
 
 	// Set the batch size to a suitable number.
-	fetchRequest.fetchLimit = 10;
+	fetchRequest.fetchLimit = kMinimumDishesToShow;
 	
 	//Create array with sort params, then store in NSUserDefaults
 	BOOL ascending = TRUE;
