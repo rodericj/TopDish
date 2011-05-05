@@ -12,6 +12,7 @@
 #import "ObjectWithImage.h"
 #import "IncomingProcessor.h"
 #import "LoginModalView.h"
+#import "DishTableViewCell.h"
 
 @interface DishTableViewController :UITableViewController 
 <MyCLControllerDelegate, 
@@ -34,13 +35,12 @@ LoginModalViewDelegate> {
 	UILabel *mPriceTextLabel;
 	UILabel *mDistanceTextLabel;
 		
-	NSManagedObjectContext *mManagedObjectContext;
     NSFetchedResultsController *mFetchedResultsController;
 
 	NSURLConnection *mConn;
 
 	UITableViewCell				*mAddItemCell;
-	UITableViewCell				*mTvCell;
+	DishTableViewCell				*mTvCell;
 
 	NSMutableDictionary *mConnectionLookup;
 }
@@ -53,7 +53,7 @@ LoginModalViewDelegate> {
 -(IBAction) sortByPrice;
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *addItemCell;
-@property (nonatomic, assign) IBOutlet UITableViewCell *tvCell;
+@property (nonatomic, assign) IBOutlet DishTableViewCell *tvCell;
 
 @property (nonatomic, retain) NSString *currentSearchTerm;
 @property (nonatomic, assign) int currentSearchDistance;
@@ -67,7 +67,6 @@ LoginModalViewDelegate> {
 @property (nonatomic, retain) IBOutlet UILabel *priceTextLabel;
 @property (nonatomic, retain) IBOutlet UILabel *distanceTextLabel;
 
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
 

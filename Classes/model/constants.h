@@ -18,7 +18,7 @@
 
 #pragma mark -
 #pragma mark NSManagedObjectContext
-#define kManagedObjectContect [(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext]
+#define kManagedObjectContext [(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext]
 
 #define kpermission  [NSArray arrayWithObjects:@"user_about_me", @"offline_access", @"email", @"publish_stream", @"friends_about_me", nil]
 
@@ -41,8 +41,8 @@
 #pragma mark -
 #pragma mark network constants
 //#define NETWORKHOST @"http://0305.topdish1.appspot.com"
-//#define NETWORKHOST @"http://0320.topdish1.appspot.com" 
-#define NETWORKHOST @"http://whee.topdish1.appspot.com" 
+#define NETWORKHOST @"http://0427.topdish1.appspot.com" 
+//#define NETWORKHOST @"http://whee.topdish1.appspot.com" 
 //#define NETWORKHOST @"http://192.168.0.193:8888"
 //#define NETWORKHOST @"http://localhost:8888"
 //#define NETWORKHOST @"http://www.topdish.com"
@@ -51,6 +51,9 @@
 
 #pragma mark -
 #pragma mark ivars
+
+#define kOneMileInMeters 1609.344
+#define kMinimumDishesToShow 25
 
 #define MAXRESTAURANTNAMELENGTH 26
 #define OBJECTDETAILIMAGECELLHEIGHT 88
@@ -100,30 +103,6 @@
 #define TD_FB_EXPIRATION_DATE_KEY @"TD_FB_EXPIRATION_DATE_KEY"
 
 #pragma mark tags
-
-#define RESTAURANT_TABLEVIEW_DISH_NAME_TAG 1
-#define RESTAURANT_TABLEVIEW_ADDRESS_TAG 2
-#define RESTAURANT_TABLEVIEW_PHONE_TAG 3
-#define RESTAURANT_TABLEVIEW_DISTANCE_TAG 4
-#define RESTAURANT_TABLEVIEW_POSREVIEWS_TAG 5
-#define RESTAURANT_TABLEVIEW_NEGREVIEWS_TAG 6
-#define RESTAURANT_TABLEVIEW_IMAGE_TAG 7
-//#define RESTAURANT_TABLEVIEW_RESTAURENT_SCORE_TAG 6
-
-#define kOneMileInMeters 1609.344
-
-
-#define DISHDETAILIMAGETAG 1
-#define DISHTABLEVIEW_DISH_NAME_TAG 1
-#define DISHTABLEVIEW_RESTAURANT_NAME_TAG 2
-#define DISHTABLEVIEW_COST_TAG 3
-
-#define DISHTABLEVIEW_UPVOTES_TAG 4
-#define DISHTABLEVIEW_MEALTYPE_TAG 5
-#define DISHTABLEVIEW_DOWNVOTES_TAG 6
-#define PERCENTAGE_TAG 7
-#define DISHTABLEVIEW_IMAGE_TAG 8
-#define DISHTABLEVIEW_DIST_TAG 9
 
 #define COMMENTOR_NAME_TAG 1
 #define COMMENT_TEXT_TAG 2

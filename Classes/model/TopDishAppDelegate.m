@@ -30,7 +30,6 @@
 - (void)awakeFromNib {    
     
     DishTableViewController *dishTableViewController = (DishTableViewController *)[navigationController topViewController];
-    dishTableViewController.managedObjectContext = self.managedObjectContext;
 	
 }
 
@@ -55,7 +54,6 @@
 	NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:navsviewControllers];
 	
 	RestaurantList *restaurantList = [[RestaurantList alloc] initWithNibName:@"RestaurantList" bundle:nil];
-	[restaurantList setManagedObjectContext:self.managedObjectContext];
 	[viewControllers addObject:restaurantList];
 	[restaurantList release];
 	

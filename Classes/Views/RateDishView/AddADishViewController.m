@@ -675,7 +675,7 @@
 		
 		//Need to add just one dish
 		Dish *newlyCreatedDish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" 
-													 inManagedObjectContext:self.managedObjectContext];
+													 inManagedObjectContext:kManagedObjectContext];
 		
 		[newlyCreatedDish setDish_id:[dishDict objectForKey:@"id"]];
 		[newlyCreatedDish setObjName:[NSString stringWithFormat:@"%@", [dishDict objectForKey:@"name"]]];
@@ -711,7 +711,7 @@
 			
 		}	
 		
-		if(![self.managedObjectContext save:&error]){
+		if(![kManagedObjectContext save:&error]){
 			DLog(@"there was a core data error when saving a single dish");
 			DLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
 		}

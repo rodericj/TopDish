@@ -15,10 +15,10 @@
 #import "asyncimageview.h"
 #import "NearbyMapViewController.h"
 #import "JSON.h"
+#import "RestaurantTableViewCell.h"
 
 #define kNumberOfSections 1
 #define kRestaurantSection 0
-#define kMinimumDishesToShow 10
 #define kMaxDistance kOneMileInMeters * 25
 
 @interface RestaurantList (Private)
@@ -29,8 +29,6 @@
 @implementation RestaurantList
 
 @synthesize fetchedResultsController = mFetchedResultsController;
-@synthesize managedObjectContext = mManagedObjectContext;
-@synthesize tvCell = mTvCell;
 @synthesize tableHeaderView = mTableHeaderView;
 @synthesize searchBar = mSearchBar;
 @synthesize currentSearchTerm = mCurrentSearchTerm;
@@ -64,6 +62,11 @@
 	[self.searchBar setDelegate:self];
 	[self.searchBar setTintColor:kTopDishBlue];
 	self.currentSearchDistance = kOneMileInMeters;
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(updateFetch) 
+												 name:NSNotificationStringDoneProcessingRestaurants 
+											   object:nil];
 }
 
 #pragma mark -
@@ -73,7 +76,6 @@
 									initWithNibName:@"NearbyMapView" 
 									bundle:nil];
 	[map setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-	[map setManagedObjectContext:self.managedObjectContext];
 	
 	NSArray *nearbyObjects = [self.fetchedResultsController fetchedObjects];
 	[map setNearbyObjects:nearbyObjects];
@@ -88,29 +90,20 @@
 	[self updateFetch];
 }
 
--(void)viewWillDisappear:(BOOL)animated {
-	NSEnumerator *enumerator = [mConnectionLookup keyEnumerator];
-	id key;
-	
-	while ((key = [enumerator nextObject])) {
-		/* code that uses the returned key */
-		DLog(@"cancel this connection");
-		NSURLConnection *conn = (NSURLConnection *)key;
-		[conn cancel];
-	}	
-	
-	[super viewWillDisappear:animated];
-}
-
 #pragma mark -
 #pragma mark Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView{
 	return kNumberOfSections;
 }
 
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    //NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
+	//DLog(@"here we are using the managed Object %@", managedObject);
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
-	DLog(@"number of rows in section %d", [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects]);
+	//DLog(@"number of rows in section %d", [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects]);
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
 	if (sectionInfo == nil){
 		return 0;
@@ -119,8 +112,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *c = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-	return c.bounds.size.height;	
+	return 95;
 }
 
 
@@ -131,72 +123,29 @@
     
 	Restaurant *thisRestaurant = [[self fetchedResultsController] objectAtIndexPath:indexPath];	
 	
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	AsyncImageView *asyncImageView = nil;
+
+	[kManagedObjectContext refreshObject:thisRestaurant mergeChanges:NO];
+    RestaurantTableViewCell *cell = (RestaurantTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-		[[NSBundle mainBundle] loadNibNamed:@"RestaurantTableViewCell" owner:self options:nil];
-		cell = self.tvCell;
+		NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"RestaurantTableViewCell" owner:self options:nil];
+        cell = (RestaurantTableViewCell *)[nib objectAtIndex:0];
 	}
 	
-	UILabel *restaurantName;
-	restaurantName = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_DISH_NAME_TAG];
-	restaurantName.text = thisRestaurant.objName;
-	
-	UILabel *addressLabel;
-	addressLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_ADDRESS_TAG];
-	addressLabel.text = thisRestaurant.addressLine1;
-	
-	UILabel *phoneNumberLabel;
-	phoneNumberLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_PHONE_TAG];
-	phoneNumberLabel.text = thisRestaurant.phone;
-	
-	UILabel *distanceLabel;
-	distanceLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_DISTANCE_TAG];
+	cell.restaurantName.text = thisRestaurant.objName;
+	cell.address.text = thisRestaurant.addressLine1;
+	cell.phoneNumber.text = thisRestaurant.phone;
 	
 	NSAssert(thisRestaurant.distance > 0, @"the resto distance is not > 0");
-	distanceLabel.text = [NSString stringWithFormat:@"%.2f mi", [[thisRestaurant distance] floatValue]];	
+	cell.distance.text = [NSString stringWithFormat:@"%.2f mi", [[thisRestaurant distance] floatValue]];	
 	
-	UILabel *positiveReviewsLabel;
-	positiveReviewsLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_POSREVIEWS_TAG];
-	positiveReviewsLabel.text = @"0";
-	
-	UILabel *negativeReviewsLabel;
-	negativeReviewsLabel = (UILabel *)[cell viewWithTag:RESTAURANT_TABLEVIEW_NEGREVIEWS_TAG];
-	negativeReviewsLabel.text = @"0";	
-	
-	UIImageView *restaurantImageView;
-	restaurantImageView = (UIImageView *)[cell viewWithTag:RESTAURANT_TABLEVIEW_IMAGE_TAG];
-
-	AsyncImageView *asyncImage = [[[AsyncImageView alloc] initWithFrame:[restaurantImageView frame]] autorelease];
-	asyncImage.tag = 999;
-	if ([thisRestaurant imageData]) {
-		DLog(@"we've got this image, no need to load it");
-		//set the image with what we've got
-		restaurantImageView.image = [UIImage imageWithData:[thisRestaurant imageData]];
-	}
-	else{
-		restaurantImageView.image = [UIImage imageNamed:@"no_rest_img.jpg"];
-
-		if( [[thisRestaurant photoURL] length] > 0 ){
-			NSRange aRange = [[thisRestaurant photoURL] rangeOfString:@"http://"];
-			NSString *prefix = @"";
-			if (aRange.location ==NSNotFound)
-				prefix = NETWORKHOST;
-			
-			NSString *urlString = [NSString stringWithFormat:@"%@%@=s%d", 
-								   prefix, 
-								   [thisRestaurant photoURL], 
-								   OBJECTDETAILIMAGECELLHEIGHT, 
-								   OBJECTDETAILIMAGECELLHEIGHT];
-			
-			NSURL *photoUrl = [NSURL URLWithString:urlString];
-			[asyncImage setOwningObject:thisRestaurant];
-			[asyncImage loadImageFromURL:photoUrl 
-						   withImageView:restaurantImageView 
-								 isThumb:YES 
-				   showActivityIndicator:NO];
-			[cell.contentView addSubview:asyncImage];
-		}
-	}
+	asyncImageView = cell.restaurantImage;
+	if( [thisRestaurant.photoURL length] > 0 ){
+		NSURL *url = [NSURL URLWithString:thisRestaurant.photoURL];
+		[asyncImageView loadImageFromURL:url];
+	}	
+	else
+		[asyncImageView setWithImage:[UIImage imageNamed:@"no_rest_img.jpg"]];
 	
     return cell;
 }
@@ -208,7 +157,6 @@
 	[[RestaurantDetailViewController alloc] initWithNibName:@"RestaurantDetailView" 
 													 bundle:nil];
 	[viewController setRestaurant:thisRestaurant];
-	[viewController setManagedObjectContext:self.managedObjectContext];
 	[self.navigationController pushViewController:viewController animated:YES];
 	[viewController release];
 	
@@ -252,7 +200,7 @@
             
         case NSFetchedResultsChangeUpdate:
 			//I'm taking this out. It was an empty function call anyway
-           // [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:
@@ -281,11 +229,12 @@
     // Create the fetch request for the entity.
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Restaurant" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Restaurant" 
+											  inManagedObjectContext:kManagedObjectContext];
     [fetchRequest setEntity:entity];
 		
     // Set the batch size to a suitable number.
-	fetchRequest.fetchLimit = 10;
+	fetchRequest.fetchLimit = kMinimumDishesToShow;
     // Edit the sort key as appropriate.
 	
 	// taken out so we can show the restaurant table results
@@ -297,10 +246,9 @@
 
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    //NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] 
 															 initWithFetchRequest:fetchRequest 
-															 managedObjectContext:self.managedObjectContext 
+															 managedObjectContext:kManagedObjectContext 
 															 sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
@@ -311,7 +259,7 @@
     [sortDescriptors release];
     
     NSError *error = nil;
-    if (![mFetchedResultsController performFetch:&error]) {
+    if (![self.fetchedResultsController performFetch:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
          //TODO remove auto generated abort
@@ -352,6 +300,10 @@
 }
 
 -(void) updateFetch {
+	if (mUpdatingFetch) {
+		return;
+	}
+	mUpdatingFetch = TRUE;
 	DLog(@"updating the restaurant fetch");
 	/*
      Set up the fetched results controller.
@@ -362,7 +314,7 @@
     // Edit the entity name as appropriate.
 	
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Restaurant" 
-											  inManagedObjectContext:self.managedObjectContext];
+											  inManagedObjectContext:kManagedObjectContext];
     [fetchRequest setEntity:entity];
     
 	//Set up the filters that are stored in the AppModel
@@ -376,7 +328,7 @@
 	[fetchRequest setPredicate:fullPredicate];
 	
 	// Set the batch size to a suitable number.
-	fetchRequest.fetchLimit = 10;
+	fetchRequest.fetchLimit = kMinimumDishesToShow;
 	//Create array with sort params, then store in NSUserDefaults
 	
     // Edit the sort key as appropriate.
@@ -393,17 +345,15 @@
 	
     NSFetchedResultsController *aFetchedResultsController = 
 	[[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
-										managedObjectContext:self.managedObjectContext 
+										managedObjectContext:kManagedObjectContext
 										  sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     [aFetchedResultsController release];
     [fetchRequest release];
-	
-	DLog(@"perform the fetch %@", fetchRequest);
-	
+		
     NSError *error = nil;
-    if (![mFetchedResultsController performFetch:&error]) {
+	if (![self.fetchedResultsController performFetch:&error]) {
         DLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
@@ -411,13 +361,16 @@
 	//Finally, reload the data with the latest fetch
 	[self.tableView reloadData];
 	
+	mUpdatingFetch = FALSE;
 }
 
--(void)saveComplete {
-	DLog(@"the save is complete");
-	[self performSelectorOnMainThread:@selector(updateFetch) withObject:nil waitUntilDone:NO];
+-(void)saveRestaurantsComplete {
+	[self performSelectorOnMainThread:@selector(updateFetch) withObject:self waitUntilDone:NO];
+}
 
-	//[self updateFetch];
+-(void)saveDishesComplete {
+	DLog(@"the save of dishes is complete updateFetch in RestaurantList");
+	[self performSelectorOnMainThread:@selector(updateFetch) withObject:self waitUntilDone:NO];
 }
 
 -(void) networkQuery:(NSString *)query{	
@@ -486,7 +439,6 @@
 		self.currentSearchDistance *= 5;
 		
 		//Need to remove self from the observer list so we don't get redundant notifications
-		[[NSNotificationCenter defaultCenter] removeObserver:self];
 		[self buildAndSendNetworkString];
 	}
 	//*************
@@ -494,7 +446,9 @@
 	NSString *responseTextStripped = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
 	
 	//Send this incoming content to the IncomingProcessor Object
-	IncomingProcessor *proc = [IncomingProcessor processorWithDelegate:self];
+	NSPersistentStoreCoordinator *coord = [(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] persistentStoreCoordinator];
+	
+	IncomingProcessor *proc = [IncomingProcessor processorWithPersistentStoreCoordinator:coord Delegate:self];
 	
 	[[[AppModel instance] queue] addOperation:[proc taskWithData:responseTextStripped]];
 	DLog(@"PROCESSOR  proc task is set up");
@@ -555,9 +509,8 @@
 }
 
 - (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	self.fetchedResultsController = nil;
-	self.managedObjectContext = nil;
-	self.tvCell = nil;
 	self.tableHeaderView;
 	self.currentSearchTerm = nil;
 	[mConnectionLookup release];

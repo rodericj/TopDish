@@ -13,7 +13,7 @@
 #import "constants.h"
 #import "SettingsView1.h"
 #import "AppModel.h"
-#import "asyncimageview.h"
+#import "AsyncImageView.h"
 #import "DishDetailViewController.h"
 #import "JSON.h"
 #import "LoginModalView.h"
@@ -24,7 +24,6 @@
 
 #define kDishSection 0
 #define kSearchCountLimit 25
-#define kMinimumDishesToShow 25
 #define kMaxDistance kOneMileInMeters * 25
 
 #define sortStringArray [NSArray arrayWithObjects:@"nothing", DISTANCE_SORT, RATINGS_SORT, PRICE_SORT, nil]
@@ -47,7 +46,6 @@
 @synthesize priceTextLabel = mPriceTextLabel;
 @synthesize distanceTextLabel = mDistanceTextLabel;
 @synthesize currentSearchDistance = mCurrentSearchDistance;
-@synthesize managedObjectContext = mManagedObjectContext;
 @synthesize fetchedResultsController = mFetchedResultsController;
 
 #pragma mark -
@@ -100,6 +98,16 @@
 	
 }
 
+-(void)addObservers {
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(buildRestaurantNetworkGrab:) 
+												 name:NSNotificationStringDoneProcessingDishes 
+											   object:nil];
+}
+-(void)removeObservers {
+
+	
+}
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
@@ -107,6 +115,7 @@
 	self.tableView.backgroundColor = kTopDishBackground;
 	self.navigationController.navigationBar.tintColor = kTopDishBlue;
 	[self setUpSpecificView];
+	[self addObservers];
 	
 }
 -(void)viewDidAppear:(BOOL)animated {
@@ -117,6 +126,7 @@
 		[self presentModalViewController:[LoginModalView viewControllerWithDelegate:self] 
 								animated:NO];
 	}
+	[self updateFetch];
 }
 
 -(void) networkQuery:(NSString *)query{
@@ -171,19 +181,7 @@
 	[self updateFetch];
 	[super viewWillAppear:animated];
 }
--(void)viewWillDisappear:(BOOL)animated {
-	NSEnumerator *enumerator = [mConnectionLookup keyEnumerator];
-	id key;
-	
-	while ((key = [enumerator nextObject])) {
-		/* code that uses the returned key */
-		DLog(@"cancel this connection");
-		NSURLConnection *conn = (NSURLConnection *)key;
-		[conn cancel];
-	}	
-	
-	[super viewWillDisappear:animated];
-}
+
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     //NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	//DLog(@"here we are using the managed Object %@", managedObject);
@@ -209,7 +207,6 @@
 										initWithNibName:@"NearbyMapView" 
 										bundle:nil];
 		map.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-		map.managedObjectContext = self.managedObjectContext;
 		
 		map.nearbyObjects = [self.fetchedResultsController fetchedObjects];
 		[self.navigationController pushViewController:map animated:TRUE];
@@ -224,28 +221,20 @@
 	DLog(@"request complete ---------------------");
 	NSData *thisResponseData = [mConnectionLookup objectForKey:theConnection];
 
-	
 	NSString *responseText = [[NSString alloc] initWithData:thisResponseData 
 												   encoding:NSASCIIStringEncoding];
 	
 	NSString *responseTextStripped = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
 	
+	DLog(@"Set up the background processor for this incoming data");
 	//Send this incoming content to the IncomingProcessor Object
-	IncomingProcessor *proc = [IncomingProcessor processorWithDelegate:self];
+	NSPersistentStoreCoordinator *coord = [(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] persistentStoreCoordinator];
+	
+	IncomingProcessor *proc = [IncomingProcessor processorWithPersistentStoreCoordinator:coord Delegate:self];
 	//IncomingProcessor *proc = [[IncomingProcessor alloc] initWithProcessorDelegate:self];
-	DLog(@"PROCESSOR the processor is set up. Register for notifications");
-		
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(buildRestaurantNetworkGrab:) 
-												 name:NSNotificationStringDoneProcessingDishes 
-											   object:nil];
 	
 	[[[AppModel instance] queue] addOperation:[proc taskWithData:responseTextStripped]];
-	DLog(@"PROCESSOR  proc task is set up");
-	[proc release];
-	DLog(@"PROCESSOR the proc is released");
-	DLog(@"out of incoming processor");
-	
+	[proc release];	
 	
 	//************Increase the search radius
 	//Hate to do this, but I need to parse the JSON to figure out how many results we got back
@@ -264,9 +253,6 @@
 				 self.currentSearchDistance*5);
 			
 			self.currentSearchDistance *= 5;
-			
-			//Need to remove self from the observer list so we don't get redundant notifications
-			[[NSNotificationCenter defaultCenter] removeObserver:self];
 			[self buildAndSendNetworkString];
 		}
 	
@@ -276,20 +262,41 @@
 	[responseText release];
 	
 }
--(void)saveComplete {
-	DLog(@"the save is complete");
-	[self performSelectorOnMainThread:@selector(updateFetch) withObject:nil waitUntilDone:NO];
-	//[self updateFetch];
+
+-(void)notifySaveComplete {
+	[[NSNotificationCenter defaultCenter] notifySaveComplete];
+	//[[NSNotificationCenter defaultCenter] postNotification:NSManagedObjectContextDidSaveNotification];
+}
+
+-(void)doSaveRestaurantsComplete {
+	[[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationStringDoneProcessingRestaurants
+														object:self 
+													  userInfo:nil];
+	[self updateFetch];
+}
+
+-(void)saveRestaurantsComplete {
+	NSLog(@"send notification about save restaurants complete");
+	[self performSelectorOnMainThread:@selector(doSaveRestaurantsComplete) 
+						   withObject:self 
+						waitUntilDone:NO];
+}
+
+-(void)doSaveDishesComplete {
+	[[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationStringDoneProcessingDishes
+														object:self 
+													  userInfo:nil];	
+}
+
+-(void)saveDishesComplete {
+	DLog(@"the save of dishes is complete in DishTableView");
+	[self performSelectorOnMainThread:@selector(doSaveDishesComplete) withObject:self waitUntilDone:NO];
 }
 
 -(void)buildRestaurantNetworkGrab:(NSNotification *)notification {
 	DLog(@"begin the network request to get the restaurants");
 	DLog(@"the notification is %@", [notification userInfo]);
-	
-	//remove myself
-	DLog(@"UnRegister for notifications in buildRestaurantNetworkGrab");
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	
+		
 	if ([[[notification userInfo] objectForKey:@"restaurantIds"] count]) {
 		
 		NSMutableString *query = [NSMutableString stringWithFormat:@"%@%@", NETWORKHOST, @"/api/restaurantDetail?"];
@@ -402,7 +409,7 @@
     // Edit the entity name as appropriate.
 
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish" 
-											  inManagedObjectContext:self.managedObjectContext];
+											  inManagedObjectContext:kManagedObjectContext];
     fetchRequest.entity = entity;
 	//Set up the filters that are stored in the AppModel
 	NSMutableArray *filterPredicateArray = [NSMutableArray array];
@@ -429,7 +436,6 @@
 	}
 	
 	NSString *sorter = [sortStringArray objectAtIndex:sorterValue];
-	DLog(@"sorter is %@", sorter);
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = 
 	[[NSSortDescriptor alloc] initWithKey:sorter 
@@ -444,7 +450,7 @@
 
     NSFetchedResultsController *aFetchedResultsController = 
 	[[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
-										managedObjectContext:self.managedObjectContext 
+										managedObjectContext:kManagedObjectContext 
 										  sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
@@ -452,7 +458,7 @@
     [fetchRequest release];
     [sortDescriptor release];
     NSError *error = nil;
-    if (![mFetchedResultsController performFetch:&error]) {
+    if (![self.fetchedResultsController performFetch:&error]) {
         DLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
@@ -484,10 +490,7 @@
 	
 	DishDetailViewController *detailViewController = [[DishDetailViewController alloc] initWithNibName:@"DishDetailViewController" bundle:nil];
 	[detailViewController setThisDish:(Dish*)selectedObject];
-	
-	//[detailViewController setDish:(Dish*)selectedObject];
-	[detailViewController setManagedObjectContext:self.managedObjectContext];
-	
+		
 	[self.navigationController pushViewController:detailViewController animated:YES];
 	[detailViewController setTitle:[selectedObject objName]];
 	[detailViewController release];
@@ -498,8 +501,7 @@
 #pragma mark -
 #pragma mark table view
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *c = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-	return c.bounds.size.height;
+	return 95;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -518,134 +520,69 @@
 	//Return the Descriptor cell for adding a new dish
 	if (indexPath.row == [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]] numberOfObjects])
 		return self.addItemCell;
-	
+
     static NSString *CellIdentifier = @"DishCell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	DishTableViewCell *cell = (DishTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+	AsyncImageView *asyncImageView = nil;
+
+    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        [[NSBundle mainBundle] loadNibNamed:@"DishTableViewCell" owner:self options:nil];
-		cell = self.tvCell;
+		NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"DishTableViewCell" owner:self options:nil];
+        cell = (DishTableViewCell *)[nib objectAtIndex:0];
 	}
 	
 	//Query the results controller
 	Dish *thisDish = [[self fetchedResultsController] objectAtIndexPath:indexPath];	
 	//Build the UIElements
-    UILabel *dishName;
-	dishName = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_DISH_NAME_TAG];
-	dishName.text = thisDish.objName;
-	
-	UILabel *resto;
-	resto = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_RESTAURANT_NAME_TAG];
-	resto.text = @"Resto Name";
-	resto.text = [[thisDish restaurant] objName];
+	cell.dishName.text = thisDish.objName;
+	cell.restaurantName.text = thisDish.restaurant.objName;
 	
 	AppModel *app = [AppModel instance];
+	cell.mealType.text = [app tagNameForTagId:thisDish.mealType];
 	
-	UILabel *mealType;
-	mealType = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_MEALTYPE_TAG];
-	mealType.text = [app selectedMealName];
-	
-	if ([thisDish mealType])
-		mealType.text = [app tagNameForTagId:[thisDish mealType]];
-	else {
-		DLog(@"is something wrong with this dish's mealType %@", [thisDish mealType]);
-		NSString *n = [NSString stringWithFormat:@"This dish has a bad mealtype %@", [thisDish dish_id]];
-		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Data Error" 
-															message:n 
-														   delegate:self 
-												  cancelButtonTitle:@"OK"
-												  otherButtonTitles:nil];
-		[alertview show];
-		[alertview release];
-		
-		NSAssert(NO, @"this dish has an invalid meal tag");
-	}
-	
-	UILabel *distance;
-	distance = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_DIST_TAG];
-	
-	CLLocation *l = [[CLLocation alloc] initWithLatitude:[[thisDish latitude] floatValue] 
-											   longitude:[[thisDish longitude] floatValue]];
-	CLLocationDistance dist = [l distanceFromLocation:[[AppModel instance] currentLocation]];
+	CLLocation *l = [[CLLocation alloc] initWithLatitude:[thisDish.latitude floatValue] 
+											   longitude:[thisDish.longitude floatValue]];
+	CLLocationDistance dist = [l distanceFromLocation:[AppModel instance].currentLocation];
 	[l release];
 	
 	if (dist != -1) {
 		//convert from meters to miles
 		float distanceInMiles = dist/kOneMileInMeters; 
 		NSAssert(distanceInMiles > 0, @"the distance is not > 0");
-		distance.text = [NSString stringWithFormat:@"%2.2f", distanceInMiles];	
+		cell.distance.text = [NSString stringWithFormat:@"%2.2f", distanceInMiles];	
 	}
 	else
 		//Let's just set the text to blank until the current location is determined, at which 
 		//point, we'll update the fetch, which will update the cell
-		distance.text = @"";
+		cell.distance.text = @"";
 	
-	UILabel *upVotes;
-	upVotes = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_UPVOTES_TAG];
-	upVotes.text = [NSString stringWithFormat:@"+%@", 
-					[thisDish posReviews]];
+	cell.upVotes.text = [NSString stringWithFormat:@"+%@", 
+					thisDish.posReviews];
+	cell.downVotes.text = [NSString stringWithFormat:@"-%@", 
+					  thisDish.negReviews];
 	
-	UILabel *downVotes;
-	downVotes = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_DOWNVOTES_TAG];
-	downVotes.text = [NSString stringWithFormat:@"-%@", 
-					  [thisDish negReviews]];
-	
-	if ([thisDish posReviews] > [thisDish negReviews]){
-		upVotes.font =[UIFont boldSystemFontOfSize:28.0];
-		downVotes.font =[UIFont boldSystemFontOfSize:20.0];
+	if (thisDish.posReviews > thisDish.negReviews){
+		cell.upVotes.font =[UIFont boldSystemFontOfSize:28.0];
+		cell.downVotes.font =[UIFont boldSystemFontOfSize:20.0];
 	}else if([thisDish posReviews] < [thisDish negReviews]){
-		upVotes.font =[UIFont boldSystemFontOfSize:20.0];
-		downVotes.font =[UIFont boldSystemFontOfSize:28.0];
+		cell.upVotes.font =[UIFont boldSystemFontOfSize:20.0];
+		cell.downVotes.font =[UIFont boldSystemFontOfSize:28.0];
 	}else{
-		upVotes.font =[UIFont boldSystemFontOfSize:24.0];
-		downVotes.font =[UIFont boldSystemFontOfSize:24.0];
+		cell.upVotes.font =[UIFont boldSystemFontOfSize:24.0];
+		cell.downVotes.font =[UIFont boldSystemFontOfSize:24.0];
 	}
 	
-	UILabel *priceNumber;
-	priceNumber = (UILabel *)[cell viewWithTag:DISHTABLEVIEW_COST_TAG];
+	cell.priceNumber.text = [app tagNameForTagId:[thisDish price]];
+		
+	asyncImageView = cell.dishImage;
+	if( [[thisDish photoURL] length] > 0 ){
+		NSURL *url = [NSURL URLWithString:[thisDish photoURL]];
+		[asyncImageView loadImageFromURL:url];
+	}	
+	else
+		[asyncImageView setWithImage:[UIImage imageNamed:@"no_dish_img.png"]];
 
-	if ([thisDish price])
-		priceNumber.text = [app tagNameForTagId:[thisDish price]];
-	else {
-		DLog(@"is something wrong with this dish's (%@) price (%@) ", [thisDish objName], [thisDish objName]);
-	}
-
-
-	UIImageView *imageView = (UIImageView *)[cell viewWithTag:DISHTABLEVIEW_IMAGE_TAG];
-	
-	AsyncImageView *asyncImage = [[[AsyncImageView alloc] initWithFrame:[imageView frame]] autorelease];
-	asyncImage.tag = 999;
-	if ([thisDish imageData]) {
-		DLog(@"we've got this image, no need to load it");
-		//set the image with what we've got
-		imageView.image = [UIImage imageWithData:[thisDish imageData]];
-	}
-	else{
-		//DLog(@"don't have this image, loading it %@", [thisDish photoURL]);
-		if( [[thisDish photoURL] length] > 0 ){
-			NSRange aRange = [[thisDish photoURL] rangeOfString:@"http://"];
-			NSString *prefix = @"";
-			if (aRange.location == NSNotFound)
-				prefix = NETWORKHOST;
-						
-			NSString *urlString = [NSString stringWithFormat:@"%@%@=s%d", 
-								   prefix, 
-								   [thisDish photoURL], 
-								   OBJECTDETAILIMAGECELLHEIGHT, 
-								   OBJECTDETAILIMAGECELLHEIGHT];
-			
-			NSURL *photoUrl = [NSURL URLWithString:urlString];
-			[asyncImage setOwningObject:thisDish];
-			[asyncImage loadImageFromURL:photoUrl 
-						   withImageView:imageView 
-								 isThumb:YES 
-				   showActivityIndicator:NO];
-			[cell.contentView addSubview:asyncImage];
-		}
-	}
-    // Configure the cell.
-	// [self configureCell:cell atIndexPath:indexPath];
-	//    }
 	[cell setOpaque:FALSE];
 	
     return cell;
@@ -820,11 +757,11 @@
     // Create the fetch request for the entity.
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dish" inManagedObjectContext:kManagedObjectContext];
     [fetchRequest setEntity:entity];
 		
     // Set the batch size to a suitable number.
-	fetchRequest.fetchLimit = 10;
+	fetchRequest.fetchLimit = kMinimumDishesToShow;
 
     // Edit the sort key as appropriate.
 	
@@ -839,7 +776,7 @@
     // nil for section name key path means "no sections".
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] 
 															 initWithFetchRequest:fetchRequest 
-															 managedObjectContext:self.managedObjectContext 
+															 managedObjectContext:kManagedObjectContext 
 															 sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
@@ -850,7 +787,7 @@
     [sortDescriptors release];
     
     NSError *error = nil;
-    if (![mFetchedResultsController performFetch:&error]) {
+    if (![self.fetchedResultsController performFetch:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
          //TODO remove auto generated abort
@@ -893,6 +830,7 @@
 
 - (void)dealloc {
 
+	DLog(@"************************************* Dealloc. This probably shouldn't happen too often");
 	self.addItemCell = nil;
 	self.tvCell = nil;
 	
@@ -907,7 +845,6 @@
 	self.priceTextLabel = nil;
 	self.distanceTextLabel = nil;
 	
-	self.managedObjectContext = nil;
 	self.fetchedResultsController = nil;
 	
 	[mConnectionLookup release];

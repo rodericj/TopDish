@@ -14,13 +14,11 @@
 	NSArray *nearbyObjects;
 	NSMutableDictionary *mObjectMap;
 @private
-    NSManagedObjectContext *managedObjectContext_;
 	
 }
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
 @property (nonatomic, retain) NSArray *nearbyObjects;
 @property (nonatomic, retain) NSMutableDictionary *objectMap;
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end
 

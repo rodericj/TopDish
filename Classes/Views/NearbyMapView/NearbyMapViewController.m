@@ -16,7 +16,6 @@
 @synthesize mapView;
 @synthesize nearbyObjects;
 @synthesize objectMap = mObjectMap;
-@synthesize managedObjectContext=managedObjectContext_;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -127,7 +126,6 @@
 															 initWithNibName:@"DishDetailViewController" 
 															 bundle:nil];
 		dishDetailViewController.thisDish = (Dish *)selectedObject;
-		dishDetailViewController.managedObjectContext = self.managedObjectContext;
 		[self.navigationController pushViewController:dishDetailViewController animated:YES];
 		[dishDetailViewController release];
 	}
@@ -137,7 +135,6 @@
 																		  bundle:nil];
 		
 		restaurantDetailViewController.restaurant = (Restaurant *)selectedObject;
-		restaurantDetailViewController.managedObjectContext = self.managedObjectContext;
 		[self.navigationController pushViewController:restaurantDetailViewController animated:YES];
 		[restaurantDetailViewController release];
 	}

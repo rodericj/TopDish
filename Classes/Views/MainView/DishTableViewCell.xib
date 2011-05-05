@@ -70,10 +70,6 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<float key="IBUIScaleFactor">2</float>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">no_dish_img.png</string>
-								</object>
 							</object>
 							<object class="IBUILabel" id="319184700">
 								<reference key="NSNextResponder" ref="648130166"/>
@@ -401,7 +397,7 @@
 				<int key="IBUISeparatorStyle">1</int>
 				<int key="IBUIAccessoryType">1</int>
 				<reference key="IBUIContentView" ref="648130166"/>
-				<string key="IBUIReuseIdentifier">DishTableCell</string>
+				<string key="IBUIReuseIdentifier">DishCell</string>
 			</object>
 			<object class="IBUITableViewCell" id="229180655">
 				<reference key="NSNextResponder"/>
@@ -471,25 +467,140 @@
 				<int key="IBUISeparatorStyle">1</int>
 				<reference key="IBUIContentView" ref="629021751"/>
 			</object>
+			<object class="IBUICustomObject" id="874999855">
+				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">tvCell</string>
-						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="950657856"/>
+						<string key="label">dishImage</string>
+						<reference key="source" ref="874999855"/>
+						<reference key="destination" ref="1052764423"/>
 					</object>
-					<int key="connectionID">12</int>
+					<int key="connectionID">54</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">addItemCell</string>
-						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="229180655"/>
+						<string key="label">dishName</string>
+						<reference key="source" ref="874999855"/>
+						<reference key="destination" ref="319184700"/>
 					</object>
-					<int key="connectionID">23</int>
+					<int key="connectionID">55</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">distance</string>
+						<reference key="source" ref="874999855"/>
+						<reference key="destination" ref="682835903"/>
+					</object>
+					<int key="connectionID">56</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">downVotes</string>
+						<reference key="source" ref="874999855"/>
+						<reference key="destination" ref="565710346"/>
+					</object>
+					<int key="connectionID">57</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">mealType</string>
+						<reference key="source" ref="874999855"/>
+						<reference key="destination" ref="827051270"/>
+					</object>
+					<int key="connectionID">58</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">priceNumber</string>
+						<reference key="source" ref="874999855"/>
+						<reference key="destination" ref="189456281"/>
+					</object>
+					<int key="connectionID">59</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">restaurantName</string>
+						<reference key="source" ref="874999855"/>
+						<reference key="destination" ref="882557190"/>
+					</object>
+					<int key="connectionID">60</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">upVotes</string>
+						<reference key="source" ref="874999855"/>
+						<reference key="destination" ref="105629030"/>
+					</object>
+					<int key="connectionID">61</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">dishName</string>
+						<reference key="source" ref="950657856"/>
+						<reference key="destination" ref="319184700"/>
+					</object>
+					<int key="connectionID">63</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">downVotes</string>
+						<reference key="source" ref="950657856"/>
+						<reference key="destination" ref="565710346"/>
+					</object>
+					<int key="connectionID">65</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">mealType</string>
+						<reference key="source" ref="950657856"/>
+						<reference key="destination" ref="827051270"/>
+					</object>
+					<int key="connectionID">66</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">priceNumber</string>
+						<reference key="source" ref="950657856"/>
+						<reference key="destination" ref="189456281"/>
+					</object>
+					<int key="connectionID">67</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">restaurantName</string>
+						<reference key="source" ref="950657856"/>
+						<reference key="destination" ref="882557190"/>
+					</object>
+					<int key="connectionID">68</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">upVotes</string>
+						<reference key="source" ref="950657856"/>
+						<reference key="destination" ref="105629030"/>
+					</object>
+					<int key="connectionID">69</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">dishImage</string>
+						<reference key="source" ref="950657856"/>
+						<reference key="destination" ref="1052764423"/>
+					</object>
+					<int key="connectionID">70</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">distance</string>
+						<reference key="source" ref="950657856"/>
+						<reference key="destination" ref="269231625"/>
+					</object>
+					<int key="connectionID">71</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -626,20 +737,26 @@
 						<reference key="object" ref="621651247"/>
 						<reference key="parent" ref="229180655"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">53</int>
+						<reference key="object" ref="874999855"/>
+						<reference key="parent" ref="0"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="NSArray" key="dict.sortedKeys">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>-1.CustomClassName</string>
 					<string>-2.CustomClassName</string>
 					<string>10.IBPluginDependency</string>
 					<string>10.IBViewBoundsToFrameTransform</string>
 					<string>18.IBPluginDependency</string>
 					<string>18.IBViewBoundsToFrameTransform</string>
+					<string>2.CustomClassName</string>
 					<string>2.IBEditorWindowLastContentRect</string>
 					<string>2.IBPluginDependency</string>
+					<string>2.IBViewBoundsToFrameTransform</string>
 					<string>21.IBEditorWindowLastContentRect</string>
 					<string>21.IBPluginDependency</string>
 					<string>22.IBPluginDependency</string>
@@ -659,12 +776,15 @@
 					<string>46.IBViewBoundsToFrameTransform</string>
 					<string>47.IBPluginDependency</string>
 					<string>47.IBViewBoundsToFrameTransform</string>
+					<string>5.CustomClassName</string>
 					<string>5.IBPluginDependency</string>
 					<string>5.IBViewBoundsToFrameTransform</string>
 					<string>50.IBPluginDependency</string>
 					<string>50.IBViewBoundsToFrameTransform</string>
 					<string>51.IBPluginDependency</string>
 					<string>51.IBViewBoundsToFrameTransform</string>
+					<string>53.CustomClassName</string>
+					<string>53.IBPluginDependency</string>
 					<string>8.IBPluginDependency</string>
 					<string>8.IBViewBoundsToFrameTransform</string>
 					<string>9.IBPluginDependency</string>
@@ -672,7 +792,6 @@
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>DishTableViewController</string>
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -682,8 +801,12 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">AUK6AABCkAAAA</bytes>
 					</object>
-					<string>{{160, 510}, {640, 190}}</string>
+					<string>DishTableViewCell</string>
+					<string>{{37, 4}, {640, 190}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAAAAAAAAwroAAA</bytes>
+					</object>
 					<string>{{460, 404}, {320, 44}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -719,6 +842,7 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABCvAAAwpIAAA</bytes>
 					</object>
+					<string>AsyncImageView</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">AUEgAABBEAAAA</bytes>
@@ -731,6 +855,8 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">AUJwAABAoAAAA</bytes>
 					</object>
+					<string>DishTableViewCell</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABDbQAAwoYAAA</bytes>
@@ -757,151 +883,99 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">52</int>
+			<int key="maxID">71</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
-					<string key="className">DishTableViewController</string>
-					<string key="superclassName">UITableViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>sortByDistance</string>
-							<string>sortByPrice</string>
-							<string>sortByRating</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-						</object>
+					<string key="className">AsyncImageView</string>
+					<string key="superclassName">UIImageView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/lib/AsyncImageView/AsyncImageView.h</string>
 					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>sortByDistance</string>
-							<string>sortByPrice</string>
-							<string>sortByRating</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBActionInfo">
-								<string key="name">sortByDistance</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">sortByPrice</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">sortByRating</string>
-								<string key="candidateClassName">id</string>
-							</object>
-						</object>
-					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">DishTableViewCell</string>
+					<string key="superclassName">UITableViewCell</string>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>addItemCell</string>
-							<string>bgImage</string>
-							<string>distanceTextLabel</string>
-							<string>dummyImage</string>
-							<string>mSearchHeader</string>
-							<string>mTheSearchBar</string>
-							<string>priceTextLabel</string>
-							<string>ratingTextLabel</string>
-							<string>searchHeader</string>
-							<string>theSearchBar</string>
-							<string>tvCell</string>
+							<string>dishImage</string>
+							<string>dishName</string>
+							<string>distance</string>
+							<string>downVotes</string>
+							<string>mealType</string>
+							<string>priceNumber</string>
+							<string>restaurantName</string>
+							<string>upVotes</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>UITableViewCell</string>
-							<string>UIImageView</string>
-							<string>UILabel</string>
-							<string>UIImageView</string>
-							<string>UIView</string>
-							<string>UISearchBar</string>
+							<string>AsyncImageView</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
-							<string>UIView</string>
-							<string>UISearchBar</string>
-							<string>UITableViewCell</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>addItemCell</string>
-							<string>bgImage</string>
-							<string>distanceTextLabel</string>
-							<string>dummyImage</string>
-							<string>mSearchHeader</string>
-							<string>mTheSearchBar</string>
-							<string>priceTextLabel</string>
-							<string>ratingTextLabel</string>
-							<string>searchHeader</string>
-							<string>theSearchBar</string>
-							<string>tvCell</string>
+							<string>dishImage</string>
+							<string>dishName</string>
+							<string>distance</string>
+							<string>downVotes</string>
+							<string>mealType</string>
+							<string>priceNumber</string>
+							<string>restaurantName</string>
+							<string>upVotes</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
-								<string key="name">addItemCell</string>
-								<string key="candidateClassName">UITableViewCell</string>
+								<string key="name">dishImage</string>
+								<string key="candidateClassName">AsyncImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">bgImage</string>
-								<string key="candidateClassName">UIImageView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">distanceTextLabel</string>
+								<string key="name">dishName</string>
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">dummyImage</string>
-								<string key="candidateClassName">UIImageView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">mSearchHeader</string>
-								<string key="candidateClassName">UIView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">mTheSearchBar</string>
-								<string key="candidateClassName">UISearchBar</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">priceTextLabel</string>
+								<string key="name">distance</string>
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">ratingTextLabel</string>
+								<string key="name">downVotes</string>
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">searchHeader</string>
-								<string key="candidateClassName">UIView</string>
+								<string key="name">mealType</string>
+								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">theSearchBar</string>
-								<string key="candidateClassName">UISearchBar</string>
+								<string key="name">priceNumber</string>
+								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">tvCell</string>
-								<string key="candidateClassName">UITableViewCell</string>
+								<string key="name">restaurantName</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">upVotes</string>
+								<string key="candidateClassName">UILabel</string>
 							</object>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/Views/MainView/DishTableViewController.h</string>
+						<string key="minorKey">Classes/DishTableViewCell.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -1034,35 +1108,11 @@
 					<reference key="sourceIdentifier" ref="127654145"/>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">UISearchBar</string>
-					<string key="superclassName">UIView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">UIKit.framework/Headers/UISearchBar.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">UISearchDisplayController</string>
-					<string key="superclassName">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">UIKit.framework/Headers/UISearchDisplayController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
 					<string key="className">UITableViewCell</string>
 					<string key="superclassName">UIView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">UIKit.framework/Headers/UITableViewCell.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">UITableViewController</string>
-					<string key="superclassName">UIViewController</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">UIKit.framework/Headers/UITableViewController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -1087,42 +1137,6 @@
 						<string key="minorKey">UIKit.framework/Headers/UIView.h</string>
 					</object>
 				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">UIViewController</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">UIKit.framework/Headers/UINavigationController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">UIViewController</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">UIKit.framework/Headers/UIPopoverController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">UIViewController</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">UIKit.framework/Headers/UISplitViewController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">UIViewController</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">UIKit.framework/Headers/UITabBarController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">UIViewController</string>
-					<string key="superclassName">UIResponder</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">UIKit.framework/Headers/UIViewController.h</string>
-					</object>
-				</object>
 			</object>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
@@ -1144,7 +1158,6 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>dishViewBoarder.png</string>
 				<string>divider.png</string>
-				<string>no_dish_img.png</string>
 				<string>white_back.png</string>
 				<string>yesOrno_button.png</string>
 			</object>
@@ -1152,7 +1165,6 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{100, 100}</string>
 				<string>{320, 2}</string>
-				<string>{400, 400}</string>
 				<string>{114, 114}</string>
 				<string>{66, 37}</string>
 			</object>

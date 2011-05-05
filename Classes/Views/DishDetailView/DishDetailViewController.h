@@ -33,7 +33,6 @@ LoginModalViewDelegate>{
 	NSArray *mReviews;
 	NSData *mResponseData;
 
-	NSManagedObjectContext *managedObjectContext_;
 	UITableViewCell *mTvCell;
 	
 	UIButton *mMoreButton;
@@ -62,8 +61,6 @@ LoginModalViewDelegate>{
 
 @property (nonatomic, retain) NSArray *reviews;
 @property (nonatomic, retain) NSData *responseData;
-
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *tvCell;
 

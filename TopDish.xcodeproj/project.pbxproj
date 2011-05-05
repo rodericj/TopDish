@@ -10,6 +10,9 @@
 		1777A001133060A600E3F4B9 /* RestaurantOrDishAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A000133060A600E3F4B9 /* RestaurantOrDishAnnotation.m */; };
 		1777A18D13310A3B00E3F4B9 /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A18A13310A3B00E3F4B9 /* Dish.m */; };
 		1777A18E13310A3B00E3F4B9 /* ObjectWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A18C13310A3B00E3F4B9 /* ObjectWithImage.m */; };
+		17790333136E42D1002431E0 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1779032E136E42D1002431E0 /* AsyncImageView.m */; };
+		17790334136E42D1002431E0 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 17790330136E42D1002431E0 /* ImageCache.m */; };
+		17790335136E42D1002431E0 /* ImageCacheObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 17790332136E42D1002431E0 /* ImageCacheObject.m */; };
 		1792A832136A65D10058B8B7 /* LeaveFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1792A830136A65D10058B8B7 /* LeaveFeedbackViewController.m */; };
 		1792A833136A65D10058B8B7 /* LeaveFeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1792A831136A65D10058B8B7 /* LeaveFeedbackViewController.xib */; };
 		179A8DA6134C29B20072CAF0 /* LoginModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 179A8DA4134C29B20072CAF0 /* LoginModalView.m */; };
@@ -139,7 +142,6 @@
 		17DA5F221322C78B00867B66 /* SettingsView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5F201322C78B00867B66 /* SettingsView1.xib */; };
 		17DA5F271322C7C500867B66 /* SegmentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5F261322C7C500867B66 /* SegmentsController.m */; };
 		17DA5F2A1322C7FB00867B66 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5F291322C7FB00867B66 /* Reachability.m */; };
-		17DA5F2F1322C82700867B66 /* asyncimageview.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5F2C1322C82700867B66 /* asyncimageview.m */; };
 		17DA5F301322C82700867B66 /* NSArray+PerformSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5F2E1322C82700867B66 /* NSArray+PerformSelector.m */; };
 		17DA605613230E8400867B66 /* 06-magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = 17DA603513230E8400867B66 /* 06-magnify.png */; };
 		17DA605713230E8400867B66 /* 111-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 17DA603613230E8400867B66 /* 111-user.png */; };
@@ -193,6 +195,8 @@
 		17E6821012F7BD0B0010E6A9 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E681FE12F7BD0B0010E6A9 /* SBJsonBase.m */; };
 		17E6821112F7BD0B0010E6A9 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E6820012F7BD0B0010E6A9 /* SBJsonParser.m */; };
 		17E6821212F7BD0B0010E6A9 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E6820212F7BD0B0010E6A9 /* SBJsonWriter.m */; };
+		17FCDC531370FB86004EA4F9 /* DishTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FCDC521370FB86004EA4F9 /* DishTableViewCell.m */; };
+		17FCDDF913711125004EA4F9 /* RestaurantTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FCDDF813711125004EA4F9 /* RestaurantTableViewCell.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -210,6 +214,12 @@
 		1777A18A13310A3B00E3F4B9 /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
 		1777A18B13310A3B00E3F4B9 /* ObjectWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectWithImage.h; sourceTree = "<group>"; };
 		1777A18C13310A3B00E3F4B9 /* ObjectWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectWithImage.m; sourceTree = "<group>"; };
+		1779032D136E42D1002431E0 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AsyncImageView.h; path = lib/AsyncImageView/AsyncImageView.h; sourceTree = "<group>"; };
+		1779032E136E42D1002431E0 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AsyncImageView.m; path = lib/AsyncImageView/AsyncImageView.m; sourceTree = "<group>"; };
+		1779032F136E42D1002431E0 /* ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageCache.h; path = lib/AsyncImageView/ImageCache.h; sourceTree = "<group>"; };
+		17790330136E42D1002431E0 /* ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageCache.m; path = lib/AsyncImageView/ImageCache.m; sourceTree = "<group>"; };
+		17790331136E42D1002431E0 /* ImageCacheObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageCacheObject.h; path = lib/AsyncImageView/ImageCacheObject.h; sourceTree = "<group>"; };
+		17790332136E42D1002431E0 /* ImageCacheObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageCacheObject.m; path = lib/AsyncImageView/ImageCacheObject.m; sourceTree = "<group>"; };
 		1792A82F136A65D10058B8B7 /* LeaveFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaveFeedbackViewController.h; sourceTree = "<group>"; };
 		1792A830136A65D10058B8B7 /* LeaveFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaveFeedbackViewController.m; sourceTree = "<group>"; };
 		1792A831136A65D10058B8B7 /* LeaveFeedbackViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaveFeedbackViewController.xib; sourceTree = "<group>"; };
@@ -462,8 +472,6 @@
 		17DA5F261322C7C500867B66 /* SegmentsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SegmentsController.m; path = Views/MainView/SegmentsController.m; sourceTree = "<group>"; };
 		17DA5F281322C7FB00867B66 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = lib/ASINetwork/Reachability.h; sourceTree = "<group>"; };
 		17DA5F291322C7FB00867B66 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = lib/ASINetwork/Reachability.m; sourceTree = "<group>"; };
-		17DA5F2B1322C82700867B66 /* asyncimageview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = asyncimageview.h; path = lib/asyncimageview.h; sourceTree = "<group>"; };
-		17DA5F2C1322C82700867B66 /* asyncimageview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = asyncimageview.m; path = lib/asyncimageview.m; sourceTree = "<group>"; };
 		17DA5F2D1322C82700867B66 /* NSArray+PerformSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+PerformSelector.h"; path = "lib/NSArray+PerformSelector.h"; sourceTree = "<group>"; };
 		17DA5F2E1322C82700867B66 /* NSArray+PerformSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+PerformSelector.m"; path = "lib/NSArray+PerformSelector.m"; sourceTree = "<group>"; };
 		17DA603513230E8400867B66 /* 06-magnify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "06-magnify.png"; path = "images/06-magnify.png"; sourceTree = "<group>"; };
@@ -529,6 +537,10 @@
 		17E6820012F7BD0B0010E6A9 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		17E6820112F7BD0B0010E6A9 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		17E6820212F7BD0B0010E6A9 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		17FCDC511370FB86004EA4F9 /* DishTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishTableViewCell.h; sourceTree = "<group>"; };
+		17FCDC521370FB86004EA4F9 /* DishTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishTableViewCell.m; sourceTree = "<group>"; };
+		17FCDDF713711125004EA4F9 /* RestaurantTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantTableViewCell.h; sourceTree = "<group>"; };
+		17FCDDF813711125004EA4F9 /* RestaurantTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantTableViewCell.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* TopDish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopDish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -585,6 +597,19 @@
 				17DA608013230F2200867B66 /* TopDish.xcdatamodeld */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		177902A8136E3719002431E0 /* AsyncImageView */ = {
+			isa = PBXGroup;
+			children = (
+				1779032D136E42D1002431E0 /* AsyncImageView.h */,
+				1779032E136E42D1002431E0 /* AsyncImageView.m */,
+				1779032F136E42D1002431E0 /* ImageCache.h */,
+				17790330136E42D1002431E0 /* ImageCache.m */,
+				17790331136E42D1002431E0 /* ImageCacheObject.h */,
+				17790332136E42D1002431E0 /* ImageCacheObject.m */,
+			);
+			name = AsyncImageView;
 			sourceTree = "<group>";
 		};
 		1792A82E136A65C20058B8B7 /* Feedback */ = {
@@ -1046,11 +1071,10 @@
 		5F89EFAF125930A300959D05 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				177902A8136E3719002431E0 /* AsyncImageView */,
 				17A6479A1361399D00ED8842 /* GData Sources */,
 				17DD26D212BDBBEB0048C1A1 /* ASINetwork */,
 				17E681F312F7BD0B0010E6A9 /* FBConnect */,
-				17DA5F2B1322C82700867B66 /* asyncimageview.h */,
-				17DA5F2C1322C82700867B66 /* asyncimageview.m */,
 				17DA5F2D1322C82700867B66 /* NSArray+PerformSelector.h */,
 				17DA5F2E1322C82700867B66 /* NSArray+PerformSelector.m */,
 				17C4A5B613353E7E005D950B /* IncomingProcessor.h */,
@@ -1131,6 +1155,10 @@
 		5FBB975C126241F100141693 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
+				17FCDDF713711125004EA4F9 /* RestaurantTableViewCell.h */,
+				17FCDDF813711125004EA4F9 /* RestaurantTableViewCell.m */,
+				17FCDC511370FB86004EA4F9 /* DishTableViewCell.h */,
+				17FCDC521370FB86004EA4F9 /* DishTableViewCell.m */,
 				17DA5F251322C7C500867B66 /* SegmentsController.h */,
 				17DA5F261322C7C500867B66 /* SegmentsController.m */,
 				17DA5F021322C6DB00867B66 /* DishTableViewCell.xib */,
@@ -1323,7 +1351,6 @@
 				17DA5F211322C78B00867B66 /* SettingsView1.m in Sources */,
 				17DA5F271322C7C500867B66 /* SegmentsController.m in Sources */,
 				17DA5F2A1322C7FB00867B66 /* Reachability.m in Sources */,
-				17DA5F2F1322C82700867B66 /* asyncimageview.m in Sources */,
 				17DA5F301322C82700867B66 /* NSArray+PerformSelector.m in Sources */,
 				17DA608313230F2200867B66 /* TopDish.xcdatamodeld in Sources */,
 				17DA60961323101300867B66 /* Restaurant.m in Sources */,
@@ -1413,6 +1440,11 @@
 				17A64A831361399E00ED8842 /* GDataAtomWorkspace.m in Sources */,
 				17A64A841361399E00ED8842 /* GDataAtomServiceDocument.m in Sources */,
 				1792A832136A65D10058B8B7 /* LeaveFeedbackViewController.m in Sources */,
+				17790333136E42D1002431E0 /* AsyncImageView.m in Sources */,
+				17790334136E42D1002431E0 /* ImageCache.m in Sources */,
+				17790335136E42D1002431E0 /* ImageCacheObject.m in Sources */,
+				17FCDC531370FB86004EA4F9 /* DishTableViewCell.m in Sources */,
+				17FCDDF913711125004EA4F9 /* RestaurantTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

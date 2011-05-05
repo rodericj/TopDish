@@ -15,8 +15,6 @@ UISearchBarDelegate,
 IncomingProcessorDelegate>{
 
     NSFetchedResultsController	*mFetchedResultsController;
-	NSManagedObjectContext		*mManagedObjectContext;
-	UITableViewCell				*mTvCell;
 
 	UIView						*mTableHeaderView;
 	UISearchBar					*mSearchBar;
@@ -27,11 +25,10 @@ IncomingProcessorDelegate>{
 	
 	NSMutableDictionary *mConnectionLookup;
 
+	BOOL						mUpdatingFetch;
 }
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, assign) IBOutlet UITableViewCell *tvCell;
 
 @property (nonatomic, retain) IBOutlet UIView *tableHeaderView;
 @property (nonatomic, retain) IBOutlet UISearchBar *searchBar;

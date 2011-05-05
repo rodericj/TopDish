@@ -39,7 +39,6 @@
 
 @synthesize reviews = mReviews;
 @synthesize responseData = mResponseData;
-@synthesize managedObjectContext;
 
 @synthesize tvCell = mTvCell;
 @synthesize moreButton = mMoreButton;
@@ -194,25 +193,21 @@
 	self.tableView.backgroundColor = [UIColor clearColor];
 	self.tableView.tableFooterView = [[[UIView alloc] initWithFrame:self.interactionOverlay.frame] autorelease];
 	
+	
+	CGRect r = [self.dishImageView frame];
 	DLog(@"view did load for %@", [self.thisDish objName]);
-	if( [[self.thisDish photoURL] length] > 0 ){
-		NSRange aRange = [[self.thisDish photoURL] rangeOfString:@"http://"];
-		NSString *prefix = @"";
-		if (aRange.location ==NSNotFound)
-			prefix = NETWORKHOST;
-		//TODO we are not getting height and width
-		NSString *urlString = [NSString stringWithFormat:@"%@%@", 
-							   prefix,
-							   [self.thisDish photoURL], 
-							   self.dishImageView.bounds.size.width, 
-							   self.dishImageView.bounds.size.height]; 
+	
 
-		NSURL *photoUrl = [NSURL URLWithString:urlString];
-		AsyncImageView *asyncImage = [[[AsyncImageView alloc] initWithFrame:[self.dishImageView frame]] autorelease];
-		[asyncImage setOwningObject:self.thisDish];
-		[asyncImage loadImageFromURL:photoUrl withImageView:self.dishImageView 
-							 isThumb:NO showActivityIndicator:FALSE];
-	}
+	
+	if( [[self.thisDish photoURL] length] > 0 ){
+		AsyncImageView *asyncImageView = [[[AsyncImageView alloc] initWithFrame:CGRectMake(0, 0, r.size.width, r.size.height)] autorelease];
+		asyncImageView.tag = 9999;
+		[self.dishImageView addSubview:asyncImageView];
+		
+		NSURL *url = [NSURL URLWithString:[self.thisDish photoURL]];
+		[asyncImageView loadImageFromURL:url];
+	}	
+	
 	[self.dishDescriptionLabel setText:[self.thisDish dish_description]];
 	[self.dishDescriptionLabel numberOfLines];
 	
@@ -297,7 +292,6 @@
 	self.responseData = nil;
 	
 	//TODO - in general, I need to get the moc from the app model
-	self.managedObjectContext = nil;
 	self.tvCell = nil;
 	self.moreButton = nil;
 	
@@ -539,8 +533,6 @@
 	RestaurantDetailViewController *restaurantController = 
 	[[RestaurantDetailViewController alloc] initWithNibName:@"RestaurantDetailView" 
 													 bundle:nil];
-	[restaurantController setManagedObjectContext:self.managedObjectContext];
-
 	[restaurantController setRestaurant:[self.thisDish restaurant]];
 	[self.navigationController pushViewController:restaurantController animated:YES];
 	[restaurantController release];

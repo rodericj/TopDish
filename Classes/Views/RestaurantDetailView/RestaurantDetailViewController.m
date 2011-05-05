@@ -53,7 +53,9 @@
 	
 	NSString *responseTextStripped = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
 
-	IncomingProcessor *proc = [IncomingProcessor processorWithDelegate:self];
+	NSPersistentStoreCoordinator *coord = [(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] persistentStoreCoordinator];
+
+	IncomingProcessor *proc = [IncomingProcessor processorWithPersistentStoreCoordinator:coord Delegate:self];
 	[[[AppModel instance] queue] addOperation:[proc taskWithData:responseTextStripped]];
 	
 	[parser release];
@@ -79,32 +81,17 @@
 	[self.restaurantPhone setTitle:[restaurant phone] 
 						  forState:UIControlStateNormal];
 	[self.restaurantAddress setText:[restaurant addressLine1]];
-	if (self.restaurantImage) {
-		
-		AsyncImageView *asyncImage = [[[AsyncImageView alloc] 
-									   initWithFrame:[self.restaurantImage frame]] autorelease];
-		asyncImage.tag = 999;
-		if( [[restaurant photoURL] length] > 0 ){
-			NSRange aRange = [[restaurant photoURL] rangeOfString:@"http://"];
-			NSString *prefix = @"";
-			if (aRange.location ==NSNotFound)
-				prefix = NETWORKHOST;
-			//TODO, we are not getting dish height and width
-			NSString *urlString = [NSString stringWithFormat:@"%@%@", 
-								   prefix, 
-								   [restaurant photoURL], 
-								   OBJECTDETAILIMAGECELLHEIGHT,
-								   OBJECTDETAILIMAGECELLHEIGHT];
-			
-			DLog(@"url string for restaurant's image in RestaurantDetailViewController is %@", urlString);
-			
-			NSURL *photoUrl = [NSURL URLWithString:urlString];
-			[asyncImage loadImageFromURL:photoUrl withImageView:self.restaurantImage 
-								 isThumb:NO showActivityIndicator:FALSE];
-			//[cell.contentView addSubview:asyncImage];
-			[self.restaurantHeader addSubview:asyncImage];
-		}
-	}
+	
+	CGRect r = [self.restaurantImage frame];
+	
+	if( [[self.restaurant photoURL] length] > 0 ){
+		AsyncImageView *asyncImageView = [[[AsyncImageView alloc] initWithFrame:CGRectMake(0, 0, r.size.width, r.size.height)] autorelease];
+		asyncImageView.tag = 9999;
+		[self.restaurantImage addSubview:asyncImageView];
+		NSURL *url = [NSURL URLWithString:[self.restaurant photoURL]];
+		[asyncImageView loadImageFromURL:url];
+	}		
+	
 	self.restaurantHeader.selectionStyle = UITableViewCellSelectionStyleNone;
 	self.tableView.tableHeaderView = self.restaurantHeader;
 	
@@ -117,32 +104,19 @@
 	[self.restaurantPhone setTitle:[restaurant phone] 
 						  forState:UIControlStateNormal];
 	[self.restaurantAddress setText:[restaurant addressLine1]];
-	if (self.restaurantImage) {
+	
+	
+	if( [[self.restaurant photoURL] length] > 0 ){
+		CGRect r = [self.restaurantImage frame];
+		AsyncImageView *asyncImageView = [[[AsyncImageView alloc] initWithFrame:CGRectMake(0, 0, r.size.width, r.size.height)] autorelease];
+		asyncImageView.tag = 9999;
+		[self.restaurantImage addSubview:asyncImageView];
 		
-		AsyncImageView *asyncImage = [[[AsyncImageView alloc] 
-									   initWithFrame:[self.restaurantImage frame]] autorelease];
-		asyncImage.tag = 999;
-		if( [[restaurant photoURL] length] > 0 ){
-			NSRange aRange = [[restaurant photoURL] rangeOfString:@"http://"];
-			NSString *prefix = @"";
-			if (aRange.location ==NSNotFound)
-				prefix = NETWORKHOST;
-			//TODO, we are not getting dish height and width
-			NSString *urlString = [NSString stringWithFormat:@"%@%@", 
-								   prefix, 
-								   [restaurant photoURL], 
-								   OBJECTDETAILIMAGECELLHEIGHT,
-								   OBJECTDETAILIMAGECELLHEIGHT];
-			
-			DLog(@"url string for restaurant's image in RestaurantDetailViewController is %@", urlString);
-			
-			NSURL *photoUrl = [NSURL URLWithString:urlString];
-			[asyncImage loadImageFromURL:photoUrl withImageView:self.restaurantImage 
-								 isThumb:NO showActivityIndicator:FALSE];
-			//[cell.contentView addSubview:asyncImage];
-			[self.restaurantHeader addSubview:asyncImage];
-		}
-	}
+		
+		NSURL *url = [NSURL URLWithString:[self.restaurant photoURL]];
+		[asyncImageView loadImageFromURL:url];
+	}	
+	
 	self.restaurantHeader.selectionStyle = UITableViewCellSelectionStyleNone;
 	
 	
@@ -365,7 +339,6 @@
 		addDishViewController.title = @"Add a Dish";
 		addDishViewController.delegate = self;
 		addDishViewController.restaurant = restaurant;
-		addDishViewController.managedObjectContext = self.managedObjectContext;
 		[self.navigationController pushViewController:addDishViewController animated:YES];
 		[addDishViewController release];
 	}
@@ -505,10 +478,15 @@
 
 #pragma mark -
 #pragma mark IncomingProcessorDelegate
--(void)saveComplete {
+-(void)saveDishesComplete {
 	[self.tableView performSelectorOnMainThread:@selector(reloadData) 
-						   withObject:nil 
-						waitUntilDone:NO];
+									 withObject:self 
+								  waitUntilDone:NO];
+}
+-(void)saveRestaurantsComplete {
+	[self.tableView performSelectorOnMainThread:@selector(reloadData) 
+									 withObject:self 
+								  waitUntilDone:NO];
 }
 
 #pragma mark -

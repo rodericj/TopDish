@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @protocol IncomingProcessorDelegate
--(void)saveComplete;
+@required
+-(void)saveDishesComplete;
+-(void)saveRestaurantsComplete;
 @end
 
 @interface IncomingProcessor : NSObject {
@@ -17,12 +19,16 @@
 	
 	NSManagedObjectContext *mManagedObjectContext;
 	id<IncomingProcessorDelegate> mIncomingProcessorDelegate;
+	NSPersistentStoreCoordinator *mPersistentStoreCoordinator;
 }
 
 @property (nonatomic, retain) NSMutableData *responseData;
 @property (nonatomic, assign) id<IncomingProcessorDelegate> incomingProcessorDelegate;
 
-+(IncomingProcessor *)processorWithDelegate:(id<IncomingProcessorDelegate>)delegate;
+@property (nonatomic, retain) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
+
++(IncomingProcessor *)processorWithPersistentStoreCoordinator:(NSPersistentStoreCoordinator *)coordinator Delegate:(id<IncomingProcessorDelegate>)delegate;
 
 -(void)processIncomingNetworkText:(NSString *)responseText;
 - (NSOperation*)taskWithData:(id)data;
