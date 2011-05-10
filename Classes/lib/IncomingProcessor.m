@@ -87,8 +87,13 @@
 		else
 			NSAssert(TRUE, @"Too many dishes matched a query which should have returned 1");
 
-		[dish setDish_id:[dishDict objectForKey:@"id"]];		
-		[dish setObjName:[NSString stringWithFormat:@"%@", [dishDict objectForKey:@"name"]]];
+		[dish setDish_id:[dishDict objectForKey:@"id"]];	
+		
+		NSString* unescaped_name = (NSString *) CFURLCreateStringByReplacingPercentEscapes (NULL,
+																							[dishDict objectForKey:@"name"],
+																							@"");
+		
+		[dish setObjName:unescaped_name];
 		[dish setDish_description:[dishDict objectForKey:@"description"]];
 		[dish setLatitude:[dishDict objectForKey:@"latitude"]];
 		[dish setLongitude:[dishDict objectForKey:@"longitude"]];
@@ -159,7 +164,11 @@
 			NSAssert(TRUE, @"Too many restaurants for a given dish when queried");
 		
 		[restaurant setRestaurant_id:[dishDict objectForKey:@"restaurantID"]];
-		[restaurant setObjName:[NSString stringWithFormat:@"%@", [dishDict objectForKey:@"restaurantName"]]];
+		NSString* unescaped_restoname = (NSString *) CFURLCreateStringByReplacingPercentEscapes (NULL,
+																							[dishDict objectForKey:@"restaurantName"],
+																							@"");
+		
+		[restaurant setObjName:unescaped_restoname];
 		
 		//Should be no extra work setting lat/long and distance
 		[restaurant setLatitude:[dishDict objectForKey:@"latitude"]];
@@ -237,8 +246,14 @@
 		DLog(@"populate the restaurant with data");
 		DLog(@"restaurant %@, %@", restaurant, restoDict);
 		//Do all of the restaurant data setting
+		
+		
+		NSString* unescaped_name = (NSString *) CFURLCreateStringByReplacingPercentEscapes (NULL,
+																							[restoDict objectForKey:@"name"],
+																							@"");
+		
 		[restaurant setRestaurant_id:[restoDict objectForKey:@"id"]];
-		[restaurant setObjName:[NSString stringWithFormat:@"%@", [restoDict objectForKey:@"name"]]];
+		[restaurant setObjName:unescaped_name];
 		[restaurant setLatitude:[restoDict objectForKey:@"latitude"]];
 		[restaurant setLongitude:[restoDict objectForKey:@"longitude"]];
 		[restaurant setPhone:[restoDict objectForKey:@"phone"]];
@@ -301,11 +316,17 @@
 				NSAssert(TRUE, @"Too many dishes matching a given restaurant");
 
 			DLog(@"populate/update the dish");
+			
+			
+			NSString* unescaped_name = (NSString *) CFURLCreateStringByReplacingPercentEscapes (NULL,
+																								[restoDishesDict objectForKey:@"name"],
+																								@"");
+			
 			[dish setDish_description:[restoDishesDict objectForKey:@"description"]];
 			[dish setDish_id:[restoDishesDict objectForKey:@"id"]];
 			[dish setLatitude:[restoDishesDict objectForKey:@"latitude"]];
 			[dish setLongitude:[restoDishesDict objectForKey:@"longitude"]];
-			[dish setObjName:[NSString stringWithFormat:@"%@", [restoDishesDict objectForKey:@"name"]]];
+			[dish setObjName:unescaped_name];
 			[dish setNegReviews:[restoDishesDict objectForKey:@"negReviews"]];
 			
 			//https://projects.topdish.com/redmine/issues/90
