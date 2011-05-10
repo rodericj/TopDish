@@ -339,7 +339,6 @@
 	return ret;
 }
 -(NSString *) filterTagsList {
-	NSMutableString *ret = [NSMutableString stringWithCapacity:10];
 	AppModel *app = [AppModel instance];
 	
 	return [NSString stringWithFormat:@"%@,%@,%@,%@,%@", app.selectedPrice, app.selectedMeal,

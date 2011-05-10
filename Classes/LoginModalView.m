@@ -83,7 +83,8 @@
 	
 	//in the off chance that we've logged in since we loaded
 	if (self.fbLoginButton.isLoggedIn)
-		[self dismissModalViewControllerAnimated:YES];
+		[[AppModel instance] logoutWithDelegate:nil];
+	
 }
 
 - (void)viewDidUnload {
