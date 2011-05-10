@@ -336,9 +336,7 @@
 
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
-	
-	DLog(@"response string %@", responseString);
-	
+		
 	DLog(@"response string for this dish or photo is %@", responseString);
 	NSError *error;
 	SBJSON *parser = [SBJSON new];

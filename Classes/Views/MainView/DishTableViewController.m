@@ -30,6 +30,8 @@
 @interface DishTableViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
+-(NSString *) filterTagsList;
+
 @end
 
 
@@ -162,12 +164,13 @@
 	}
 	
 	urlString = [NSString 
-				 stringWithFormat:@"%@/api/dishSearch?lat=%f&lng=%f&distance=%d&limit=%d&q=%@",
+				 stringWithFormat:@"%@/api/dishSearch?lat=%f&lng=%f&distance=%d&limit=%d&tags=%@q=%@",
 				 NETWORKHOST,
 				 l.coordinate.latitude,
 				 l.coordinate.longitude, 
 				 self.currentSearchDistance,
 				 kSearchCountLimit,
+				 [self filterTagsList],
 				 [self.currentSearchTerm lowercaseString]];
 	urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
 	
@@ -178,6 +181,8 @@
 // Implement viewWillAppear: to do additional setup before the view is presented.
 - (void)viewWillAppear:(BOOL)animated {
 	//do we need to update the fetch when we come back?
+	//   I say yes in case we come back from settings
+	[self buildAndSendNetworkString];
 	[self updateFetch];
 	[super viewWillAppear:animated];
 }
@@ -333,7 +338,14 @@
 	[ret sortUsingSelector:@selector(compare:)];
 	return ret;
 }
-
+-(NSString *) filterTagsList {
+	NSMutableString *ret = [NSMutableString stringWithCapacity:10];
+	AppModel *app = [AppModel instance];
+	
+	return [NSString stringWithFormat:@"%@,%@,%@,%@,%@", app.selectedPrice, app.selectedMeal,
+	 app.selectedCuisine, app.selectedAllergen, app.selectedLifestyle];
+	
+}
 -(void) populatePredicateArray:(NSMutableArray *)filterPredicateArray{
 	NSPredicate *filterPredicate;
 	AppModel *app = [AppModel instance];
