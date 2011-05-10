@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Dish.h"
+#import "MBProgressHUD.h"
+#import "ASIProgressDelegate.h"
+
 
 @protocol RateDishProtocolDelegate
 @required
@@ -17,7 +20,9 @@
 
 @interface RateADishViewController : UITableViewController <UIImagePickerControllerDelegate, 
 UINavigationControllerDelegate,
-UIActionSheetDelegate>{
+UIActionSheetDelegate,
+ASIProgressDelegate,
+MBProgressHUDDelegate>{
 	Dish *mThisDish;
 	UITableViewCell *mDishHeaderCell;
 	UILabel *mDishTitle;
@@ -42,6 +47,11 @@ UIActionSheetDelegate>{
 	int mOutstandingRequests;
 	
 	id<RateDishProtocolDelegate> mDelegate;
+	
+	MBProgressHUD *mHUD;
+	BOOL mUploadSuccess;
+
+	
 }
 
 @property (nonatomic, retain) Dish *thisDish;

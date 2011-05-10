@@ -580,12 +580,20 @@
 	mOutstandingRequests = 1;
 	[request setDelegate:self];
 	[request startAsynchronous];
+	
+	mHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+	mHUD.mode = MBProgressHUDModeDeterminate;
+	mHUD.progress = 0.1;
+	mHUD.labelText = @"Adding dish";
+	mHUD.delegate = self;
+	self.tableView.userInteractionEnabled = NO;
 }
 
 #pragma mark -
 #pragma mark network request
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
+	mHUD.progress +=  self.newPicture.image ? .25 : .333;
 	mOutstandingRequests -= 1; 
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
@@ -601,13 +609,8 @@
 	ASIFormDataRequest *newRequest;
 	
 	if ([[responseAsDict objectForKey:@"rc"] intValue]) {
-		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Request Failed" 
-															message:[responseAsDict objectForKey:@"message"]
-														   delegate:self 
-												  cancelButtonTitle:@"OK"
-												  otherButtonTitles:nil];
-		[alertview show];
-		[alertview release];
+		mHUD.labelText = @"Error while Uploading";
+		[mHUD hide:YES afterDelay:2];		
 		return;
 	}
 
@@ -617,6 +620,7 @@
 		NSURL *url;
 		self.dishId = [[responseAsDict objectForKey:@"dishId"] intValue];
 
+		mHUD.labelText = @"Adding dish comments";
 		//if a photo was submitted.
 		if (self.newPicture.image) {
 			DLog(@"we have the dish id, calling add photo");
@@ -628,6 +632,7 @@
 			[newRequest setDelegate:self];
 			[newRequest startAsynchronous];
 			mOutstandingRequests += 1;
+			mHUD.labelText = @"Adding image";
 			DLog(@"done calling add photo, time to call rateDish");
 		}
 		
@@ -665,7 +670,9 @@
 		[newRequest setPostValue:[NSString stringWithFormat:@"%d", self.dishId] forKey:@"dishId"];
 		[newRequest setDelegate:self];
 		[newRequest startAsynchronous];
+		newRequest.uploadProgressDelegate = self;
 		mOutstandingRequests += 1;
+		mHUD.labelText = @"Uploading image";
 		return;
 
 	}
@@ -716,25 +723,37 @@
 			DLog(@"Unresolved error %@, \nuser info: %@", error, [error userInfo]);
 		}
 		
-		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Successfully added a dish!!" 
-															message:@"Thanks for the new dish. Have you tried anything else here?"
-														   delegate:self 
-												  cancelButtonTitle:@"OK"
-												  otherButtonTitles:nil];
-		[alertview show];
-		[alertview release];
 	}
 	if (!mOutstandingRequests) {
-		[self.delegate addDishDone];
+		mUploadSuccess = YES;
+		mHUD.progress = 1;
+		mHUD.labelText = @"Upload complete";
+		[mHUD hide:YES afterDelay:2];
 	}
+}
+
+-(void)hudWasHidden {
+	self.tableView.userInteractionEnabled = YES;
+	if (mUploadSuccess)
+		[self.delegate addDishDone];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
 	mOutstandingRequests -= 1;
-	if (!mOutstandingRequests)
-		[self.navigationController popViewControllerAnimated:YES];	
+	mHUD.progress = 0;
+	mHUD.labelText = @"Adding the dish Failed";
+	[mHUD hide:YES afterDelay:2];
 	DLog(@"error %@", [request error]);
+}
+
+- (void)request:(ASIHTTPRequest *)request didSendBytes:(long long)bytes;
+{
+	//there are 4 network steps in uploading an image, so the delta 
+	//progress is .25. So I need to up the progress by .25 * (bytes / total)
+	NSLog(@"uploading %f", (.25)* (bytes / [UIImagePNGRepresentation(self.newPicture.image) length]));
+	mHUD.progress += (.25)* (bytes / [UIImagePNGRepresentation(self.newPicture.image) length]);
+
 }
 
 #pragma mark -

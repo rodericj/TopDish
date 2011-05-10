@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Restaurant.h"
+#import "MBProgressHUD.h"
+#import "ASIProgressDelegate.h"
 
 @protocol AddADishProtocolDelegate
 
@@ -20,7 +22,9 @@
 @interface AddADishViewController : UITableViewController <UINavigationControllerDelegate, 
 UIImagePickerControllerDelegate,
 UIActionSheetDelegate,
-UITextViewDelegate> {
+UITextViewDelegate,
+MBProgressHUDDelegate,
+ASIProgressDelegate> {
 	Restaurant *mRestaurant;
 	
 	UITableViewCell *mRestaurantCell;
@@ -60,6 +64,9 @@ UITextViewDelegate> {
 	BOOL mPickerUp;
 
 	id<AddADishProtocolDelegate> mDelegate;
+	
+	MBProgressHUD *mHUD;
+	BOOL mUploadSuccess;
 }
 
 @property (nonatomic, retain) Restaurant *restaurant;

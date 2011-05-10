@@ -307,6 +307,14 @@
 	[request startAsynchronous];
 	mOutstandingRequests += 1;
 
+	mHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+	mHUD.mode = MBProgressHUDModeDeterminate;
+	mHUD.progress = 0.1;
+	mHUD.labelText = @"Rating dish";
+	mHUD.delegate = self;
+	
+	self.tableView.userInteractionEnabled = NO;
+	
 	//might as well send a picture if we've got it
 	if (self.newPicture.image) {
 		DLog(@"we have the dish id, calling add photo");
@@ -341,6 +349,9 @@
 	
 	if ([responseAsDict objectForKey:@"url"])
 	{
+		mHUD.progress += .5;
+		mHUD.labelText = @"uploading image";
+		
 		DLog(@"setting up the url");
 		//NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
 		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@", [responseAsDict objectForKey:@"url"]]];
@@ -350,28 +361,31 @@
 		imageRequest = [ASIFormDataRequest requestWithURL:url];
 		[imageRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
 		[imageRequest setData:UIImagePNGRepresentation(self.newPicture.image) forKey:@"photo"];
-		[imageRequest setPostValue:[NSString stringWithFormat:@"%d", [self.thisDish dish_id]] forKey:@"dishId"];
+		[imageRequest setPostValue:[NSString stringWithFormat:@"%@", [self.thisDish dish_id]] forKey:@"dishId"];
 		[imageRequest setDelegate:self];
 		[imageRequest startAsynchronous];
 		mOutstandingRequests += 1;
 	}
 	
 	if(!mOutstandingRequests) {
-		
-		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Rating success!!" 
-															message:@"Thanks's for rating this dish. Would you like to try another?"
-														   delegate:self 
-												  cancelButtonTitle:@"OK"
-												  otherButtonTitles:nil];
-		[alertview show];
-		[alertview release];	
-		[self.delegate doneRatingDish];
+		mHUD.progress = 1;
+		mHUD.labelText = @"Dish Rated Successfully";
+		mUploadSuccess = YES;
+		[mHUD hide:YES afterDelay:2]; 
 	}
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
 	DLog(@"error %@", [request error]);
+	mHUD.labelText = @"Error while Uploading";
+	[mHUD hide:YES afterDelay:2]; 
+}
+
+-(void)hudWasHidden {
+	self.tableView.userInteractionEnabled = YES;
+	if (mUploadSuccess)
+		[self.delegate doneRatingDish];
 }
 
 #pragma mark -
