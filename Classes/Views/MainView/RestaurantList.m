@@ -125,7 +125,7 @@
 	
 	AsyncImageView *asyncImageView = nil;
 
-	[kManagedObjectContext refreshObject:thisRestaurant mergeChanges:NO];
+	//[kManagedObjectContext refreshObject:thisRestaurant mergeChanges:NO];
     RestaurantTableViewCell *cell = (RestaurantTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
 		NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"RestaurantTableViewCell" owner:self options:nil];
