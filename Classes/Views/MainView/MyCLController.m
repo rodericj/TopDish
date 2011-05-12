@@ -23,7 +23,7 @@
 	if (newLocation.horizontalAccuracy >= locationManager.desiredAccuracy || newLocation.verticalAccuracy <= locationManager.desiredAccuracy) {
 		DLog(@"good enough location");
 		[self.delegate locationUpdate:newLocation];
-		[self.locationManager stopUpdatingLocation];
+		//[self.locationManager stopUpdatingLocation];
 	}
 	else {
 		DLog(@"it wasn't good enough");

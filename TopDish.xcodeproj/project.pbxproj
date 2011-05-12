@@ -22,6 +22,7 @@
 		17A637961352AB3C00ED8842 /* thumbsup.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17A637951352AB3C00ED8842 /* thumbsup.jpg */; };
 		17A637981352AB4300ED8842 /* thumbsdown.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17A637971352AB4300ED8842 /* thumbsdown.jpg */; };
 		17A64B8913613E6900ED8842 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A64B8813613E6900ED8842 /* Security.framework */; };
+		17A8A4E4137B9EAC002C5FBB /* DistanceUpdator.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A8A4E3137B9EAC002C5FBB /* DistanceUpdator.m */; };
 		17BBAFD81301AC2400705F1A /* CommentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17BBAFD71301AC2400705F1A /* CommentsCell.xib */; };
 		17C4A5B813353E7E005D950B /* IncomingProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C4A5B713353E7E005D950B /* IncomingProcessor.m */; };
 		17DA5E411322BEDA00867B66 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5E351322BEDA00867B66 /* Facebook.m */; };
@@ -155,6 +156,8 @@
 		17A637951352AB3C00ED8842 /* thumbsup.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thumbsup.jpg; sourceTree = "<group>"; };
 		17A637971352AB4300ED8842 /* thumbsdown.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thumbsdown.jpg; sourceTree = "<group>"; };
 		17A64B8813613E6900ED8842 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		17A8A4E2137B9EAC002C5FBB /* DistanceUpdator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceUpdator.h; sourceTree = "<group>"; };
+		17A8A4E3137B9EAC002C5FBB /* DistanceUpdator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceUpdator.m; sourceTree = "<group>"; };
 		17BBAFD71301AC2400705F1A /* CommentsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsCell.xib; sourceTree = "<group>"; };
 		17C4A5B613353E7E005D950B /* IncomingProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IncomingProcessor.h; path = lib/IncomingProcessor.h; sourceTree = "<group>"; };
 		17C4A5B713353E7E005D950B /* IncomingProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IncomingProcessor.m; path = lib/IncomingProcessor.m; sourceTree = "<group>"; };
@@ -580,6 +583,8 @@
 		5F89EFAF125930A300959D05 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				17A8A4E2137B9EAC002C5FBB /* DistanceUpdator.h */,
+				17A8A4E3137B9EAC002C5FBB /* DistanceUpdator.m */,
 				1714C3B713778C32009E1BDA /* MBProgressHUD */,
 				177902A8136E3719002431E0 /* AsyncImageView */,
 				17DD26D212BDBBEB0048C1A1 /* ASINetwork */,
@@ -876,6 +881,7 @@
 				17FCDC531370FB86004EA4F9 /* DishTableViewCell.m in Sources */,
 				17FCDDF913711125004EA4F9 /* RestaurantTableViewCell.m in Sources */,
 				1714C3BD13778C3F009E1BDA /* MBProgressHUD.m in Sources */,
+				17A8A4E4137B9EAC002C5FBB /* DistanceUpdator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

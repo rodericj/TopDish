@@ -13,13 +13,15 @@
 #import "IncomingProcessor.h"
 #import "LoginModalView.h"
 #import "DishTableViewCell.h"
+#import "DistanceUpdator.h"
 
 @interface DishTableViewController :UITableViewController 
 <MyCLControllerDelegate, 
 NSFetchedResultsControllerDelegate, 
 UISearchBarDelegate, 
 IncomingProcessorDelegate,
-LoginModalViewDelegate> {
+LoginModalViewDelegate,
+DistanceUpdatorDelegate> {
 	MyCLController *locationController;
 	NSString *mCurrentLat;
 	NSString *mCurrentLon;
@@ -46,7 +48,6 @@ LoginModalViewDelegate> {
 }
 
 - (void) updateFetch;
-- (void)getNearbyItems:(CLLocation *)location;
 - (NSArray *) getArrayOfIdsWithArray:(NSArray *)responseAsArray withKey:(NSString*) key;
 -(IBAction) sortByDistance;
 -(IBAction) sortByRating;

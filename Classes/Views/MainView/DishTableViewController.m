@@ -651,21 +651,32 @@
 }
 	
 - (void)locationUpdate:(CLLocation *)location {
-	[[AppModel instance] setCurrentLocation:location];
-	[self getNearbyItems:location];
-	if (!locationController) {
-		locationController = [[MyCLController alloc] init];
+	if ([location distanceFromLocation:[AppModel instance].currentLocation] > 10) {
+				
+		[self buildAndSendNetworkString];
+		
+		NSPersistentStoreCoordinator *coord = [(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] persistentStoreCoordinator];
+		DistanceUpdator *proc = [DistanceUpdator updatorWithPersistentStoreCoordinator:coord Delegate:self];
+		[[[AppModel instance] queue] addOperation:[proc taskWithData:nil]];
+		
+		if (!locationController) {
+			locationController = [[MyCLController alloc] init];
+		}
+		locationController.delegate = self;
 	}
-	locationController.delegate = self;
-	[locationController.locationManager stopUpdatingLocation];
+	[[AppModel instance] setCurrentLocation:location];
+
+	//[locationController.locationManager stopUpdatingLocation];
 }
 
-- (void)getNearbyItems:(CLLocation *)location {
-	DLog(@"getNearbyItems Called %@. Accuracy: %d, %d", [location description], location.verticalAccuracy, location.horizontalAccuracy);
-	
-	//NSAssert(location != NULL, @"the location was null which means that the thread is doing something intersting. Lets send this back.");
-	[self buildAndSendNetworkString];
-	
+
+#pragma mark DistanceUpdatorDelegate
+-(void)distancesUpdatedOnMain {
+	[self.tableView reloadData];
+}
+
+-(void)distancesUpdated {
+	[self performSelectorOnMainThread:@selector(distancesUpdatedOnMain) withObject:nil waitUntilDone:NO];
 }
 
 #pragma mark -
