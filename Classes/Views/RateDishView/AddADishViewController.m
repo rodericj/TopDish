@@ -284,7 +284,10 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+	[self.commentTextView resignFirstResponder];
+	[self.additionalDetailsTextView resignFirstResponder];
+	[self.dishTitle resignFirstResponder];
+	
     static NSString *CellIdentifier = @"Cell";
     
 	AppModel *app = [AppModel instance];

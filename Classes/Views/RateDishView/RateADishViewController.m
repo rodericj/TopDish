@@ -273,12 +273,16 @@
 	self.noImage.hidden = YES;
 	self.yesImage.hidden = NO;
 	self.rating = 1;
+	
+	//just in case
 	[self.dishComment resignFirstResponder];
 }
 -(IBAction)noButtonClicked {
 	self.yesImage.hidden = YES;
 	self.noImage.hidden = NO;
 	self.rating = -1;
+	
+	//just in case
 	[self.dishComment resignFirstResponder];
 }
 
