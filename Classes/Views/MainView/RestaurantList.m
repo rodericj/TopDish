@@ -79,7 +79,8 @@
 	
 	NSArray *nearbyObjects = [self.fetchedResultsController fetchedObjects];
 	[map setNearbyObjects:nearbyObjects];
-	[self.navigationController pushViewController:map animated:TRUE];
+	if ([nearbyObjects count]) 
+		[self.navigationController pushViewController:map animated:TRUE];
 	[map release];
 	//[self presentModalViewController:map animated:TRUE];
 }

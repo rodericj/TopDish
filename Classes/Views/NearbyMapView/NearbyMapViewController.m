@@ -140,4 +140,11 @@
 	}
 }
 
+-(void)dealloc {
+	self.mapView = nil;
+	self.nearbyObjects = nil;
+	self.objectMap = nil;
+	[super dealloc];
+}
+
 @end
