@@ -407,6 +407,8 @@
 		
 		[filterPredicateArray addObject:filterPredicate];
 	}
+	[filterPredicateArray addObject:[NSPredicate predicateWithFormat:@"%K < %d", @"distance", 
+									 self.currentSearchDistance]];
 
 }
 -(void) updateFetch {
