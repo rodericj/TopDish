@@ -133,7 +133,7 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -159,6 +159,8 @@
 			cell = self.pictureCell;
 			break;
 		case kSubmitButtonCell:
+			//if we are this far down, gotta remove keyboard :(
+			[self.dishComment resignFirstResponder];
 			cell = self.submitButtonCell;
 			backView = [[UIView alloc] initWithFrame:CGRectZero];
 			cell.backgroundView = backView;
@@ -206,6 +208,7 @@
 #pragma mark -
 #pragma mark action sheet delegate
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+
 	if (buttonIndex == actionSheet.cancelButtonIndex) {
         //cancelled
         return;
@@ -270,14 +273,17 @@
 	self.noImage.hidden = YES;
 	self.yesImage.hidden = NO;
 	self.rating = 1;
+	[self.dishComment resignFirstResponder];
 }
 -(IBAction)noButtonClicked {
 	self.yesImage.hidden = YES;
 	self.noImage.hidden = NO;
 	self.rating = -1;
+	[self.dishComment resignFirstResponder];
 }
 
 -(IBAction)submitRating {
+	[self.dishComment resignFirstResponder];
 	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/rateDish"]];
 	if (!self.rating) {
 		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Error Rating Dish" 
