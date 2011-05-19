@@ -224,8 +224,6 @@
 		[imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
 		[imagePicker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModePhoto];
 		[imagePicker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
-		
-		[imagePicker setCameraOverlayView:[UIButton buttonWithType:UIButtonTypeRoundedRect]];
 	}
 	else {
 		[imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
