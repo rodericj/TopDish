@@ -352,7 +352,11 @@
 	[parser release];
 	
 	DLog(@"the dictionary should be a %@", responseAsDict);
-	
+	if ([responseAsDict objectForKey:@"photo"]) {
+		self.thisDish.photoURL = [responseAsDict objectForKey:@"photo"];
+		NSLog(@"the new photo is %@", self.thisDish.photoURL);
+	}
+
 	if ([responseAsDict objectForKey:@"url"])
 	{
 		mHUD.progress += .5;
