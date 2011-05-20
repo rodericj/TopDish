@@ -31,7 +31,7 @@ LoginModalViewDelegate>{
 	UILabel *mRestaurantNameLabel;
 	
 	NSArray *mReviews;
-	NSData *mResponseData;
+	NSMutableData *mResponseData;
 
 	UITableViewCell *mTvCell;
 	
@@ -60,7 +60,7 @@ LoginModalViewDelegate>{
 @property (nonatomic, retain) IBOutlet UILabel *restaurantNameLabel;
 
 @property (nonatomic, retain) NSArray *reviews;
-@property (nonatomic, retain) NSData *responseData;
+@property (nonatomic, retain) NSMutableData *responseData;
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *tvCell;
 

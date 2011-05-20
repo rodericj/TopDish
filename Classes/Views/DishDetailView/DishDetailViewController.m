@@ -363,13 +363,12 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
 	if(self.responseData == nil){
-		self.responseData = data;
-		//self.responseText = [[NSData alloc] initWithData:data];
+		self.responseData =  [NSMutableData dataWithData:data];
 	}
 	else {
+		[self.responseData appendData:data];
 		DLog(@"a ha!, the response text was not null, which means we may be missing some data");
 	}
-
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -584,6 +583,7 @@
 #pragma mark RateDishProtocolDelegate
 -(void)doneRatingDish {
 	[self refreshFromNetwork];
+	[self.tableView reloadData];
 	[self.navigationController popViewControllerAnimated:YES];
 }
 
