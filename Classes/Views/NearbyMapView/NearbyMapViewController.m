@@ -141,6 +141,7 @@
 }
 
 -(void)dealloc {
+	self.mapView.delegate = nil;
 	self.mapView = nil;
 	self.nearbyObjects = nil;
 	self.objectMap = nil;

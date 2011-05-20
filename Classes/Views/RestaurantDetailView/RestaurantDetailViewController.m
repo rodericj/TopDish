@@ -502,6 +502,7 @@
 	self.newPicture = nil;
 	
 	self.mapRow = nil;
+	self.mapView.delegate = nil;
 	self.mapView = nil;
 	
     [super dealloc];
