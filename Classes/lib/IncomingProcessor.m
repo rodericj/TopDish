@@ -409,13 +409,14 @@
 	[self processIncomingDishesWithJsonArray:[responseAsDictionary objectForKey:@"dishes"]];
 	[self processIncomingRestaurantsWithJsonArray:[responseAsDictionary objectForKey:@"restaurants"]];
 	[parser release];
-	
+	self.incomingProcessorDelegate = nil;
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 -(void)dealloc {
 	[mManagedObjectContext release];
 	self.persistentStoreCoordinator = nil;
+	self.incomingProcessorDelegate = nil;
 	[super dealloc];
 }
 

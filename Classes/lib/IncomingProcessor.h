@@ -23,7 +23,7 @@
 }
 
 @property (nonatomic, retain) NSMutableData *responseData;
-@property (nonatomic, assign) id<IncomingProcessorDelegate> incomingProcessorDelegate;
+@property (nonatomic, retain) id<IncomingProcessorDelegate> incomingProcessorDelegate;
 
 @property (nonatomic, retain) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
