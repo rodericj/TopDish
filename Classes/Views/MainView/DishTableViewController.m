@@ -689,7 +689,6 @@
 
 -(void)facebookLoginComplete {
 	NSLog(@"facebook login complete, waiting for TD login, lets move forward");
-	[self dismissModalViewControllerAnimated:YES];
 }
 -(void)loginFailed {
 	NSLog(@"the login failed");
@@ -704,6 +703,7 @@
 }
 -(void)loginComplete {
 	NSLog(@"the login from the LoginModalView was complete");
+	[self dismissModalViewControllerAnimated:YES];
 }
 
 -(void)notNowButtonPressed {

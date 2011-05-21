@@ -299,7 +299,8 @@
 }
 
 -(void)loginComplete {
-
+	//This only works because the LoginModalView must be shown when we are logged out
+	[self dismissModalViewControllerAnimated:YES];
 }
 
 -(void)loginStarted {
