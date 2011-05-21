@@ -12,8 +12,9 @@
 
 @implementation LoginModalView
 
-@synthesize fbLoginButton = mFbLoginButton;
-@synthesize delegate = mDelegate;
+@synthesize fbLoginButton	= mFbLoginButton;
+@synthesize delegate		= mDelegate;
+@synthesize	hud				= mHud;
 
 -(IBAction)notNowButtonPressed {
 	[AppModel instance].userDelayedLogin = YES;
@@ -60,12 +61,6 @@
 
 -(void)viewDidLoad {
 	self.view.backgroundColor = kTopDishBackground;
-}
-
--(void)viewDidAppear:(BOOL)animated {
-	self.fbLoginButton.isLoggedIn = [[[AppModel instance] facebook] isSessionValid];
-	
-	[self.fbLoginButton updateImage];
 	
 	//setup the delegate notifications
 	[[NSNotificationCenter defaultCenter] addObserver:self.delegate
@@ -80,6 +75,47 @@
 											 selector:@selector(loginFailed)
 												 name:NSNotificationStringFailedLogin 
 											   object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(loginComplete)
+												 name:NSNotificationStringDoneLogin 
+											   object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(facebookLoginComplete)
+												 name:NSNotificationStringDoneFacebookLogin 
+											   object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(loginFailed)
+												 name:NSNotificationStringFailedLogin 
+											   object:nil];
+}
+
+#pragma mark -
+#pragma mark Login steps and Hud stuff
+-(void)loginFailed {
+	DLog(@"facebook login failed");
+	self.hud.labelText = @"Login Failed";
+	self.hud.delegate = self;
+	self.view.userInteractionEnabled = YES;
+	
+}
+-(void)facebookLoginComplete {
+	DLog(@"facebook login complete");
+	self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+	self.hud.labelText = @"Logging in with TopDish";
+	self.hud.delegate = self;
+	self.view.userInteractionEnabled = NO;
+}
+
+-(void)loginComplete {
+	DLog(@"login complete");
+	self.hud.labelText = @"Successfully logged in.";
+	[self.hud hide:YES];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+	self.fbLoginButton.isLoggedIn = [[[AppModel instance] facebook] isSessionValid];
+	
+	[self.fbLoginButton updateImage];
 	
 	//in the off chance that we've logged in since we loaded
 	if (self.fbLoginButton.isLoggedIn)
@@ -95,6 +131,8 @@
 
 
 - (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	self.hud = nil;
     [super dealloc];
 }
 

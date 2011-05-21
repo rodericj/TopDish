@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FBLoginButton.h"
+#import "MBProgressHUD.h"
 
 @protocol LoginModalViewDelegate
 
@@ -20,13 +21,15 @@
 -(void)loginFailed;
 @end
 
-@interface LoginModalView : UIViewController {
-	FBLoginButton *mFbLoginButton;
-	id<LoginModalViewDelegate> mDelegate;
+@interface LoginModalView : UIViewController <MBProgressHUDDelegate>{
+	FBLoginButton				*mFbLoginButton;
+	id<LoginModalViewDelegate>	mDelegate;
+	MBProgressHUD				*mHud;
 }
 
-@property (nonatomic, retain) IBOutlet FBLoginButton *fbLoginButton;
-@property (nonatomic, assign) id<LoginModalViewDelegate> delegate;
+@property (nonatomic, retain) IBOutlet	FBLoginButton				*fbLoginButton;
+@property (nonatomic, assign)			id<LoginModalViewDelegate>	delegate;
+@property (nonatomic, assign)			MBProgressHUD				*hud;
 
 +(LoginModalView *)viewControllerWithDelegate:(id<LoginModalViewDelegate>)delegate;
 
