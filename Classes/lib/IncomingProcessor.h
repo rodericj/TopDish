@@ -9,9 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @protocol IncomingProcessorDelegate
+
+@optional
+-(void)saveError:(NSString *)errorMessage;
+
 @required
 -(void)saveDishesComplete;
 -(void)saveRestaurantsComplete;
+
 @end
 
 @interface IncomingProcessor : NSObject {

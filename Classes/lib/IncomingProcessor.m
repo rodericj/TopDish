@@ -397,6 +397,8 @@
 	if ([[responseAsDictionary objectForKey:@"rc"] intValue] != 0) {
 		DLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
 		[parser release];
+		if ([self.incomingProcessorDelegate respondsToSelector:@selector(saveError:)])
+			[self.incomingProcessorDelegate saveError:[responseAsDictionary objectForKey:@"message"]];
 		return;
 	}
 	
