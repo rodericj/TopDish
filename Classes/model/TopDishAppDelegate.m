@@ -77,10 +77,28 @@
     return YES;
 }
 
+-(NSString *)getValue:(NSString *)value fromString:(NSString *)source {
+	NSRange range = [source rangeOfString:value];
+	int startOfDestination = range.length + range.location;
+	NSRange valueRange;
+	valueRange.location = startOfDestination + 1;
+	valueRange.length = [source length] - startOfDestination-1;
+	
+	NSLog(@"this is the value we are after %@", [source substringWithRange:valueRange]);
+	return [source substringWithRange:valueRange];
+}
+
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
 	DLog(@"the url is %@", url);
-	
+	if ([[url host] hasPrefix:@"googleAuthResponse"]) {
+		NSString *apiKey = [self getValue:@"apiKey" fromString:[url absoluteString]];
+		[[[AppModel instance] user] setObject:apiKey forKey:keyforauthorizing];
+		[[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationStringDoneLogin object:nil];
+		
+		return TRUE;
+	}
+
 	return [[[AppModel instance] facebook] handleOpenURL:url];
 }
 

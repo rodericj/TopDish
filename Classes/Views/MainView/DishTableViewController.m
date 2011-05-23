@@ -59,6 +59,7 @@
     }
     return self;
 }
+
 - (void) setUpSpecificView {
 	[self.tableView setTableHeaderView:self.searchHeader];
 	self.tableView.delegate = self;
@@ -122,7 +123,7 @@
 }
 -(void)viewDidAppear:(BOOL)animated {
 	AppModel *app = [AppModel instance];
-	if (![app.facebook isSessionValid] && !app.userDelayedLogin) {
+	if ((![app.facebook isSessionValid] && !app.userDelayedLogin) && ![[[AppModel instance] user] objectForKey:keyforauthorizing]) {
 		//register for 
 				
 		[self presentModalViewController:[LoginModalView viewControllerWithDelegate:self] 
@@ -706,7 +707,7 @@
 	[self dismissModalViewControllerAnimated:YES];
 }
 
--(void)notNowButtonPressed {
+-(void)noLoginNow {
 	NSLog(@"the not now button was pressed");
 	[self dismissModalViewControllerAnimated:YES];
 }

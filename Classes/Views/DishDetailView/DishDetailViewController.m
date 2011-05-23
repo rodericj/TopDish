@@ -570,7 +570,7 @@
 	[self performSelector:mPostLoginAction];
 }
 
--(void)notNowButtonPressed {
+-(void)noLoginNow {
 	DLog(@"do nothing but just dismiss the modal");
 	[self dismissModalViewControllerAnimated:YES];
 }

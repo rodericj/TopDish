@@ -465,7 +465,7 @@
 	[self performSelector:mPostLoginAction];
 }
 
--(void)notNowButtonPressed {
+-(void)noLoginNow {
 	NSLog(@"not now pressed");
 	[self dismissModalViewControllerAnimated:YES];
 }

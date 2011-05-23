@@ -12,6 +12,14 @@
 			<key>CFBundleURLName</key>
 			<string></string>
 		</dict>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.topdish</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>td</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
@@ -32,7 +40,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.25</string>
+	<string>1.0.26</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>

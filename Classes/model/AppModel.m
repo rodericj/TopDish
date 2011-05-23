@@ -242,7 +242,7 @@ AppModel *gAppModelInstance = nil;
 	if (request == mTopDishFBLoginRequest) {
 		//responseString = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
 		DLog(@"handle the facebook authentication stuff %@", responseString);
-		if ([[responseAsDict objectForKey:@"rc"] intValue] == 1) {
+		if ([[responseAsDict objectForKey:@"rc"] intValue] != 0) {
 			//response returned with an error. Lets see what we got
 			DLog(@"response from TD Server %@", responseAsDict);
 			[[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationStringFailedLogin object:nil];

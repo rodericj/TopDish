@@ -15,10 +15,13 @@
 @synthesize fbLoginButton	= mFbLoginButton;
 @synthesize delegate		= mDelegate;
 @synthesize	hud				= mHud;
+@synthesize notNowLabel		= mNotNowLabel;
+@synthesize googleLoginView	= mGoogleLoginView;
 
--(IBAction)notNowButtonPressed {
+
+-(void)handleNotNowGesture:(UITapGestureRecognizer *)recognizer {
 	[AppModel instance].userDelayedLogin = YES;
-	[self.delegate notNowButtonPressed];
+	[self.delegate noLoginNow];
 }
 
 /**
@@ -44,6 +47,16 @@
 		[self login];
 }
 
+/**
+ *	Called when the google login button is clicked
+ */
+-(IBAction)googleButtonClick:(id)sender {
+	NSLog(@"google login button clicked");
+	
+	self.googleLoginView.hidden = NO;
+	
+}
+
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -62,6 +75,12 @@
 -(void)viewDidLoad {
 	self.view.backgroundColor = kTopDishBackground;
 	
+	UITapGestureRecognizer *notNotGesture = [[UITapGestureRecognizer alloc]
+											initWithTarget:self action:@selector(handleNotNowGesture:)];
+    [self.notNowLabel addGestureRecognizer:notNotGesture];
+    [notNotGesture release];
+	
+	
 	//setup the delegate notifications
 	[[NSNotificationCenter defaultCenter] addObserver:self.delegate
 											 selector:@selector(loginComplete)
@@ -72,18 +91,6 @@
 												 name:NSNotificationStringDoneFacebookLogin 
 											   object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self.delegate
-											 selector:@selector(loginFailed)
-												 name:NSNotificationStringFailedLogin 
-											   object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(loginComplete)
-												 name:NSNotificationStringDoneLogin 
-											   object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(facebookLoginComplete)
-												 name:NSNotificationStringDoneFacebookLogin 
-											   object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(loginFailed)
 												 name:NSNotificationStringFailedLogin 
 											   object:nil];
@@ -112,10 +119,35 @@
 	[self.hud hide:YES];
 }
 
+#pragma mark -
+#pragma mark google login
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+	NSLog(@"webview failed to load %@", error);
+	NSLog(@"%@", [[error userInfo] objectForKey:@"NSErrorFailingURLKey"]);
+	
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+	NSLog(@"webview webViewDidFinishLoad");
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+	NSLog(@"webview webViewDidStartLoad");
+}
+
 -(void)viewDidAppear:(BOOL)animated {
 	self.fbLoginButton.isLoggedIn = [[[AppModel instance] facebook] isSessionValid];
 	
 	[self.fbLoginButton updateImage];
+	
+	//[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"td://"]];
+	
+	NSURL *url = [NSURL URLWithString:@"http://0519.topdish1.appspot.com/api/googleAuth?redirect=td://googleAuthResponse"];
+	//NSURL *url = [NSURL URLWithString:@"td://"];
+	NSURLRequest *request = [NSURLRequest requestWithURL:url];
+	[self.googleLoginView loadRequest:request];
+	
 	
 	//in the off chance that we've logged in since we loaded
 	if (self.fbLoginButton.isLoggedIn)
@@ -133,6 +165,10 @@
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	self.hud = nil;
+	
+	self.notNowLabel = nil;
+	self.googleLoginView = nil;
+	
     [super dealloc];
 }
 

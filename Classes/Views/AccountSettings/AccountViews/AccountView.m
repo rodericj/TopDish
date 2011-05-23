@@ -56,6 +56,7 @@
 	[self.fBLoginButton updateImage];
 
 	if ([[AppModel instance] isLoggedIn]) {
+		[self fetchFacebookMe];
 		NSLog(@"do some things");
 	}
 	else if(!mPendingLogin) {
@@ -209,19 +210,19 @@
 	}
 	else{
 		DLog(@"did load %@", result);
-
-	if ([result objectForKey:@"first_name"] && [result objectForKey:@"last_name"]) {
 		
-		self.userName.text = [NSString stringWithFormat:@"%@ %@",
-							  [result objectForKey:@"first_name"],
-							  [result objectForKey:@"last_name"]];
-	}
-	if ([result objectForKey:@"id"]) {
-		self.imageRequest = [[[AppModel instance] facebook] 
-							 requestWithGraphPath:[NSString stringWithFormat:@"%@/picture", 
-												   [result objectForKey:@"id"]] 
-							 andDelegate:self];
-	}
+		if ([result objectForKey:@"first_name"] && [result objectForKey:@"last_name"]) {
+			
+			self.userName.text = [NSString stringWithFormat:@"%@ %@",
+								  [result objectForKey:@"first_name"],
+								  [result objectForKey:@"last_name"]];
+		}
+		if ([result objectForKey:@"id"]) {
+			self.imageRequest = [[[AppModel instance] facebook] 
+								 requestWithGraphPath:[NSString stringWithFormat:@"%@/picture", 
+													   [result objectForKey:@"id"]] 
+								 andDelegate:self];
+		}
 	}
 }
 
@@ -291,7 +292,7 @@
 
 #pragma mark -
 #pragma mark LoginModalViewDelegate
--(void)notNowButtonPressed {
+-(void)noLoginNow {
 	mPendingLogin = NO;
 	[self dismissModalViewControllerAnimated:YES];
 
