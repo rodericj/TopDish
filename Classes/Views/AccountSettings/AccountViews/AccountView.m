@@ -22,7 +22,9 @@
 @synthesize lifestyleTags = mLifestyleTags;
 @synthesize imageRequest = mImageRequest;
 @synthesize userImage = mUserImage;
+
 @synthesize fBLoginButton = mFBLoginButton;
+@synthesize logoutButton = mLogoutButton;
 
 -(void)fetchFacebookMe {
 	[[[AppModel instance] facebook] 
@@ -52,12 +54,21 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-	self.fBLoginButton.isLoggedIn = [[[AppModel instance] facebook] isSessionValid];
+	self.fBLoginButton.isLoggedIn = [[AppModel instance].facebook isSessionValid];
 	[self.fBLoginButton updateImage];
+	self.logoutButton.hidden = NO;
+	self.fBLoginButton.hidden = NO;
 
-	if ([[AppModel instance] isLoggedIn]) {
+	
+	if ([[AppModel instance].facebook isSessionValid]) {
 		[self fetchFacebookMe];
 		NSLog(@"do some things");
+		self.logoutButton.hidden = YES;
+	}
+	else if ([[AppModel instance] isLoggedIn]) {
+		//Make button look normal
+		[self.fBLoginButton setTitle:@"Logout" forState:UIControlStateNormal];
+		self.fBLoginButton.hidden = YES;
 	}
 	else if(!mPendingLogin) {
 		[self presentModalViewController:[LoginModalView viewControllerWithDelegate:self] 
@@ -86,16 +97,6 @@
 
 #pragma mark -
 #pragma mark Table view data source
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-	switch (section) {
-		case kDishesReviewedSection:
-			return @"Dishes Reviewed";
-
-		default:
-			return nil;
-	}
-}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
@@ -205,7 +206,7 @@
  */
 - (void)request:(FBRequest *)request didLoad:(NSDictionary *)result
 {
-	if (request == self.imageRequest) {
+	if([request.url hasSuffix:@"picture"]) {
 		//do nothing
 	}
 	else{
@@ -251,10 +252,14 @@
  * Called on a login/logout button click.
  */
 - (IBAction)fbButtonClick:(id)sender {
-	if (self.fBLoginButton.isLoggedIn)
+	if ([[AppModel instance] isLoggedIn])
 		[[AppModel instance] logoutWithDelegate:self];
 	else
 		[self login];
+}
+
+- (IBAction)logoutButtonClick {
+	[[AppModel instance] logoutWithDelegate:self];
 }
 
 #pragma mark -
@@ -276,7 +281,7 @@
 	self.imageRequest = nil;
 	self.lifestyleTags = nil;
 	self.fBLoginButton = nil;
-	
+	self.logoutButton = nil;
 	[super dealloc];
 }
 
@@ -301,6 +306,7 @@
 
 -(void)loginComplete {
 	//This only works because the LoginModalView must be shown when we are logged out
+	mPendingLogin = NO;
 	[self dismissModalViewControllerAnimated:YES];
 }
 

@@ -123,9 +123,7 @@
 }
 -(void)viewDidAppear:(BOOL)animated {
 	AppModel *app = [AppModel instance];
-	if ((![app.facebook isSessionValid] && !app.userDelayedLogin) && ![[[AppModel instance] user] objectForKey:keyforauthorizing]) {
-		//register for 
-				
+	if (![[AppModel instance] isLoggedIn] && !app.userDelayedLogin) {
 		[self presentModalViewController:[LoginModalView viewControllerWithDelegate:self] 
 								animated:NO];
 	}

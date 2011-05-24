@@ -25,6 +25,7 @@
 		17A8A4E4137B9EAC002C5FBB /* DistanceUpdator.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A8A4E3137B9EAC002C5FBB /* DistanceUpdator.m */; };
 		17BBAFD81301AC2400705F1A /* CommentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17BBAFD71301AC2400705F1A /* CommentsCell.xib */; };
 		17C4A5B813353E7E005D950B /* IncomingProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C4A5B713353E7E005D950B /* IncomingProcessor.m */; };
+		17CAB697138B684000CF2F00 /* googleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 17CAB696138B684000CF2F00 /* googleButton.png */; };
 		17DA5E411322BEDA00867B66 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5E351322BEDA00867B66 /* Facebook.m */; };
 		17DA5E421322BEDA00867B66 /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5E361322BEDA00867B66 /* FBConnect.bundle */; };
 		17DA5E431322BEDA00867B66 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5E381322BEDA00867B66 /* FBDialog.bundle */; };
@@ -161,6 +162,7 @@
 		17BBAFD71301AC2400705F1A /* CommentsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsCell.xib; sourceTree = "<group>"; };
 		17C4A5B613353E7E005D950B /* IncomingProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IncomingProcessor.h; path = lib/IncomingProcessor.h; sourceTree = "<group>"; };
 		17C4A5B713353E7E005D950B /* IncomingProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IncomingProcessor.m; path = lib/IncomingProcessor.m; sourceTree = "<group>"; };
+		17CAB696138B684000CF2F00 /* googleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = googleButton.png; sourceTree = "<group>"; };
 		17DA5E341322BEDA00867B66 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Facebook.h; path = lib/FBConnect/Facebook.h; sourceTree = "<group>"; };
 		17DA5E351322BEDA00867B66 /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Facebook.m; path = lib/FBConnect/Facebook.m; sourceTree = "<group>"; };
 		17DA5E361322BEDA00867B66 /* FBConnect.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBConnect.bundle; path = lib/FBConnect/FBConnect.bundle; sourceTree = "<group>"; };
@@ -600,6 +602,7 @@
 		5F89F15E125951FE00959D05 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				17CAB696138B684000CF2F00 /* googleButton.png */,
 				17DA603513230E8400867B66 /* 06-magnify.png */,
 				17DA603613230E8400867B66 /* 111-user.png */,
 				17DA603713230E8400867B66 /* add_dish_button.png */,
@@ -818,6 +821,7 @@
 				17A637961352AB3C00ED8842 /* thumbsup.jpg in Resources */,
 				17A637981352AB4300ED8842 /* thumbsdown.jpg in Resources */,
 				1792A833136A65D10058B8B7 /* LeaveFeedbackViewController.xib in Resources */,
+				17CAB697138B684000CF2F00 /* googleButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

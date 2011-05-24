@@ -55,6 +55,13 @@
 	
 	self.googleLoginView.hidden = NO;
 	
+	//NSString *loginURL = [NSString stringWithFormat:@"%@/api/googleAuth?redirect=td://googleAuthResponse", NETWORKHOST];
+	//NSURL *url = [NSURL URLWithString:loginURL];
+	NSURL *url = [NSURL URLWithString:@"http://0519.topdish1.appspot.com/api/googleAuth?redirect=td://googleAuthResponse"];
+	NSURLRequest *request = [NSURLRequest requestWithURL:url];
+	[self.googleLoginView loadRequest:request];
+	
+	
 }
 
 
@@ -140,14 +147,6 @@
 	self.fbLoginButton.isLoggedIn = [[[AppModel instance] facebook] isSessionValid];
 	
 	[self.fbLoginButton updateImage];
-	
-	//[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"td://"]];
-	
-	NSURL *url = [NSURL URLWithString:@"http://0519.topdish1.appspot.com/api/googleAuth?redirect=td://googleAuthResponse"];
-	//NSURL *url = [NSURL URLWithString:@"td://"];
-	NSURLRequest *request = [NSURLRequest requestWithURL:url];
-	[self.googleLoginView loadRequest:request];
-	
 	
 	//in the off chance that we've logged in since we loaded
 	if (self.fbLoginButton.isLoggedIn)

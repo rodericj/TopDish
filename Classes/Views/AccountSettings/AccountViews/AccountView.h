@@ -26,7 +26,8 @@ LeaveFeedbackViewControllerDelegate> {
 	
 	BOOL mPendingLogin;
 	
-	FBLoginButton *mFBLoginButton;
+	FBLoginButton	*mFBLoginButton;
+	UIButton		*mLogoutButton;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *userName;
@@ -36,7 +37,8 @@ LeaveFeedbackViewControllerDelegate> {
 @property (nonatomic, retain)  NSMutableArray *lifestyleTags;
 @property (nonatomic, retain) FBRequest *imageRequest;
 @property (nonatomic, retain) IBOutlet FBLoginButton *fBLoginButton;
+@property (nonatomic, retain) IBOutlet UIButton *logoutButton;
 
 - (IBAction)fbButtonClick:(id)sender;
-
+- (IBAction)logoutButtonClick;
 @end
