@@ -404,14 +404,13 @@
 		self.currentSearchTerm = @"";
 	}
 	urlString = [NSString 
-				 stringWithFormat:@"%@/api/restaurantSearch?lat=%f&lng=%f&distance=%d&limit=5&q=%@",
+				 stringWithFormat:@"%@/api/restaurantSearch?lat=%.3f&lng=%.3f&distance=%d&limit=10&q=%@",
 				 NETWORKHOST,
 				 l.coordinate.latitude,
 				 l.coordinate.longitude, 
 				 self.currentSearchDistance,
 				 [self.currentSearchTerm lowercaseString]];
 	urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-	
 	[self networkQuery:urlString];
 }
 

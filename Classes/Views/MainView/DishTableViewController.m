@@ -163,7 +163,7 @@
 	}
 	
 	urlString = [NSString 
-				 stringWithFormat:@"%@/api/dishSearch?lat=%f&lng=%f&distance=%d&limit=%d&tags=%@q=%@",
+				 stringWithFormat:@"%@/api/dishSearch?lat=%.3f&lng=%.3f&distance=%d&limit=%d&tags=%@&q=%@",
 				 NETWORKHOST,
 				 l.coordinate.latitude,
 				 l.coordinate.longitude, 
@@ -173,7 +173,7 @@
 				 [self.currentSearchTerm lowercaseString]];
 	urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
 	
-	
+	NSLog(@"url string is %@", urlString);
 	[self networkQuery:urlString];
 }
 
@@ -299,7 +299,6 @@
 
 -(void)buildRestaurantNetworkGrab:(NSNotification *)notification {
 	DLog(@"begin the network request to get the restaurants");
-	DLog(@"the notification is %@", [notification userInfo]);
 		
 	if ([[[notification userInfo] objectForKey:@"restaurantIds"] count]) {
 		
@@ -337,13 +336,20 @@
 	[ret sortUsingSelector:@selector(compare:)];
 	return ret;
 }
+
 -(NSString *) filterTagsList {
 	AppModel *app = [AppModel instance];
 	
-	return [NSString stringWithFormat:@"%@,%@,%@,%@,%@", app.selectedPrice, app.selectedMeal,
-	 app.selectedCuisine, app.selectedAllergen, app.selectedLifestyle];
+	
+	return [NSString stringWithFormat:@"%@,%@,%@,%@,%@", 
+			app.selectedPrice ? app.selectedPrice : @"", 
+			app.selectedMeal ? app.selectedMeal : @"",
+			app.selectedCuisine ? app.selectedCuisine : @"", 
+			app.selectedAllergen ? app.selectedAllergen : @"", 
+			app.selectedLifestyle ? app.selectedLifestyle : @""];
 	
 }
+
 -(void) populatePredicateArray:(NSMutableArray *)filterPredicateArray{
 	NSPredicate *filterPredicate;
 	AppModel *app = [AppModel instance];
