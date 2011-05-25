@@ -18,18 +18,19 @@
 @end
 
 @interface LeaveFeedbackViewController : UIViewController {
-	id <LeaveFeedbackViewControllerDelegate> mFeedbackDelegate;
+	id <LeaveFeedbackViewControllerDelegate, MBProgressHUDDelegate> mFeedbackDelegate;
 	
 	UITextView	*mFeedbackTextView;
 	
-	MBProgressHUD *mHud;
-
+	MBProgressHUD	*mHud;
+	BOOL			mSuccess;
 }
 
 @property (nonatomic, retain) id<LeaveFeedbackViewControllerDelegate> feedbackDelegate;
 @property (nonatomic, retain) IBOutlet UITextView *feedbackTextView;
 
-@property (nonatomic, retain) MBProgressHUD *hud;
+@property (nonatomic, retain) MBProgressHUD		*hud;
+@property (nonatomic, assign) BOOL				success;
 
 +(LeaveFeedbackViewController *)viewControllerWithDelegate:(id<LeaveFeedbackViewControllerDelegate>)delegate;
 

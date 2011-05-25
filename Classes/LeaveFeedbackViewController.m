@@ -19,6 +19,7 @@
 @synthesize feedbackTextView = mFeedbackTextView;
 
 @synthesize hud				= mHud;
+@synthesize success			= mSuccess;
 
 +(LeaveFeedbackViewController *)viewControllerWithDelegate:(id<LeaveFeedbackViewControllerDelegate>)delegate{
 	LeaveFeedbackViewController *viewController = [[[LeaveFeedbackViewController alloc] init] autorelease];
@@ -35,22 +36,34 @@
 
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	
-	NSString *feedbackString = [NSString stringWithFormat:@"%@ \n\nAuthKey:%@", 
+	NSString *feedbackString = [NSString stringWithFormat:@"%@ \nAuthKey:%@", 
 								self.feedbackTextView.text, 
 								[[[AppModel instance] user] objectForKey:keyforauthorizing]];
 	NSLog(@"feedback is %@", feedbackString);
 	
-	[request setPostValue:feedbackString forKey:@"feedback"];	
+	[request setPostValue:feedbackString 
+				   forKey:@"feedback"];	
+	
+	[request setPostValue:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]
+				   forKey:@"platform"];	
+	[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing]
+				   forKey:@"apiKey"];	
 	[request setDelegate:self];
 	[request startAsynchronous];
 	
+	self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+	self.hud.labelText = @"Submitting Feedback...";
+	self.hud.delegate = self;
+	self.view.userInteractionEnabled = NO;
+
 }
 
 #pragma mark - Network responses
 - (void)requestFinished:(ASIHTTPRequest *)request {
 	NSString *responseString = [request responseString];
+	self.hud.labelText = @"Thanks for the feedback";
 
-	DLog(@"didFinishLoading dishDetailViewController start");
+	DLog(@"didFinishLoading start");
 	
 	SBJSON *parser = [SBJSON new];
 	NSError *error;
@@ -58,15 +71,21 @@
 	NSDictionary *responseAsDictionary = [parser objectWithString:responseString 
 															error:&error];
 	DLog(@"response is %@", responseAsDictionary);
-	[self.feedbackDelegate feedbackSubmitted];
+	[self.hud hide:YES afterDelay:2];
+	self.success = TRUE;
 
+}
+- (void)hudWasHidden {
+	if (self.success)
+		[self.feedbackDelegate feedbackSubmitted];
+	self.view.userInteractionEnabled = YES;
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
 	DLog(@"error %@", [request error]);
-	self.hud.labelText = @"Error while Submitting feedback";
-	[self.hud hide:YES afterDelay:2]; 
+	self.hud.labelText = @"Error while Submitting feedback\nTry again in a minute.";
+	[self.hud hide:YES afterDelay:4]; 
 }
 
 #pragma mark - general memory stuff

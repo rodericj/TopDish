@@ -146,13 +146,13 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+	if ([[[AppModel instance] facebook] isSessionValid])
+		[[AppModel instance] logoutWithDelegate:nil];
+	
 	self.fbLoginButton.isLoggedIn = [[[AppModel instance] facebook] isSessionValid];
 	
 	[self.fbLoginButton updateImage];
 	
-	//in the off chance that we've logged in since we loaded
-	if (self.fbLoginButton.isLoggedIn)
-		[[AppModel instance] logoutWithDelegate:nil];
 }
 
 - (void)viewDidUnload {
