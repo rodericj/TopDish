@@ -55,9 +55,9 @@
 	
 	self.googleLoginView.hidden = NO;
 	
-	//NSString *loginURL = [NSString stringWithFormat:@"%@/api/googleAuth?redirect=td://googleAuthResponse", NETWORKHOST];
-	//NSURL *url = [NSURL URLWithString:loginURL];
-	NSURL *url = [NSURL URLWithString:@"http://0519.topdish1.appspot.com/api/googleAuth?redirect=td://googleAuthResponse"];
+	NSString *loginURL = [NSString stringWithFormat:@"%@/api/googleAuth?redirect=td://googleAuthResponse", NETWORKHOST];
+	NSURL *url = [NSURL URLWithString:loginURL];
+	//NSURL *url = [NSURL URLWithString:@"http://0519.topdish1.appspot.com/api/googleAuth?redirect=td://googleAuthResponse"];
 	NSURLRequest *request = [NSURLRequest requestWithURL:url];
 	[self.googleLoginView loadRequest:request];
 	
