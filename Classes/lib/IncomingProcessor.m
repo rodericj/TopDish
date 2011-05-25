@@ -401,6 +401,9 @@
 	if(error != nil){
 		DLog(@"jsoning error %@", error);
 		DLog(@"the offensive json %@", responseText);
+		if ([self.incomingProcessorDelegate respondsToSelector:@selector(saveError:)])
+			[self.incomingProcessorDelegate saveError:@"Bad data from the Server"];
+
 		NSAssert(NO, @"bad json");
 	}
 
