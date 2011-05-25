@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
 @protocol LeaveFeedbackViewControllerDelegate
 
@@ -21,11 +22,14 @@
 	
 	UITextView	*mFeedbackTextView;
 	
+	MBProgressHUD *mHud;
+
 }
 
 @property (nonatomic, retain) id<LeaveFeedbackViewControllerDelegate> feedbackDelegate;
 @property (nonatomic, retain) IBOutlet UITextView *feedbackTextView;
 
+@property (nonatomic, retain) MBProgressHUD *hud;
 
 +(LeaveFeedbackViewController *)viewControllerWithDelegate:(id<LeaveFeedbackViewControllerDelegate>)delegate;
 

@@ -897,7 +897,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: roderic campbell";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: TopDish Inc.";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = NS_BLOCK_ASSERTIONS;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -905,7 +905,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "24BE50D0-110F-4C88-A330-0376DDE37DC5";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B39ED82D-5FE3-4C16-B1E4-67DBA421ABF0";
 				SDKROOT = iphoneos;
 			};
 			name = AdHoc;
@@ -915,7 +915,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: TopDish Inc.";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TopDish_Prefix.pch;
@@ -925,7 +925,7 @@
 					"\"$(SRCROOT)/objectiveresource/samples/google_toolbar/TigerGcov\"",
 				);
 				PRODUCT_NAME = TopDish;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B39ED82D-5FE3-4C16-B1E4-67DBA421ABF0";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = AdHoc;

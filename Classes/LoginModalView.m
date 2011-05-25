@@ -89,41 +89,43 @@
 	
 	
 	//setup the delegate notifications
-	[[NSNotificationCenter defaultCenter] addObserver:self.delegate
-											 selector:@selector(loginComplete)
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(appModelLoginComplete)
 												 name:NSNotificationStringDoneLogin 
 											   object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self.delegate
-											 selector:@selector(facebookLoginComplete)
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(appModelFacebookLoginComplete)
 												 name:NSNotificationStringDoneFacebookLogin 
 											   object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self.delegate
-											 selector:@selector(loginFailed)
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(appModelLoginFailed)
 												 name:NSNotificationStringFailedLogin 
 											   object:nil];
 }
 
 #pragma mark -
 #pragma mark Login steps and Hud stuff
--(void)loginFailed {
+-(void)appModelLoginFailed {
 	DLog(@"facebook login failed");
 	self.hud.labelText = @"Login Failed";
 	self.hud.delegate = self;
 	self.view.userInteractionEnabled = YES;
 	
 }
--(void)facebookLoginComplete {
+-(void)appModelFacebookLoginComplete {
 	DLog(@"facebook login complete");
 	self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 	self.hud.labelText = @"Logging in with TopDish";
 	self.hud.delegate = self;
 	self.view.userInteractionEnabled = NO;
+	[self.delegate facebookLoginComplete];
 }
 
--(void)loginComplete {
+-(void)appModelLoginComplete {
 	DLog(@"login complete");
 	self.hud.labelText = @"Successfully logged in.";
 	[self.hud hide:YES];
+	[self.delegate loginComplete];
 }
 
 #pragma mark -
@@ -151,7 +153,6 @@
 	//in the off chance that we've logged in since we loaded
 	if (self.fbLoginButton.isLoggedIn)
 		[[AppModel instance] logoutWithDelegate:nil];
-	
 }
 
 - (void)viewDidUnload {

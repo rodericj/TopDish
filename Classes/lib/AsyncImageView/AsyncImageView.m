@@ -74,7 +74,6 @@ static ImageCache *imageCache = nil;
 	
     if (imageCache == nil) // lazily create image cache
         imageCache = [[ImageCache alloc] initWithMaxSize:2*1024*1024];  // 2 MB Image cache
-	NSLog(@"aight, the url string is %@", [url absoluteString]);
 
     [urlString release];
     urlString = [[url absoluteString] copy];
@@ -98,8 +97,6 @@ static ImageCache *imageCache = nil;
     
     UIActivityIndicatorView *spinny = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     spinny.tag = SPINNY_TAG;
-	CGRect f = self.frame;
-	NSLog(@"frame = %d %d %d %d", f.origin.x, f.origin.y, f.size.height, f.size.width);
     spinny.center = self.center;
     [spinny startAnimating];
     [self addSubview:spinny];

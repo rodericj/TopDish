@@ -119,11 +119,9 @@
 	UIImageView *voteDirectionImage = (UIImageView *)[cell viewWithTag:3];
 	if ([voteDirection intValue] == 1) {
 		voteDirectionImage.image = [UIImage imageNamed:@"thumbsup.jpg"];
-		NSLog(@"thumbs up");
 	}
 	else {
 		voteDirectionImage.image = [UIImage imageNamed:@"thumbsdown.jpg"];
-		NSLog(@"thumbs down");
 	}
 	
 	return (UITableViewCell *)cell;
@@ -196,8 +194,6 @@
 	
 	CGRect r = [self.dishImageView frame];
 	DLog(@"view did load for %@", [self.thisDish objName]);
-	
-
 	
 	if( [[self.thisDish photoURL] length] > 0 ){
 		AsyncImageView *asyncImageView = [[[AsyncImageView alloc] initWithFrame:CGRectMake(0, 0, r.size.width, r.size.height)] autorelease];

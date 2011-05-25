@@ -58,7 +58,6 @@
         abort();
     }
 	NSArray *results = [aFetchedResultsController fetchedObjects];
-	NSLog(@"results = %@", results);
 	
 	[fetchRequest release];
 	[sortDescriptor release];

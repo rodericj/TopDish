@@ -130,7 +130,7 @@
 		}	
 		NSAssert([dish price],([NSString stringWithFormat:@"%@ - %@", @"price must not be null", dish]));
 
-		DLog(@"dish is all set up, now fetch for restaurant %d", [dishDict objectForKey:@"restaurantID"]);
+		DLog(@"%@ is all set up, now fetch for restaurant %d", dish.objName, [dishDict objectForKey:@"restaurantID"]);
 		
 		//query it's restaurant
 		NSFetchRequest *restoFetchRequest = [[NSFetchRequest alloc] init];
@@ -149,16 +149,13 @@
 		Restaurant *restaurant;
 		//   if it exists, update
 		if ([restosMatching count] == 1) {
-			DLog(@"we have this restaurant");
 			restaurant = [restosMatching objectAtIndex:0];
 		}		
 		//   else 
 		else if ([restosMatching count] == 0) {
-			DLog(@"create a new restaurant since it's the first time we've seen it");
 			restaurant = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" 
 																	 inManagedObjectContext:mManagedObjectContext];	
 			[newRestaurantsWeNeedToGet addObject:[dishDict objectForKey:@"restaurantID"]];
-			DLog(@"done creating the new restaurant");
 		}
 		else
 			NSAssert(TRUE, @"Too many restaurants for a given dish when queried");
@@ -355,7 +352,6 @@
 					[dish setAllergenType:[tag objectForKey:@"id"]];
 			}	
 			NSAssert([dish price],([NSString stringWithFormat:@"%@ - %@", @"price must not be null", dish]));
-			NSLog(@"this restaurant is %@", restaurant);
 		}
 	}
 	NSError *error;

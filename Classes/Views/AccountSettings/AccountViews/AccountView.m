@@ -56,19 +56,23 @@
 -(void)viewDidAppear:(BOOL)animated {
 	self.fBLoginButton.isLoggedIn = [[AppModel instance].facebook isSessionValid];
 	[self.fBLoginButton updateImage];
-	self.logoutButton.hidden = NO;
-	self.fBLoginButton.hidden = NO;
+	self.logoutButton.hidden = YES;
+	self.fBLoginButton.hidden = YES;
 
 	
 	if ([[AppModel instance].facebook isSessionValid]) {
 		[self fetchFacebookMe];
 		NSLog(@"do some things");
+		self.fBLoginButton.hidden = NO;
+
 		self.logoutButton.hidden = YES;
 	}
 	else if ([[AppModel instance] isLoggedIn]) {
 		//Make button look normal
 		[self.fBLoginButton setTitle:@"Logout" forState:UIControlStateNormal];
 		self.fBLoginButton.hidden = YES;
+		self.logoutButton.hidden = NO;
+
 	}
 	else if(!mPendingLogin) {
 		[self presentModalViewController:[LoginModalView viewControllerWithDelegate:self] 
@@ -210,7 +214,6 @@
 		//do nothing
 	}
 	else{
-		DLog(@"did load %@", result);
 		
 		if ([result objectForKey:@"first_name"] && [result objectForKey:@"last_name"]) {
 			

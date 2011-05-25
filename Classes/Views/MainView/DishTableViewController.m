@@ -173,7 +173,6 @@
 				 [self.currentSearchTerm lowercaseString]];
 	urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
 	
-	NSLog(@"url string is %@", urlString);
 	[self networkQuery:urlString];
 }
 
