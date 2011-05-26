@@ -15,14 +15,7 @@
 @synthesize fbLoginButton	= mFbLoginButton;
 @synthesize delegate		= mDelegate;
 @synthesize	hud				= mHud;
-@synthesize notNowLabel		= mNotNowLabel;
 @synthesize googleLoginView	= mGoogleLoginView;
-
-
--(void)handleNotNowGesture:(UITapGestureRecognizer *)recognizer {
-	[AppModel instance].userDelayedLogin = YES;
-	[self.delegate noLoginNow];
-}
 
 /**
  * Show the authorization dialog.
@@ -36,6 +29,15 @@
 	[[[AppModel instance] facebook] logout:[AppModel instance]];
 }
 
+#pragma mark - IBActions
+
+/**
+ * Not now clicked, the user will log in later I guess
+ */
+- (IBAction)notNowButtonClick:(id)sender {
+	[AppModel instance].userDelayedLogin = YES;
+	[self.delegate noLoginNow];
+}
 
 /**
  * Called on a login/logout button click.
@@ -64,7 +66,7 @@
 	
 }
 
-
+#pragma mark -
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -81,13 +83,7 @@
 
 -(void)viewDidLoad {
 	self.view.backgroundColor = kTopDishBackground;
-	
-	UITapGestureRecognizer *notNotGesture = [[UITapGestureRecognizer alloc]
-											initWithTarget:self action:@selector(handleNotNowGesture:)];
-    [self.notNowLabel addGestureRecognizer:notNotGesture];
-    [notNotGesture release];
-	
-	
+
 	//setup the delegate notifications
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(appModelLoginComplete)
@@ -166,7 +162,6 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	self.hud = nil;
 	
-	self.notNowLabel = nil;
 	self.googleLoginView = nil;
 	
     [super dealloc];
