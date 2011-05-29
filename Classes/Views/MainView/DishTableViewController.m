@@ -151,10 +151,6 @@
 }
 
 -(void)buildAndSendNetworkString{
-
-	DLog(@"Segmentedcontrol changed, the fetchedResults controller is %@", 
-		  self.fetchedResultsController);
-
 	NSString *urlString; 
 	CLLocation *l = [[AppModel instance] currentLocation];
 	
@@ -341,7 +337,7 @@
 	
 	
 	return [NSString stringWithFormat:@"%@,%@,%@,%@,%@", 
-			app.selectedPrice ? app.selectedPrice : @"", 
+			[app.selectedPrice length]? app.selectedPrice : @"", 
 			app.selectedMeal ? app.selectedMeal : @"",
 			app.selectedCuisine ? app.selectedCuisine : @"", 
 			app.selectedAllergen ? app.selectedAllergen : @"", 

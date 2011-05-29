@@ -393,10 +393,7 @@
 }
 
 -(void)buildAndSendNetworkString{
-	
-	DLog(@"Segmentedcontrol changed, the fetchedResults controller is %@", 
-		 self.fetchedResultsController);
-	
+
 	NSString *urlString; 
 	CLLocation *l = [[AppModel instance] currentLocation];
 	
@@ -431,11 +428,7 @@
 	NSDictionary *responseAsDictionary = [parser objectWithString:responseText 
 															error:&error];
 	if ([[responseAsDictionary objectForKey:@"dishes"] count] < kMinimumDishesToShow && self.currentSearchDistance < kMaxDistance) {
-		DLog(@"Need to resend with a larger radius: %d -> %d. UnRegister for notifications",
-			 [[responseAsDictionary objectForKey:@"dishes"] count], 
-			 self.currentSearchDistance, 
-			 self.currentSearchDistance*5);
-		
+		//Need to resend with a larger radius
 		self.currentSearchDistance *= 5;
 		
 		//Need to remove self from the observer list so we don't get redundant notifications
