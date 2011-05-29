@@ -190,7 +190,11 @@
 #pragma mark keyboard delegate
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{
-	textView.text = @"";
+	if (textView.tag == 0) {
+		textView.text = @"";
+		textView.tag = 1;
+	}
+	
 }
 
 
