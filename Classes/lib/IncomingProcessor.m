@@ -89,9 +89,8 @@
 
 		[dish setDish_id:[dishDict objectForKey:@"id"]];	
 		
-		NSString* unescaped_name = (NSString *) CFURLCreateStringByReplacingPercentEscapes (NULL,
-																							[dishDict objectForKey:@"name"],
-																							@"");
+		NSString *unescaped_name = [[dishDict objectForKey:@"name"] 
+									stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 		
 		[dish setObjName:unescaped_name];
 		[dish setDish_description:[dishDict objectForKey:@"description"]];
@@ -159,11 +158,11 @@
 			NSAssert(TRUE, @"Too many restaurants for a given dish when queried");
 		
 		[restaurant setRestaurant_id:[dishDict objectForKey:@"restaurantID"]];
-		NSString* unescaped_restoname = (NSString *) CFURLCreateStringByReplacingPercentEscapes (NULL,
-																							[dishDict objectForKey:@"restaurantName"],
-																							@"");
 		
-		[restaurant setObjName:unescaped_restoname];
+		unescaped_name = [[dishDict objectForKey:@"restaurantName"]
+						  stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+		
+		[restaurant setObjName:unescaped_name];
 		
 		//Should be no extra work setting lat/long and distance
 		[restaurant setLatitude:[dishDict objectForKey:@"latitude"]];
@@ -233,9 +232,8 @@
 			NSAssert(TRUE, @"There were too many restaurants matching a dish");
 		//populate the restaurant with data
 		//Do all of the restaurant data setting
-		NSString* unescaped_name = (NSString *) CFURLCreateStringByReplacingPercentEscapes (NULL,
-																							[restoDict objectForKey:@"name"],
-																							@"");
+		NSString *unescaped_name = [[restoDict objectForKey:@"name"]
+									stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 		
 		[restaurant setRestaurant_id:[restoDict objectForKey:@"id"]];
 		[restaurant setObjName:unescaped_name];
@@ -294,9 +292,8 @@
 				NSAssert(TRUE, @"Too many dishes matching a given restaurant");
 
 			//populate/update the dish
-			NSString* unescaped_name = (NSString *) CFURLCreateStringByReplacingPercentEscapes (NULL,
-																								[restoDishesDict objectForKey:@"name"],
-																								@"");
+			NSString *unescaped_name = [[restoDishesDict objectForKey:@"name"]
+										stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 			
 			[dish setDish_description:[restoDishesDict objectForKey:@"description"]];
 			[dish setDish_id:[restoDishesDict objectForKey:@"id"]];

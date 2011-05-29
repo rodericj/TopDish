@@ -690,7 +690,11 @@
 													 inManagedObjectContext:kManagedObjectContext];
 		
 		[newlyCreatedDish setDish_id:[dishDict objectForKey:@"id"]];
-		[newlyCreatedDish setObjName:[NSString stringWithFormat:@"%@", [dishDict objectForKey:@"name"]]];
+		
+		NSString *name = [dishDict objectForKey:@"name"];
+		NSString *unescaped_dishname = [name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+		
+		[newlyCreatedDish setObjName:unescaped_dishname];
 		[newlyCreatedDish setDish_description:[dishDict objectForKey:@"description"]];
 		[newlyCreatedDish setLatitude:[dishDict objectForKey:@"latitude"]];
 		[newlyCreatedDish setLongitude:[dishDict objectForKey:@"longitude"]];
