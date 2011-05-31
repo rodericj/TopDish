@@ -49,6 +49,7 @@
 @synthesize distanceTextLabel = mDistanceTextLabel;
 @synthesize currentSearchDistance = mCurrentSearchDistance;
 @synthesize fetchedResultsController = mFetchedResultsController;
+@synthesize currentSortIndicator = mCurrentSortIndicator;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -614,35 +615,60 @@
 {
 	DLog(@"sort by distance");
 	
-	if ([[AppModel instance] sorter] == kSortByDistance)
+	[UIView beginAnimations:@"distanceSort" context:NULL]; // Begin animation
+	
+	[self.currentSortIndicator setFrame:CGRectMake(176, 44, 29, 28)]; // Move imageView off screen
+	
+	if ([[AppModel instance] sorter] == kSortByDistance) {
 		[[AppModel instance] setSorter:-kSortByDistance];
+		self.currentSortIndicator.transform = CGAffineTransformMakeRotation(M_PI);
+	}
 	else {
 		[[AppModel instance] setSorter:kSortByDistance];
+		self.currentSortIndicator.transform = CGAffineTransformMakeRotation(0);
 	}
-	
+
+	[UIView commitAnimations]; // End animations
+
 	[self updateFetch];
 }
 -(IBAction) sortByRating
 {
-	DLog(@"sort by Rating %d", [[AppModel instance] sorter]);
-	if ([[AppModel instance] sorter] == -kSortByRating)
-		[[AppModel instance] setSorter:kSortByRating];
-	else {
-		[[AppModel instance] setSorter:-kSortByRating];
-	}
+	[UIView beginAnimations:@"ratingSort" context:NULL]; // Begin animation
 
+	[self.currentSortIndicator setFrame:CGRectMake(281, 44, 29, 28)]; // Move imageView off screen
+
+	DLog(@"sort by Rating %d", [[AppModel instance] sorter]);
+	if ([[AppModel instance] sorter] == -kSortByRating) {
+		[[AppModel instance] setSorter:kSortByRating];
+		self.currentSortIndicator.transform = CGAffineTransformMakeRotation(M_PI);
+	}
+	else {
+		[[AppModel instance] setSorter:-kSortByRating];	
+		self.currentSortIndicator.transform = CGAffineTransformMakeRotation(0);
+
+	}
+	[UIView commitAnimations]; // End animations
 	[self updateFetch];
 }
 -(IBAction) sortByPrice
 {
+	[UIView beginAnimations:@"priceSort" context:NULL]; // Begin animation
+
+	[self.currentSortIndicator setFrame:CGRectMake(70, 44, 29, 28)]; // Move imageView off screen
+
 	DLog(@"sort by Price");
 	
-	if ([[AppModel instance] sorter] == kSortByPrice)
+	if ([[AppModel instance] sorter] == kSortByPrice) {
 		[[AppModel instance] setSorter:-kSortByPrice];
+		self.currentSortIndicator.transform = CGAffineTransformMakeRotation(M_PI);
+	}
 	else {
 		[[AppModel instance] setSorter:kSortByPrice];
+		self.currentSortIndicator.transform = CGAffineTransformMakeRotation(0);
 	}
-	
+	[UIView commitAnimations]; // End animations
+
 	[self updateFetch];
 }
 
@@ -857,7 +883,7 @@
 	DLog(@"************************************* Dealloc. This probably shouldn't happen too often");
 	self.addItemCell = nil;
 	self.tvCell = nil;
-	
+	self.currentSortIndicator = nil;
 	self.currentSearchTerm = nil;
 	
 	self.bgImage = nil;

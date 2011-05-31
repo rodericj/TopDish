@@ -45,6 +45,8 @@ DistanceUpdatorDelegate> {
 	DishTableViewCell				*mTvCell;
 
 	NSMutableDictionary *mConnectionLookup;
+	
+	UIImageView			*mCurrentSortIndicator;
 }
 
 - (void) updateFetch;
@@ -70,6 +72,7 @@ DistanceUpdatorDelegate> {
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
+@property (nonatomic, retain) IBOutlet	UIImageView		*currentSortIndicator;
 
 -(void) networkQuery:(NSString *)query;
 -(void) pushDishViewController:(ObjectWithImage *) selectedObject;
