@@ -11,8 +11,10 @@
 #import "JSON.h"
 #import "asyncimageview.h"
 #import "RestaurantAnnotation.h"
+#import "FeedbackStringProcessor.h"
 
 #import "ASIFormDataRequest.h"
+#import "ASIHTTPRequest.h"
 #import "AppModel.h"
 
 #define kFlagRequestObject 0
@@ -35,6 +37,8 @@
 
 @synthesize flagView				= mFlagView;
 @synthesize menuSectionHeaderView	= mMenuSectionHeaderView;
+
+@synthesize hud						= mHud;
 #pragma mark -
 #pragma mark networking
 
@@ -255,6 +259,12 @@
 	if ([info objectForKey:@"UIImagePickerControllerEditedImage"]) {
 		self.newPicture = [info objectForKey:@"UIImagePickerControllerEditedImage"];
 
+		self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+		self.hud.labelText = @"Uploading photo...";
+		self.hud.delegate = self;
+		self.hud.mode = MBProgressHUDModeIndeterminate;
+		self.view.userInteractionEnabled = NO;
+		
 		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
 		ASIFormDataRequest *newRequest = [ASIFormDataRequest requestWithURL:url];
 		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
@@ -280,6 +290,15 @@
 }
 #pragma mark -
 #pragma mark network
+- (void)requestFailed:(ASIHTTPRequest *)request {
+	self.hud.labelText = @"Oops, error with the network. Try again later.";
+	[self.hud hide:YES afterDelay:3];
+	self.view.userInteractionEnabled = YES;
+   // if ([error isKindOfClass:[ASIRequestTimedOutError class]]) {
+		NSLog(@"request failed");
+	//}
+}
+
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
 	// Use when fetching text data
@@ -302,6 +321,13 @@
 									  delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 		[a show];
 		[a release];
+		return;
+	}
+	
+	//Send feedback if broken
+	if (request.responseStatusCode != 200 && ![[request.url absoluteString] hasPrefix:@"sendUserFeedback"]) {
+		NSString *message = [FeedbackStringProcessor buildStringFromRequest:request];
+		[FeedbackStringProcessor SendFeedback:message delegate:nil];
 		return;
 	}
 	
@@ -337,6 +363,10 @@
 		return;
 		
 	}
+	self.hud.labelText = @"Successfully submitted the image";
+	[self.hud hide:NO afterDelay:3];
+	self.view.userInteractionEnabled = YES;
+	
 	DLog(@"done!");
 }
 
@@ -534,6 +564,7 @@
 	self.flagView = nil;
 	
 	self.menuSectionHeaderView = nil;
+	self.hud = nil;
     [super dealloc];
 }
 

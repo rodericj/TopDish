@@ -11,7 +11,7 @@
 #import "ASIFormDataRequest.h"
 #import "AppModel.h"
 #import "JSON.h"
-
+#import "FeedbackStringProcessor.h"
 
 @implementation LeaveFeedbackViewController
 
@@ -32,30 +32,12 @@
 }
 
 -(IBAction)submitFeedback {
-	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/sendUserFeedback"]];
-
-	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-	
-	NSString *feedbackString = [NSString stringWithFormat:@"%@ \nAuthKey:%@", 
-								self.feedbackTextView.text, 
-								[[[AppModel instance] user] objectForKey:keyforauthorizing]];
-	NSLog(@"feedback is %@", feedbackString);
-	
-	[request setPostValue:feedbackString 
-				   forKey:@"feedback"];	
-	
-	[request setPostValue:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]
-				   forKey:@"platform"];	
-	[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing]
-				   forKey:@"apiKey"];	
-	[request setDelegate:self];
-	[request startAsynchronous];
+	[FeedbackStringProcessor SendFeedback:self.feedbackTextView.text delegate:self];
 	
 	self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 	self.hud.labelText = @"Submitting Feedback...";
 	self.hud.delegate = self;
 	self.view.userInteractionEnabled = NO;
-
 }
 
 #pragma mark - Network responses
@@ -64,6 +46,15 @@
 	self.hud.labelText = @"Thanks for the feedback";
 
 	DLog(@"didFinishLoading start");
+	
+	//Send feedback if broken
+	if (request.responseStatusCode != 200 && ![[request.url absoluteString] hasPrefix:@"sendUserFeedback"]) {
+		NSString *message = [FeedbackStringProcessor buildStringFromRequest:request];
+		[FeedbackStringProcessor SendFeedback:message delegate:nil];
+		self.hud.labelText = message;
+		[self.hud hide:YES afterDelay:3];
+		return;
+	}
 	
 	SBJSON *parser = [SBJSON new];
 	NSError *error;

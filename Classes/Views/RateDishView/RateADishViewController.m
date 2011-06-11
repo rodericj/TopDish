@@ -12,6 +12,7 @@
 #import "AppModel.h"
 #import "TopDishAppDelegate.h"
 #import "JSON.h"
+#import "FeedbackStringProcessor.h"
 
 #define kDishHeaderSection 0
 #define kDishCommentSection 1
@@ -352,6 +353,16 @@
 	NSString *responseString = [request responseString];
 		
 	DLog(@"response string for this dish or photo is %@", responseString);
+	
+	//Send feedback if broken
+	if (request.responseStatusCode != 200 && ![[request.url absoluteString] hasPrefix:@"sendUserFeedback"]) {
+		NSString *message = [FeedbackStringProcessor buildStringFromRequest:request];
+		[FeedbackStringProcessor SendFeedback:message delegate:nil];
+		mHUD.labelText = message;
+		[mHUD hide:YES afterDelay:3];
+		return;
+	}
+	
 	NSError *error;
 	SBJSON *parser = [SBJSON new];
 	NSDictionary *responseAsDict = [parser objectWithString:responseString error:&error];	

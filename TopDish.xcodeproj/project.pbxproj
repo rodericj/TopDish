@@ -22,6 +22,7 @@
 		17A5188C13A3067C00D47A3B /* filter_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 17A5188B13A3067C00D47A3B /* filter_on.png */; };
 		17A518FD13A312AB00D47A3B /* CommentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A518FB13A312AB00D47A3B /* CommentDetailViewController.m */; };
 		17A518FE13A312AB00D47A3B /* CommentDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17A518FC13A312AB00D47A3B /* CommentDetailViewController.xib */; };
+		17A519EF13A33D0400D47A3B /* FeedbackStringProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A519EE13A33D0400D47A3B /* FeedbackStringProcessor.m */; };
 		17A636831352795C00ED8842 /* CustomNSURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A636821352795C00ED8842 /* CustomNSURLConnection.m */; };
 		17A637961352AB3C00ED8842 /* thumbsup.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17A637951352AB3C00ED8842 /* thumbsup.jpg */; };
 		17A637981352AB4300ED8842 /* thumbsdown.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17A637971352AB4300ED8842 /* thumbsdown.jpg */; };
@@ -160,6 +161,8 @@
 		17A518FA13A312AB00D47A3B /* CommentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentDetailViewController.h; sourceTree = "<group>"; };
 		17A518FB13A312AB00D47A3B /* CommentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentDetailViewController.m; sourceTree = "<group>"; };
 		17A518FC13A312AB00D47A3B /* CommentDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentDetailViewController.xib; sourceTree = "<group>"; };
+		17A519ED13A33D0400D47A3B /* FeedbackStringProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackStringProcessor.h; sourceTree = "<group>"; };
+		17A519EE13A33D0400D47A3B /* FeedbackStringProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackStringProcessor.m; sourceTree = "<group>"; };
 		17A636811352795C00ED8842 /* CustomNSURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNSURLConnection.h; sourceTree = "<group>"; };
 		17A636821352795C00ED8842 /* CustomNSURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNSURLConnection.m; sourceTree = "<group>"; };
 		17A637951352AB3C00ED8842 /* thumbsup.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thumbsup.jpg; sourceTree = "<group>"; };
@@ -396,6 +399,8 @@
 		1792A82E136A65C20058B8B7 /* Feedback */ = {
 			isa = PBXGroup;
 			children = (
+				17A519ED13A33D0400D47A3B /* FeedbackStringProcessor.h */,
+				17A519EE13A33D0400D47A3B /* FeedbackStringProcessor.m */,
 				1792A82F136A65D10058B8B7 /* LeaveFeedbackViewController.h */,
 				1792A830136A65D10058B8B7 /* LeaveFeedbackViewController.m */,
 				1792A831136A65D10058B8B7 /* LeaveFeedbackViewController.xib */,
@@ -900,6 +905,7 @@
 				1714C3BD13778C3F009E1BDA /* MBProgressHUD.m in Sources */,
 				17A8A4E4137B9EAC002C5FBB /* DistanceUpdator.m in Sources */,
 				17A518FD13A312AB00D47A3B /* CommentDetailViewController.m in Sources */,
+				17A519EF13A33D0400D47A3B /* FeedbackStringProcessor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1037,7 +1043,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_PROFILING_CODE = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "24BE50D0-110F-4C88-A330-0376DDE37DC5";

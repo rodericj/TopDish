@@ -9,6 +9,7 @@
 #import "AppModel.h"
 #import "constants.h"
 #import "JSON.h"
+#import "FeedbackStringProcessor.h"
 
 @implementation AppModel
 
@@ -238,6 +239,12 @@ AppModel *gAppModelInstance = nil;
 		return;
 	}
 	
+	//Send feedback if broken
+	if (request.responseStatusCode != 200 && ![[request.url absoluteString] hasPrefix:@"sendUserFeedback"]) {
+		NSString *message = [FeedbackStringProcessor buildStringFromRequest:request];
+		[FeedbackStringProcessor SendFeedback:message delegate:nil];
+		return;
+	}
 	// Use when fetching binary data
 	
 	NSError *error;

@@ -14,6 +14,7 @@
 #import "ASIFormDataRequest.h"
 #import "AppModel.h"
 #import "CommentDetailViewController.h"
+#import "FeedbackStringProcessor.h"
 
 #define kImageSection 0
 #define kDescriptionSection 1
@@ -411,6 +412,15 @@
 									  delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 		[a show];
 		[a release];
+		return;
+	}
+	
+	//Send feedback if broken
+	if (request.responseStatusCode != 200 && ![[request.url absoluteString] hasPrefix:@"sendUserFeedback"]) {
+		NSString *message = [FeedbackStringProcessor buildStringFromRequest:request];
+		[FeedbackStringProcessor SendFeedback:message delegate:nil];
+		self.hud.labelText = message;
+		[self.hud hide:YES afterDelay:3];
 		return;
 	}
 	

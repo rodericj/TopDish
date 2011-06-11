@@ -13,6 +13,7 @@
 #import "TopDishAppDelegate.h"
 #import "JSON.h"
 #import "Dish.h"
+#import "FeedbackStringProcessor.h"
 
 #define kRestaurantSection 0
 #define kDishNameSection 1
@@ -603,6 +604,15 @@
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
 	DLog(@"response string for any of these calls %@", responseString);
+	
+	//Send feedback if broken
+	if (request.responseStatusCode != 200 && ![[request.url absoluteString] hasPrefix:@"sendUserFeedback"]) {
+		NSString *message = [FeedbackStringProcessor buildStringFromRequest:request];
+		[FeedbackStringProcessor SendFeedback:message delegate:nil];
+		mHUD.labelText = message;
+		[mHUD hide:YES afterDelay:3];
+		return;
+	}
 	
 	NSError *error;
 	SBJSON *parser = [SBJSON new];

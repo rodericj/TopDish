@@ -14,6 +14,7 @@
 #import "constants.h"
 #import "AppModel.h"
 #import "RestaurantList.h"
+#import "FeedbackStringProcessor.h"
 
 @implementation TopDishAppDelegate
 
@@ -40,6 +41,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    	
     //execute mobile init
+//	NSURL *badurl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/mobileInits", NETWORKHOST]];	
+//	ASIFormDataRequest *requestBad = [ASIFormDataRequest requestWithURL:badurl];
+//	[requestBad setPostValue:nil forKey:@"comment"];
+//	[requestBad setDelegate:self];
+//	[requestBad startAsynchronous];
+	
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/mobileInit", NETWORKHOST]];	
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	
@@ -116,6 +123,11 @@ NSInteger intSort(id num1, id num2, void *context)
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {	
+	if (request.responseStatusCode != 200 && ![[request.url absoluteString] hasPrefix:@"sendUserFeedback"]) {
+		NSString *message = [FeedbackStringProcessor buildStringFromRequest:request];
+		[FeedbackStringProcessor SendFeedback:message delegate:nil];
+		return;
+	}
 	// Use when fetching binary data
 	NSString *responseText = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
 	SBJSON *parser = [SBJSON new];

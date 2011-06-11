@@ -13,7 +13,7 @@
 #import "constants.h"
 
 @implementation NearbyMapViewController
-@synthesize mapView;
+@synthesize myMapView = mMyMapView;
 @synthesize nearbyObjects;
 @synthesize objectMap = mObjectMap;
 
@@ -59,7 +59,7 @@
 		[thisAnnotation setTitle:[restOrDishObject objName]];
 		[thisAnnotation setThisObjectWithImage:restOrDishObject];
 		
-		[mapView addAnnotation:thisAnnotation];
+		[self.myMapView addAnnotation:thisAnnotation];
 		[thisAnnotation release];
 	}
 	CLLocationCoordinate2D center;
@@ -74,7 +74,7 @@
 
 	//Set up the span
 	m.span = span;
-	[mapView setRegion:m animated:YES];
+	[self.myMapView setRegion:m animated:YES];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation{
@@ -87,7 +87,7 @@
 		static NSString *DishAnnotationIdentifier = @"stringAnnotationIdentifier";
 
 		MKPinAnnotationView *annotationView = (MKPinAnnotationView *)
-			[mapView dequeueReusableAnnotationViewWithIdentifier:DishAnnotationIdentifier];
+			[self.myMapView dequeueReusableAnnotationViewWithIdentifier:DishAnnotationIdentifier];
 		
 		if(!annotationView){
 			annotationView = [[[MKPinAnnotationView alloc]
@@ -140,9 +140,24 @@
 	}
 }
 
+#pragma mark - Map Movement
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+	
+	CLLocation *rightSide = [[CLLocation alloc] initWithLatitude: mapView.centerCoordinate.latitude + (mapView.region.span.latitudeDelta)
+													   longitude:mapView.centerCoordinate.longitude];
+	CLLocation *center = [[CLLocation alloc] initWithLatitude:mapView.centerCoordinate.latitude
+													longitude:mapView.centerCoordinate.longitude];
+	float dist = [rightSide distanceFromLocation:center]/kOneMileInMeters;
+	NSLog(@"the map moved %f %f %f %f", mapView.centerCoordinate.latitude, mapView.centerCoordinate.longitude, mapView.region.span.latitudeDelta, dist);
+	
+	
+	[rightSide release];
+	[center release];
+}
+
 -(void)dealloc {
-	self.mapView.delegate = nil;
-	self.mapView = nil;
+	self.myMapView.delegate = nil;
+	self.myMapView = nil;
 	self.nearbyObjects = nil;
 	self.objectMap = nil;
 	[super dealloc];

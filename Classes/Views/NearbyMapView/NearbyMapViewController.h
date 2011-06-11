@@ -10,13 +10,13 @@
 #import <MapKit/MapKit.h>
 
 @interface NearbyMapViewController : UIViewController <MKMapViewDelegate> {
-	MKMapView *mapView;
+	MKMapView *mMyMapView;
 	NSArray *nearbyObjects;
 	NSMutableDictionary *mObjectMap;
 @private
 	
 }
-@property (nonatomic, retain) IBOutlet MKMapView *mapView;
+@property (nonatomic, retain) IBOutlet MKMapView *myMapView;
 @property (nonatomic, retain) NSArray *nearbyObjects;
 @property (nonatomic, retain) NSMutableDictionary *objectMap;
 

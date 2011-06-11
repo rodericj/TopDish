@@ -20,7 +20,8 @@ UINavigationControllerDelegate,
 UIImagePickerControllerDelegate,
 AddADishProtocolDelegate,
 IncomingProcessorDelegate,
-LoginModalViewDelegate> {
+LoginModalViewDelegate,
+MBProgressHUDDelegate> {
 	
 	Restaurant			*restaurant;
 
@@ -48,6 +49,8 @@ LoginModalViewDelegate> {
 	UIButton			*mFlagView;
 	
 	UIView				*mMenuSectionHeaderView;
+	
+	MBProgressHUD		*mHud;
 }
 
 @property (nonatomic, retain)			Restaurant		*restaurant;
@@ -71,6 +74,8 @@ LoginModalViewDelegate> {
 
 @property (nonatomic, retain) IBOutlet	UIButton		*flagView;
 @property (nonatomic, retain) IBOutlet	UIView			*menuSectionHeaderView;
+
+@property (nonatomic, retain)			MBProgressHUD	*hud;
 
 -(IBAction)callRestaurant;
 -(IBAction) pushAddDishViewController;

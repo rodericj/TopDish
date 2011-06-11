@@ -157,7 +157,12 @@
 
 -(void)buildAndSendNetworkString{
 	NSString *urlString; 
-	CLLocation *l = [[AppModel instance] currentLocation];
+	CLLocation *currentLoc = [[AppModel instance] currentLocation];
+	
+	//If we don't have a location yet, bail (it's the middle 
+	//of the Lower Atlantic, Noone will ever be there.
+	if (!currentLoc) 
+		return;
 	
 	if (self.currentSearchTerm == nil) {
 		self.currentSearchTerm = @"";
@@ -166,8 +171,8 @@
 	urlString = [NSString 
 				 stringWithFormat:@"%@/api/dishSearch?lat=%.3f&lng=%.3f&distance=%d&limit=%d&tags=%@&q=%@",
 				 NETWORKHOST,
-				 l.coordinate.latitude,
-				 l.coordinate.longitude, 
+				 currentLoc.coordinate.latitude,
+				 currentLoc.coordinate.longitude, 
 				 self.currentSearchDistance,
 				 kSearchCountLimit,
 				 [self filterTagsList],
