@@ -274,6 +274,9 @@
 	
 	//just in case
 	[self.dishComment resignFirstResponder];
+	
+	[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:kSubmitButtonCell]
+						  atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 -(IBAction)noButtonClicked {
 	self.yesImage.hidden = YES;
@@ -282,6 +285,9 @@
 	
 	//just in case
 	[self.dishComment resignFirstResponder];
+	
+	[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:kSubmitButtonCell]
+						  atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 -(IBAction)submitRating {
