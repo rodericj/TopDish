@@ -12,8 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="17"/>
+			<integer value="39"/>
 			<integer value="32"/>
+			<integer value="17"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -315,6 +316,44 @@
 				<reference key="IBUIBackgroundColor" ref="604411449"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
+			<object class="IBUIView" id="564337029">
+				<reference key="NSNextResponder"/>
+				<int key="NSvFlags">292</int>
+				<object class="NSMutableArray" key="NSSubviews">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<object class="IBUILabel" id="256903721">
+						<reference key="NSNextResponder" ref="564337029"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{11, 0}, {290, 46}}</string>
+						<reference key="NSSuperview" ref="564337029"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<int key="IBUIContentMode">7</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<string key="IBUIText">Click a dish below to rate it: Not seeing your dish? Click the button at the bottom to add</string>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">Helvetica</string>
+							<double key="NSSize">12</double>
+							<int key="NSfFlags">16</int>
+						</object>
+						<reference key="IBUITextColor" ref="463712467"/>
+						<reference key="IBUIHighlightedColor" ref="463712467"/>
+						<int key="IBUIBaselineAdjustment">1</int>
+						<float key="IBUIMinimumFontSize">10</float>
+						<int key="IBUINumberOfLines">2</int>
+						<int key="IBUITextAlignment">1</int>
+						<int key="IBUILineBreakMode">0</int>
+					</object>
+				</object>
+				<string key="NSFrameSize">{321, 44}</string>
+				<reference key="NSSuperview"/>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">3</int>
+					<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
+				</object>
+				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -450,6 +489,14 @@
 					</object>
 					<int key="connectionID">38</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">menuSectionHeaderView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="564337029"/>
+					</object>
+					<int key="connectionID">41</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -562,6 +609,21 @@
 						<reference key="object" ref="955094180"/>
 						<reference key="parent" ref="289134326"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">39</int>
+						<reference key="object" ref="564337029"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="256903721"/>
+						</object>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">MenuHeader</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">40</int>
+						<reference key="object" ref="256903721"/>
+						<reference key="parent" ref="564337029"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -593,8 +655,13 @@
 					<string>33.IBViewBoundsToFrameTransform</string>
 					<string>36.IBPluginDependency</string>
 					<string>36.IBViewBoundsToFrameTransform</string>
+					<string>39.IBEditorWindowLastContentRect</string>
+					<string>39.IBPluginDependency</string>
+					<string>39.IBViewEditorWindowController.showingLayoutRectangles</string>
 					<string>4.IBEditorWindowLastContentRect</string>
 					<string>4.IBPluginDependency</string>
+					<string>40.IBPluginDependency</string>
+					<string>40.IBViewBoundsToFrameTransform</string>
 					<string>9.IBPluginDependency</string>
 					<string>9.IBViewBoundsToFrameTransform</string>
 				</object>
@@ -631,7 +698,7 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABDNwAAwsoAAA</bytes>
 					</object>
-					<string>{{-33, 756}, {320, 46}}</string>
+					<string>{{0, 756}, {320, 46}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -641,8 +708,15 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABDigAAwZgAAA</bytes>
 					</object>
+					<string>{{468, 725}, {321, 44}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<boolean value="YES"/>
 					<string>{{329, 276}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABDDAAAwZgAAA</bytes>
+					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABBIAAAwqQAAA</bytes>
@@ -665,7 +739,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">38</int>
+			<int key="maxID">41</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -808,6 +882,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addItemCell</string>
 							<string>bgImage</string>
+							<string>currentSortIndicator</string>
 							<string>distanceTextLabel</string>
 							<string>mSearchHeader</string>
 							<string>mTheSearchBar</string>
@@ -820,6 +895,7 @@
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UITableViewCell</string>
+							<string>UIImageView</string>
 							<string>UIImageView</string>
 							<string>UILabel</string>
 							<string>UIView</string>
@@ -837,6 +913,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addItemCell</string>
 							<string>bgImage</string>
+							<string>currentSortIndicator</string>
 							<string>distanceTextLabel</string>
 							<string>mSearchHeader</string>
 							<string>mTheSearchBar</string>
@@ -854,6 +931,10 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">bgImage</string>
+								<string key="candidateClassName">UIImageView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">currentSortIndicator</string>
 								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
@@ -961,6 +1042,7 @@
 							<string>mapOverlay</string>
 							<string>mapRow</string>
 							<string>mapView</string>
+							<string>menuSectionHeaderView</string>
 							<string>restaurantAddress</string>
 							<string>restaurantHeader</string>
 							<string>restaurantImage</string>
@@ -975,6 +1057,7 @@
 							<string>UIView</string>
 							<string>UITableViewCell</string>
 							<string>MKMapView</string>
+							<string>UIView</string>
 							<string>UILabel</string>
 							<string>UITableViewCell</string>
 							<string>UIImageView</string>
@@ -992,6 +1075,7 @@
 							<string>mapOverlay</string>
 							<string>mapRow</string>
 							<string>mapView</string>
+							<string>menuSectionHeaderView</string>
 							<string>restaurantAddress</string>
 							<string>restaurantHeader</string>
 							<string>restaurantImage</string>
@@ -1023,6 +1107,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">mapView</string>
 								<string key="candidateClassName">MKMapView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">menuSectionHeaderView</string>
+								<string key="candidateClassName">UIView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">restaurantAddress</string>

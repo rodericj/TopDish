@@ -19,22 +19,22 @@
 
 @implementation RestaurantDetailViewController
 @synthesize restaurant;
-@synthesize restaurantHeader = mRestaurantHeader;
-@synthesize mapRow = mMapRow;
-@synthesize restaurantName = mRestaurantName;
-@synthesize restaurantAddress = mRestaurantAddress;
-@synthesize restaurantPhone = mRestaurantPhone;
-@synthesize restaurantImage = mRestaurantImage;
-@synthesize mapView = mMapView;
-@synthesize mapOverlay = mMapOverlay;
-@synthesize mapButton = mMapButton;
+@synthesize restaurantHeader		= mRestaurantHeader;
+@synthesize mapRow					= mMapRow;
+@synthesize restaurantName			= mRestaurantName;
+@synthesize restaurantAddress		= mRestaurantAddress;
+@synthesize restaurantPhone			= mRestaurantPhone;
+@synthesize restaurantImage			= mRestaurantImage;
+@synthesize mapView					= mMapView;
+@synthesize mapOverlay				= mMapOverlay;
+@synthesize mapButton				= mMapButton;
 
-@synthesize cameraImage = mCameraImage;
-@synthesize newPicture = mNewPicture;
-@synthesize footerView = mFooterView;
+@synthesize cameraImage				= mCameraImage;
+@synthesize newPicture				= mNewPicture;
+@synthesize footerView				= mFooterView;
 
-@synthesize flagView = mFlagView;
-
+@synthesize flagView				= mFlagView;
+@synthesize menuSectionHeaderView	= mMenuSectionHeaderView;
 #pragma mark -
 #pragma mark networking
 
@@ -131,6 +131,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+	self.menuSectionHeaderView.backgroundColor = kTopDishBlue;
 	//hit the network and refresh our data
 	[self reloadView];
 	
@@ -188,6 +189,7 @@
 	return 1;
 }
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	DLog(@"section is %@", section);
     id <NSFetchedResultsSectionInfo> sectionInfo = 
@@ -212,6 +214,14 @@
 													 indexPathForRow:indexPath.row 
 													 inSection:indexPath.section]]];
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	return 44;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	return self.menuSectionHeaderView;
+}
+
 #pragma mark -
 #pragma mark action sheet delegate
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -523,6 +533,7 @@
 	self.mapView = nil;
 	self.flagView = nil;
 	
+	self.menuSectionHeaderView = nil;
     [super dealloc];
 }
 
