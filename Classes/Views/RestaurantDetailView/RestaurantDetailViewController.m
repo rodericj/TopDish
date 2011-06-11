@@ -33,6 +33,8 @@
 @synthesize newPicture = mNewPicture;
 @synthesize footerView = mFooterView;
 
+@synthesize flagView = mFlagView;
+
 #pragma mark -
 #pragma mark networking
 
@@ -275,8 +277,21 @@
 	DLog(@"response string for any of these calls %@", responseString);
 	
 	if ([[[request.url pathComponents] objectAtIndex:[[request.url pathComponents] count] - 1] isEqualToString:@"flagRestaurant"] ) {
-		//TODO handle the flag successfully or unsuccessfully happening
 		NSLog(@"this is a flag restaurant call, do something different");
+		UIAlertView *a;
+		NSString *message;
+		if (request.responseStatusCode == 200)
+			message = @"Your request flag this restaurant was successful. Thanks for making TopDish great!";
+		else  {
+			message = @"Your request to flag this Restaurant Failed. Please try later";	
+			self.flagView.hidden = NO;
+		}
+		
+		a = [[UIAlertView alloc] initWithTitle:@"Feedback" 
+									   message:message
+									  delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[a show];
+		[a release];
 		return;
 	}
 	
@@ -329,6 +344,8 @@
 	
 	[request setDelegate:self];
 	[request startAsynchronous];
+	
+	self.flagView.hidden = YES;
 }
 
 -(IBAction) pushAddDishViewController {
@@ -504,6 +521,7 @@
 	self.mapRow = nil;
 	self.mapView.delegate = nil;
 	self.mapView = nil;
+	self.flagView = nil;
 	
     [super dealloc];
 }

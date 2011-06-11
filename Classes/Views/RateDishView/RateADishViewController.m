@@ -352,6 +352,20 @@
 	[parser release];
 	
 	DLog(@"the dictionary should be a %@", responseAsDict);
+	
+	if([responseAsDict objectForKey:@"rc"] != 0) {
+		UIAlertView *a = [[UIAlertView alloc] initWithTitle:@"Rate Dish Failure"
+													message:[responseAsDict objectForKey:@"message"]
+												   delegate:self 
+										  cancelButtonTitle:@"OK" 
+										  otherButtonTitles:nil];
+		[a show];
+		[a release];
+		[self.delegate doneRatingDish];
+		[mHUD hide:YES];
+		return;
+	}
+	
 	if ([responseAsDict objectForKey:@"photo"]) {
 		self.thisDish.photoURL = [responseAsDict objectForKey:@"photo"];
 		NSLog(@"the new photo is %@", self.thisDish.photoURL);

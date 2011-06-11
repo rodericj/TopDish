@@ -44,6 +44,8 @@ LoginModalViewDelegate> {
 	UIImage *mNewPicture;
 	
 	SEL mPostLoginAction;
+	
+	UIButton *mFlagView;
 }
 
 @property (nonatomic, retain) Restaurant *restaurant;
@@ -64,6 +66,8 @@ LoginModalViewDelegate> {
 
 @property (nonatomic, retain) IBOutlet UIImageView *cameraImage;
 @property (nonatomic, retain) UIImage *newPicture;
+
+@property (nonatomic, retain) IBOutlet UIButton *flagView;
 
 -(IBAction)callRestaurant;
 -(IBAction) pushAddDishViewController;
