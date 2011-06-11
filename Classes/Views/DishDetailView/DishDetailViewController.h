@@ -47,35 +47,40 @@ LoginModalViewDelegate>{
 	SEL					mPostLoginAction;
 	
 	UIView				*mFlagView;
+	
+	MBProgressHUD		*mHud;
 }
 
-@property (nonatomic, retain) Dish *thisDish;
-@property (nonatomic, retain) IBOutlet UITableViewCell *dishImageCell;
-@property (nonatomic, retain) IBOutlet UIImageView *dishImageView;
-@property (nonatomic, retain) IBOutlet UILabel *negativeReviews;
-@property (nonatomic, retain) IBOutlet UILabel *positiveReviews;
+@property (nonatomic, retain)			Dish *thisDish;
+@property (nonatomic, retain) IBOutlet	UITableViewCell *dishImageCell;
+@property (nonatomic, retain) IBOutlet	UIImageView *dishImageView;
+@property (nonatomic, retain) IBOutlet	UILabel *negativeReviews;
+@property (nonatomic, retain) IBOutlet	UILabel *positiveReviews;
 
-@property (nonatomic, retain) IBOutlet UITableViewCell *dishDescriptionCell;
-@property (nonatomic, retain) IBOutlet UILabel *dishDescriptionLabel;
-@property (nonatomic, retain) IBOutlet UILabel *dishTagsLabel;
+@property (nonatomic, retain) IBOutlet	UITableViewCell *dishDescriptionCell;
+@property (nonatomic, retain) IBOutlet	UILabel *dishDescriptionLabel;
+@property (nonatomic, retain) IBOutlet	UILabel *dishTagsLabel;
 
-@property (nonatomic, retain) IBOutlet UILabel *dishNameLabel;
-@property (nonatomic, retain) IBOutlet UILabel *restaurantNameLabel;
+@property (nonatomic, retain) IBOutlet	UILabel *dishNameLabel;
+@property (nonatomic, retain) IBOutlet	UILabel *restaurantNameLabel;
 
-@property (nonatomic, retain) NSArray *reviews;
-@property (nonatomic, retain) NSMutableData *responseData;
+@property (nonatomic, retain)			NSArray *reviews;
+@property (nonatomic, retain)			NSMutableData *responseData;
 
-@property (nonatomic, retain) IBOutlet UITableViewCell *tvCell;
+@property (nonatomic, retain) IBOutlet	UITableViewCell *tvCell;
 
-@property (nonatomic, retain) IBOutlet UIButton *moreButton;
+@property (nonatomic, retain) IBOutlet	UIButton *moreButton;
 
-@property (nonatomic, retain) UIImage *newPicture;
+@property (nonatomic, retain)			UIImage *newPicture;
 
-@property (nonatomic, retain) IBOutlet UITableView *tableView;
+@property (nonatomic, retain) IBOutlet	UITableView *tableView;
 
-@property (nonatomic, retain) IBOutlet UIView *interactionOverlay;
+@property (nonatomic, retain) IBOutlet	UIView *interactionOverlay;
 
-@property (nonatomic, retain) IBOutlet UIView *flagView;
+@property (nonatomic, retain) IBOutlet	UIView *flagView;
+
+@property (nonatomic, retain)			MBProgressHUD *hud;
+
 -(IBAction)pushRateDishController;
 -(IBAction)tapRestaurantButton;
 -(IBAction)flagThisDish;

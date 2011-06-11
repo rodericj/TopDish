@@ -51,6 +51,8 @@
 
 @synthesize flagView = mFlagView;
 
+@synthesize hud = mHud;
+
 -(void)refreshFromNetwork {
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishDetail?id[]=%@", 
 									   NETWORKHOST, 
@@ -301,6 +303,8 @@
 	self.tvCell = nil;
 	self.moreButton = nil;
 	
+	self.hud = nil;
+	
     [super dealloc];
 }
 
@@ -442,12 +446,9 @@
 		return;
 		
 	}
-	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Upload Success"
-														message:@"Successfully submitted the image" 
-													   delegate:nil
-											  cancelButtonTitle:@"OK" otherButtonTitles:nil];
-	[alertView show];
-	[alertView release];
+	self.hud.labelText = @"Successfully submitted the image";
+	[self.hud hide:YES afterDelay:3];
+	self.view.userInteractionEnabled = YES;
 	DLog(@"done!");
 }
 
@@ -459,6 +460,13 @@
 	//self.dishImageFromPicker = [info objectForKey:@"UIImagePickerControllerEditedImage"];
 	if ([info objectForKey:@"UIImagePickerControllerEditedImage"]) {
 		self.newPicture = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+		
+		self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+		self.hud.labelText = @"Uploading photo...";
+		self.hud.delegate = self;
+		self.hud.mode = MBProgressHUDModeIndeterminate;
+		self.view.userInteractionEnabled = NO;
+		
 		
 		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
 		ASIFormDataRequest *newRequest = [ASIFormDataRequest requestWithURL:url];
