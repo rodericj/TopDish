@@ -215,6 +215,14 @@ AppModel *gAppModelInstance = nil;
 }
 
 #pragma mark -
+-(BOOL)isAnyFilterSet {
+	return ([self.selectedCuisine intValue] +
+	[self.selectedMeal intValue] +
+	[self.selectedLifestyle intValue]+
+	[self.selectedPrice intValue]+
+	[self.selectedAllergen intValue]) > 0;	
+}
+#pragma mark -
 #pragma mark network callback 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {

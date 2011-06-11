@@ -28,6 +28,7 @@
 #define POSITIVE_REVIEW_IMAGE_NAME @"greenup.gif"
 #define NEGATIVE_REVIEW_IMAGE_NAME @"reddown.gif"
 #define FILTER_IMAGE_NAME @"filter.png"
+#define FILTER_ON_IMAGE_NAME @"filter_on.png"
 #define GLOBAL_IMAGE_NAME @"globe-1.png"
 
 #pragma mark -

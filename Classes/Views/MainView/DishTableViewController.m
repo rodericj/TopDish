@@ -80,20 +80,19 @@
 	self.currentSearchDistance = kOneMileInMeters;
 	
     // Set up the settings button
-	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] 
+	UIBarButtonItem *settingsButton = [[[UIBarButtonItem alloc] 
 									   initWithImage:[UIImage imageNamed:FILTER_IMAGE_NAME] 
 									   style:UIBarButtonItemStylePlain 
 									   target:self 
-									   action:@selector(showSettings)];
+									   action:@selector(showSettings)] autorelease];
 	
     self.navigationItem.leftBarButtonItem = settingsButton;
-	
 	// Set up the map button
-	UIBarButtonItem *mapButton = [[UIBarButtonItem alloc] 
+	UIBarButtonItem *mapButton = [[[UIBarButtonItem alloc] 
 								  initWithImage:[UIImage imageNamed:GLOBAL_IMAGE_NAME] 
 								  style:UIBarButtonItemStylePlain 
 								  target:self 
-								  action:@selector(flipToMap)];
+								  action:@selector(flipToMap)] autorelease];
 	
 	self.navigationItem.rightBarButtonItem = mapButton;
 	
@@ -124,10 +123,15 @@
 }
 -(void)viewDidAppear:(BOOL)animated {
 	AppModel *app = [AppModel instance];
-	if (![[AppModel instance] isLoggedIn] && !app.userDelayedLogin) {
+	if (![app isLoggedIn] && !app.userDelayedLogin) {
 		[self presentModalViewController:[LoginModalView viewControllerWithDelegate:self] 
 								animated:NO];
 	}
+	UIImage *filterImage = ([app isAnyFilterSet]) ? 
+	[UIImage imageNamed:FILTER_ON_IMAGE_NAME] : [UIImage imageNamed:FILTER_IMAGE_NAME];
+	
+	[self.navigationItem.leftBarButtonItem setImage:filterImage];
+
 	[self updateFetch];
 }
 
@@ -338,7 +342,7 @@
 	
 	
 	return [NSString stringWithFormat:@"%@,%@,%@,%@,%@", 
-			[app.selectedPrice length]? app.selectedPrice : @"", 
+			app.selectedPrice ? app.selectedPrice : @"", 
 			app.selectedMeal ? app.selectedMeal : @"",
 			app.selectedCuisine ? app.selectedCuisine : @"", 
 			app.selectedAllergen ? app.selectedAllergen : @"", 
@@ -357,7 +361,7 @@
 		NSString *attributeValue = self.currentSearchTerm;
 		DLog(@"the predicate we are sending: %@ contains(cd) %@ AND %@ == %d",
 			  attributeName, attributeValue,
-			  @"price", [[AppModel instance] selectedPrice]);
+			  @"price", [app selectedPrice]);
 		
 		filterPredicate = [NSPredicate predicateWithFormat:@"%K contains[cd] %@",
 						   attributeName, attributeValue];
@@ -367,10 +371,10 @@
 	}
 	
 	//Filter based on price
-	if ([[[AppModel instance] selectedPrice] intValue] != 0) {
+	if ([[app selectedPrice] intValue] != 0) {
 		
 		DLog(@"the else predicate %@ == %d", 
-			  @"price", [[AppModel instance] selectedPrice]);
+			  @"price", [app selectedPrice]);
 		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
 						   @"price", [app selectedPrice]];
 		
@@ -378,7 +382,7 @@
 	}
 	
 	//Filter based on mealType
-	if ([[[AppModel instance] selectedMeal] intValue] != 0) {
+	if ([[app selectedMeal] intValue] != 0) {
 		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
 						   @"mealType", [app selectedMeal]];
 		
@@ -386,7 +390,7 @@
 	}
 	
 	//Filter based on cuisine
-	if ([[[AppModel instance] selectedCuisine] intValue] != 0) {
+	if ([[app selectedCuisine] intValue] != 0) {
 		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
 						   @"cuisineType", [app selectedCuisine]];
 		
@@ -394,7 +398,7 @@
 	}
 	
 	//Filter based on allergen
-	if ([[[AppModel instance] selectedAllergen] intValue] != 0) {
+	if ([[app selectedAllergen] intValue] != 0) {
 		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
 						   @"allergenType", [app selectedAllergen]];
 		
@@ -402,7 +406,7 @@
 	}
 	
 	//Filter based on lifestyle
-	if ([[[AppModel instance] selectedLifestyle] intValue] != 0) {
+	if ([[app selectedLifestyle] intValue] != 0) {
 		filterPredicate = [NSPredicate predicateWithFormat: @"%K == %@", 
 						   @"lifestyleType", [app selectedLifestyle]];
 		

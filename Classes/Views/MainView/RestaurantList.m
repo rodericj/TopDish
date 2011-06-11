@@ -46,11 +46,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	UIBarButtonItem *mapButton = [[UIBarButtonItem alloc] 
+	UIBarButtonItem *mapButton = [[[UIBarButtonItem alloc] 
 								  initWithImage:[UIImage imageNamed:GLOBAL_IMAGE_NAME] 
 								  style:UIBarButtonItemStylePlain 
 								  target:self 
-								  action:@selector(flipToMap)];
+								  action:@selector(flipToMap)] autorelease];
 	self.navigationItem.rightBarButtonItem = mapButton;
 
 	self.navigationController.navigationBar.tintColor = kTopDishBlue;

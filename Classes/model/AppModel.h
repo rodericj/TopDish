@@ -96,6 +96,7 @@
 
 +(NSNumber *)extractTag:(NSString *)key fromArrayOfTags:(NSArray *)tagsArray;
 
+-(BOOL)isAnyFilterSet;
 -(BOOL)isLoggedIn;
 -(void)logoutWithDelegate:(id<AppModelLogoutDelegate>)logoutDelegate;
 
