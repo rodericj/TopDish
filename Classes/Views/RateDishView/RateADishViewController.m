@@ -361,7 +361,6 @@
 										  otherButtonTitles:nil];
 		[a show];
 		[a release];
-		[self.delegate doneRatingDish];
 		[mHUD hide:YES];
 		return;
 	}

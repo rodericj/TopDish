@@ -13,6 +13,7 @@
 #import "RestaurantDetailViewController.h"
 #import "ASIFormDataRequest.h"
 #import "AppModel.h"
+#import "CommentDetailViewController.h"
 
 #define kImageSection 0
 #define kDescriptionSection 1
@@ -108,6 +109,7 @@
 		[[NSBundle mainBundle] loadNibNamed:@"CommentsCell" owner:self options:nil];
 		cell = mTvCell;
 		self.tvCell = nil;
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	}
 	
 	UILabel *label;
@@ -152,6 +154,13 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == kCommentsSection) {
+		NSDictionary *commentDict = [self.reviews objectAtIndex:indexPath.row];
+		[self.navigationController pushViewController:[CommentDetailViewController commentDetailViewWithCommentDict:commentDict] 
+											 animated:YES];
+	}
+}
 #pragma mark -
 #pragma mark Table view delegate
 

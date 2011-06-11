@@ -20,6 +20,8 @@
 		179A8DA7134C29B20072CAF0 /* LoginModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 179A8DA5134C29B20072CAF0 /* LoginModalView.xib */; };
 		17A5187413A303E400D47A3B /* filter.png in Resources */ = {isa = PBXBuildFile; fileRef = 17A5187313A303E400D47A3B /* filter.png */; };
 		17A5188C13A3067C00D47A3B /* filter_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 17A5188B13A3067C00D47A3B /* filter_on.png */; };
+		17A518FD13A312AB00D47A3B /* CommentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A518FB13A312AB00D47A3B /* CommentDetailViewController.m */; };
+		17A518FE13A312AB00D47A3B /* CommentDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17A518FC13A312AB00D47A3B /* CommentDetailViewController.xib */; };
 		17A636831352795C00ED8842 /* CustomNSURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A636821352795C00ED8842 /* CustomNSURLConnection.m */; };
 		17A637961352AB3C00ED8842 /* thumbsup.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17A637951352AB3C00ED8842 /* thumbsup.jpg */; };
 		17A637981352AB4300ED8842 /* thumbsdown.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17A637971352AB4300ED8842 /* thumbsdown.jpg */; };
@@ -155,6 +157,9 @@
 		179A8DA5134C29B20072CAF0 /* LoginModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginModalView.xib; sourceTree = "<group>"; };
 		17A5187313A303E400D47A3B /* filter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = filter.png; path = images/filter.png; sourceTree = "<group>"; };
 		17A5188B13A3067C00D47A3B /* filter_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = filter_on.png; path = images/filter_on.png; sourceTree = "<group>"; };
+		17A518FA13A312AB00D47A3B /* CommentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentDetailViewController.h; sourceTree = "<group>"; };
+		17A518FB13A312AB00D47A3B /* CommentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentDetailViewController.m; sourceTree = "<group>"; };
+		17A518FC13A312AB00D47A3B /* CommentDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentDetailViewController.xib; sourceTree = "<group>"; };
 		17A636811352795C00ED8842 /* CustomNSURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNSURLConnection.h; sourceTree = "<group>"; };
 		17A636821352795C00ED8842 /* CustomNSURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNSURLConnection.m; sourceTree = "<group>"; };
 		17A637951352AB3C00ED8842 /* thumbsup.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thumbsup.jpg; sourceTree = "<group>"; };
@@ -714,6 +719,9 @@
 				17DA5F171322C76300867B66 /* DishDetailViewController.h */,
 				17DA5F181322C76300867B66 /* DishDetailViewController.m */,
 				17DA5F191322C76300867B66 /* DishDetailViewController.xib */,
+				17A518FA13A312AB00D47A3B /* CommentDetailViewController.h */,
+				17A518FB13A312AB00D47A3B /* CommentDetailViewController.m */,
+				17A518FC13A312AB00D47A3B /* CommentDetailViewController.xib */,
 			);
 			name = DishDetailView;
 			sourceTree = "<group>";
@@ -826,6 +834,7 @@
 				17CAB697138B684000CF2F00 /* googleButton.png in Resources */,
 				17A5187413A303E400D47A3B /* filter.png in Resources */,
 				17A5188C13A3067C00D47A3B /* filter_on.png in Resources */,
+				17A518FE13A312AB00D47A3B /* CommentDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -890,6 +899,7 @@
 				17FCDDF913711125004EA4F9 /* RestaurantTableViewCell.m in Sources */,
 				1714C3BD13778C3F009E1BDA /* MBProgressHUD.m in Sources */,
 				17A8A4E4137B9EAC002C5FBB /* DistanceUpdator.m in Sources */,
+				17A518FD13A312AB00D47A3B /* CommentDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
