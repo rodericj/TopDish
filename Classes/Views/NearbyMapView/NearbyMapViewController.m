@@ -69,8 +69,8 @@
 	m.center = center;
 	
 	MKCoordinateSpan span;
-	span.latitudeDelta = largestLat - smallestLat;
-	span.longitudeDelta = largestLon - smallestLon;
+	span.latitudeDelta = (largestLat - smallestLat) * 1.5;
+	span.longitudeDelta = (largestLon - smallestLon ) * 1.5; 
 
 	//Set up the span
 	m.span = span;
