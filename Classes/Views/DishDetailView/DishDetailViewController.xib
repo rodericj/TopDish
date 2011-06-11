@@ -12,9 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="13"/>
 			<integer value="8"/>
 			<integer value="52"/>
-			<integer value="13"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -719,6 +719,14 @@
 					</object>
 					<int key="connectionID">58</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">flagView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="296725376"/>
+					</object>
+					<int key="connectionID">60</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1066,7 +1074,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">59</int>
+			<int key="maxID">60</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1130,6 +1138,7 @@
 							<string>dishImageView</string>
 							<string>dishNameLabel</string>
 							<string>dishTagsLabel</string>
+							<string>flagView</string>
 							<string>interactionOverlay</string>
 							<string>moreButton</string>
 							<string>negativeReviews</string>
@@ -1146,6 +1155,7 @@
 							<string>UIImageView</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
+							<string>UIView</string>
 							<string>UIView</string>
 							<string>UIButton</string>
 							<string>UILabel</string>
@@ -1165,6 +1175,7 @@
 							<string>dishImageView</string>
 							<string>dishNameLabel</string>
 							<string>dishTagsLabel</string>
+							<string>flagView</string>
 							<string>interactionOverlay</string>
 							<string>moreButton</string>
 							<string>negativeReviews</string>
@@ -1198,6 +1209,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">dishTagsLabel</string>
 								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">flagView</string>
+								<string key="candidateClassName">UIView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">interactionOverlay</string>

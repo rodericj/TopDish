@@ -16,34 +16,37 @@ UIImagePickerControllerDelegate,
 UIActionSheetDelegate,
 RateDishProtocolDelegate,
 LoginModalViewDelegate>{
-	Dish *mThisDish;
-	UITableViewCell *mDishImageCell;
-	UIImageView *mDishImageView;
-	UILabel *mNegativeReviews;
-	UILabel *mPositiveReviews;	
 	
-	UITableViewCell *mDishDescriptionCell;
-	UILabel	*mDishDescriptionLabel;
+	Dish				*mThisDish;
+	UITableViewCell		*mDishImageCell;
+	UIImageView			*mDishImageView;
+	UILabel				*mNegativeReviews;
+	UILabel				*mPositiveReviews;	
 	
-	UILabel *mDishTagsLabel;
+	UITableViewCell		*mDishDescriptionCell;
+	UILabel				*mDishDescriptionLabel;
 	
-	UILabel *mDishNameLabel;
-	UILabel *mRestaurantNameLabel;
+	UILabel				*mDishTagsLabel;
 	
-	NSArray *mReviews;
-	NSMutableData *mResponseData;
+	UILabel				*mDishNameLabel;
+	UILabel				*mRestaurantNameLabel;
+	
+	NSArray				*mReviews;
+	NSMutableData		*mResponseData;
 
-	UITableViewCell *mTvCell;
+	UITableViewCell		*mTvCell;
 	
-	UIButton *mMoreButton;
+	UIButton			*mMoreButton;
 	
-	UIImage *mNewPicture;
+	UIImage				*mNewPicture;
 	
-	UITableView *mTableView;
+	UITableView			*mTableView;
 	
-	UIView *mInteractionOverlay;
+	UIView				*mInteractionOverlay;
 	
-	SEL mPostLoginAction;
+	SEL					mPostLoginAction;
+	
+	UIView				*mFlagView;
 }
 
 @property (nonatomic, retain) Dish *thisDish;
@@ -72,6 +75,7 @@ LoginModalViewDelegate>{
 
 @property (nonatomic, retain) IBOutlet UIView *interactionOverlay;
 
+@property (nonatomic, retain) IBOutlet UIView *flagView;
 -(IBAction)pushRateDishController;
 -(IBAction)tapRestaurantButton;
 -(IBAction)flagThisDish;

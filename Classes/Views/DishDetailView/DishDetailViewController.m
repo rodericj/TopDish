@@ -48,6 +48,7 @@
 
 @synthesize interactionOverlay = mInteractionOverlay;
 
+@synthesize flagView = mFlagView;
 
 -(void)refreshFromNetwork {
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishDetail?id[]=%@", 
@@ -382,6 +383,21 @@
 	if ([[[request.url pathComponents] objectAtIndex:[[request.url pathComponents] count] - 1] isEqualToString:@"flagDish"] ) {
 		//TODO handle the flag successfully or unsuccessfully happening
 		NSLog(@"this is a flag dish call, do something different");
+		
+		UIAlertView *a;
+		NSString *message;
+		if (request.responseStatusCode == 200)
+			message = @"Your request flag this Dish was successful. Thanks for making TopDish great!";
+		else  {
+			message = @"Your request to flag this Dish Failed. Please try later";     
+			self.flagView.hidden = NO;
+		}
+		
+		a = [[UIAlertView alloc] initWithTitle:@"Feedback" 
+									   message:message
+									  delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[a show];
+		[a release];
 		return;
 	}
 	
@@ -537,6 +553,7 @@
 
 -(IBAction)flagThisDish{
 	DLog(@"flagging this dish");
+	self.flagView.hidden = YES;
 	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/flagDish"]];
 	NSLog(@"url for flagging. %@ %@ %@, dish id is %@", url, keyforauthorizing, [[[AppModel instance] user] objectForKey:keyforauthorizing], [self.thisDish dish_id]);
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
