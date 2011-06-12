@@ -7,7 +7,6 @@
 //
 
 #import "DishDetailViewController.h"
-#import "asyncimageview.h"
 #import "constants.h"
 #import "JSON.h"
 #import "RestaurantDetailViewController.h"
@@ -209,14 +208,40 @@
 	DLog(@"view did load for %@", [self.thisDish objName]);
 	
 	if( [[self.thisDish photoURL] length] > 0 ){
-		AsyncImageView *asyncImageView = [[[AsyncImageView alloc] initWithFrame:CGRectMake(0, 0, r.size.width, r.size.height)] autorelease];
-		asyncImageView.tag = 9999;
-		[self.dishImageView addSubview:asyncImageView];
 		
-		NSURL *url = [NSURL URLWithString:[self.thisDish photoURL]];
-		[asyncImageView loadImageFromURL:url];
+		if (![self.thisDish imageData]) {
+			dispatch_queue_t downloadQueue = dispatch_queue_create("com.topdish.imagedownload", NULL);
+			dispatch_retain(downloadQueue);
+			
+			//On background thread, download the image synchronously.
+			dispatch_async(downloadQueue, ^{
+				//Set up URL and download image (all in the background)
+				NSLog(@"downloading image %@", self.thisDish.photoURL);
+				NSURL *imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@?=s290-c", self.thisDish.photoURL]];
+				NSData *data = [NSData dataWithContentsOfURL:imageUrl];
+				UIImage *image = [UIImage imageWithData:data];
+				NSLog(@"done downloading image");
+				//Update the core data object
+				self.thisDish.imageData = data;
+				
+				//On the main thread, update the appropriate cell and the core data object
+				dispatch_async(dispatch_get_main_queue(), ^{
+					NSLog(@"update imageview");
+					self.dishImageView.image = image;
+				});
+				
+			});
+			dispatch_release(downloadQueue);
+		}
+		else {
+			UIImage *image = [UIImage imageWithData:self.thisDish.imageData];
+			self.dishImageView.image = image;
+		}		
+		
 	}	
-	
+	else
+		self.dishImageView.image = [UIImage imageNamed:@"no_dish_img.jpg"];
+
 	[self.dishDescriptionLabel setText:[self.thisDish dish_description]];
 	[self.dishDescriptionLabel numberOfLines];
 	

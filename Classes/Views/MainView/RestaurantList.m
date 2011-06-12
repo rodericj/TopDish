@@ -148,7 +148,7 @@
 			//On background thread, download the image synchronously.
 			dispatch_async(downloadQueue, ^{
 				//Set up URL and download image (all in the background)
-				NSURL *imageUrl = [NSURL URLWithString:thisRestaurant.photoURL];
+				NSURL *imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@?=s85-c", thisRestaurant.photoURL]];
 				NSData *data = [NSData dataWithContentsOfURL:imageUrl];
 				UIImage *image = [UIImage imageWithData:data];
 				

@@ -12,9 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="13"/>
-			<integer value="8"/>
 			<integer value="52"/>
+			<integer value="13"/>
+			<integer value="37"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -220,10 +220,6 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<float key="IBUIScaleFactor">1</float>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">no_dish_img.jpg</string>
-								</object>
 							</object>
 							<object class="IBUILabel" id="509779236">
 								<reference key="NSNextResponder" ref="193826420"/>
@@ -1050,7 +1046,7 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAAAAAAAAwsIAAA</bytes>
 					</object>
-					<string>{{504, 166}, {302, 359}}</string>
+					<string>{{252, 96}, {302, 359}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -1514,7 +1510,6 @@
 				<string>add_dish_button.png</string>
 				<string>background_tile.png</string>
 				<string>dishViewBoarder.png</string>
-				<string>no_dish_img.jpg</string>
 				<string>red_flag.gif</string>
 				<string>resturant_back_no_boarder.png</string>
 				<string>submitadish_photo.png</string>
@@ -1524,7 +1519,6 @@
 				<string>{219, 32}</string>
 				<string>{254, 245}</string>
 				<string>{100, 100}</string>
-				<string>{400, 400}</string>
 				<string>{8, 12}</string>
 				<string>{305, 99}</string>
 				<string>{41, 32}</string>

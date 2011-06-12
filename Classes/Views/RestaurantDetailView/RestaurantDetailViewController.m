@@ -9,7 +9,6 @@
 #import "RestaurantDetailViewController.h"
 #import "constants.h"
 #import "JSON.h"
-#import "asyncimageview.h"
 #import "RestaurantAnnotation.h"
 #import "FeedbackStringProcessor.h"
 
@@ -88,43 +87,44 @@
 						  forState:UIControlStateNormal];
 	[self.restaurantAddress setText:[restaurant addressLine1]];
 	
-	CGRect r = [self.restaurantImage frame];
-	
-	if( [[self.restaurant photoURL] length] > 0 ){
-		AsyncImageView *asyncImageView = [[[AsyncImageView alloc] initWithFrame:CGRectMake(0, 0, r.size.width, r.size.height)] autorelease];
-		asyncImageView.tag = 9999;
-		[self.restaurantImage addSubview:asyncImageView];
-		NSURL *url = [NSURL URLWithString:[self.restaurant photoURL]];
-		[asyncImageView loadImageFromURL:url];
-	}		
-	
+	if( [[restaurant photoURL] length] > 0 ){
+		
+		if (![restaurant imageData]) {
+			dispatch_queue_t downloadQueue = dispatch_queue_create("com.topdish.imagedownload", NULL);
+			dispatch_retain(downloadQueue);
+			
+			//On background thread, download the image synchronously.
+			dispatch_async(downloadQueue, ^{
+				//Set up URL and download image (all in the background)
+				NSLog(@"downloading image %@", restaurant.photoURL);
+				NSURL *imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@=s85-c", restaurant.photoURL]];
+				NSData *data = [NSData dataWithContentsOfURL:imageUrl];
+				UIImage *image = [UIImage imageWithData:data];
+				NSLog(@"done downloading image");
+				//Update the core data object
+				restaurant.imageData = data;
+				
+				//On the main thread, update the appropriate cell and the core data object
+				dispatch_async(dispatch_get_main_queue(), ^{
+					NSLog(@"update imageview");
+					self.restaurantImage.image = image;
+				});
+				
+			});
+			dispatch_release(downloadQueue);
+		}
+		else {
+			UIImage *image = [UIImage imageWithData:restaurant.imageData];
+			self.restaurantImage.image = image;
+		}		
+		
+	}	
+
+	else
+		self.restaurantImage.image = [UIImage imageNamed:@"no_rest_img.jpg"];
+
 	self.restaurantHeader.selectionStyle = UITableViewCellSelectionStyleNone;
 	self.tableView.tableHeaderView = self.restaurantHeader;
-	
-}
-
--(void)setUpHeader {
-
-	[self.restaurantName setText:[restaurant objName]];
-	
-	[self.restaurantPhone setTitle:[restaurant phone] 
-						  forState:UIControlStateNormal];
-	[self.restaurantAddress setText:[restaurant addressLine1]];
-	
-	
-	if( [[self.restaurant photoURL] length] > 0 ){
-		CGRect r = [self.restaurantImage frame];
-		AsyncImageView *asyncImageView = [[[AsyncImageView alloc] initWithFrame:CGRectMake(0, 0, r.size.width, r.size.height)] autorelease];
-		asyncImageView.tag = 9999;
-		[self.restaurantImage addSubview:asyncImageView];
-		
-		
-		NSURL *url = [NSURL URLWithString:[self.restaurant photoURL]];
-		[asyncImageView loadImageFromURL:url];
-	}	
-	
-	self.restaurantHeader.selectionStyle = UITableViewCellSelectionStyleNone;
-	
 	
 }
 
@@ -178,7 +178,6 @@
 	[self.mapOverlay setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"restaurant_back.png"]]];
 
 	self.title = [self.restaurant objName];
-	[self setUpHeader];
 	self.tableView.tableFooterView = self.footerView;
 
 	}
