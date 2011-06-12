@@ -13,7 +13,6 @@
 #import "constants.h"
 #import "SettingsView1.h"
 #import "AppModel.h"
-#import "AsyncImageView.h"
 #import "DishDetailViewController.h"
 #import "JSON.h"
 #import "LoginModalView.h"
@@ -547,16 +546,17 @@
     static NSString *CellIdentifier = @"DishCell";
 	DishTableViewCell *cell = (DishTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
-	AsyncImageView *asyncImageView = nil;
-
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
 		NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"DishTableViewCell" owner:self options:nil];
         cell = (DishTableViewCell *)[nib objectAtIndex:0];
 	}
 	
+	//remove any image that was loaded previously
+	cell.dishImageView.image = nil;
+	
 	//Query the results controller
 	Dish *thisDish = [[self fetchedResultsController] objectAtIndexPath:indexPath];	
+	
 	//Build the UIElements
 	cell.dishName.text = thisDish.objName;
 	cell.restaurantName.text = thisDish.restaurant.objName;
@@ -597,14 +597,49 @@
 	}
 	
 	cell.priceNumber.text = [app tagNameForTagId:[thisDish price]];
-		
-	asyncImageView = cell.dishImage;
-	if( [[thisDish photoURL] length] > 0 ){
-		NSURL *url = [NSURL URLWithString:[thisDish photoURL]];
-		[asyncImageView loadImageFromURL:url];
-	}	
-	else
-		[asyncImageView setWithImage:[UIImage imageNamed:@"no_dish_img.png"]];
+	
+	//Image handling
+	if ([thisDish.photoURL length] > 0) {
+		if (thisDish.imageData) {
+			cell.dishImageView.image = [UIImage imageWithData:thisDish.imageData];
+		}
+		else{
+			dispatch_queue_t downloadQueue = dispatch_queue_create("com.topdish.imagedownload", NULL);
+			dispatch_retain(downloadQueue);
+			
+			//On background thread, download the image synchronously.
+			dispatch_async(downloadQueue, ^{
+				//Set up URL and download image (all in the background)
+				NSURL *imageUrl = [NSURL URLWithString:thisDish.photoURL];
+				NSData *data = [NSData dataWithContentsOfURL:imageUrl];
+				UIImage *image = [UIImage imageWithData:data];
+				
+				//Update the core data object
+				thisDish.imageData = data;
+				
+				//On the main thread, update the appropriate cell and the core data object
+				dispatch_async(dispatch_get_main_queue(), ^{
+					
+					//only if this indexPath is visible do we need to set the imageview
+					//  We've already set the core data object so there is no need to do anything else
+					//  until it shows up again. This is so awesome
+					if ([[tableView indexPathsForVisibleRows] containsObject:indexPath]) {
+						cell.dishImageView.image = image;
+					}
+					else {
+						NSLog(@"%@ is not visible", thisDish.objName);
+					}
+
+				});
+				
+			});
+			dispatch_release(downloadQueue);
+		}
+	}
+	else {
+		//show the default image
+		cell.dishImageView.image = [UIImage imageNamed:@"no_dish_img.png"];
+	}
 
 	[cell setOpaque:FALSE];
 	
@@ -615,7 +650,6 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	return [self tableView:tableView dishCellAtIndexPath:indexPath];
-	
 }
 
 #pragma mark -

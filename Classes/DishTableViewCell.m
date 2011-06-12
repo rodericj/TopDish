@@ -11,7 +11,8 @@
 
 @implementation DishTableViewCell
 
-@synthesize dishImage		=	mDishImage;
+//@synthesize dishImage		=	mDishImage;
+@synthesize dishImageView	=	mDishImageView;
 @synthesize dishName		= 	mDishName;
 @synthesize restaurantName	=	mRestaurantName;
 @synthesize mealType		=	mMealType;

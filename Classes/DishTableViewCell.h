@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AsyncImageView.h"
 
 @interface DishTableViewCell : UITableViewCell {
-	AsyncImageView	*mDishImage;
+	UIImageView		*mDishImageView;
 	UILabel			*mDishName;
 	UILabel			*mRestaurantName;
 	UILabel			*mMealType;
@@ -21,7 +20,7 @@
 
 }	
 
-@property (nonatomic,retain) IBOutlet AsyncImageView	*dishImage;
+@property (nonatomic,retain) IBOutlet UIImageView		*dishImageView;
 @property (nonatomic,retain) IBOutlet UILabel			*dishName;
 @property (nonatomic,retain) IBOutlet UILabel			*restaurantName;
 @property (nonatomic,retain) IBOutlet UILabel			*mealType;

@@ -115,16 +115,6 @@
 									<string key="NSResourceName">dishViewBoarder.png</string>
 								</object>
 							</object>
-							<object class="IBUIImageView" id="597512657">
-								<reference key="NSNextResponder" ref="388830062"/>
-								<int key="NSvFlags">1316</int>
-								<string key="NSFrame">{{10, 9}, {75, 75}}</string>
-								<reference key="NSSuperview" ref="388830062"/>
-								<int key="IBUITag">7</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<float key="IBUIScaleFactor">2</float>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							</object>
 							<object class="IBUILabel" id="86141136">
 								<reference key="NSNextResponder" ref="388830062"/>
 								<int key="NSvFlags">1316</int>
@@ -194,6 +184,15 @@
 									<string key="NSResourceName">divider.png</string>
 								</object>
 							</object>
+							<object class="IBUIImageView" id="660813203">
+								<reference key="NSNextResponder" ref="388830062"/>
+								<int key="NSvFlags">1316</int>
+								<string key="NSFrame">{{5, 4}, {85, 84}}</string>
+								<reference key="NSSuperview" ref="388830062"/>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<float key="IBUIScaleFactor">2</float>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+							</object>
 						</object>
 						<string key="NSFrameSize">{300, 95}</string>
 						<reference key="NSSuperview" ref="588804306"/>
@@ -258,11 +257,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">restaurantImage</string>
+						<string key="label">restaurantImageView</string>
 						<reference key="source" ref="588804306"/>
-						<reference key="destination" ref="597512657"/>
+						<reference key="destination" ref="660813203"/>
 					</object>
-					<int key="connectionID">31</int>
+					<int key="connectionID">33</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -291,23 +290,18 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="992860320"/>
-							<reference ref="597512657"/>
 							<reference ref="855161466"/>
 							<reference ref="491607800"/>
 							<reference ref="86141136"/>
 							<reference ref="244062124"/>
 							<reference ref="1046162091"/>
+							<reference ref="660813203"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">7</int>
 						<reference key="object" ref="992860320"/>
-						<reference key="parent" ref="588804306"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">8</int>
-						<reference key="object" ref="597512657"/>
 						<reference key="parent" ref="588804306"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -336,6 +330,11 @@
 						<reference key="object" ref="1046162091"/>
 						<reference key="parent" ref="588804306"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">32</int>
+						<reference key="object" ref="660813203"/>
+						<reference key="parent" ref="588804306"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -353,10 +352,9 @@
 					<string>3.IBEditorWindowLastContentRect</string>
 					<string>3.IBPluginDependency</string>
 					<string>3.IBViewEditorWindowController.showingLayoutRectangles</string>
+					<string>32.IBPluginDependency</string>
 					<string>7.IBPluginDependency</string>
 					<string>7.IBViewBoundsToFrameTransform</string>
-					<string>8.CustomClassName</string>
-					<string>8.IBPluginDependency</string>
 					<string>9.IBPluginDependency</string>
 					<string>9.IBViewBoundsToFrameTransform</string>
 				</object>
@@ -378,11 +376,10 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<boolean value="YES"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABC9gAAwpAAAA</bytes>
 					</object>
-					<string>AsyncImageView</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">AULEAABBgAAAA</bytes>
@@ -405,19 +402,11 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">31</int>
+			<int key="maxID">33</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<object class="IBPartialClassDescription">
-					<string key="className">AsyncImageView</string>
-					<string key="superclassName">UIImageView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/lib/AsyncImageView/AsyncImageView.h</string>
-					</object>
-				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -442,7 +431,7 @@
 							<string>address</string>
 							<string>distance</string>
 							<string>phoneNumber</string>
-							<string>restaurantImage</string>
+							<string>restaurantImageView</string>
 							<string>restaurantName</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -450,7 +439,7 @@
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
-							<string>AsyncImageView</string>
+							<string>UIImageView</string>
 							<string>UILabel</string>
 						</object>
 					</object>
@@ -461,7 +450,7 @@
 							<string>address</string>
 							<string>distance</string>
 							<string>phoneNumber</string>
-							<string>restaurantImage</string>
+							<string>restaurantImageView</string>
 							<string>restaurantName</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -479,8 +468,8 @@
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">restaurantImage</string>
-								<string key="candidateClassName">AsyncImageView</string>
+								<string key="name">restaurantImageView</string>
+								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">restaurantName</string>

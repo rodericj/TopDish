@@ -11,10 +11,10 @@
 
 @implementation RestaurantTableViewCell
 
-@synthesize restaurantName = mRestaurantName;
-@synthesize address = mAddress;
-@synthesize restaurantImage = mRestaurantImage;
-@synthesize phoneNumber = mPhoneNumber;
-@synthesize distance = mDistance;
+@synthesize restaurantName			= mRestaurantName;
+@synthesize address					= mAddress;
+@synthesize restaurantImageView		= mRestaurantImageView;
+@synthesize phoneNumber				= mPhoneNumber;
+@synthesize distance				= mDistance;
 
 @end

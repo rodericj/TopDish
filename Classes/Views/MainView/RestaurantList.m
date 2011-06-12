@@ -12,7 +12,6 @@
 #import "RestaurantDetailViewController.h"
 #import "AppModel.h"
 #import "Dish.h"
-#import "asyncimageview.h"
 #import "NearbyMapViewController.h"
 #import "JSON.h"
 #import "RestaurantTableViewCell.h"
@@ -124,15 +123,12 @@
     
 	Restaurant *thisRestaurant = [[self fetchedResultsController] objectAtIndexPath:indexPath];	
 	
-	AsyncImageView *asyncImageView = nil;
-
-	//[kManagedObjectContext refreshObject:thisRestaurant mergeChanges:NO];
     RestaurantTableViewCell *cell = (RestaurantTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
 		NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"RestaurantTableViewCell" owner:self options:nil];
         cell = (RestaurantTableViewCell *)[nib objectAtIndex:0];
 	}
-	
+	cell.restaurantImageView.image = nil;
 	cell.restaurantName.text = thisRestaurant.objName;
 	cell.address.text = thisRestaurant.addressLine1;
 	cell.phoneNumber.text = thisRestaurant.phone;
@@ -140,14 +136,49 @@
 	NSAssert(thisRestaurant.distance > 0, @"the resto distance is not > 0");
 	cell.distance.text = [NSString stringWithFormat:@"%.2f mi", [[thisRestaurant distance] floatValue]];	
 	
-	asyncImageView = cell.restaurantImage;
-	if( [thisRestaurant.photoURL length] > 0 ){
-		NSURL *url = [NSURL URLWithString:thisRestaurant.photoURL];
-		[asyncImageView loadImageFromURL:url];
-	}	
-	else
-		[asyncImageView setWithImage:[UIImage imageNamed:@"no_rest_img.jpg"]];
-	
+	//Image handling
+	if ([thisRestaurant.photoURL length] > 0) {
+		if (thisRestaurant.imageData) {
+			cell.restaurantImageView.image = [UIImage imageWithData:thisRestaurant.imageData];
+		}
+		else{
+			dispatch_queue_t downloadQueue = dispatch_queue_create("com.topdish.imagedownload", NULL);
+			dispatch_retain(downloadQueue);
+			
+			//On background thread, download the image synchronously.
+			dispatch_async(downloadQueue, ^{
+				//Set up URL and download image (all in the background)
+				NSURL *imageUrl = [NSURL URLWithString:thisRestaurant.photoURL];
+				NSData *data = [NSData dataWithContentsOfURL:imageUrl];
+				UIImage *image = [UIImage imageWithData:data];
+				
+				//Update the core data object
+				thisRestaurant.imageData = data;
+				
+				//On the main thread, update the appropriate cell and the core data object
+				dispatch_async(dispatch_get_main_queue(), ^{
+					
+					//only if this indexPath is visible do we need to set the imageview
+					//  We've already set the core data object so there is no need to do anything else
+					//  until it shows up again. This is so awesome
+					if ([[tableView indexPathsForVisibleRows] containsObject:indexPath]) {
+						cell.restaurantImageView.image = image;
+					}
+					else {
+						NSLog(@"%@ is not visible", thisRestaurant.objName);
+					}
+					
+				});
+				
+			});
+			dispatch_release(downloadQueue);
+		}
+	}
+	else {
+		//show the default image
+		cell.restaurantImageView.image = [UIImage imageNamed:@"no_rest_img.jpg"];
+	}
+
     return cell;
 }
 
