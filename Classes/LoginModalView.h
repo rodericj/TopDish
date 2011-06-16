@@ -40,4 +40,5 @@ UIWebViewDelegate>{
 -(IBAction)fbButtonClick:(id)sender;
 -(IBAction)notNowButtonClick:(id)sender;
 -(IBAction)googleButtonClick:(id)sender;
+-(IBAction)termsAndConditionsButtonClicked:(id)sender;
 @end

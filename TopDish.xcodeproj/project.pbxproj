@@ -20,6 +20,8 @@
 		17A518FD13A312AB00D47A3B /* CommentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A518FB13A312AB00D47A3B /* CommentDetailViewController.m */; };
 		17A518FE13A312AB00D47A3B /* CommentDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17A518FC13A312AB00D47A3B /* CommentDetailViewController.xib */; };
 		17A519EF13A33D0400D47A3B /* FeedbackStringProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A519EE13A33D0400D47A3B /* FeedbackStringProcessor.m */; };
+		17A51DC513A545FE00D47A3B /* TermsAndConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A51DC313A545FE00D47A3B /* TermsAndConditionsViewController.m */; };
+		17A51DC613A545FE00D47A3B /* TermsAndConditionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17A51DC413A545FE00D47A3B /* TermsAndConditionsViewController.xib */; };
 		17A636831352795C00ED8842 /* CustomNSURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A636821352795C00ED8842 /* CustomNSURLConnection.m */; };
 		17A637961352AB3C00ED8842 /* thumbsup.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17A637951352AB3C00ED8842 /* thumbsup.jpg */; };
 		17A637981352AB4300ED8842 /* thumbsdown.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17A637971352AB4300ED8842 /* thumbsdown.jpg */; };
@@ -154,6 +156,9 @@
 		17A518FC13A312AB00D47A3B /* CommentDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentDetailViewController.xib; sourceTree = "<group>"; };
 		17A519ED13A33D0400D47A3B /* FeedbackStringProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackStringProcessor.h; sourceTree = "<group>"; };
 		17A519EE13A33D0400D47A3B /* FeedbackStringProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackStringProcessor.m; sourceTree = "<group>"; };
+		17A51DC213A545FE00D47A3B /* TermsAndConditionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsAndConditionsViewController.h; sourceTree = "<group>"; };
+		17A51DC313A545FE00D47A3B /* TermsAndConditionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsAndConditionsViewController.m; sourceTree = "<group>"; };
+		17A51DC413A545FE00D47A3B /* TermsAndConditionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermsAndConditionsViewController.xib; sourceTree = "<group>"; };
 		17A636811352795C00ED8842 /* CustomNSURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNSURLConnection.h; sourceTree = "<group>"; };
 		17A636821352795C00ED8842 /* CustomNSURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNSURLConnection.m; sourceTree = "<group>"; };
 		17A637951352AB3C00ED8842 /* thumbsup.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thumbsup.jpg; sourceTree = "<group>"; };
@@ -507,6 +512,9 @@
 				179A8DA4134C29B20072CAF0 /* LoginModalView.m */,
 				179A8DA5134C29B20072CAF0 /* LoginModalView.xib */,
 				17AE80B612DA7204007B96EC /* AccountViews */,
+				17A51DC213A545FE00D47A3B /* TermsAndConditionsViewController.h */,
+				17A51DC313A545FE00D47A3B /* TermsAndConditionsViewController.m */,
+				17A51DC413A545FE00D47A3B /* TermsAndConditionsViewController.xib */,
 			);
 			name = AccountSettings;
 			sourceTree = "<group>";
@@ -825,6 +833,7 @@
 				17A5187413A303E400D47A3B /* filter.png in Resources */,
 				17A5188C13A3067C00D47A3B /* filter_on.png in Resources */,
 				17A518FE13A312AB00D47A3B /* CommentDetailViewController.xib in Resources */,
+				17A51DC613A545FE00D47A3B /* TermsAndConditionsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -888,6 +897,7 @@
 				17A8A4E4137B9EAC002C5FBB /* DistanceUpdator.m in Sources */,
 				17A518FD13A312AB00D47A3B /* CommentDetailViewController.m in Sources */,
 				17A519EF13A33D0400D47A3B /* FeedbackStringProcessor.m in Sources */,
+				17A51DC513A545FE00D47A3B /* TermsAndConditionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

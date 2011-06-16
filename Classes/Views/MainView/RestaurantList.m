@@ -169,9 +169,8 @@
 					}
 					
 				});
-				
+				dispatch_release(downloadQueue);
 			});
-			dispatch_release(downloadQueue);
 		}
 	}
 	else {

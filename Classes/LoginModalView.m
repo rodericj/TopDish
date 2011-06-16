@@ -9,6 +9,7 @@
 #import "LoginModalView.h"
 #import "AppModel.h"
 #import "constants.h"
+#import "TermsAndConditionsViewController.h"
 
 @implementation LoginModalView
 
@@ -64,6 +65,15 @@
 	
 	
 }
+
+-(IBAction)termsAndConditionsButtonClicked:(id)sender {
+	NSLog(@"terms and conditions");
+	TermsAndConditionsViewController *toc = [[TermsAndConditionsViewController alloc] initWithNibName:@"TermsAndConditionsViewController" 
+																							   bundle:nil];
+	[self.navigationController pushViewController:toc animated:YES];
+	[toc release];
+}
+
 
 #pragma mark -
 - (void)didReceiveMemoryWarning {

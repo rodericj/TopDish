@@ -370,7 +370,7 @@
 	
 	DLog(@"the dictionary should be a %@", responseAsDict);
 	
-	if([responseAsDict objectForKey:@"rc"] != 0) {
+	if([[responseAsDict objectForKey:@"rc"] intValue] != 0) {
 		UIAlertView *a = [[UIAlertView alloc] initWithTitle:@"Rate Dish Failure"
 													message:[responseAsDict objectForKey:@"message"]
 												   delegate:self 
