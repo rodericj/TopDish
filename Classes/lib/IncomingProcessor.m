@@ -27,7 +27,7 @@
 	IncomingProcessor *processor = [[IncomingProcessor alloc] init];
 	processor.incomingProcessorDelegate = delegate;
 	processor.persistentStoreCoordinator = coordinator;
-	return processor;
+	return [processor autorelease];
 }
 
 - (NSOperation*)taskWithData:(id)data {
@@ -84,8 +84,10 @@
 			dish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" 
 														 inManagedObjectContext:mManagedObjectContext];
 		}
-		else
+		else {
 			NSAssert(TRUE, @"Too many dishes matched a query which should have returned 1");
+			dish = nil;
+		}
 
 		[dish setDish_id:[dishDict objectForKey:@"id"]];	
 		
@@ -154,8 +156,10 @@
 																	 inManagedObjectContext:mManagedObjectContext];	
 			[newRestaurantsWeNeedToGet addObject:[dishDict objectForKey:@"restaurantID"]];
 		}
-		else
+		else {
 			NSAssert(TRUE, @"Too many restaurants for a given dish when queried");
+			restaurant = nil;
+		}
 		
 		[restaurant setRestaurant_id:[dishDict objectForKey:@"restaurantID"]];
 		
@@ -228,8 +232,10 @@
 			restaurant = (Restaurant *)[NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" 
 																	 inManagedObjectContext:mManagedObjectContext];
 		}
-		else
+		else {
 			NSAssert(TRUE, @"There were too many restaurants matching a dish");
+			restaurant = nil;
+		}
 		//populate the restaurant with data
 		//Do all of the restaurant data setting
 		NSString *unescaped_name = [[restoDict objectForKey:@"name"]
@@ -288,8 +294,10 @@
 				dish = (Dish *)[NSEntityDescription insertNewObjectForEntityForName:@"Dish" 
 															 inManagedObjectContext:mManagedObjectContext];		
 			}
-			else 
+			else {
 				NSAssert(TRUE, @"Too many dishes matching a given restaurant");
+				dish = nil;
+			}
 
 			//populate/update the dish
 			NSString *unescaped_name = [[restoDishesDict objectForKey:@"name"]

@@ -11,19 +11,19 @@
 #import "Restaurant.h"
 #import "NearbyMapViewController.h"
 #import "constants.h"
-#import "SettingsView1.h"
 #import "AppModel.h"
 #import "DishDetailViewController.h"
 #import "JSON.h"
 #import "LoginModalView.h"
 
-#define kTopDishBlue [UIColor colorWithRed:0 green:.3843 blue:.5725 alpha:1]
+//#define kTopDishBlue [UIColor colorWithRed:0 green:.3843 blue:.5725 alpha:1]
 #define buttonLightBlue [UIColor colorWithRed:0 green:.73 blue:.89 alpha:1 ]
 #define buttonLightBlueShine [UIColor colorWithRed:.53 green:.91 blue:.99 alpha:1]
 
 #define kDishSection 0
 #define kSearchCountLimit 25
 #define kMaxDistance kOneMileInMeters * 25
+#define kSearchTimerDelay 2
 
 #define sortStringArray [NSArray arrayWithObjects:@"nothing", DISTANCE_SORT, RATINGS_SORT, PRICE_SORT, nil]
 @interface DishTableViewController ()
@@ -49,6 +49,7 @@
 @synthesize currentSearchDistance = mCurrentSearchDistance;
 @synthesize fetchedResultsController = mFetchedResultsController;
 @synthesize currentSortIndicator = mCurrentSortIndicator;
+@synthesize stallSearchTextTimer = mStallSearchTextTimer;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -113,6 +114,8 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
+	mImageDownloadQueue = dispatch_queue_create("com.topdish.dishTableViewController.imagedownload", NULL);
+
 	self.view.backgroundColor = kTopDishBackground;
 	self.tableView.backgroundColor = kTopDishBackground;
 	self.navigationController.navigationBar.tintColor = kTopDishBlue;
@@ -130,8 +133,6 @@
 	[UIImage imageNamed:FILTER_ON_IMAGE_NAME] : [UIImage imageNamed:FILTER_IMAGE_NAME];
 	
 	[self.navigationItem.leftBarButtonItem setImage:filterImage];
-
-	[self updateFetch];
 }
 
 -(void) networkQuery:(NSString *)query{
@@ -183,10 +184,6 @@
 
 // Implement viewWillAppear: to do additional setup before the view is presented.
 - (void)viewWillAppear:(BOOL)animated {
-	//do we need to update the fetch when we come back?
-	//   I say yes in case we come back from settings
-	[self buildAndSendNetworkString];
-	[self updateFetch];
 	[super viewWillAppear:animated];
 }
 
@@ -242,7 +239,6 @@
 	//IncomingProcessor *proc = [[IncomingProcessor alloc] initWithProcessorDelegate:self];
 	
 	[[[AppModel instance] queue] addOperation:[proc taskWithData:responseTextStripped]];
-	[proc release];	
 	
 	//************Increase the search radius
 	//Hate to do this, but I need to parse the JSON to figure out how many results we got back
@@ -284,7 +280,6 @@
 }
 
 -(void)saveRestaurantsComplete {
-	NSLog(@"send notification about save restaurants complete");
 	[self performSelectorOnMainThread:@selector(doSaveRestaurantsComplete) 
 						   withObject:self 
 						waitUntilDone:NO];
@@ -484,7 +479,7 @@
         DLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-	
+	DLog(@"the fetch is done, update the UI");
 	//Finally, reload the data with the latest fetch
 	[self.tableView reloadData];
 
@@ -549,6 +544,7 @@
     if (cell == nil) {
 		NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"DishTableViewCell" owner:self options:nil];
         cell = (DishTableViewCell *)[nib objectAtIndex:0];
+		[cell setOpaque:FALSE];
 	}
 	
 	//remove any image that was loaded previously
@@ -598,51 +594,47 @@
 	
 	cell.priceNumber.text = [app tagNameForTagId:[thisDish price]];
 	
-	//Image handling
+//	//Image handling
 	if ([thisDish.photoURL length] > 0) {
 		if (thisDish.imageData) {
 			cell.dishImageView.image = [UIImage imageWithData:thisDish.imageData];
 		}
 		else{
-			dispatch_queue_t downloadQueue = dispatch_queue_create("com.topdish.imagedownload", NULL);
-			dispatch_retain(downloadQueue);
 			
 			//On background thread, download the image synchronously.
-			dispatch_async(downloadQueue, ^{
+			dispatch_async(mImageDownloadQueue, ^{
 				//Set up URL and download image (all in the background)
 				
 				NSURL *imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@?=s85-c", thisDish.photoURL]];
 				NSData *data = [NSData dataWithContentsOfURL:imageUrl];
+
 				UIImage *image = [UIImage imageWithData:data];
 				
 				//Update the core data object
 				thisDish.imageData = data;
 				
-				//On the main thread, update the appropriate cell and the core data object
-				dispatch_async(dispatch_get_main_queue(), ^{
+				if ([[tableView indexPathsForVisibleRows] containsObject:indexPath]) {
 					
-					//only if this indexPath is visible do we need to set the imageview
-					//  We've already set the core data object so there is no need to do anything else
-					//  until it shows up again. This is so awesome
-					if ([[tableView indexPathsForVisibleRows] containsObject:indexPath]) {
-						cell.dishImageView.image = image;
-					}
-					else {
-						NSLog(@"%@ is not visible", thisDish.objName);
-					}
-
-				});
+					//On the main thread, update the appropriate cell and the core data object
+					dispatch_async(dispatch_get_main_queue(), ^{
+						
+						//only if this indexPath is visible do we need to set the imageview
+						//  We've already set the core data object so there is no need to do anything else
+						//  until it shows up again. This is so awesome
+						if ([[tableView indexPathsForVisibleRows] containsObject:indexPath]) {
+							cell.dishImageView.image = image;
+						}
+						
+					});
+				}
 				
 			});
-			dispatch_release(downloadQueue);
 		}
 	}
 	else {
 		//show the default image
 		cell.dishImageView.image = [UIImage imageNamed:@"no_dish_img.png"];
 	}
-
-	[cell setOpaque:FALSE];
 	
     return cell;
 }
@@ -723,20 +715,24 @@
 }
 	
 - (void)locationUpdate:(CLLocation *)location {
-	if ([location distanceFromLocation:[AppModel instance].currentLocation] > 10) {
+	AppModel *app = [AppModel instance];
+	NSLog(@"current location is %@", app.currentLocation);
+	CLLocation *oldLocation = app.currentLocation;
+	[[AppModel instance] setCurrentLocation:location];
+
+	if (!oldLocation || [location distanceFromLocation:oldLocation] > 10) {
 				
 		[self buildAndSendNetworkString];
 		
 		NSPersistentStoreCoordinator *coord = [(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] persistentStoreCoordinator];
 		DistanceUpdator *proc = [DistanceUpdator updatorWithPersistentStoreCoordinator:coord Delegate:self];
-		[[[AppModel instance] queue] addOperation:[proc taskWithData:nil]];
+		[app.queue addOperation:[proc taskWithData:nil]];
 		
 		if (!locationController) {
 			locationController = [[MyCLController alloc] init];
 		}
 		locationController.delegate = self;
 	}
-	[[AppModel instance] setCurrentLocation:location];
 
 	//[locationController.locationManager stopUpdatingLocation];
 }
@@ -751,17 +747,25 @@
 	[self performSelectorOnMainThread:@selector(distancesUpdatedOnMain) withObject:nil waitUntilDone:NO];
 }
 
+#pragma mark - 
+#pragma mark SettingsViewDelegate
+-(void)didModifySettings {
+	[self buildAndSendNetworkString];
+	[self updateFetch];
+	[self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark -
 #pragma mark LoginModalView Delegate
 -(void)loginStarted {
-	NSLog(@"the login started");
+	//NSLog(@"the login started");
 }
 
 -(void)facebookLoginComplete {
-	NSLog(@"facebook login complete, waiting for TD login, lets move forward");
+	//NSLog(@"facebook login complete, waiting for TD login, lets move forward");
 }
 -(void)loginFailed {
-	NSLog(@"the login failed");
+	//NSLog(@"the login failed");
 	UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Login To TopDish Failed" 
 												 message:@"Please try again later" 
 												delegate:nil 
@@ -772,12 +776,12 @@
 	[[AppModel instance].facebook logout:[AppModel instance]];
 }
 -(void)loginComplete {
-	NSLog(@"the login from the LoginModalView was complete");
+	//NSLog(@"the login from the LoginModalView was complete");
 	[self dismissModalViewControllerAnimated:YES];
 }
 
 -(void)noLoginNow {
-	NSLog(@"the not now button was pressed");
+	//NSLog(@"the not now button was pressed");
 	[self dismissModalViewControllerAnimated:YES];
 }
 
@@ -844,7 +848,7 @@
     if (mFetchedResultsController != nil) {
         return mFetchedResultsController;
     }
-    
+
     /*
      Set up the fetched results controller.
 	 */
@@ -911,20 +915,32 @@
 	[self updateFetch];
 }	
 
+
+
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
 	DLog(@"the search bar text changed %@", searchText);
+	[self.stallSearchTextTimer invalidate];
 	
 	//Send the network request
 	self.currentSearchTerm = searchText;
-	[self buildAndSendNetworkString];
 	
+	self.stallSearchTextTimer = [NSTimer scheduledTimerWithTimeInterval:kSearchTimerDelay
+																 target:self 
+															   selector:@selector(buildAndSendNetworkString) 
+															   userInfo:nil 
+																repeats:NO];
+		
 	//Limit the core data output
 	[self updateFetch];
 }
 
 - (void)dealloc {
 
+	
 	DLog(@"************************************* Dealloc. This probably shouldn't happen too often");
+	dispatch_release(mImageDownloadQueue);
+	//mImageDownloadQueue = nil;
+	//dispatch_release(mImageDownloadQueue);
 	self.addItemCell = nil;
 	self.tvCell = nil;
 	self.currentSortIndicator = nil;
@@ -940,6 +956,7 @@
 	self.distanceTextLabel = nil;
 	
 	self.fetchedResultsController = nil;
+	self.stallSearchTextTimer = nil;
 	
 	[mConnectionLookup release];
 	[locationController release];

@@ -28,7 +28,7 @@
 	DistanceUpdator *updator = [[DistanceUpdator alloc] init];
 	updator.distanceUpdatorDelegate = delegate;
 	updator.persistentStoreCoordinator = coordinator;
-	return updator;	
+	return [updator autorelease];	
 }
 -(void)reprocessAllDistances {
 	DLog(@"This happens in the background");

@@ -148,7 +148,6 @@
 	CLLocation *center = [[CLLocation alloc] initWithLatitude:mapView.centerCoordinate.latitude
 													longitude:mapView.centerCoordinate.longitude];
 	float dist = [rightSide distanceFromLocation:center]/kOneMileInMeters;
-	NSLog(@"the map moved %f %f %f %f", mapView.centerCoordinate.latitude, mapView.centerCoordinate.longitude, mapView.region.span.latitudeDelta, dist);
 	
 	
 	[rightSide release];

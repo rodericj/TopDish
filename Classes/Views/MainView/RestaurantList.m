@@ -143,7 +143,7 @@
 		}
 		else{
 			dispatch_queue_t downloadQueue = dispatch_queue_create("com.topdish.imagedownload", NULL);
-			dispatch_retain(downloadQueue);
+			//dispatch_retain(downloadQueue);
 			
 			//On background thread, download the image synchronously.
 			dispatch_async(downloadQueue, ^{
@@ -164,12 +164,8 @@
 					if ([[tableView indexPathsForVisibleRows] containsObject:indexPath]) {
 						cell.restaurantImageView.image = image;
 					}
-					else {
-						NSLog(@"%@ is not visible", thisRestaurant.objName);
-					}
-					
 				});
-				dispatch_release(downloadQueue);
+				//dispatch_release(downloadQueue);
 			});
 		}
 	}
@@ -369,7 +365,8 @@
 	
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     [fetchRequest setSortDescriptors:sortDescriptors];
-    
+    [sortDescriptor release];
+	
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
 	self.fetchedResultsController = nil;
@@ -457,6 +454,7 @@
 	
 	NSDictionary *responseAsDictionary = [parser objectWithString:responseText 
 															error:&error];
+	[parser release];
 	if ([[responseAsDictionary objectForKey:@"dishes"] count] < kMinimumDishesToShow && self.currentSearchDistance < kMaxDistance) {
 		//Need to resend with a larger radius
 		self.currentSearchDistance *= 5;
@@ -475,7 +473,6 @@
 	
 	[[[AppModel instance] queue] addOperation:[proc taskWithData:responseTextStripped]];
 	DLog(@"PROCESSOR  proc task is set up");
-	[proc release];
 	[responseText release];
 }
 

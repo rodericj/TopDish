@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol SettingsViewDelegate
+
+@required
+-(void)didModifySettings;
+
+@end
+
 
 @interface SettingsView1 : UITableViewController <UIPickerViewDelegate, UIPickerViewDataSource>{
 	int *pointer;
@@ -21,6 +28,8 @@
 	BOOL mPickerUp;
 	
 	UIView *mFooterView;
+	
+	id <SettingsViewDelegate> mDelegate;
 }
 
 
@@ -30,6 +39,8 @@
 @property (nonatomic, retain) IBOutlet UIButton *pickerViewButton;
 
 @property (nonatomic, retain) IBOutlet UIView *footerView;
+@property (nonatomic, assign) id<SettingsViewDelegate> delegate;
+
 -(IBAction) pickerDone;
 -(IBAction) filtersDoneButtonPressed;
 @end

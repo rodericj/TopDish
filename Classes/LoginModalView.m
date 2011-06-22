@@ -54,7 +54,6 @@
  *	Called when the google login button is clicked
  */
 -(IBAction)googleButtonClick:(id)sender {
-	NSLog(@"google login button clicked");
 	
 	self.googleLoginView.hidden = NO;
 	
@@ -67,7 +66,6 @@
 }
 
 -(IBAction)termsAndConditionsButtonClicked:(id)sender {
-	NSLog(@"terms and conditions");
 	TermsAndConditionsViewController *toc = [[TermsAndConditionsViewController alloc] initWithNibName:@"TermsAndConditionsViewController" 
 																							   bundle:nil];
 	[self.navigationController pushViewController:toc animated:YES];
@@ -137,17 +135,17 @@
 #pragma mark google login
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-	NSLog(@"webview failed to load %@", error);
-	NSLog(@"%@", [[error userInfo] objectForKey:@"NSErrorFailingURLKey"]);
+//	NSLog(@"webview failed to load %@", error);
+//	NSLog(@"%@", [[error userInfo] objectForKey:@"NSErrorFailingURLKey"]);
 	
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-	NSLog(@"webview webViewDidFinishLoad");
+	//NSLog(@"webview webViewDidFinishLoad");
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-	NSLog(@"webview webViewDidStartLoad");
+	//NSLog(@"webview webViewDidStartLoad");
 }
 
 -(void)viewDidAppear:(BOOL)animated {

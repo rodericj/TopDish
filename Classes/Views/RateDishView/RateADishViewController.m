@@ -396,8 +396,7 @@
 		//NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
 		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@", [responseAsDict objectForKey:@"url"]]];
 		DLog(@"the url for sending the photo is %@", url);
-		ASIFormDataRequest *imageRequest = [ASIFormDataRequest requestWithURL:url];
-
+		ASIFormDataRequest *imageRequest;
 		imageRequest = [ASIFormDataRequest requestWithURL:url];
 		[imageRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
 		[imageRequest setData:UIImagePNGRepresentation(self.newPicture.image) forKey:@"photo"];

@@ -14,6 +14,7 @@
 #import "LoginModalView.h"
 #import "DishTableViewCell.h"
 #import "DistanceUpdator.h"
+#import "SettingsView1.h"
 
 @interface DishTableViewController :UITableViewController 
 <MyCLControllerDelegate, 
@@ -21,7 +22,8 @@ NSFetchedResultsControllerDelegate,
 UISearchBarDelegate, 
 IncomingProcessorDelegate,
 LoginModalViewDelegate,
-DistanceUpdatorDelegate> {
+DistanceUpdatorDelegate,
+SettingsViewDelegate> {
 	MyCLController *locationController;
 	NSString *mCurrentLat;
 	NSString *mCurrentLon;
@@ -47,6 +49,10 @@ DistanceUpdatorDelegate> {
 	NSMutableDictionary *mConnectionLookup;
 	
 	UIImageView			*mCurrentSortIndicator;
+	
+	dispatch_queue_t	mImageDownloadQueue;
+	
+	NSTimer				*mStallSearchTextTimer;
 }
 
 - (void) updateFetch;
@@ -73,6 +79,9 @@ DistanceUpdatorDelegate> {
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
 @property (nonatomic, retain) IBOutlet	UIImageView		*currentSortIndicator;
+
+@property (nonatomic, retain)			NSTimer			*stallSearchTextTimer;
+
 
 -(void) networkQuery:(NSString *)query;
 -(void) pushDishViewController:(ObjectWithImage *) selectedObject;

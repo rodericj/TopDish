@@ -21,7 +21,7 @@
 @synthesize pickerViewOverlay = mPickerViewOverlay;
 @synthesize pickerViewButton = mPickerViewButton;
 @synthesize footerView = mFooterView;
-
+@synthesize delegate = mDelegate;
 
 - (void)viewDidLoad {
 	self.view.backgroundColor = kTopDishBackground;
@@ -109,7 +109,7 @@
 #pragma mark -
 #pragma mark IBActions
 -(IBAction) filtersDoneButtonPressed {
-	[self.navigationController popViewControllerAnimated:YES];
+	[self.delegate didModifySettings];
 }
 
 -(IBAction) pickerDone {

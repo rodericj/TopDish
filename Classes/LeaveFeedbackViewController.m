@@ -61,6 +61,7 @@
 	
 	NSDictionary *responseAsDictionary = [parser objectWithString:responseString 
 															error:&error];
+	[parser release];
 	DLog(@"response is %@", responseAsDictionary);
 	[self.hud hide:YES afterDelay:2];
 	self.success = TRUE;

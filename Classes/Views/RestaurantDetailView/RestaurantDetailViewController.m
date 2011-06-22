@@ -91,7 +91,7 @@
 		
 		if (![restaurant imageData]) {
 			dispatch_queue_t downloadQueue = dispatch_queue_create("com.topdish.imagedownload", NULL);
-			dispatch_retain(downloadQueue);
+			//dispatch_retain(downloadQueue);
 			
 			//On background thread, download the image synchronously.
 			dispatch_async(downloadQueue, ^{
@@ -111,7 +111,7 @@
 				});
 				
 			});
-			dispatch_release(downloadQueue);
+			//dispatch_release(downloadQueue);
 		}
 		else {
 			UIImage *image = [UIImage imageWithData:restaurant.imageData];

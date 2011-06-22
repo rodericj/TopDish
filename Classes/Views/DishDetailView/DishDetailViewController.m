@@ -56,7 +56,7 @@
 -(void)refreshFromNetwork {
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishDetail?id[]=%@", 
 									   NETWORKHOST, 
-									   [self.thisDish dish_id]]];
+									   self.thisDish.dish_id]];
 	//Start up the networking
 	DLog(@"the comments url is %@", url);
 	NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -101,16 +101,17 @@
 }
 - (UITableViewCell *)commentsCellForIndexPath:(NSIndexPath *)indexPath {
 	static NSString *MyIdentifier = @"CommentsCellIdentifier";
-	NSString *comment = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"comment"];
-	NSString *creator = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"creator"];
-	NSNumber *voteDirection = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"direction"];
+	NSDictionary *commentItem = [self.reviews objectAtIndex:indexPath.row];
+	NSString *comment = [commentItem objectForKey:@"comment"];
+	NSString *creator = [commentItem objectForKey:@"creator"];
+	NSNumber *voteDirection = [commentItem objectForKey:@"direction"];
 	
 	UITableViewCell *cell = (UITableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:MyIdentifier];
 	if (cell == nil) {
 		//CommentCell comes from the file name CommentsCell.xib
 		[[NSBundle mainBundle] loadNibNamed:@"CommentsCell" owner:self options:nil];
-		cell = mTvCell;
-		self.tvCell = nil;
+		cell = self.tvCell;
+		//self.tvCell = nil;
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	}
 	
@@ -168,23 +169,11 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == kImageSection) {
-		//return 280;
 		return self.dishImageCell.bounds.size.height;
 	}
 	if (indexPath.section == kDescriptionSection) {
-		
-		//self.dishDescriptionCell.frame = CGRectMake(c.origin.x, c.origin.y, c.size.width, c.size.height);
-		//self.dishDescriptionCell.frame.size.height = [self.dishDescriptionLabel numberOfLines] * 25;
 		return self.dishDescriptionCell.bounds.size.height;
 	}
-//	if (indexPath.section == kCommentsSection) {
-//		NSString *s = [[self.reviews objectAtIndex:indexPath.row] objectForKey:@"comment"];
-//		UIFont *f = [UIFont fontWithName:@"Helvetica" size:14];
-//		CGSize expectedLabelSize = [s sizeWithFont:f forWidth:100 lineBreakMode:UILineBreakModeWordWrap];
-//		DLog(@"the size of %@ is %f %f", s, expectedLabelSize.height, expectedLabelSize.width);
-//	}
-	
-	
 	return 100;
 }
 
@@ -203,15 +192,10 @@
 	self.tableView.backgroundColor = [UIColor clearColor];
 	self.tableView.tableFooterView = [[[UIView alloc] initWithFrame:self.interactionOverlay.frame] autorelease];
 	
-	
-	CGRect r = [self.dishImageView frame];
-	DLog(@"view did load for %@", [self.thisDish objName]);
-	
-	if( [[self.thisDish photoURL] length] > 0 ){
+	if( [self.thisDish.photoURL length] > 0 ){
 		
-		if (![self.thisDish imageData]) {
+		if (!self.thisDish.imageData) {
 			dispatch_queue_t downloadQueue = dispatch_queue_create("com.topdish.imagedownload", NULL);
-			dispatch_retain(downloadQueue);
 			
 			//On background thread, download the image synchronously.
 			dispatch_async(downloadQueue, ^{
@@ -220,7 +204,7 @@
 				NSURL *imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@?=s290-c", self.thisDish.photoURL]];
 				NSData *data = [NSData dataWithContentsOfURL:imageUrl];
 				UIImage *image = [UIImage imageWithData:data];
-				NSLog(@"done downloading image");
+				NSLog(@"done downloading image %@", self.thisDish.photoURL);
 				//Update the core data object
 				self.thisDish.imageData = data;
 				
@@ -229,9 +213,8 @@
 					NSLog(@"update imageview");
 					self.dishImageView.image = image;
 				});
-				
+				dispatch_release(downloadQueue);
 			});
-			dispatch_release(downloadQueue);
 		}
 		else {
 			UIImage *image = [UIImage imageWithData:self.thisDish.imageData];
@@ -242,8 +225,7 @@
 	else
 		self.dishImageView.image = [UIImage imageNamed:@"no_dish_img.jpg"];
 
-	[self.dishDescriptionLabel setText:[self.thisDish dish_description]];
-	[self.dishDescriptionLabel numberOfLines];
+	[self.dishDescriptionLabel setText:self.thisDish.dish_description];
 	
 	AppModel *app = [AppModel instance];
 	Dish *d = self.thisDish;
@@ -257,11 +239,12 @@
 	[tagString appendString:[app tagNameForTagId:d.lifestyleType] ? [app tagNameForTagId:d.lifestyleType] : @""];
 	
 	self.dishTagsLabel.text = tagString;
+	[tagString release];
 	
-	[self.dishNameLabel setText:[self.thisDish objName]];
+	[self.dishNameLabel setText:self.thisDish.objName];
 	[self.dishNameLabel setTextColor:kTopDishBlue];
 	
-	[self.restaurantNameLabel setText:[[self.thisDish restaurant] objName]];
+	[self.restaurantNameLabel setText:self.thisDish.restaurant.objName];
 	[self.restaurantNameLabel setTextColor:kTopDishBlue];
 	
 	UITapGestureRecognizer *restaurantTouchGesture = [[UITapGestureRecognizer alloc]
@@ -282,8 +265,8 @@
 
 -(void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	self.negativeReviews.text = [NSString stringWithFormat:@"-%@",[self.thisDish negReviews]];
-	self.positiveReviews.text = [NSString stringWithFormat:@"+%@",[self.thisDish posReviews]];	
+	self.negativeReviews.text = [NSString stringWithFormat:@"-%@",self.thisDish.negReviews];
+	self.positiveReviews.text = [NSString stringWithFormat:@"+%@",self.thisDish.posReviews];	
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -304,12 +287,7 @@
 	
 }
 
-- (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
-}
-
-- (void)dealloc {
+-(void)releaseWhenViewUnloads {
 	self.thisDish = nil;
 	self.dishImageCell = nil;
 	self.dishImageView = nil;
@@ -325,12 +303,22 @@
 	self.reviews = nil;
 	self.responseData = nil;
 	
-	//TODO - in general, I need to get the moc from the app model
 	self.tvCell = nil;
 	self.moreButton = nil;
 	
 	self.hud = nil;
-	
+	self.tableView = nil;
+}
+
+
+- (void)viewDidUnload {
+    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
+    // For example: self.myOutlet = nil;
+	[self releaseWhenViewUnloads];
+}
+
+- (void)dealloc {
+	[self releaseWhenViewUnloads];	
     [super dealloc];
 }
 
@@ -475,7 +463,7 @@
 		newRequest = [ASIFormDataRequest requestWithURL:url];
 		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
 		[newRequest setData:UIImagePNGRepresentation(self.newPicture) forKey:@"photo"];
-		[newRequest setPostValue:[NSString stringWithFormat:@"%d", [[self.thisDish dish_id] intValue]] forKey:@"dishId"];
+		[newRequest setPostValue:[NSString stringWithFormat:@"%d", [self.thisDish.dish_id intValue]] forKey:@"dishId"];
 		[newRequest setDelegate:self];
 		[newRequest startAsynchronous];
 		return;
@@ -506,7 +494,7 @@
 		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
 		ASIFormDataRequest *newRequest = [ASIFormDataRequest requestWithURL:url];
 		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-		[newRequest setPostValue:[NSString stringWithFormat:@"%d", [[self.thisDish dish_id] intValue]] forKey:@"dishId"];
+		[newRequest setPostValue:[NSString stringWithFormat:@"%d", [self.thisDish.dish_id intValue]] forKey:@"dishId"];
 		[newRequest setDelegate:self];
 		[newRequest startAsynchronous];
 		DLog(@"done calling add photo, time to call rateDish");
@@ -594,7 +582,7 @@
 	RestaurantDetailViewController *restaurantController = 
 	[[RestaurantDetailViewController alloc] initWithNibName:@"RestaurantDetailView" 
 													 bundle:nil];
-	[restaurantController setRestaurant:[self.thisDish restaurant]];
+	[restaurantController setRestaurant:self.thisDish.restaurant];
 	[self.navigationController pushViewController:restaurantController animated:YES];
 	[restaurantController release];
 }
@@ -607,9 +595,8 @@
 	DLog(@"flagging this dish");
 	self.flagView.hidden = YES;
 	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/flagDish"]];
-	NSLog(@"url for flagging. %@ %@ %@, dish id is %@", url, keyforauthorizing, [[[AppModel instance] user] objectForKey:keyforauthorizing], [self.thisDish dish_id]);
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-	[request setPostValue:[self.thisDish dish_id] forKey:@"dishId"];
+	[request setPostValue:self.thisDish.dish_id forKey:@"dishId"];
 	
 	//inaccurate 0  spam  1 inappropriate 2
 	[request setPostValue:@"0" forKey:@"type"];
