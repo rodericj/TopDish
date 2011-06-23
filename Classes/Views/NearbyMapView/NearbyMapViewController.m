@@ -147,7 +147,7 @@
 													   longitude:mapView.centerCoordinate.longitude];
 	CLLocation *center = [[CLLocation alloc] initWithLatitude:mapView.centerCoordinate.latitude
 													longitude:mapView.centerCoordinate.longitude];
-	float dist = [rightSide distanceFromLocation:center]/kOneMileInMeters;
+	//float dist = [rightSide distanceFromLocation:center]/kOneMileInMeters;
 	
 	
 	[rightSide release];

@@ -532,8 +532,7 @@
 	return [sectionInfo numberOfObjects];
 }
 
-
--(UITableViewCell *)tableView:(UITableView *)tableView dishCellAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	//Return the Descriptor cell for adding a new dish
 	if (indexPath.row == [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]] numberOfObjects])
 		return self.addItemCell;
@@ -639,11 +638,6 @@
     return cell;
 }
 
-
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return [self tableView:tableView dishCellAtIndexPath:indexPath];
-}
 
 #pragma mark -
 
