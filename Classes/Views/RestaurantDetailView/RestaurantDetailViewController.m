@@ -205,11 +205,6 @@
 	return [sectionInfo numberOfObjects];
 }
 
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return [self tableView:tableView dishCellAtIndexPath:indexPath];
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	[self pushDishViewController:[self.fetchedResultsController 

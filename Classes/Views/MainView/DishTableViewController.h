@@ -85,6 +85,5 @@ SettingsViewDelegate> {
 
 -(void) networkQuery:(NSString *)query;
 -(void) pushDishViewController:(ObjectWithImage *) selectedObject;
--(UITableViewCell *)tableView:(UITableView *)tableView dishCellAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
