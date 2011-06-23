@@ -184,6 +184,7 @@
 
 // Implement viewWillAppear: to do additional setup before the view is presented.
 - (void)viewWillAppear:(BOOL)animated {
+    [self updateFetch];
 	[super viewWillAppear:animated];
 }
 
