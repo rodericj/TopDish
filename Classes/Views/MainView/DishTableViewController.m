@@ -710,12 +710,12 @@
 	
 - (void)locationUpdate:(CLLocation *)location {
 	AppModel *app = [AppModel instance];
-	NSLog(@"current location is %@", app.currentLocation);
+	NSLog(@"current location is %@ the delta is ", app.currentLocation);
 	CLLocation *oldLocation = app.currentLocation;
 	[[AppModel instance] setCurrentLocation:location];
 
 	if (!oldLocation || [location distanceFromLocation:oldLocation] > 10) {
-				
+        NSLog(@"new enough location ");
 		[self buildAndSendNetworkString];
 		
 		NSPersistentStoreCoordinator *coord = [(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] persistentStoreCoordinator];
