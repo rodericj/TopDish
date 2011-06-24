@@ -24,6 +24,7 @@
 #define kSearchCountLimit 25
 #define kMaxDistance kOneMileInMeters * 25
 #define kSearchTimerDelay 2
+#define kDurationToStopLocationUpdates 240  //4 minutes for now
 
 #define sortStringArray [NSArray arrayWithObjects:@"nothing", DISTANCE_SORT, RATINGS_SORT, PRICE_SORT, nil]
 @interface DishTableViewController ()
@@ -101,16 +102,6 @@
 	
 }
 
--(void)addObservers {
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(buildRestaurantNetworkGrab:) 
-												 name:NSNotificationStringDoneProcessingDishes 
-											   object:nil];
-}
--(void)removeObservers {
-
-	
-}
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
@@ -120,7 +111,6 @@
 	self.tableView.backgroundColor = kTopDishBackground;
 	self.navigationController.navigationBar.tintColor = kTopDishBlue;
 	[self setUpSpecificView];
-	[self addObservers];
 	
 }
 -(void)viewDidAppear:(BOOL)animated {
@@ -200,6 +190,7 @@
 	if ([app priceTags] && [app cuisineTypeTags] && [app mealTypeTags]) {
 		SettingsView1 *settings = [[SettingsView1 alloc] initWithNibName:@"SettingsView1" bundle:nil];
 		[settings setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+        settings.delegate = self;
 		[self.navigationController pushViewController:settings animated:TRUE];
 		[settings release];
 	}
@@ -232,7 +223,6 @@
 	
 	NSString *responseTextStripped = [responseText stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
 	
-	DLog(@"Set up the background processor for this incoming data");
 	//Send this incoming content to the IncomingProcessor Object
 	NSPersistentStoreCoordinator *coord = [(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] persistentStoreCoordinator];
 	
@@ -249,8 +239,9 @@
 	NSDictionary *responseAsDictionary = [parser objectWithString:responseText 
 															error:&error];
 	
-	DLog(@"we got %d dishes.", [[responseAsDictionary objectForKey:@"dishes"] count]);
 	
+    if ([[responseAsDictionary objectForKey:@"restaurants"] count] == 0) {
+        
 		if ([[responseAsDictionary objectForKey:@"dishes"] count] < kMinimumDishesToShow && self.currentSearchDistance < kMaxDistance) {
 			DLog(@"Need to resend with a larger radius: %d -> %d. UnRegister for notifications",
 				 [[responseAsDictionary objectForKey:@"dishes"] count], 
@@ -260,7 +251,7 @@
 			self.currentSearchDistance *= 5;
 			[self buildAndSendNetworkString];
 		}
-	
+	}
 	[parser release];
 	//*************
 
@@ -268,49 +259,26 @@
 	
 }
 
--(void)notifySaveComplete {
-	[[NSNotificationCenter defaultCenter] notifySaveComplete];
-	//[[NSNotificationCenter defaultCenter] postNotification:NSManagedObjectContextDidSaveNotification];
-}
-
--(void)doSaveRestaurantsComplete {
-	[[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationStringDoneProcessingRestaurants
-														object:self 
-													  userInfo:nil];
-	[self updateFetch];
-}
-
 -(void)saveRestaurantsComplete {
-	[self performSelectorOnMainThread:@selector(doSaveRestaurantsComplete) 
+	[self performSelectorOnMainThread:@selector(updateFetch) 
 						   withObject:self 
 						waitUntilDone:NO];
 }
 
--(void)doSaveDishesComplete {
-	[[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationStringDoneProcessingDishes
-														object:self 
-													  userInfo:nil];	
-}
 
--(void)saveDishesComplete {
+-(void)saveDishesComplete:(NSArray *)newlyCreatedRestaurantIds {
 	DLog(@"the save of dishes is complete in DishTableView");
-	[self performSelectorOnMainThread:@selector(doSaveDishesComplete) withObject:self waitUntilDone:NO];
-}
-
--(void)buildRestaurantNetworkGrab:(NSNotification *)notification {
-	DLog(@"begin the network request to get the restaurants");
-		
-	if ([[[notification userInfo] objectForKey:@"restaurantIds"] count]) {
-		
-		NSMutableString *query = [NSMutableString stringWithFormat:@"%@%@", NETWORKHOST, @"/api/restaurantDetail?"];
-		
-		for (NSNumber *n in [[notification userInfo] objectForKey:@"restaurantIds"]) {
-			[query appendString:[NSString stringWithFormat:@"id[]=%@&", n]];
-		}
-		[self performSelectorOnMainThread:@selector(networkQuery:) 
-							   withObject:query
-							waitUntilDone:NO];
-	}
+    if ([newlyCreatedRestaurantIds count] > 0) {
+        
+        NSMutableString *query = [NSMutableString stringWithFormat:@"%@%@", NETWORKHOST, @"/api/restaurantDetail?"];
+        
+        for (NSNumber *n in newlyCreatedRestaurantIds) {
+            [query appendString:[NSString stringWithFormat:@"id[]=%@&", n]];
+        }
+        [self performSelectorOnMainThread:@selector(networkQuery:) 
+                               withObject:query
+                            waitUntilDone:NO];
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
@@ -604,7 +572,6 @@
 			//On background thread, download the image synchronously.
 			dispatch_async(mImageDownloadQueue, ^{
 				//Set up URL and download image (all in the background)
-				
 				NSURL *imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@?=s85-c", thisDish.photoURL]];
 				NSData *data = [NSData dataWithContentsOfURL:imageUrl];
 
@@ -621,9 +588,14 @@
 						//only if this indexPath is visible do we need to set the imageview
 						//  We've already set the core data object so there is no need to do anything else
 						//  until it shows up again. This is so awesome
-						if ([[tableView indexPathsForVisibleRows] containsObject:indexPath]) {
+                        //Also need to consider when the fetcheResultsController have changed. So if, thisDish is 
+                        //the still where we think it was
+						if ([[tableView indexPathsForVisibleRows] containsObject:indexPath] && 
+                            thisDish == [[self fetchedResultsController] objectAtIndexPath:indexPath]) {
 							cell.dishImageView.image = image;
 						}
+                        else
+                            DLog(@"ok %@ is not visible", thisDish.objName);
 						
 					});
 				}
@@ -711,12 +683,11 @@
 	
 - (void)locationUpdate:(CLLocation *)location {
 	AppModel *app = [AppModel instance];
-	NSLog(@"current location is %@ the delta is ", app.currentLocation);
+	DLog(@"current location is %@ the delta is ", app.currentLocation);
 	CLLocation *oldLocation = app.currentLocation;
 	[[AppModel instance] setCurrentLocation:location];
 
 	if (!oldLocation || [location distanceFromLocation:oldLocation] > 10) {
-        NSLog(@"new enough location ");
 		[self buildAndSendNetworkString];
 		
 		NSPersistentStoreCoordinator *coord = [(TopDishAppDelegate *)[[UIApplication sharedApplication] delegate] persistentStoreCoordinator];
@@ -727,9 +698,14 @@
 			locationController = [[MyCLController alloc] init];
 		}
 		locationController.delegate = self;
+        [locationController.locationManager stopUpdatingLocation];
+        [NSTimer scheduledTimerWithTimeInterval:kDurationToStopLocationUpdates 
+                                         target:locationController.locationManager 
+                                       selector:@selector(startUpdatingLocation) 
+                                       userInfo:nil 
+                                        repeats:NO];
 	}
 
-	//[locationController.locationManager stopUpdatingLocation];
 }
 
 

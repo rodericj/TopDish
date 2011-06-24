@@ -129,6 +129,7 @@
 }
 
 -(void)reloadView {
+    DLog(@"just added a dish, time to refresh");
 	[self networkQuery:[NSString stringWithFormat:@"%@/api/restaurantDetail?id[]=%@", NETWORKHOST, [restaurant restaurant_id]]];	
 }
 
@@ -279,6 +280,8 @@
 #pragma mark -
 #pragma mark AddADishProtocolDelegate method
 -(void)addDishDone {
+    //Must refresh from network
+    
 	[self.navigationController popViewControllerAnimated:YES];
 	[self reloadView];
 }

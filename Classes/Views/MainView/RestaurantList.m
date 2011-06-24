@@ -61,11 +61,6 @@
 	[self.searchBar setDelegate:self];
 	[self.searchBar setTintColor:kTopDishBlue];
 	self.currentSearchDistance = kOneMileInMeters;
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(updateFetch) 
-												 name:NSNotificationStringDoneProcessingRestaurants 
-											   object:nil];
 }
 
 #pragma mark -

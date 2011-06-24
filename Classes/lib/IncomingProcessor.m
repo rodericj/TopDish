@@ -36,19 +36,6 @@
 	return theOp;
 }
 
--(void)initiateGrabNewRestaurants:(NSArray *)newRestaurantIds {
-	NSMutableString *query = [NSMutableString stringWithFormat:@"%@%@", NETWORKHOST, @"/api/restaurantDetail?"];
-	
-	for (NSNumber *n in newRestaurantIds) {
-		[query appendString:[NSString stringWithFormat:@"id[]=%@&", n]];
-	}
-	
-	//Need to notify the main thread that we are done processing the dishes and that it's time to now hit the API to get restaurant detail for our list of new restaurants
-	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:newRestaurantIds forKey:@"restaurantIds"];
-	[[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationStringDoneProcessingDishes object:self userInfo:userInfo];
-
-}
-
 -(void)processIncomingDishesWithJsonArray:(NSArray *)dishesArray {
 
 	DLog(@"processIncomingDishes. There are %d dishes", [dishesArray count]);
@@ -185,17 +172,8 @@
 		}
 		else {
 			//the save was successful, notify the main thread that the save worked, not waiting until done
-			[self.incomingProcessorDelegate saveDishesComplete];
+			[self.incomingProcessorDelegate saveDishesComplete:newRestaurantsWeNeedToGet];
 		}
-
-	}
-	
-	//done processing dishes, given list of new restaurants...
-
-	//For all of the new restaurants we just created, go fetch their data
-	if ([newRestaurantsWeNeedToGet count] > 0) {
-		//we have dishes. Do something with them
-		[self initiateGrabNewRestaurants:newRestaurantsWeNeedToGet];
 	}
 }
 

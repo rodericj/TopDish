@@ -21,7 +21,6 @@
 {
 	if (newLocation.horizontalAccuracy >= locationManager.desiredAccuracy || newLocation.verticalAccuracy <= locationManager.desiredAccuracy) {
 		[self.delegate locationUpdate:newLocation];
-		//[self.locationManager stopUpdatingLocation];
 	}
 }
 

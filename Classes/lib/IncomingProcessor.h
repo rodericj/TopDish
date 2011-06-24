@@ -14,7 +14,7 @@
 -(void)saveError:(NSString *)errorMessage;
 
 @required
--(void)saveDishesComplete;
+-(void)saveDishesComplete:(NSArray *)newRestaurantIds;
 -(void)saveRestaurantsComplete;
 
 @end
