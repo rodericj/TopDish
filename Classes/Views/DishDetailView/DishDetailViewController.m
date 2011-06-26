@@ -14,6 +14,7 @@
 #import "AppModel.h"
 #import "CommentDetailViewController.h"
 #import "FeedbackStringProcessor.h"
+#import "UIImage+Resize.h"
 
 #define kImageSection 0
 #define kDescriptionSection 1
@@ -186,13 +187,11 @@
     
     // Relinquish ownership any cached data, images, etc. that aren't in use.
 }
-
-- (void)viewDidLoad {
-		
-	self.tableView.backgroundColor = [UIColor clearColor];
-	self.tableView.tableFooterView = [[[UIView alloc] initWithFrame:self.interactionOverlay.frame] autorelease];
-	
-	if( [self.thisDish.photoURL length] > 0 ){
+-(void) setUpView {
+    
+    
+    
+    if( [self.thisDish.photoURL length] > 0 ){
 		
 		if (!self.thisDish.imageData) {
 			dispatch_queue_t downloadQueue = dispatch_queue_create("com.topdish.imagedownload", NULL);
@@ -224,7 +223,7 @@
 	}	
 	else
 		self.dishImageView.image = [UIImage imageNamed:@"no_dish_img.jpg"];
-
+    
 	[self.dishDescriptionLabel setText:self.thisDish.dish_description];
 	
 	AppModel *app = [AppModel instance];
@@ -257,10 +256,14 @@
 	
 	[self.moreButton setTitle:buttonTitle
 					 forState:UIControlStateNormal];
-
-	[self refreshFromNetwork];
-	
+}
+- (void)viewDidLoad {
 		
+	self.tableView.backgroundColor = [UIColor clearColor];
+	self.tableView.tableFooterView = [[[UIView alloc] initWithFrame:self.interactionOverlay.frame] autorelease];
+	[self setUpView];
+	
+	[self refreshFromNetwork];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -334,18 +337,18 @@
 	
 	NSDictionary *responseAsDictionary = [parser objectWithString:responseText 
 															error:&error];
+    [responseText release];
+	[parser release];
+
 	DLog(@"responseAsDictionary %@", responseAsDictionary);		
 	if ([[responseAsDictionary objectForKey:@"rc"] intValue] != 0) {
 		DLog(@"message: %@", [responseAsDictionary objectForKey:@"message"]);
-		[responseText release];
-		[parser release];
 		return;
 	}
-	
+
 	NSArray *responseAsArray = [responseAsDictionary objectForKey:@"dishes"];
 	NSDictionary *thisDishDetailDictionary = [responseAsArray objectAtIndex:0];
 	//DLog(@"%@", thisDishDetailDictionary);
-	[parser release];
 	if(self.reviews == nil){
 		self.reviews = [NSArray alloc];
 	}
@@ -358,8 +361,15 @@
 	self.negativeReviews.text = [NSString stringWithFormat:@"-%@",self.thisDish.negReviews];
 	self.positiveReviews.text = [NSString stringWithFormat:@"+%@",self.thisDish.posReviews];
 
-	[responseText release];
+    
+    NSArray *photoArray = [thisDishDetailDictionary objectForKey:@"photoURL"];
+    if ([photoArray count] && ![self.thisDish.photoURL isEqualToString:[photoArray objectAtIndex:0]]) {
+        self.thisDish.photoURL = [photoArray objectAtIndex:0];
+        self.thisDish.imageData = nil;
+        self.thisDish.ImageDataThumb = nil;
+    }
 	self.responseData = nil;
+    [self setUpView];
 	[self.tableView reloadData];
 	
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -460,9 +470,11 @@
 		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@", [responseAsDict objectForKey:@"url"]]];
 		DLog(@"the url for sending the photo is %@", url);
 		
+        UIImage *image = [self.newPicture resizedImage:CGSizeMake(384, 384) interpolationQuality:kCGInterpolationHigh];
+        
 		newRequest = [ASIFormDataRequest requestWithURL:url];
 		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-		[newRequest setData:UIImagePNGRepresentation(self.newPicture) forKey:@"photo"];
+		[newRequest setData:UIImagePNGRepresentation(image) forKey:@"photo"];
 		[newRequest setPostValue:[NSString stringWithFormat:@"%d", [self.thisDish.dish_id intValue]] forKey:@"dishId"];
 		[newRequest setDelegate:self];
 		[newRequest startAsynchronous];
@@ -472,6 +484,7 @@
 	self.hud.labelText = @"Successfully submitted the image";
 	[self.hud hide:YES afterDelay:3];
 	self.view.userInteractionEnabled = YES;
+    [self refreshFromNetwork];
 	DLog(@"done!");
 }
 
@@ -635,7 +648,6 @@
 #pragma mark RateDishProtocolDelegate
 -(void)doneRatingDish {
 	[self refreshFromNetwork];
-	[self.tableView reloadData];
 	[self.navigationController popViewControllerAnimated:YES];
 }
 

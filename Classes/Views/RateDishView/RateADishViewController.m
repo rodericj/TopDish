@@ -13,6 +13,7 @@
 #import "TopDishAppDelegate.h"
 #import "JSON.h"
 #import "FeedbackStringProcessor.h"
+#import "UIImage+Resize.h"
 
 #define kDishHeaderSection 0
 #define kDishCommentSection 1
@@ -396,10 +397,13 @@
 		//NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
 		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@", [responseAsDict objectForKey:@"url"]]];
 		DLog(@"the url for sending the photo is %@", url);
+        
+        UIImage *image = [self.newPicture.image resizedImage:CGSizeMake(384, 384) interpolationQuality:kCGInterpolationHigh];
+        
 		ASIFormDataRequest *imageRequest;
 		imageRequest = [ASIFormDataRequest requestWithURL:url];
 		[imageRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-		[imageRequest setData:UIImagePNGRepresentation(self.newPicture.image) forKey:@"photo"];
+		[imageRequest setData:UIImagePNGRepresentation(image) forKey:@"photo"];
 		[imageRequest setPostValue:[NSString stringWithFormat:@"%@", [self.thisDish dish_id]] forKey:@"dishId"];
 		[imageRequest setDelegate:self];
 		[imageRequest startAsynchronous];

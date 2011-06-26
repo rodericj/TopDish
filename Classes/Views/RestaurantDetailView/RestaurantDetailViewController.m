@@ -16,6 +16,8 @@
 #import "ASIHTTPRequest.h"
 #import "AppModel.h"
 
+#import "UIImage+Resize.h"
+
 #define kFlagRequestObject 0
 
 @implementation RestaurantDetailViewController
@@ -301,7 +303,7 @@
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
 	DLog(@"response string for any of these calls %@", responseString);
-	
+	DLog(@"the request was %@", request);
 	if ([[[request.url pathComponents] objectAtIndex:[[request.url pathComponents] count] - 1] isEqualToString:@"flagRestaurant"] ) {
 		NSLog(@"this is a flag restaurant call, do something different");
 		UIAlertView *a;
@@ -351,9 +353,11 @@
 		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@", [responseAsDict objectForKey:@"url"]]];
 		DLog(@"the url for sending the photo is %@", url);
 		
+        UIImage *image = [self.newPicture resizedImage:CGSizeMake(384, 384) interpolationQuality:kCGInterpolationHigh];
+
 		newRequest = [ASIFormDataRequest requestWithURL:url];
 		[newRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-		[newRequest setData:UIImagePNGRepresentation(self.newPicture) forKey:@"photo"];
+		[newRequest setData:UIImagePNGRepresentation(image) forKey:@"photo"];
 		[newRequest setPostValue:[NSString stringWithFormat:@"%d", [[self.restaurant restaurant_id] intValue]] forKey:@"restaurantId"];
 		[newRequest setDelegate:self];
 		[newRequest startAsynchronous];
@@ -363,6 +367,7 @@
 	self.hud.labelText = @"Successfully submitted the image";
 	[self.hud hide:NO afterDelay:3];
 	self.view.userInteractionEnabled = YES;
+    [self reloadView];
 	
 	DLog(@"done!");
 }
@@ -531,11 +536,14 @@
 #pragma mark -
 #pragma mark IncomingProcessorDelegate
 -(void)saveDishesComplete {
+    NSLog(@"save dishes complete in restaurant detail view");
 	[self.tableView performSelectorOnMainThread:@selector(reloadData) 
 									 withObject:self 
 								  waitUntilDone:NO];
 }
 -(void)saveRestaurantsComplete {
+    NSLog(@"save restaurant complete in restaurant detail view");
+
 	[self.tableView performSelectorOnMainThread:@selector(reloadData) 
 									 withObject:self 
 								  waitUntilDone:NO];

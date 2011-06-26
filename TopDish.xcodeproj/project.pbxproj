@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		170E356213B6B53B00C410FC /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E356013B6B53B00C410FC /* UIImage+Resize.m */; };
+		170E356513B6B6B100C410FC /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E356413B6B6B100C410FC /* UIImage+RoundedCorner.m */; };
+		170E356813B6B6D200C410FC /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E356713B6B6D200C410FC /* UIImage+Alpha.m */; };
 		1714C3BD13778C3F009E1BDA /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1714C3BC13778C3F009E1BDA /* MBProgressHUD.m */; };
 		1777A001133060A600E3F4B9 /* RestaurantOrDishAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A000133060A600E3F4B9 /* RestaurantOrDishAnnotation.m */; };
 		1777A18D13310A3B00E3F4B9 /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A18A13310A3B00E3F4B9 /* Dish.m */; };
@@ -135,6 +138,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		170E356013B6B53B00C410FC /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		170E356113B6B53B00C410FC /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		170E356313B6B69F00C410FC /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		170E356413B6B6B100C410FC /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		170E356613B6B6C500C410FC /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		170E356713B6B6D200C410FC /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
 		1714C3BB13778C3F009E1BDA /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = MBProgressHUD/MBProgressHUD.h; sourceTree = SOURCE_ROOT; };
 		1714C3BC13778C3F009E1BDA /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = MBProgressHUD/MBProgressHUD.m; sourceTree = SOURCE_ROOT; };
 		17779FFF133060A600E3F4B9 /* RestaurantOrDishAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantOrDishAnnotation.h; sourceTree = "<group>"; };
@@ -355,6 +364,19 @@
 				5F89EFAF125930A300959D05 /* lib */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		170E355F13B6B51800C410FC /* UIImageCategories */ = {
+			isa = PBXGroup;
+			children = (
+				170E356713B6B6D200C410FC /* UIImage+Alpha.m */,
+				170E356613B6B6C500C410FC /* UIImage+Alpha.h */,
+				170E356413B6B6B100C410FC /* UIImage+RoundedCorner.m */,
+				170E356313B6B69F00C410FC /* UIImage+RoundedCorner.h */,
+				170E356013B6B53B00C410FC /* UIImage+Resize.m */,
+				170E356113B6B53B00C410FC /* UIImage+Resize.h */,
+			);
+			name = UIImageCategories;
 			sourceTree = "<group>";
 		};
 		1714C3B713778C32009E1BDA /* MBProgressHUD */ = {
@@ -590,6 +612,7 @@
 		5F89EFAF125930A300959D05 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				170E355F13B6B51800C410FC /* UIImageCategories */,
 				17A8A4E2137B9EAC002C5FBB /* DistanceUpdator.h */,
 				17A8A4E3137B9EAC002C5FBB /* DistanceUpdator.m */,
 				1714C3B713778C32009E1BDA /* MBProgressHUD */,
@@ -898,6 +921,9 @@
 				17A518FD13A312AB00D47A3B /* CommentDetailViewController.m in Sources */,
 				17A519EF13A33D0400D47A3B /* FeedbackStringProcessor.m in Sources */,
 				17A51DC513A545FE00D47A3B /* TermsAndConditionsViewController.m in Sources */,
+				170E356213B6B53B00C410FC /* UIImage+Resize.m in Sources */,
+				170E356513B6B6B100C410FC /* UIImage+RoundedCorner.m in Sources */,
+				170E356813B6B6D200C410FC /* UIImage+Alpha.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

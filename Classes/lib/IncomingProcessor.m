@@ -91,7 +91,12 @@
 		//TODO: i'm currently only taking the first image. It's the 90% rule.
 		NSArray *photoURLArray = [dishDict objectForKey:@"photoURL"];
 		
-		[dish setPhotoURL:[photoURLArray count] > 0 ? [photoURLArray objectAtIndex:0]: @""];
+        if ([photoURLArray count] && ![dish.photoURL isEqualToString:[photoURLArray objectAtIndex:0]]) {
+            [dish setPhotoURL:[photoURLArray count] > 0 ? [photoURLArray objectAtIndex:0]: @""];
+            dish.imageData = nil;
+            dish.ImageDataThumb = nil;
+
+        }
 		///////
 		
 		[dish setPosReviews:[dishDict objectForKey:@"posReviews"]];
@@ -229,7 +234,13 @@
 		//https://projects.topdish.com/redmine/issues/90
 		//TODO: i'm currently only taking the first image. It's the 90% rule.
 		NSArray *photoURLArray = [restoDict objectForKey:@"photoURL"];
-		[restaurant setPhotoURL:[photoURLArray count] > 0 ? [photoURLArray objectAtIndex:0]: @""];
+        
+        //If the photo is a new photo...
+        if ([photoURLArray count] && ![restaurant.photoURL isEqualToString:[photoURLArray objectAtIndex:0]]) {
+            [restaurant setPhotoURL:[photoURLArray count] > 0 ? [photoURLArray objectAtIndex:0]: @""];
+            restaurant.imageData = nil;
+            restaurant.ImageDataThumb = nil;
+        }
 		///////
 		
 		[restaurant setAddressLine1:[restoDict objectForKey:@"addressLine1"]];
@@ -291,8 +302,13 @@
 			//https://projects.topdish.com/redmine/issues/90
 			//TODO: i'm currently only taking the first image. It's the 90% rule.
 			NSArray *photoURLArray = [restoDishesDict objectForKey:@"photoURL"];
-			
-			[dish setPhotoURL:[photoURLArray count] > 0 ? [photoURLArray objectAtIndex:0]: @""];
+            
+            //If we have a new image, replace it
+            if ([photoURLArray count] && ![restaurant.photoURL isEqualToString:[photoURLArray objectAtIndex:0]]) {
+                [dish setPhotoURL:[photoURLArray count] > 0 ? [photoURLArray objectAtIndex:0]: @""];
+                dish.imageData = nil;
+                dish.ImageDataThumb = nil;
+            }
 			///////
 			
 			[dish setPosReviews:[restoDishesDict objectForKey:@"posReviews"]];
