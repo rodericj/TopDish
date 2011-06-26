@@ -567,7 +567,7 @@
 		if (thisDish.imageData) {
 			cell.dishImageView.image = [UIImage imageWithData:thisDish.imageData];
 		}
-		else{
+		else if (self.tableView.dragging == NO && self.tableView.decelerating == NO){
 			
 			//On background thread, download the image synchronously.
 			dispatch_async(mImageDownloadQueue, ^{
@@ -611,6 +611,39 @@
     return cell;
 }
 
+// this method is used in case the user scrolled into a set of cells that don't have their app icons yet
+- (void)loadImagesForOnscreenRows
+{
+    
+    if ([[self.fetchedResultsController fetchedObjects] count] > 0)
+    {
+        NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
+        for (NSIndexPath *indexPath in visiblePaths)
+        {
+            Dish *dish = [self.fetchedResultsController objectAtIndexPath:indexPath];
+            //AppRecord *appRecord = [self.entries objectAtIndex:indexPath.row];
+            
+            if (!dish.imageData) // avoid the app icon download if the app already has an icon
+            {
+                [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            }
+        }
+    }
+}
+
+// Load images for all onscreen rows when scrolling is finished
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate)
+	{
+        [self loadImagesForOnscreenRows];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self loadImagesForOnscreenRows];
+}
 
 #pragma mark -
 
