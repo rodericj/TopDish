@@ -398,12 +398,13 @@
 		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@", [responseAsDict objectForKey:@"url"]]];
 		DLog(@"the url for sending the photo is %@", url);
         
-        UIImage *image = [self.newPicture.image resizedImage:CGSizeMake(384, 384) interpolationQuality:kCGInterpolationHigh];
+        if(self.newPicture.image.size.width > DEFAULTIMAGEDIMENSION || self.newPicture.image.size.height > DEFAULTIMAGEDIMENSION)
+            self.newPicture.image = [self.newPicture.image resizedImage:CGSizeMake(384, 384) interpolationQuality:kCGInterpolationHigh];
         
 		ASIFormDataRequest *imageRequest;
 		imageRequest = [ASIFormDataRequest requestWithURL:url];
 		[imageRequest setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-		[imageRequest setData:UIImagePNGRepresentation(image) forKey:@"photo"];
+		[imageRequest setData:UIImagePNGRepresentation(self.newPicture.image) forKey:@"photo"];
 		[imageRequest setPostValue:[NSString stringWithFormat:@"%@", [self.thisDish dish_id]] forKey:@"dishId"];
 		[imageRequest setDelegate:self];
 		[imageRequest startAsynchronous];
