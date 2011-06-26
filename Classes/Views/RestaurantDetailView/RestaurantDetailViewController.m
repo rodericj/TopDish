@@ -283,7 +283,7 @@
     //Must refresh from network
     
 	[self.navigationController popViewControllerAnimated:YES];
-	[self reloadView];
+    [self updateFetch];
 }
 #pragma mark -
 #pragma mark network

@@ -20,7 +20,6 @@
 
 
 @interface AddADishViewController : UITableViewController <UINavigationControllerDelegate, 
-UIImagePickerControllerDelegate,
 UIActionSheetDelegate,
 UITextViewDelegate,
 MBProgressHUDDelegate,
@@ -33,29 +32,19 @@ ASIProgressDelegate> {
 	UITableViewCell *mDishNameCell;
 	UITextField *mDishTitle;
 	
-	UITableViewCell *mWouldYouCell;
-	UIImageView *mYesImage;
-	UIImageView *mNoImage;
-	int mRating;
-	
-	UITableViewCell *mUploadCell;
-	UIImageView *mNewPicture;
-	
-	UIView *mAdditionalDetailsCell;
-	UITextView		*mAdditionalDetailsTextView;
-	UITextView		*mCommentTextView;
-	
 	UIButton		*mSubmitButton;
 	
 	int mSelectedPriceType;
 	int mSelectedMealType;
-	int mCurrentSelection;
 	
 	int mDishId;
 	
 	//We need to handle all of the outstanding requests before leaving view
 	int mOutstandingRequests;
 	
+    UIView *mAdditionalDetailsCell;
+    UITextView              *mAdditionalDetailsTextView;
+
 	int pickerSelected;
 	NSArray *mPickerArray;
 	UIPickerView *mPickerView;
@@ -78,22 +67,13 @@ ASIProgressDelegate> {
 @property (nonatomic, retain) IBOutlet UITableViewCell *dishNameCell;
 @property (nonatomic, retain) IBOutlet UITextField *dishTitle;
 
-@property (nonatomic, retain) IBOutlet UITableViewCell *wouldYouCell;
-@property (nonatomic, retain) IBOutlet UIImageView *noImage;
-@property (nonatomic, retain) IBOutlet UIImageView *yesImage;
-@property (nonatomic, assign) int rating;
-
-@property (nonatomic, retain) IBOutlet UITableViewCell *uploadCell;
-@property (nonatomic, retain) IBOutlet UIImageView *newPicture;
+@property (nonatomic, retain) IBOutlet UIButton	*submitButton;
 
 @property (nonatomic, retain) IBOutlet UIView *additionalDetailsCell;
 @property (nonatomic, retain) UITextView *additionalDetailsTextView;
-@property (nonatomic, retain) UITextView *commentTextView;
-@property (nonatomic, retain) IBOutlet UIButton	*submitButton;
 
 @property (nonatomic, assign) int selectedMealType;
 @property (nonatomic, assign) int selectedPriceType;
-@property (nonatomic, assign) int currentSelection;
 
 @property (nonatomic, assign) int dishId;
 
@@ -103,10 +83,7 @@ ASIProgressDelegate> {
 @property (nonatomic, retain) IBOutlet UIButton *pickerViewButton;
 
 @property (nonatomic, assign) id<AddADishProtocolDelegate> delegate;
--(IBAction)takePicture;
 -(IBAction)submitDish;
--(IBAction)noButtonClicked;
--(IBAction)yesButtonClicked;
 -(IBAction) pickerDone;
 
 @end
