@@ -428,8 +428,32 @@
 
 -(void)hudWasHidden {
 	self.tableView.userInteractionEnabled = YES;
-	if (mUploadSuccess)
-		[self.delegate doneRatingDish];
+	if (mUploadSuccess) {
+        
+        //if they are logged in with facebook, give option to share
+        if ([[AppModel instance].facebook isSessionValid]) {
+            
+            NSString *imageUrl;
+            if([self.thisDish.photoURL length])
+                imageUrl = self.thisDish.photoURL;
+            else
+                imageUrl = @"http://www.topdish.com/img/header/topdish_logo.png";
+            
+            
+            NSString *linkUrl = [NSString stringWithFormat:@"http://www.topdish.com/dishDetail.jsp?dishID=%@", self.thisDish.dish_id];    
+            NSString *wouldRecommend = self.rating == 1 ? @"I would recommend this." : @"I would not recommend this.";
+            NSString *comment = [self.dishComment.text length] > 0 ? self.dishComment: wouldRecommend;
+            
+            NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                           @"link", @"type",
+                                           imageUrl, @"picture",
+                                           linkUrl, @"link",
+                                           comment, @"description", nil];
+            [[AppModel instance].facebook dialog:@"stream.publish" andParams:params andDelegate:nil];
+            //else we are done
+        }
+        [self.delegate doneRatingDish];
+    }
 }
 
 #pragma mark -
