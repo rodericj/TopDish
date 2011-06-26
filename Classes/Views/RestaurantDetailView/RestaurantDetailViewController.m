@@ -522,7 +522,8 @@
 -(void)loginComplete {
 	DLog(@"the login is fully completed");
 	[self dismissModalViewControllerAnimated:YES];
-	[self performSelector:mPostLoginAction];
+    if (mPostLoginAction)
+        [self performSelector:mPostLoginAction];
 }
 
 -(void)noLoginNow {
