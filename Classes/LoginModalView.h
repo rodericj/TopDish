@@ -27,12 +27,15 @@ UIWebViewDelegate>{
 	id<LoginModalViewDelegate>	mDelegate;
 	MBProgressHUD				*mHud;
 	UIWebView					*mGoogleLoginView;
+    
+    UITextView                  *mWelcomeTextView;
 }
 
 @property (nonatomic, retain) IBOutlet	FBLoginButton				*fbLoginButton;
 @property (nonatomic, assign)			id<LoginModalViewDelegate>	delegate;
 @property (nonatomic, assign)			MBProgressHUD				*hud;
 @property (nonatomic, retain) IBOutlet	UIWebView					*googleLoginView;
+@property (nonatomic, retain) IBOutlet	UITextView					*welcomeTextView;
 
 +(LoginModalView *)viewControllerWithDelegate:(id<LoginModalViewDelegate>)delegate;
 

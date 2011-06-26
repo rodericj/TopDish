@@ -10,6 +10,7 @@
 #import "AppModel.h"
 #import "constants.h"
 #import "TermsAndConditionsViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation LoginModalView
 
@@ -17,6 +18,7 @@
 @synthesize delegate		= mDelegate;
 @synthesize	hud				= mHud;
 @synthesize googleLoginView	= mGoogleLoginView;
+@synthesize welcomeTextView = mWelcomeTextView;
 
 /**
  * Show the authorization dialog.
@@ -89,7 +91,6 @@
 }
 
 -(void)viewDidLoad {
-	self.view.backgroundColor = kTopDishBackground;
 
 	//setup the delegate notifications
 	[[NSNotificationCenter defaultCenter] addObserver:self
@@ -104,6 +105,10 @@
 											 selector:@selector(appModelLoginFailed)
 												 name:NSNotificationStringFailedLogin 
 											   object:nil];
+    
+    self.welcomeTextView.layer.cornerRadius = 10;
+    self.welcomeTextView.clipsToBounds = YES;
+    
 }
 
 #pragma mark -
@@ -154,7 +159,7 @@
 	
 	self.fbLoginButton.isLoggedIn = [[[AppModel instance] facebook] isSessionValid];
 	
-	[self.fbLoginButton updateImage];
+	//[self.fbLoginButton updateImage];
 	
 }
 
