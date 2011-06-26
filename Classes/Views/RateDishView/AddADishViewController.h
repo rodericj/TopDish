@@ -10,6 +10,7 @@
 #import "Restaurant.h"
 #import "MBProgressHUD.h"
 #import "ASIProgressDelegate.h"
+#import "RateADishViewController.h"
 
 @protocol AddADishProtocolDelegate
 
@@ -23,7 +24,8 @@
 UIActionSheetDelegate,
 UITextViewDelegate,
 MBProgressHUDDelegate,
-ASIProgressDelegate> {
+ASIProgressDelegate,
+RateDishProtocolDelegate> {
 	Restaurant *mRestaurant;
 	
 	UITableViewCell *mRestaurantCell;

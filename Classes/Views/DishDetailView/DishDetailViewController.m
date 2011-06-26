@@ -572,7 +572,6 @@
 }
 
 -(IBAction)pushRateDishController {
-	//RateADishViewController *rateDish = [[RateADishViewController alloc] init];
 	if ([[AppModel instance] isLoggedIn]) {
 		RateADishViewController *rateDish = 
 		[[RateADishViewController alloc] initWithNibName:@"RateADishViewController" 

@@ -318,7 +318,6 @@
 					
 					if(self.selectedPriceType != 0) {
 						for(NSDictionary *d in [app priceTags]){
-							DLog(@"this d is %@", d);
 							if ([[d objectForKey:@"id"] intValue] == self.selectedPriceType) {
 								cell.detailTextLabel.text = [d objectForKey:@"name"];
 							}
@@ -533,14 +532,25 @@
 		mUploadSuccess = YES;
 		mHUD.progress = 1;
 		mHUD.labelText = @"Upload complete";
-		[mHUD hide:YES afterDelay:2];
+		[mHUD hide:YES];
+        RateADishViewController *rateDish = [[RateADishViewController alloc] initWithNibName:@"RateADishViewController" 
+                                                                                      bundle:nil];
+        [rateDish setThisDish:newlyCreatedDish];
+        [rateDish setDelegate:self];
+        [self.navigationController pushViewController:rateDish 
+                                             animated:YES];
+        
+        [rateDish release];	
 	}
+}
+
+-(void)doneRatingDish {
+    [self.navigationController popViewControllerAnimated:NO];
+    [self.delegate addDishDone];
 }
 
 -(void)hudWasHidden {
 	self.tableView.userInteractionEnabled = YES;
-	if (mUploadSuccess)
-		[self.delegate addDishDone];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
