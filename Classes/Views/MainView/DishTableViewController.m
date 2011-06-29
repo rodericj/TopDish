@@ -568,9 +568,10 @@
 			cell.dishImageView.image = [UIImage imageWithData:thisDish.imageData];
 		}
 		else if (self.tableView.dragging == NO && self.tableView.decelerating == NO){
-			
+            dispatch_queue_t q = dispatch_queue_create("com.topdish.dishTableViewController.imagedownload", NULL);
+
 			//On background thread, download the image synchronously.
-			dispatch_async(mImageDownloadQueue, ^{
+			dispatch_async(q, ^{
 				//Set up URL and download image (all in the background)
 				NSURL *imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@?=s85-c", thisDish.photoURL]];
 				NSData *data = [NSData dataWithContentsOfURL:imageUrl];
@@ -597,6 +598,8 @@
                         else
                             DLog(@"ok %@ is not visible", thisDish.objName);
 						
+                        dispatch_release(q);
+
 					});
 				}
 				
@@ -780,7 +783,6 @@
 	[[AppModel instance].facebook logout:[AppModel instance]];
 }
 -(void)loginComplete {
-	//NSLog(@"the login from the LoginModalView was complete");
 	[self dismissModalViewControllerAnimated:YES];
 }
 
@@ -943,8 +945,6 @@
 	
 	DLog(@"************************************* Dealloc. This probably shouldn't happen too often");
 	dispatch_release(mImageDownloadQueue);
-	//mImageDownloadQueue = nil;
-	//dispatch_release(mImageDownloadQueue);
 	self.addItemCell = nil;
 	self.tvCell = nil;
 	self.currentSortIndicator = nil;
