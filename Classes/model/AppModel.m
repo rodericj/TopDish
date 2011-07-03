@@ -264,7 +264,6 @@ AppModel *gAppModelInstance = nil;
 
 		}
 		else {
-			[responseAsDict objectForKey:keyforauthorizing];
 			[self.user setObject:[responseAsDict objectForKey:keyforauthorizing] forKey:keyforauthorizing];
 			
 			//send notification that we have logged in
