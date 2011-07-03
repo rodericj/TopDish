@@ -210,9 +210,10 @@
 				//On the main thread, update the appropriate cell and the core data object
 				dispatch_async(dispatch_get_main_queue(), ^{
 					NSLog(@"update imageview");
-					self.dishImageView.image = image;
+					//self.dishImageView.image = image;
+                    [self.tableView reloadData];
+                    dispatch_release(downloadQueue);
 				});
-				dispatch_release(downloadQueue);
 			});
 		}
 		else {
@@ -552,6 +553,7 @@
 -(IBAction)takePicture
 {
 
+    
 	if ([[AppModel instance] isLoggedIn] ) {
 		
 		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil//@"Camera or Library?" 
