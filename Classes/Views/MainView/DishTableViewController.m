@@ -513,6 +513,12 @@
 		NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"DishTableViewCell" owner:self options:nil];
         cell = (DishTableViewCell *)[nib objectAtIndex:0];
 		[cell setOpaque:FALSE];
+        
+        UIImage *backgroundImage = [UIImage imageNamed:@"gradient_1.png"];
+        UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[backgroundImage stretchableImageWithLeftCapWidth:0 topCapHeight:95]];
+        [cell setBackgroundView:backgroundView];
+        [backgroundView release];
+        
 	}
 	
 	//remove any image that was loaded previously
