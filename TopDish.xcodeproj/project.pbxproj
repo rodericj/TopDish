@@ -38,8 +38,6 @@
 		17BF04E113C143F4009F42F4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 17BF04DF13C143F4009F42F4 /* Default.png */; };
 		17BF04E213C143F4009F42F4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17BF04E013C143F4009F42F4 /* Default@2x.png */; };
 		17BF050D13C147CF009F42F4 /* gradient_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 17BF050A13C147CF009F42F4 /* gradient_1.png */; };
-		17BF050E13C147CF009F42F4 /* gradient_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 17BF050B13C147CF009F42F4 /* gradient_2.png */; };
-		17BF050F13C147CF009F42F4 /* gradient_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 17BF050C13C147CF009F42F4 /* gradient_3.png */; };
 		17C4A5B813353E7E005D950B /* IncomingProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C4A5B713353E7E005D950B /* IncomingProcessor.m */; };
 		17DA5E411322BEDA00867B66 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5E351322BEDA00867B66 /* Facebook.m */; };
 		17DA5E421322BEDA00867B66 /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5E361322BEDA00867B66 /* FBConnect.bundle */; };
@@ -190,8 +188,6 @@
 		17BF04DF13C143F4009F42F4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		17BF04E013C143F4009F42F4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		17BF050A13C147CF009F42F4 /* gradient_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gradient_1.png; sourceTree = "<group>"; };
-		17BF050B13C147CF009F42F4 /* gradient_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gradient_2.png; sourceTree = "<group>"; };
-		17BF050C13C147CF009F42F4 /* gradient_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gradient_3.png; sourceTree = "<group>"; };
 		17C4A5B613353E7E005D950B /* IncomingProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IncomingProcessor.h; path = lib/IncomingProcessor.h; sourceTree = "<group>"; };
 		17C4A5B713353E7E005D950B /* IncomingProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IncomingProcessor.m; path = lib/IncomingProcessor.m; sourceTree = "<group>"; };
 		17DA5E341322BEDA00867B66 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Facebook.h; path = lib/FBConnect/Facebook.h; sourceTree = "<group>"; };
@@ -474,8 +470,6 @@
 			isa = PBXGroup;
 			children = (
 				17BF050A13C147CF009F42F4 /* gradient_1.png */,
-				17BF050B13C147CF009F42F4 /* gradient_2.png */,
-				17BF050C13C147CF009F42F4 /* gradient_3.png */,
 			);
 			name = "Cell Graphics";
 			sourceTree = "<group>";
@@ -899,8 +893,6 @@
 				17BF04E113C143F4009F42F4 /* Default.png in Resources */,
 				17BF04E213C143F4009F42F4 /* Default@2x.png in Resources */,
 				17BF050D13C147CF009F42F4 /* gradient_1.png in Resources */,
-				17BF050E13C147CF009F42F4 /* gradient_2.png in Resources */,
-				17BF050F13C147CF009F42F4 /* gradient_3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

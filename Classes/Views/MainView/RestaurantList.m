@@ -122,6 +122,12 @@
     if (cell == nil) {
 		NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"RestaurantTableViewCell" owner:self options:nil];
         cell = (RestaurantTableViewCell *)[nib objectAtIndex:0];
+        
+        UIImage *backgroundImage = [UIImage imageNamed:@"gradient_1.png"];
+        UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[backgroundImage stretchableImageWithLeftCapWidth:0 topCapHeight:95]];
+        [cell setBackgroundView:backgroundView];
+        [backgroundView release];
+
 	}
 	cell.restaurantImageView.image = nil;
 	cell.restaurantName.text = thisRestaurant.objName;
