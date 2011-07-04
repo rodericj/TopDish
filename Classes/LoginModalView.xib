@@ -59,10 +59,26 @@
 							<string key="NSResourceName">Default.png</string>
 						</object>
 					</object>
+					<object class="IBUIWebView" id="232671562">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">-2147483356</int>
+						<string key="NSFrame">{{20, 0}, {280, 389}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="623219971"/>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MSAxIDEAA</bytes>
+						</object>
+						<bool key="IBUIMultipleTouchEnabled">YES</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIDataDetectorTypes">1</int>
+						<bool key="IBUIDetectsPhoneNumbers">YES</bool>
+					</object>
 					<object class="IBUITextView" id="623219971">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 140}, {280, 127}}</string>
+						<string key="NSFrame">{{20, 131}, {280, 127}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="392655572"/>
@@ -92,7 +108,7 @@
 					<object class="IBUIButton" id="438311665">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{40, 380}, {240, 45}}</string>
+						<string key="NSFrame">{{40, 370}, {240, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="483778759"/>
@@ -123,7 +139,7 @@
 					<object class="IBUIButton" id="392655572">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{40, 327}, {240, 45}}</string>
+						<string key="NSFrame">{{40, 317}, {240, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="438311665"/>
@@ -143,26 +159,10 @@
 							<string key="NSResourceName">GoogleLoginButton.png</string>
 						</object>
 					</object>
-					<object class="IBUIWebView" id="232671562">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{20, 0}, {280, 389}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="623219971"/>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MSAxIDEAA</bytes>
-						</object>
-						<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIDataDetectorTypes">1</int>
-						<bool key="IBUIDetectsPhoneNumbers">YES</bool>
-					</object>
 					<object class="IBUIButton" id="483778759">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{114, 423}, {92, 37}}</string>
+						<string key="NSFrame">{{114, 419}, {92, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="849444786"/>
@@ -189,7 +189,6 @@
 						<string key="NSFrame">{{136, 423}, {184, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -316,11 +315,11 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="623219971"/>
 							<reference ref="667678234"/>
-							<reference ref="438311665"/>
-							<reference ref="392655572"/>
 							<reference ref="849444786"/>
-							<reference ref="483778759"/>
 							<reference ref="232671562"/>
+							<reference ref="392655572"/>
+							<reference ref="438311665"/>
+							<reference ref="483778759"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>

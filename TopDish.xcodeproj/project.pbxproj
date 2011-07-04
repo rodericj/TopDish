@@ -11,8 +11,6 @@
 		170E356513B6B6B100C410FC /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E356413B6B6B100C410FC /* UIImage+RoundedCorner.m */; };
 		170E356813B6B6D200C410FC /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E356713B6B6D200C410FC /* UIImage+Alpha.m */; };
 		1714C3BD13778C3F009E1BDA /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1714C3BC13778C3F009E1BDA /* MBProgressHUD.m */; };
-		1761CF9213B716E500860655 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1761CF9013B716E400860655 /* Default.png */; };
-		1761CF9313B716E500860655 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1761CF9113B716E400860655 /* Default@2x.png */; };
 		1761CF9913B7188B00860655 /* FacebookLoginButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1761CF9513B7188B00860655 /* FacebookLoginButton.png */; };
 		1761CF9A13B7188B00860655 /* FacebookLoginButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1761CF9613B7188B00860655 /* FacebookLoginButton@2x.png */; };
 		1761CF9B13B7188B00860655 /* GoogleLoginButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1761CF9713B7188B00860655 /* GoogleLoginButton.png */; };
@@ -37,6 +35,8 @@
 		17A64B8913613E6900ED8842 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A64B8813613E6900ED8842 /* Security.framework */; };
 		17A8A4E4137B9EAC002C5FBB /* DistanceUpdator.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A8A4E3137B9EAC002C5FBB /* DistanceUpdator.m */; };
 		17BBAFD81301AC2400705F1A /* CommentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17BBAFD71301AC2400705F1A /* CommentsCell.xib */; };
+		17BF04E113C143F4009F42F4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 17BF04DF13C143F4009F42F4 /* Default.png */; };
+		17BF04E213C143F4009F42F4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17BF04E013C143F4009F42F4 /* Default@2x.png */; };
 		17C4A5B813353E7E005D950B /* IncomingProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C4A5B713353E7E005D950B /* IncomingProcessor.m */; };
 		17DA5E411322BEDA00867B66 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DA5E351322BEDA00867B66 /* Facebook.m */; };
 		17DA5E421322BEDA00867B66 /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5E361322BEDA00867B66 /* FBConnect.bundle */; };
@@ -150,8 +150,6 @@
 		170E356713B6B6D200C410FC /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
 		1714C3BB13778C3F009E1BDA /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = MBProgressHUD/MBProgressHUD.h; sourceTree = SOURCE_ROOT; };
 		1714C3BC13778C3F009E1BDA /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = MBProgressHUD/MBProgressHUD.m; sourceTree = SOURCE_ROOT; };
-		1761CF9013B716E400860655 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		1761CF9113B716E400860655 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		1761CF9513B7188B00860655 /* FacebookLoginButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FacebookLoginButton.png; sourceTree = "<group>"; };
 		1761CF9613B7188B00860655 /* FacebookLoginButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FacebookLoginButton@2x.png"; sourceTree = "<group>"; };
 		1761CF9713B7188B00860655 /* GoogleLoginButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GoogleLoginButton.png; sourceTree = "<group>"; };
@@ -186,6 +184,8 @@
 		17A8A4E2137B9EAC002C5FBB /* DistanceUpdator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceUpdator.h; sourceTree = "<group>"; };
 		17A8A4E3137B9EAC002C5FBB /* DistanceUpdator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceUpdator.m; sourceTree = "<group>"; };
 		17BBAFD71301AC2400705F1A /* CommentsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsCell.xib; sourceTree = "<group>"; };
+		17BF04DF13C143F4009F42F4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		17BF04E013C143F4009F42F4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		17C4A5B613353E7E005D950B /* IncomingProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IncomingProcessor.h; path = lib/IncomingProcessor.h; sourceTree = "<group>"; };
 		17C4A5B713353E7E005D950B /* IncomingProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IncomingProcessor.m; path = lib/IncomingProcessor.m; sourceTree = "<group>"; };
 		17DA5E341322BEDA00867B66 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Facebook.h; path = lib/FBConnect/Facebook.h; sourceTree = "<group>"; };
@@ -403,8 +403,8 @@
 				1761CF9613B7188B00860655 /* FacebookLoginButton@2x.png */,
 				1761CF9713B7188B00860655 /* GoogleLoginButton.png */,
 				1761CF9813B7188B00860655 /* GoogleLoginButton@2x.png */,
-				1761CF9013B716E400860655 /* Default.png */,
-				1761CF9113B716E400860655 /* Default@2x.png */,
+				17BF04DF13C143F4009F42F4 /* Default.png */,
+				17BF04E013C143F4009F42F4 /* Default@2x.png */,
 			);
 			name = LoginGraphics;
 			sourceTree = "<group>";
@@ -875,12 +875,12 @@
 				17A5188C13A3067C00D47A3B /* filter_on.png in Resources */,
 				17A518FE13A312AB00D47A3B /* CommentDetailViewController.xib in Resources */,
 				17A51DC613A545FE00D47A3B /* TermsAndConditionsViewController.xib in Resources */,
-				1761CF9213B716E500860655 /* Default.png in Resources */,
-				1761CF9313B716E500860655 /* Default@2x.png in Resources */,
 				1761CF9913B7188B00860655 /* FacebookLoginButton.png in Resources */,
 				1761CF9A13B7188B00860655 /* FacebookLoginButton@2x.png in Resources */,
 				1761CF9B13B7188B00860655 /* GoogleLoginButton.png in Resources */,
 				1761CF9C13B7188B00860655 /* GoogleLoginButton@2x.png in Resources */,
+				17BF04E113C143F4009F42F4 /* Default.png in Resources */,
+				17BF04E213C143F4009F42F4 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
