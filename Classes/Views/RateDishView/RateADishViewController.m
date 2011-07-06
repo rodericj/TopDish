@@ -15,11 +15,12 @@
 #import "FeedbackStringProcessor.h"
 #import "UIImage+Resize.h"
 
-#define kDishHeaderSection 0
-#define kDishCommentSection 1
-#define kWouldYouRecommend 2
-#define kPictureCell 3
-#define kSubmitButtonCell 4
+#define kDishHeaderSection  0
+#define kWouldYouRecommend  1
+#define kDishCommentSection 2
+#define kSubmitButtonCell   3
+#define kNumberOfSections   4
+
 
 @implementation RateADishViewController
 @synthesize thisDish = mThisDish;
@@ -86,8 +87,6 @@
 	//if not logged in, pop out
 	if (![[AppModel instance] isLoggedIn]) 
 		[self.navigationController popViewControllerAnimated:YES];
-	
-
 }
 #pragma mark -
 #pragma mark Table view data source
@@ -98,8 +97,6 @@
 			return self.dishHeaderCell.bounds.size.height;
 		case kDishCommentSection:
 			return self.dishCommentCell.bounds.size.height;
-		case kPictureCell:
-			return self.pictureCell.bounds.size.height;
 		case kSubmitButtonCell:
 			return self.submitButtonCell.bounds.size.height;
 		default:
@@ -112,12 +109,9 @@
 	
 	switch (section) {
 		case kDishCommentSection:
-			return @"What did you think of this dish?";
+			return @"What did you think of this dish? (optional)";
 		case kWouldYouRecommend:
 			return @"Would you recommend this Dish?";
-		case kPictureCell:
-			return @"Upload a Picture";
-			
 		default:
 			break;
 	}
@@ -126,7 +120,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 5;
+    return kNumberOfSections;
 }
 
 
@@ -159,9 +153,6 @@
 			backView = [[UIView alloc] initWithFrame:CGRectZero];
 			cell.backgroundView = backView;
 			[backView release];
-			break;
-		case kPictureCell:
-			cell = self.pictureCell;
 			break;
 		case kSubmitButtonCell:
 			//if we are this far down, gotta remove keyboard :(
@@ -240,7 +231,6 @@
 #pragma mark Image Picker Delegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-	//self.dishImageFromPicker = [info objectForKey:@"UIImagePickerControllerEditedImage"];
 	if ([info objectForKey:@"UIImagePickerControllerEditedImage"]) {
 		[self.newPicture setImage:[info objectForKey:@"UIImagePickerControllerEditedImage"]];
 	}
@@ -250,7 +240,6 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
 	DLog(@"cancelled, should we go back another level?");
 	[self dismissModalViewControllerAnimated:YES];
-	//[self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -
