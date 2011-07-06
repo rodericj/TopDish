@@ -139,22 +139,15 @@
 	
 	//Image handling
 	if ([thisRestaurant.photoURL length] > 0) {
-		if (thisRestaurant.imageData) {
-			cell.restaurantImageView.image = [UIImage imageWithData:thisRestaurant.imageData];
+		if ([[AppModel instance] doesCacheItemExist:thisRestaurant.photoURL size:85]) {
+			cell.restaurantImageView.image = [[AppModel instance] getImage:thisRestaurant.photoURL size:85];
 		}
 		else{
 			dispatch_queue_t downloadQueue = dispatch_queue_create("com.topdish.imagedownload", NULL);
-			//dispatch_retain(downloadQueue);
 			
 			//On background thread, download the image synchronously.
 			dispatch_async(downloadQueue, ^{
-				//Set up URL and download image (all in the background)
-				NSURL *imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@=s85-c", thisRestaurant.photoURL]];
-				NSData *data = [NSData dataWithContentsOfURL:imageUrl];
-				UIImage *image = [UIImage imageWithData:data];
-				
-				//Update the core data object
-				thisRestaurant.imageData = data;
+				[[AppModel instance] getImage:thisRestaurant.photoURL size:85];
 				
 				//On the main thread, update the appropriate cell and the core data object
 				dispatch_async(dispatch_get_main_queue(), ^{
@@ -163,10 +156,10 @@
 					//  We've already set the core data object so there is no need to do anything else
 					//  until it shows up again. This is so awesome
 					if ([[tableView indexPathsForVisibleRows] containsObject:indexPath]) {
-						cell.restaurantImageView.image = image;
+                        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
 					}
 				});
-				//dispatch_release(downloadQueue);
+				dispatch_release(downloadQueue);
 			});
 		}
 	}

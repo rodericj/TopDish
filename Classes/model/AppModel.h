@@ -105,7 +105,7 @@
 -(void)logoutWithDelegate:(id<AppModelLogoutDelegate>)logoutDelegate;
 
 //cache
--(UIImage *)getImage:(NSString *)url;
--(BOOL)doesCacheItemExist:(NSString *)url;
+-(UIImage *)getImage:(NSString *)url size:(int)size;
+-(BOOL)doesCacheItemExist:(NSString *)url size:(int)size;
 
 @end

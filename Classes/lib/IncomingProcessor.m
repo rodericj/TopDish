@@ -93,9 +93,6 @@
 		
         if ([photoURLArray count] && ![dish.photoURL isEqualToString:[photoURLArray objectAtIndex:0]]) {
             [dish setPhotoURL:[photoURLArray count] > 0 ? [photoURLArray objectAtIndex:0]: @""];
-            dish.imageData = nil;
-            dish.ImageDataThumb = nil;
-
         }
 		///////
 		
@@ -238,8 +235,6 @@
         //If the photo is a new photo...
         if ([photoURLArray count] && ![restaurant.photoURL isEqualToString:[photoURLArray objectAtIndex:0]]) {
             [restaurant setPhotoURL:[photoURLArray count] > 0 ? [photoURLArray objectAtIndex:0]: @""];
-            restaurant.imageData = nil;
-            restaurant.ImageDataThumb = nil;
         }
 		///////
 		
@@ -306,8 +301,6 @@
             //If we have a new image, replace it
             if ([photoURLArray count] && ![restaurant.photoURL isEqualToString:[photoURLArray objectAtIndex:0]]) {
                 [dish setPhotoURL:[photoURLArray count] > 0 ? [photoURLArray objectAtIndex:0]: @""];
-                dish.imageData = nil;
-                dish.ImageDataThumb = nil;
             }
 			///////
 			

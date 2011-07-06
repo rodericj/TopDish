@@ -90,36 +90,25 @@
 	[self.restaurantAddress setText:[restaurant addressLine1]];
 	
 	if( [[restaurant photoURL] length] > 0 ){
-		
-		if (![restaurant imageData]) {
+		if (![[AppModel instance] doesCacheItemExist:restaurant.photoURL size:85]) {
 			dispatch_queue_t downloadQueue = dispatch_queue_create("com.topdish.imagedownload", NULL);
 			//dispatch_retain(downloadQueue);
 			
 			//On background thread, download the image synchronously.
 			dispatch_async(downloadQueue, ^{
 				//Set up URL and download image (all in the background)
-				NSLog(@"downloading image %@", restaurant.photoURL);
-				NSURL *imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@=s85-c", restaurant.photoURL]];
-				NSData *data = [NSData dataWithContentsOfURL:imageUrl];
-				UIImage *image = [UIImage imageWithData:data];
-				NSLog(@"done downloading image");
-				//Update the core data object
-				restaurant.imageData = data;
-				
+				UIImage *image = [[AppModel instance] getImage:restaurant.photoURL size:85];				
 				//On the main thread, update the appropriate cell and the core data object
 				dispatch_async(dispatch_get_main_queue(), ^{
-					NSLog(@"update imageview");
 					self.restaurantImage.image = image;
+                    [self setUpSpecificView];
 				});
 				
 			});
-			//dispatch_release(downloadQueue);
+			dispatch_release(downloadQueue);
 		}
-		else {
-			UIImage *image = [UIImage imageWithData:restaurant.imageData];
-			self.restaurantImage.image = image;
-		}		
-		
+		else
+			self.restaurantImage.image = [[AppModel instance] getImage:restaurant.photoURL size:85];
 	}	
 
 	else

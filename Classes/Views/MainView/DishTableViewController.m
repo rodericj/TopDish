@@ -570,9 +570,8 @@
 	
     //Image handling
 	if ([thisDish.photoURL length] > 0) {
-        NSString *cachedImageString = [NSString stringWithFormat:@"%@=s85-c", thisDish.photoURL];
-        if ([app doesCacheItemExist:cachedImageString]) {
-            cell.dishImageView.image = [app getImage:cachedImageString];
+        if ([app doesCacheItemExist:thisDish.photoURL size:85]) {
+            cell.dishImageView.image = [app getImage:thisDish.photoURL size:85];
                                 
         }
         else {
@@ -581,7 +580,7 @@
 			//On background thread, download the image synchronously.
 			dispatch_async(q, ^{
                 
-                UIImage *image = [[AppModel instance] getImage:cachedImageString];
+                UIImage *image = [[AppModel instance] getImage:thisDish.photoURL size:85];
 				
 				if ([[tableView indexPathsForVisibleRows] containsObject:indexPath]) {
 					

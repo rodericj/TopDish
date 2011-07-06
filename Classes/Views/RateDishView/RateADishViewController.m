@@ -66,8 +66,11 @@
 	
 	self.view.backgroundColor = kTopDishBackground;
 
-	self.dishImage.image = [UIImage imageWithData:[self.thisDish imageData]];
-	
+    if ([self.thisDish.photoURL length] > 0)
+        self.dishImage.image = [[AppModel instance] getImage:self.thisDish.photoURL size:85];
+    else
+        self.dishImage.image = [UIImage imageNamed:@"no_dish_img.png"];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated {

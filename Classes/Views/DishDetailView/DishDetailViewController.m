@@ -192,33 +192,24 @@
     
     
     if( [self.thisDish.photoURL length] > 0 ){
-		
-		if (!self.thisDish.imageData) {
+		if (![[AppModel instance] doesCacheItemExist:self.thisDish.photoURL size:290]) {
 			dispatch_queue_t downloadQueue = dispatch_queue_create("com.topdish.imagedownload", NULL);
 			
 			//On background thread, download the image synchronously.
 			dispatch_async(downloadQueue, ^{
 				//Set up URL and download image (all in the background)
-				NSLog(@"downloading image %@", self.thisDish.photoURL);
-				NSURL *imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@?=s290-c", self.thisDish.photoURL]];
-				NSData *data = [NSData dataWithContentsOfURL:imageUrl];
-				UIImage *image = [UIImage imageWithData:data];
-				NSLog(@"done downloading image %@", self.thisDish.photoURL);
-				//Update the core data object
-				self.thisDish.imageData = data;
+				[[AppModel instance] getImage:self.thisDish.photoURL size:290];
 				
 				//On the main thread, update the appropriate cell and the core data object
 				dispatch_async(dispatch_get_main_queue(), ^{
-					NSLog(@"update imageview");
-					//self.dishImageView.image = image;
-                    [self.tableView reloadData];
+                    //scary potential recursion?
+                    [self setUpView];
                     dispatch_release(downloadQueue);
 				});
 			});
 		}
 		else {
-			UIImage *image = [UIImage imageWithData:self.thisDish.imageData];
-			self.dishImageView.image = image;
+			self.dishImageView.image = [[AppModel instance] getImage:self.thisDish.photoURL size:290];;
 		}		
 		
 	}	
@@ -366,8 +357,6 @@
     NSArray *photoArray = [thisDishDetailDictionary objectForKey:@"photoURL"];
     if ([photoArray count] && ![self.thisDish.photoURL isEqualToString:[photoArray objectAtIndex:0]]) {
         self.thisDish.photoURL = [photoArray objectAtIndex:0];
-        self.thisDish.imageData = nil;
-        self.thisDish.ImageDataThumb = nil;
     }
 	self.responseData = nil;
     [self setUpView];

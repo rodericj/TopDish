@@ -318,18 +318,19 @@ AppModel *gAppModelInstance = nil;
 	}
 	return nil;
 }
--(BOOL)doesCacheItemExist:(NSString *)url {
+-(BOOL)doesCacheItemExist:(NSString *)url size:(int)size{
     if (!self.imageCache) {
         self.imageCache = [[ImgCache alloc] init];
     }
-    return [self.imageCache doesCacheItemExist:url];
+    return [self.imageCache doesCacheItemExist:[NSString stringWithFormat:@"%@=s%d-c", url, size]];
 }
 
--(UIImage *)getImage:(NSString *)url{
+-(UIImage *)getImage:(NSString *)url size:(int)size{
     if (!self.imageCache) {
         self.imageCache = [[ImgCache alloc] init];
     }
-    return [self.imageCache getImage:url];
+    
+    return [self.imageCache getImage:[NSString stringWithFormat:@"%@=s%d-c", url, size]];
 }
 
 -(void) dealloc
