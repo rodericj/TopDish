@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Facebook.h"
 #import "ASIFormDataRequest.h"
+#import "ImgCache.h"
 
 @protocol AppModelLogoutDelegate
 
@@ -44,6 +45,8 @@
 	BOOL	mUserDelayedLogin;
 	
 	id<AppModelLogoutDelegate> mLogoutDelegate;
+    
+    ImgCache *mImageCache;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *user;
@@ -61,6 +64,7 @@
 @property (nonatomic, retain) CLLocation *currentLocation;
 
 @property (nonatomic, assign) BOOL userDelayedLogin;
+@property (nonatomic, retain) ImgCache *imageCache;
 
 +(AppModel *)instance;
 
@@ -99,5 +103,9 @@
 -(BOOL)isAnyFilterSet;
 -(BOOL)isLoggedIn;
 -(void)logoutWithDelegate:(id<AppModelLogoutDelegate>)logoutDelegate;
+
+//cache
+-(UIImage *)getImage:(NSString *)url;
+-(BOOL)doesCacheItemExist:(NSString *)url;
 
 @end

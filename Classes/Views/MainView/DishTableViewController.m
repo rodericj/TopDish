@@ -526,7 +526,7 @@
 	
 	//Query the results controller
 	Dish *thisDish = [[self fetchedResultsController] objectAtIndexPath:indexPath];	
-	
+
 	//Build the UIElements
 	cell.dishName.text = thisDish.objName;
 	cell.restaurantName.text = thisDish.restaurant.objName;
@@ -568,24 +568,20 @@
 	
 	cell.priceNumber.text = [app tagNameForTagId:[thisDish price]];
 	
-//	//Image handling
+    //Image handling
 	if ([thisDish.photoURL length] > 0) {
-		if (thisDish.imageData) {
-			cell.dishImageView.image = [UIImage imageWithData:thisDish.imageData];
-		}
-		else if (self.tableView.dragging == NO && self.tableView.decelerating == NO){
+        NSString *cachedImageString = [NSString stringWithFormat:@"%@=s85-c", thisDish.photoURL];
+        if ([app doesCacheItemExist:cachedImageString]) {
+            cell.dishImageView.image = [app getImage:cachedImageString];
+                                
+        }
+        else {
             dispatch_queue_t q = dispatch_queue_create("com.topdish.dishTableViewController.imagedownload", NULL);
-
+            
 			//On background thread, download the image synchronously.
 			dispatch_async(q, ^{
-				//Set up URL and download image (all in the background)
-				NSURL *imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@?=s85-c", thisDish.photoURL]];
-				NSData *data = [NSData dataWithContentsOfURL:imageUrl];
-
-				UIImage *image = [UIImage imageWithData:data];
-				
-				//Update the core data object
-				thisDish.imageData = data;
+                
+                UIImage *image = [[AppModel instance] getImage:cachedImageString];
 				
 				if ([[tableView indexPathsForVisibleRows] containsObject:indexPath]) {
 					
@@ -605,12 +601,13 @@
                             DLog(@"ok %@ is not visible", thisDish.objName);
 						
                         dispatch_release(q);
-
+                        
 					});
 				}
 				
 			});
-		}
+        }
+		//}
 	}
 	else {
 		//show the default image
@@ -623,20 +620,10 @@
 // this method is used in case the user scrolled into a set of cells that don't have their app icons yet
 - (void)loadImagesForOnscreenRows
 {
-    
     if ([[self.fetchedResultsController fetchedObjects] count] > 0)
     {
         NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
-        for (NSIndexPath *indexPath in visiblePaths)
-        {
-            Dish *dish = [self.fetchedResultsController objectAtIndexPath:indexPath];
-            //AppRecord *appRecord = [self.entries objectAtIndex:indexPath.row];
-            
-            if (!dish.imageData) // avoid the app icon download if the app already has an icon
-            {
-                [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-            }
-        }
+        [self.tableView reloadRowsAtIndexPaths:visiblePaths withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 
@@ -753,6 +740,7 @@
 
 #pragma mark DistanceUpdatorDelegate
 -(void)distancesUpdatedOnMain {
+    DLog(@"update because of distance updated");
 	[self.tableView reloadData];
 }
 

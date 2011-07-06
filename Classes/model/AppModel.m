@@ -28,6 +28,8 @@
 @synthesize queue = mQueue;
 @synthesize userDelayedLogin = mUserDelayedLogin;
 
+@synthesize imageCache = mImageCache;
+
 AppModel *gAppModelInstance = nil;
 
 +(AppModel *) instance{
@@ -316,9 +318,23 @@ AppModel *gAppModelInstance = nil;
 	}
 	return nil;
 }
+-(BOOL)doesCacheItemExist:(NSString *)url {
+    if (!self.imageCache) {
+        self.imageCache = [[ImgCache alloc] init];
+    }
+    return [self.imageCache doesCacheItemExist:url];
+}
+
+-(UIImage *)getImage:(NSString *)url{
+    if (!self.imageCache) {
+        self.imageCache = [[ImgCache alloc] init];
+    }
+    return [self.imageCache getImage:url];
+}
 
 -(void) dealloc
 {
+    self.imageCache = nil;
 	self.user = nil;
 	[mMealTypeTags release];
 	[mCuisineTypeTags release];

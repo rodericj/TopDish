@@ -18,6 +18,7 @@
 		1777A001133060A600E3F4B9 /* RestaurantOrDishAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A000133060A600E3F4B9 /* RestaurantOrDishAnnotation.m */; };
 		1777A18D13310A3B00E3F4B9 /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A18A13310A3B00E3F4B9 /* Dish.m */; };
 		1777A18E13310A3B00E3F4B9 /* ObjectWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A18C13310A3B00E3F4B9 /* ObjectWithImage.m */; };
+		178FE19013C3BCFA0063935E /* ImgCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 178FE18F13C3BCFA0063935E /* ImgCache.m */; };
 		1792A832136A65D10058B8B7 /* LeaveFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1792A830136A65D10058B8B7 /* LeaveFeedbackViewController.m */; };
 		1792A833136A65D10058B8B7 /* LeaveFeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1792A831136A65D10058B8B7 /* LeaveFeedbackViewController.xib */; };
 		179A8DA6134C29B20072CAF0 /* LoginModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 179A8DA4134C29B20072CAF0 /* LoginModalView.m */; };
@@ -161,6 +162,8 @@
 		1777A18A13310A3B00E3F4B9 /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
 		1777A18B13310A3B00E3F4B9 /* ObjectWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectWithImage.h; sourceTree = "<group>"; };
 		1777A18C13310A3B00E3F4B9 /* ObjectWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectWithImage.m; sourceTree = "<group>"; };
+		178FE18E13C3BCFA0063935E /* ImgCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImgCache.h; path = lib/ImgCache/ImgCache.h; sourceTree = "<group>"; };
+		178FE18F13C3BCFA0063935E /* ImgCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImgCache.m; path = lib/ImgCache/ImgCache.m; sourceTree = "<group>"; };
 		1792A82F136A65D10058B8B7 /* LeaveFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaveFeedbackViewController.h; sourceTree = "<group>"; };
 		1792A830136A65D10058B8B7 /* LeaveFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaveFeedbackViewController.m; sourceTree = "<group>"; };
 		1792A831136A65D10058B8B7 /* LeaveFeedbackViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaveFeedbackViewController.xib; sourceTree = "<group>"; };
@@ -431,6 +434,15 @@
 			name = AsyncImageView;
 			sourceTree = "<group>";
 		};
+		178FE18D13C3BCD80063935E /* ImgCache */ = {
+			isa = PBXGroup;
+			children = (
+				178FE18E13C3BCFA0063935E /* ImgCache.h */,
+				178FE18F13C3BCFA0063935E /* ImgCache.m */,
+			);
+			name = ImgCache;
+			sourceTree = "<group>";
+		};
 		1792A82E136A65C20058B8B7 /* Feedback */ = {
 			isa = PBXGroup;
 			children = (
@@ -643,6 +655,7 @@
 		5F89EFAF125930A300959D05 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				178FE18D13C3BCD80063935E /* ImgCache */,
 				170E355F13B6B51800C410FC /* UIImageCategories */,
 				17A8A4E2137B9EAC002C5FBB /* DistanceUpdator.h */,
 				17A8A4E3137B9EAC002C5FBB /* DistanceUpdator.m */,
@@ -960,6 +973,7 @@
 				170E356213B6B53B00C410FC /* UIImage+Resize.m in Sources */,
 				170E356513B6B6B100C410FC /* UIImage+RoundedCorner.m in Sources */,
 				170E356813B6B6D200C410FC /* UIImage+Alpha.m in Sources */,
+				178FE19013C3BCFA0063935E /* ImgCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
