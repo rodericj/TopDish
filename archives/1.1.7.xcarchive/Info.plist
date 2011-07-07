@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ApplicationProperties</key>
+	<dict>
+		<key>ApplicationPath</key>
+		<string>Applications/TopDish.app</string>
+		<key>CFBundleIdentifier</key>
+		<string>com.topdish</string>
+		<key>CFBundleShortVersionString</key>
+		<string>1.1</string>
+		<key>IconPaths</key>
+		<array>
+			<string>Applications/TopDish.app/Icon.png</string>
+		</array>
+	</dict>
+	<key>ArchiveVersion</key>
+	<real>1</real>
+	<key>Comment</key>
+	<string>v1.1.7</string>
+	<key>CreationDate</key>
+	<date>2011-07-07T06:02:02Z</date>
+	<key>Name</key>
+	<string>TopDish</string>
+	<key>SchemeName</key>
+	<string>TopDish</string>
+</dict>
+</plist>

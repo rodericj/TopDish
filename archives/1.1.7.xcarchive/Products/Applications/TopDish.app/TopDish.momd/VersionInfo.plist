@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSManagedObjectModel_CurrentVersionName</key>
+	<string>TopDish</string>
+	<key>NSManagedObjectModel_VersionHashes</key>
+	<dict>
+		<key>TopDish</key>
+		<dict>
+			<key>Dish</key>
+			<data>
+			hQ4a0lxzRfSzVHy7OAaWQahm5NFgnWDh9JPAzQE2Yxs=
+			</data>
+			<key>DishComment</key>
+			<data>
+			220RUx8iSPvIJH3MtKryqvJrwmVx2qzMPbuw/jLZ2oo=
+			</data>
+			<key>ObjectWithImage</key>
+			<data>
+			KTbbwQ+Jd4/EMSBeWs3BSsLTVbzRdpGjEpCHaZcnP3Y=
+			</data>
+			<key>Restaurant</key>
+			<data>
+			PuvOGMLQCerXyJeWFYRz8DYAj4GaMvC5qBkaEo6fVBY=
+			</data>
+			<key>User</key>
+			<data>
+			e/x7OhgsUz6sGZ9aTdbBL2ZyOvsbQSFxplpJP4pLpa4=
+			</data>
+		</dict>
+		<key>TopDish 2</key>
+		<dict>
+			<key>Dish</key>
+			<data>
+			WUSxf6LZ5LDqj1BUdVQl86kqtoVk/Of1wDkRhiDmmAQ=
+			</data>
+			<key>DishComment</key>
+			<data>
+			5GWU8vwJ/5KeAr3Me1HtVEA6MxPedAWr3sp/7jplYys=
+			</data>
+			<key>ObjectWithImage</key>
+			<data>
+			BTmFFRhIQdtbzP1ekxcx9ZSS1us825Ya6eCqTsf1LcQ=
+			</data>
+			<key>Restaurant</key>
+			<data>
+			ZCmZJL/uGVl3RfHZCgY4wFGiczz9VbBZ2FJtaJA/Ylk=
+			</data>
+		</dict>
+	</dict>
+</dict>
+</plist>
