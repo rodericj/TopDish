@@ -51,6 +51,8 @@ MBProgressHUDDelegate> {
 	UIView				*mMenuSectionHeaderView;
 	
 	MBProgressHUD		*mHud;
+    
+    NSArray             *mUrlImageArray;
 }
 
 @property (nonatomic, retain)			Restaurant		*restaurant;
@@ -76,6 +78,7 @@ MBProgressHUDDelegate> {
 @property (nonatomic, retain) IBOutlet	UIView			*menuSectionHeaderView;
 
 @property (nonatomic, retain)			MBProgressHUD	*hud;
+@property (nonatomic, retain)           NSArray         *urlImageArray;
 
 -(IBAction)callRestaurant;
 -(IBAction) pushAddDishViewController;

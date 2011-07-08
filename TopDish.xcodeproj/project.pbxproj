@@ -19,6 +19,12 @@
 		1777A18D13310A3B00E3F4B9 /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A18A13310A3B00E3F4B9 /* Dish.m */; };
 		1777A18E13310A3B00E3F4B9 /* ObjectWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1777A18C13310A3B00E3F4B9 /* ObjectWithImage.m */; };
 		178FE19013C3BCFA0063935E /* ImgCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 178FE18F13C3BCFA0063935E /* ImgCache.m */; };
+		178FE1C413C6D68B0063935E /* MWPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 178FE1BF13C6D68B0063935E /* MWPhotoBrowser.m */; };
+		178FE1C513C6D68B0063935E /* MWPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 178FE1C113C6D68B0063935E /* MWPhoto.m */; };
+		178FE1C613C6D68B0063935E /* ZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 178FE1C313C6D68B0063935E /* ZoomingScrollView.m */; };
+		178FE1CC13C6D6B40063935E /* UIImageViewTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 178FE1C913C6D6B40063935E /* UIImageViewTap.m */; };
+		178FE1CD13C6D6B40063935E /* UIViewTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 178FE1CB13C6D6B40063935E /* UIViewTap.m */; };
+		178FE1D013C6D6BD0063935E /* UIImage+Decompress.m in Sources */ = {isa = PBXBuildFile; fileRef = 178FE1CF13C6D6BD0063935E /* UIImage+Decompress.m */; };
 		1792A832136A65D10058B8B7 /* LeaveFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1792A830136A65D10058B8B7 /* LeaveFeedbackViewController.m */; };
 		1792A833136A65D10058B8B7 /* LeaveFeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1792A831136A65D10058B8B7 /* LeaveFeedbackViewController.xib */; };
 		179A8DA6134C29B20072CAF0 /* LoginModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 179A8DA4134C29B20072CAF0 /* LoginModalView.m */; };
@@ -164,6 +170,18 @@
 		1777A18C13310A3B00E3F4B9 /* ObjectWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectWithImage.m; sourceTree = "<group>"; };
 		178FE18E13C3BCFA0063935E /* ImgCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImgCache.h; path = lib/ImgCache/ImgCache.h; sourceTree = "<group>"; };
 		178FE18F13C3BCFA0063935E /* ImgCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImgCache.m; path = lib/ImgCache/ImgCache.m; sourceTree = "<group>"; };
+		178FE1BE13C6D68B0063935E /* MWPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhotoBrowser.h; sourceTree = "<group>"; };
+		178FE1BF13C6D68B0063935E /* MWPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWPhotoBrowser.m; sourceTree = "<group>"; };
+		178FE1C013C6D68B0063935E /* MWPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhoto.h; sourceTree = "<group>"; };
+		178FE1C113C6D68B0063935E /* MWPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWPhoto.m; sourceTree = "<group>"; };
+		178FE1C213C6D68B0063935E /* ZoomingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomingScrollView.h; sourceTree = "<group>"; };
+		178FE1C313C6D68B0063935E /* ZoomingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomingScrollView.m; sourceTree = "<group>"; };
+		178FE1C813C6D6B40063935E /* UIImageViewTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageViewTap.h; sourceTree = "<group>"; };
+		178FE1C913C6D6B40063935E /* UIImageViewTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageViewTap.m; sourceTree = "<group>"; };
+		178FE1CA13C6D6B40063935E /* UIViewTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewTap.h; sourceTree = "<group>"; };
+		178FE1CB13C6D6B40063935E /* UIViewTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewTap.m; sourceTree = "<group>"; };
+		178FE1CE13C6D6BD0063935E /* UIImage+Decompress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Decompress.h"; sourceTree = "<group>"; };
+		178FE1CF13C6D6BD0063935E /* UIImage+Decompress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Decompress.m"; sourceTree = "<group>"; };
 		1792A82F136A65D10058B8B7 /* LeaveFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaveFeedbackViewController.h; sourceTree = "<group>"; };
 		1792A830136A65D10058B8B7 /* LeaveFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaveFeedbackViewController.m; sourceTree = "<group>"; };
 		1792A831136A65D10058B8B7 /* LeaveFeedbackViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaveFeedbackViewController.xib; sourceTree = "<group>"; };
@@ -443,6 +461,33 @@
 			name = ImgCache;
 			sourceTree = "<group>";
 		};
+		178FE1BD13C6D6790063935E /* MWPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				178FE1C713C6D6AA0063935E /* BrowserHelpers */,
+				178FE1BE13C6D68B0063935E /* MWPhotoBrowser.h */,
+				178FE1BF13C6D68B0063935E /* MWPhotoBrowser.m */,
+				178FE1C013C6D68B0063935E /* MWPhoto.h */,
+				178FE1C113C6D68B0063935E /* MWPhoto.m */,
+				178FE1C213C6D68B0063935E /* ZoomingScrollView.h */,
+				178FE1C313C6D68B0063935E /* ZoomingScrollView.m */,
+			);
+			name = MWPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		178FE1C713C6D6AA0063935E /* BrowserHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				178FE1CE13C6D6BD0063935E /* UIImage+Decompress.h */,
+				178FE1CF13C6D6BD0063935E /* UIImage+Decompress.m */,
+				178FE1C813C6D6B40063935E /* UIImageViewTap.h */,
+				178FE1C913C6D6B40063935E /* UIImageViewTap.m */,
+				178FE1CA13C6D6B40063935E /* UIViewTap.h */,
+				178FE1CB13C6D6B40063935E /* UIViewTap.m */,
+			);
+			name = BrowserHelpers;
+			sourceTree = "<group>";
+		};
 		1792A82E136A65C20058B8B7 /* Feedback */ = {
 			isa = PBXGroup;
 			children = (
@@ -655,6 +700,7 @@
 		5F89EFAF125930A300959D05 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				178FE1BD13C6D6790063935E /* MWPhotoBrowser */,
 				178FE18D13C3BCD80063935E /* ImgCache */,
 				170E355F13B6B51800C410FC /* UIImageCategories */,
 				17A8A4E2137B9EAC002C5FBB /* DistanceUpdator.h */,
@@ -974,6 +1020,12 @@
 				170E356513B6B6B100C410FC /* UIImage+RoundedCorner.m in Sources */,
 				170E356813B6B6D200C410FC /* UIImage+Alpha.m in Sources */,
 				178FE19013C3BCFA0063935E /* ImgCache.m in Sources */,
+				178FE1C413C6D68B0063935E /* MWPhotoBrowser.m in Sources */,
+				178FE1C513C6D68B0063935E /* MWPhoto.m in Sources */,
+				178FE1C613C6D68B0063935E /* ZoomingScrollView.m in Sources */,
+				178FE1CC13C6D6B40063935E /* UIImageViewTap.m in Sources */,
+				178FE1CD13C6D6B40063935E /* UIViewTap.m in Sources */,
+				178FE1D013C6D6BD0063935E /* UIImage+Decompress.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1005,6 +1057,10 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TopDish_Prefix.pch;
 				INFOPLIST_FILE = "TopDish-Info.plist";
@@ -1043,6 +1099,10 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TopDish_Prefix.pch;
 				INFOPLIST_FILE = "TopDish-Info.plist";
@@ -1063,6 +1123,10 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1084,6 +1148,10 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TopDish_Prefix.pch;
 				INFOPLIST_FILE = "TopDish-Info.plist";

@@ -82,6 +82,8 @@ SettingsViewDelegate> {
 
 @property (nonatomic, retain)			NSTimer			*stallSearchTextTimer;
 
+@property (nonatomic, retain)           NSMutableDictionary *connectionLookup;
+
 
 -(void) networkQuery:(NSString *)query;
 -(void) pushDishViewController:(ObjectWithImage *) selectedObject;

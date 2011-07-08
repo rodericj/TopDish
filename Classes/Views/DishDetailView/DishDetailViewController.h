@@ -49,6 +49,8 @@ LoginModalViewDelegate>{
 	UIView				*mFlagView;
 	
 	MBProgressHUD		*mHud;
+    
+    NSArray             *mImageUrlArray;
 }
 
 @property (nonatomic, retain)			Dish *thisDish;
@@ -80,6 +82,7 @@ LoginModalViewDelegate>{
 @property (nonatomic, retain) IBOutlet	UIView *flagView;
 
 @property (nonatomic, retain)			MBProgressHUD *hud;
+@property (nonatomic, retain)           NSArray *urlImageArray;
 
 -(IBAction)pushRateDishController;
 -(IBAction)tapRestaurantButton;

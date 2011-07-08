@@ -24,7 +24,7 @@
 #define kSearchCountLimit 25
 #define kMaxDistance kOneMileInMeters * 25
 #define kSearchTimerDelay 2
-#define kDurationToStopLocationUpdates 240  //4 minutes for now
+#define kDurationToStopLocationUpdates 120  //4 minutes for now
 
 #define sortStringArray [NSArray arrayWithObjects:@"nothing", DISTANCE_SORT, RATINGS_SORT, PRICE_SORT, nil]
 @interface DishTableViewController ()
@@ -52,6 +52,7 @@
 @synthesize currentSortIndicator = mCurrentSortIndicator;
 @synthesize stallSearchTextTimer = mStallSearchTextTimer;
 
+@synthesize connectionLookup    = mConnectionLookup;
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -114,6 +115,7 @@
 	
 }
 -(void)viewDidAppear:(BOOL)animated {
+    
 	AppModel *app = [AppModel instance];
 	if (![app isLoggedIn] && !app.userDelayedLogin) {
 		[self presentModalViewController:[LoginModalView viewControllerWithDelegate:self] 
@@ -138,10 +140,10 @@
 	NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request 
 												delegate:self 
 										startImmediately:TRUE];
-	if (!mConnectionLookup) {
-		mConnectionLookup = [[NSMutableDictionary dictionary] retain];
+	if (!self.connectionLookup) {
+		self.connectionLookup = [[NSMutableDictionary dictionary] retain];
 	}
-	[mConnectionLookup setObject:[NSMutableData data] forKey:conn];
+	[self.connectionLookup setObject:[NSMutableData data] forKey:conn];
 	[conn release];
 }
 
@@ -216,7 +218,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
 	DLog(@"request complete ---------------------");
-	NSData *thisResponseData = [mConnectionLookup objectForKey:theConnection];
+	NSData *thisResponseData = [self.connectionLookup objectForKey:theConnection];
 
 	NSString *responseText = [[NSString alloc] initWithData:thisResponseData 
 												   encoding:NSASCIIStringEncoding];
@@ -243,7 +245,7 @@
     if ([[responseAsDictionary objectForKey:@"restaurants"] count] == 0) {
         
 		if ([[responseAsDictionary objectForKey:@"dishes"] count] < kMinimumDishesToShow && self.currentSearchDistance < kMaxDistance) {
-			DLog(@"Need to resend with a larger radius: %d -> %d. UnRegister for notifications",
+			DLog(@"Need to resend with a larger radius: %d %d -> %d. UnRegister for notifications",
 				 [[responseAsDictionary objectForKey:@"dishes"] count], 
 				 self.currentSearchDistance, 
 				 self.currentSearchDistance*5);
@@ -283,11 +285,11 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	[mConnectionLookup removeObjectForKey:connection];
+	[self.connectionLookup removeObjectForKey:connection];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-	NSMutableData *thisResponseData = [mConnectionLookup objectForKey:connection];
+	NSMutableData *thisResponseData = [self.connectionLookup objectForKey:connection];
 	if (data)
 		[thisResponseData appendData:data];
 }
@@ -955,7 +957,8 @@
 	self.fetchedResultsController = nil;
 	self.stallSearchTextTimer = nil;
 	
-	[mConnectionLookup release];
+    self.connectionLookup = nil;
+    
 	[locationController release];
 	[super dealloc];
 

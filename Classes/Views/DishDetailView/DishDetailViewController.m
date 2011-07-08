@@ -16,6 +16,8 @@
 #import "FeedbackStringProcessor.h"
 #import "UIImage+Resize.h"
 
+#import "MWPhotoBrowser.h"
+
 #define kImageSection 0
 #define kDescriptionSection 1
 #define kCommentsSection 2
@@ -53,6 +55,8 @@
 @synthesize flagView = mFlagView;
 
 @synthesize hud = mHud;
+
+@synthesize urlImageArray   = mImageUrlArray;
 
 -(void)refreshFromNetwork {
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/dishDetail?id[]=%@", 
@@ -187,9 +191,28 @@
     
     // Relinquish ownership any cached data, images, etc. that aren't in use.
 }
+
+-(void)showPhotoViewer {
+    NSLog(@"show photo viewer");
+    if ([self.urlImageArray count]) {
+        
+        NSMutableArray *photos = [[NSMutableArray alloc] init];
+        
+        for (NSString *url in self.urlImageArray) {
+			[photos addObject:[MWPhoto photoWithURL:[NSURL URLWithString:url]]];
+        }
+        // Create browser
+        MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithPhotos:photos];
+        //[browser setInitialPageIndex:0]; // Can be changed if desired
+        [self.navigationController pushViewController:browser animated:YES];
+        [browser release];
+        [photos release];
+
+    }
+}
+
+
 -(void) setUpView {
-    
-    
     
     if( [self.thisDish.photoURL length] > 0 ){
 		if (![[AppModel instance] doesCacheItemExist:self.thisDish.photoURL size:290]) {
@@ -209,7 +232,11 @@
 			});
 		}
 		else {
-			self.dishImageView.image = [[AppModel instance] getImage:self.thisDish.photoURL size:290];;
+			self.dishImageView.image = [[AppModel instance] getImage:self.thisDish.photoURL size:290];
+            UITapGestureRecognizer *tapPhoto = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPhotoViewer)];
+            [self.dishImageView addGestureRecognizer:tapPhoto];
+            self.dishImageView.userInteractionEnabled = YES;
+            [tapPhoto release];
 		}		
 		
 	}	
@@ -260,12 +287,13 @@
 
 -(void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+    self.navigationController.navigationBar.tintColor = kTopDishBlue;
 	self.negativeReviews.text = [NSString stringWithFormat:@"-%@",self.thisDish.negReviews];
 	self.positiveReviews.text = [NSString stringWithFormat:@"+%@",self.thisDish.posReviews];	
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-	
+
 	[UIView beginAnimations:@"animateOverlay" context:NULL]; // Begin animation
 	[self.interactionOverlay setFrame:CGRectOffset([self.interactionOverlay frame], 
 												   0, 
@@ -283,6 +311,7 @@
 }
 
 -(void)releaseWhenViewUnloads {
+    self.urlImageArray = nil;
 	self.thisDish = nil;
 	self.dishImageCell = nil;
 	self.dishImageView = nil;
@@ -353,10 +382,9 @@
 	self.negativeReviews.text = [NSString stringWithFormat:@"-%@",self.thisDish.negReviews];
 	self.positiveReviews.text = [NSString stringWithFormat:@"+%@",self.thisDish.posReviews];
 
-    
-    NSArray *photoArray = [thisDishDetailDictionary objectForKey:@"photoURL"];
-    if ([photoArray count] && ![self.thisDish.photoURL isEqualToString:[photoArray objectAtIndex:0]]) {
-        self.thisDish.photoURL = [photoArray objectAtIndex:0];
+    self.urlImageArray = [thisDishDetailDictionary objectForKey:@"photoURL"];
+    if ([self.urlImageArray count] && ![self.thisDish.photoURL isEqualToString:[self.urlImageArray objectAtIndex:0]]) {
+        self.thisDish.photoURL = [self.urlImageArray objectAtIndex:0];
     }
 	self.responseData = nil;
     [self setUpView];

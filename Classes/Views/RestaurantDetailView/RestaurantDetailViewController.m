@@ -17,6 +17,7 @@
 #import "AppModel.h"
 
 #import "UIImage+Resize.h"
+#import "MWPhotoBrowser.h"
 
 #define kFlagRequestObject 0
 
@@ -40,6 +41,9 @@
 @synthesize menuSectionHeaderView	= mMenuSectionHeaderView;
 
 @synthesize hud						= mHud;
+
+@synthesize urlImageArray           = mUrlImageArray;
+
 #pragma mark -
 #pragma mark networking
 
@@ -114,6 +118,12 @@
 	else
 		self.restaurantImage.image = [UIImage imageNamed:@"no_rest_img.jpg"];
 
+    UITapGestureRecognizer *tapPhoto = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPhotoViewer)];
+    [self.restaurantImage addGestureRecognizer:tapPhoto];
+    self.restaurantImage.userInteractionEnabled = YES;
+    [tapPhoto release];
+    
+    
 	self.restaurantHeader.selectionStyle = UITableViewCellSelectionStyleNone;
 	self.tableView.tableHeaderView = self.restaurantHeader;
 	
@@ -124,12 +134,18 @@
 	[self networkQuery:[NSString stringWithFormat:@"%@/api/restaurantDetail?id[]=%@", NETWORKHOST, [restaurant restaurant_id]]];	
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBar.tintColor = kTopDishBlue;
+    [super viewWillAppear:animated];
+}
+-(void)viewDidAppear:(BOOL)animated {
+    [self reloadView];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 
 	self.menuSectionHeaderView.backgroundColor = kTopDishBlue;
 	//hit the network and refresh our data
-	[self reloadView];
 	
 	self.view.backgroundColor = kTopDishBackground;
 	
@@ -182,6 +198,47 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView{
 	return 1;
+}
+- (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
+    
+    NSData *thisResponseData = [self.connectionLookup objectForKey:theConnection];
+    
+	NSString *responseText = [[NSString alloc] initWithData:thisResponseData 
+												   encoding:NSASCIIStringEncoding];
+	
+    SBJSON *parser = [SBJSON new];
+	NSError *error = nil;
+	
+	NSDictionary *responseAsDictionary = [parser objectWithString:responseText 
+															error:&error];
+	
+	
+    if ([[responseAsDictionary objectForKey:@"restaurants"] count] != 0) {
+        NSArray *restaurantArray = [responseAsDictionary objectForKey:@"restaurants"];
+        NSDictionary *thisRestaurant = [restaurantArray objectAtIndex:0];     
+        self.urlImageArray = [thisRestaurant objectForKey:@"photoURL"];
+    }
+    
+    [super connectionDidFinishLoading:theConnection];
+}
+
+-(void)showPhotoViewer {
+    NSLog(@"show photo viewer");
+    if ([self.urlImageArray count]) {
+        
+        NSMutableArray *photos = [[NSMutableArray alloc] init];
+        
+        for (NSString *url in self.urlImageArray) {
+            [photos addObject:[MWPhoto photoWithURL:[NSURL URLWithString:url]]];
+        }
+        // Create browser
+        MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithPhotos:photos];
+        //[browser setInitialPageIndex:0]; // Can be changed if desired
+        [self.navigationController pushViewController:browser animated:YES];
+        [browser release];
+        [photos release];
+        
+    }
 }
 
 
