@@ -11,7 +11,6 @@
 #import "MBProgressHUD.h"
 #import "ASIProgressDelegate.h"
 
-
 @protocol RateDishProtocolDelegate
 @required
 -(void)doneRatingDish;

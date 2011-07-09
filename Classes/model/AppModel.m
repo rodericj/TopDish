@@ -101,10 +101,15 @@ AppModel *gAppModelInstance = nil;
 -(void)createFacebookObject {
 	
 	self.facebook = [[Facebook alloc] initWithAppId:kFBAppId];	
-
-	if ([[NSUserDefaults standardUserDefaults] objectForKey:TD_FB_ACCESS_TOKEN_KEY]) {
-		self.facebook.accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:TD_FB_ACCESS_TOKEN_KEY];
-		self.facebook.expirationDate = [[NSUserDefaults standardUserDefaults] objectForKey:TD_FB_EXPIRATION_DATE_KEY];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults objectForKey:FB_SWITCH_SETTING] == nil)
+        [defaults setObject:[NSNumber numberWithBool:YES] 
+                     forKey:FB_SWITCH_SETTING]; 
+    
+	if ([defaults objectForKey:TD_FB_ACCESS_TOKEN_KEY]) {
+		self.facebook.accessToken = [defaults objectForKey:TD_FB_ACCESS_TOKEN_KEY];
+		self.facebook.expirationDate = [defaults objectForKey:TD_FB_EXPIRATION_DATE_KEY];
 		
 		//If the facebook session is valid, call fbDidLogin
 		if([self.facebook  isSessionValid]) {

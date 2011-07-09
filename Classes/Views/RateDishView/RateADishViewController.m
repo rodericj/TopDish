@@ -18,9 +18,10 @@
 #define kDishHeaderSection  0
 #define kWouldYouRecommend  1
 #define kDishCommentSection 2
-#define kSubmitButtonCell   3
-#define kNumberOfSections   4
+#define kSubmitButtonCell   4
+#define kFacebookCell       3
 
+#define kNumberOfSections   5
 
 @implementation RateADishViewController
 @synthesize thisDish = mThisDish;
@@ -162,6 +163,20 @@
 			cell.backgroundView = backView;
 			[backView release];
 			break;
+        case kFacebookCell: {
+            UITableViewCell *fbCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 
+                                                             reuseIdentifier:nil] autorelease];
+            
+            UISwitch *fbSwitch = [[UISwitch alloc] init];
+            [fbSwitch addTarget:self action:@selector(switchToggled:) forControlEvents:UIControlEventValueChanged];
+            BOOL isOn = [[[NSUserDefaults standardUserDefaults] objectForKey:FB_SWITCH_SETTING] boolValue];
+            fbSwitch.on = isOn;
+            fbCell.accessoryView = fbSwitch;
+            [fbSwitch release];
+            fbCell.textLabel.text = @"Post to Facebook?";
+            return fbCell;
+        }
+            
 		default:
 			break;
 	}
@@ -169,7 +184,16 @@
 	// Configure the cell...
     return cell;
 }
+-(void)switchToggled:(UISwitch *)theSwitch {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSNumber numberWithBool:theSwitch.on] forKey:FB_SWITCH_SETTING];    
+	[defaults synchronize];
+    
+    if (theSwitch.on && ![[AppModel instance].facebook isSessionValid]) {
+        [[[AppModel instance] facebook] authorize:kpermission delegate:[AppModel instance]];
+    }
 
+}
 #pragma mark -
 #pragma mark Table view delegate
 
@@ -338,6 +362,31 @@
 	}
 }
 
+#pragma mark - Network and social stuff
+
+-(void)facebookFeedPost {
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:FB_SWITCH_SETTING] boolValue]) {
+        
+        NSString *message = self.dishComment.text;
+        NSString *imageUrl =  [self.thisDish.photoURL length] > 0 ? self.thisDish.photoURL :
+        @"http://www.topdish.com/img/header/topdish_logo.png";
+        NSString *linkUrl = [NSString stringWithFormat:
+                             @"http://www.topdish.com/dishDetail.jsp?dishID=%@",
+                             self.thisDish.dish_id];    
+        
+        NSString *feedItemName = [NSString stringWithFormat:@"Just rated %@ at %@", self.thisDish.objName, [self.thisDish.restaurant objName]];
+        
+        
+        NSArray *obj = [NSArray arrayWithObjects:message, imageUrl, linkUrl, feedItemName, nil];
+        NSArray *keys = [NSArray arrayWithObjects:@"message", @"picture", @"link", @"name", nil];
+        
+        // There are many other params you can use, check the API
+        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjects:obj forKeys:keys];
+        
+        [[AppModel instance].facebook requestWithGraphPath:@"me/feed" andParams:params andHttpMethod:@"POST" andDelegate:nil];
+    }
+}
+
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
 	mOutstandingRequests -= 1;
@@ -407,6 +456,10 @@
 		mHUD.progress = 1;
 		mHUD.labelText = @"Dish Rated Successfully";
 		mUploadSuccess = YES;
+        
+        if ([[AppModel instance].facebook isSessionValid]) {
+            [self facebookFeedPost];
+        }
 		[mHUD hide:YES afterDelay:2]; 
 	}
 }
@@ -421,29 +474,6 @@
 -(void)hudWasHidden {
 	self.tableView.userInteractionEnabled = YES;
 	if (mUploadSuccess) {
-        
-        //if they are logged in with facebook, give option to share
-        if ([[AppModel instance].facebook isSessionValid]) {
-            
-            NSString *imageUrl;
-            if([self.thisDish.photoURL length])
-                imageUrl = self.thisDish.photoURL;
-            else
-                imageUrl = @"http://www.topdish.com/img/header/topdish_logo.png";
-            
-            
-            NSString *linkUrl = [NSString stringWithFormat:@"http://www.topdish.com/dishDetail.jsp?dishID=%@", self.thisDish.dish_id];    
-            NSString *wouldRecommend = self.rating == 1 ? @"I would recommend this." : @"I would not recommend this.";
-            NSString *comment = [self.dishComment.text length] > 0 ? self.dishComment: wouldRecommend;
-            
-            NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                           @"link", @"type",
-                                           imageUrl, @"picture",
-                                           linkUrl, @"link",
-                                           comment, @"description", nil];
-            [[AppModel instance].facebook dialog:@"stream.publish" andParams:params andDelegate:nil];
-            //else we are done
-        }
         [self.delegate doneRatingDish];
     }
 }

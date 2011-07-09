@@ -104,6 +104,7 @@
 #define keyforauthorizing @"apiKey"
 #define TD_FB_ACCESS_TOKEN_KEY @"TD_FB_ACCESS_TOKEN_KEY"
 #define TD_FB_EXPIRATION_DATE_KEY @"TD_FB_EXPIRATION_DATE_KEY"
+#define FB_SWITCH_SETTING @"FB_SWITCH_SETTING"
 
 #pragma mark tags
 
