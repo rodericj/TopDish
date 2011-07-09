@@ -189,6 +189,7 @@
     [defaults setObject:[NSNumber numberWithBool:theSwitch.on] forKey:FB_SWITCH_SETTING];    
 	[defaults synchronize];
     
+    //If the switch is on, but they aren't logged into facebook, log them in
     if (theSwitch.on && ![[AppModel instance].facebook isSessionValid]) {
         [[[AppModel instance] facebook] authorize:kpermission delegate:[AppModel instance]];
     }
