@@ -40,12 +40,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    	
-    //execute mobile init
-//	NSURL *badurl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/mobileInits", NETWORKHOST]];	
-//	ASIFormDataRequest *requestBad = [ASIFormDataRequest requestWithURL:badurl];
-//	[requestBad setPostValue:nil forKey:@"comment"];
-//	[requestBad setDelegate:self];
-//	[requestBad startAsynchronous];
+    
+    //MixPanel setup
+    mixpanel = [MixpanelAPI sharedAPIWithToken:MIXPANEL_TOKEN];
 	
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/mobileInit", NETWORKHOST]];	
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];

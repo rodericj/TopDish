@@ -14,6 +14,7 @@
 #import "JSON.h"
 #import "Dish.h"
 #import "FeedbackStringProcessor.h"
+#import "Logger.h"
 
 #define kRestaurantSection 0
 #define kDishNameSection 1
@@ -80,6 +81,8 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+    [Logger logEvent:kEventAADViewDidAppear];
+
 	//Pop out if we aren't logged in
 	[super viewDidAppear:animated];
 	if (![[AppModel instance] isLoggedIn])
@@ -174,6 +177,7 @@
 #pragma mark keyboard delegate
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{
+    [Logger logEvent:kEventAADStartEditingTextView];
 	if (textView.tag == 0) {
 		textView.text = @"";
 		textView.tag = 1;
@@ -360,7 +364,7 @@
 	
 	if (indexPath.section == kDishTagSection) {
 		//NSAssert(NO, @"need to implement selection again");
-		
+		[Logger logEvent:kEventAADSelectTag];
 		switch (indexPath.row) {
 			case kMealType:
 				self.pickerArray = [[AppModel instance] mealTypeTags];
@@ -414,6 +418,7 @@
 
 -(IBAction)submitDish
 {
+    [Logger logEvent:kEventAADTapSubmitButton];
 	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addDish"]];
 	
 	

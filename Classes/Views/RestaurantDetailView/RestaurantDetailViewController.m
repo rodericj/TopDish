@@ -19,6 +19,8 @@
 #import "UIImage+Resize.h"
 #import "MWPhotoBrowser.h"
 
+#import "Logger.h"
+
 #define kFlagRequestObject 0
 
 @implementation RestaurantDetailViewController
@@ -94,6 +96,11 @@
 	[self.restaurantAddress setText:[restaurant addressLine1]];
 	
 	if( [[restaurant photoURL] length] > 0 ){
+        UITapGestureRecognizer *tapPhoto = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPhotoViewer)];
+        [self.restaurantImage addGestureRecognizer:tapPhoto];
+        self.restaurantImage.userInteractionEnabled = YES;
+        [tapPhoto release];
+
 		if (![[AppModel instance] doesCacheItemExist:restaurant.photoURL size:85]) {
 			dispatch_queue_t downloadQueue = dispatch_queue_create("com.topdish.imagedownload", NULL);
 			//dispatch_retain(downloadQueue);
@@ -115,14 +122,16 @@
 			self.restaurantImage.image = [[AppModel instance] getImage:restaurant.photoURL size:85];
 	}	
 
-	else
+	else {
 		self.restaurantImage.image = [UIImage imageNamed:@"no_rest_img.jpg"];
+        UITapGestureRecognizer *tapPhoto = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapEmptyPhoto:)];
+        [self.restaurantImage addGestureRecognizer:tapPhoto];
+        self.restaurantImage.userInteractionEnabled = YES;
+        [tapPhoto release];
 
-    UITapGestureRecognizer *tapPhoto = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPhotoViewer)];
-    [self.restaurantImage addGestureRecognizer:tapPhoto];
-    self.restaurantImage.userInteractionEnabled = YES;
-    [tapPhoto release];
-    
+    }
+
+        
     
 	self.restaurantHeader.selectionStyle = UITableViewCellSelectionStyleNone;
 	self.tableView.tableHeaderView = self.restaurantHeader;
@@ -139,6 +148,8 @@
     [super viewWillAppear:animated];
 }
 -(void)viewDidAppear:(BOOL)animated {
+    [Logger logEvent:kEventRDViewDidAppear];
+
     [self reloadView];
 }
 - (void)viewDidLoad {
@@ -223,6 +234,7 @@
 }
 
 -(void)showPhotoViewer {
+    [Logger logEvent:kEventRDTapPhoto];
     NSLog(@"show photo viewer");
     if ([self.urlImageArray count]) {
         
@@ -329,7 +341,7 @@
 #pragma mark AddADishProtocolDelegate method
 -(void)addDishDone {
     //Must refresh from network
-    
+    [Logger logEvent:kEventRDDoneAddingDish];
 	[self.navigationController popViewControllerAnimated:YES];
     [self updateFetch];
 }
@@ -423,6 +435,7 @@
 #pragma mark -
 #pragma mark actions 
 -(IBAction)flagThisRestaurant{
+    [Logger logEvent:kEventRDFlagRestaurant];
 	DLog(@"flagging this restaurant");
 	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/flagRestaurant"]];
 	
@@ -438,6 +451,7 @@
 }
 
 -(IBAction) pushAddDishViewController {
+    [Logger logEvent:kEventRDAddDishTapped];
 	if ([[AppModel instance] isLoggedIn]) {
 		AddADishViewController *addDishViewController = [[AddADishViewController alloc] initWithNibName:@"AddADishViewController" bundle:nil];
 		addDishViewController.title = @"Add a Dish";
@@ -455,7 +469,7 @@
 }
 
 -(IBAction)callRestaurant{
-	
+	[Logger logEvent:kEventRDCallRestaurant];
 	NSString *phoneNumber = [NSString stringWithFormat:@"tel:%@", [restaurant phone]];
 	phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@"(" withString:@""];
 	phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
@@ -466,8 +480,7 @@
 	[ [UIApplication sharedApplication] openURL:url];
 	
 }
--(void)takePicture:(UITapGestureRecognizer *)sender {
-	DLog(@"take a picture");
+-(void)startPictureFlow {
 	if ([[AppModel instance] isLoggedIn]) {
 		
 		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil//@"Camera or Library?" 
@@ -486,8 +499,20 @@
 		[self presentModalViewController:[LoginModalView viewControllerWithDelegate:self] 
 								animated:YES];
 	}
-}
 
+}
+-(void)takePicture:(UITapGestureRecognizer *)sender {
+    NSLog(@"sender is %@", sender);
+    if ([sender state] == UIGestureRecognizerStateEnded) {
+        [Logger logEvent:kEventRDTakePicture];
+        [self startPictureFlow];
+    }
+	}
+-(void)tapEmptyPhoto:(UITapGestureRecognizer *)sender {
+    [Logger logEvent:kEventRDTapEmptyPhoto];
+    [self startPictureFlow];
+
+}
 - (IBAction)handleTapGesture:(UITapGestureRecognizer *)sender {
 	[UIView beginAnimations:@"" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -583,7 +608,7 @@
 
 #pragma mark -
 #pragma mark IncomingProcessorDelegate
--(void)saveDishesComplete {
+-(void)saveDishesComplete:(NSArray *)newDishes {
     NSLog(@"save dishes complete in restaurant detail view");
 	[self.tableView performSelectorOnMainThread:@selector(reloadData) 
 									 withObject:self 
@@ -602,6 +627,7 @@
 
 
 - (void)dealloc {
+    self.cameraImage = nil;
 	self.restaurant = nil;
 	self.restaurantHeader = nil;
 	self.restaurantName = nil;

@@ -9,6 +9,7 @@
 #import "SettingsView1.h"
 #import "AppModel.h"
 #import "constants.h"
+#import "Logger.h"
 
 #define kNumberOfDifferentTypes 4
 
@@ -113,7 +114,7 @@
 }
 
 -(IBAction) pickerDone {
-	
+	[Logger logEvent:kEventSUserPickedSomething];
 	[self.tableView setScrollEnabled:YES];
 	[self.tableView addSubview:self.pickerViewOverlay];
 	[UIView beginAnimations:@"animatePickerOn" context:NULL]; // Begin animation
@@ -258,7 +259,10 @@
     // For example: self.myOutlet = nil;
 }
 
-
+- (void)viewDidAppear:(BOOL)animated {
+    [Logger logEvent:kEventSViewDidAppear];
+    [super viewDidAppear:animated];
+}
 - (void)dealloc {
 	self.pickerArray = nil;
 	self.pickerView = nil;

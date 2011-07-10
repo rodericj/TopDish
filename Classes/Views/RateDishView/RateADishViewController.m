@@ -14,6 +14,7 @@
 #import "JSON.h"
 #import "FeedbackStringProcessor.h"
 #import "UIImage+Resize.h"
+#import "Logger.h"
 
 #define kDishHeaderSection  0
 #define kWouldYouRecommend  1
@@ -83,6 +84,8 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+    [Logger logEvent:kEventRADViewDidAppear];
+
 	[super viewDidAppear:animated];
 	
 	//if not logged in, pop out
@@ -174,6 +177,7 @@
             fbCell.accessoryView = fbSwitch;
             [fbSwitch release];
             fbCell.textLabel.text = @"Post to Facebook?";
+            fbCell.selectionStyle = UITableViewCellEditingStyleNone;
             return fbCell;
         }
             
@@ -214,6 +218,7 @@
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range 
  replacementText:(NSString *)text
 {
+    [Logger logEvent:kEventRDChangeText];
     // Any new character added is passed in as the "text" parameter
     if ([text isEqualToString:@"\n"]) {
         // Be sure to test for equality using the "isEqualToString" message
@@ -287,6 +292,9 @@
 }
 
 -(IBAction)yesButtonClicked {
+    
+    [Logger logEvent:kEventRDVote 
+      withDictionary:[NSDictionary dictionaryWithObject:@"Yes" forKey:@"yesno"]];
 	self.noImage.hidden = YES;
 	self.yesImage.hidden = NO;
 	self.rating = 1;
@@ -298,6 +306,9 @@
 						  atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 -(IBAction)noButtonClicked {
+    [Logger logEvent:kEventRDVote 
+      withDictionary:[NSDictionary dictionaryWithObject:@"No" forKey:@"yesno"]];
+    
 	self.yesImage.hidden = YES;
 	self.noImage.hidden = NO;
 	self.rating = -1;
@@ -310,6 +321,7 @@
 }
 
 -(IBAction)submitRating {
+    [Logger logEvent:kEventRDSubmitRating];
 	[self.dishComment resignFirstResponder];
 	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/rateDish"]];
 	if (!self.rating) {
@@ -367,7 +379,7 @@
 
 -(void)facebookFeedPost {
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:FB_SWITCH_SETTING] boolValue]) {
-        
+        [Logger logEvent:kEventRDFBPost];
         NSString *message = self.dishComment.text;
         NSString *imageUrl =  [self.thisDish.photoURL length] > 0 ? self.thisDish.photoURL :
         @"http://www.topdish.com/img/header/topdish_logo.png";

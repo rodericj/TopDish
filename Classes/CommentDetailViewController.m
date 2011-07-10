@@ -7,7 +7,8 @@
 //
 
 #import "CommentDetailViewController.h"
-
+#import "Logger.h"
+#import "constants.h"
 
 @implementation CommentDetailViewController
 
@@ -24,6 +25,8 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+    [Logger logEvent:kEventCDViewDidAppear];
+
 	self.userNameLabel.text		= [self.commentDict objectForKey:@"creator"];
 	self.commentTextView.text	= [self.commentDict objectForKey:@"comment"];
 }

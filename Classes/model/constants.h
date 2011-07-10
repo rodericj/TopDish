@@ -68,6 +68,9 @@
 
 #define kFBAppId @"142175135835907"
 
+#define MIXPANEL_TOKEN @"17b52038f9d40e6a5f7b6847e0c55ce8"
+
+
 #define DISH_DETAIL_CELL_IDENTIFIER @"dishdetailimagecell"
 //#define RATINGS_SORT @"calculated_rating"
 #define RATINGS_SORT @"posReviews"
@@ -112,3 +115,70 @@
 #define COMMENT_TEXT_TAG 2
 #define COMMENT_DIRECTION_IMAGE_TAG 0
 
+#pragma mark - Logging tags
+#pragma mark LoginModalView
+#define kEventNotNowButtonClicked               @"Not Now Clicked"
+#define kEventfbButtonClicked                   @"FB Button Clicked"
+#define kEventGoogleButtonClicked               @"Google Button Clicked"
+#define kEventTermsAndConditionsButtonClicked   @"Terms and Conditions Button Clicked"
+#define kEventLoginModalViewDidAppear           @"Login Did Appear"
+
+#pragma mark AccountView Logging
+#define kEventAViewDidAppear                    @"Account Did Appear"
+
+#pragma mark AddADishView Logging
+#define kEventAADViewDidAppear                  @"Add A Dish Did Appear"
+#define kEventAADSelectTag                      @"Picked A Tag"
+#define kEventAADStartEditingTextView           @"Started Editing Text"
+#define kEventAADTapSubmitButton                @"Tap Submit Button"
+
+#pragma mark CommentDetailView
+#define kEventCDViewDidAppear                   @"Comment Detail View Did Appear"
+
+#pragma mark DishDetailView
+#define kEventDDViewDidAppear                   @"Dish Detail Did Appear"
+#define kEventDDTapPictureButton                @"Tap Take Picture"
+#define kEventDDTapRateDish                     @"Tap Rate Dish"
+#define kEventDDTapMoreDishes                   @"Tap More Dishes"
+#define kEventDDTapRestaurantText               @"Tap Restaurant Text"
+#define kEventDDTapFlagRestaurant               @"Tap Flag Dish"
+#define kEventDDDoneRatingDish                  @"Done Rating Dish"
+#define kEventDDTapPhoto                        @"Tap Dish Photo"
+#define kEventDDTapEmptyPhoto                   @"Tap Empty Photo"
+
+#pragma mark DishTableView
+#define kEventDTViewDidAppear                   @"Dish Table Did Appear"
+#define kEventDTSortByRating                    @"Sort Rating"
+#define kEventDTSortByDistance                  @"Sort Distance"
+#define kEventDTSortByPrice                     @"Sort Price"
+#define kEventDTSearchTextChanged               @"Dish Search Text Changed"
+
+#pragma mark RestaurantTableView
+#define kEventRTViewWillAppear                  @"Restaurant Table Will Appear"
+#define kEventRTSearchTextChanged               @"Restaurant Search Text Changed"
+
+#pragma mark RateADishView
+#define kEventRADViewDidAppear                  @"Rate Dish Did Appear"
+#define kEventRDVote                            @"Vote"
+#define kEventRDSubmitRating                    @"Submit Rating"
+#define kEventRDFBPost                          @"FB Stream Post"
+#define kEventRDChangeText                      @"Changed Text"
+
+#pragma mark RestaurantDetailView
+#define kEventRDViewDidAppear                   @"Restaurant Detail Did Appear"
+#define kEventRDTapPhoto                        @"Tap Restaurant Photo"
+#define kEventRDDoneAddingDish                  @"Done Adding Dish"
+#define kEventRDFlagRestaurant                  @"Flag Restaurant"
+#define kEventRDAddDishTapped                   @"Add Dish Tapped"
+#define kEventRDCallRestaurant                  @"Call Restaurant"
+#define kEventRDTakePicture                     @"Take Photo"
+#define kEventRDTapEmptyPhoto                   @"Tap Empty Photo"
+
+#pragma mark NearbyMapView
+#define kEventNMViewDidAppear                   @"Nearby Map View Did Appear"
+#define kEventNMShowDetails                     @"Show Details from Map"
+#define kEventNMMoveMap                         @"Move Map"
+
+#pragma mark Settings/Filter View
+#define kEventSViewDidAppear                    @"Settings View Did Appear"
+#define kEventSUserPickedSomething              @"Picked a Filter"

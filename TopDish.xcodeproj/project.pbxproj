@@ -53,6 +53,7 @@
 		17B74C6913C8ED9500A9EBD1 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B74C5B13C8ED9500A9EBD1 /* NSData+Base64.m */; };
 		17B74C6A13C8ED9500A9EBD1 /* MixpanelAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B74C5D13C8ED9500A9EBD1 /* MixpanelAPI.m */; };
 		17B74C6B13C8ED9500A9EBD1 /* MixpanelEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B74C5F13C8ED9500A9EBD1 /* MixpanelEvent.m */; };
+		17B74C6E13C8EE6A00A9EBD1 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B74C6D13C8EE6A00A9EBD1 /* Logger.m */; };
 		17BBAFD81301AC2400705F1A /* CommentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17BBAFD71301AC2400705F1A /* CommentsCell.xib */; };
 		17BF04E113C143F4009F42F4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 17BF04DF13C143F4009F42F4 /* Default.png */; };
 		17BF04E213C143F4009F42F4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17BF04E013C143F4009F42F4 /* Default@2x.png */; };
@@ -241,6 +242,8 @@
 		17B74C5D13C8ED9500A9EBD1 /* MixpanelAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixpanelAPI.m; sourceTree = "<group>"; };
 		17B74C5E13C8ED9500A9EBD1 /* MixpanelEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixpanelEvent.h; sourceTree = "<group>"; };
 		17B74C5F13C8ED9500A9EBD1 /* MixpanelEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixpanelEvent.m; sourceTree = "<group>"; };
+		17B74C6C13C8EE6A00A9EBD1 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Logger.h; path = model/Logger.h; sourceTree = "<group>"; };
+		17B74C6D13C8EE6A00A9EBD1 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Logger.m; path = model/Logger.m; sourceTree = "<group>"; };
 		17BBAFD71301AC2400705F1A /* CommentsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsCell.xib; sourceTree = "<group>"; };
 		17BF04DF13C143F4009F42F4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		17BF04E013C143F4009F42F4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -477,6 +480,8 @@
 				17DA5EA01322BF7700867B66 /* AppModel.h */,
 				17DA5EA11322BF7700867B66 /* AppModel.m */,
 				17DA608013230F2200867B66 /* TopDish.xcdatamodeld */,
+				17B74C6C13C8EE6A00A9EBD1 /* Logger.h */,
+				17B74C6D13C8EE6A00A9EBD1 /* Logger.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1130,6 +1135,7 @@
 				17B74C6913C8ED9500A9EBD1 /* NSData+Base64.m in Sources */,
 				17B74C6A13C8ED9500A9EBD1 /* MixpanelAPI.m in Sources */,
 				17B74C6B13C8ED9500A9EBD1 /* MixpanelEvent.m in Sources */,
+				17B74C6E13C8EE6A00A9EBD1 /* Logger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1159,7 +1165,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1173,7 +1178,6 @@
 					"\"$(SRCROOT)/objectiveresource/samples/google_toolbar/TigerGcov\"",
 				);
 				PRODUCT_NAME = TopDish;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = AdHoc;

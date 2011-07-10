@@ -15,6 +15,7 @@
 #import "NearbyMapViewController.h"
 #import "JSON.h"
 #import "RestaurantTableViewCell.h"
+#import "Logger.h"
 
 #define kNumberOfSections 1
 #define kRestaurantSection 0
@@ -80,6 +81,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    [Logger logEvent:kEventRTViewWillAppear];
 	UISegmentedControl *s = (UISegmentedControl *) self.navigationItem.titleView;
 	[s setSelectedSegmentIndex:1];
 	[self updateFetch];
@@ -496,6 +498,7 @@
 }	
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    [Logger logEvent:kEventRTSearchTextChanged];
 	DLog(@"the search bar text changed %@", searchText);
 	
 	//Send the network request

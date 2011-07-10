@@ -11,12 +11,17 @@
 #import "DishDetailViewController.h"
 #import "RestaurantDetailViewController.h"
 #import "constants.h"
+#import "Logger.h"
 
 @implementation NearbyMapViewController
 @synthesize myMapView = mMyMapView;
 @synthesize nearbyObjects;
 @synthesize objectMap = mObjectMap;
 
+-(void)viewDidAppear:(BOOL)animated {
+    [Logger logEvent:kEventNMViewDidAppear];
+    [super viewDidAppear:animated];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 	RestaurantOrDishAnnotation *thisAnnotation;
@@ -118,6 +123,7 @@
 
 - (void)showDetails:(id)sender
 {
+    [Logger logEvent:kEventNMShowDetails];
 	NSNumber *clickedObjectId = [NSNumber numberWithInt:[sender tag]];
 	ObjectWithImage *selectedObject = [self.objectMap objectForKey:clickedObjectId];
 	
@@ -142,7 +148,7 @@
 
 #pragma mark - Map Movement
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
-	
+	[Logger logEvent:kEventNMMoveMap];
 	CLLocation *rightSide = [[CLLocation alloc] initWithLatitude: mapView.centerCoordinate.latitude + (mapView.region.span.latitudeDelta)
 													   longitude:mapView.centerCoordinate.longitude];
 	CLLocation *center = [[CLLocation alloc] initWithLatitude:mapView.centerCoordinate.latitude

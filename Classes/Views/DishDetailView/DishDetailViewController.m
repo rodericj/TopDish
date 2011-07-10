@@ -15,6 +15,7 @@
 #import "CommentDetailViewController.h"
 #import "FeedbackStringProcessor.h"
 #import "UIImage+Resize.h"
+#import "Logger.h"
 
 #import "MWPhotoBrowser.h"
 
@@ -193,6 +194,7 @@
 }
 
 -(void)showPhotoViewer {
+    [Logger logEvent:kEventDDTapPhoto];
     NSLog(@"show photo viewer");
     if ([self.urlImageArray count]) {
         
@@ -240,9 +242,14 @@
 		}		
 		
 	}	
-	else
+	else {
 		self.dishImageView.image = [UIImage imageNamed:@"no_dish_img.jpg"];
+        UITapGestureRecognizer *tapPhoto = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedEmptyImage)];
+        [self.dishImageView addGestureRecognizer:tapPhoto];
+        self.dishImageView.userInteractionEnabled = YES;
+        [tapPhoto release];
     
+    }
 	[self.dishDescriptionLabel setText:self.thisDish.dish_description];
 	
 	AppModel *app = [AppModel instance];
@@ -266,7 +273,7 @@
 	[self.restaurantNameLabel setTextColor:kTopDishBlue];
 	
 	UITapGestureRecognizer *restaurantTouchGesture = [[UITapGestureRecognizer alloc]
-													  initWithTarget:self action:@selector(pushRestaurantDetailController)];
+													  initWithTarget:self action:@selector(tapRestaurantText)];
     [self.restaurantNameLabel addGestureRecognizer:restaurantTouchGesture];
     [restaurantTouchGesture release];
 	
@@ -293,6 +300,7 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+    [Logger logEvent:kEventDDViewDidAppear];
 
 	[UIView beginAnimations:@"animateOverlay" context:NULL]; // Begin animation
 	[self.interactionOverlay setFrame:CGRectOffset([self.interactionOverlay frame], 
@@ -565,13 +573,9 @@
 	[self presentModalViewController:imagePicker animated:YES]; 
 }
 
-#pragma mark -
-#pragma mark IBActions
--(IBAction)takePicture
-{
 
-    
-	if ([[AppModel instance] isLoggedIn] ) {
+-(void)startCameraFlow {
+    if ([[AppModel instance] isLoggedIn] ) {
 		
 		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil//@"Camera or Library?" 
 																 delegate:self 
@@ -589,9 +593,24 @@
 		[self presentModalViewController:[LoginModalView viewControllerWithDelegate:self] 
 								animated:YES];
 	}
+
+}
+
+-(void)tappedEmptyImage {
+    [Logger logEvent:kEventDDTapEmptyPhoto];
+    [self startCameraFlow];
+    
+}
+#pragma mark -
+#pragma mark IBActions
+-(IBAction)takePicture
+{
+    [Logger logEvent:kEventDDTapPictureButton];
+    [self startCameraFlow];
 }
 
 -(IBAction)pushRateDishController {
+    [Logger logEvent:kEventDDTapRateDish];
 	if ([[AppModel instance] isLoggedIn]) {
 		RateADishViewController *rateDish = 
 		[[RateADishViewController alloc] initWithNibName:@"RateADishViewController" 
@@ -611,6 +630,8 @@
 }
 
 -(void)pushRestaurantDetailController {
+    //should be logged already
+    
 	RestaurantDetailViewController *restaurantController = 
 	[[RestaurantDetailViewController alloc] initWithNibName:@"RestaurantDetailView" 
 													 bundle:nil];
@@ -619,11 +640,19 @@
 	[restaurantController release];
 }
 
+-(void)tapRestaurantText {
+    [Logger logEvent:kEventDDTapRestaurantText];
+	[self pushRestaurantDetailController];
+
+}
 -(IBAction)tapRestaurantButton {
+    [Logger logEvent:kEventDDTapMoreDishes];
 	[self pushRestaurantDetailController];
 }
 
 -(IBAction)flagThisDish{
+    [Logger logEvent:kEventDDTapFlagRestaurant];
+
 	DLog(@"flagging this dish");
 	self.flagView.hidden = YES;
 	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/flagDish"]];
@@ -666,6 +695,8 @@
 #pragma mark -
 #pragma mark RateDishProtocolDelegate
 -(void)doneRatingDish {
+    [Logger logEvent:kEventDDDoneRatingDish];
+
 	[self refreshFromNetwork];
 	[self.navigationController popViewControllerAnimated:YES];
 }

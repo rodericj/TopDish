@@ -15,6 +15,7 @@
 #import "DishDetailViewController.h"
 #import "JSON.h"
 #import "LoginModalView.h"
+#import "Logger.h"
 
 //#define kTopDishBlue [UIColor colorWithRed:0 green:.3843 blue:.5725 alpha:1]
 #define buttonLightBlue [UIColor colorWithRed:0 green:.73 blue:.89 alpha:1 ]
@@ -115,7 +116,8 @@
 	
 }
 -(void)viewDidAppear:(BOOL)animated {
-    
+    [Logger logEvent:kEventDTViewDidAppear];
+
 	AppModel *app = [AppModel instance];
 	if (![app isLoggedIn] && !app.userDelayedLogin) {
 		[self presentModalViewController:[LoginModalView viewControllerWithDelegate:self] 
@@ -646,6 +648,7 @@
 
 -(IBAction) sortByDistance
 {
+    [Logger logEvent:kEventDTSortByDistance];
 	DLog(@"sort by distance");
 	
 	[UIView beginAnimations:@"distanceSort" context:NULL]; // Begin animation
@@ -667,6 +670,8 @@
 }
 -(IBAction) sortByRating
 {
+    [Logger logEvent:kEventDTSortByRating];
+
 	[UIView beginAnimations:@"ratingSort" context:NULL]; // Begin animation
 
 	[self.currentSortIndicator setFrame:CGRectMake(281, 44, 29, 28)]; // Move imageView off screen
@@ -686,6 +691,8 @@
 }
 -(IBAction) sortByPrice
 {
+    [Logger logEvent:kEventDTSortByPrice];
+
 	[UIView beginAnimations:@"priceSort" context:NULL]; // Begin animation
 
 	[self.currentSortIndicator setFrame:CGRectMake(70, 44, 29, 28)]; // Move imageView off screen
@@ -916,9 +923,9 @@
 	[self updateFetch];
 }	
 
-
-
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    [Logger logEvent:kEventDTSearchTextChanged];
+    
 	DLog(@"the search bar text changed %@", searchText);
 	[self.stallSearchTextTimer invalidate];
 	

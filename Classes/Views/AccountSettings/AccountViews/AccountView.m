@@ -9,6 +9,7 @@
 #import "AccountView.h"
 #import "constants.h"
 #import "FBLoginButton.h"
+#import "Logger.h"
 
 #define kNumberOfSections 2
 #define kDishesReviewedSection 0
@@ -54,6 +55,8 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+    [Logger logEvent:kEventAViewDidAppear];
+
 	self.fBLoginButton.isLoggedIn = [[AppModel instance].facebook isSessionValid];
 	[self.fBLoginButton updateImage];
 	self.logoutButton.hidden = YES;

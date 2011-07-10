@@ -11,6 +11,7 @@
 #import "constants.h"
 #import "TermsAndConditionsViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Logger.h"
 
 @implementation LoginModalView
 
@@ -38,6 +39,7 @@
  * Not now clicked, the user will log in later I guess
  */
 - (IBAction)notNowButtonClick:(id)sender {
+    [Logger logEvent:kEventNotNowButtonClicked];
 	[AppModel instance].userDelayedLogin = YES;
 	[self.delegate noLoginNow];
 }
@@ -46,6 +48,8 @@
  * Called on a login/logout button click.
  */
 - (IBAction)fbButtonClick:(id)sender {
+    [Logger logEvent:kEventfbButtonClicked];
+
 	if (self.fbLoginButton.isLoggedIn)
 		[self logout];
 	else
@@ -56,7 +60,8 @@
  *	Called when the google login button is clicked
  */
 -(IBAction)googleButtonClick:(id)sender {
-	
+    [Logger logEvent:kEventGoogleButtonClicked];
+
 	self.googleLoginView.hidden = NO;
 	
 	NSString *loginURL = [NSString stringWithFormat:@"%@/api/googleAuth?redirect=td://googleAuthResponse", NETWORKHOST];
@@ -68,6 +73,8 @@
 }
 
 -(IBAction)termsAndConditionsButtonClicked:(id)sender {
+    [Logger logEvent:kEventTermsAndConditionsButtonClicked];
+
 	TermsAndConditionsViewController *toc = [[TermsAndConditionsViewController alloc] initWithNibName:@"TermsAndConditionsViewController" 
 																							   bundle:nil];
 	[self.navigationController pushViewController:toc animated:YES];
@@ -154,6 +161,8 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+    [Logger logEvent:kEventLoginModalViewDidAppear];
+
 	self.fbLoginButton.isLoggedIn = [[[AppModel instance] facebook] isSessionValid];
 }
 

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "SegmentsController.h"
+#import "MixpanelAPI.h"
 
 @interface TopDishAppDelegate : NSObject <UIApplicationDelegate> {
 	SegmentsController     *mSegmentsController;
@@ -18,6 +19,8 @@
     UINavigationController *navigationController;
 	UITabBarController *tabBarController;
 	
+    MixpanelAPI *mixpanel;
+
 @private
     NSManagedObjectContext *managedObjectContext_;
     NSManagedObjectModel *managedObjectModel_;
