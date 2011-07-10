@@ -68,7 +68,7 @@
 	[self.tableView setTableHeaderView:self.searchHeader];
 	self.tableView.delegate = self;
 	
-	
+	[self.theSearchBar setAutocorrectionType:UITextAutocapitalizationTypeNone];
 	[self.theSearchBar setPlaceholder:@"Search Dishes"];
 	[self.theSearchBar setShowsCancelButton:YES];
 	[self.theSearchBar setDelegate:self];
@@ -917,6 +917,12 @@
 	[searchBar resignFirstResponder];
 }
 
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    [Logger logEvent:kEventDTSearch];
+    return YES;
+}
+
+
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
 	[searchBar resignFirstResponder];
 	self.currentSearchTerm = nil;
@@ -924,7 +930,6 @@
 }	
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    [Logger logEvent:kEventDTSearchTextChanged];
     
 	DLog(@"the search bar text changed %@", searchText);
 	[self.stallSearchTextTimer invalidate];

@@ -57,6 +57,7 @@
 	DLog(@"tableview %@", self.tableView);
 	[self.tableView setTableHeaderView:self.tableHeaderView];
 	
+    [self.searchBar setAutocorrectionType:UITextAutocapitalizationTypeNone];
 	[self.searchBar setPlaceholder:@"Search Restaurants"];
 	[self.searchBar setShowsCancelButton:YES];
 	[self.searchBar setDelegate:self];
@@ -497,8 +498,12 @@
 	[self updateFetch];
 }	
 
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    [Logger logEvent:kEventRTSearch];
+    return YES;
+}
+
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    [Logger logEvent:kEventRTSearchTextChanged];
 	DLog(@"the search bar text changed %@", searchText);
 	
 	//Send the network request
