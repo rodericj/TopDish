@@ -94,9 +94,16 @@
 	[self.restaurantPhone setTitle:[restaurant phone] 
 						  forState:UIControlStateNormal];
 	[self.restaurantAddress setText:[restaurant addressLine1]];
-	
+//    NSArray *recognizers = [self.restaurantImage gestureRecognizers];
+//    
+//    //This feels gross, but I have to make sure there are not extra recognizers since this may be called multiple times
+//    for (UIGestureRecognizer *recognizer in recognizers){
+//        [self.restaurantImage removeGestureRecognizer:recognizer];
+//    }
+    
 	if( [[restaurant photoURL] length] > 0 ){
         UITapGestureRecognizer *tapPhoto = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPhotoViewer)];
+        
         [self.restaurantImage addGestureRecognizer:tapPhoto];
         self.restaurantImage.userInteractionEnabled = YES;
         [tapPhoto release];
@@ -495,7 +502,7 @@
 		[actionSheet release];
 	}
 	else {
-		mPostLoginAction = @selector(pushRateDishController);
+		mPostLoginAction = @selector(startPictureFlow);
 		[self presentModalViewController:[LoginModalView viewControllerWithDelegate:self] 
 								animated:YES];
 	}
