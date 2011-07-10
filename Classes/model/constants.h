@@ -151,11 +151,11 @@
 #define kEventDTSortByRating                    @"Sort Rating"
 #define kEventDTSortByDistance                  @"Sort Distance"
 #define kEventDTSortByPrice                     @"Sort Price"
-#define kEventDTSearchTextChanged               @"Dish Search Text Changed"
+#define kEventDTSearch                          @"Dish Search"
 
 #pragma mark RestaurantTableView
 #define kEventRTViewWillAppear                  @"Restaurant Table Will Appear"
-#define kEventRTSearchTextChanged               @"Restaurant Search Text Changed"
+#define kEventRTSearch                          @"Restaurant Search"
 
 #pragma mark RateADishView
 #define kEventRADViewDidAppear                  @"Rate Dish Did Appear"
