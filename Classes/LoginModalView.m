@@ -123,6 +123,7 @@
 -(void)appModelLoginFailed {
 	DLog(@"facebook login failed");
 	self.hud.labelText = @"Login Failed";
+    [self.hud hide:YES afterDelay:3];
 	self.hud.delegate = self;
 	self.view.userInteractionEnabled = YES;
 	
