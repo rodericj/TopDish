@@ -24,7 +24,6 @@
 #define kDishSection 0
 #define kSearchCountLimit 25
 #define kMaxDistance kOneMileInMeters * 25
-#define kSearchTimerDelay 2
 #define kDurationToStopLocationUpdates 120  //4 minutes for now
 
 #define sortStringArray [NSArray arrayWithObjects:@"nothing", DISTANCE_SORT, RATINGS_SORT, PRICE_SORT, nil]

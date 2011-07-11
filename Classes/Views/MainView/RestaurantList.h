@@ -26,6 +26,7 @@ IncomingProcessorDelegate>{
 	NSMutableDictionary *mConnectionLookup;
 
 	BOOL						mUpdatingFetch;
+    NSTimer                     *mStallSearchTextTimer;
 }
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
@@ -36,5 +37,6 @@ IncomingProcessorDelegate>{
 @property (nonatomic, assign) int currentSearchDistance;
 
 @property (nonatomic, retain) NSMutableData *responseData;
+@property (nonatomic, retain)			NSTimer			*stallSearchTextTimer;
 
 @end

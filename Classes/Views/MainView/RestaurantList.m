@@ -34,6 +34,7 @@
 @synthesize currentSearchTerm = mCurrentSearchTerm;
 @synthesize currentSearchDistance = mCurrentSearchDistance;
 @synthesize responseData = mResponseData;
+@synthesize stallSearchTextTimer = mStallSearchTextTimer;
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle {
     if (self = [super initWithNibName:nibName bundle:nibBundle]) {
@@ -393,7 +394,7 @@
 	[self performSelectorOnMainThread:@selector(updateFetch) withObject:self waitUntilDone:NO];
 }
 
--(void)saveDishesComplete {
+-(void)saveDishesComplete:(NSArray *)dishes {
 	DLog(@"the save of dishes is complete updateFetch in RestaurantList");
 	[self performSelectorOnMainThread:@selector(updateFetch) withObject:self waitUntilDone:NO];
 }
@@ -508,8 +509,15 @@
 	
 	//Send the network request
 	self.currentSearchTerm = searchText;
-	[self buildAndSendNetworkString];
-	
+    
+    [self.stallSearchTextTimer invalidate];
+    self.stallSearchTextTimer = [NSTimer scheduledTimerWithTimeInterval:kSearchTimerDelay
+																 target:self 
+															   selector:@selector(buildAndSendNetworkString) 
+															   userInfo:nil 
+																repeats:NO];
+    
+    
 	//Limit the core data output
 	[self updateFetch];
 }
@@ -532,6 +540,7 @@
 
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+    self.stallSearchTextTimer = nil;
 	self.fetchedResultsController = nil;
 	self.tableHeaderView;
 	self.currentSearchTerm = nil;

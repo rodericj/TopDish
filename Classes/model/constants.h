@@ -70,6 +70,7 @@
 
 #define MIXPANEL_TOKEN @"17b52038f9d40e6a5f7b6847e0c55ce8"
 
+#define kSearchTimerDelay 2
 
 #define DISH_DETAIL_CELL_IDENTIFIER @"dishdetailimagecell"
 //#define RATINGS_SORT @"calculated_rating"
