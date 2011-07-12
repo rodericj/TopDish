@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FBLoginButton.h"
 #import "MBProgressHUD.h"
+#import "AppModel.h"
 
 @protocol LoginModalViewDelegate
 
@@ -22,7 +23,7 @@
 @end
 
 @interface LoginModalView : UIViewController <MBProgressHUDDelegate, 
-UIWebViewDelegate>{
+UIWebViewDelegate, AppModelLogoutDelegate>{
 	FBLoginButton				*mFbLoginButton;
 	id<LoginModalViewDelegate>	mDelegate;
 	MBProgressHUD				*mHud;

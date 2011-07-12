@@ -126,7 +126,12 @@
     [self.hud hide:YES afterDelay:3];
 	self.hud.delegate = self;
 	self.view.userInteractionEnabled = YES;
+    [[AppModel instance] logoutWithDelegate:self];
 	
+}
+
+-(void)appModelDidLogout {
+    [Logger logEvent:kLogLoginModalViewDidLogOut];
 }
 -(void)appModelFacebookLoginComplete {
 	DLog(@"facebook login complete");

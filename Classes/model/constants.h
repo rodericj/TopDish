@@ -123,6 +123,7 @@
 #define kEventGoogleButtonClicked               @"Google Button Clicked"
 #define kEventTermsAndConditionsButtonClicked   @"Terms and Conditions Button Clicked"
 #define kEventLoginModalViewDidAppear           @"Login Did Appear"
+#define kLogLoginModalViewDidLogOut             @"LoginModalView Did Logout"
 
 #pragma mark AccountView Logging
 #define kEventAViewDidAppear                    @"Account Did Appear"
