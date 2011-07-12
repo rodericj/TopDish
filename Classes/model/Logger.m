@@ -12,10 +12,13 @@
 @implementation Logger
 
 +(void)logEvent:(NSString *)event  {
-    [[MixpanelAPI sharedAPI] track:event];
+    [self logEvent:event withDictionary:[NSMutableDictionary dictionaryWithCapacity:1]];
 }
 
-+(void)logEvent:(NSString *)event withDictionary:(NSDictionary *)dict {
++(void)logEvent:(NSString *)event withDictionary:(NSMutableDictionary *)dict {
+   NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+
+    [dict setObject:version forKey:@"clientVersion"];
     [[MixpanelAPI sharedAPI] track:event properties:dict];
 }
 @end

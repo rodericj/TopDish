@@ -163,7 +163,6 @@
 #define kEventRDVote                            @"Vote"
 #define kEventRDSubmitRating                    @"Submit Rating"
 #define kEventRDFBPost                          @"FB Stream Post"
-#define kEventRDChangeText                      @"Changed Text"
 
 #pragma mark RestaurantDetailView
 #define kEventRDViewDidAppear                   @"Restaurant Detail Did Appear"

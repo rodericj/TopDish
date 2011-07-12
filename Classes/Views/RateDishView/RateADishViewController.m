@@ -133,10 +133,8 @@
     return 1;
 }
 
-
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -199,26 +197,12 @@
     }
 
 }
-#pragma mark -
-#pragma mark Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-    // ...
-    // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-    */
-}
 
 #pragma mark -
 #pragma mark keyboard delegate
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range 
  replacementText:(NSString *)text
 {
-    [Logger logEvent:kEventRDChangeText];
     // Any new character added is passed in as the "text" parameter
     if ([text isEqualToString:@"\n"]) {
         // Be sure to test for equality using the "isEqualToString" message
@@ -294,7 +278,7 @@
 -(IBAction)yesButtonClicked {
     
     [Logger logEvent:kEventRDVote 
-      withDictionary:[NSDictionary dictionaryWithObject:@"Yes" forKey:@"yesno"]];
+      withDictionary:[NSMutableDictionary dictionaryWithObject:@"Yes" forKey:@"yesno"]];
 	self.noImage.hidden = YES;
 	self.yesImage.hidden = NO;
 	self.rating = 1;
@@ -307,7 +291,7 @@
 }
 -(IBAction)noButtonClicked {
     [Logger logEvent:kEventRDVote 
-      withDictionary:[NSDictionary dictionaryWithObject:@"No" forKey:@"yesno"]];
+      withDictionary:[NSMutableDictionary dictionaryWithObject:@"No" forKey:@"yesno"]];
     
 	self.yesImage.hidden = YES;
 	self.noImage.hidden = NO;
@@ -319,60 +303,64 @@
 	[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:kSubmitButtonCell]
 						  atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
-
 -(IBAction)submitRating {
     [Logger logEvent:kEventRDSubmitRating];
 	[self.dishComment resignFirstResponder];
-	NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/rateDish"]];
-	if (!self.rating) {
-		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Error Rating Dish" 
-															message:@"Please select Yes or No" 
-														   delegate:nil 
-												  cancelButtonTitle:@"OK"
-												  otherButtonTitles:nil];
-		[alertview show];
-		[alertview release];
-		return;
-	}
-	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-	[request setPostValue:self.dishComment.text forKey:@"comment"];
-	[request setPostValue:[NSNumber numberWithInt:self.rating] forKey:@"direction"];
-	[request setPostValue:[NSString stringWithFormat:@"%@", [self.thisDish dish_id]] forKey:@"dishId"];		
-	[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-
-	// Upload an NSData instance
-	DLog(@"this is what we are sending for RATE a dish: url: %@\n, comment: %@\n, vote: %d\n, dish_id %@\n, apiKey: %@", 
-		  [url absoluteURL], 
-		  self.dishComment.text, 
-		  self.rating, 
-		  [self.thisDish dish_id],
-		  [[[AppModel instance] user] objectForKey:keyforauthorizing]); 
-	
-	[request setDelegate:self];
-	[request startAsynchronous];
-	mOutstandingRequests += 1;
-
-	mHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-	mHUD.mode = MBProgressHUDModeDeterminate;
-	mHUD.progress = 0.1;
-	mHUD.labelText = @"Rating dish";
-	mHUD.delegate = self;
-	
-	self.tableView.userInteractionEnabled = NO;
-	
-	//might as well send a picture if we've got it
-	if (self.newPicture.image) {
-		DLog(@"we have the dish id, calling add photo");
-		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
-		DLog(@"the url for add photo is %@", url);
-		request = [ASIFormDataRequest requestWithURL:url];
-		[request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
-		[request setPostValue:[NSString stringWithFormat:@"%d", [self.thisDish dish_id]] forKey:@"dishId"];
-		[request setDelegate:self];
-		[request startAsynchronous];
-		mOutstandingRequests += 1;
-		DLog(@"done calling add photo, time to call rateDish");
-	}
+    double delayInSeconds = 0.5;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        
+        NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/rateDish"]];
+        if (!self.rating) {
+            UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Error Rating Dish" 
+                                                                message:@"Please select Yes or No" 
+                                                               delegate:nil 
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+            [alertview show];
+            [alertview release];
+            return;
+        }
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+        [request setPostValue:self.dishComment.text forKey:@"comment"];
+        [request setPostValue:[NSNumber numberWithInt:self.rating] forKey:@"direction"];
+        [request setPostValue:[NSString stringWithFormat:@"%@", [self.thisDish dish_id]] forKey:@"dishId"];		
+        [request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+        
+        // Upload an NSData instance
+        DLog(@"this is what we are sending for RATE a dish: url: %@\n, comment: %@\n, vote: %d\n, dish_id %@\n, apiKey: %@", 
+             [url absoluteURL], 
+             self.dishComment.text, 
+             self.rating, 
+             [self.thisDish dish_id],
+             [[[AppModel instance] user] objectForKey:keyforauthorizing]); 
+        
+        [request setDelegate:self];
+        [request startAsynchronous];
+        mOutstandingRequests += 1;
+        
+        mHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        mHUD.mode = MBProgressHUDModeDeterminate;
+        mHUD.progress = 0.1;
+        mHUD.labelText = @"Rating dish";
+        mHUD.delegate = self;
+        
+        self.tableView.userInteractionEnabled = NO;
+        
+        //might as well send a picture if we've got it
+        if (self.newPicture.image) {
+            DLog(@"we have the dish id, calling add photo");
+            NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
+            DLog(@"the url for add photo is %@", url);
+            request = [ASIFormDataRequest requestWithURL:url];
+            [request setPostValue:[[[AppModel instance] user] objectForKey:keyforauthorizing] forKey:keyforauthorizing];
+            [request setPostValue:[NSString stringWithFormat:@"%d", [self.thisDish dish_id]] forKey:@"dishId"];
+            [request setDelegate:self];
+            [request startAsynchronous];
+            mOutstandingRequests += 1;
+            DLog(@"done calling add photo, time to call rateDish");
+        }
+    });
 }
 
 #pragma mark - Network and social stuff
