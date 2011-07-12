@@ -19,6 +19,8 @@
    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
 
     [dict setObject:version forKey:@"clientVersion"];
+#if !(TARGET_IPHONE_SIMULATOR)
     [[MixpanelAPI sharedAPI] track:event properties:dict];
+#endif
 }
 @end
