@@ -131,9 +131,10 @@
 -(void)appModelFacebookLoginComplete {
 	DLog(@"facebook login complete");
 	self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+	self.view.userInteractionEnabled = NO;
+
 	self.hud.labelText = @"Logging in with TopDish";
 	self.hud.delegate = self;
-	self.view.userInteractionEnabled = NO;
 	[self.delegate facebookLoginComplete];
 }
 

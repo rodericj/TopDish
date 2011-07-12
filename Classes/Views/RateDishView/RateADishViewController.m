@@ -339,13 +339,15 @@
         [request startAsynchronous];
         mOutstandingRequests += 1;
         
+        [self.navigationController setNavigationBarHidden: YES animated:YES];        
         mHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        self.tableView.userInteractionEnabled = NO;
+        
         mHUD.mode = MBProgressHUDModeDeterminate;
         mHUD.progress = 0.1;
         mHUD.labelText = @"Rating dish";
         mHUD.delegate = self;
         
-        self.tableView.userInteractionEnabled = NO;
         
         //might as well send a picture if we've got it
         if (self.newPicture.image) {
@@ -474,7 +476,8 @@
 
 -(void)hudWasHidden {
 	self.tableView.userInteractionEnabled = YES;
-	if (mUploadSuccess) {
+    [self.navigationController setNavigationBarHidden: NO animated:YES];	
+    if (mUploadSuccess) {
         [self.delegate doneRatingDish];
     }
 }

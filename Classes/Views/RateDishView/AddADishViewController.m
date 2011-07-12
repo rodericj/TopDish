@@ -466,13 +466,15 @@
 	mOutstandingRequests = 1;
 	[request setDelegate:self];
 	[request startAsynchronous];
-	
+
+    [self.navigationController setNavigationBarHidden: YES animated:YES]; 
 	mHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+	self.tableView.userInteractionEnabled = NO;
+
 	mHUD.mode = MBProgressHUDModeDeterminate;
 	mHUD.progress = 0.1;
 	mHUD.labelText = @"Adding dish";
 	mHUD.delegate = self;
-	self.tableView.userInteractionEnabled = NO;
 }
 
 #pragma mark -
@@ -556,6 +558,7 @@
 
 -(void)hudWasHidden {
 	self.tableView.userInteractionEnabled = YES;
+    [self.navigationController setNavigationBarHidden: NO animated:YES]; 
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request

@@ -31,13 +31,22 @@
 	[self.feedbackDelegate feedbackCancelled];
 }
 
+- (void)hudWasHidden {
+	if (self.success)
+		[self.feedbackDelegate feedbackSubmitted];
+	self.view.userInteractionEnabled = YES;
+    self.navigationItem.backBarButtonItem.enabled = YES;
+    
+}
+
 -(IBAction)submitFeedback {
 	[FeedbackStringProcessor SendFeedback:self.feedbackTextView.text delegate:self];
 	
 	self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+	self.view.userInteractionEnabled = NO;
+
 	self.hud.labelText = @"Submitting Feedback...";
 	self.hud.delegate = self;
-	self.view.userInteractionEnabled = NO;
 }
 
 #pragma mark - Network responses
@@ -66,11 +75,6 @@
 	[self.hud hide:YES afterDelay:2];
 	self.success = TRUE;
 
-}
-- (void)hudWasHidden {
-	if (self.success)
-		[self.feedbackDelegate feedbackSubmitted];
-	self.view.userInteractionEnabled = YES;
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request

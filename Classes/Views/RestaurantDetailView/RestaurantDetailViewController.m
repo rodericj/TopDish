@@ -321,11 +321,13 @@
 	if ([info objectForKey:@"UIImagePickerControllerEditedImage"]) {
 		self.newPicture = [info objectForKey:@"UIImagePickerControllerEditedImage"];
 
-		self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [self.navigationController setNavigationBarHidden: YES animated:YES];
+        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        self.view.userInteractionEnabled = NO;
+        
 		self.hud.labelText = @"Uploading photo...";
 		self.hud.delegate = self;
 		self.hud.mode = MBProgressHUDModeIndeterminate;
-		self.view.userInteractionEnabled = NO;
 		
 		NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@", NETWORKHOST, @"api/addPhoto"]];
 		ASIFormDataRequest *newRequest = [ASIFormDataRequest requestWithURL:url];
@@ -337,7 +339,9 @@
 	}
 	[self dismissModalViewControllerAnimated:YES];
 }
-
+-(void)hudWasHidden {
+    [self.navigationController setNavigationBarHidden: NO animated:YES];
+}
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
 	DLog(@"cancelled, should we go back another level?");
 	[self dismissModalViewControllerAnimated:YES];
