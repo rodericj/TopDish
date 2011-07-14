@@ -476,7 +476,7 @@
 
 -(void)hudWasHidden {
 	self.tableView.userInteractionEnabled = YES;
-    [self.navigationController setNavigationBarHidden: NO animated:YES];	
+    [self.navigationController setNavigationBarHidden:NO animated:NO];	
     if (mUploadSuccess) {
         [self.delegate doneRatingDish];
     }
