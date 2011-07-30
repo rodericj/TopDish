@@ -742,10 +742,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				17DD270812BDBD860048C1A1 /* CFNetwork.framework */,
-				17DD270A12BDBD930048C1A1 /* SystemConfiguration.framework */,
-				17DD270C12BDBD970048C1A1 /* MobileCoreServices.framework */,
-				17DD272A12BDBEC60048C1A1 /* libz.1.2.3.dylib */,
 				17BBAFD71301AC2400705F1A /* CommentsCell.xib */,
 			);
 			name = CustomTemplate;
@@ -772,6 +768,10 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				17DD270812BDBD860048C1A1 /* CFNetwork.framework */,
+				17DD270A12BDBD930048C1A1 /* SystemConfiguration.framework */,
+				17DD270C12BDBD970048C1A1 /* MobileCoreServices.framework */,
+				17DD272A12BDBEC60048C1A1 /* libz.1.2.3.dylib */,
 				5F89F559125C464900959D05 /* MapKit.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -1229,7 +1229,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1254,7 +1254,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: TopDish Inc.";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1268,7 +1268,7 @@
 					"\"$(SRCROOT)/objectiveresource/samples/google_toolbar/TigerGcov\"",
 				);
 				PRODUCT_NAME = TopDish;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "64C097C1-DC89-49C5-A3E5-54C317CB340D";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
