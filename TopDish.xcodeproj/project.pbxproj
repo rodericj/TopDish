@@ -27,6 +27,7 @@
 		178FE1D013C6D6BD0063935E /* UIImage+Decompress.m in Sources */ = {isa = PBXBuildFile; fileRef = 178FE1CF13C6D6BD0063935E /* UIImage+Decompress.m */; };
 		1792A832136A65D10058B8B7 /* LeaveFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1792A830136A65D10058B8B7 /* LeaveFeedbackViewController.m */; };
 		1792A833136A65D10058B8B7 /* LeaveFeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1792A831136A65D10058B8B7 /* LeaveFeedbackViewController.xib */; };
+		1798223113E4C39800121337 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1798223013E4C39800121337 /* MainWindow-iPad.xib */; };
 		179A8DA6134C29B20072CAF0 /* LoginModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 179A8DA4134C29B20072CAF0 /* LoginModalView.m */; };
 		179A8DA7134C29B20072CAF0 /* LoginModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 179A8DA5134C29B20072CAF0 /* LoginModalView.xib */; };
 		17A5187413A303E400D47A3B /* filter.png in Resources */ = {isa = PBXBuildFile; fileRef = 17A5187313A303E400D47A3B /* filter.png */; };
@@ -198,6 +199,7 @@
 		1792A82F136A65D10058B8B7 /* LeaveFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaveFeedbackViewController.h; sourceTree = "<group>"; };
 		1792A830136A65D10058B8B7 /* LeaveFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaveFeedbackViewController.m; sourceTree = "<group>"; };
 		1792A831136A65D10058B8B7 /* LeaveFeedbackViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaveFeedbackViewController.xib; sourceTree = "<group>"; };
+		1798223013E4C39800121337 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		179A8DA3134C29B20072CAF0 /* LoginModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModalView.h; sourceTree = "<group>"; };
 		179A8DA4134C29B20072CAF0 /* LoginModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModalView.m; sourceTree = "<group>"; };
 		179A8DA5134C29B20072CAF0 /* LoginModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginModalView.xib; sourceTree = "<group>"; };
@@ -541,6 +543,14 @@
 			name = Feedback;
 			sourceTree = "<group>";
 		};
+		1798222F13E4C39600121337 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				1798223013E4C39800121337 /* MainWindow-iPad.xib */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
 		17AE80B612DA7204007B96EC /* AccountViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -740,6 +750,7 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				1798222F13E4C39600121337 /* iPad */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				17BBAFD71301AC2400705F1A /* CommentsCell.xib */,
@@ -1049,6 +1060,7 @@
 				17BF04E113C143F4009F42F4 /* Default.png in Resources */,
 				17BF04E213C143F4009F42F4 /* Default@2x.png in Resources */,
 				17BF050D13C147CF009F42F4 /* gradient_1.png in Resources */,
+				1798223113E4C39800121337 /* MainWindow-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1173,11 +1185,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TopDish_Prefix.pch;
 				INFOPLIST_FILE = "TopDish-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/objectiveresource/samples/google_toolbar/TigerGcov\"",
 				);
 				PRODUCT_NAME = TopDish;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = AdHoc;
@@ -1214,12 +1228,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TopDish_Prefix.pch;
 				INFOPLIST_FILE = "TopDish-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/objectiveresource/samples/google_toolbar/TigerGcov\"",
 				);
 				PRODUCT_NAME = TopDish;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = "AdHoc usb";
@@ -1240,12 +1256,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TopDish_Prefix.pch;
 				INFOPLIST_FILE = "TopDish-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/objectiveresource/samples/google_toolbar/TigerGcov\"",
 				);
 				PRODUCT_NAME = TopDish;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1263,12 +1281,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TopDish_Prefix.pch;
 				INFOPLIST_FILE = "TopDish-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/objectiveresource/samples/google_toolbar/TigerGcov\"",
 				);
 				PRODUCT_NAME = TopDish;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "64C097C1-DC89-49C5-A3E5-54C317CB340D";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

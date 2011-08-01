@@ -637,12 +637,8 @@
 -(void)pushRestaurantDetailController {
     //should be logged already
     
-	RestaurantDetailViewController *restaurantController = 
-	[[RestaurantDetailViewController alloc] initWithNibName:@"RestaurantDetailView" 
-													 bundle:nil];
-	[restaurantController setRestaurant:self.thisDish.restaurant];
+	RestaurantDetailViewController *restaurantController = [RestaurantDetailViewController restaurantDetailViewWithRestaurant:self.thisDish.restaurant];
 	[self.navigationController pushViewController:restaurantController animated:YES];
-	[restaurantController release];
 }
 
 -(void)tapRestaurantText {

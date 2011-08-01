@@ -53,6 +53,8 @@ MBProgressHUDDelegate> {
 	MBProgressHUD		*mHud;
     
     NSArray             *mUrlImageArray;
+    
+    BOOL                mIsShowingLandscapeView;
 }
 
 @property (nonatomic, retain)			Restaurant		*restaurant;
@@ -79,6 +81,10 @@ MBProgressHUDDelegate> {
 
 @property (nonatomic, retain)			MBProgressHUD	*hud;
 @property (nonatomic, retain)           NSArray         *urlImageArray;
+
+@property (nonatomic, assign)           BOOL            isShowingLandscapeView;
+
++(RestaurantDetailViewController *)restaurantDetailViewWithRestaurant:(Restaurant *)restaurant;
 
 -(IBAction)callRestaurant;
 -(IBAction) pushAddDishViewController;

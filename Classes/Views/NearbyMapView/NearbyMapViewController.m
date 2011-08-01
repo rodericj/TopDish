@@ -136,14 +136,11 @@
 		[dishDetailViewController release];
 	}
 	else {
-		RestaurantDetailViewController *restaurantDetailViewController = [[RestaurantDetailViewController alloc] 
-																		  initWithNibName:@"RestaurantDetailView" 
-																		  bundle:nil];
-		
-		restaurantDetailViewController.restaurant = (Restaurant *)selectedObject;
-		[self.navigationController pushViewController:restaurantDetailViewController animated:YES];
-		[restaurantDetailViewController release];
-	}
+        
+        RestaurantDetailViewController *restaurantController = [RestaurantDetailViewController restaurantDetailViewWithRestaurant:(Restaurant *)selectedObject];
+        [self.navigationController pushViewController:restaurantController animated:YES];
+        
+    }
 }
 
 #pragma mark - Map Movement

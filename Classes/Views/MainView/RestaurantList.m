@@ -178,13 +178,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	Restaurant *thisRestaurant = [[self fetchedResultsController] objectAtIndexPath:indexPath];	
 
-	RestaurantDetailViewController *viewController = 
-	[[RestaurantDetailViewController alloc] initWithNibName:@"RestaurantDetailView" 
-													 bundle:nil];
-	[viewController setRestaurant:thisRestaurant];
-	[self.navigationController pushViewController:viewController animated:YES];
-	[viewController release];
-	
+    RestaurantDetailViewController *restaurantController = [RestaurantDetailViewController restaurantDetailViewWithRestaurant:thisRestaurant];
+	[self.navigationController pushViewController:restaurantController animated:YES];
+    
 }
 
 #pragma mark -

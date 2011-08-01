@@ -45,6 +45,7 @@
 @synthesize hud						= mHud;
 
 @synthesize urlImageArray           = mUrlImageArray;
+@synthesize isShowingLandscapeView  = mIsShowingLandscapeView;
 
 #pragma mark -
 #pragma mark networking
@@ -86,6 +87,13 @@
 }
 #pragma mark -
 #pragma mark View lifecycle
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return NO;
+}
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    NSLog(@"will rotate %f %@", duration, toInterfaceOrientation);
+}
+
 - (void) setUpSpecificView {
 	self.currentSearchDistance = kOneMileInMeters;
 
@@ -138,8 +146,6 @@
 
     }
 
-        
-    
 	self.restaurantHeader.selectionStyle = UITableViewCellSelectionStyleNone;
 	self.tableView.tableHeaderView = self.restaurantHeader;
 	
@@ -159,6 +165,15 @@
 
     [self reloadView];
 }
+
++(RestaurantDetailViewController *)restaurantDetailViewWithRestaurant:(Restaurant *)restaurant {
+    RestaurantDetailViewController *restaurantController = 
+	[[RestaurantDetailViewController alloc] initWithNibName:@"RestaurantDetailView" 
+													 bundle:nil];
+    restaurantController.restaurant = restaurant;
+	return [restaurantController autorelease];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -206,7 +221,32 @@
 	self.title = [self.restaurant objName];
 	self.tableView.tableFooterView = self.footerView;
 
-	}
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:)
+                                                 name:UIDeviceOrientationDidChangeNotification object:nil];
+}
+
+- (void)orientationChanged:(NSNotification *)notification
+{
+    // We must add a delay here, otherwise we'll swap in the new view
+	// too quickly and we'll get an animation glitch
+    [self performSelector:@selector(updateLandscapeView) withObject:nil afterDelay:0];
+}
+
+- (void)updateLandscapeView
+{
+    UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
+    if (UIDeviceOrientationIsLandscape(deviceOrientation) && !self.isShowingLandscapeView)
+	{
+       // [self presentModalViewController:self.landscapeViewController animated:YES];
+        self.isShowingLandscapeView = YES;
+    }
+	else if (deviceOrientation == UIDeviceOrientationPortrait && self.isShowingLandscapeView)
+	{
+        //[self dismissModalViewControllerAnimated:YES];
+        self.isShowingLandscapeView = NO;
+    }   
+    NSLog(@"orientation is %@ %d", self.isShowingLandscapeView ? @"landscape":@"portrait", deviceOrientation);
+}
 
 #pragma mark -
 #pragma mark Table view classes overridden 
@@ -638,6 +678,8 @@
 
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
     self.cameraImage = nil;
 	self.restaurant = nil;
 	self.restaurantHeader = nil;
