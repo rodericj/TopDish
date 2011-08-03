@@ -7,7 +7,9 @@
 //
 
 #import "TopDishAppDelegate.h"
-#import "DishTableViewController.h"
+#import "IPadDishTableViewController.h"
+#import "IPadOpeningViewController.h"
+
 #import "JSON.h"
 #import "Dish.h"
 #import "ASIFormDataRequest.h"
@@ -23,15 +25,12 @@
 @synthesize tabBarController;
 @synthesize segmentsController = mSegmentsController;
 @synthesize segmentedControl = mSegmentedControl;
-
+@synthesize splitViewController  = mSplitViewController;
 
 #pragma mark -
 #pragma mark Application lifecycle
 
 - (void)awakeFromNib {    
-    
-    //DishTableViewController *dishTableViewController = (DishTableViewController *)[navigationController topViewController];
-	
 }
 
 - (void)switchViewControllers {
@@ -54,27 +53,50 @@
 	[request setDelegate:self];
 	[request startAsynchronous];
 	
-	NSArray * navsviewControllers = self.navigationController.viewControllers;
-	NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:navsviewControllers];
-	
-	RestaurantList *restaurantList = [[RestaurantList alloc] initWithNibName:@"RestaurantList" bundle:nil];
-	[viewControllers addObject:restaurantList];
-	[restaurantList release];
-	
-    self.segmentsController = [[SegmentsController alloc] initWithNavigationController:self.navigationController viewControllers:viewControllers];
-    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:[viewControllers arrayByPerformingSelector:@selector(title)]];
-    self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+        
+        
+        NSArray * navsviewControllers = self.navigationController.viewControllers;
+        NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:navsviewControllers];
+        
+        RestaurantList *restaurantList = [[RestaurantList alloc] initWithNibName:@"RestaurantList" bundle:nil];
+        [viewControllers addObject:restaurantList];
+        [restaurantList release];
+        
+        self.segmentsController = [[SegmentsController alloc] initWithNavigationController:self.navigationController viewControllers:viewControllers];
+        self.segmentedControl = [[UISegmentedControl alloc] initWithItems:[viewControllers arrayByPerformingSelector:@selector(title)]];
+        self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+        
+        [self.segmentedControl addTarget:self.segmentsController
+                                  action:@selector(indexDidChangeForSegmentedControl:)
+                        forControlEvents:UIControlEventValueChanged];
+        
+        self.segmentedControl.selectedSegmentIndex = 0;
+        [self.segmentsController indexDidChangeForSegmentedControl:self.segmentedControl];
+        [window addSubview:tabBarController.view];
+        [window makeKeyAndVisible];
+        
+	}
+    else {
+        //This is an iPad
+        self.splitViewController = [[UISplitViewController alloc] init];
+        
+        IPadDishTableViewController *root = [[[IPadDishTableViewController alloc] init] autorelease];
+        IPadOpeningViewController *detail = [[[IPadOpeningViewController alloc] init] autorelease]; 
+        
+        UINavigationController *rootNav = [[[UINavigationController alloc] initWithRootViewController:root]autorelease];
+        
+        UINavigationController *detailNav = [[[UINavigationController alloc] initWithRootViewController:detail] autorelease];
+        
+        self.splitViewController.viewControllers = [NSArray arrayWithObjects:rootNav, detailNav, nil];
+        self.splitViewController.delegate = detail;
+        
+        
+        [window addSubview:self.splitViewController.view];
+        
+        [window makeKeyAndVisible];        
+    }
     
-    [self.segmentedControl addTarget:self.segmentsController
-                              action:@selector(indexDidChangeForSegmentedControl:)
-                    forControlEvents:UIControlEventValueChanged];
-	
-	self.segmentedControl.selectedSegmentIndex = 0;
-    [self.segmentsController indexDidChangeForSegmentedControl:self.segmentedControl];
-	
-    // Add the navigation controller's view to the window and display.
-    [window addSubview:tabBarController.view];
-    [window makeKeyAndVisible];
 	
 	[[AppModel instance] facebook];
 	

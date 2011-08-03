@@ -167,11 +167,23 @@
 }
 
 +(RestaurantDetailViewController *)restaurantDetailViewWithRestaurant:(Restaurant *)restaurant {
-    RestaurantDetailViewController *restaurantController = 
-	[[RestaurantDetailViewController alloc] initWithNibName:@"RestaurantDetailView" 
-													 bundle:nil];
-    restaurantController.restaurant = restaurant;
-	return [restaurantController autorelease];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        // iPad-specific interface here
+        return nil;
+    }
+    else
+    {
+        // iPhone and iPod touch interface here
+    
+        RestaurantDetailViewController *restaurantController = 
+        [[RestaurantDetailViewController alloc] initWithNibName:@"RestaurantDetailView" 
+                                                         bundle:nil];
+        restaurantController.restaurant = restaurant;
+        return [restaurantController autorelease];
+
+    }
+    return nil;
 }
 
 - (void)viewDidLoad {

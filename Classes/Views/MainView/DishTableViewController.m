@@ -102,6 +102,9 @@
 	self.title = @"Dishes";
 	
 }
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return YES;
+}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -313,11 +316,11 @@
 	
 	
 	return [NSString stringWithFormat:@"%@,%@,%@,%@,%@", 
-			app.selectedPrice ? app.selectedPrice : @"", 
-			app.selectedMeal ? app.selectedMeal : @"",
-			app.selectedCuisine ? app.selectedCuisine : @"", 
-			app.selectedAllergen ? app.selectedAllergen : @"", 
-			app.selectedLifestyle ? app.selectedLifestyle : @""];
+			app.selectedPrice ? [NSString stringWithFormat:@"%@", app.selectedPrice] : @"", 
+			app.selectedMeal ? [NSString stringWithFormat:@"%@", app.selectedMeal] : @"",
+			app.selectedCuisine ? [NSString stringWithFormat:@"%@", app.selectedCuisine] : @"", 
+			app.selectedAllergen ? [NSString stringWithFormat:@"%@", app.selectedAllergen] : @"", 
+			app.selectedLifestyle ? [NSString stringWithFormat:@"%@", app.selectedLifestyle] : @""];
 	
 }
 
@@ -463,15 +466,8 @@
 	DLog(@"adding this didSelect");
 	[self.theSearchBar resignFirstResponder];
 	ObjectWithImage *selectedObject;
-	//self.fetchedResultsController = nil;
-
 	selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
 	[self pushDishViewController:selectedObject];
-	//else {
-//		selectedObject = [[self.rltv fetchedResultsController] objectAtIndexPath:indexPath];
-//		[self pushRestaurantViewController:selectedObject];
-//	}
-	//[super tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
 
 -(void) pushDishViewController:(ObjectWithImage *) selectedObject{

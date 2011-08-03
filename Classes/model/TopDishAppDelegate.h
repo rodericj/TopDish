@@ -15,6 +15,7 @@
 	SegmentsController     *mSegmentsController;
     UISegmentedControl     *mSegmentedControl;
 
+    UISplitViewController   *mSplitViewController;
     UIWindow *window;
     UINavigationController *navigationController;
 	UITabBarController *tabBarController;
@@ -30,6 +31,7 @@
 @property (nonatomic, retain) UISegmentedControl     * segmentedControl;
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, retain) IBOutlet UISplitViewController *splitViewController;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
 

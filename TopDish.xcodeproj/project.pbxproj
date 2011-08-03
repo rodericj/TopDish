@@ -28,6 +28,14 @@
 		1792A832136A65D10058B8B7 /* LeaveFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1792A830136A65D10058B8B7 /* LeaveFeedbackViewController.m */; };
 		1792A833136A65D10058B8B7 /* LeaveFeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1792A831136A65D10058B8B7 /* LeaveFeedbackViewController.xib */; };
 		1798223113E4C39800121337 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1798223013E4C39800121337 /* MainWindow-iPad.xib */; };
+		1798225513E64E8300121337 /* MainSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1798225313E64E8300121337 /* MainSplitViewController.m */; };
+		1798225613E64E8300121337 /* MainSplitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1798225413E64E8300121337 /* MainSplitViewController.xib */; };
+		1798225A13E6540C00121337 /* IPadOpeningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1798225813E6540C00121337 /* IPadOpeningViewController.m */; };
+		1798225B13E6540C00121337 /* IPadOpeningViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1798225913E6540C00121337 /* IPadOpeningViewController.xib */; };
+		1798225F13E657AA00121337 /* IPadDishTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1798225D13E657AA00121337 /* IPadDishTableViewController.m */; };
+		1798226013E657AA00121337 /* IPadDishTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1798225E13E657AA00121337 /* IPadDishTableViewController.xib */; };
+		1798226C13E65BB900121337 /* IPadDishDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1798226A13E65BB800121337 /* IPadDishDetailViewController.m */; };
+		1798226D13E65BB900121337 /* IPadDishDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1798226B13E65BB800121337 /* IPadDishDetailViewController.xib */; };
 		179A8DA6134C29B20072CAF0 /* LoginModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 179A8DA4134C29B20072CAF0 /* LoginModalView.m */; };
 		179A8DA7134C29B20072CAF0 /* LoginModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 179A8DA5134C29B20072CAF0 /* LoginModalView.xib */; };
 		17A5187413A303E400D47A3B /* filter.png in Resources */ = {isa = PBXBuildFile; fileRef = 17A5187313A303E400D47A3B /* filter.png */; };
@@ -200,6 +208,18 @@
 		1792A830136A65D10058B8B7 /* LeaveFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaveFeedbackViewController.m; sourceTree = "<group>"; };
 		1792A831136A65D10058B8B7 /* LeaveFeedbackViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaveFeedbackViewController.xib; sourceTree = "<group>"; };
 		1798223013E4C39800121337 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		1798225213E64E8300121337 /* MainSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainSplitViewController.h; path = iPad/MainSplitViewController.h; sourceTree = "<group>"; };
+		1798225313E64E8300121337 /* MainSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainSplitViewController.m; path = iPad/MainSplitViewController.m; sourceTree = "<group>"; };
+		1798225413E64E8300121337 /* MainSplitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainSplitViewController.xib; path = iPad/MainSplitViewController.xib; sourceTree = "<group>"; };
+		1798225713E6540C00121337 /* IPadOpeningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IPadOpeningViewController.h; path = iPad/IPadOpeningViewController.h; sourceTree = SOURCE_ROOT; };
+		1798225813E6540C00121337 /* IPadOpeningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IPadOpeningViewController.m; path = iPad/IPadOpeningViewController.m; sourceTree = SOURCE_ROOT; };
+		1798225913E6540C00121337 /* IPadOpeningViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IPadOpeningViewController.xib; path = iPad/IPadOpeningViewController.xib; sourceTree = SOURCE_ROOT; };
+		1798225C13E657AA00121337 /* IPadDishTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IPadDishTableViewController.h; path = iPad/IPadDishTableViewController.h; sourceTree = "<group>"; };
+		1798225D13E657AA00121337 /* IPadDishTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IPadDishTableViewController.m; path = iPad/IPadDishTableViewController.m; sourceTree = "<group>"; };
+		1798225E13E657AA00121337 /* IPadDishTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IPadDishTableViewController.xib; path = iPad/IPadDishTableViewController.xib; sourceTree = "<group>"; };
+		1798226913E65BB800121337 /* IPadDishDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IPadDishDetailViewController.h; path = iPad/IPadDishDetailViewController.h; sourceTree = "<group>"; };
+		1798226A13E65BB800121337 /* IPadDishDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IPadDishDetailViewController.m; path = iPad/IPadDishDetailViewController.m; sourceTree = "<group>"; };
+		1798226B13E65BB800121337 /* IPadDishDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IPadDishDetailViewController.xib; path = iPad/IPadDishDetailViewController.xib; sourceTree = "<group>"; };
 		179A8DA3134C29B20072CAF0 /* LoginModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModalView.h; sourceTree = "<group>"; };
 		179A8DA4134C29B20072CAF0 /* LoginModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModalView.m; sourceTree = "<group>"; };
 		179A8DA5134C29B20072CAF0 /* LoginModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginModalView.xib; sourceTree = "<group>"; };
@@ -547,6 +567,9 @@
 			isa = PBXGroup;
 			children = (
 				1798223013E4C39800121337 /* MainWindow-iPad.xib */,
+				1798225213E64E8300121337 /* MainSplitViewController.h */,
+				1798225313E64E8300121337 /* MainSplitViewController.m */,
+				1798225413E64E8300121337 /* MainSplitViewController.xib */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -746,6 +769,15 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				1798225713E6540C00121337 /* IPadOpeningViewController.h */,
+				1798225813E6540C00121337 /* IPadOpeningViewController.m */,
+				1798225913E6540C00121337 /* IPadOpeningViewController.xib */,
+				1798225C13E657AA00121337 /* IPadDishTableViewController.h */,
+				1798225D13E657AA00121337 /* IPadDishTableViewController.m */,
+				1798226913E65BB800121337 /* IPadDishDetailViewController.h */,
+				1798226A13E65BB800121337 /* IPadDishDetailViewController.m */,
+				1798226B13E65BB800121337 /* IPadDishDetailViewController.xib */,
+				1798225E13E657AA00121337 /* IPadDishTableViewController.xib */,
 				5F89F595125C4A1A00959D05 /* Nibs */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -1061,6 +1093,10 @@
 				17BF04E213C143F4009F42F4 /* Default@2x.png in Resources */,
 				17BF050D13C147CF009F42F4 /* gradient_1.png in Resources */,
 				1798223113E4C39800121337 /* MainWindow-iPad.xib in Resources */,
+				1798225613E64E8300121337 /* MainSplitViewController.xib in Resources */,
+				1798225B13E6540C00121337 /* IPadOpeningViewController.xib in Resources */,
+				1798226013E657AA00121337 /* IPadDishTableViewController.xib in Resources */,
+				1798226D13E65BB900121337 /* IPadDishDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1148,6 +1184,10 @@
 				17B74C6A13C8ED9500A9EBD1 /* MixpanelAPI.m in Sources */,
 				17B74C6B13C8ED9500A9EBD1 /* MixpanelEvent.m in Sources */,
 				17B74C6E13C8EE6A00A9EBD1 /* Logger.m in Sources */,
+				1798225513E64E8300121337 /* MainSplitViewController.m in Sources */,
+				1798225A13E6540C00121337 /* IPadOpeningViewController.m in Sources */,
+				1798225F13E657AA00121337 /* IPadDishTableViewController.m in Sources */,
+				1798226C13E65BB900121337 /* IPadDishDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
