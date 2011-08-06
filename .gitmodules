@@ -1,3 +1,6 @@
 [submodule "MBProgressHUD"]
 	path = MBProgressHUD
 	url = git://github.com/matej/MBProgressHUD.git
+[submodule "server/common"]
+	path = server/common
+	url = git@github.com:coryvirok/common.git
