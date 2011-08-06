@@ -1,0 +1,119 @@
+Name: Restaurant Detail Servlet
+URL: /api/restaurantDetail
+Type:  GET
+Description: Servlet to allow user to rate a dish. Returns updated Dish Object.
+Required Params:
+	-"id[]" 		: Restaurants ids (ie. id[]=71&id[]=72)
+	-"apiKey" 		: User's APIKey
+Example Success Output:
+{
+	"rc": 0,
+    "restaurants": [
+        {
+            "phone": "6265773918",
+            "photoURL": "",
+            "state": "CA",
+            "neighborhood": "",
+            "addressLine2": "",
+            "addressLine1": "510 S Fair Oaks Ave",
+            "city": "Pasadena",
+            "id": 790,
+            "numDishes": 2,
+            "name": "El Taquito Mexicano Truck",
+            "dishes": [
+                {
+                    "tags": [
+                        {
+                            "id": 788,
+                            "order": 0,
+                            "name": "Dinner",
+                            "type": "Meal Type"
+                        },
+                        {
+                            "id": 785,
+                            "order": 0,
+                            "name": "Expensive",
+                            "type": "Price"
+                        }
+                    ],
+                    "posReviews": 1,
+                    "id": 791,
+                    "reviews": [
+                        {
+                            "direction": -1,
+                            "dateCreated": "Feb 14, 2011 1:13:17 AM",
+                            "comment": "generic comment",
+                            "creator": "Test"
+                        },
+                        {
+                            "direction": 1,
+                            "dateCreated": "Feb 13, 2011 11:37:31 PM",
+                            "comment": "wtf its a taco yo",
+                            "creator": "Test"
+                        }
+                    ],
+                    "photoURL": "",
+                    "negReviews": 1,
+                    "description": "its a taco",
+                    "name": "Whee",
+                    "longitude": -118.149924,
+                    "latitude": 34.137094,
+                    "restaurantID": 790,
+                    "restaurantName": "El Taquito Mexicano Truck"
+                },
+                {
+                    "tags": [
+                        {
+                            "id": 788,
+                            "order": 0,
+                            "name": "Dinner",
+                            "type": "Meal Type"
+                        },
+                        {
+                            "id": 785,
+                            "order": 0,
+                            "name": "Expensive",
+                            "type": "Price"
+                        },
+                        {
+                            "id": 782,
+                            "order": 0,
+                            "name": "peanuts",
+                            "type": "Allergen"
+                        }
+                    ],
+                    "posReviews": 0,
+                    "id": 794,
+                    "reviews": [
+                        {
+                            "direction": -1,
+                            "dateCreated": "Feb 14, 2011 1:26:12 AM",
+                            "comment": "generic comment",
+                            "creator": "Test"
+                        },
+                        {
+                            "direction": -1,
+                            "dateCreated": "Feb 14, 2011 1:22:35 AM",
+                            "comment": "generic comment",
+                            "creator": "Test"
+                        }
+                    ],
+                    "photoURL": "",
+                    "negReviews": 2,
+                    "description": "its yummy foods",
+                    "name": "foood",
+                    "longitude": -118.149924,
+                    "latitude": 34.137094,
+                    "restaurantID": 790,
+                    "restaurantName": "El Taquito Mexicano Truck"
+                }
+            ],
+            "longitude": -118.149924,
+            "latitude": 34.137094
+        }
+    ]
+}
+Example Failure Output:
+{
+    "rc": 1
+}

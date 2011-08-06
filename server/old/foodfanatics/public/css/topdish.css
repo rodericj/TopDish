@@ -1,0 +1,190 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	margin:0;
+	padding:0;
+	border:0;			/* This removes the border around the viewport in old versions of IE */
+	width:100%;
+	background:#fff;
+	min-width:600px;		/* Minimum width of layout - remove line if not required */
+					/* The min-width property does not work in old versions of Internet Explorer */
+	font-size:90%;
+	font-family:Helvetica, sans-serif;	
+}
+
+/* column container */
+.colmask {
+	position:relative;	/* This fixes the IE7 overflow hidden bug */
+	clear:both;
+	float:left;
+	width:100%;			/* width of whole page */
+	overflow:hidden;		/* This chops off any overhanging divs */
+}
+/* common column settings */
+.colright,
+.colmid,
+.colleft {
+	float:left;
+	width:100%;			/* width of page */
+	position:relative;
+}
+.col1,
+.col2,
+.col3 {
+	float:left;
+	position:relative;
+	padding:0 0 .5em 0;	/* no left and right padding on columns, we just make them narrower instead 
+					only padding top and bottom is included here, make it whatever value you need */
+	overflow:hidden;
+}
+/* 3 Column settings */
+.threecol {
+	background:#eee;		/* right column background colour */
+}
+.threecol .colmid {
+	right:10%;			/* width of the right column */
+	background:#fff;		/* center column background colour */
+}
+.threecol .colleft {
+	right:70%;			/* width of the middle column */
+	background:#f4f4f4;	/* left column background colour */
+}
+.threecol .col1 {
+	width:68%;			/* width of center column content (column width minus padding on either side) */
+	left:101%;			/* 100% plus left padding of center column */
+}
+.threecol .col2 {
+	width:18%;			/* Width of left column content (column width minus padding on either side) */
+	left:13%;			/* width of (right column) plus (center column left and right padding) plus (left column left padding) */
+}
+.threecol .col3 {
+	width:8%;			/* Width of right column content (column width minus padding on either side) */
+	left:85%;			/* Please make note of the brackets here:
+					(100% - left column width [20 = 80]) plus (center column left and right padding[2]) plus (left column left and right padding [2]) plus (right column left padding[1]) */
+}
+
+/* Title and Nav Divs*/
+div.title {
+	text-align: center;
+	font-size:3em;
+}
+div.user {
+	text-align:right;
+}
+div.search{
+	text-align:center;
+}
+input.searchbox{
+	height:2em;
+	width:20em;
+	font-size:1.5em;
+}
+div.nav {
+
+}
+div.nav ul {
+	/*list-style: none;*/
+	margin: 0;
+	padding:0;
+	padding-left:1em;
+}
+div.nav ul li {
+	float: left;
+	padding-right:1.5em;
+}
+
+/* Dish brief */
+div.dish_brief{
+	clear:both;
+	width:100%;
+	height:5em;
+	padding-top:.5em;
+	padding-bottom:.5em;
+}
+div.row_even{
+	background:#eee;
+}
+div.row_odd{
+	background:#dcd;
+}
+div.rating_box{
+	float:left;
+	width:10%;
+	text-align:center;
+}
+div.dish_rating{
+	background: gray;
+	font-size:1.25em;
+	margin-left:1em;
+	margin-right:1em;
+}
+div.dish_photo{
+	float:left;
+	height:75px;
+	width:75px;
+	background:red;
+	margin:0;
+}
+div.dish_info{
+	float:left;
+	margin:0;
+	padding-left:.25em;
+	width:55%;
+}
+div.dish_name{
+	padding-bottom:.1em;
+	font-size:1em;
+}
+div.dish_description{
+	font-size:.75em;
+}
+div.dish_tags{
+	padding-top:.5em;
+	font-size:.75em;
+	padding-left:1em;
+}
+div.restaurant_info{
+	float:left;
+	width:20%;
+	margin:0;
+}
+
+/*restaurant search*/
+div#content{
+	float:left;
+}
+div#map{
+	float:right;
+	width:300px;
+	height:300px;
+}
+div#debug{
+	clear:both;
+}
+
+.col1 h1{
+	font-size:2em;
+	font-weight:normal;
+	text-align:center;
+}
+
+/*added to clean up google local results*/
+.gsc-configLabelCell,
+.gsc-twiddleRegionCell,
+.gs-watermark,
+.gs-phone,
+.gs-directions{
+	display:none;
+}
+
+/* Footer styles */
+#footer {
+	clear:both;
+	float:left;
+	width:100%;
+	border-top:1px solid #000;
+}
+#footer p {
+	padding:10px;
+	margin:0;
+}

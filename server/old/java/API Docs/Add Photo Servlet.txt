@@ -1,0 +1,36 @@
+Name: Add Photo Servlet
+URL: /api/addPhoto
+Type:  POST
+Description: Upload a Photo to a given Dish or Restaurant
+User Story: Hit this Servlet to get the BlobStore URL. Then do a POST to the given URL.
+Required Params:
+	-"description"		: Photo description
+	-"dishId" 		: ID of the dish to add photo to
+	-"restaurantId" 	: ID of the dish to add photo to
+	-"apiKey" 		: User's APIKey
+Note: Only send dishId or restaurantId, (if you send both, note dishId takes precidence)
+Example Success Output:
+//Dish Photo Uploaded
+{
+    "rc": 0,
+    "dishId": 10,
+    "photoId": 17
+}
+//Restaurant Photo Uploaded
+{
+    "rc": 0,
+    "restaurantId": 10,
+    "photoId": 17
+}
+
+// To get a URL
+{
+    "rc": 0,
+    "url": "/_ah/upload/agh0b3BkaXNoMXIcCxIVX19CbG9iVXBsb2FkU2Vzc2lvbl9fGJsGDA"
+}
+
+Example Failure Output:
+{
+    "message": "Dish Id not found.",
+    "rc": 1
+}

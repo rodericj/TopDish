@@ -1,0 +1,522 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    
+    <link href="style/topdish-global.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="style/topdish-listing.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="style/topdish-right.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="style/reset-min.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="style/smoothness/jquery-ui-1.8.1.custom.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="style/jquery.ac.css" media="screen" rel="stylesheet" type="text/css" />
+	
+	<script type="text/javascript" src="js/jquery-1.4.2.min.js"> </script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.1.custom.min.js"></script>
+	<script type="text/javascript" src="proxy?mime=text/javascript&amp;url=http://www.google.com/jsapi?sensor=true&amp;key=ABQIAAAAsoBjCec6IhiVrq0OfYiQ4hRanrF-Qy72Ck9MCUApnD3ZiaRFfhRNvZZ5rZTYdNc6hbC70aPTmBu8ZA"></script>
+
+	<script type="text/javascript" src="js/jquery.autocomplete.jorn.min.js"></script>
+	<script type="text/javascript" src="js/jquery.bgiframe.min.js"></script>
+	<script type="text/javascript" src="js/jquery.dimensions.min.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.corner.js"></script>
+	<script type="text/javascript" src="js/topdish.dialog.js"></script>
+    <script type="text/javascript" src="js/topdish.custom.js"></script>
+	<script type="text/javascript" src="js/topdish.localsearch.js"></script>
+	<script type="text/javascript" src="js/topdish.locationfinder.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="js/jquery.galleryview-2.1.1-pack.js"></script>
+    <script type="text/javascript" src="js/jquery.timers-1.2.js"></script>
+    <script type="text/javascript" src="js/jquery.fcbkcomplete.min.js"></script>    
+	
+    
+	<title>Top Dish</title> 
+</head>
+<body>
+<div class="mask">
+  <div class="majoras">
+        <div class="header">
+            <div class="header_top">
+                <div id="header_logos">
+           	    	<a href="#"><img src="img/header/topdish_logo.png" width="170" height="49" alt="Top Dish!" /></a>
+                    <div>Feed your craving</div>
+                </div>
+                
+                <div class="user">
+                    <!-- User information: name, logged in status, etc. -->
+                  <div class="user_strong_text"><a href="#">ABOUT</a></div>
+                  <div class="user_strong_text"><a href="#">LOGIN</a></div>
+                  <div>Logged in as: <a href="#">Shawn S</a>.</div>
+                </div>
+            </div>
+          <div id="header_bottom">
+            <div id="header_search_container">
+                    <div id="header_search_top_container">
+                        <div id="header_search_description">
+                        	<span id="header_search_description_big">Dish Search</span>
+                            <span id="header_search_description_small">e.g. dish name, ingredient, cuisine, location) or <b>Randomize!</b></span>
+                        </div>
+                        <div id="header_quick_links">
+                            <a href="#"><img src="img/header/mini_like_facebook.jpg" alt="Facebook" width="16" height="16" /></a>
+                            <a href="#"><img src="img/header/mini_like_twitter.jpg" alt="Twitter" width="16" height="16" /></a>
+                            <a href="#"><img src="img/header/mini_like_yelp.jpg" alt="Yelp" width="16" height="16" /> </a>
+                            <a href="#"><img src="img/header/mini_like_topdish.jpg" alt="Topdish" width="16" height="16" /></a>
+                        </div>
+                    </div>
+                    <div id="header_search_bar_container">
+                        <div class="search">
+                            <form action="search.jsp" method="post">
+                            	<fieldset class="main_search">
+                             	 <input class="searchbox searchbox_up" name="q" type="text"></input>
+                                  <input class="searchbox_submit" type="submit" value=" "/>  
+                                  
+                                </fieldset>
+                            </form>
+                            
+                        </div>
+                        <div class="rate_a_dish"><img src="img/header/rate_dish_button.png" width="132" height="43" /></div>
+                        <div id="header_search_bar_quicklinks">
+                            <ul>
+                                <li><a href="allRestaurants.jsp">Top Dishes</a></li>
+                                <li><a href="addDish.jsp">Recommend</a></li>
+                                <li><a href="restaurantSearch.jsp">Find Restaurant</a></li>
+                                <li><a href="addTag.jsp">Add Tag</a></li>
+                                <li><a href="browse.jsp">Browse Dishes</a></li>
+                                <li><a href="#">Vetsin</a></li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+          </div>
+        </div>
+        <div class="the_main_divide">
+        	<div class="main_divide_content">
+                <div id="location" class="location_bar">Acquiring location...</div>
+                <div id="content"></div>
+            </div>
+        </div>
+        <!-- A mess if i've ever seen one -->
+		<div class="main_wrapper">
+       	  <div id="filter_list">//TODO: fix this so it isn't buggy.</div>
+            <div id="fork"></div>
+		  <div class="main_top_c">
+            <div class="main_tl_c"></div>
+                <div class="main_tr_c"></div>
+            </div>
+            <div class="main_container">
+				<div class="colleft">
+                    <div class="col1">
+                    	
+                        
+
+
+
+
+
+
+
+
+
+
+                        <div class="rmenu_cont dish_splitter">
+                        	<h1>Stay on top via email!<span>[Daily] [Weekly]</span></h1>
+                           
+                            <div class="rmenu_disp">
+                            	email here then submit
+                            </div>
+                        </div>
+                        <div class="rmenu_cont dish_splitter">
+                        	<h1>New To Top Dish Near You <span><a href="#">view list</a></span></h1>
+                           
+                            <div class="rmenu_disp">
+                            	<div class="top_dish">
+                                	<div class="top_dish_left">
+                                		<img class="dish_image_gold" src="img/example_food.jpg" />
+                                    </div>
+                                    <div class="top_dish_right">
+                                        <h2>The Marlowe Burger</h2>
+                                        <h3>Marlowe</h3>
+                                        <p>Citty, State</p>
+                                        <p>Number</p>
+                                        <p>Neighborhood: <a href="#">SOMA</a></p>
+                                        <p>0.8 Miles Away</p>
+                                        <p><a href="#">Open!</a></p>
+                                    </div>
+                                    
+                                   <div class="dish_listing_categories">
+                            			<h3>Categories:</h3>
+                                		<p><a href="#">American</a>, <a href="#">Burgers</a>, <a href="#">Night Life</a></p>
+                           			</div>
+                                    <div class="dish_listing_terminator"></div>
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                         <div class="rmenu_cont dish_splitter">
+                        	<h1>Our Top Foodies <span><a href="#">view all</a></span></h1>
+                            <div class="rmenu_disp">
+                            	<div class="top_foodie_cont">
+                                	<div class="top_foodie_box_border top_foodie_box_even"><div class="top_foodie_box">Top Foodie</div></div>
+                                    <div class="top_foodie_box_border"><div class="top_foodie_box">Top Foodie</div></div>
+                                    <div class="top_foodie_box_border top_foodie_box_even"><div class="top_foodie_box">Top Foodie</div></div>
+                                  <div class="top_foodie_box_border"><div class="top_foodie_box">Top Foodie</div></div>
+                               
+                                </div>
+                                <div class="dish_listing_terminator"></div>
+                            </div>
+                         </div>
+                        <div class="rmenu_cont dish_splitter">
+                        	<h1>The absolute best!<span><a href="#">dish</a>&nbsp;&nbsp;resturant</span></h1>
+                            <div class="top10">
+                            
+                            <div class="top10_separator"></div>
+                            
+                                <div class="top10_listing">
+                                    <div class="top10_dish_rank">
+                                        <div class="top10_rank_num">#1</div>
+                                        <div class="top10_rank_time">Xm</div>
+                        
+                                    </div>
+                                    <div class="top10_dish_photo">
+                                        <a href="#"><img class="grey_icon" src="style/no_dish_img.jpg" alt="Ruby Dog"/></a>
+                                    </div>
+                                    <div class="top10_dish_info">
+                                        <div class="top10_dish_name">Ruby Dog</div>
+                                        <div class="top10_rest_info">Ruby's Diner, Irvine, CA</div>
+                                    </div>
+                                </div>
+                                <div class="top10_separator"></div>
+                        
+                                <div class="top10_listing">
+                                    <div class="top10_dish_rank">
+                                        <div class="top10_rank_num">#2</div>
+                        
+                                        <div class="top10_rank_time">Xm</div>
+                                    </div>
+                                    <div class="top10_dish_photo">
+                                        <a href="#"><img class="grey_icon" src="style/no_dish_img.jpg" alt="Ruby Dog"></img></a>
+                                    </div>
+                        
+                                    <div class="top10_dish_info">
+                                    	<h3>Prime Rib</h3>
+                                        <p>Bing Crosby's Restaurant & Piano Bar, Walnut Creek, C</p>
+
+                                    </div>
+                                </div>
+                                <div class="top10_separator"></div>
+                        
+                                <div class="top10_listing">
+                        
+                                    <div class="top10_dish_rank">
+                                        <div class="top10_rank_num">#3</div>
+                                        <div class="top10_rank_time">Xm</div>
+                                    </div>
+                                    <div class="top10_dish_photo">
+                                       <a href="#"><img class="grey_icon" src="style/no_dish_img.jpg" alt="Ruby Dog"></img></a>
+                                    </div>
+                                    <div class="top10_dish_info">
+                                        <div class="top10_dish_name">Polpete di Melanz</div>
+                                        <div class="top10_rest_info">Donato Enoteca,  Redwood City,  CA</div>
+                                    </div>
+                                </div>
+                        
+                                <div class="top10_separator"></div>
+                        
+                                <div class="top10_listing">
+                                    <div class="top10_dish_rank">
+                                        <div class="top10_rank_num">#4</div>
+                                        <div class="top10_rank_time">Xm</div>
+                                    </div>
+                                    <div class="top10_dish_photo">
+                                       <a href="#"><img class="grey_icon" src="style/no_dish_img.jpg" alt="Ruby Dog"></img></a>
+                                    </div>
+                                    <div class="top10_dish_info">
+                                        <div class="top10_dish_name">Ruby Burger</div>
+                                        <div class="top10_rest_info">Ruby's Diner, Irvine, CA</div>
+                        
+                                    </div>
+                                </div>
+                                <div class="top10_separator"></div>
+                        
+                            </div>
+                        </div>
+
+                         
+                         
+                         
+                         
+                         
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                    <div class="col2">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <div class="bread_crumb_bar">
+                    	<!-- remove search_filter_offset to make it "hide" -->
+                    	<div class="search_filters search_filter_offset"></div>
+                        <div class="bread_crumb">
+                        	<div class="time_of_week_menu">
+                                <ul>
+                                    <li><a class="current" href="#"><span>All Time!</span></a></li>
+                                    <li><a href="#"><span>Year</span></a></li>
+                                    <li><a href="#"><span>Month</span></a></li>
+                                    <li><a href="#"><span>Week</span></a></li>
+                                    <li><a href="#"><span>Day</span></a></li>
+                                    <li><a href="#"><span>Newest</span></a></li>
+                                </ul>
+                                
+                            </div>
+                        </div>
+                        <div class="dish_listing_terminator"></div>
+                    </div>
+                    <div class="top_categories">
+                    	*Top Categories: San Francisco | Grilled Bacon | Bacon Cheddar | Chai Bacon | Los Bacon
+                    </div>
+                    <div class="rating_header dish_splitter">
+                    	<h1>Rate a <span>dish</span> <a href="#">show tips</a></h1>
+                    </div>
+                    <form action="addReview" method="post">
+                    
+                    <div class="rating_header dish_splitter">
+                    	<h2>Location</h2>
+                        <input type="text" class="grey_input_box grey_input_box_none" name="restaurantName" id="rest_name" ></input>
+                        <h3>Somewhere</h3>
+                        <p>Help us out by adding  <a href="#">more info</a></p>
+                        <div><a href="#">Street Address</a></div>
+                        <div><a href="#">Description</a></div>
+                        <div><a href="#">Categories</a></div>
+                        <div><a href="#">Photos</a></div>
+                        <br />
+                    </div>
+                    <script type="text/javascript" src="js/topdish.autocomplete.js"></script>
+                    <div class="rating_header">
+                    	<h2>Dish Name</h2>
+                        <input type="text" class="grey_input_box grey_input_box_none" name="name" ></input>
+                        <h2>What'd you think?</h2>
+                        <fieldset class="rating_radios">
+                        	<ol>
+                            	<li class="like">
+                                	<input name="rating" id="rating-pos" value="pos" type="radio" />
+                            		<label for="rating-pos">like</label>
+                                </li>
+                            	<li class="dislike">
+                                	<input name="rating" id="rating-neg" value="neg" type="radio" />
+                           			<label for="rating-neg">dislike</label>
+                                </li>
+                            </ol>
+                            
+							
+                        </fieldset>
+
+                        
+                        <p><span class="rating_ingredients">Ingredients</span> e.g. guacamole, grilled chicken, salsa, black beans.</p>
+                        <textarea type="text" name="ingredientList" id="ingredient_list"  rows="3" cols="40"></textarea>
+                        <p><span class="rating_categories">Categories</span> e.g. San Francisco, Mission District, Night Life, Brunch, Cheap Eats.</p>
+                        <textarea type="text" name="tagList" id="tag_list"  rows="3" cols="40" value="<% out.print(tagList); %>"></textarea>
+                        <p><span class="rating_description">Descripition</span> Enter a detailed description.</p>
+                        <textarea type="text"  name="description" id="description" rows="3" cols="40" value="<% out.print(description); %>" ></textarea>
+                        <p>[Add Photo]</p>
+                        <h2>Additional Food for thought? <span>Be the first to review this dish!</span></h2>
+                       	<textarea type="text" name="comment" rows="3" cols="40" value="<% out.print(comment); %>" ></textarea>
+                        <input type="hidden" name="restaurantID" id="rest_id" value="<% out.print(restID); %>"></input>
+						<input type="submit" value="Add Review"></input>
+                    </div>
+                    
+
+                    </form>
+                    
+                    
+                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                    <div class="top_categories">
+                    	Categories: San Francisco | Grilled Bacon | Bacon Cheddar | Chai Bacon | Los Bacon
+                    </div>
+                   
+                    
+                    
+                    <div class="dish_listing dish_splitter">
+						<div class="dish_listing_quick">
+                            <div class="rating_box left">
+                            	<div class="rating_box_upboat">
+                            		<div>+9</div>
+                             		<a href="#"><img src="img/detailed/button_up_grey.png" alt="" width="55" height="38" /></a>
+                              	</div>
+                                <div class="rating_box_downboat">
+									<a href="#"><img src="img/detailed/button_down_grey.png" alt="" width="55" height="38" /></a>
+                              		<div>-9</div>
+                                </div>
+                            </div>
+                            <div class="dish_listing_details">
+                            	<img class="dish_image_gold" src="img/example_food.jpg" alt="" width="109" height="98" />
+                                <div class="dish_listing_text">
+                                  <h1><a href="#">The Marlowe Burger</a> <span><a href="#">[edit]</a></span> </h1>
+                                  <span>Burgers</span>
+                                  <p>Carmalized Somethings lipsum  lipsum lipsum lipsum lipsum lipsum lipsum lipsum. and lipsum.</p>
+                                </div>
+                            </div>
+                            <div class="dish_listing_address">
+                            	<div class="dish_height_bar"></div>
+                           	  <h3><a href="#">Marlowe</a></h3>
+                              <p>asdf</p>
+                              <p>asdf</p>
+                              <p>asdf</p>
+                          </div>
+                      </div>
+                    	<div class="dish_listing_footer">
+                            <div class="dish_status">
+                           	  <img src="img/availability/now_serving.png" width="55" height="23" alt="Now Serving" />
+                            </div>
+                            <div class="dish_listing_categories">
+                            	<h3>Categories:</h3>
+                                <p><a href="#">American</a>, <a href="#">Burgers</a>, <a href="#">Night Life</a></p>
+                            </div>
+                            <div class="dish_listing_infographics">
+                           		<img src="img/up_arrow_icon.png" width="12" height="15"  /><span>10min ago</span>
+                           	  <img src="img/comment_icon.png" width="16" height="15"  /><span>Reviews(n)</span>
+                                <img src="img/share_icon.png" width="11" height="15"  /><span>Share</span>
+                            </div>
+                        </div>
+                        <div class="dish_listing_terminator"></div>
+                    </div>
+                    <div class="dish_list_special_splitter"></div>
+                    <div class="dish_listing dish_splitter">
+						<div class="dish_listing_quick">
+                            <div class="rating_box left">
+                            	<div class="rating_box_upboat">
+                            		<div>+9</div>
+                             		<a href="#"><img src="img/detailed/button_up_grey.png" alt="" width="55" height="38" /></a>
+                              	</div>
+                                <div class="rating_box_downboat">
+									<a href="#"><img src="img/detailed/button_down_grey.png" alt="" width="55" height="38" /></a>
+                              		<div>-9</div>
+                                </div>
+                            </div>
+                            <div class="dish_listing_details">
+       	            <img class="dish_image_gold" src="img/example_food.jpg" alt="" width="109" height="98" />
+                                <div class="dish_listing_text">
+                                  <h1><a href="#" >The Marlowe Burger</a></h1>
+                                  <span>Burgers</span>
+                                  <p>Carmalized Somethings lipsum  lipsum lipsum lipsum lipsum lipsum lipsum lipsum. and lipsum.</p>
+                              </div>
+                            </div>
+                            <div class="dish_listing_address">
+                            	<div class="dish_height_bar"></div>
+                           	  <h3>Marlowe</h3>
+                              <p>330 Whatever Ln<br />City, State<br />(555)555-5555<br />asldf</p>
+                          </div>
+                      </div>
+                    	<div class="dish_listing_footer">
+                            <div class="dish_status">
+                           	  <img src="img/availability/now_serving.png" width="55" height="23" alt="Now Serving" />
+                            </div>
+                            <div class="dish_listing_categories">
+                            	<h3>Categories:</h3>
+                                <p><a href="#">American</a>, <a href="#">Burgers</a>, <a href="#">Night Life</a></p>
+                            </div>
+                            <div class="dish_listing_infographics">
+                           		<img src="img/up_arrow_icon.png" width="12" height="15"  /><span>10min ago</span>
+                            	<img src="img/comment_icon.png" width="16" height="15"  /><span>Reviews(n)</span>
+                                <img src="img/share_icon.png" width="11" height="15"  /><span>Share</span>
+                            </div>
+                        </div>
+                        <div class="dish_listing_terminator"></div>
+                    </div>
+  <div class="dish_listing dish_splitter">
+						<div class="dish_listing_quick">
+                            <div class="rating_box left">
+                            	<div class="rating_box_upboat">
+                            		<div>+9</div>
+                             		<a href="#"><img src="img/detailed/button_up_grey.png" alt="" width="55" height="38" /></a>
+                              	</div>
+                                <div class="rating_box_downboat">
+									<a href="#"><img src="img/detailed/button_down_grey.png" alt="" width="55" height="38" /></a>
+                              		<div>-9</div>
+                                </div>
+                            </div>
+                            <div class="dish_listing_details">
+                           	  <img class="dish_image_gold" src="img/example_food.jpg" alt="" width="109" height="98" />
+                                <div class="dish_listing_text">
+                                  <h1><a href="#" >The Marlowe Burger</a></h1>
+                                  <span>Burgers</span>
+                                  <p>Carmalized Somethings lipsum  lipsum lipsum lipsum lipsum lipsum lipsum lipsum. and lipsum.</p>
+                                </div>
+                            </div>
+                            <div class="dish_listing_address">
+                            	<div class="dish_height_bar"></div>
+                           	  <h3>Marlowe</h3>
+                              <p>330 Whatever Ln<br />City, State<br />(555)555-5555<br />asldf</p>
+                          </div>
+                        </div>
+                    	<div class="dish_listing_footer">
+                            <div class="dish_status">
+                           	  <img src="img/availability/now_serving.png" width="55" height="23" alt="Now Serving" />
+                            </div>
+                            <div class="dish_listing_categories">
+                            	<h3>Categories:</h3>
+                                <p><a href="#">American</a>, <a href="#">Burgers</a>, <a href="#">Night Life</a></p>
+                            </div>
+                            <div class="dish_listing_infographics">
+                           		<img src="img/up_arrow_icon.png" width="12" height="15"  /><span>10min ago</span>
+                            	<img src="img/comment_icon.png" width="16" height="15"  /><span>Reviews(n)</span>
+                                <img src="img/share_icon.png" width="11" height="15"  /><span>Share</span>
+                            </div>
+                        </div>
+                        <div class="dish_listing_terminator"></div>
+                    </div>
+
+
+
+
+         
+         
+                    
+                    
+                    
+                    
+                    	<!-- main content -->
+                    </div> <!--  col2 -->   
+				</div> <!--  colleft -->
+                <div class="lower_prop">&nbsp;</div>
+			</div> <!--  main_container -->
+            <div class="main_bot_c">
+                <div class="main_bl_c"></div>
+                <div class="main_br_c"></div>
+      </div>
+      </div>
+  </div>
+  <div class="footer">
+      <div class="footer_content">
+          <div id="like_buttons">
+              <a href="#"><img src="img/footer/mid_like_topdish.png" alt="" width="32" height="32" /></a>
+              <a href="#"> <img src="img/footer/mid_like_facebook.png" alt="" width="32" height="32" /></a>
+              <a href="#"><img src="img/footer/mid_like_twitter.png" alt="" width="32" height="32" /></a>
+              <a href="#"><img src="img/footer/mid_like_yelp.png" alt="" width="32" height="32" /></a>
+        </div>
+          <div class="footer_nav">
+          </div>
+          <div id="footer_logo">
+              <img src="img/footer/logo.png" alt="" width="115" height="115" />
+          </div>
+    </div>
+    <div class="copyright">&copy; TopDish Inc. 2010. All rights reserved.</div>
+  </div>
+  </div> <!--  mask -->
+
+</body>
+</html>

@@ -1,0 +1,298 @@
+#General Application Configuration
+application: topdish1
+version: testing-randy
+runtime: java
+sessions_enabled: true
+
+
+admin_console:
+  pages:
+  - name: TopDish Explorer
+    url: /admin/explorer/dishExplorer.jsp
+  - name: Flagging Queue
+    url: /admin/flags
+  - name: User Management
+    url: /admin/users
+    
+#Welcome Files
+welcome_files:
+  - index.jsp
+
+
+#Resource Files
+resource_files:
+  - include: /blocks/*.jsp
+  - include: /partials/*.jsp
+
+
+#Static Files
+static_files:
+  - include: /style/**.jpg
+  - include: /style/**.png
+  - include: /style/**.css
+  - include: /img/**.png
+  - include: /img/**.jpg
+  - include: /img/**.gif
+  - include: /js/**.js
+  - include: /js/**.css
+  - include: /js/*/**.gif
+  - include: /style/admin/**.css
+  - include: /js/admin/**.js
+  - include: /favicon.ico
+  - include: /TermsAndConditions.html
+
+
+#URL Handlers
+handlers:
+- url: /admin/*
+  login: admin
+  
+- url: /migration
+  servlet: com.topdish.DataMigrationServlet
+  login: admin
+  
+- url: /addDish
+  servlet: com.topdish.AddDishServlet
+
+- url: /addReview
+  servlet: com.topdish.AddReviewServlet
+  
+- url: /addTag
+  servlet: com.topdish.AddTagServlet
+  
+- url: /yelpRestaurantAutoComplete
+  servlet: com.topdish.YelpRestaurantAutoComplete
+  
+- url: /restaurantAutoComplete
+  servlet: com.topdish.RestaurantAutoCompleteServlet
+  
+- url: /dishAutoComplete
+  servlet: com.topdish.DishAutoCompleteServlet
+  
+- url: /tagAutoComplete
+  servlet: com.topdish.TagAutoCompleteServlet
+  
+- url: /ingredientAutoComplete
+  servlet: com.topdish.IngredientAutoCompleteServlet
+  
+- url: /updateRestaurant
+  servlet: com.topdish.UpdateRestaurantServlet
+  
+- url: /updateTag
+  servlet: com.topdish.UpdateTagServlet
+  
+- url: /updateDish
+  servlet: com.topdish.UpdateDishServlet
+  
+- url: /deleteRestaurant
+  servlet: com.topdish.DeleteRestaurantServlet
+  login: admin
+  
+- url: /addUser
+  servlet: com.topdish.AddUserServlet
+  
+- url: /updateUser
+  servlet: com.topdish.UpdateUserServlet
+  
+- url: /addRestaurantGID
+  servlet: com.topdish.AddRestaurantGIDServlet
+  
+- url: /deleteDish
+  servlet: com.topdish.DeleteDishServlet
+  login: admin
+  
+- url: /deleteTag
+  servlet: com.topdish.DeleteTagServlet
+  login: admin
+  
+- url: /addPhoto
+  servlet: com.topdish.AddPhotoServlet
+
+- url: /deletePhoto
+  servlet: com.topdish.DeletePhotoServlet
+  login: admin
+  
+- url: /rotatePhoto
+  servlet: com.topdish.RotatePhotoServlet
+  
+- url: /rateDish
+  servlet: com.topdish.RateDishServlet
+  
+- url: /addFlag
+  servlet: com.topdish.AddFlagServlet
+  
+- url: /validateToken
+  servlet: com.topdish.ValidateBetaTokenServlet
+  
+- url: /betarequest
+  servlet: com.topdish.BetaRequestRedirect
+  
+- url: /uploadDishRestaurantCSVServlet
+  servlet: com.topdish.batch.UploadDishRestaurantCSVServlet
+  
+- url: /getTopDishesAjax
+  servlet: com.topdish.api.TopDishAjaxServlet
+  
+- url: /admin/topDishExplorer
+  servlet: com.topdish.adminconsole.controller.TopDishExplorerServlet
+  init_params:
+    displaySize: 50
+  
+- url: /deleteReview
+  servlet: com.topdish.DeleteReviewServlet
+  login: admin
+
+
+# Filters
+- url: /*
+  filter: com.topdish.filters.RequestFilterServlet
+    
+- url: /*
+  filter: com.topdish.filters.GeoLocationCheckFilter
+  
+  #API URL Handlers
+- url: /admin/flags
+  servlet: com.topdish.adminconsole.controller.FlaggingQueueController
+  init_params:
+    displaySize: 50
+
+- url: /admin/users
+  servlet: com.topdish.adminconsole.controller.TopDishUsersController
+  init_params:
+    displaySize: 50
+    
+- url: /api/dishSearch
+  servlet: com.topdish.api.DishSearchServlet
+  
+- url: /api/dishRecommend
+  servlet: com.topdish.api.DishRecommendServlet
+
+- url: /api/login
+  servlet: com.topdish.api.UserLoginServlet
+  
+- url: /api/mobileInit
+  servlet: com.topdish.api.MobileInitServlet
+  
+- url: /api/addRestaurant
+  servlet: com.topdish.api.AddRestaurantServlet
+  
+- url: /api/addDish
+  servlet: com.topdish.api.AddDishServlet
+  
+- url: /api/addPhoto
+  servlet: com.topdish.api.AddPhotoServlet
+  
+- url: /api/rateDish
+  servlet: com.topdish.api.RateDishServlet
+  
+- url: /api/flagDish
+  servlet: com.topdish.api.FlagDishServlet
+  
+- url: /api/restaurantSearch
+  servlet: com.topdish.api.RestaurantSearchServlet
+  
+- url: /api/dishDetail
+  servlet: com.topdish.api.DishDetailServlet
+  
+- url: /api/restaurantDetail
+  servlet: com.topdish.api.RestaurantDetailServlet
+
+- url: /api/facebookLogin
+  servlet: com.topdish.api.FacebookServlet
+
+- url: /api/getTerms
+  servlet: com.topdish.api.GetTermsAndConditionsServlet
+  
+- url: /api/printId.jsp
+  
+  #Auth Required JSPs
+- url: /index.jsp
+  login: required
+
+- url: /about.jsp
+  login: required
+
+- url: /addDish.jsp
+  login: required
+
+- url: /addReview.jsp
+  login: required
+
+- url: /addTag.jsp
+  login: required
+
+- url: /browse.jsp
+  login: required
+
+- url: /dishDetail.jsp
+  login: required
+  
+- url: /admin/explorer/dishExplorer.jsp
+  login: admin
+  
+- url: /admin/explorer/restaurantExplorer.jsp
+  login: admin
+  
+- url: /admin/explorer/tagExplorer.jsp
+  login: admin
+
+- url: /admin/explorer/reviewExplorer.jsp
+  login: admin
+
+- url: /editProfile.jsp
+  login: required
+
+- url: /editTag.jsp
+  login: required
+
+- url: /flag.jsp
+  login: required
+
+- url: /footer.jsp
+  login: required
+
+- url: /header.jsp
+  login: required
+
+- url: /howTo.jsp
+  login: required
+
+- url: /photoUpload.jsp
+  login: required
+  
+- url: /rateDish.jsp
+  login: required
+
+- url: /restaurantDetail.jsp
+  login: required
+
+- url: /restaurantSearch.jsp
+  login: required
+
+- url: /search.jsp
+  login: required
+
+- url: /toprated.jsp
+  login: required
+
+- url: /userControls.jsp
+  login: required
+
+- url: /userProfile.jsp
+  login: required
+
+- url: /welcome.jsp
+  login: required
+
+- url: /blocks/**.jsp
+  login: required
+
+- url: /partials/**.jsp
+  login: required
+  
+  
+  #Remote API
+- url: /admin/remoteApi
+  servlet: com.google.apphosting.utils.remoteapi.RemoteApiServlet
+  #login: admin
+

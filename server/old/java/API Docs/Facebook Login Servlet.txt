@@ -1,0 +1,21 @@
+Name: Facebook Login Servlet
+URL: /api/facebookLogin
+Type:  POST
+Description: Given a Facebook OAuth Token, gets back TDUser
+Work Flow:
+	-Checks if user exists based on email address returned by Facebook
+		-if user exists : return user id and api key
+		-else		: create user, return id and api key
+
+Error Codes:
+	1	:	Some Exception that was Thrown (Generic Error)
+	2	:	facebookApiKey was null or invalid
+	3	:	facebook did not return an email address
+
+Required Params:
+	-"facebookApiKey"			:Facebook API Key (OAUTH Key)
+
+Example Success Output:
+
+Example Failure Output:
+

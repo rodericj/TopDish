@@ -1,0 +1,488 @@
+#submitadish_main_panel
+{
+	width: 849px;
+	height: 267px;
+	
+	background-image: url(../img/panel/submitadish_panel_bg.png);
+	background-repeat: no-repeat;
+	margin: 0 16px 0 15px;
+	position: relative;
+	z-index: 3;
+	
+	padding: 25px 20px;
+}
+
+span.submitadish_close
+{
+	position: absolute;
+	top: 7px;
+	right: 10px;
+	
+	font-family: helvetica, sans-serif;
+	font-size: 11px;
+	color: #6b5a3a;
+	font-weight: bold;
+	background-color: #ffd070;
+	
+	padding: 2px 3px 0;
+	cursor: pointer;
+}
+
+#submitadish_main_panel ul#twopanel
+{
+	list-style:none;
+}
+
+#submitadish_main_panel ul#twopanel li#one
+{
+	width: 400px;
+	float: left;
+}
+
+#submitadish_main_panel ul#twopanel li#two
+{
+	width: 449px;
+	float: left;
+}
+
+#submitadish_main_panel img.submitadish_logo
+{
+	float: left;
+	margin-top: -12px;
+	margin-right: 10px;
+}
+
+#submitadish_main_panel h1
+{
+	font-family: helvetica, sans-serif;
+	font-size: 19px;
+	font-weight: bold;
+	color: #FFFFFF;
+	
+	margin-bottom: 5px;
+}
+
+#submitadish_main_panel h2 
+{
+	float: left;
+	font-family: helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	color: #ffd070;
+
+	margin-bottom: 7px;
+}
+
+#submitadish_main_panel h6
+{
+	font-family: helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #ffd070;
+	margin: 0 0 0 10px;
+}
+
+#submitadish_main_panel h6 a
+{
+	color: #ffd070;
+}
+
+#submitadish_main_panel h2.textLabel
+{
+	width: 370px;
+	margin: 0 0 0 12px;
+}
+
+#submitadish_main_panel h3
+{
+	float: right;
+	
+	font-family: helvetica, sans-serif;
+	font-size: 11px;
+	color: #ffd070;
+	
+	margin: 4px 31px 0 0;
+}
+
+#submitadish_main_panel .fakeRadio
+{
+	float: left;
+	cursor: pointer;
+	margin-right: 5px;
+}
+
+#submitadish_main_panel #ratingNo
+{
+	margin-left: 10px;
+}
+
+#submitadish_main_panel input.text
+{
+	width: 308px;
+	height: 18px;
+	
+	padding: 20px;
+	
+	font-family: helvetica, sans-serif;
+	font-size: 19px;
+	font-weight: bold;
+	color: #6b5a3a;
+	
+	background-image: url(/img/panel/submitadish_text_bg.png);
+	background-repeat: no-repeat;
+	
+	border: 0;
+	background-color: transparent;
+}
+
+#submitadish_main_panel textarea
+{
+	width: 401px;
+	height: 53px;
+	background-image: url(/img/panel/submitadish_textarea_bg.png);
+	background-repeat: no-repat;
+	
+	background-color: transparent;
+	border: 0;
+	
+	padding: 16px;
+	
+	font-family: helvetica, sans-serif;
+	font-size: 12px;
+	color: #6b5a3a;
+	
+	margin-bottom: 10px;
+}
+
+#submitadish_main_panel .fakeDropDown
+{
+	position: relative;
+	float: left;
+	background-image: url(/img/panel/submitadish_dropdown_bg.png);
+	background-repeat: no-repeat;
+	
+	width: 112px;
+	height: 22px;
+	
+	padding: 12px 30px 0 12px;
+	
+	font-family: helvetica, sans-serif;
+	font-size: 16px;
+	color: #ffd171;
+	
+	margin: 10px 10px 0 5px;
+	cursor: pointer;
+}
+
+#submitadish_main_panel .fakeDropDown .contextBox
+{
+	position: absolute;
+	top: 34px;
+	left: 1px;
+	z-index: 4;
+	
+	width: 124px;
+	
+	background-color: #ffd070;
+	border-right: 1px solid #6f6651;
+	border-bottom: 1px solid #6f6651;
+}
+
+#submitadish_main_panel .fakeDropDown .contextBox ul
+{
+	width: 124px;
+}
+
+#submitadish_main_panel .fakeDropDown .contextBox ul li
+{
+	width: 104px !important;
+	
+	font-family: helvetica, sans-serif;
+	font-size: 13px;
+	color: #6b5a3a;
+	
+	padding: 5px 10px;
+	cursor: pointer;
+}
+
+#submitadish_main_panel .fakeDropDown .contextBox ul li:hover
+{
+	color: #ffd070;
+	background-color: #6b5a3a;
+}
+
+#submitadish_main_panel .fakeDropDown .contextBox ul li.selected
+{
+	color: #ffd070;
+	background-color: #6b5a3a;
+}
+
+#submitadish_main_panel .fakeDropDown .contextBox ul li.selected:hover
+{
+	color: #ffd070;
+	background-color: #6b5a3a;
+}
+
+#submitadish_main_panel .browse
+{
+	position: absolute;
+	bottom: 0;
+	right: 170px;
+	cursor: pointer;
+}
+
+#submitadish_main_panel #dishPhoto
+{
+	position: absolute;
+	bottom: 0px;
+	right: 150px;
+	height: 35px;
+	cursor: pointer;
+	opacity: 0;
+}
+
+#submitadish_main_panel #fileCover
+{
+	position: absolute;
+	bottom: 0px;
+	right: 226px;
+	background-color: #6f6651;
+	
+	width: 200px;
+	height: 20px;
+	z-index: 10;
+	cursor: auto;
+	
+	padding-top: 20px;
+	
+	font-family: helvetica, sans-serif;
+	font-size: 11px;
+	text-align: right;
+	color: #ffd070;
+}
+
+#submitadish_main_panel #submit
+{
+	position: absolute;
+	bottom: 0;
+	right: 40px;
+	cursor: pointer;
+}
+
+#submitadish_main_panel .left
+{
+	float: left;
+}
+
+#submitadish_main_panel .right
+{
+	float: right;
+}
+
+.panelError
+{
+	color: #FF0000 !important;
+}
+
+/*****************************************************************************/
+
+div.upVotePanel
+{
+	width: 554px;
+	height: 120px;
+	
+	background-image: url(/img/panel/upvote_bg.png);
+	background-repeat: repeat-x;
+	
+	padding: 15px;
+	position: relative;
+}
+
+div.upVotePanel h2
+{
+	font-family: helvetica, sans-serif;
+	font-size: 16px;
+	color: #5b5b5b;
+	font-weight: bold;
+	
+	margin-bottom: 10px;
+}
+
+div.upVotePanel h3
+{
+	font-family: helvetica, sans-serif;
+	font-size: 10px;
+	color: #5b5b5b;
+	
+	margin-top: 15px;
+}
+
+div.upVotePanel h3 a
+{
+	color: #00bae2;
+	font-weight: bold;
+}
+
+div.upVotePanel h2 span
+{
+	margin-left: 10px;
+	font-size: 10px;
+	font-weight: normal;
+}
+
+div.upVotePanel textarea.textVote
+{
+	width: 510px;
+	height: 50px;
+	background-color: #FFFFFF;
+	padding: 10px;
+	
+	font-family: helvetica, sans-serif;
+	font-size: 12px;
+	color: #6a6a6a;
+}
+
+div.upVotePanel .photo
+{
+	position: absolute;
+	bottom: 0;
+	right: 120px;	
+}
+
+div.upVotePanel .browse
+{
+	position: absolute;
+	bottom: 1px;
+	right: 120px;
+	height: 32px;
+	cursor: pointer;
+	opacity: 0;
+}
+
+div.upVotePanel .submit
+{
+	position: absolute;
+	bottom: 0;
+	right: 35px;
+	cursor: pointer;
+}
+
+div.upVotePanel .cover
+{
+	position: absolute;
+	left: 15px;
+	bottom: 1px;
+	width: 408px;
+	height: 35px;
+	z-index: 10;
+	
+	background-image: url(/img/panel/voteup_cover.png);
+	background-repeat: repeat-x;
+}
+
+/*****************************************************************************/
+
+div.downVotePanel
+{
+	width: 554px;
+	height: 120px;
+	
+	background-image: url(/img/panel/votedown_bg.png);
+	background-repeat: repeat-x;
+	
+	padding: 15px;
+	position: relative;
+}
+
+div.downVotePanel h2
+{
+	font-family: helvetica, sans-serif;
+	font-size: 16px;
+	color: #6b5a3a;
+	font-weight: bold;
+	
+	margin-bottom: 10px;
+}
+
+div.downVotePanel h3
+{
+	font-family: helvetica, sans-serif;
+	font-size: 10px;
+	color: #6b5a3a;
+	
+	margin-top: 15px;
+}
+
+div.downVotePanel h3 a
+{
+	color: #d6862f !important;
+	font-weight: bold;
+}
+
+div.downVotePanel h2 span
+{
+	margin-left: 10px;
+	font-size: 10px;
+	font-weight: normal;
+}
+
+div.downVotePanel textarea.textVote
+{
+	width: 510px;
+	height: 50px;
+	background-color: #FFFFFF;
+	padding: 10px;
+	
+	font-family: helvetica, sans-serif;
+	font-size: 12px;
+	color: #6a6a6a;
+}
+
+div.downVotePanel .photo
+{
+	position: absolute;
+	bottom: 0;
+	right: 120px;	
+}
+
+div.downVotePanel .browse
+{
+	position: absolute;
+	bottom: 1px;
+	right: 120px;
+	height: 32px;
+	cursor: pointer;
+	opacity: 0;
+}
+
+div.downVotePanel .submit
+{
+	position: absolute;
+	bottom: 0;
+	right: 35px;
+	cursor: pointer;
+}
+
+div.downVotePanel .cover
+{
+	position: absolute;
+	left: 15px;
+	bottom: 1px;
+	width: 408px;
+	height: 35px;
+	z-index: 10;
+	
+	background-image: url(/img/panel/votedown_cover.png);
+	background-repeat: repeat-x;
+}
+
+.voteError
+{
+	border: 1px solid #FF0000;
+}
+
+/* clearfix */
+.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.clearfix { display: inline-block; }
+* html .clearfix { height: 1%; } /* Hides from IE-mac \*/
+.clearfix { display: block; }

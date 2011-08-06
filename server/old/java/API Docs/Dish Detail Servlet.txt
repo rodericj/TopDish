@@ -1,0 +1,52 @@
+Name: Dish Detail Servlet
+URL: /api/dishDetail
+Type:  GET
+Description: Returns the details of a given dish ID
+Required Params:
+	-"id[]"			: List of Dish Ids (comma seperated) ex. id[]=791&id[]=792
+	-"apiKey" 		: User's APIKey
+Example Success Output:
+{
+	"rc": 0,
+    "dishes": [
+        {
+            "tags": [
+                {
+                    "id": 788,
+                    "order": 0,
+                    "name": "Dinner",
+                    "type": "Meal Type"
+                },
+                {
+                    "id": 785,
+                    "order": 0,
+                    "name": "Expensive",
+                    "type": "Price"
+                }
+            ],
+            "posReviews": 1,
+            "id": 791,
+            "reviews": [
+                {
+                    "direction": 1,
+                    "dateCreated": "Feb 13, 2011 11:37:31 PM",
+                    "comment": "wtf its a taco yo",
+                    "creator": "Test"
+                }
+            ],
+            "photoURL": "",
+            "negReviews": 0,
+            "description": "its a taco",
+            "name": "Whee",
+            "longitude": -118.149924,
+            "latitude": 34.137094,
+            "restaurantID": 790,
+            "restaurantName": "El Taquito Mexicano Truck"
+        }
+    ]
+}
+Example Fialed Output:
+{
+    "message": "No dishes found",
+    "rc": 1
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="96px"
+	android:orientation="horizontal"
+	android:background="@android:color/transparent"
+	android:layout_marginTop="5px">
+
+<!-- 
+	<ImageView android:id="@+id/logo"
+		android:layout_height="48px"
+		android:layout_width="48px"
+		android:src="@drawable/stacklogo48"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentLeft="true"
+	/>
+	
+	
+	<ImageView android:id="@+id/adddishbutton"
+		android:layout_height="48px"
+		android:layout_width="wrap_content"
+		android:src="@android:drawable/ic_menu_add"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentRight="true"
+	/>
+	<ImageView android:id="@+id/searchicon"
+		android:src="@android:drawable/ic_menu_search"
+		android:layout_width="wrap_content"
+		android:layout_height="48px"
+		android:layout_toRightOf="@id/search"
+	/>
+	<EditText android:id="@+id/search"
+		android:layout_width="fill_parent"
+		android:layout_height="48px"
+		android:layout_toRightOf="@id/logo"
+	/>  -->
+	
+</RelativeLayout>

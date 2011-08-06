@@ -1,0 +1,26 @@
+Name: Add Dish Servlet
+URL: /api/addDish
+Type: POST
+Description: Add a new Dish to the Datastore.
+User Story: It requires the user already knows the Restaurant Id stored in the Datastore.
+Error Codes:
+	1	: 	Generic Exception
+	2	:	API Key returned no user
+	3	:	Restaurant not found
+
+Required Params:
+	-"name"			: Dish Name
+	-"description" 	: Dish Description
+	-"restaurantId" : Restaurant Id
+	-"tags" 		: Tags related to this dish (comma seperated list)
+	-"apiKey" 		: User's APIKey
+Example Success Output:
+{
+    "dishId": 794,
+    "rc": 0
+}
+Example Failure Output:
+{
+    "message": "User not found.",
+    "rc": 1
+}

@@ -1,0 +1,455 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    
+    <link href="style/topdish-global.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="style/topdish-listing.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="style/topdish-right.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="style/reset-min.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="style/smoothness/jquery-ui-1.8.1.custom.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="style/jquery.ac.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="style/galleryview.css" media="screen" rel="stylesheet" type="text/css" />
+    
+	
+	<script type="text/javascript" src="js/jquery-1.4.2.min.js"> </script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.1.custom.min.js"></script>
+	<script type="text/javascript" src="proxy?mime=text/javascript&amp;url=http://www.google.com/jsapi?sensor=true&amp;key=ABQIAAAAsoBjCec6IhiVrq0OfYiQ4hRanrF-Qy72Ck9MCUApnD3ZiaRFfhRNvZZ5rZTYdNc6hbC70aPTmBu8ZA"></script>
+
+	<script type="text/javascript" src="js/jquery.autocomplete.jorn.min.js"></script>
+	<script type="text/javascript" src="js/jquery.bgiframe.min.js"></script>
+	<script type="text/javascript" src="js/jquery.dimensions.min.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.corner.js"></script>
+	<script type="text/javascript" src="js/topdish.dialog.js"></script>
+    
+	<script type="text/javascript" src="js/topdish.localsearch.js"></script>
+	<script type="text/javascript" src="js/topdish.locationfinder.js"></script>
+    
+    <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="js/jquery.galleryview-2.1.1-pack.js"></script>
+    <script type="text/javascript" src="js/jquery.timers-1.2.js"></script>
+	
+    <script type="text/javascript" src="js/topdish.custom.js"></script>
+	<title>Top Dish</title> 
+</head>
+<body>
+<div class="mask">
+  <div class="majoras">
+        <div class="header">
+            <div class="header_top">
+                <div id="header_logos">
+           	    	<a href="#"><img src="img/header/topdish_logo.png" width="170" height="49" alt="Top Dish!" /></a>
+                    <div>Feed your craving</div>
+                </div>
+                
+                <div class="user">
+                test
+                    <!-- User information: name, logged in status, etc. -->
+                    <jsp:include page="userControls.jsp"/>
+                </div>
+            </div>
+          <div id="header_bottom">
+            <div id="header_search_container">
+                    <div id="header_search_top_container">
+                        <div id="header_search_description">
+                        	<span id="header_search_description_big">Dish Search</span>
+                            <span id="header_search_description_small">e.g. dish name, ingredient, cuisine, location) or <b>Randomize!</b></span>
+                        </div>
+                        <div id="header_quick_links">
+                            <a href="#"><img src="img/header/mini_like_facebook.jpg" alt="Facebook" width="16" height="16" /></a>
+                            <a href="#"><img src="img/header/mini_like_twitter.jpg" alt="Twitter" width="16" height="16" /></a>
+                            <a href="#"><img src="img/header/mini_like_yelp.jpg" alt="Yelp" width="16" height="16" /> </a>
+                            <a href="#"><img src="img/header/mini_like_topdish.jpg" alt="Topdish" width="16" height="16" /></a>
+                        </div>
+                    </div>
+                    <div id="header_search_bar_container">
+                        <div class="search">
+                            <form action="search.jsp" method="post">
+                            	<fieldset class="main_search">
+                              <input class="searchbox" name="q" type="text"></input>
+                                    <input type="hidden" name="lat" id="search_lat"></input>
+                                    <input type="hidden" name="lng" id="search_lng"></input>
+                                  <input type="submit" value="Search" />  
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div id="header_search_bar_quicklinks">
+                            <ul>
+                                <li><a href="allRestaurants.jsp">Top Dishes</a></li>
+                                <li><a href="addDish.jsp">Add Dish</a></li>
+                                <li><a href="restaurantSearch.jsp">Find Restaurant</a></li>
+                                <li><a href="addTag.jsp">Add Tag</a></li>
+                                <li><a href="browse.jsp">Browse Dishes</a></li>
+                                <li><a href="#">Vetsin</a></li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+          </div>
+        </div>
+        <div class="the_main_divide">
+        	<div class="main_divide_content">
+                <div id="location" class="location_bar">Acquiring location...</div>
+            </div>
+        </div>
+        <!-- A mess if i've ever seen one -->
+		<div class="main_wrapper">
+       	  <div id="filter_list">//TODO: fix this so it isn't buggy.</div>
+            <div id="fork"></div>
+		  <div class="main_top_c">
+            <div class="main_tl_c"></div>
+                <div class="main_tr_c"></div>
+            </div>
+            <div class="main_container">
+				<div class="colleft">
+                    <div class="col1">
+                    	
+                        
+
+
+
+
+
+
+
+
+
+
+                        <div class="rmenu_cont dish_splitter">
+                        	<h1><a href="#">The Marlowe Burger</a></h1>
+                           
+                            <div class="rmenu_disp">
+								<div class="menu_disp_detailed">
+                                    <div class="rating_box right">
+                                        <div class="rating_box_upboat">
+                                            <div>+9</div>
+                                            <a href="#"><img src="img/detailed/button_up_grey.png" alt="" width="55" height="38" /></a>
+                                        </div>
+                                        <div class="rating_box_downboat">
+                                            <a href="#"><img src="img/detailed/button_down_grey.png" alt="" width="55" height="38" /></a>
+                                            <div>-9</div>
+                                        </div>
+                                    </div>
+                                    <div class="dish_text_rating"><img src="img/fork_gold.png" alt="" width="40" height="10" />Best Burger!</div>
+                                    <div class="dish_status">
+                                    	<img src="img/availability/now_serving.png" width="55" height="23" alt="Now Serving" />
+                                    </div>
+                                    <h3>Categories<span><a href="#">edit</a></span></h3>
+                                    <p><a href="#">Meat</a>, <a href="#">Meat</a>, <a href="#">Meat</a>, <a href="#">Meat</a></p>
+                                    <h3>General Description<span><a href="#">edit</a></span></h3>
+                                    <p><a href="#">Meat</a>, is all over this thing.</p>
+                                    <h3>Ingredient Tags<span><a href="#">edit</a></span></h3>
+                                    <p><a href="#">Meat</a>, <a href="#">Meat</a>, <a href="#">Meat</a>, <a href="#">Meat</a></p>
+                                    <div class="dish_listing_infographics">
+                                        <img src="img/up_arrow_icon.png" width="12" height="15"  /><span>10min ago</span>
+                                        <img src="img/comment_icon.png" width="16" height="15"  /><span>Reviews(n)</span>
+                                        <img src="img/share_icon.png" width="11" height="15"  /><span>Share</span>
+                                	</div>
+                                </div>
+                                <div class="dish_listing_terminator"></div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        <div class="rmenu_cont dish_splitter">
+                        	<h1>Resturant Information</h1>
+                           
+                            <div class="rmenu_disp">
+
+                                	<div class="top_dish_left">
+                                		<img class="grey_icon left" src="img/default_resturant_icon.jpg" />
+                                    </div>
+                                    <div class="top_dish_right">
+                                        <h2>The Marlowe Burger</h2>
+                                        <h3>Marlowe</h3>
+                                        <p>Citty, State</p>
+                                        <p>Number</p>
+                                        <p>Neighborhood: <a href="#">SOMA</a></p>
+                                        <p>0.8 Miles Away</p>
+                                        <p><a href="#">Open!</a></p>
+                                    </div>
+                                    <div style="width:300px; height:250px;background-color:#dfddd6;">
+                                    	<!-- map goes here -->
+                                       
+                                    </div>
+                                    <span><a href="#">View Larger Map & Get Directions</a></span>
+                                    <div class="dish_listing_terminator"></div>
+                            </div>
+                        </div>
+                        <div class="rmenu_cont dish_splitter">
+                            <h1>Top Dish Breakdown</h1>
+                            <div class="vote_stats">
+                                <div class="like_stats">
+                                    <h2><img src="img/up_arrow_large.png" width="16" height="16" alt="Like it" />1 Like it</h2>
+                                    <h3>1 People Rated on:</h3>
+                        
+                                    <p><a href="#">QualityA (XXX)</a></p>
+                                    <p><a href="#">QualityB (XX)</a></p>
+                                    <p><a href="#">QualityC (X)</a></p>
+                              </div>
+                                <div class="dislike_stats">
+                                    <h2><img src="img/down_arrow_large.png" width="16" height="16" alt="Dislike it" />2 Disike it</h2>
+                                    <h3>2 People Rated on:</h3>
+                        
+                                    <p><a href="#">QualityA (XXX)</a></p>
+                                    <p><a href="#">QualityB (XX)</a></p>
+                                    <p><a href="#">QualityC (X)</a></p>
+                              </div>
+                            </div>
+                            <div class="rank_user_stats">
+                                <div class="rank_category">
+                        
+                                    <h3>Rank by Category:</h3>
+                                    <p>#1 <a href="#">CategoryA</a></p>
+                                    <p>#3 <a href="#">CategoryB</a></p>
+                                    <p>#10 <a href="#">CategoryC</a></p>
+                                    <p>#68 <a href="#">CategoryD</a></p>
+                        
+                                    <p>#381 <a href="#">CategoryE</a></p>
+                                </div>
+                                <div class="user_credits">
+                                    <div class="user_brief">
+                                        <h3>Dish Submitted By:</h3>
+                                        <div class="user_photo">
+                        
+                                            <img class="grey_icon" src="style/no_user_img.jpg"></img>
+                        
+                            
+                                        </div>
+                                        <div class="user_info">
+                                            <a href="#" class="user_nick">
+                        salilsp
+                                            </a>
+                                            <p>X Likes</p>
+                                            <p>X Dislikes</p>
+                                        </div>
+                                    </div>
+                        
+                                    <div class="user_brief">
+                                        <h3>First to review:</h3>
+                                        <div class="user_photo">
+                        
+                                                <img class="grey_icon" src="style/no_user_img.jpg"></img>
+                            
+                                        </div>
+                                        <div class="user_info">
+                                            <a href="#" class="user_nick">
+                        
+                        salilsp
+                                            </a>
+                                                <p>X Likes</p>
+                                                <p>X Dislikes</p>
+                                        </div>
+                                    </div>
+                        
+                                </div>
+                            </div>
+                        
+                            <div class="dish_listing_terminator"></div>
+                        </div>
+                        
+                                <div class="rmenu_cont dish_splitter">
+                            <div class="ad_250"></div>
+                        </div>
+
+    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                    <div class="col2">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <div class="bread_crumb_bar">
+                    	<!-- remove search_filter_offset to make it "hide" -->
+                   	  <div class="search_filters search_filter_offset"></div>
+                        <div class="bread_crumb">
+                        	<span class="breadcrumb_back"><a href="#">&laquo; Back to list</a></span>
+                            <span class="breadcrumb_nav">San Francisco > Dinner > Burgers > Marlowe > <a href="#">The Marlowe Burger</a></span>
+                        </div>
+                        <div class="dish_listing_terminator"></div>
+                    </div>
+                   
+
+
+                    <ul id="gallery">
+                        <li>
+                        	<img src="img/example_food_large.jpg" alt="image1" width="548" height="355" />
+                            <div class="panel-overlay">
+                              <h3>Pretty Picture</h3>
+                                <p>Some more information about this photo, perhaps with a <a href="http://some.web.site" target="_blank">link</a> to another page.</p>
+                          </div>
+                      </li>
+                        <li>
+                       	  <img src="img/example_food_large.jpg" alt="image1" width="548" height="355" />
+                            <div class="panel-overlay">
+                                <h3>Pretty Picture</h3>
+                                <p>Some more information about this photo, perhaps with a <a href="http://some.web.site" target="_blank">link</a> to another page.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+	
+
+
+
+					<div class="color_bar gold_bar">
+                    	3 Ratings<span><a href="#">show list</a></span>
+                    </div>
+                    <div class="color_bar blue_bar">
+                    	Something others<span><a href="#">show list</a></span>
+                    </div>
+                    
+                    
+                    <div class="dish_listing dish_splitter">
+                    	<div class="dish_review">
+                        	<div class="dish_review_side">
+                           	  <img class="grey_icon" src="img/default-user-icon.jpg" />
+                           	  <h3><a href="#">Shawn Scott</a></h3>
+                                <h4 class="like"><img src="img/up_arrow_icon.png" width="12" height="15" />Likes it</h4>
+                                <div>50 likes</div>
+                                <div>13 Dislikes</div>
+                                <div>5 Reviews</div>
+                                <br />
+                                <div>Rated on:</div>
+                              <div><a href="#">Cheese</a></div>
+                                <div><a href="#">Brioche Bun</a></div>
+                                <div><a href="#">Value</a></div>
+                                <div><a href="#">Portion</a></div>
+                                <br />
+                                <div>Updated:</div>
+                                <div>6/6/6</div>
+                            </div>
+                            <div class="dish_review_main">
+                            	<p>When I come to Marlowe, I go for the burger.<br /><br />
+Last night, I had a HUGE craving for a Marlowe burger. The waitress asked if we wanted to sit at a table or at the counter. I said I needed to sit at the bar because Kraig was serving at the bar. I like Kraig. He is the friendliest bartender. 
+<br /><br />I ordered my burger medium and with the first bite, I almost fainted. It was that good! It was perfectly prepared. The crispy bacon strips and the flavorful beef patty was super juicy. Fries were just the way I liked it...crispy on the outside and soft on the inside. They were perfect with the spicy horseradish. 
+<br /><br />Burger goes well with beer. We had Sessions beer. </p>
+								<span>Custom Ingredient Tags: <a href="#">Beer, Bacon, Horseradish Aioli, No Lettuce</a>.</span>
+                            </div>
+                            <div class="dish_review_footer">
+                           	<span><img src="img/green_flag.gif" width="8" height="12" />Useful(25) <img src="img/red_flag.gif" width="8" height="12" />Innapropriate(0) <img src="img/document.gif" width="8" height="12" />Message</span> </div>
+                            <div class="dish_listing_terminator"></div>
+                        </div>
+                    </div>
+                    <div class="dish_list_special_splitter"></div>
+                    <div class="dish_listing dish_splitter">
+                    	<div class="dish_review">
+                        	<div class="dish_review_side">
+                           	  <img class="grey_icon" src="img/default-user-icon.jpg" />
+                           	  <h3><a href="#">Shawn Scott</a></h3>
+                                <h4 class="dislike"><img src="img/down_arrow_icon.png" width="12" height="15" />Dislikes it</h4>
+                                <div>50 likes</div>
+                                <div>13 Dislikes</div>
+                                <div>5 Reviews</div>
+                                <br />
+                                <div>Rated on:</div>
+                              <div><a href="#">Cheese</a></div>
+                                <div><a href="#">Brioche Bun</a></div>
+                                <div><a href="#">Value</a></div>
+                                <div><a href="#">Portion</a></div>
+                                <br />
+                                <div>Updated:</div>
+                                <div>6/6/6</div>
+                            </div>
+                            <div class="dish_review_main">
+                            	<p>When I come to Marlowe, I go for the burger.<br /><br />
+Last night, I had a HUGE craving for a Marlowe burger. The waitress asked if we wanted to sit at a table or at the counter. I said I needed to sit at the bar because Kraig was serving at the bar. I like Kraig. He is the friendliest bartender. 
+<br /><br />I ordered my burger medium and with the first bite, I almost fainted. It was that good! It was perfectly prepared. The crispy bacon strips and the flavorful beef patty was super juicy. Fries were just the way I liked it...crispy on the outside and soft on the inside. They were perfect with the spicy horseradish. 
+<br /><br />Burger goes well with beer. We had Sessions beer. </p>
+								<span>Custom Ingredient Tags: <a href="#">Beer, Bacon, Horseradish Aioli, No Lettuce</a>.</span>
+                            </div>
+                            <div class="dish_review_footer">
+                           	<span><img src="img/green_flag.gif" width="8" height="12" />Useful(25) <img src="img/red_flag.gif" width="8" height="12" />Innapropriate(0) <img src="img/document.gif" width="8" height="12" />Message</span> </div>
+                            <div class="dish_listing_terminator"></div>
+                        </div>
+                    </div>
+                    <div class="dish_list_special_splitter"></div>
+                    <div class="dish_listing dish_splitter">
+                    	<div class="dish_review">
+                        	<div class="dish_review_side">
+                           	  <img class="mini_user_icon" src="img/default-user-icon.jpg" />
+                           	  <h3><a href="#">Shawn Scott</a></h3>
+                                <h4><img src="img/up_arrow_icon.png" width="12" height="15" />Likes it</h4>
+                                <div>50 likes</div>
+                                <div>13 Dislikes</div>
+                                <div>5 Reviews</div>
+                                <br />
+                                <div>Rated on:</div>
+                              <div><a href="#">Cheese</a></div>
+                                <div><a href="#">Brioche Bun</a></div>
+                                <div><a href="#">Value</a></div>
+                                <div><a href="#">Portion</a></div>
+                                <br />
+                                <div>Updated:</div>
+                                <div>6/6/6</div>
+                            </div>
+                            <div class="dish_review_main">
+                            	<p>When I come to Marlowe, I go for the burger.<br /><br />
+Last night, I had a HUGE craving for a Marlowe burger. The waitress asked if we wanted to sit at a table or at the counter. I said I needed to sit at the bar because Kraig was serving at the bar. I like Kraig. He is the friendliest bartender. 
+<br /><br />I ordered my burger medium and with the first bite, I almost fainted. It was that good! It was perfectly prepared. The crispy bacon strips and the flavorful beef patty was super juicy. Fries were just the way I liked it...crispy on the outside and soft on the inside. They were perfect with the spicy horseradish. 
+<br /><br />Burger goes well with beer. We had Sessions beer. </p>
+								<span>Custom Ingredient Tags: <a href="#">Beer, Bacon, Horseradish Aioli, No Lettuce</a>.</span>
+                            </div>
+                            <div class="dish_review_footer">
+                           	<span><img src="img/green_flag.gif" width="8" height="12" />Useful(25) <img src="img/red_flag.gif" width="8" height="12" />Innapropriate(0) <img src="img/document.gif" width="8" height="12" />Message</span> </div>
+                            <div class="dish_listing_terminator"></div>
+                        </div>
+                    </div>
+                    <div class="dish_list_special_splitter"></div>
+
+
+
+
+
+         
+         
+                    
+                    
+                    
+                    
+                    	<!-- main content -->
+                    </div> <!--  col2 -->   
+				</div> <!--  colleft -->
+                <div class="lower_prop">&nbsp;</div>
+			</div> <!--  main_container -->
+            <div class="main_bot_c">
+                <div class="main_bl_c"></div>
+                <div class="main_br_c"></div>
+      </div>
+      </div>
+  </div>
+  <div class="footer">
+      <div class="footer_content">
+          <div id="like_buttons">
+              <a href="#"><img src="img/footer/mid_like_topdish.png" alt="" width="32" height="32" /></a>
+              <a href="#"> <img src="img/footer/mid_like_facebook.png" alt="" width="32" height="32" /></a>
+              <a href="#"><img src="img/footer/mid_like_twitter.png" alt="" width="32" height="32" /></a>
+              <a href="#"><img src="img/footer/mid_like_yelp.png" alt="" width="32" height="32" /></a>
+        </div>
+          <div class="footer_nav">
+          </div>
+          <div id="footer_logo">
+              <img src="img/footer/logo.png" alt="" width="115" height="115" />
+          </div>
+    </div>
+    <div class="copyright">&copy; TopDish Inc. 2010. All rights reserved.</div>
+  </div>
+  </div> <!--  mask -->
+
+</body>
+</html>

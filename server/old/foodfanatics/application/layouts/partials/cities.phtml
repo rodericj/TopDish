@@ -1,0 +1,13 @@
+<?php 
+	$r = new Model_DbTable_Restaurants();
+	$cities = $r->fetchAll(
+				$r	->select('city')
+					->order('city ASC'));
+?>
+<ul>
+	<?php foreach($cities as $city) : ?>
+	<li class="cities">
+		<?php echo $this->escape($city->city);?>
+	</li>
+	<?php endforeach;?>
+</ul>

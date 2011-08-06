@@ -1,0 +1,33 @@
+Name: Mobile Init Servlet
+URL: /api/mobileInit
+Type:  POST
+Description: Returns the Tags for Mobile Initialization
+User Story: Hit this Servlet to get the latest tags when app starts
+Required Params:
+	-N/A
+Optional Params:
+	-"apiKey" 		: User's APIKey
+Example Success Output:
+{
+    "rc": 0,
+    "tags": [
+        {
+            "id": 788,
+            "order": 0,
+            "name": "Dinner",
+            "type": "Meal Type"
+        },
+        {
+            "id": 785,
+            "order": 0,
+            "name": "Expensive",
+            "type": "Price"
+        },
+        {
+            "id": 782,
+            "order": 0,
+            "name": "peanuts",
+            "type": "Allergen"
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+Name: Delete Review Servlet
+URL: /api/deleteReview
+Type:  GET
+Description: Returns the details of a given dish ID
+Required Params:
+	-dishId		: the dish id
+	-reviewId	: the review id
+Example Success Output:
+{
+	message: "Removed Review 1444002 from Dish 524001"
+	rc: 0
+}
+Example Fialed Output:
+{
+    "message": "Dish 524001 did not own Review 1444002, no action taken.",
+    "rc": 1
+}

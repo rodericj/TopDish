@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+
+  <security-constraint>
+      <web-resource-collection>
+          <url-pattern>/admin/*</url-pattern>
+      </web-resource-collection>
+      <auth-constraint>
+          <role-name>admin</role-name>
+      </auth-constraint>
+  </security-constraint>
+
+    <filter>
+        <filter-name>appstats</filter-name>
+        <filter-class>com.google.appengine.tools.appstats.AppstatsFilter</filter-class>
+        <init-param>
+            <param-name>logMessage</param-name>
+            <param-value>Appstats available: /admin/appstats/details?time={ID}</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>appstats</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+  <servlet>
+    <servlet-name>com.topdish.DataMigrationServlet</servlet-name>
+    <servlet-class>com.topdish.DataMigrationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.DataMigrationServlet</servlet-name>
+    <url-pattern>/migration</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>com.topdish.AddDishServlet</servlet-name>
+    <servlet-class>com.topdish.AddDishServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.AddDishServlet</servlet-name>
+    <url-pattern>/addDish</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>com.topdish.AddReviewServlet</servlet-name>
+    <servlet-class>com.topdish.AddReviewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.AddReviewServlet</servlet-name>
+    <url-pattern>/addReview</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>com.topdish.AddTagServlet</servlet-name>
+    <servlet-class>com.topdish.AddTagServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.AddTagServlet</servlet-name>
+    <url-pattern>/addTag</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>com.topdish.DishAutoCompleteServlet</servlet-name>
+    <servlet-class>com.topdish.DishAutoCompleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.DishAutoCompleteServlet</servlet-name>
+    <url-pattern>/dishAutoComplete</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>com.topdish.TagAutoCompleteServlet</servlet-name>
+    <servlet-class>com.topdish.TagAutoCompleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.TagAutoCompleteServlet</servlet-name>
+    <url-pattern>/tagAutoComplete</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>com.topdish.IngredientAutoCompleteServlet</servlet-name>
+    <servlet-class>com.topdish.IngredientAutoCompleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.IngredientAutoCompleteServlet</servlet-name>
+    <url-pattern>/ingredientAutoComplete</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>com.topdish.UpdateRestaurantServlet</servlet-name>
+    <servlet-class>com.topdish.UpdateRestaurantServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.UpdateRestaurantServlet</servlet-name>
+    <url-pattern>/updateRestaurant</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>com.topdish.UpdateTagServlet</servlet-name>
+    <servlet-class>com.topdish.UpdateTagServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.UpdateTagServlet</servlet-name>
+    <url-pattern>/updateTag</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>com.topdish.UpdateDishServlet</servlet-name>
+    <servlet-class>com.topdish.UpdateDishServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.UpdateDishServlet</servlet-name>
+    <url-pattern>/updateDish</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>com.topdish.DeleteRestaurantServlet</servlet-name>
+    <servlet-class>com.topdish.DeleteRestaurantServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.DeleteRestaurantServlet</servlet-name>
+    <url-pattern>/deleteRestaurant</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.AddUserServlet</servlet-name>
+    <servlet-class>com.topdish.AddUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.AddUserServlet</servlet-name>
+    <url-pattern>/addUser</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.UpdateUserServlet</servlet-name>
+    <servlet-class>com.topdish.UpdateUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.UpdateUserServlet</servlet-name>
+    <url-pattern>/updateUser</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.AddRestaurantGIDServlet</servlet-name>
+    <servlet-class>com.topdish.AddRestaurantGIDServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.AddRestaurantGIDServlet</servlet-name>
+    <url-pattern>/addRestaurantGID</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.DeleteDishServlet</servlet-name>
+    <servlet-class>com.topdish.DeleteDishServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.DeleteDishServlet</servlet-name>
+    <url-pattern>/deleteDish</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.DeleteReviewServlet</servlet-name>
+    <servlet-class>com.topdish.DeleteReviewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.DeleteReviewServlet</servlet-name>
+    <url-pattern>/deleteReview</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.DeleteTagServlet</servlet-name>
+    <servlet-class>com.topdish.DeleteTagServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.DeleteTagServlet</servlet-name>
+    <url-pattern>/deleteTag</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.AddPhotoServlet</servlet-name>
+    <servlet-class>com.topdish.AddPhotoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.AddPhotoServlet</servlet-name>
+    <url-pattern>/addPhoto</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.DeletePhotoServlet</servlet-name>
+    <servlet-class>com.topdish.DeletePhotoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.DeletePhotoServlet</servlet-name>
+    <url-pattern>/deletePhoto</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.RotatePhotoServlet</servlet-name>
+    <servlet-class>com.topdish.RotatePhotoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.RotatePhotoServlet</servlet-name>
+    <url-pattern>/rotatePhoto</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.RateDishServlet</servlet-name>
+    <servlet-class>com.topdish.RateDishServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.RateDishServlet</servlet-name>
+    <url-pattern>/rateDish</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.AddFlagServlet</servlet-name>
+    <servlet-class>com.topdish.AddFlagServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.AddFlagServlet</servlet-name>
+    <url-pattern>/addFlag</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.BetaRequestRedirect</servlet-name>
+    <servlet-class>com.topdish.BetaRequestRedirect</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.BetaRequestRedirect</servlet-name>
+    <url-pattern>/betarequest</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.batch.UploadDishRestaurantCSVServlet</servlet-name>
+    <servlet-class>com.topdish.batch.UploadDishRestaurantCSVServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.batch.UploadDishRestaurantCSVServlet</servlet-name>
+    <url-pattern>/uploadBulk</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.batch.CleanUploadedDataServlet</servlet-name>
+    <servlet-class>com.topdish.batch.CleanUploadedDataServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.batch.CleanUploadedDataServlet</servlet-name>
+    <url-pattern>/cleanUpload</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.api.TopDishAjaxServlet</servlet-name>
+    <servlet-class>com.topdish.api.TopDishAjaxServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.api.TopDishAjaxServlet</servlet-name>
+    <url-pattern>/getTopDishesAjax</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.ClearMemcacheServlet</servlet-name>
+    <servlet-class>com.topdish.ClearMemcacheServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.ClearMemcacheServlet</servlet-name>
+    <url-pattern>/clearMemcache</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.api.DishSearchServlet</servlet-name>
+    <servlet-class>com.topdish.api.DishSearchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.api.DishSearchServlet</servlet-name>
+    <url-pattern>/api/dishSearch</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.api.DishRecommendServlet</servlet-name>
+    <servlet-class>com.topdish.api.DishRecommendServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.api.DishRecommendServlet</servlet-name>
+    <url-pattern>/api/dishRecommend</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.api.UserLoginServlet</servlet-name>
+    <servlet-class>com.topdish.api.UserLoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.api.UserLoginServlet</servlet-name>
+    <url-pattern>/api/login</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.api.UserLogoutServlet</servlet-name>
+    <servlet-class>com.topdish.api.UserLogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.api.UserLogoutServlet</servlet-name>
+    <url-pattern>/api/logout</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.api.MobileInitServlet</servlet-name>
+    <servlet-class>com.topdish.api.MobileInitServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.api.MobileInitServlet</servlet-name>
+    <url-pattern>/api/mobileInit</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.api.AddRestaurantServlet</servlet-name>
+    <servlet-class>com.topdish.api.AddRestaurantServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.api.AddRestaurantServlet</servlet-name>
+    <url-pattern>/api/addRestaurant</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.api.AddDishServlet</servlet-name>
+    <servlet-class>com.topdish.api.AddDishServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.api.AddDishServlet</servlet-name>
+    <url-pattern>/api/addDish</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.api.AddPhotoServlet</servlet-name>
+    <servlet-class>com.topdish.api.AddPhotoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.api.AddPhotoServlet</servlet-name>
+    <url-pattern>/api/addPhoto</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.api.RateDishServlet</servlet-name>
+    <servlet-class>com.topdish.api.RateDishServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.api.RateDishServlet</servlet-name>
+    <url-pattern>/api/rateDish</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.api.FlagDishServlet</servlet-name>
+    <servlet-class>com.topdish.api.FlagDishServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.api.FlagDishServlet</servlet-name>
+    <url-pattern>/api/flagDish</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.api.FlagRestaurantServlet</servlet-name>
+    <servlet-class>com.topdish.api.FlagRestaurantServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.api.FlagRestaurantServlet</servlet-name>
+    <url-pattern>/api/flagRestaurant</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.api.RestaurantSearchServlet</servlet-name>
+    <servlet-class>com.topdish.api.RestaurantSearchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.api.RestaurantSearchServlet</servlet-name>
+    <url-pattern>/api/restaurantSearch</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.api.DishDetailServlet</servlet-name>
+    <servlet-class>com.topdish.api.DishDetailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.api.DishDetailServlet</servlet-name>
+    <url-pattern>/api/dishDetail</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.api.RestaurantDetailServlet</servlet-name>
+    <servlet-class>com.topdish.api.RestaurantDetailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.api.RestaurantDetailServlet</servlet-name>
+    <url-pattern>/api/restaurantDetail</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.api.FacebookServlet</servlet-name>
+    <servlet-class>com.topdish.api.FacebookServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.api.FacebookServlet</servlet-name>
+    <url-pattern>/api/facebookLogin</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.api.PairFacebookToTDUser</servlet-name>
+    <servlet-class>com.topdish.api.PairFacebookToTDUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.api.PairFacebookToTDUser</servlet-name>
+    <url-pattern>/api/pairFacebook</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.api.DeleteReviewServlet</servlet-name>
+    <servlet-class>com.topdish.api.DeleteReviewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.api.DeleteReviewServlet</servlet-name>
+    <url-pattern>/api/deleteReview</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.api.LocateUserServlet</servlet-name>
+    <servlet-class>com.topdish.api.LocateUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.api.LocateUserServlet</servlet-name>
+    <url-pattern>/api/locateUser</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.topdish.api.GetTermsAndConditionsServlet</servlet-name>
+    <servlet-class>com.topdish.api.GetTermsAndConditionsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.api.GetTermsAndConditionsServlet</servlet-name>
+    <url-pattern>/api/getTerms</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>LoginLogicServlet</servlet-name>
+    <servlet-class>com.topdish.LoginLogicServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginLogicServlet</servlet-name>
+    <url-pattern>/loginLogic</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>FacebookServlet</servlet-name>
+    <servlet-class>com.topdish.FacebookServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FacebookServlet</servlet-name>
+    <url-pattern>/facebookLogin</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>com.google.apphosting.utils.remoteapi.RemoteApiServlet</servlet-name>
+    <servlet-class>com.google.apphosting.utils.remoteapi.RemoteApiServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.google.apphosting.utils.remoteapi.RemoteApiServlet</servlet-name>
+    <url-pattern>/admin/remoteApi</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>FeedbackServlet</servlet-name>
+    <servlet-class>com.topdish.api.FeedbackServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FeedbackServlet</servlet-name>
+    <url-pattern>/api/sendUserFeedback</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>GoogleLoginServlet</servlet-name>
+    <servlet-class>com.topdish.api.GoogleLoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GoogleLoginServlet</servlet-name>
+    <url-pattern>/api/googleAuth</url-pattern>
+  </servlet-mapping>
+ 
+   <servlet>
+    <servlet-name>com.topdish.adminconsole.controller.TopDishExplorerServlet</servlet-name>
+    <servlet-class>com.topdish.adminconsole.controller.TopDishExplorerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.adminconsole.controller.TopDishExplorerServlet</servlet-name>
+    <url-pattern>/admin/topDishExplorer</url-pattern>
+  </servlet-mapping>
+  <security-constraint>
+    <web-resource-collection>
+      <url-pattern>/admin/topDishExplorer</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>admin</role-name>
+    </auth-constraint>
+  </security-constraint>
+ 
+   <servlet>
+    <servlet-name>com.topdish.adminconsole.controller.FlaggingQueueController</servlet-name>
+    <servlet-class>com.topdish.adminconsole.controller.FlaggingQueueController</servlet-class>
+    <init-param>
+      <param-name>displaySize</param-name>
+      <param-value>50</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.adminconsole.controller.FlaggingQueueController</servlet-name>
+    <url-pattern>/admin/flags</url-pattern>
+  </servlet-mapping>
+   <security-constraint>
+    <web-resource-collection>
+      <url-pattern>/admin/topDishExplorer</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>admin</role-name>
+    </auth-constraint>
+  </security-constraint>
+  
+    <servlet>
+    <servlet-name>com.topdish.adminconsole.controller.TopDishUsersController</servlet-name>
+    <servlet-class>com.topdish.adminconsole.controller.TopDishUsersController</servlet-class>
+    <init-param>
+      <param-name>displaySize</param-name>
+      <param-value>50</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.topdish.adminconsole.controller.TopDishUsersController</servlet-name>
+    <url-pattern>/admin/users</url-pattern>
+  </servlet-mapping>
+    <security-constraint>
+    <web-resource-collection>
+      <url-pattern>/admin/topDishExplorer</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>admin</role-name>
+    </auth-constraint>
+  </security-constraint>
+    <servlet>
+        <servlet-name>appstats</servlet-name>
+        <servlet-class>com.google.appengine.tools.appstats.AppstatsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>appstats</servlet-name>
+        <url-pattern>/admin/appstats/*</url-pattern>
+    </servlet-mapping>
+
+    <security-constraint>
+        <web-resource-collection>
+            <url-pattern>/admin/appstats/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+<!--
+  <filter>
+    <filter-name>com.topdish.filters.RequestFilterServlet</filter-name>
+    <filter-class>com.topdish.filters.RequestFilterServlet</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>com.topdish.filters.RequestFilterServlet</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+-->
+  <error-page>
+   <error-code>500</error-code>
+   <location>/errors/default_error.html</location>
+  </error-page>
+  
+  <error-page>
+   <error-code>404</error-code>
+   <location>/errors/not_found.html</location>
+  </error-page>
+  
+  <error-page>
+   <error-code>403</error-code>
+   <location>/errors/quota_error.html</location>
+  </error-page>
+</web-app>

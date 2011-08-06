@@ -1,0 +1,14 @@
+Name: Facebook Login Servlet
+URL: /api/locateUser
+Type:  POST
+Description: Does a Geo Look Up on the IpAddress
+
+Required Params:
+NONE
+
+Example Success Output:
+{"lon":-122.42555,"address":"San Francisco CA","state":"CA","rc":0,"lat":37.77825,"city":"San Francisco"}
+
+Example Failure Output:
+//DEFAULTS TO SF
+{"lon":-122.42555,"address":"San Francisco CA","state":"CA","rc":0,"lat":37.77825,"city":"San Francisco"}

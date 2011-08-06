@@ -1,0 +1,42 @@
+Name: Add Restaurant Servlet
+URL: /api/addRestaurant
+Type:  POST
+Description: Add a new Restaurant
+Required Params:
+	-"name"			: name of restaurant
+	-"addressLine1"		: the first address line
+	-"addressLine2"		: the second address line (optional)
+	-"neighborhood"		: neighborhood restaurant is located in (optional)
+	-"city"			: city restaurant is located in
+	-"state"		: state restaurant is located in
+	-"phone"		: phone number
+	-"cuisine"		: the cuisine type by name
+	-"apiKey" 		: User's APIKey
+
+Example Success Output:
+{
+    "restaurant": {
+        "phone": "999-992-2310",
+        "photoURL": "",
+        "state": "CA",
+        "neighborhood": " ",
+        "addressLine2": " ",
+        "addressLine1": "799 N Craig Ave",
+        "city": "Pasadena",
+        "id": 14,
+        "numDishes": 0,
+        "name": "Monkey House",
+        "dishes": [
+            
+        ],
+        "longitude": -95.762931,
+        "latitude": 34.9167
+    },
+    "rc": 0
+}
+
+Example Failure Ouput:
+{
+    "rc": 1,
+    "message": "Null Pointer Exception"
+}

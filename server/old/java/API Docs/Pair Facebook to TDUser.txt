@@ -1,0 +1,25 @@
+Name: Facebook Login Servlet
+URL: /api/facebookLogin
+Type:  POST
+Description: Given a Facebook OAuth Token, gets back TDUser
+Work Flow:
+	-Checks if user exists based on TDUserId
+		-if user exists : add a Facebook Account to it with given Id
+		-else		: return no such user
+
+Error Codes:
+	1	:	Some Exception that was Thrown (Generic Error)
+	2	:	TDUserId was not provided.
+	3	:	TDUserId was malformed.
+	4	:	No FacebookId Provided.
+	5	:	TDUser does not exist.
+
+Required Params:
+	-"facebookId"		:	Facebook Id
+	-"TDUserId"		:	TDUser Id
+
+Example Success Output:
+
+
+Example Failure Output:
+

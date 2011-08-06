@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainlayout"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<RelativeLayout 
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <com.google.android.maps.MapView
+        android:id="@+id/mapview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:clickable="true"
+        android:apiKey="0ljGrsBswKzEl_-JofP30yECtbVRdm3jvT-_qag"
+    />
+<!--  TopDish Key Store: 0ljGrsBswKzEl_-JofP30yECtbVRdm3jvT-_qag  -->
+<!--	My Key Store: 0ljGrsBswKzFJ95rNZkwHe1yagotPuMV_23DkgA	-->
+    <ProgressBar android:id="@+id/lazyLoadBar"
+    	android:layout_marginTop="3px"
+    	android:layout_width="30px"
+        android:layout_height="30px"
+        android:visibility="invisible"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:clickable="false"
+        />
+
+</RelativeLayout>
+</LinearLayout>

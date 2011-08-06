@@ -1,0 +1,353 @@
+@CHARSET "ISO-8859-1";
+.rmenu_cont {
+	clear: both;
+	padding-bottom: 12px;
+	margin-top: 17px;
+}
+
+.rmenu_cont h1 {
+	font-size: 1.5em;
+	font-weight: bold;
+	color:#363636;	
+}
+.rmenu_cont h2{
+	font-size: 14px;
+	font-weight:bold;
+}
+.rmenu_cont h2 a:link{
+	color:#444343;
+}
+.rmenu_cont h2 a:visited{
+	color:#444343;
+}
+.rmenu_cont h3{
+	font-weight:bold;
+}
+.rmenu_cont span{
+	font-size:10px;
+	float:right;
+	line-height:2.4em;
+}
+
+.rmenu_disp {
+	padding-top:6px;
+}
+
+/* Similar to Address Listing in the .dish_listing_address*/
+.top_dish {
+	background:#f8f7f2;
+	width:auto;
+	border:1px solid #eaeaea;
+	padding:13px;
+}
+
+.top_dish h3 {
+	padding-top:5px;
+	font-weight:bold;
+}
+
+.top_dish h3 A:link {
+	color:#6a6a6a;
+}
+
+.top_dish h3 A:visited {
+	color:#6a6a6a;
+}
+
+.top_dish p {
+	font-size:.8em;
+}
+.top_dish_left {
+	float:left;
+	padding-right: 10px;	
+}
+.top_dish_left img.grey_icon{
+	width:151px;
+	height:93px;
+}
+div.user_brief{
+	clear:left;
+}
+.user_credits img.grey_icon{
+	height:36px;
+	width:39px;
+}
+div.user_photo_small{
+	float:left;
+	margin-right: 10px;
+}
+div.user_photo_small img{
+	height:100px;
+	width:100px;
+}
+.user_profile_box{
+	border: 1px solid #C3BDA6;
+	padding: 5px;
+	-moz-box-shadow: 2px 2px 1px #ddd;
+	-webkit-box-shadow: 2px 2px 1px #ddd;
+	box-shadow: 2px 2px 1px #888;
+}
+div.user_profile_splitter{
+    background-image:url(../img/detailed/dotted_border.png);
+    background-repeat:repeat-x;
+    background-position:bottom;
+	padding-bottom: 5px;
+}
+div.user_description{
+	height:100px;
+	float: right;
+	left: 30px;
+	margin-left: -35px;
+	position: relative;
+	width: 200px;
+	background-color: #fff;
+}
+div.user_description span {
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	background: url('../img/shadow.png') bottom right no-repeat;
+	top: 110px;
+	left: 200px;
+	z-index: 8888;
+}
+div.user_description_text{
+	background-color: #ddf3f8;
+	height: 78px;
+	margin: 2px;
+	padding: 10px;
+}
+div.user_info{
+	float:left;
+	font-size:.8em;
+}
+div.user_info a.user_nick{
+	line-height:1.6em;
+}
+.top_dish_right {
+	min-height:110px;
+}
+
+.top_dish_right p {
+	font-size:.8em;
+}
+
+.top_dish_right h3 {
+	font-size: 11px;
+	padding: 0px 0px 6px 0px;
+	font-weight:normal;
+}
+
+.top_dish_right h3 A:link {
+	color:#444343;
+}
+
+.top_dish_right h3 A:visited {
+	color:#444343;
+}
+
+.top_dish span {
+	clear:both;
+}
+
+
+/* Top Foodie */
+.top_foodie_cont {
+
+}
+
+.top_foodie_box {
+	background:#f2faff;
+	border:1px solid #5fe3ff;
+	position:relative;
+	min-height:103px;
+}
+
+div.top_foodie_box div.photo{
+	float:left;	
+}
+div.photo img{
+	width:36px;
+	height:36px;
+	border: 2px solid #3fa9c0;
+	margin-top:6px;
+	margin-left:6px;
+	margin-right:6px;
+}
+
+div.top_foodie_box div.name_stats{
+	float:left;
+	margin-top:0;
+	padding-top:0;
+	
+}
+div.name_stats h3 a:link{
+	font-size:11px;
+	color: #6a6a6a;
+}
+div.name_stats p{
+	font-size:.8em;
+	color: #6a6a6a;
+}
+div.last_review p{
+	font-size:11px;
+	color: #6a6a6a;
+}
+div.last_review p a:link{
+	font-size:11px;
+	color: #6a6a6a;
+}
+h3.pos_review{
+	color:#008dab;
+	font-size: 11px;
+}
+h3.neg_review{
+	color:#dc9d59;
+	font-size: 11px;
+}
+
+div.top_foodie_box div.last_review{
+	clear:left;
+	padding-left:6px;
+}
+
+.top_foodie_box_border {
+	float:left;
+	margin-bottom:13px;
+	width: 143px;
+	position:relative;
+	border-bottom:1px solid #00b4da;
+	border-right:1px solid #00b4da;
+}
+
+.top_foodie_box_even {
+	margin-right: 11px;
+}
+
+/* Advertisement Space */
+div.ad_250{
+	height:250px;
+	background:#8aba6c;
+}
+/* Top 10 List */
+div.top10{
+	clear:both;
+}
+div.top10 h1{
+	font-weight:bold;
+	font-size:1.2em;
+}
+div.top10_listing{
+	clear:both;
+	font-weight:bold;
+}
+div.top10_separator{
+	clear:both;
+	border-bottom:1px solid #ccc;
+	margin: 5px 0;
+}
+div.top10_separator hr{
+	height:1px;
+	color:#dfddd6;
+	background-color:#dfddd6;
+	border:0px;
+	margin-bottom:.2em;
+	margin-top:1em;
+}
+div.top10_dish_rank{
+	float:left;
+	color:#3fcbe9;
+	text-align:center;
+	line-height:2em;
+	width: 44px;
+	padding-top:3px;
+}
+div.top10_rank_num{
+	font-size:1.3em;	
+	line-height:1.5em;
+}
+div.top10_rank_time{
+	line-height:.5em;
+	font-size:.9em;
+}
+div.top10_dish_photo{
+	float:left;
+}
+div.top10_dish_photo img{
+	height:36px;
+	width:36px;
+}
+div.top10_dish_info{
+	float:left;
+	margin-left:.6em;
+	width: 205px;
+	min-height:3em;
+	font-size:1.1em;
+}
+.top10_dish_info h3 {
+	font-weight:bold;
+}
+.top10_dish_info p {
+	font-size:.8em;
+	margin-bottom:.2em;
+}
+div.top10_rest_info{
+	font-size:.8em;
+	margin-bottom:.2em;
+}
+
+/* User & Dish Stats */
+div.vote_stats{
+	padding-top:1em;
+}
+div.vote_stats p {
+	padding-top:3px;
+}
+div.vote_stats img {
+	padding-right:3px;
+}
+div.like_stats{
+	float:left;
+}
+div.dislike_stats{
+	float:right;
+}
+div.dislike_stats p a:link{
+	color:#d6862f;
+}
+div.dislike_stats p a:visited{
+	color:#d6862f;
+}
+div.dislike_stats p a:hover{
+	color:#00bae2;
+}
+div.rank_user_stats{
+	clear:left;
+	padding-top:1em;
+}
+div.rank_category{
+	float:left;
+}
+div.user_credits{
+	float:right;
+}
+div.user_info{
+	width:100px;
+	padding-left:3px;
+}
+
+/* User Bio */
+div.user_details{
+	padding-top:1em;
+	clear:left;
+}
+
+div.user_details h4 {
+	font-weight: bold;
+}
+
+/* New Dish */
+div.top_dish_left img{
+	height:98px;
+	width:109px;
+}

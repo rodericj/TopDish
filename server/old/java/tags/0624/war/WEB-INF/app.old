@@ -1,0 +1,254 @@
+#General Application Configuration
+application: topdish1
+version: randy-0206
+runtime: java
+
+inbound_services:
+  - warmup
+
+#Welcome Files
+welcome_files:
+  - index.jsp
+  - index.html
+
+
+#Resource Files
+resource_files:
+  - include: /blocks/*.jsp
+  - include: /partials/*.jsp
+
+
+#Static Files
+static_files:
+  - include: /style/**.jpg
+  - include: /style/**.png
+  - include: /style/**.css
+  - include: /img/**.png
+  - include: /img/**.jpg
+  - include: /img/**.gif
+  - include: /js/**.js
+  - include: /js/**.css
+  - include: /js/**.gif
+  - include: /favicon.ico
+  - include: /TermsAndConditions.html
+  - include: /robots.txt
+  - include: /press/index.html
+  - include: /press/TopDish_PressKit.zip
+
+
+#URL Handlers
+handlers:
+- url: /admin/*
+  login: admin
+  
+- url: /press
+  
+- url: /migration
+  servlet: com.topdish.DataMigrationServlet
+  login: admin
+  
+- url: /addDish
+  servlet: com.topdish.AddDishServlet
+  login: required
+
+- url: /addReview
+  servlet: com.topdish.AddReviewServlet
+  login: required
+  
+- url: /addTag
+  servlet: com.topdish.AddTagServlet
+  login: required
+  
+- url: /dishAutoComplete
+  servlet: com.topdish.DishAutoCompleteServlet
+  login: required
+  
+- url: /tagAutoComplete
+  servlet: com.topdish.TagAutoCompleteServlet
+  login: required
+  
+- url: /ingredientAutoComplete
+  servlet: com.topdish.IngredientAutoCompleteServlet
+  login: required
+  
+- url: /updateRestaurant
+  servlet: com.topdish.UpdateRestaurantServlet
+  login: required
+  
+- url: /updateTag
+  servlet: com.topdish.UpdateTagServlet
+  login: required
+  
+- url: /updateDish
+  servlet: com.topdish.UpdateDishServlet
+  login: required
+  
+- url: /deleteRestaurant
+  servlet: com.topdish.DeleteRestaurantServlet
+  login: admin
+  
+- url: /addUser
+  servlet: com.topdish.AddUserServlet
+  
+- url: /updateUser
+  servlet: com.topdish.UpdateUserServlet
+  login: required
+  
+- url: /addRestaurantGID
+  servlet: com.topdish.AddRestaurantGIDServlet
+  login: required
+  
+- url: /deleteDish
+  servlet: com.topdish.DeleteDishServlet
+  login: admin
+  
+- url: /deleteTag
+  servlet: com.topdish.DeleteTagServlet
+  login: admin
+  
+- url: /addPhoto
+  servlet: com.topdish.AddPhotoServlet
+  login: required
+
+- url: /deletePhoto
+  servlet: com.topdish.DeletePhotoServlet
+  login: admin
+  
+- url: /rotatePhoto
+  servlet: com.topdish.RotatePhotoServlet
+  login: required
+  
+- url: /rateDish
+  servlet: com.topdish.RateDishServlet
+  login: required
+  
+- url: /addFlag
+  servlet: com.topdish.AddFlagServlet
+  login: required
+  
+- url: /betarequest
+  servlet: com.topdish.BetaRequestRedirect
+  
+- url: /uploadBulk
+  servlet: com.topdish.batch.UploadDishRestaurantCSVServlet
+  login: admin
+  
+- url: /cleanUpload
+  servlet: com.topdish.batch.CleanUploadedDataServlet
+  login: admin
+  
+- url: /getTopDishesAjax
+  servlet: com.topdish.api.TopDishAjaxServlet
+
+- url: /clearMemcache
+  servlet: com.topdish.ClearMemcacheServlet
+  login: admin
+
+- url: /facebookLogin
+  servlet: com.topdish.FacebookServlet
+
+# Filters
+- url: /*
+  filter: com.topdish.filters.RequestFilterServlet  
+  
+  #API URL Handlers
+- url: /api/dishSearch
+  servlet: com.topdish.api.DishSearchServlet
+  
+- url: /api/dishRecommend
+  servlet: com.topdish.api.DishRecommendServlet
+
+- url: /api/login
+  servlet: com.topdish.api.UserLoginServlet
+
+- url: /api/logout
+  servlet: com.topdish.api.UserLogoutServlet
+  
+- url: /api/mobileInit
+  servlet: com.topdish.api.MobileInitServlet
+  
+- url: /api/addRestaurant
+  servlet: com.topdish.api.AddRestaurantServlet
+  
+- url: /api/addDish
+  servlet: com.topdish.api.AddDishServlet
+  
+- url: /api/addPhoto
+  servlet: com.topdish.api.AddPhotoServlet
+  
+- url: /api/rateDish
+  servlet: com.topdish.api.RateDishServlet
+  
+- url: /api/flagDish
+  servlet: com.topdish.api.FlagDishServlet
+
+- url: /api/flagRestaurant
+  servlet: com.topdish.api.FlagRestaurantServlet
+  
+- url: /api/restaurantSearch
+  servlet: com.topdish.api.RestaurantSearchServlet
+  
+- url: /api/dishDetail
+  servlet: com.topdish.api.DishDetailServlet
+  
+- url: /api/restaurantDetail
+  servlet: com.topdish.api.RestaurantDetailServlet
+
+- url: /api/facebookLogin
+  servlet: com.topdish.api.FacebookServlet
+  
+- url: /api/pairFacebook
+  servlet: com.topdish.api.PairFacebookToTDUser
+  
+- url: /api/deleteReview
+  servlet: com.topdish.api.DeleteReviewServlet
+
+- url: /api/locateUser
+  servlet: com.topdish.api.LocateUserServlet
+
+- url: /api/getTerms
+  servlet: com.topdish.api.GetTermsAndConditionsServlet
+  
+- url: /api/printId.jsp
+  
+  #Auth Required JSPs
+- url: /index.jsp
+- url: /about.jsp
+- url: /addDish.jsp
+- url: /addReview.jsp
+- url: /addTag.jsp
+- url: /dishDetail.jsp
+- url: /restaurantDetail.jsp
+- url: /restaurantSearch.jsp
+- url: /search.jsp
+- url: /toprated.jsp
+- url: /userControls.jsp
+- url: /userProfile.jsp
+- url: /welcome.jsp
+- url: /multiLogin.jsp
+- url: /footer.jsp
+- url: /header.jsp
+- url: /howTo.jsp
+- url: /blocks/**.jsp
+- url: /partials/**.jsp
+
+- url: /editProfile.jsp
+  login: required
+
+- url: /editTag.jsp
+  login: required
+
+- url: /flag.jsp
+  login: required
+
+- url: /photoUpload.jsp
+  login: required
+  
+- url: /rateDish.jsp
+  login: required
+  
+  
+  #Remote API
+- url: /admin/remoteApi
+  servlet: com.google.apphosting.utils.remoteapi.RemoteApiServlet
+  login: admin

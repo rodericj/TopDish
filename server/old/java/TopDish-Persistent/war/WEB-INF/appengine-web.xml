@@ -1,0 +1,31 @@
+<!-- Generated from app.yaml. Do not edit. -->
+<appengine-web-app xmlns='http://appengine.google.com/ns/1.0'>
+  <application>topdish1</application>
+  <version>testing-randy</version>
+  <static-files>
+    <include path='/style/**.jpg'/>
+    <include path='/style/**.png'/>
+    <include path='/style/**.css'/>
+    <include path='/img/**.png'/>
+    <include path='/img/**.jpg'/>
+    <include path='/img/**.gif'/>
+    <include path='/js/**.js'/>
+    <include path='/js/**.css'/>
+    <include path='/js/*/**.gif'/>
+    <include path='/style/admin/**.css'/>
+    <include path='/js/admin/**.js'/>
+    <include path='/favicon.ico'/>
+    <include path='/TermsAndConditions.html'/>
+  </static-files>
+  <resource-files>
+    <include path='/blocks/*.jsp'/>
+    <include path='/partials/*.jsp'/>
+  </resource-files>
+  <ssl-enabled>true</ssl-enabled>
+  <precompilation-enabled>true</precompilation-enabled>
+  <sessions-enabled>true</sessions-enabled>
+  <warmup-requests-enabled>false</warmup-requests-enabled>
+  <admin-console>
+    <page name="TopDish Explorer" url="admin/explorer/dishExplorer.jsp" />
+  </admin-console>
+</appengine-web-app>

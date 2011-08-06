@@ -1,0 +1,21 @@
+Name: User Login Servlet
+URL: /api/login
+Type:  GET
+Description: Servlet to search for Restaurants
+Required Params:
+	-"lat"			: Latitude
+	-"lng"			: Longitude
+	-"distance"		: Distance
+	-"limit"		: Max number of results
+	-"q"			: Query text (ie. taco, empty returns all results)
+	-"apiKey" 		: User's APIKey	
+Example Success Output:
+{
+    "rc": 0,
+    "apiKey": "9e6bffd7-2fab-4824-b2e3-d05233bb57c1"
+}
+Example Failure Output:
+{
+    "message": "No User Found.",
+    "rc": 1
+}

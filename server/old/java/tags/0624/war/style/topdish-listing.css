@@ -1,0 +1,376 @@
+@CHARSET "UTF-8";
+.dish_listing {
+	clear:both;
+	padding:6px 0px;
+}
+
+.dish_listing_quick {
+	height: 128px;
+	clear:both;
+}
+
+.rating_box {
+	display:inline-block;
+	width: 67px;
+	display:inline;
+	height:100%;
+	font-weight:bold;
+	font-size:1.1em;
+	padding-top:5px;
+	text-align:center;
+	
+}
+.left {
+	float: left;
+}
+.right {
+	float: right
+}
+
+.rating_box_upboat {
+	color:#44ccea;
+}
+
+.rating_box_downboat {
+	color:#d6862f;
+}
+
+.dish_listing_details {
+	float:left;
+	display:inline-block;
+	margin-top:6px;
+	width:372px;
+	padding-left:84x;
+}
+.dish_listing_details h1 {
+	font-weight:bold;
+	font-size:20px;
+}
+
+.dish_listing_text {
+	padding: 0px 8px;
+	width: auto;
+	max-width: 235px;
+	float: left;
+}
+
+.dish_listing_text p {
+	font-size: 13px;
+}
+
+.dish_listing_text h1 A:link {
+	color:#363636;
+}
+
+.dish_listing_text A:visited {
+	color:#363636;
+}
+
+.dish_listing A:hover{
+	color:#D6862F;
+}
+
+.dish_listing_text h1 span {
+	font-size:.5em;
+}
+
+.dish_height_bar {
+	border-left:1px solid #dfddd6;
+	min-height:112px;
+	float:left;
+	position:relative;
+	padding-right:8px;
+}
+
+.dish_listing_address {
+	float:right;
+	width: 144px;
+	margin-top:8px;
+	display:inline-block;
+}
+
+.dish_listing_address h3 {
+	padding:4px 0px 3px 0px;
+	font-weight:normal;
+	font-size: 12px;
+}
+
+.dish_listing_address h3 A:link {
+	color:#444343;
+}
+
+.dish_listing_address h3 A:visited {
+	color:#444343;
+}
+
+
+.dish_listing_address p {
+	font-size:.8em;
+	color: #767676;
+}
+
+div.dish_lat,
+div.dish_lng{
+	display:none;
+}
+
+.dish_listing_footer {
+	clear:both;
+	width:auto;
+	margin: 0px 5px;
+	height: 27px;
+	font-size:.8em;
+}
+
+.dish_status {
+	float:left;
+	height: 27px;
+	margin: 0 4px;
+	padding-top:3px;
+}
+
+.dish_listing_categories {
+	float:left;
+	width:auto;
+	height: 27px;
+	vertical-align:middle;
+	padding-left:6px;
+}
+
+.share_button{
+	float:right;
+	padding-right:.8em;
+}
+
+div.dish_listing_infographics img {
+	margin-bottom: -.3em;
+}
+
+.dish_listing_infographics span {
+	padding-left:.3em;
+	padding-right:1em;
+}
+
+.dish_listing_terminator {
+	clear:both;
+}
+
+.dish_splitter {
+	background-image:url(../img/detailed/dotted_border.png);
+	background-repeat:repeat-x;
+	background-position:bottom;
+}
+
+.dish_list_special_splitter {
+	background-image:url(../img/detailed/splitter.gif);
+	background-repeat:no-repeat;
+	width:584px;
+	height:8px;
+	position:relative;
+	margin-top:5px;
+	left:-8px;
+}
+
+.menu_disp_detailed h3 {
+	clear: left;
+	font-weight:bold;
+	padding-top: 13px;
+}
+
+.menu_disp_detailed span {
+	padding-right: 15px;
+}
+
+.dish_text_rating img{
+	padding-right: 6px;
+}
+
+.dish_text_rating {
+	color: #cdc291;
+	font-weight:bold;
+	margin-bottom:4px;
+}
+
+
+.dish_details_gallery {
+	border:1px solid #CCC;
+}
+
+.dish_review {
+	padding-top:.2em;
+}
+
+.dish_review_side {
+	float:left;
+	width:90px;
+}
+
+.dish_review_side h3 {
+	font-weight: bold;
+}
+
+.dish_review_side h3 a:link {
+	color:#6a6a6a;
+}
+
+.dish_review_side h3 a:visited {
+	color:#6a6a6a;
+}
+
+.dish_review_side h3 a:hover {
+	color:#008dab;
+}
+
+.dish_review_side h4 {
+	font-weight: bold;
+	padding-bottom:2px;
+}
+
+.dish_review_side img.grey_icon{
+	height:36px;
+	width:39px;
+}
+
+.dish_review_side div {
+	color:#6a6a6a;
+	font-size:.9em;
+}
+
+
+.dish_review_main {
+	float:right;
+	width:470px;
+}
+
+.dish_review_footer {
+	clear:both;
+	text-align:right;
+	padding-bottom:8px;
+}
+
+.dish_review_footer span img {
+	padding-right: 4px;
+}
+
+.dish_review_main span {
+	font-weight: bold;
+	line-height:3em;
+}
+
+/* Rate a dish Section */
+.rating_header {
+	margin-top: 14px;
+}
+.rating_header h1 {
+	font-size: 1.5em;
+	font-weight:bold;
+}
+.rating_header h1 span {
+	color: #d6862f;
+}
+.rating_header h1 a {
+	/*float:right;*/
+	line-height:1.9em;
+	font-size:.7em;
+}
+.rating_header h2 {
+	font-size: 1.4em;
+	font-weight:bold;
+	padding-bottom: 3px;
+}
+.rating_header h2 span{
+	font-size:.7em;
+}
+.rating_header h3 {
+	font-size:1.2em;
+	padding:5px 10px;
+}
+.rating_header div a {
+	font-weight:bold;
+	/*padding:2px;
+	line-height:1.3em;*/
+}
+.rating_header p {
+	/*padding: 3px 0;*/
+}
+.rating_ingredients {
+	font-weight:bold;
+	color:#66bbcd;
+}
+.rating_categories {
+	font-weight:bold;
+	color:#fbae3c;
+}
+.rating_description {
+	font-weight:bold;
+	color:#5aa049;
+}
+.rating_radios {
+	padding: 5px;
+}
+.rating_radios input, label {
+	float:left;
+	display: block;
+	padding-left:8px;
+}
+.rating_radios li {
+	clear:both;
+	font-weight:bold;
+	font-size:1.2em; 
+}
+/* Restaurant search input box */
+.grey_input_box {
+	width: 401px;
+	height: 41px;
+	font-size:1.2em;
+	background-image:url(../img/search_resturant_input.png);
+	background-repeat:no-repeat;
+	border:none;
+	margin:2px;
+	padding: 0 8px;
+}
+.resturant_search_question {
+	background-position:0 0;
+}
+.grey_input_box_none {
+	background-position: 0 -46px;
+}
+.grey_input_box_ok {
+	background-position:0 -92px;
+}
+.enter_dish_ok {
+	background-position:0 -138px;
+}
+
+.input_textarea {
+	border: 1px solid #ccc;
+	width: 410px;
+	height: 40px;
+	padding: 3px;
+}
+
+.restaurant_full{
+	clear:both;
+}
+
+.alert{
+	padding-top: .5em;
+	padding-bottom: .5em;
+	padding-left: 1.5em;
+	padding-right: 1.5em;
+	margin-bottom: 1em;
+	min-height: 1.2em;
+	border-radius: 10px;
+	font-weight: bold;
+	font-size: larger;
+}
+
+.info{
+	background-color: #33AD5C;
+	color: #FFFFFF;
+}
+
+.error{
+	background-color: #D63333;
+	color: #FFFFFF;
+}

@@ -1,0 +1,37 @@
+'===dish_complete (expanded)===
+
+SELECT sum(r1.rating) as total_rating, r1.dish_id, r1.dish_name, f.cuisine_id as cuisine_id, c.name as cuisine_name, r1.fooditem_id as fooditem_id, f.name as fooditem_name, r1.restaurant_id as rest_id, t.name as rest_name, r1.date_created 
+FROM (
+  SELECT d.id as dish_id, d.name as dish_name, coalesce(reviews.rating,0) as rating, d.fooditem_id as fooditem_id, d.restaurant_id as restaurant_id, d.date_created
+  FROM dishes as d
+  LEFT OUTER JOIN reviews ON d.id = reviews.dish_id) as r1,
+  restaurants t, fooditems f, cuisines c
+WHERE r1.restaurant_id = t.id AND r1.fooditem_id = f.id AND f.cuisine_id = c.id
+GROUP BY r1.dish_id;
+
+
+'===dish_complete===
+SELECT sum(r1.rating) as total_rating, r1.dish_id, r1.dish_name, f.cuisine_id as cuisine_id, c.name as cuisine_name, r1.fooditem_id as fooditem_id, f.name as fooditem_name, r1.restaurant_id as rest_id, t.name as rest_name, t.lat as lat, t.lng as lng, r1.date_created 
+FROM dish_partial as r1, restaurants t, fooditems f, cuisines c
+WHERE r1.restaurant_id = t.id AND r1.fooditem_id = f.id AND f.cuisine_id = c.id
+GROUP BY r1.dish_id;
+
+'===dish_partial===
+SELECT d.id as dish_id, d.name as dish_name, coalesce(reviews.rating,0) as rating, d.fooditem_id as fooditem_id, d.restaurant_id as restaurant_id, d.date_created
+FROM dishes as d
+LEFT OUTER JOIN reviews ON d.id = reviews.dish_id
+
+'===review_complete===
+SELECT r.id, r.dish_id, r.user_id, r.rating, r.comments, u.first, u.last
+FROM reviews r, users u
+where r.user_id = u.id
+
+'===old dish_complete (expanded)===
+SELECT r1.dish_id, r1.fooditem_id, r1.restaurant_id as rest_id, r1.dish_name, sum(r1.rating) as total_rating, t.name as rest_name
+FROM (
+  SELECT d.id as dish_id, d.name as dish_name, coalesce(reviews.rating,0) as rating, d.fooditem_id as fooditem_id, d.restaurant_id as restaurant_id
+  FROM dishes as d
+  LEFT OUTER JOIN reviews ON d.id = reviews.dish_id) as r1,
+  restaurants t, fooditems f
+WHERE r1.restaurant_id = t.id AND r1.fooditem_id = f.id
+GROUP BY r1.dish_id;

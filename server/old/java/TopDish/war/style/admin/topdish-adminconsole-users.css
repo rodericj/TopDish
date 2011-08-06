@@ -1,0 +1,98 @@
+.dtable {
+	border: 1px solid #C5D7EF;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: left;
+	font-size: 1em;
+}
+.row-even {
+	background-color: #E9E9E9;
+	border-bottom: 1px solid #C5D7EF;
+	border-top: 1px solid #C5D7EF;
+}
+.table-caption {
+	background: #E5ECF9;
+	border: 1px solid #C5D7EF;
+	text-align: left;
+	padding: 3px;
+}
+body {
+	color: black;
+	font-family: Arial, sans-serif;
+	font-size: 80%;
+}
+.dtable thead th {
+	background: #C5D7EF;
+	font-weight: bold;
+	text-align: left;
+	padding: 2px;
+	padding-left: 3px;
+}
+.dtable tbody tr td {
+	padding: 2px;
+	padding-left: 3px;
+}
+.select-box{
+	border: 1px solid #C5D7EF;
+	background: #E5ECF9;
+}
+.edit-select-box{
+	border: 1px solid #a0a0a0;
+	background: #f9f9f9;
+}
+.btn {
+	/*background: #C5D7EF;
+	border: 3px solid #E5ECF9;*/
+	font-family: Arial, sans-serif;
+	font-size: 90%;
+}
+.edit-txt {
+	background: #f9f9f9;
+	border: 1px solid #a0a0a0;
+}
+.txt {
+	border: 1px solid #a0a0a0;
+}
+.lbl{
+	background: #E5ECF9;
+	border: 1px solid #C5D7EF;
+}
+.lbl1{
+	border: 1px solid #C5D7EF;
+}
+.paging{
+	background-color: #E5ECF9;
+	font-size: 12px;
+}
+.paging a {
+	text-decoration: none;
+	color: blue;
+}
+.paging a:visited{
+	text-decoration: none;
+	color: blue;
+}
+.paging a:active {
+	text-decoration: none;
+	color: blue;
+}
+.paging a:link {
+	text-decoration: none;
+	color: blue;
+}
+.pagingRecordCount {
+	font-family: Arial,sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	font-style:italic;
+}
+.sortHeader{
+	text-decoration: underline;
+	color: #000000;
+}
+.roleChangeSelection{
+	border: 1px thin #000000;
+	height: 18px;
+	width: 105px;
+	height: 20px;
+}

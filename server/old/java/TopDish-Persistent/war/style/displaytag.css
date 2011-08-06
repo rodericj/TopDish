@@ -1,0 +1,202 @@
+div.exportlinks {
+	margin: -5px 0px 10px 10px;
+	padding: 2px 4px 2px 0px;
+	width: 400px;
+}
+
+div.exportlinks a {
+	text-decoration: none;
+}
+
+div.exportlinks span {
+	background-repeat: no-repeat;
+}
+
+span.csv {
+	background-image: url(../img/displaytag/ico_file_csv.png);
+}
+
+span.excel {
+	background-image: url(../img/displaytag/ico_file_excel.png);
+}
+
+span.pdf {
+	background-image: url(../img/displaytag/ico_file_pdf.png);
+}
+
+span.xml {
+	background-image: url(../img/displaytag/ico_file_xml.png);
+}
+
+span.export {
+	cursor: pointer;
+	display: inline;
+	display: inline-block;
+	padding: 0 4px 1px 20px;
+}
+
+span.pagelinks {
+    background-color: #E5ECF9;
+    display: block;
+    padding: 2px 4px 18px;
+   	margin-top: -20px;
+}
+span.pagebanner {
+	 background-color: #E5ECF9;
+    display: block;
+    /*padding: 2px 4px 22px;*/
+    padding-right:4px;
+    padding-left:2px;
+}
+
+.pagebanner
+{
+	background-color: #E5ECF9;
+    display: block;
+    margin-bottom: -15px;
+    padding-top: 2px;
+    text-align: center;
+    width: 100%;
+    border:1px solid #C5D7EF;
+    margin-left: -1px;
+    padding-bottom: 2px;
+    font-family: Arial,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    font-style:italic;
+	}
+
+div.exportlinks {
+	padding: 2px 4px 2px 4px;
+	margin: 4px 0 10px 0;
+	width: 79%;
+}
+table {
+	width: 100%;
+	text-align: left;
+	font-size: 1em;
+/*display:none;*/
+padding-bottom:10px;
+}
+
+table.list {
+	background: #FFFF40;
+	border-bottom: 1px solid #C0C0C0;
+	border-top: 1px solid #C0C0C0;
+	color: #000000;
+	cursor: pointer;
+	cursor: hand;
+}
+
+table.list td {
+	padding: 3px;
+	/*width:200px;*/
+}
+
+table.list th {
+	background: #C5D7EF;
+	color: #000000;
+	padding: 3px;
+	border-bottom: 1px solid #000000;
+	text-align: center;
+}
+
+table.list th a, table.list th a:visited  {
+	background-color: transparent;
+	color: #000000;
+	text-decoration: none;
+}
+
+
+table.list th a:hover {
+	background-color: transparent;
+	color: #008000 !important;
+	text-decoration: overline underline;
+	border:1px;
+}
+
+th.sorted a, th.sortable a {
+	background-color: #C5D7EF;
+    background-position: right center;
+    color: black;
+    display: block;
+    text-decoration: underline;
+}
+
+table.list th.order1 a {
+	background-image: url(../img/displaytag/arrow_down.png) !important;
+}
+
+table.list th.order2 a {
+	background-image: url(../img/displaytag/arrow_up.png) !important;
+}
+
+table.list th.sortable a {
+	background-image: url(../img/displaytag/arrow_off.png);
+}
+
+table.list th.sorted {
+	background-color: #ffd;
+	color: #000000;
+}
+
+table.list th.sorted a, table.list th.sortable a {
+	background-position: right;
+	background-repeat: no-repeat;
+	display: block;
+}
+
+table.list th.sortable:hover {
+	background: #FFFF40;
+	color: #008000;
+}
+
+table.list thead tr {
+	background-color: #FFCC00;
+}
+
+table.list tr.even {
+	background-color: #E9E9E9;
+	border-bottom: 1px solid #C5D7EF;
+	border-top: 1px solid #C5D7EF;
+}
+
+table.list tr.odd {
+	border-top: 1px solid #C0C0C0;
+	color: #000000;
+	background-color: lightgrey;
+}
+
+/* highlight table row onmouseover */
+table.list tr.over {
+	background: #FFFF40;
+	border-bottom: 1px solid #C0C0C0;
+	border-top: 1px solid #C0C0C0;
+	color: #000000;
+	cursor: pointer;
+	cursor: hand; /* IE 5.5 non-compliant workaround */
+}
+
+/* override width for user list */
+table.userList {
+	width: 80% !important;
+}
+
+table.activeUserList, body#activeUsers span.pagelinks,span.pagebanner {
+    width: 450px !important;
+}
+
+#prevId
+{
+	float:left;
+	background-color: transparent;
+	color: blue;
+	text-decoration: none;
+}
+#nextId
+{
+	float:right;
+	background-color: transparent;
+	color: blue;
+	text-decoration: none;
+}

@@ -1,0 +1,10 @@
+indexes:
+
+#Added since GAE complained about Restaurant Detail page.
+- kind: Dish
+  ancestor: no
+  properties:
+  - name: restaurant
+    direction: asc
+  - name: posReviews
+    direction: desc

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/relsearchlay"
+  android:layout_width="fill_parent"
+  android:layout_height="80px"
+  android:orientation="horizontal"
+  android:background="@android:color/transparent"
+  android:layout_marginTop="5px"
+  >
+	  <EditText android:id="@+id/search"
+	  	android:layout_width="fill_parent"
+	  	android:layout_height="48px"
+	  
+	  />
+	  <ImageView android:id="@+id/searchicon"
+	  	android:src="@android:drawable/ic_menu_search"
+	  	android:layout_width="wrap_content"
+	  	android:layout_height="48px"
+	    android:layout_marginTop="-2px"
+	    android:layout_alignParentTop="true"
+	    android:layout_alignParentRight="true"
+	  />
+	  
+</RelativeLayout>

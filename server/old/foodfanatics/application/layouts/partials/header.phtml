@@ -1,0 +1,22 @@
+<?php
+    if(!Zend_Auth::getInstance()->hasIdentity())  
+	{
+		echo "<span class=\"user_links\">";
+		echo "<a href=" . $this->url(array('controller'=>'user', 'action'=>'login')) . ">Login</a>";
+		echo "&nbsp;&nbsp;";
+		echo "<a href=" . $this->url(array('controller'=>'user', 'action'=>'add')) . ">Sign Up</a>";
+		echo "</span>";
+	}else{
+	    $authStorage = Zend_Auth::getInstance()->getStorage();
+	    $userInfo = $authStorage->read();
+		//otherwise show info about user
+		echo "<span class=\"user_links\">Hello " . $userInfo->first . "!";
+		echo "&nbsp;&nbsp;";
+		echo "<a href=" . $this->url(array('controller'=>'user', 'action'=>'profile', 'id'=>$userInfo->id)) . ">My Profile</a>";
+		echo "&nbsp;&nbsp;";
+		echo "<a href=" . $this->url(array('controller'=>'user', 'action'=>'logout')) . ">Logout</a>";
+		echo "&nbsp;&nbsp;";
+		echo "Role: " . $userInfo->role;
+		echo "</span>";
+	}
+?>

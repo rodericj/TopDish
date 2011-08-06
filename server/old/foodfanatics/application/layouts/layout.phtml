@@ -1,0 +1,56 @@
+<?php echo $this->doctype(); ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+<head>
+    <?php echo $this->headMeta(); ?> 
+    <?php echo $this->headTitle(); ?> 
+    <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/global.css'); ?>	
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>-->
+	<script type="text/javascript" src="http://www.google.com/jsapi?sensor=true&amp;key=ABQIAAAAsoBjCec6IhiVrq0OfYiQ4hTkBi-dEAbgDKk7RmrIRp0uCm18BxTiffPooDtgNPA6H-FxiKHbff5-ug"></script>
+	<script type="text/javascript" src="/js/prototype.js"></script>
+	<script type="text/javascript" src="/js/local_search.js"></script>
+</head>
+<body onload="initialize()">
+<div class="header">
+	<!--	SITE TITLE	-->
+	<div class="title">
+		topdish
+	</div>
+	<div class="user">
+		<?php echo $this->partial('partials/header.phtml')?>
+	</div>
+	<div class="search">
+		<?php echo $this->partial('partials/search.phtml')?>
+	</div>
+	<div class="nav">
+		<!--	NAVIGATION	-->
+		<?php echo $this->partial('partials/lists.phtml')?>
+	</div>
+</div>
+<div class="colmask threecol">
+<div class="colmid">
+<div class="colleft">
+		<div class="col1">
+		<!--	the CENTER Panel for Body	-->
+			<span class="body_title"><?php echo htmlspecialchars_decode($this->title); ?></span>
+    		<?php echo $this->layout()->content; ?>
+		</div>
+		<div class="col2">
+		<!--	the LEFT Panel for Filters	-->
+				<?php //echo $this->partial('partials/cities.phtml')?>
+				Cuisines
+				<?php echo $this->partial('partials/cuisines.phtml', array('cuisines' => $this->cuisines)); ?>
+		</div>
+		<div class="col3">
+		<!-- 	the RIGHT panel for Ads -->
+			INSERT ADs HERE!
+		</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<p>&nbsp;</p>
+</div>
+</body>
+</html>

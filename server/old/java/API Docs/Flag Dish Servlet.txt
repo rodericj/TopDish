@@ -1,0 +1,18 @@
+Name: Flag Dish Servlet
+URL: /api/flagDish
+Type:  POST
+Description: Servlet to allow user to flag a dish
+Required Params:
+	-"dishId" 		: ID of the dish to add the flag to
+	-"type"			: Flag Type (0 : Innacurate, 1 : Spam, 2 : Innapropriate)
+	-"apiKey" 		: User's APIKey
+Example Success Output:
+{
+    "flagId": 799,
+    "rc": 0
+}
+Example Failure Output:
+{
+    "message": "Could not retrieve entity of kind Dish with key Dish(318)",
+    "rc": 1
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<datastore-indexes
+  autoGenerate="true">
+    <datastore-index kind="Review" ancestor="false" source="manual">
+        <property name="creator" direction="asc"/>
+        <property name="dish" direction="asc"/>
+        <property name="dateCreated" direction="desc"/>
+    </datastore-index>
+    <datastore-index kind="Dish" ancestor="false" source="manual">
+        <property name="restaurant" direction="asc"/>
+        <property name="dateCreated" direction="desc"/>
+    </datastore-index>
+</datastore-indexes>

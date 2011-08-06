@@ -1,0 +1,14 @@
+Name: Dish Recommend Servlet
+URL: /api/dishRecommend
+Type:  GET
+Description: Returns a recommended dish for a given user
+Required Params:
+	-"lat"			: Latitude
+	-"lng"			: Longitude
+	-"distance"		: Distance
+	-"limit"		: Max number of results
+	-"apiKey" 		: User's APIKey
+Example Success Output:
+PLEASE FILL THIS IN
+Example Failure Output:
+PLEASE FILL THIS IN

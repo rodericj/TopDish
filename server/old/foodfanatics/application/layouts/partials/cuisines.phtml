@@ -1,0 +1,29 @@
+<ul>
+<?php
+	$c = new Model_DbTable_Cuisines();
+	$cuisines = $c->fetchAll(
+		$c->select()
+          ->order('name ASC'));
+?>
+<?php foreach($cuisines as $cuisine) : ?>
+    <li class="cuisine">
+    	<?php echo $this->escape($cuisine->name);?>
+    		<ul>
+    		<?php 
+    			$f = new Model_DbTable_FoodItems();
+    			$fooditems = $f->fetchAll(
+    				$f->select()
+    				  ->where("cuisine_id={$cuisine->id}")
+    				  ->order('name ASC'));
+    		?>
+    		<?php foreach($fooditems as $category):?>
+	    		<li class="category">
+	    			<a href="<?php echo $this->url(array('controller'=>'dish',
+	    			'action'=>'bycategory', 'cat_id'=>$category->id));?>">
+	    			<?php echo $this->escape($category->name);?></a>
+	    		</li>
+    		<?php endforeach;?>
+    		</ul>
+    </li>
+<?php endforeach; ?>
+</ul>
