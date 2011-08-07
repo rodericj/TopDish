@@ -1,0 +1,3 @@
+include topdish/config/deployment.ini_tmpl
+recursive-include topdish/public *
+recursive-include topdish/templates *
