@@ -26,6 +26,7 @@ CREATE TABLE `restaurant` (
   `restaurant_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `description` text,
+  `address` text,
   `date_created` int(10) unsigned NOT NULL,
   `creator_id` int(10) unsigned NOT NULL,
   `num_positive_reviews` int(10) unsigned NOT NULL DEFAULT '0',

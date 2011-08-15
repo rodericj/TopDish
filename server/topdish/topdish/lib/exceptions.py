@@ -1,6 +1,6 @@
 from common.lib import *
 
-from voyer.lib.base import h
+from topdish.lib.base import h
 
 class BaseApiException(Exception):
     pass
@@ -35,15 +35,6 @@ class InvalidEmailException(BaseApiException):
             message = 'Missing email address'
 
         super(InvalidEmailException, self).__init__(message, *args)
-
-class InvalidListingException(BaseApiException):
-    def __init__(self, invalid_listing_id, *args):
-        if invalid_listing_id:
-            message = 'Invalid listing id: %s' % h.to_i(invalid_listing_id)
-        else:
-            message = 'Missing listing id'
-
-        super(InvalidListingException, self).__init__(message, *args)
 
 class InvalidCommentException(BaseApiException):
     def __init__(self, invalid_id, *args):

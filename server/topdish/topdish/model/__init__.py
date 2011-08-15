@@ -3,6 +3,7 @@ import logging
 import time
 
 from pylons import config
+import pymongo
 
 import sqlalchemy as sa
 from sqlalchemy import orm
@@ -19,6 +20,7 @@ from common.lib import memcacheutils
 from common.mixin import AsyncFactoryMixin
 from common.mixin import DictORMMixin
 from common.mixin import FactoryMixin
+from common.mixin import MongoORMLocationMixin
 from common.mixin import S3ORMMixin
 from common.mixin import StatusMixin
 from common.mixin import VersionMixin
@@ -46,6 +48,8 @@ def init_model(engine):
     context = commonorm.ModelContext(engine=engine, session=meta.Session, mc=mc)
 
     context.add_orm(User)
+    context.add_orm(Dish)
+    context.add_orm(Restaurant)
     context.add_orm(UserLike)
     context.add_orm(UserComment)
     context.add_orm(UserFollow)
@@ -151,6 +155,69 @@ class User(commonorm.ORM, FactoryMixin, StatusMixin):
 
     password = property(_get_password, _set_password)
 
+class Dish(commonorm.ORM, 
+           StatusMixin, 
+           DictORMMixin, 
+           mixin.Likeable, 
+           mixin.Commentable,
+           mixin.Followable,
+           mixin.Flaggable):
+    __table_name__ = 'dish'
+
+    @classmethod
+    def create(cls, creator_id, **attrs):
+        creator = User.get(creator_id)
+        if creator is None:
+            raise Exception('User not found: %r' % creator_id)
+
+        attrs['creator_id'] = creator_id
+        dish = Dish(**attrs)
+        session = cls.get_session()
+        session.add(dish)
+        session.commit()
+        return dish
+
+
+class Restaurant(commonorm.ORM, 
+                 StatusMixin, 
+                 MongoORMLocationMixin,
+                 mixin.Likeable, 
+                 mixin.Commentable,
+                 mixin.Followable):
+    __table_name__ = 'restaurant'
+
+    @classmethod
+    def props(cls):
+        table = Dish.table()
+        dishes_backref = sa.orm.backref('restaurant', remote_side=[table.c.restaurant_id])
+        relations = {'dishes': orm.relation(Dish, backref=dishes_backref)}
+        return relations
+
+    @classmethod
+    def create(cls, creator_id, **attrs):
+        creator = User.get(creator_id)
+        if creator is None:
+            raise Exception('User not found: %r' % creator_id)
+
+        attrs['creator_id'] = creator_id
+        restaurant = Restaurant(**attrs)
+        session = cls.get_session()
+        session.add(restaurant)
+        session.commit()
+        return restaurant
+
+    @classmethod
+    def mongo_collection_name(cls):
+        return cls.__table_name__
+
+    @classmethod
+    def mongo_db_connection(cls):
+        return pymongo.Connection().topdish
+
+    def mongo_id(self):
+        return int(self.restaurant_id)
+
+
 class UserTag(FactoryMixin, StatusMixin):
 
     TYPES = {'dish': 0,
@@ -203,3 +270,4 @@ class UserFollow(commonorm.ORM, UserTag, DictORMMixin):
 
 class UserFlag(commonorm.ORM, UserTag, DictORMMixin):
     __table_name__ = 'user_flag'
+

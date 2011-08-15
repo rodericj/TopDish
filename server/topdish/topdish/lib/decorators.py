@@ -5,10 +5,10 @@ from decorator import decorator
 from pylons import request
 from pylons.decorators import jsonify
 
-from voyer.lib import security as securitylib
-from voyer.lib.exceptions import *
+from topdish.lib import security as securitylib
+from topdish.lib.exceptions import *
 
-from voyer import model
+from topdish import model
 
 log = logging.getLogger(__name__)
 

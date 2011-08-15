@@ -24,7 +24,6 @@ from topdish import model
 from topdish.model import cache
 from topdish.model import meta
 from topdish.model import User
-from topdish.model import Listing
 
 render_def = h.render_def
 

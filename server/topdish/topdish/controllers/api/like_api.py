@@ -2,7 +2,7 @@ import hashlib
 import logging
 import mimetypes
 
-from voyer.controllers.api import *
+from topdish.controllers.api import *
 
 log = logging.getLogger(__name__)
 

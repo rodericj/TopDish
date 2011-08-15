@@ -1,6 +1,6 @@
-from voyer.lib.base import *
-from voyer.lib import security as securitylib
-from voyer.controllers.api import BaseApiController
+from topdish.lib.base import *
+from topdish.lib import security as securitylib
+from topdish.controllers.api import BaseApiController
 
 class CredentialsApiController(BaseApiController):
 

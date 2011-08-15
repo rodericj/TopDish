@@ -2,7 +2,7 @@ import hashlib
 import logging
 import mimetypes
 
-from voyer.controllers.api import *
+from topdish.controllers.api import *
 
 log = logging.getLogger(__name__)
 
@@ -28,7 +28,7 @@ class CommentApiController(BaseApiController):
             Request parameters:
             List view:
                 1. obj_id - int, the id of the object commented on
-                2. obj_type - string, choices: 'media' or 'listing'
+                2. obj_type - string, choices: 'restaurant' or 'dish'
 
                 Returns each associated comment in a JSON array:
                 e.g. [{"status": 0, 
@@ -56,7 +56,7 @@ class CommentApiController(BaseApiController):
 
             Request parameters:
             1. user_id - int
-            2. type - string, choices: 'media' or 'listing'
+            2. type - string, choices: 'restaurant' or 'dish'
             3. obj_id - int, id of the object the user is commenting on
             4. data - string, the content of the comment. Keep it short, please.
 
@@ -122,10 +122,10 @@ class CommentApiController(BaseApiController):
         getter = model.UserComment.TYPE_ACCESSORS[obj_type]
         obj = getter(obj_id)
         if not obj:
-            if obj_type == 'media':
-                raise InvalidMediaException(obj_id)
-            elif obj_type == 'listing':
-                raise InvalidListingException(obj_id)
+            if obj_type == 'restaurant':
+                raise InvalidRestaurantException(obj_id)
+            elif obj_type == 'dish':
+                raise InvalidDishException(obj_id)
             else:
                 raise InvalidParamException('obj_id', obj_id)
 
